@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://paladear.github.io/paladeartienda/sitemap.xml
