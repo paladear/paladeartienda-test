@@ -404,7 +404,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .app-install-modal{max-width:420px;width:calc(100% - 32px);border-radius:20px;padding:24px 20px;position:relative;max-height:92vh;overflow-y:auto;background:var(--card);box-shadow:0 20px 60px rgba(0,0,0,.35)}
 .modal-close-btn{position:absolute;top:14px;right:14px;background:var(--muted);border:none;border-radius:50%;width:30px;height:30px;font-size:15px;cursor:pointer;color:var(--fg);display:flex;align-items:center;justify-content:center;font-family:inherit}
 /* ── CHECKOUT MODAL ── */
-.checkout-overlay{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:10002;display:flex;align-items:flex-end;justify-content:center}
+.checkout-overlay{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:10120;display:flex;align-items:flex-end;justify-content:center}
 @media(min-width:600px){.checkout-overlay{align-items:center}}
 .checkout-sheet{background:var(--card);border-radius:24px 24px 0 0;width:100%;max-width:520px;max-height:94vh;overflow-y:auto;box-shadow:0 -8px 40px rgba(0,0,0,.22);display:flex;flex-direction:column}
 @media(min-width:600px){.checkout-sheet{border-radius:20px;max-height:88vh}}
@@ -604,7 +604,7 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 /* Sección vacía */
 .recetas-empty{text-align:center;padding:60px 20px}
 /* Modal de receta / inspiración */
-.receta-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10005;display:flex;align-items:flex-end;justify-content:center;padding:0}
+.receta-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10010;display:flex;align-items:flex-end;justify-content:center;padding:0}
 @media(min-width:600px){.receta-modal-overlay{align-items:center;padding:20px}}
 .receta-modal-overlay.hidden{display:none}
 .receta-modal-sheet{background:var(--card);border-radius:22px 22px 0 0;width:100%;max-width:560px;max-height:94vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(0,0,0,.25)}
@@ -690,7 +690,7 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .receta-cantidades-box{background:linear-gradient(135deg,#fdf8f0,#fdefd8);border:1px solid #e8c88a;border-radius:12px;padding:14px;margin-bottom:14px;font-size:13px;color:#5a3a10;line-height:1.6;white-space:pre-line}
 .receta-cantidades-title{font-weight:800;margin-bottom:8px;display:block;font-size:14px;color:#8a3520}
 /* Modal de producto desde receta */
-.receta-prod-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10006;display:flex;align-items:flex-end;justify-content:center}
+.receta-prod-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10011;display:flex;align-items:flex-end;justify-content:center}
 @media(min-width:600px){.receta-prod-overlay{align-items:center}}
 .receta-prod-overlay.hidden{display:none}
 .receta-prod-sheet{background:var(--card);border-radius:22px 22px 0 0;width:100%;max-width:480px;max-height:88vh;overflow-y:auto;padding:18px 16px;box-shadow:0 -8px 40px rgba(0,0,0,.3);position:relative}
@@ -727,7 +727,7 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .receta-prod-chip{margin-top:auto;font-size:11px;color:var(--azul);background:rgba(84,118,146,.1);padding:5px 9px;border-radius:8px;align-self:flex-start;font-weight:600;line-height:1.3}
 .recetas-empty{text-align:center;padding:60px 20px}
 /* Modal de receta */
-.receta-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10005;display:flex;align-items:flex-end;justify-content:center;padding:0}
+.receta-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10010;display:flex;align-items:flex-end;justify-content:center;padding:0}
 @media(min-width:600px){.receta-modal-overlay{align-items:center;padding:20px}}
 .receta-modal-overlay.hidden{display:none}
 .receta-modal-sheet{background:var(--card);border-radius:20px 20px 0 0;width:100%;max-width:540px;max-height:94vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(0,0,0,.3)}
@@ -769,7 +769,7 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .receta-badge-prod{display:inline-flex;align-items:center;gap:4px;background:transparent;color:var(--muted-fg);font-size:11px;font-weight:500;padding:3px 0;margin-top:4px;cursor:pointer;border:none;font-family:inherit;font-style:italic}
 .receta-badge-prod:hover{color:var(--azul)}
 /* Modal de producto embebido en receta */
-.receta-prod-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10006;display:flex;align-items:flex-end;justify-content:center}
+.receta-prod-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10011;display:flex;align-items:flex-end;justify-content:center}
 @media(min-width:600px){.receta-prod-overlay{align-items:center}}
 .receta-prod-overlay.hidden{display:none}
 .receta-prod-sheet{background:var(--card);border-radius:22px 22px 0 0;width:100%;max-width:480px;max-height:88vh;overflow-y:auto;padding:18px 16px;box-shadow:0 -8px 40px rgba(0,0,0,.3);position:relative}
@@ -1016,7 +1016,7 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 /* ── CARRITO PANEL ── */
 .cart-overlay{position:fixed;inset:0;background:rgba(26,55,64,.5);z-index:500;display:none}
 .cart-overlay.open{display:block}
-.cart-panel{position:fixed;right:0;top:0;bottom:0;width:420px;max-width:100vw;background:var(--card);z-index:10009;display:flex;flex-direction:column;box-shadow:-4px 0 32px rgba(0,0,0,.22);transition:transform .3s ease-out;transform:translateX(100%)}
+.cart-panel{position:fixed;right:0;top:0;bottom:0;width:420px;max-width:100vw;background:var(--card);z-index:10012;display:flex;flex-direction:column;box-shadow:-4px 0 32px rgba(0,0,0,.22);transition:transform .3s ease-out;transform:translateX(100%)}
 .cart-panel.open{transform:translateX(0)}
 .cart-header{background:var(--azul);color:#fff;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .cart-header h2{font-size:20px;font-weight:700}
@@ -2775,23 +2775,23 @@ function responderChat(msg){
   if(/minorista.*horario|horario.*minorista|contacto.*minorista|minorista.*contacto|venta minorista/.test(t))
     return '🛒 Ventas Minoristas\n\n📞 Contacto: +549 261 651 2823\n🕙 Horario: Lunes a Sábados · 10:00 a 20:00 hs\n📍 Pueyrredón 588, esq. Paso de los Andes, Quinta Sección, Mendoza\n\n🏷️ Sin mínimos de compra. Descuentos en compras mayores a $80.000.\n\n🚚 Para envíos, consultá por nuestros canales de venta al por menor.';
   if(/envio|enviar|delivery|despacho|mando|mandar|entrega|reparto/.test(t))
-    return '🚚 Envíos a domicilio\n\nHacemos envíos en Mendoza Capital y Gran Mendoza.\n\n✅ ENVÍO GRATIS en compras mayores a $40.000 dentro de:\nCiudad, Godoy Cruz, Guaymallén, Las Heras, Luján de Cuyo o Maipú.\n\nSi tu compra es menor a ese monto, el envío se abona aparte.\n\nTambién podés retirar en el local sin costo:\nPueyrredón 588, Mendoza.\n\nPara envíos mayoristas, consultá directamente por el canal mayorista.';
+    return '🚚 Envíos a domicilio\n\nHacemos envíos en Mendoza Capital y Gran Mendoza.\n\n✅ ENVÍO GRATIS en compras mayores a $40.000 dentro de:\nCiudad, Godoy Cruz, Guaymallén, Las Heras, Luján de Cuyo o Maipú.\n\nSi tu compra es menor a ese monto, el envío se abona aparte.\n\nTambién podés retirar en el local sin costo:\nPueyrredón 588, Mendoza.';
   if(/metodo.*pago|medio.*pago|como.*pagar|abonar|pagar|transferencia|efectivo|tarjeta|mercado.*pago|mp|qr/.test(t)||t==='¿qué métodos de pago aceptan?')
     return '💳 Métodos de pago\n\n📍 En el local:\n• Efectivo (5% de descuento)\n• Tarjetas de crédito y débito\n• Mercado Pago o MODO\n\n🚚 Envíos a domicilio:\n• Transferencia bancaria (pedinos el ALIAS)\n• Tarjeta de crédito/débito via link de Mercado Pago\n\nEl descuento en efectivo se aplica sobre el total del pedido.';
   if(/horario|hora|abren|abrir|cuando|dias|abre|cierra/.test(t))
-    return 'Nuestros horarios son:\n\n🛒 Venta Minorista:\nLunes a Sábados · 10:00 a 20:00 hs\nPueyrredón 588, Mendoza\n\n📦 Venta Mayorista:\nLunes a Viernes · 08:00 a 16:00 hs\nSábados · 08:00 a 13:00 hs\nDepósito: Ruta Provincial 50 Nº 13080, KM 8 — Guaymallén\n\nTambién podés hacer tu pedido online las 24hs por este catálogo.';
+    return 'Nuestros horarios son:\n\n🛒 Lunes a Sábados · 10:00 a 20:00 hs\nPueyrredón 588, Mendoza\n\nTambién podés hacer tu pedido online las 24hs por este catálogo.';
   if(/direccion|ubicacion|donde|local|tienda|lugar|mapa/.test(t))
-    return '📍 Tenemos dos direcciones:\n\n🛒 Local minorista:\nPueyrredón 588, esq. Paso de los Andes — Quinta Sección, Ciudad de Mendoza.\nLunes a Sábados de 10:00 a 20:00 hs.\n(En Google Maps: "Paladear Mercado de Sabores")\n\n📦 Depósito mayorista:\nRuta Provincial 50 Nº 13080, KM 8 — Guaymallén, Mendoza.\nLunes a Viernes de 08:00 a 16:00 hs · Sábados de 08:00 a 13:00 hs.\nMapa: https://maps.app.goo.gl/MXySPy9mbBFm8oVaA';
+    return '📍 Nuestra dirección:\n\nPueyrredón 588, esq. Paso de los Andes — Quinta Sección, Ciudad de Mendoza.\nLunes a Sábados de 10:00 a 20:00 hs.\n(En Google Maps: "Paladear Mercado de Sabores")';
   if(/mayorista|mayor|precio mayor|lista mayor|lista 2|250000|250\.000/.test(t))
-    return '📦 Lista Mayorista\n\nContamos con una lista mayorista con precios especiales para compras en volumen.\n\nCondición: Ventas mayores a $250.000 por bulto cerrado.\n\n🕗 Horario de atención mayorista:\nLunes a Viernes · 08:00 a 16:00 hs\nSábados · 08:00 a 13:00 hs\n\n📍 Depósito mayorista:\nRuta Provincial 50 Nº 13080, KM 8 — Guaymallén, Mendoza.\nMapa: https://maps.app.goo.gl/MXySPy9mbBFm8oVaA\n\n📞 Contacto mayorista: +549 261 598 3065\n\nPodés acceder desde la pestaña "Lista Mayorista" en el catálogo.';
+    return '📦 Venta mayorista\n\nLas ventas por mayor (revendedores, bulto cerrado) las manejamos en nuestra Distribuidora, un sitio aparte:\n\nhttps://paladear.github.io/paladeardistribuidora\n\nAhí vas a encontrar los precios y condiciones de compra al por mayor.';
   if(/precio|cuanto.*cuesta|valor|kilo|kg|como.*se.*expresa|descuento|80000|80\.000/.test(t))
-    return '💰 Precios\n\nLos precios están publicados por kilogramo en la Lista Minorista.\n\n🏷️ Descuento por cantidad: En compras minoristas que superen los $80.000 se aplica automáticamente un descuento. El precio en azul en cada producto es el precio con descuento.\n\n📦 Lista Mayorista: Para compras mayores a $250.000 por bulto cerrado. Accedé desde la pestaña correspondiente en el catálogo.';
+    return '💰 Precios\n\nLos precios están publicados por kilogramo en el catálogo.\n\n🏷️ Descuento por cantidad: En compras que superen los $80.000 se aplica automáticamente un descuento. El precio en azul en cada producto es el precio con descuento.';
   if(/pedido|como comprar|como pedir|comprar|hacer pedido|proceso|paso a paso/.test(t))
     return '📦 Cómo hacer tu pedido\n\n1. Navegá el catálogo y elegí tus productos\n2. Seleccioná la cantidad y tocá "Agregar al pedido"\n3. Abrí el carrito y revisá tu selección\n4. Tocá "Pedir por WhatsApp" para enviarnos tu pedido\n5. Confirmá el pedido con el equipo Paladear\n6. Informanos el método de pago\n7. ¡Lo recibís en casa o lo retirás en el local! 🎉';
   if(/whatsapp.*mayorista|mayorista.*whatsapp|contacto.*mayorista|mayorista.*contacto|numero.*mayorista/.test(t))
-    return 'Contacto Mayorista 📦\n\nWhatsApp: +549 261 598 3065\nHorario: Lunes a Viernes · 08:00 a 16:00 hs\nSábados · 08:00 a 13:00 hs\n\nRecordá que la venta mayorista requiere un mínimo de $250.000 por bulto cerrado.';
+    return '📦 Para venta mayorista (revendedores) visitá nuestra Distribuidora:\n\nhttps://paladear.github.io/paladeardistribuidora';
   if(/whatsapp|telefono|contacto|llamar|numero|comunicar/.test(t))
-    return 'Podés contactarnos:\n\n🛒 Venta Minorista:\nWhatsApp: +549 261 651 2823\nLunes a Sábados · 10:00 a 20:00 hs\n\n📦 Venta Mayorista:\nWhatsApp: +549 261 598 3065\nLunes a Viernes · 08:00 a 16:00 hs\nSábados · 08:00 a 13:00 hs';
+    return 'Podés contactarnos por WhatsApp:\n\n📱 +549 261 651 2823\nLunes a Sábados · 10:00 a 20:00 hs';
   if(/mix tradicional/.test(t))
     return 'Mix Tradicional 🥜\nUn clásico que nunca falla.\nContenido: nueces, almendras, pasas rubias, pasas morochas y maní.';
   if(/mix tropical/.test(t))
@@ -2833,12 +2833,12 @@ function responderChat(msg){
   if(/vegano|vegana|plant based/.test(t))
     return 'Muchos de nuestros productos son aptos para veganos 🌱\nFrutos secos, semillas, harinas, legumbres, especias y más. Si querés saber sobre un producto específico, consultanos.';
   if(/retiro|retirar|buscar|paso a buscar/.test(t))
-    return 'Podés retirar tu pedido sin problema 🏠\n\n🛒 Pedidos minoristas:\nPueyrredón 588, Mendoza · Lunes a Sábados de 10:00 a 20:00 hs.\n\n📦 Pedidos mayoristas:\nDepósito en Ruta Provincial 50 Nº 13080, KM 8 — Guaymallén.\nLunes a Viernes de 08:00 a 16:00 hs · Sábados de 08:00 a 13:00 hs.\nMapa: https://maps.app.goo.gl/MXySPy9mbBFm8oVaA';
+    return 'Podés retirar tu pedido sin problema 🏠\n\nPueyrredón 588, Mendoza · Lunes a Sábados de 10:00 a 20:00 hs.';
   if(/^(hola|buen|buenas|saludos|hey|hi|buenos dias|buenas tardes|buenas noches)/.test(t))
     return '¡Hola! 👋 Bienvenido a Paladear Mercado de Sabores.\n¿En qué te puedo ayudar?';
   if(/gracias|muchas gracias|genial|perfecto|excelente|ok gracias/.test(t))
-    return '¡De nada! 😊 Si tenés más preguntas estoy acá. También podés contactarnos:\n• Minorista: +549 261 651 2823\n• Mayorista: +549 261 598 3065';
-  return 'No estoy seguro de poder responder eso con exactitud 🤔\n\nPodés contactarnos:\n• Minorista: WhatsApp +549 261 651 2823\n• Mayorista: WhatsApp +549 261 598 3065\n\nTambién puedo contarte sobre:\n• Mixes de frutos secos y granolas\n• Envíos y métodos de pago\n• Cómo hacer un pedido\n• Horarios y ubicación\n• Precios y lista mayorista';
+    return '¡De nada! 😊 Si tenés más preguntas estoy acá. También podés escribirnos por WhatsApp: +549 261 651 2823';
+  return 'No estoy seguro de poder responder eso con exactitud 🤔\n\nEscribinos por WhatsApp: +549 261 651 2823\n\nTambién puedo contarte sobre:\n• Mixes de frutos secos y granolas\n• Envíos y métodos de pago\n• Cómo hacer un pedido\n• Horarios y ubicación\n• Precios y descuentos';
 }
 function sendChat(){
   const input=document.getElementById('chat-input');
