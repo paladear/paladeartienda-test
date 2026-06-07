@@ -2737,7 +2737,7 @@ function sendQuickFaq(btn,msg){
   setTimeout(()=>{
     const reply=responderChat(msg);
     typing.style.whiteSpace='pre-wrap';
-    typing.textContent=reply;
+    typing.innerHTML=reply;
     typing.classList.remove('typing');
     document.getElementById('chat-msgs').scrollTop=9999;
     setTimeout(()=>_renderQuickFaqs(),200);
@@ -2853,7 +2853,7 @@ function sendChat(){
   setTimeout(()=>{
     const reply=responderChat(text);
     typing.style.whiteSpace='pre-wrap';
-    typing.textContent=reply;
+    typing.innerHTML=reply;
     typing.classList.remove('typing');
     document.getElementById('chat-msgs').scrollTop=9999;
     setTimeout(()=>_renderQuickFaqs(),200);
