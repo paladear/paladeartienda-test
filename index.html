@@ -2215,7 +2215,8 @@ function renderCard(p,prefix){
     ? `<div class="price-min"><span class="precio-tachado-sm">$${fmt(precioMin)}</span><span class="precio-oferta">$${fmt(precioMinOferta)}</span></div>`
     : `<div class="price-min">$${fmt(precioMin)}</div>`;
   h+=`<div class="prices"><div><span class="price-label">Precio${oferta>0?' (Oferta)':''}</span>${minHTML}</div><div><span class="price-label">Con descuento</span><div class="price-may">$${fmt(p[7][opts[0]][1])}</div></div></div>`;
-  const acumInfo=acumLbl?`<span class="acum-badge">🛒 ${acumLbl}</span>`:'';
+  const acumSub=acumLbl?cart.filter(i=>i.pid===p[0]).reduce((a,it)=>a+_itemMin(it),0):0;
+  const acumInfo=acumLbl?`<span class="acum-badge">🛒 ${acumLbl} · $${fmt(acumSub)}</span>`:'';
   h+=`<div class="qty-row"><button class="qty-btn" onclick="chgQty('${id}',-1)">−</button><span class="qty-val" id="${id}_q">1</span><button class="qty-btn" onclick="chgQty('${id}',1)">+</button>${acumInfo}</div>`;
   h+=`<button class="add-btn" id="${id}_ab" onclick="addToCart(${p[0]},'${id}')">🛒 Agregar al pedido</button>`;
   // Badge "Ver receta" si el producto está vinculado a alguna receta
