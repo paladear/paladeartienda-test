@@ -1589,6 +1589,142 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
   <!-- sin dots: se desliza con swipe -->
 </div>
 
+  <!-- ═══ SECCIÓN MUNDIAL DE SABORES (especial del mes) ═══ -->
+  <style>
+    .mund-section{background:linear-gradient(160deg,#e9f4fd 0%,#c9e3f7 100%);border:2px solid #6cace4;border-radius:18px;padding:0 16px 22px;margin:6px 0 28px;position:relative;overflow:hidden;box-shadow:0 4px 18px rgba(74,134,192,.20)}
+    .mund-confeti{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+    .mund-bunting{display:block;width:calc(100% + 32px);height:38px;margin:0 -16px;position:relative;z-index:2}
+    .mund-header{text-align:center;margin:8px 0 0;position:relative;z-index:2}
+    .mund-stars{display:block;height:21px;margin:0 auto 5px}
+    .mund-header h2{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:#1f5c8f;margin:0;line-height:1.16;text-shadow:0 1px 0 rgba(255,255,255,.55)}
+    .mund-boxes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:640px;margin:18px auto 0;position:relative;z-index:2}
+    @media(max-width:640px){.mund-boxes{grid-template-columns:1fr;max-width:330px}}
+    .mund-box{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(31,92,143,.18);border:2px solid #fff;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s,transform .2s}
+    .mund-box:hover{box-shadow:0 10px 26px rgba(31,92,143,.28);border-color:#6cace4;transform:translateY(-3px)}
+    .mund-box-img-wrap{position:relative;width:100%;height:180px;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden}
+    .mund-box-img{width:100%;height:100%;object-fit:contain;padding:10px}
+    .mund-box-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:#a7c1da;font-size:11.5px;font-weight:600;font-family:'Montserrat',sans-serif;letter-spacing:.2px}
+    .mund-box-ph svg{width:38px;height:38px}
+    .mund-box-title{background:linear-gradient(135deg,#6cace4,#4a86c0);color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:14.5px;line-height:1.22;padding:9px 13px;min-height:54px;box-sizing:border-box;display:flex;align-items:center;gap:7px}
+    .mund-box-title svg{width:15px;height:15px;flex-shrink:0}
+    .mund-box-body{padding:12px 14px 14px;flex:1;display:flex;flex-direction:column}
+    .mund-list{list-style:none;padding:0;margin:0 0 13px;flex:1}
+    .mund-list li{font-size:12.5px;color:#42566c;padding:3px 0 3px 19px;position:relative;font-weight:500}
+    .mund-list li::before{content:"";position:absolute;left:0;top:6px;width:9px;height:9px;background:#6cace4;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+    .mund-box-foot{display:flex;flex-direction:column;gap:9px;margin-top:auto}
+    .mund-qtyrow{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    .mund-qbtn{width:28px;height:28px;border:1.5px solid #cfe3f5;background:#fff;color:#1f5c8f;border-radius:7px;font-size:16px;font-weight:700;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
+    .mund-qbtn:hover{background:#eaf4fc;border-color:#6cace4}
+    .mund-qval{min-width:22px;text-align:center;font-weight:700;font-size:14px;color:#1f5c8f}
+    .mund-acum{display:none;font-size:11px;font-weight:700;color:#16a34a;background:#eafaf0;border:1px solid #bbe8cd;padding:2px 8px;border-radius:11px;white-space:nowrap}
+    .mund-acum.on{display:inline-block}
+    .mund-price{font-size:19px;font-weight:800;color:#1f5c8f}
+    .mund-btn{width:100%;background:linear-gradient(135deg,#6cace4,#4a86c0);color:#fff;border:none;border-radius:9px;padding:10px 12px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:filter .2s,transform .1s}
+    .mund-btn:hover{filter:brightness(1.07)}
+    .mund-btn:active{transform:scale(.98)}
+    .mund-btn.added{background:#16a34a}
+  </style>
+  <div class="mund-section" id="mundialSection">
+    <svg class="mund-confeti" viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g stroke-linejoin="round">
+        <rect x="46" y="150" width="7" height="13" rx="1.5" fill="#6cace4" opacity=".5" transform="rotate(28 49 156)"/>
+        <rect x="540" y="120" width="7" height="13" rx="1.5" fill="#6cace4" opacity=".5" transform="rotate(-22 543 126)"/>
+        <rect x="120" y="300" width="6" height="12" rx="1.5" fill="#4a86c0" opacity=".4" transform="rotate(40 123 306)"/>
+        <rect x="470" y="300" width="6" height="12" rx="1.5" fill="#6cace4" opacity=".45" transform="rotate(-35 473 306)"/>
+        <rect x="300" y="56" width="6" height="12" rx="1.5" fill="#fff" opacity=".75" transform="rotate(18 303 62)"/>
+        <rect x="250" y="330" width="6" height="12" rx="1.5" fill="#6cace4" opacity=".5" transform="rotate(-15 253 336)"/>
+        <circle cx="90" cy="230" r="4" fill="#fff" opacity=".7"/>
+        <circle cx="520" cy="220" r="4" fill="#fff" opacity=".7"/>
+        <circle cx="180" cy="108" r="3.5" fill="#6cace4" opacity=".5"/>
+        <circle cx="420" cy="86" r="3.5" fill="#fff" opacity=".7"/>
+        <circle cx="560" cy="320" r="3.5" fill="#fff" opacity=".6"/>
+        <circle cx="60" cy="330" r="3.5" fill="#6cace4" opacity=".4"/>
+        <path d="M350,250 l5,2 -1,5" fill="none" stroke="#6cace4" stroke-width="2" opacity=".4"/>
+        <path d="M210,196 l5,-2 1,5" fill="none" stroke="#6cace4" stroke-width="2" opacity=".55"/>
+        <path d="M480,168 l5,2 -1,5" fill="none" stroke="#fff" stroke-width="2" opacity=".6"/>
+      </g>
+    </svg>
+    <svg class="mund-bunting" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="mundBgC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fc4ec"/><stop offset="1" stop-color="#5a9bd4"/></linearGradient>
+        <linearGradient id="mundBgW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dcebf8"/></linearGradient>
+      </defs>
+      <path d="M0,6 Q600,18 1200,6" fill="none" stroke="#3f7cb5" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
+      <g stroke="#3f7cb5" stroke-width="1.1" vector-effect="non-scaling-stroke" stroke-linejoin="round">
+        <path fill="url(#mundBgC)" d="M0,6 L100,7.8 L50,31 Z M200,9.3 L300,10.5 L250,34 Z M400,11.3 L500,11.8 L450,35.6 Z M600,12 L700,11.8 L650,36 Z M800,11.3 L900,10.5 L850,35 Z M1000,9.3 L1100,7.8 L1050,32.6 Z"/>
+        <path fill="url(#mundBgW)" d="M100,7.8 L200,9.3 L150,32.6 Z M300,10.5 L400,11.3 L350,35 Z M500,11.8 L600,12 L550,36 Z M700,11.8 L800,11.3 L750,35.6 Z M900,10.5 L1000,9.3 L950,34 Z M1100,7.8 L1200,6 L1150,31 Z"/>
+      </g>
+    </svg>
+    <div class="mund-header">
+      <svg class="mund-stars" viewBox="0 0 90 24" aria-hidden="true">
+        <g fill="#f4c64a" stroke="#d99a25" stroke-width="0.9" stroke-linejoin="round">
+          <path transform="translate(18,14) scale(0.8)" d="M0,-10 L2.24,-3.09 L9.51,-3.09 L3.63,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.63,1.18 L-9.51,-3.09 L-2.24,-3.09 Z"/>
+          <path transform="translate(45,10) scale(1.0)" d="M0,-10 L2.24,-3.09 L9.51,-3.09 L3.63,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.63,1.18 L-9.51,-3.09 L-2.24,-3.09 Z"/>
+          <path transform="translate(72,14) scale(0.8)" d="M0,-10 L2.24,-3.09 L9.51,-3.09 L3.63,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.63,1.18 L-9.51,-3.09 L-2.24,-3.09 Z"/>
+        </g>
+      </svg>
+      <h2>Mundial de Sabores en Paladear</h2>
+    </div>
+    <div class="mund-boxes">
+      <div class="mund-box">
+        <div class="mund-box-img-wrap">
+          <img class="mund-box-img" id="mundImg4800" alt="La picada no se mancha" style="display:none">
+          <div class="mund-box-ph" id="mundPh4800"><svg viewBox="0 0 24 24" fill="none" stroke="#a7c1da" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15.5l-4.5-4.5L5 21.5"/></svg><span>Foto en camino</span></div>
+        </div>
+        <div class="mund-box-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12,2 L14.7,8.6 L21.8,9.1 L16.3,13.7 L18.1,20.6 L12,16.8 L5.9,20.6 L7.7,13.7 L2.2,9.1 L9.3,8.6 Z"/></svg>La picada no se mancha</div>
+        <div class="mund-box-body">
+          <ul class="mund-list">
+            <li>Pasta de aceitunas x 200 g</li>
+            <li>Mix cervecero x 300 g</li>
+            <li>Mix patagónico x 300 g</li>
+            <li>Chips de batata</li>
+            <li>Vino Malbec "Cordero con piel de lobo"</li>
+          </ul>
+          <div class="mund-box-foot">
+            <div class="mund-qtyrow">
+              <button class="mund-qbtn" onclick="chgQty('mundCard4800',-1)" aria-label="Restar">−</button>
+              <span class="mund-qval" id="mundCard4800_q">1</span>
+              <button class="mund-qbtn" onclick="chgQty('mundCard4800',1)" aria-label="Sumar">+</button>
+              <span class="mund-acum" id="mundAcum4800"></span>
+            </div>
+            <span class="mund-price" id="mundPrice4800">$20.000</span>
+            <button class="mund-btn" id="mundBtn4800" onclick="agregarBoxMundial('4800',this)">🛒 Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+      <div class="mund-box">
+        <div class="mund-box-img-wrap">
+          <img class="mund-box-img" id="mundImg4801" alt="Primero Paladear, segundo Francia" style="display:none">
+          <div class="mund-box-ph" id="mundPh4801"><svg viewBox="0 0 24 24" fill="none" stroke="#a7c1da" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15.5l-4.5-4.5L5 21.5"/></svg><span>Foto en camino</span></div>
+        </div>
+        <div class="mund-box-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12,2 L14.7,8.6 L21.8,9.1 L16.3,13.7 L18.1,20.6 L12,16.8 L5.9,20.6 L7.7,13.7 L2.2,9.1 L9.3,8.6 Z"/></svg>Primero Paladear, segundo Francia</div>
+        <div class="mund-box-body">
+          <ul class="mund-list">
+            <li>Mix cervecero x 300 g</li>
+            <li>Mix tradicional x 300 g</li>
+            <li>Crackers "Shiva"</li>
+            <li>Aceitunas rellenas x 200 g</li>
+            <li>Mayonesa Mayov</li>
+            <li>Nueces confitadas</li>
+            <li>Vermouth "Aquí y ahora"</li>
+          </ul>
+          <div class="mund-box-foot">
+            <div class="mund-qtyrow">
+              <button class="mund-qbtn" onclick="chgQty('mundCard4801',-1)" aria-label="Restar">−</button>
+              <span class="mund-qval" id="mundCard4801_q">1</span>
+              <button class="mund-qbtn" onclick="chgQty('mundCard4801',1)" aria-label="Sumar">+</button>
+              <span class="mund-acum" id="mundAcum4801"></span>
+            </div>
+            <span class="mund-price" id="mundPrice4801">$30.000</span>
+            <button class="mund-btn" id="mundBtn4801" onclick="agregarBoxMundial('4801',this)">🛒 Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- La lógica del banner Mundial (agregarBoxMundial + relleno de imágenes/precios)
+       vive DENTRO del script principal para poder acceder a PRODS/cart. -->
+
   <!-- MÓVIL: panel de categorías (el botón está integrado en el buscador) -->
   <div class="cats-dropdown-overlay" id="catsDropdownOverlay" onclick="toggleCatsDropdown()"></div>
   <div class="cats-dropdown-panel" id="catsDropdownPanel" style="display:none">
@@ -2333,61 +2469,7 @@ function addToCart(pid,elId){
   if(qEl)qEl.textContent='1';
 
   // ── FLY-TO-CART ANIMATION ──
-  (function(){
-    const cardEl=document.getElementById(elId);
-    const fab=document.getElementById('cart-fab');
-    if(!cardEl||!fab)return;
-    // Try to find product image inside the card
-    const imgEl=cardEl.querySelector('.pcard-img img, .pcard-img');
-    if(!imgEl)return;
-    const srcRect=imgEl.getBoundingClientRect();
-    const destRect=fab.getBoundingClientRect();
-    const fly=document.createElement('div');
-    fly.className='fly-img';
-    // Use img src if available, else just show cart emoji
-    if(imgEl.tagName==='IMG'&&imgEl.src){
-      const inner=document.createElement('img');
-      inner.src=imgEl.src;
-      inner.style.cssText='width:100%;height:100%;object-fit:contain;border-radius:50%';
-      fly.appendChild(inner);
-    } else {
-      fly.textContent='🛒';
-      fly.style.fontSize='28px';
-      fly.style.display='flex';
-      fly.style.alignItems='center';
-      fly.style.justifyContent='center';
-    }
-    const startX=srcRect.left+srcRect.width/2-30;
-    const startY=srcRect.top+srcRect.height/2-30;
-    const endX=destRect.left+destRect.width/2-30;
-    const endY=destRect.top+destRect.height/2-30;
-    fly.style.cssText+=`;left:${startX}px;top:${startY}px;`;
-    document.body.appendChild(fly);
-    // Animate via JS for curved path
-    const dur=650;const start=performance.now();
-    function step(now){
-      const t=Math.min((now-start)/dur,1);
-      const ease=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
-      // Arc: midpoint offset
-      const mx=(startX+endX)/2;
-      const my=Math.min(startY,endY)-80;
-      const x=(1-ease)*(1-ease)*startX+2*(1-ease)*ease*mx+ease*ease*endX;
-      const y=(1-ease)*(1-ease)*startY+2*(1-ease)*ease*my+ease*ease*endY;
-      const sc=1-ease*0.75;
-      fly.style.left=x+'px';
-      fly.style.top=y+'px';
-      fly.style.transform=`scale(${sc})`;
-      fly.style.opacity=t>0.75?(1-(t-0.75)/0.25)+'':1;
-      if(t<1){requestAnimationFrame(step);}
-      else{
-        fly.remove();
-        // Pulse the FAB
-        fab.style.transform='scale(1.3)';
-        setTimeout(()=>{fab.style.transform='';},200);
-      }
-    }
-    requestAnimationFrame(step);
-  })();
+  {const cardEl=document.getElementById(elId);if(cardEl)_flyToCart(cardEl.querySelector('.pcard-img img, .pcard-img'));}
 
   updateCartCount();
 
@@ -2403,6 +2485,51 @@ function addToCart(pid,elId){
       setTimeout(function(){newBtn.classList.remove('added');newBtn.innerHTML='🛒 Agregar al pedido';},1400);
     }
   },20);
+}
+
+// Animación de vuelo de la imagen hacia el carrito (compartida por las cards y los box del Mundial)
+function _flyToCart(imgEl){
+  const fab=document.getElementById('cart-fab');
+  if(!imgEl||!fab)return;
+  const srcRect=imgEl.getBoundingClientRect();
+  const destRect=fab.getBoundingClientRect();
+  const fly=document.createElement('div');
+  fly.className='fly-img';
+  if(imgEl.tagName==='IMG'&&imgEl.src){
+    const inner=document.createElement('img');
+    inner.src=imgEl.src;
+    inner.style.cssText='width:100%;height:100%;object-fit:contain;border-radius:50%';
+    fly.appendChild(inner);
+  } else {
+    fly.textContent='🛒';
+    fly.style.fontSize='28px';
+    fly.style.display='flex';
+    fly.style.alignItems='center';
+    fly.style.justifyContent='center';
+  }
+  const startX=srcRect.left+srcRect.width/2-30;
+  const startY=srcRect.top+srcRect.height/2-30;
+  const endX=destRect.left+destRect.width/2-30;
+  const endY=destRect.top+destRect.height/2-30;
+  fly.style.cssText+=`;left:${startX}px;top:${startY}px;`;
+  document.body.appendChild(fly);
+  const dur=650;const start=performance.now();
+  function step(now){
+    const t=Math.min((now-start)/dur,1);
+    const ease=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+    const mx=(startX+endX)/2;
+    const my=Math.min(startY,endY)-80;
+    const x=(1-ease)*(1-ease)*startX+2*(1-ease)*ease*mx+ease*ease*endX;
+    const y=(1-ease)*(1-ease)*startY+2*(1-ease)*ease*my+ease*ease*endY;
+    const sc=1-ease*0.75;
+    fly.style.left=x+'px';
+    fly.style.top=y+'px';
+    fly.style.transform=`scale(${sc})`;
+    fly.style.opacity=t>0.75?(1-(t-0.75)/0.25)+'':1;
+    if(t<1){requestAnimationFrame(step);}
+    else{fly.remove();fab.style.transform='scale(1.3)';setTimeout(()=>{fab.style.transform='';},200);}
+  }
+  requestAnimationFrame(step);
 }
 
 function showMiniCart(lastKey){}
@@ -5134,6 +5261,62 @@ window.pedirWA=pedirWA;
 window.sendQuickFaq=sendQuickFaq;
 window.volverInicio=volverInicio;
 window.zoomImg=zoomImg;
+
+// ── BANNER MUNDIAL: agregar box al carrito + rellenar imágenes/precios ──
+function agregarBoxMundial(productId,btn){
+  if(!PRODS||!PRODS.length){alert('El box se está cargando, probá de nuevo en unos segundos 🙂');return;}
+  const p=PRODS.find(x=>x[12]&&String(x[12].productId)===String(productId));
+  if(!p){alert('No encontramos el box. Reintentá en unos segundos 🙂');return;}
+  const TIT={'4800':'La picada no se mancha','4801':'Primero Paladear, segundo Francia'};
+  const nombre=TIT[String(productId)]||p[2];
+  const opt=_sortOpts(Object.keys(p[7]))[0];
+  const qEl=document.getElementById('mundCard'+productId+'_q');
+  const qty=qEl?(parseInt(qEl.textContent)||1):1;
+  const key=p[0]+'-'+opt;
+  const ex=cart.find(i=>i.key===key);
+  if(ex){ex.c+=qty;ex.n=nombre;} else cart.push({key,pid:p[0],n:nombre,o:opt,c:qty,l1:p[7][opt][0],l2:p[7][opt][1],unidad:'und',sabor:''});
+  if(qEl)qEl.textContent='1';
+  updateCartCount();
+  // animación de vuelo igual que las cards (usa la foto del box, o el placeholder si no hay)
+  const img=document.getElementById('mundImg'+productId);
+  const ph=document.getElementById('mundPh'+productId);
+  _flyToCart((img&&img.style.display!=='none')?img:ph);
+  _updMundAcum(productId,p);
+  if(btn){btn.classList.add('added');btn.innerHTML='✓ ¡Agregado!';setTimeout(()=>{btn.classList.remove('added');btn.innerHTML='🛒 Agregar al carrito';},1400);}
+}
+// Actualiza el badge de subtotal acumulado del box (paridad con .acum-badge de las cards)
+function _updMundAcum(productId,p){
+  const el=document.getElementById('mundAcum'+productId);
+  if(!el)return;
+  const items=cart.filter(i=>i.pid===p[0]);
+  if(!items.length){el.textContent='';el.classList.remove('on');return;}
+  const sub=items.reduce((a,it)=>a+_itemMin(it),0);
+  el.textContent='🛒 '+_acumLabel(p)+' · $'+fmt(sub);
+  el.classList.add('on');
+}
+window.agregarBoxMundial=agregarBoxMundial;
+function _fillMund(){
+  if(!PRODS||!PRODS.length)return false;
+  let ok=false;
+  [['4800','mundImg4800','mundPrice4800','mundPh4800'],['4801','mundImg4801','mundPrice4801','mundPh4801']].forEach(b=>{
+    const p=PRODS.find(x=>x[12]&&String(x[12].productId)===b[0]);
+    if(!p)return; ok=true;
+    const img=document.getElementById(b[1]);
+    if(img&&p[6]&&String(p[6]).indexOf('http')===0&&img.dataset.loaded!==p[6]){
+      img.dataset.loaded=p[6];
+      const ph=document.getElementById(b[3]);
+      img.onload=function(){img.style.display='';if(ph)ph.style.display='none';};
+      img.onerror=function(){img.style.display='none';if(ph)ph.style.display='';};
+      img.src=p[6];
+    }
+    const opts=Object.keys(p[7]);const precio=opts.length?p[7][opts[0]][0]:0;
+    const pr=document.getElementById(b[2]);
+    if(pr&&precio)pr.textContent='$'+(typeof fmt==='function'?fmt(precio):precio);
+    _updMundAcum(b[0],p);
+  });
+  return ok;
+}
+(function(){let _mt=0;const _miv=setInterval(()=>{_mt++;if(_fillMund()||_mt>60)clearInterval(_miv);},300);})();
 
 // ── CATS DROPDOWN (mobile) ──
 let _catsDropOpen=false;
