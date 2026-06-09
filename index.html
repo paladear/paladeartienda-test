@@ -1592,13 +1592,33 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
   <!-- ═══ SECCIÓN MUNDIAL DE SABORES (especial del mes) ═══ -->
   <style>
     .mund-section{background:linear-gradient(160deg,#e9f4fd 0%,#c9e3f7 100%);border:2px solid #6cace4;border-radius:18px;padding:0 16px 22px;margin:6px 0 28px;position:relative;overflow:hidden;box-shadow:0 4px 18px rgba(74,134,192,.20)}
-    .mund-confeti{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+    .mund-confeti{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
+    .mund-confeti i{position:absolute;top:-6%;width:7px;height:11px;border-radius:2px;opacity:0;animation:mundFall linear infinite}
+    @keyframes mundFall{0%{top:-6%;opacity:0;transform:rotate(0deg)}12%{opacity:.85}88%{opacity:.85}100%{top:106%;opacity:0;transform:rotate(360deg)}}
+    @media(prefers-reduced-motion:reduce){.mund-confeti i{animation:none;opacity:.5}}
     .mund-bunting{display:block;width:calc(100% + 32px);height:38px;margin:0 -16px;position:relative;z-index:2}
     .mund-header{text-align:center;margin:8px 0 0;position:relative;z-index:2}
     .mund-stars{display:block;height:21px;margin:0 auto 5px}
     .mund-header h2{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:#1f5c8f;margin:0;line-height:1.16;text-shadow:0 1px 0 rgba(255,255,255,.55)}
     .mund-boxes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:640px;margin:18px auto 0;position:relative;z-index:2}
-    @media(max-width:640px){.mund-boxes{grid-template-columns:1fr;max-width:330px}}
+    @media(max-width:640px){
+      .mund-section{padding:0 10px 16px}
+      .mund-boxes{grid-template-columns:1fr 1fr;gap:9px;max-width:none}
+      .mund-header h2{font-size:17px}
+      .mund-box-img-wrap{height:116px}
+      .mund-box-img{padding:7px}
+      .mund-box-title{font-size:11px;min-height:42px;padding:7px 8px;gap:5px}
+      .mund-box-title svg{width:11px;height:11px}
+      .mund-box-body{padding:9px 9px 10px}
+      .mund-list li{font-size:10.5px;padding:2px 0 2px 13px;line-height:1.3}
+      .mund-list li::before{width:6px;height:6px;top:5px}
+      .mund-box-foot{gap:7px}
+      .mund-qbtn{width:24px;height:24px;font-size:14px}
+      .mund-qval{font-size:13px;min-width:18px}
+      .mund-acum{font-size:9.5px;padding:2px 5px}
+      .mund-price{font-size:15px}
+      .mund-btn{font-size:10.5px;padding:8px 6px}
+    }
     .mund-box{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(31,92,143,.18);border:2px solid #fff;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s,transform .2s}
     .mund-box:hover{box-shadow:0 10px 26px rgba(31,92,143,.28);border-color:#6cace4;transform:translateY(-3px)}
     .mund-box-img-wrap{position:relative;width:100%;height:180px;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden}
@@ -1625,25 +1645,22 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
     .mund-btn.added{background:#16a34a}
   </style>
   <div class="mund-section" id="mundialSection">
-    <svg class="mund-confeti" viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <g stroke-linejoin="round">
-        <rect x="46" y="150" width="7" height="13" rx="1.5" fill="#6cace4" opacity=".5" transform="rotate(28 49 156)"/>
-        <rect x="540" y="120" width="7" height="13" rx="1.5" fill="#6cace4" opacity=".5" transform="rotate(-22 543 126)"/>
-        <rect x="120" y="300" width="6" height="12" rx="1.5" fill="#4a86c0" opacity=".4" transform="rotate(40 123 306)"/>
-        <rect x="470" y="300" width="6" height="12" rx="1.5" fill="#6cace4" opacity=".45" transform="rotate(-35 473 306)"/>
-        <rect x="300" y="56" width="6" height="12" rx="1.5" fill="#fff" opacity=".75" transform="rotate(18 303 62)"/>
-        <rect x="250" y="330" width="6" height="12" rx="1.5" fill="#6cace4" opacity=".5" transform="rotate(-15 253 336)"/>
-        <circle cx="90" cy="230" r="4" fill="#fff" opacity=".7"/>
-        <circle cx="520" cy="220" r="4" fill="#fff" opacity=".7"/>
-        <circle cx="180" cy="108" r="3.5" fill="#6cace4" opacity=".5"/>
-        <circle cx="420" cy="86" r="3.5" fill="#fff" opacity=".7"/>
-        <circle cx="560" cy="320" r="3.5" fill="#fff" opacity=".6"/>
-        <circle cx="60" cy="330" r="3.5" fill="#6cace4" opacity=".4"/>
-        <path d="M350,250 l5,2 -1,5" fill="none" stroke="#6cace4" stroke-width="2" opacity=".4"/>
-        <path d="M210,196 l5,-2 1,5" fill="none" stroke="#6cace4" stroke-width="2" opacity=".55"/>
-        <path d="M480,168 l5,2 -1,5" fill="none" stroke="#fff" stroke-width="2" opacity=".6"/>
-      </g>
-    </svg>
+    <div class="mund-confeti" aria-hidden="true">
+      <i style="left:5%;width:7px;height:11px;background:#6cace4;animation-duration:9s;animation-delay:-1s"></i>
+      <i style="left:12%;width:6px;height:6px;border-radius:50%;background:#fff;animation-duration:7.5s;animation-delay:-4s"></i>
+      <i style="left:20%;width:8px;height:12px;background:#fff;animation-duration:10.5s;animation-delay:-7s"></i>
+      <i style="left:28%;width:6px;height:10px;background:#4a86c0;animation-duration:8s;animation-delay:-2.5s"></i>
+      <i style="left:36%;width:5px;height:5px;border-radius:50%;background:#6cace4;animation-duration:11s;animation-delay:-9s"></i>
+      <i style="left:44%;width:7px;height:11px;background:#fff;animation-duration:8.5s;animation-delay:-5s"></i>
+      <i style="left:52%;width:6px;height:10px;background:#6cace4;animation-duration:9.5s;animation-delay:-0.5s"></i>
+      <i style="left:60%;width:5px;height:5px;border-radius:50%;background:#fff;animation-duration:7s;animation-delay:-6s"></i>
+      <i style="left:68%;width:8px;height:12px;background:#6cace4;animation-duration:10s;animation-delay:-3s"></i>
+      <i style="left:76%;width:6px;height:10px;background:#4a86c0;animation-duration:8.5s;animation-delay:-8s"></i>
+      <i style="left:84%;width:6px;height:6px;border-radius:50%;background:#fff;animation-duration:9s;animation-delay:-2s"></i>
+      <i style="left:91%;width:7px;height:11px;background:#6cace4;animation-duration:11.5s;animation-delay:-5.5s"></i>
+      <i style="left:97%;width:5px;height:9px;background:#fff;animation-duration:7.5s;animation-delay:-7.5s"></i>
+      <i style="left:32%;width:6px;height:6px;border-radius:50%;background:#fff;animation-duration:10s;animation-delay:-10s"></i>
+    </div>
     <svg class="mund-bunting" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
       <defs>
         <linearGradient id="mundBgC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fc4ec"/><stop offset="1" stop-color="#5a9bd4"/></linearGradient>
