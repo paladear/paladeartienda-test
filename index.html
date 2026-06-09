@@ -1598,8 +1598,8 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
     @media(prefers-reduced-motion:reduce){.mund-confeti i{animation:none;opacity:.5}}
     .mund-bunting{display:block;width:calc(100% + 32px);height:38px;margin:0 -16px;position:relative;z-index:2}
     .mund-header{text-align:center;margin:8px 0 0;position:relative;z-index:2}
-    .mund-stars{display:block;height:21px;margin:0 auto 5px}
-    .mund-header h2{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:#1f5c8f;margin:0;line-height:1.16;text-shadow:0 1px 0 rgba(255,255,255,.55)}
+    .mund-header h2{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;font-family:'Montserrat',sans-serif;font-size:21px;font-weight:800;color:#1f5c8f;margin:0;line-height:1.16;text-shadow:0 1px 0 rgba(255,255,255,.55)}
+    .mund-star-pair{height:16px;width:auto;flex-shrink:0}
     .mund-boxes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:640px;margin:18px auto 0;position:relative;z-index:2}
     .mund-boxes-wrap{position:relative;z-index:2}
     .mund-dots{display:none}
@@ -1629,7 +1629,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
     .mund-box-title{background:linear-gradient(135deg,#6cace4,#4a86c0);color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:14.5px;line-height:1.22;padding:9px 13px;min-height:54px;box-sizing:border-box;display:flex;align-items:center;gap:7px}
     .mund-box-title svg{width:15px;height:15px;flex-shrink:0}
     .mund-box-body{padding:12px 14px 14px;flex:1;display:flex;flex-direction:column}
-    .mund-list{list-style:none;padding:0;margin:0 0 13px;flex:1}
+    .mund-list{list-style:none;padding:0;margin:0 0 13px;flex:1;display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;align-content:start}
     .mund-list li{font-size:12.5px;color:#42566c;padding:3px 0 3px 19px;position:relative;font-weight:500}
     .mund-list li::before{content:"";position:absolute;left:0;top:6px;width:9px;height:9px;background:#6cace4;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
     .mund-box-foot{display:flex;flex-direction:column;gap:9px;margin-top:auto}
@@ -1674,14 +1674,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
       </g>
     </svg>
     <div class="mund-header">
-      <svg class="mund-stars" viewBox="0 0 90 24" aria-hidden="true">
-        <g fill="#f4c64a" stroke="#d99a25" stroke-width="0.9" stroke-linejoin="round">
-          <path transform="translate(18,14) scale(0.8)" d="M0,-10 L2.24,-3.09 L9.51,-3.09 L3.63,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.63,1.18 L-9.51,-3.09 L-2.24,-3.09 Z"/>
-          <path transform="translate(45,10) scale(1.0)" d="M0,-10 L2.24,-3.09 L9.51,-3.09 L3.63,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.63,1.18 L-9.51,-3.09 L-2.24,-3.09 Z"/>
-          <path transform="translate(72,14) scale(0.8)" d="M0,-10 L2.24,-3.09 L9.51,-3.09 L3.63,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.63,1.18 L-9.51,-3.09 L-2.24,-3.09 Z"/>
-        </g>
-      </svg>
-      <h2>Mundial de Sabores en Paladear</h2>
+      <h2><svg class="mund-star-pair" viewBox="0 0 46 22" aria-hidden="true"><g fill="#f4c64a" stroke="#d99a25" stroke-width="0.9" stroke-linejoin="round"><path transform="translate(11,11) scale(0.82)" d="M0,-10 L2.24,-3.09 L9.51,-3.09 L3.63,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.63,1.18 L-9.51,-3.09 L-2.24,-3.09 Z"/><path transform="translate(34,11) scale(0.82)" d="M0,-10 L2.24,-3.09 L9.51,-3.09 L3.63,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.63,1.18 L-9.51,-3.09 L-2.24,-3.09 Z"/></g></svg><span>Mundial de Sabores en Paladear</span><svg class="mund-star-pair" viewBox="0 0 46 22" aria-hidden="true"><g fill="#f4c64a" stroke="#d99a25" stroke-width="0.9" stroke-linejoin="round"><path transform="translate(11,11) scale(0.82)" d="M0,-10 L2.24,-3.09 L9.51,-3.09 L3.63,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.63,1.18 L-9.51,-3.09 L-2.24,-3.09 Z"/><path transform="translate(34,11) scale(0.82)" d="M0,-10 L2.24,-3.09 L9.51,-3.09 L3.63,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.63,1.18 L-9.51,-3.09 L-2.24,-3.09 Z"/></g></svg></h2>
     </div>
     <div class="mund-boxes-wrap" id="mundBoxesWrap">
     <div class="mund-boxes" id="mundBoxes">
@@ -1693,11 +1686,11 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
         <div class="mund-box-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12,2 L14.7,8.6 L21.8,9.1 L16.3,13.7 L18.1,20.6 L12,16.8 L5.9,20.6 L7.7,13.7 L2.2,9.1 L9.3,8.6 Z"/></svg>La picada no se mancha</div>
         <div class="mund-box-body">
           <ul class="mund-list">
-            <li>Pasta de aceitunas x 200 g</li>
-            <li>Mix cervecero x 300 g</li>
-            <li>Mix patagónico x 300 g</li>
+            <li>Pasta de aceitunas</li>
+            <li>Mix cervecero</li>
+            <li>Mix patagónico</li>
             <li>Chips de batata</li>
-            <li>Vino Malbec "Cordero con piel de lobo"</li>
+            <li>Vino Malbec</li>
           </ul>
           <div class="mund-box-foot">
             <div class="mund-qtyrow">
@@ -1719,13 +1712,13 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
         <div class="mund-box-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12,2 L14.7,8.6 L21.8,9.1 L16.3,13.7 L18.1,20.6 L12,16.8 L5.9,20.6 L7.7,13.7 L2.2,9.1 L9.3,8.6 Z"/></svg>Primero Paladear, segundo Francia</div>
         <div class="mund-box-body">
           <ul class="mund-list">
-            <li>Mix cervecero x 300 g</li>
-            <li>Mix tradicional x 300 g</li>
-            <li>Crackers "Shiva"</li>
-            <li>Aceitunas rellenas x 200 g</li>
-            <li>Mayonesa Mayov</li>
+            <li>Mix cervecero</li>
+            <li>Mix tradicional</li>
+            <li>Crackers</li>
+            <li>Aceitunas rellenas</li>
+            <li>Mayonesa</li>
             <li>Nueces confitadas</li>
-            <li>Vermouth "Aquí y ahora"</li>
+            <li>Vermouth</li>
           </ul>
           <div class="mund-box-foot">
             <div class="mund-qtyrow">
