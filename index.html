@@ -1607,7 +1607,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
     .mund-box{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(31,92,143,.18);border:2px solid #fff;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s,transform .2s}
     .mund-box:hover{box-shadow:0 10px 26px rgba(31,92,143,.28);border-color:#6cace4;transform:translateY(-3px)}
     .mund-box-img-wrap{position:relative;width:100%;height:180px;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden}
-    .mund-box-img{width:100%;height:100%;object-fit:contain;padding:10px}
+    .mund-box-img{width:100%;height:100%;object-fit:contain;padding:10px;cursor:zoom-in}
     .mund-box-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:#a7c1da;font-size:11.5px;font-weight:600;font-family:'Montserrat',sans-serif;letter-spacing:.2px}
     .mund-box-ph svg{width:38px;height:38px}
     .mund-box-title{background:linear-gradient(135deg,#6cace4,#4a86c0);color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:14.5px;line-height:1.22;padding:9px 13px;min-height:54px;box-sizing:border-box;display:flex;align-items:center;gap:7px}
@@ -1685,7 +1685,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
     <div class="mund-boxes" id="mundBoxes">
       <div class="mund-box">
         <div class="mund-box-img-wrap">
-          <img class="mund-box-img" id="mundImg4800" alt="La picada no se mancha" style="display:none">
+          <img class="mund-box-img" id="mundImg4800" alt="La picada no se mancha" style="display:none" onclick="zoomImg(this)">
           <div class="mund-box-ph" id="mundPh4800"><svg viewBox="0 0 24 24" fill="none" stroke="#a7c1da" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15.5l-4.5-4.5L5 21.5"/></svg><span>Foto en camino</span></div>
         </div>
         <div class="mund-box-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12,2 L14.7,8.6 L21.8,9.1 L16.3,13.7 L18.1,20.6 L12,16.8 L5.9,20.6 L7.7,13.7 L2.2,9.1 L9.3,8.6 Z"/></svg>La picada no se mancha</div>
@@ -1711,7 +1711,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
       </div>
       <div class="mund-box">
         <div class="mund-box-img-wrap">
-          <img class="mund-box-img" id="mundImg4801" alt="Primero Paladear, segundo Francia" style="display:none">
+          <img class="mund-box-img" id="mundImg4801" alt="Primero Paladear, segundo Francia" style="display:none" onclick="zoomImg(this)">
           <div class="mund-box-ph" id="mundPh4801"><svg viewBox="0 0 24 24" fill="none" stroke="#a7c1da" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15.5l-4.5-4.5L5 21.5"/></svg><span>Foto en camino</span></div>
         </div>
         <div class="mund-box-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12,2 L14.7,8.6 L21.8,9.1 L16.3,13.7 L18.1,20.6 L12,16.8 L5.9,20.6 L7.7,13.7 L2.2,9.1 L9.3,8.6 Z"/></svg>Primero Paladear, segundo Francia</div>
@@ -5408,6 +5408,7 @@ function _fillMund(){
     const img=document.getElementById(b[1]);
     if(img&&p[6]&&String(p[6]).indexOf('http')===0&&img.dataset.loaded!==p[6]){
       img.dataset.loaded=p[6];
+      img.dataset.src=p[6]; // para el zoom al tocar (zoomImg lee dataset.src)
       const ph=document.getElementById(b[3]);
       img.onload=function(){img.style.display='';if(ph)ph.style.display='none';};
       img.onerror=function(){img.style.display='none';if(ph)ph.style.display='';};
