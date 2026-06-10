@@ -1598,28 +1598,12 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
     @media(prefers-reduced-motion:reduce){.mund-confeti i{animation:none;opacity:.5}}
     .mund-bunting{display:block;width:calc(100% + 32px);height:38px;margin:0 -16px;position:relative;z-index:2}
     .mund-header{text-align:center;margin:8px 0 0;position:relative;z-index:2}
-    .mund-header h2{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;font-family:'Montserrat',sans-serif;font-size:21px;font-weight:800;color:#1f5c8f;margin:0;line-height:1.16;text-shadow:0 1px 0 rgba(255,255,255,.55)}
-    .mund-star-pair{height:16px;width:auto;flex-shrink:0}
+    .mund-header h2{display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:21px;font-weight:800;color:#1f5c8f;margin:0;line-height:1.16;text-shadow:0 1px 0 rgba(255,255,255,.55)}
+    .mund-header h2>span{min-width:0}
+    .mund-star-pair{height:15px;width:auto;flex-shrink:0}
     .mund-boxes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:640px;margin:18px auto 0;position:relative;z-index:2}
     .mund-boxes-wrap{position:relative;z-index:2}
     .mund-dots{display:none}
-    @media(max-width:640px){
-      .mund-section{padding:0 12px 14px}
-      .mund-header h2{font-size:18px}
-      .mund-boxes-wrap{overflow:hidden;transition:height .4s cubic-bezier(.4,0,.2,1)}
-      .mund-boxes{display:flex;align-items:flex-start;transition:transform .4s cubic-bezier(.4,0,.2,1);gap:0;max-width:none;margin:14px 0 0}
-      .mund-box{flex:0 0 100%;min-width:0}
-      .mund-box-img-wrap{height:118px}
-      .mund-box-title{min-height:0;padding:8px 13px}
-      .mund-box-body{padding:10px 13px 12px}
-      .mund-list{margin:0 0 10px}
-      .mund-list li{font-size:12px;padding:1.5px 0 1.5px 17px}
-      .mund-list li::before{top:7px}
-      .mund-box-foot{gap:7px}
-      .mund-dots{display:flex;justify-content:center;gap:9px;margin-top:11px;position:relative;z-index:2}
-      .mund-dot{width:8px;height:8px;border-radius:50%;border:none;background:#a7c1da;padding:0;cursor:pointer;transition:background .2s,transform .2s}
-      .mund-dot.active{background:#1f5c8f;transform:scale(1.35)}
-    }
     .mund-box{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(31,92,143,.18);border:2px solid #fff;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s,transform .2s}
     .mund-box:hover{box-shadow:0 10px 26px rgba(31,92,143,.28);border-color:#6cace4;transform:translateY(-3px)}
     .mund-box-img-wrap{position:relative;width:100%;height:180px;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden}
@@ -1644,6 +1628,27 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
     .mund-btn:hover{filter:brightness(1.07)}
     .mund-btn:active{transform:scale(.98)}
     .mund-btn.added{background:#16a34a}
+    /* ── CELULAR: carrusel compacto (va al FINAL para ganar a las reglas base) ── */
+    @media(max-width:640px){
+      .mund-section{padding:0 12px 14px}
+      .mund-header{margin:6px 0 0}
+      .mund-header h2{font-size:17.5px;gap:7px}
+      .mund-bunting{height:32px}
+      .mund-boxes-wrap{overflow:hidden;transition:height .4s cubic-bezier(.4,0,.2,1)}
+      .mund-boxes{display:flex;align-items:flex-start;transition:transform .4s cubic-bezier(.4,0,.2,1);gap:0;max-width:none;margin:12px 0 0}
+      .mund-box{flex:0 0 100%;min-width:0}
+      .mund-box-img-wrap{height:104px}
+      .mund-box-title{min-height:0;padding:7px 13px;font-size:13.5px}
+      .mund-box-body{padding:9px 13px 11px;flex:none}
+      .mund-list{margin:0;gap:1px 10px;flex:none}
+      .mund-list li{font-size:11px;padding:1px 0 1px 14px}
+      .mund-list li::before{width:7px;height:7px;top:5px}
+      .mund-box-foot{gap:7px;margin-top:9px}
+      .mund-price{font-size:17px}
+      .mund-dots{display:flex;justify-content:center;gap:9px;margin-top:10px;position:relative;z-index:2}
+      .mund-dot{width:8px;height:8px;border-radius:50%;border:none;background:#a7c1da;padding:0;cursor:pointer;transition:background .2s,transform .2s}
+      .mund-dot.active{background:#1f5c8f;transform:scale(1.35)}
+    }
   </style>
   <div class="mund-section" id="mundialSection">
     <div class="mund-confeti" aria-hidden="true">
