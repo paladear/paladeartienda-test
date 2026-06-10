@@ -1623,6 +1623,9 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
     .mund-qval{min-width:22px;text-align:center;font-weight:700;font-size:14px;color:#1f5c8f}
     .mund-acum{display:none;font-size:11px;font-weight:700;color:#16a34a;background:#eafaf0;border:1px solid #bbe8cd;padding:2px 8px;border-radius:11px;white-space:nowrap}
     .mund-acum.on{display:inline-block}
+    .mund-trash{align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;border:1.5px solid #f3c6c0;background:#fff;color:#d4543c;border-radius:7px;cursor:pointer;padding:0;transition:background .15s,border-color .15s}
+    .mund-trash:hover{background:#fdecea;border-color:#d4543c}
+    .mund-trash svg{width:15px;height:15px}
     .mund-price{font-size:19px;font-weight:800;color:#1f5c8f}
     .mund-btn{width:100%;background:linear-gradient(135deg,#6cace4,#4a86c0);color:#fff;border:none;border-radius:9px;padding:10px 12px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:filter .2s,transform .1s}
     .mund-btn:hover{filter:brightness(1.07)}
@@ -1703,6 +1706,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
               <span class="mund-qval" id="mundCard4800_q">1</span>
               <button class="mund-qbtn" onclick="chgQty('mundCard4800',1)" aria-label="Sumar">+</button>
               <span class="mund-acum" id="mundAcum4800"></span>
+              <button class="mund-trash" id="mundTrash4800" onclick="quitarBoxMundial('4800')" title="Quitar del carrito" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
             </div>
             <span class="mund-price" id="mundPrice4800">$20.000</span>
             <button class="mund-btn" id="mundBtn4800" onclick="agregarBoxMundial('4800',this)">🛒 Agregar al carrito</button>
@@ -1731,6 +1735,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
               <span class="mund-qval" id="mundCard4801_q">1</span>
               <button class="mund-qbtn" onclick="chgQty('mundCard4801',1)" aria-label="Sumar">+</button>
               <span class="mund-acum" id="mundAcum4801"></span>
+              <button class="mund-trash" id="mundTrash4801" onclick="quitarBoxMundial('4801')" title="Quitar del carrito" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
             </div>
             <span class="mund-price" id="mundPrice4801">$30.000</span>
             <button class="mund-btn" id="mundBtn4801" onclick="agregarBoxMundial('4801',this)">🛒 Agregar al carrito</button>
@@ -2568,6 +2573,7 @@ function updateCartCount(){
   if(isMay&&!_wasMay)_triggerMayoristaConfetti();
   _wasMay=isMay;
   _saveCart();
+  if(typeof _refreshMundAcums==='function')_refreshMundAcums(); // mantener al día el subtotal/tacho del banner Mundial
 }
 
 function openCart(){
@@ -5391,13 +5397,30 @@ function agregarBoxMundial(productId,btn){
 // Actualiza el badge de subtotal acumulado del box (paridad con .acum-badge de las cards)
 function _updMundAcum(productId,p){
   const el=document.getElementById('mundAcum'+productId);
+  const trash=document.getElementById('mundTrash'+productId);
   if(!el)return;
   const items=cart.filter(i=>i.pid===p[0]);
-  if(!items.length){el.textContent='';el.classList.remove('on');return;}
+  if(!items.length){el.textContent='';el.classList.remove('on');if(trash)trash.style.display='none';return;}
   const sub=items.reduce((a,it)=>a+_itemMin(it),0);
   el.textContent='🛒 '+_acumLabel(p)+' · $'+fmt(sub);
   el.classList.add('on');
+  if(trash)trash.style.display='inline-flex';
 }
+// Refresca el subtotal y el tacho de ambos box (se llama desde updateCartCount ante cualquier cambio del carrito)
+function _refreshMundAcums(){
+  if(!PRODS||!PRODS.length)return;
+  ['4800','4801'].forEach(function(pid){
+    var p=PRODS.find(function(x){return x[12]&&String(x[12].productId)===pid;});
+    if(p)_updMundAcum(pid,p);
+  });
+}
+// Quitar el box del carrito desde el banner (mismo efecto que el tacho de las cards)
+function quitarBoxMundial(productId){
+  if(!PRODS||!PRODS.length)return;
+  var p=PRODS.find(function(x){return x[12]&&String(x[12].productId)===String(productId);});
+  if(p)cardDelProduct(p[0]);
+}
+window.quitarBoxMundial=quitarBoxMundial;
 window.agregarBoxMundial=agregarBoxMundial;
 function _fillMund(){
   if(!PRODS||!PRODS.length)return false;
