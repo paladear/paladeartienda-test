@@ -1634,8 +1634,8 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
       .mund-header{margin:6px 0 0}
       .mund-header h2{font-size:17.5px;gap:7px}
       .mund-bunting{height:32px}
-      .mund-boxes-wrap{overflow:hidden;transition:height .4s cubic-bezier(.4,0,.2,1)}
-      .mund-boxes{display:flex;align-items:flex-start;transition:transform .4s cubic-bezier(.4,0,.2,1);gap:0;max-width:none;margin:12px 0 0}
+      .mund-boxes-wrap{overflow:hidden;transition:height .4s cubic-bezier(.4,0,.2,1);margin-top:12px}
+      .mund-boxes{display:flex;align-items:flex-start;transition:transform .4s cubic-bezier(.4,0,.2,1);gap:0;max-width:none;margin:0}
       .mund-box{flex:0 0 100%;min-width:0}
       .mund-box-img-wrap{height:104px}
       .mund-box-title{min-height:0;padding:7px 13px;font-size:13.5px}
@@ -1645,7 +1645,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
       .mund-list li::before{width:7px;height:7px;top:5px}
       .mund-box-foot{gap:7px;margin-top:9px}
       .mund-price{font-size:17px}
-      .mund-dots{display:flex;justify-content:center;gap:9px;margin-top:10px;position:relative;z-index:2}
+      .mund-dots{display:flex;justify-content:center;gap:9px;margin-top:3px;position:relative;z-index:2}
       .mund-dot{width:8px;height:8px;border-radius:50%;border:none;background:#a7c1da;padding:0;cursor:pointer;transition:background .2s,transform .2s}
       .mund-dot.active{background:#1f5c8f;transform:scale(1.35)}
     }
@@ -3878,7 +3878,8 @@ function _setMundHeight(){
   if(!wrap||!boxes.length)return;
   if(window.innerWidth>640){wrap.style.height='';return;} // desktop: altura automática
   const h=boxes[_mundCur]?boxes[_mundCur].offsetHeight:0;
-  if(h)wrap.style.height=h+'px';
+  // +10 de aire para que el overflow:hidden del wrap no recorte las esquinas redondeadas ni la sombra de la card
+  if(h)wrap.style.height=(h+10)+'px';
 }
 function goSlideMund(i,smooth){
   const track=document.getElementById('mundBoxes');
