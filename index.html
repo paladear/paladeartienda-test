@@ -5626,9 +5626,15 @@ function coElegirEntrega(tipo) {
   document.getElementById('coTitle').textContent = tipo === 'retiro' ? 'Retiro en el local' : 'Envío a domicilio';
   document.getElementById('coBtnBack').style.display = '';
   if (tipo === 'domicilio') _coLoadLeaflet();
-  // Efectivo disponible para minorista y mayorista
+  // Efectivo SOLO en retiro por el local; en envío a domicilio se paga por transferencia o link de pago
   var efWrap = document.getElementById('coRadioEfectivoWrap');
-  if (efWrap) efWrap.style.display = '';
+  if (efWrap) {
+    efWrap.style.display = (tipo === 'domicilio') ? 'none' : '';
+    if (tipo === 'domicilio') {
+      var efRadio = efWrap.querySelector('input[name="coPago"]');
+      if (efRadio && efRadio.checked) efRadio.checked = false;
+    }
+  }
 }
 window.coElegirEntrega = coElegirEntrega;
 
