@@ -1556,6 +1556,63 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
   <!-- Resultados de búsqueda en mobile -->
   <div id="searchResultsMobile" class="hidden"></div>
 
+  <!-- ── BANNER DESCUENTO POR CANTIDAD ($80.000) ── -->
+  <style>
+    .descb-wrap{margin:0 0 18px}
+    .descb-banner{background:linear-gradient(135deg,#eef4f9,#e1ecf6);border:1.5px solid #cdddec;border-radius:16px;padding:14px 16px;font-family:'Montserrat',sans-serif;box-shadow:0 2px 12px rgba(84,118,146,.12)}
+    .descb-top{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap;row-gap:4px}
+    .descb-ic{width:24px;height:24px;object-fit:contain;flex-shrink:0}
+    .descb-name{font-size:15px;font-weight:800;color:#1a3050}
+    .descb-go{font-size:11.5px;font-weight:700;color:#547692;margin-left:auto;background:#fff;border:1px solid #cdddec;padding:2px 10px;border-radius:20px;white-space:nowrap}
+    .descb-note{font-size:12.5px;color:#54677d;font-weight:600;margin-bottom:9px;line-height:1.35}
+    .descb-note b{color:#1a3050}
+    .descb-mlabel{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+    .descb-cnt{font-size:17px;font-weight:800;color:#1a3050;font-variant-numeric:tabular-nums}
+    .descb-goal{font-size:11px;font-weight:600;color:#8a9bad}
+    .descb-track{height:11px;background:#dde6ee;border-radius:7px;overflow:hidden}
+    .descb-fill{height:100%;width:0;border-radius:7px;background:linear-gradient(90deg,#547692,#6fa3c4)}
+    .descb-reward{margin-top:8px;display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;color:#1c9d63;opacity:0;transform:translateY(5px);transition:all .4s;min-height:19px}
+    .descb-reward.on{opacity:1;transform:none}
+    .descb-pill{font-size:10.5px;padding:2px 8px;border-radius:20px;color:#fff;background:#1c9d63;white-space:nowrap}
+  </style>
+  <div class="descb-wrap">
+    <div class="descb-banner" id="descBanner">
+      <div class="descb-top">
+        <img class="descb-ic" src="icon-minorista.png" alt="">
+        <span class="descb-name">Descuento por cantidad</span>
+        <span class="descb-go">Sin mínimo de compra</span>
+      </div>
+      <div class="descb-note">Sumá productos al carrito: al superar los <b>$80.000</b> se activan los precios con descuento de tu pedido (<b>hasta 20%</b>).</div>
+      <div class="descb-mlabel"><span class="descb-cnt" id="descbCnt">$0</span><span class="descb-goal">Meta: $80.000</span></div>
+      <div class="descb-track"><div class="descb-fill" id="descbFill"></div></div>
+      <div class="descb-reward" id="descbRw"><span class="descb-pill">Hasta 20%</span> ¡Descuento por cantidad activado!</div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var done=false;
+    function anim(){
+      if(done)return;done=true;
+      var cnt=document.getElementById('descbCnt'),fill=document.getElementById('descbFill'),rw=document.getElementById('descbRw');
+      if(!cnt||!fill||!rw)return;
+      var target=80000,dur=1700,start=null;
+      function step(ts){if(!start)start=ts;var t=Math.min((ts-start)/dur,1),e=1-Math.pow(1-t,3);
+        cnt.textContent='$'+Math.round(e*target).toLocaleString('es-AR');fill.style.width=(e*100)+'%';
+        if(t>=1)rw.classList.add('on');if(t<1)requestAnimationFrame(step);}
+      requestAnimationFrame(step);
+    }
+    function init(){
+      var el=document.getElementById('descBanner');
+      if(!el)return;
+      if('IntersectionObserver' in window){
+        var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){anim();io.disconnect();}});},{threshold:.4});
+        io.observe(el);
+      } else { anim(); }
+    }
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+    else init();
+  })();
+  </script>
 
 <!-- ── BANNERS CARRUSEL ── -->
 <div class="banners-track-wrap" id="bannersTrackWrap">
@@ -7159,7 +7216,7 @@ window.copiarLinkParaNavegador = function() {
       <div class="tutb-note">Comprás lo que quieras. Al llegar a la meta, ahorrás:</div>
       <div class="tutb-mlabel"><span class="tutb-cnt" id="tutbCntMin">$0</span><span class="tutb-goal">Meta: $80.000</span></div>
       <div class="tutb-track"><div class="tutb-fill" id="tutbFillMin"></div></div>
-      <div class="tutb-reward tutb-rmin" id="tutbRwMin"><span class="tutb-pill">20% OFF</span> ¡Descuento por cantidad activado!</div>
+      <div class="tutb-reward tutb-rmin" id="tutbRwMin"><span class="tutb-pill">Hasta 20%</span> ¡Descuento por cantidad activado!</div>
     </div>
     <div class="tutb-steps">
       <div class="tutb-steps-title">Y comprar es así de fácil</div>
