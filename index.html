@@ -1556,25 +1556,6 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
   <!-- Resultados de búsqueda en mobile -->
   <div id="searchResultsMobile" class="hidden"></div>
 
-  <!-- ── ATAJO: ir directo a los productos (saltea los banners) ── -->
-  <style>
-    .ver-prods-wrap{display:flex;justify-content:center;margin:2px 0 16px}
-    .ver-prods-btn{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1.5px solid #cdddec;color:#1a3050;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;padding:9px 18px;border-radius:30px;cursor:pointer;box-shadow:0 2px 9px rgba(84,118,146,.12);transition:background .15s,border-color .15s,transform .1s}
-    .ver-prods-btn:hover{background:#eef4f9;border-color:#6fa3c4}
-    .ver-prods-btn:active{transform:scale(.97)}
-    .ver-prods-btn .vp-arrow{font-size:14px;transition:transform .2s}
-    .ver-prods-btn:hover .vp-arrow{transform:translateY(2px)}
-  </style>
-  <div class="ver-prods-wrap">
-    <button class="ver-prods-btn" onclick="scrollToRubros()">Ver productos <span class="vp-arrow">↓</span></button>
-  </div>
-  <script>
-    window.scrollToRubros=function(){
-      var a=document.getElementById('rubrosAnchor');
-      if(a)a.scrollIntoView({behavior:'smooth',block:'start'});
-    };
-  </script>
-
   <!-- ── BANNER DESCUENTO POR CANTIDAD ($80.000) ── -->
   <style>
     .descb-wrap{margin:0 0 18px}
@@ -1834,8 +1815,6 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
     </div>
     <div class="cats-dropdown-list" id="catsDropdownGrid"></div>
   </div>
-  <!-- Ancla para el botón "Ver productos" (inicio de los rubros) -->
-  <div id="rubrosAnchor" style="scroll-margin-top:88px"></div>
   <!-- MÓVIL: productos -->
   <div class="mobile-prods-area hidden" id="mobileProdsArea"></div>
 
