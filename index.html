@@ -4469,10 +4469,25 @@ function _setPill(btn) {
   _pillAnimEnd = function() { pill.classList.remove('sliding'); _pillAnimEnd = null; };
   pill.addEventListener('animationend', _pillAnimEnd, {once: true});
 }
-// Init pill en tab activo inicial
+// Init pill en tab activo inicial + RE-posicionar cuando el layout se estabiliza.
+// (Arregla el bug de la pastilla "cortada/congelada" al abrir en celular: se calculaba
+//  antes de que cargara la fuente y quedaba mal hasta tocar o refrescar.)
 (function(){
-  var ab = document.querySelector('#mainTabs .may-tab.active');
-  if (ab) _setPill(ab);
+  function repositionPill(){
+    var pill = document.getElementById('tabsPill');
+    var ab = document.querySelector('#mainTabs .may-tab.active');
+    if (!pill || !ab) return;
+    pill.classList.remove('sliding');
+    pill.style.setProperty('--pill-x', ab.offsetLeft + 'px');
+    pill.style.setProperty('--pill-w', ab.offsetWidth + 'px');
+    _pillX = ab.offsetLeft;
+  }
+  repositionPill();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(repositionPill);
+  window.addEventListener('load', repositionPill);
+  setTimeout(repositionPill, 300);
+  setTimeout(repositionPill, 900);
+  window.addEventListener('resize', repositionPill);
 })();
 
 // Tab switcher
