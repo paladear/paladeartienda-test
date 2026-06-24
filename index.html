@@ -345,16 +345,17 @@ button{cursor:pointer;border:none;font-family:inherit}
 .envios-banner{background:var(--azul);color:#fff;padding:0;overflow:hidden;position:relative;height:40px}
 .envios-convoy{position:absolute;top:50%;left:0;display:flex;align-items:center;gap:14px;white-space:nowrap;animation:convoyDrive 13s linear infinite;will-change:transform}
 @keyframes convoyDrive{
-  0%{transform:translate(calc(100vw + 40px),-50%)}
-  68%{transform:translate(-440px,-50%)}
-  100%{transform:translate(-440px,-50%)}
+  0%{transform:translate(calc(100vw + 40px),-50%);animation-timing-function:cubic-bezier(.2,.65,.3,1)}
+  30%{transform:translate(calc(50vw - 40px),-50%);animation-timing-function:linear}
+  58%{transform:translate(calc(50vw - 40px),-50%);animation-timing-function:cubic-bezier(.6,0,.85,.45)}
+  85%,100%{transform:translate(-460px,-50%)}
 }
 .envios-discount{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0;white-space:nowrap;animation:discFade 13s linear infinite;pointer-events:none;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:.4px;color:rgba(255,255,255,.95);text-transform:uppercase;text-shadow:0 1px 3px rgba(0,0,0,.3)}
 @media(max-width:480px){.envios-discount{font-size:11px;letter-spacing:.2px}}
 @keyframes discFade{
-  0%,72%{opacity:0}
-  78%,93%{opacity:1}
-  98%,100%{opacity:0}
+  0%,85%{opacity:0}
+  90%,97%{opacity:1}
+  100%{opacity:0}
 }
 .envios-msg{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:.4px;color:rgba(255,255,255,.95);text-transform:uppercase;text-shadow:0 1px 3px rgba(0,0,0,.3)}
 @media(max-width:480px){.envios-msg{font-size:11px;letter-spacing:.2px}}
@@ -362,7 +363,9 @@ button{cursor:pointer;border:none;font-family:inherit}
 .truck-wheel{transform-origin:center;animation:wheelSpin 0.8s linear infinite}
 @keyframes wheelSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 .truck-bounce{animation:truckBounce 0.9s ease-in-out infinite}
-@keyframes truckBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}
+@keyframes truckBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+.truck-squash{display:inline-block;transform-origin:bottom center;animation:truckSquash 13s linear infinite}
+@keyframes truckSquash{0%,24%{transform:scaleX(1) scaleY(1)}30%{transform:scaleX(1.14) scaleY(.86)}35%{transform:scaleX(.96) scaleY(1.04)}40%,54%{transform:scaleX(1) scaleY(1)}60%{transform:scaleX(1.16) scaleY(.84)}66%,100%{transform:scaleX(1) scaleY(1)}}
 
 /* ── MOBILE: botón "Categorías" a la izquierda y modal ── */
 .cats-mobile-catbtn-row{display:none} /* oculto: ahora el botón va en el search-wrap */
@@ -1528,8 +1531,10 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 <div class="envios-banner">
   <div class="envios-convoy">
     <div class="envios-truck-anim">
-     <div class="truck-bounce">
-      <img src="camion-envio.png" alt="" width="80" height="36" style="display:block">
+     <div class="truck-squash">
+      <div class="truck-bounce">
+       <img src="camion-envio.png" alt="" width="80" height="36" style="display:block">
+      </div>
      </div>
     </div>
     <span class="envios-msg">Hacemos envíos a todo el país</span>
