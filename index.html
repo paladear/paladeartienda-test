@@ -431,6 +431,12 @@ button{cursor:pointer;border:none;font-family:inherit}
 .co-field .opt-lbl{font-weight:400;color:var(--muted-fg);font-size:12px}
 .co-input{width:100%;box-sizing:border-box;padding:12px 14px;border:2px solid var(--muted);border-radius:10px;font-size:15px;font-family:inherit;color:var(--fg);background:var(--card);transition:border-color .2s;-webkit-appearance:none}
 .co-input:focus{outline:none;border-color:var(--azul)}
+.co-dir-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.co-dir-opt{display:flex;align-items:center;gap:10px;border:2px solid var(--muted);border-radius:10px;padding:11px 13px;cursor:pointer;font-size:14px;background:var(--card);transition:border-color .15s,background .15s}
+.co-dir-opt.on{border-color:var(--azul);background:var(--azul-light)}
+.co-dir-opt input{accent-color:var(--azul);width:17px;height:17px;flex-shrink:0;margin:0}
+.co-dir-opt span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:var(--fg)}
+.co-dir-opt.otra span{color:var(--azul-dark)}
 .co-hint{display:block;font-size:11px;color:var(--muted-fg);margin-top:4px;line-height:1.4}
 .co-saved-hint{text-align:center;font-size:11px;color:var(--muted-fg);margin-top:10px;line-height:1.5}
 .co-saved-hint a{color:var(--muted-fg);text-decoration:underline}
@@ -5897,6 +5903,37 @@ window.coBorrarPerfil = function() {
   document.querySelectorAll('input[name="coTipo"],input[name="coPago"]').forEach(function(r){ r.checked = false; });
 };
 
+// Direcciones guardadas en el checkout: radios para elegir rápido + "otra dirección"
+function _coBuildDirOpts(){
+  var wrap=document.getElementById('coDirOpts');
+  var inp=document.getElementById('coDireccion');
+  if(!wrap||!inp)return;
+  var dirs=_cuentaDirecciones(_coCargarPerfil());
+  if(!dirs.length){wrap.style.display='none';wrap.innerHTML='';inp.style.display='';return;}
+  var h='';
+  dirs.forEach(function(d,i){
+    h+='<label class="co-dir-opt'+(i===0?' on':'')+'"><input type="radio" name="coDirSel" value="'+_ctaEsc(d)+'"'+(i===0?' checked':'')+'><span>'+_ctaEsc(d)+'</span></label>';
+  });
+  h+='<label class="co-dir-opt otra"><input type="radio" name="coDirSel" value="__otra"><span>➕ Usar otra dirección…</span></label>';
+  wrap.innerHTML=h;
+  wrap.style.display='';
+  inp.style.display='none';
+  inp.value='';
+  wrap.onchange=function(){
+    var sel=wrap.querySelector('input[name="coDirSel"]:checked');
+    wrap.querySelectorAll('.co-dir-opt').forEach(function(l){l.classList.toggle('on',sel&&l.contains(sel));});
+    if(sel&&sel.value==='__otra'){inp.style.display='';inp.focus();}
+    else{inp.style.display='none';}
+  };
+}
+// Dirección efectiva: la elegida en los radios, o lo escrito en el input ("otra"/primera vez)
+function _coDireccionActual(){
+  var sel=document.querySelector('#coDirOpts input[name="coDirSel"]:checked');
+  if(sel&&sel.value!=='__otra')return sel.value;
+  return (document.getElementById('coDireccion').value||'').trim();
+}
+window._coDireccionActual=_coDireccionActual;
+
 function abrirCheckout(venta) {
   _coVenta = venta || 'minorista';
   _coEntrega = null;
@@ -5915,6 +5952,7 @@ function abrirCheckout(venta) {
   document.getElementById('checkoutOverlay').classList.remove('hidden');
   document.body.style.overflow = 'hidden';
   _coAutocompletar();
+  _coBuildDirOpts();
   if (!history.state || history.state.view !== 'checkout') {
     history.pushState({view:'checkout'}, '');
   }
@@ -6044,9 +6082,9 @@ function coCerrarUbicacion() {
 window.coCerrarUbicacion = coCerrarUbicacion;
 
 function coBuscarMapa() {
-  var addr = (document.getElementById('coDireccion').value || '').trim();
+  var addr = _coDireccionActual();
   if (!addr) {
-    alert('Primero escribí tu dirección arriba.');
+    alert('Primero escribí o elegí tu dirección arriba.');
     document.getElementById('coDireccion').focus();
     return;
   }
@@ -6114,7 +6152,7 @@ function coEnviar() {
     }
   } else {
     nombre = (document.getElementById('coNombreDom').value || '').trim();
-    direccion = (document.getElementById('coDireccion').value || '').trim();
+    direccion = _coDireccionActual();
     var pisoDepto = (document.getElementById('coPisoDepto').value || '').trim();
     var tipoVivEl = document.querySelector('input[name="coTipo"]:checked');
     var tipoViv = tipoVivEl ? tipoVivEl.value : '';
@@ -6131,6 +6169,11 @@ function coEnviar() {
       : 'Tarjeta de débito/crédito';
     deliveryMsg = '\n\n🚚 *ENVÍO A DOMICILIO*\n👤 ' + nombre;
     deliveryMsg += '\n📍 ' + direccion;
+    // Link de Google Maps SIEMPRE (si el cliente marcó el pin exacto, va ese; sino, búsqueda por la dirección escrita)
+    if (!_coCoords) {
+      var _q = /mendoza/i.test(direccion) ? direccion : direccion + ', Mendoza, Argentina';
+      deliveryMsg += '\n🗺️ Ver en Google Maps: https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(_q);
+    }
     if (pisoDepto) deliveryMsg += '\n🏠 Piso/Depto: ' + pisoDepto;
     if (tipoViv) deliveryMsg += '\n🏢 Tipo: ' + (tipoViv === 'casa' ? 'Casa' : 'Departamento');
     if (entreCalles) deliveryMsg += '\n↔️ Entre calles: ' + entreCalles;
@@ -6182,6 +6225,11 @@ function coEnviar() {
     if (horario) _perfil.horarioRetiro = horario;
   } else {
     _perfil.direccion = direccion;
+    // Mantener el array de direcciones (Mi cuenta): la usada va al frente, sin duplicados, máx 6
+    var _dl = direccion.trim().toLowerCase();
+    var _dirsArr = (Array.isArray(_perfil.direcciones) ? _perfil.direcciones.filter(Boolean) : []).filter(function(d){ return d.trim().toLowerCase() !== _dl; });
+    _dirsArr.unshift(direccion);
+    _perfil.direcciones = _dirsArr.slice(0, 6);
     if (pisoDepto) _perfil.pisoDepto = pisoDepto;
     if (tipoViv) _perfil.tipoViv = tipoViv;
     if (entreCalles) _perfil.entreCalles = entreCalles;
@@ -7360,6 +7408,7 @@ window.copiarLinkParaNavegador = function() {
         </div>
         <div class="co-field">
           <label>Dirección <span style="color:#e53935">*</span></label>
+          <div id="coDirOpts" class="co-dir-opts" style="display:none"></div>
           <input type="text" id="coDireccion" placeholder="Calle, número, ciudad" class="co-input" autocomplete="street-address">
         </div>
         <div class="co-field-row">
