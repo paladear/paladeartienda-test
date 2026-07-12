@@ -1083,6 +1083,7 @@ body.cart-open #cart-fab,body.cart-open #chat-fab{display:none!important}
 .cta-pedido:hover{border-color:var(--azul-mid);box-shadow:0 3px 12px rgba(0,0,0,.07)}
 .cta-pedido:active{transform:scale(.985)}
 .cta-pedido-ic{width:40px;height:40px;border-radius:11px;background:var(--azul-light);color:var(--azul-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cta-pedido-ic img{width:24px;height:24px;object-fit:contain;display:block}
 .cta-pedido-mid{flex:1;min-width:0}
 .cta-pedido-mid b{display:block;font-size:14.5px;color:var(--azul-dark);font-weight:800}
 .cta-pedido-meta{display:block;font-size:12px;color:var(--muted-fg);margin-top:1px}
@@ -2834,12 +2835,12 @@ function renderCuenta(){
   if(!tienePerfil)h+='<button class="cta-completar" onclick="_cuentaAbrirForm()">Completar mis datos</button>';
   h+='</div>';
   h+=_cuentaFormHTML(p,dirs);
-  var boxSvg='<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>';
+  var boxSvg='<img src="icon-minorista.png" alt="" loading="lazy">';
   var chevSvg='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
   var ped=_cuentaCargarPedidos();
   h+='<div class="cta-sec"><h3 class="cta-sec-title">Mis pedidos</h3>';
   if(!ped.length){
-    h+='<div class="cta-vacio"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>Todavía no hiciste pedidos.<br>Cuando envíes uno por WhatsApp, va a quedar guardado acá.</div>';
+    h+='<div class="cta-vacio"><img src="icon-minorista.png" alt="" loading="lazy" style="width:34px;height:34px;object-fit:contain;display:block;margin:0 auto 10px;opacity:.55">Todavía no hiciste pedidos.<br>Cuando envíes uno por WhatsApp, va a quedar guardado acá.</div>';
   }else{
     h+='<div class="cta-pedidos">';
     ped.forEach(function(pe,i){
@@ -6085,7 +6086,6 @@ function coElegirEntrega(tipo) {
   document.getElementById('coStep2Dom').classList.toggle('hidden', tipo !== 'domicilio');
   document.getElementById('coTitle').textContent = tipo === 'retiro' ? 'Retiro en el local' : 'Envío a domicilio';
   document.getElementById('coBtnBack').style.display = '';
-  if (tipo === 'domicilio') _coLoadLeaflet();
 }
 window.coElegirEntrega = coElegirEntrega;
 
@@ -7507,34 +7507,6 @@ window.copiarLinkParaNavegador = function() {
         <div class="co-field">
           <label>Indicaciones para llegar <span class="opt-lbl">(opcional)</span></label>
           <textarea id="coIndicaciones" placeholder="Ej: casa rosada, tocar timbre 2 veces" class="co-input" rows="2"></textarea>
-        </div>
-        <!-- Ubicación opcional -->
-        <div class="co-ubicacion-box">
-          <div class="co-ubic-header">
-            <div>
-              <div class="co-ubic-title">📍 Ubicación exacta <span class="opt-lbl">(opcional)</span></div>
-              <div class="co-ubic-desc">Compartila para que el envío llegue más rápido</div>
-            </div>
-            <button class="co-ubic-btn" id="coUbicBtn" onclick="coAbrirUbicacion()">Compartir</button>
-          </div>
-          <div id="coUbicacionPanel" class="hidden">
-            <div id="coMap"></div>
-            <div class="co-ubic-actions">
-              <button class="co-loc-btn" onclick="coUsarUbicacion()" style="flex:1;justify-content:center;margin:0">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V1h-2v2.06C6.83 3.52 3.52 6.83 3.06 11H1v2h2.06c.46 4.17 3.77 7.48 7.94 7.94V23h2v-2.06c4.17-.46 7.48-3.77 7.94-7.94H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
-                Mi ubicación actual
-              </button>
-              <button class="co-loc-btn" onclick="coBuscarMapa()" style="flex:1;justify-content:center;margin:0">
-                🔍 Buscar mi dirección
-              </button>
-            </div>
-            <div class="co-ubic-hint">Podés arrastrar el pin para ajustar la ubicación exacta.</div>
-            <button class="co-ubic-close" onclick="coCerrarUbicacion()">Quitar ubicación</button>
-          </div>
-          <div id="coUbicConfirm" class="co-ubic-confirm hidden">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="#2e7d32" style="flex-shrink:0"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-            <span>Ubicación confirmada — se enviará junto al pedido</span>
-          </div>
         </div>
         </div><!-- /coDirDetalles -->
         <div class="co-pago-nota">💳 El pedido se abona por <b>transferencia bancaria</b> — te pasamos el alias por WhatsApp.<br>🚚 <b>Envío gratis</b> en compras desde <b>$40.000</b> en Gran Mendoza (si es menor, el envío se abona aparte).</div>
