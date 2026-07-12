@@ -1610,6 +1610,9 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
   <div class="compact-inner">
     <img class="compact-logo" src="android-chrome-192x192.png" alt="Paladear" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer">
     <input class="compact-search" id="compactSearchInput" type="text" placeholder="Buscar productos..." oninput="compactOnSearch(this.value)" aria-label="Buscar productos">
+    <button class="compact-hamb" onclick="openCuenta()" aria-label="Mi cuenta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.2-5.6 7-5.6s7 2 7 5.6"/></svg>
+    </button>
     <button class="compact-hamb" onclick="compactOpenCats()" aria-label="Categorías">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
     </button>
@@ -3008,7 +3011,7 @@ function renderCart(){
   if(esMay)fh+=`<div class="total-row disc"><span>Descuento por volumen</span><span>−$${fmt(ahorroMay)}</span></div>`;
 
   fh+=`<div class="total-row main"><span>Total a pagar</span><span>$${fmt(totalConApp)}</span></div></div>`;
-  fh+='<button class="wa-btn" onclick="pedirWA()">💬 Pedir por WhatsApp</button>';
+  fh+='<button class="wa-btn" onclick="pedirWA()"><svg viewBox="0 0 24 24" width="19" height="19" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.006 22l4.984-1.307A9.961 9.961 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.25a8.24 8.24 0 01-4.258-1.178l-.306-.181-3.157.828.844-3.07-.2-.319A8.25 8.25 0 1112 20.25z"/></svg> Pedir por WhatsApp</button>';
   footer.innerHTML=fh;footer.classList.remove('hidden');
 }
 function cartQty(key,d){
@@ -5921,11 +5924,12 @@ function _coAutocompletar() {
 window.coBorrarPerfil = function() {
   if (!confirm('¿Borrar tus datos guardados (nombre, dirección, etc.)?')) return;
   try { localStorage.removeItem(_PALADEAR_PERFIL_KEY); } catch(e) {}
-  ['coNombre','coNombreDom','coHorarioRetiro','coDireccion','coPisoDepto','coEntreCalles','coIndicaciones'].forEach(function(id){
+  ['coNombre','coNombreDom','coHorarioRetiro','coCalle','coNumero','coLocalidad','coPisoDepto','coEntreCalles','coIndicaciones'].forEach(function(id){
     var el = document.getElementById(id);
     if (el) el.value = '';
   });
   document.querySelectorAll('input[name="coTipo"],input[name="coPago"]').forEach(function(r){ r.checked = false; });
+  var _pv = document.getElementById('coProvincia'); if (_pv) _pv.value = 'Mendoza';
   _coBuildDirOpts();
   _coNombreCompacto();
 };
@@ -5936,7 +5940,7 @@ window.coBorrarPerfil = function() {
 var _coDirsCache=[];
 function _coBuildDirOpts(){
   var wrap=document.getElementById('coDirOpts');
-  var inp=document.getElementById('coDireccion');
+  var inp=document.getElementById('coDirNueva');
   var det=document.getElementById('coDirDetalles');
   if(!wrap||!inp)return;
   _coDirsCache=_cuentaDirecciones(_coCargarPerfil());
@@ -5955,23 +5959,30 @@ function _coBuildDirOpts(){
   wrap.innerHTML=h;
   wrap.style.display='';
   inp.style.display='none';
-  inp.value='';
   if(det)det.style.display='none';
   wrap.onchange=function(){
     var sel=wrap.querySelector('input[name="coDirSel"]:checked');
     wrap.querySelectorAll('.co-dir-opt').forEach(function(l){l.classList.toggle('on',sel&&l.contains(sel));});
-    if(sel&&sel.value==='__otra'){inp.style.display='';if(det)det.style.display='';inp.focus();}
+    if(sel&&sel.value==='__otra'){inp.style.display='';if(det)det.style.display='';var c=document.getElementById('coCalle');if(c)c.focus();}
     else{inp.style.display='none';if(det)det.style.display='none';}
   };
 }
-// Dirección efectiva como OBJETO: la elegida en los radios, o una nueva armada con los campos
+// Dirección efectiva como OBJETO: la elegida en los radios, o una nueva armada con los campos.
+// Para direcciones nuevas: calle, número, localidad y provincia son OBLIGATORIOS.
 function _coDirObjActual(){
   var sel=document.querySelector('#coDirOpts input[name="coDirSel"]:checked');
   if(sel&&sel.value!=='__otra'){var d=_coDirsCache[parseInt(sel.value,10)];if(d)return d;}
-  var txt=(document.getElementById('coDireccion').value||'').trim();
-  if(!txt)return null;
+  var calle=(document.getElementById('coCalle').value||'').trim();
+  var num=(document.getElementById('coNumero').value||'').trim();
+  var loc=(document.getElementById('coLocalidad').value||'').trim();
+  var prov=(document.getElementById('coProvincia').value||'').trim();
+  if(!calle){_coMarkRequired('coCalle');return null;}
+  if(!num){_coMarkRequired('coNumero');return null;}
+  if(!loc){_coMarkRequired('coLocalidad');return null;}
+  if(!prov){_coMarkRequired('coProvincia');return null;}
   var tipoEl=document.querySelector('input[name="coTipo"]:checked');
-  var o={dir:txt,
+  var o={dir:calle+' '+num+', '+loc+', '+prov,
+    calle:calle,num:num,loc:loc,prov:prov,
     piso:(document.getElementById('coPisoDepto').value||'').trim(),
     tipo:tipoEl?tipoEl.value:'',
     entre:(document.getElementById('coEntreCalles').value||'').trim(),
@@ -6141,8 +6152,9 @@ window.coCerrarUbicacion = coCerrarUbicacion;
 function coBuscarMapa() {
   var addr = _coDireccionActual();
   if (!addr) {
-    alert('Primero escribí o elegí tu dirección arriba.');
-    document.getElementById('coDireccion').focus();
+    alert('Primero completá calle, número y localidad arriba.');
+    var _c = document.getElementById('coCalle');
+    if (_c) _c.focus();
     return;
   }
   if (!window.L || !_coMap) { _coLoadLeaflet(); setTimeout(coBuscarMapa, 800); return; }
@@ -6196,17 +6208,17 @@ function coEnviar() {
     if (!nombre) { _coMarkRequired('coNombre'); return; }
     horario = (document.getElementById('coHorarioRetiro').value || '').trim();
     var _retM = _RETIRO[_coVenta] || _RETIRO.minorista;
-    deliveryMsg = '\n\n🏪 *RETIRO EN EL LOCAL*\n👤 ' + nombre;
+    deliveryMsg = '\n\n🏬 *RETIRO EN EL LOCAL*\n👤 ' + nombre;
     deliveryMsg += '\n🕐 Horario preferido: ' + (horario || 'Sin preferencia');
     deliveryMsg += '\n📍 ' + _retM.dirLarga;
     if (_retM.mapa) deliveryMsg += '\n🗺️ ' + _retM.mapa;
     deliveryMsg += '\n💳 Pago: a definir en el local';
   } else {
     nombre = (document.getElementById('coNombreDom').value || '').trim();
-    var dirObj = _coDirObjActual();
-    direccion = dirObj ? dirObj.dir : '';
     if (!nombre) { _coMarkRequired('coNombreDom'); return; }
-    if (!direccion) { _coMarkRequired('coDireccion'); return; }
+    var dirObj = _coDirObjActual();
+    if (!dirObj) return; // _coDirObjActual ya marcó el campo obligatorio que falta
+    direccion = dirObj.dir;
     // Si marcó el pin del mapa en esta sesión, queda guardado con la dirección elegida
     if (_coCoords && !(dirObj.lat && dirObj.lng)) { dirObj.lat = _coCoords.lat; dirObj.lng = _coCoords.lng; }
     deliveryMsg = '\n\n🚚 *ENVÍO A DOMICILIO*\n👤 ' + nombre;
@@ -7412,7 +7424,7 @@ window.copiarLinkParaNavegador = function() {
         <p class="checkout-step-lbl">¿Cómo querés recibir tu pedido?</p>
         <div class="checkout-delivery-opts">
           <button class="checkout-delivery-btn" onclick="coElegirEntrega('retiro')">
-            <span class="checkout-delivery-ic">🏪</span>
+            <span class="checkout-delivery-ic">🏬</span>
             <div class="checkout-delivery-txt"><b>Retiro en el local</b><small id="coRetiroSub">Pueyrredón 588, Mendoza · Lun–Sáb 10 a 20hs</small></div>
             <span class="checkout-delivery-arr">›</span>
           </button>
@@ -7436,7 +7448,7 @@ window.copiarLinkParaNavegador = function() {
           <span class="co-hint" id="coRetiroHint">Horarios del local: Lunes a Sábados 10:00 a 20:00hs</span>
         </div>
         <div class="co-pago-nota">💳 En el local podés pagar con <b>efectivo, transferencia o tarjeta</b>.</div>
-        <button class="wa-btn" style="margin-top:8px" onclick="coEnviar()">💬 Enviar pedido por WhatsApp</button>
+        <button class="wa-btn" style="margin-top:8px" onclick="coEnviar()"><svg viewBox="0 0 24 24" width="19" height="19" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.006 22l4.984-1.307A9.961 9.961 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.25a8.24 8.24 0 01-4.258-1.178l-.306-.181-3.157.828.844-3.07-.2-.319A8.25 8.25 0 1112 20.25z"/></svg> Enviar pedido por WhatsApp</button>
         <div class="co-saved-hint">💾 Guardamos tus datos en este dispositivo para tu próximo pedido. <a href="#" onclick="coBorrarPerfil();return false">Borrar mis datos</a></div>
       </div>
       <!-- Step 2: Domicilio -->
@@ -7449,7 +7461,28 @@ window.copiarLinkParaNavegador = function() {
         <div class="co-field">
           <label>Dirección <span style="color:#e53935">*</span></label>
           <div id="coDirOpts" class="co-dir-opts" style="display:none"></div>
-          <input type="text" id="coDireccion" placeholder="Calle, número, ciudad" class="co-input" autocomplete="street-address">
+          <div id="coDirNueva">
+            <div class="co-field-row">
+              <div class="co-field" style="flex:2;margin-bottom:0">
+                <label>Calle <span style="color:#e53935">*</span></label>
+                <input type="text" id="coCalle" placeholder="Ej: San Martín" class="co-input" autocomplete="address-line1">
+              </div>
+              <div class="co-field" style="flex:1;margin-bottom:0">
+                <label>Número <span style="color:#e53935">*</span></label>
+                <input type="text" id="coNumero" placeholder="Ej: 1234" class="co-input" inputmode="numeric">
+              </div>
+            </div>
+            <div class="co-field-row" style="margin-top:10px">
+              <div class="co-field" style="flex:1.3;margin-bottom:0">
+                <label>Localidad <span style="color:#e53935">*</span></label>
+                <input type="text" id="coLocalidad" placeholder="Ej: Godoy Cruz" class="co-input" autocomplete="address-level2">
+              </div>
+              <div class="co-field" style="flex:1;margin-bottom:0">
+                <label>Provincia <span style="color:#e53935">*</span></label>
+                <input type="text" id="coProvincia" value="Mendoza" class="co-input" autocomplete="address-level1">
+              </div>
+            </div>
+          </div>
         </div>
         <!-- Detalles de la dirección: solo al cargar una dirección NUEVA (quedan guardados con ella) -->
         <div id="coDirDetalles">
@@ -7504,8 +7537,8 @@ window.copiarLinkParaNavegador = function() {
           </div>
         </div>
         </div><!-- /coDirDetalles -->
-        <div class="co-pago-nota">💳 El pago del envío es por <b>transferencia bancaria</b> — te pasamos el alias por WhatsApp.</div>
-        <button class="wa-btn" style="margin-top:8px" onclick="coEnviar()">💬 Enviar pedido por WhatsApp</button>
+        <div class="co-pago-nota">💳 El pedido se abona por <b>transferencia bancaria</b> — te pasamos el alias por WhatsApp.<br>🚚 <b>Envío gratis</b> en compras desde <b>$40.000</b> en Gran Mendoza (si es menor, el envío se abona aparte).</div>
+        <button class="wa-btn" style="margin-top:8px" onclick="coEnviar()"><svg viewBox="0 0 24 24" width="19" height="19" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.006 22l4.984-1.307A9.961 9.961 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.25a8.24 8.24 0 01-4.258-1.178l-.306-.181-3.157.828.844-3.07-.2-.319A8.25 8.25 0 1112 20.25z"/></svg> Enviar pedido por WhatsApp</button>
         <div class="co-saved-hint">💾 Guardamos tus datos en este dispositivo para tu próximo pedido. <a href="#" onclick="coBorrarPerfil();return false">Borrar mis datos</a></div>
       </div>
     </div>
