@@ -2251,7 +2251,7 @@ function _matchScore(q,t){
   return score;
 }
 function _imgZoomGoBack(){if(history.state&&history.state.modal==='imgZoom')history.back();else{const z=document.getElementById('imgZoom');if(z)z.remove();}}
-function zoomImg(el){let src=el.dataset.src||'';if(!src)return;src=src.replace(/=w\d+/,'=w1200');const old=document.getElementById('imgZoom');if(old)old.remove();const z=document.createElement('div');z.id='imgZoom';z.onclick=e=>{if(e.target===z||e.target.tagName==='IMG')_imgZoomGoBack();};z.innerHTML=`<button class="zoom-close" onclick="_imgZoomGoBack()">×</button><img src="${src}" alt="">`;document.body.appendChild(z);history.pushState({modal:'imgZoom'},'');}
+function zoomImg(el){let src=el.dataset.src||'';if(!src)return;src=src.replace(/=w\d+/,'=w1200').replace(/\/w_\d+\//,'/w_1200/');const old=document.getElementById('imgZoom');if(old)old.remove();const z=document.createElement('div');z.id='imgZoom';z.onclick=e=>{if(e.target===z||e.target.tagName==='IMG')_imgZoomGoBack();};z.innerHTML=`<button class="zoom-close" onclick="_imgZoomGoBack()">×</button><img src="${src}" alt="">`;document.body.appendChild(z);history.pushState({modal:'imgZoom'},'');}
 window.addEventListener('popstate',function(e){const z=document.getElementById('imgZoom');if(z){z.remove();e.stopImmediatePropagation();}});
 
 /* ── CARRUSELES ── */
@@ -3412,6 +3412,10 @@ function _driveToImg(raw){
   // El zoom (zoomImg) sube la resolución a w1200 bajo demanda para verla grande.
   return m?'https://lh3.googleusercontent.com/d/'+m[1]+'=w600?v='+bust:raw;
 }
+// Foto del producto servida por Cloudinary (webp + tamaño justo), identificada por el ID del
+// producto (mismo ID que usás en Drive). Migradas 1 vez; se entregan optimizadas y estables.
+var _CLOUD='hswu4zpv';
+function _prodImg(id,w){ return id?('https://res.cloudinary.com/'+_CLOUD+'/image/upload/f_auto,q_auto,w_'+(w||500)+'/'+id):''; }
 
 // Parsea "250g/500g/1kg" o "1 unidad" y devuelve array de claves de opciones válidas
 function _parseCantidades(str){
@@ -3512,7 +3516,7 @@ function sincronizarDesdeSheets(){
         const esKgNombre=/x kg|xkg|x 1 kg| kg/i.test(nombre);
         const esKg=_infCants.length?esKgInfo:esKgNombre;
         const esEspecia=['especias','infusiones'].includes(cat.id);
-        const imgUrl=inf.imagen||imgPrecios;
+        const imgUrl=(inf.imagen||imgPrecios)?_prodImg(productId,500):'';
         const infoText=inf.info||'';
         const sabores=inf.sabores||null;
         let opts;
