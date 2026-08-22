@@ -24,6 +24,9 @@ body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:va
 .top{position:sticky;top:0;z-index:50;background:var(--azul);box-shadow:0 2px 14px rgba(26,48,80,.25)}
 .top-in{max-width:1080px;margin:0 auto;padding:9px 12px;display:flex;align-items:center;gap:9px}
 .logo{width:42px;height:42px;border-radius:50%;background:#fff;flex-shrink:0;object-fit:contain;padding:2px}
+.btn-volver{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.16);border:none;color:#fff;font-family:inherit;font-weight:700;font-size:13px;padding:9px 12px;border-radius:10px;cursor:pointer;white-space:nowrap;text-decoration:none;flex-shrink:0}
+.btn-volver:hover{background:rgba(255,255,255,.3)}
+.btn-volver svg{flex-shrink:0}
 .top-t{color:#fff;font-weight:800;font-size:16px;line-height:1.15}
 .top-t small{display:block;font-weight:500;font-size:11.5px;opacity:.9}
 .btn-print{margin-left:auto;background:rgba(255,255,255,.16);border:none;color:#fff;font-family:inherit;font-weight:700;font-size:13px;padding:9px 12px;border-radius:10px;cursor:pointer;white-space:nowrap}
@@ -154,6 +157,10 @@ body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:va
   :root{--cPre:58px;--cCant:114px}
   body{font-size:15px}
   .wrap{padding:9px}
+  .logo{display:none}
+  .btn-volver{padding:8px 10px;font-size:12.5px}
+  .top-t{font-size:15px;min-width:0}
+  .top-t small{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .hdr,.fila{gap:5px;padding:7px 8px;font-size:12px}
   .hdr{font-size:9px;letter-spacing:.2px}
   .nom{font-size:12.2px;line-height:1.25}
@@ -171,7 +178,7 @@ body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:va
 @media print{
   @page{margin:11mm 9mm}
   body{background:#fff;padding:0;font-size:9pt}
-  .top,.barra,.ov,.panel,.cat-ov,.cat-panel,.ayuda,.sug{display:none!important}
+  .top,.barra,.ov,.panel,.cat-ov,.cat-panel,.ayuda,.sug,.btn-volver{display:none!important}
   .wrap{max-width:none;padding:0}
   .print-h{display:block!important;text-align:center;margin-bottom:7mm;border-bottom:2px solid #3d5a72;padding-bottom:3mm}
   .print-h h1{font-size:15pt;font-weight:900;letter-spacing:1px;color:#1a3050}
@@ -202,6 +209,7 @@ body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:va
 .descb-ic{width:28px;height:28px;object-fit:contain;flex-shrink:0}
 .descb-name{font-size:17px;font-weight:800;color:#1a3050}
 .descb-go{font-size:12.5px;font-weight:700;color:#547692;margin-left:auto;background:#fff;border:1px solid #cdddec;padding:4px 14px;border-radius:20px;white-space:nowrap}
+@media(max-width:640px){.descb-go{margin-left:0}}  /* si baja de renglón, alineado con el título */
 .descb-note{font-size:14px;color:#54677d;font-weight:600;margin-bottom:16px;line-height:1.5}
 .descb-note b{color:#1a3050}
 .descb-mlabel{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
@@ -312,6 +320,7 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 
 <header class="top" id="top">
   <div class="top-in">
+    <a class="btn-volver" href="index.html" title="Volver a la tienda"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span class="btn-volver-txt">Tienda</span></a>
     <img class="logo" src="android-chrome-192x192.png" alt="Paladear">
     <div class="top-t">Lista de Precios<small>Paladear Mercado de Sabores</small></div>
     <button class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
@@ -344,7 +353,7 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
         <span class="descb-go">Sin mínimo de compra</span>
       </div>
       <div class="descb-note">Cargá cantidades en la lista: al superar los <b>$80.000</b> se activan los precios con descuento de tu pedido.</div>
-      <div class="descb-mlabel"><span class="descb-cnt" id="descbCnt">$0</span><span class="descb-goal">Meta: $80.000</span></div>
+      <div class="descb-mlabel"><span class="descb-cnt" id="descbCnt">$0</span><span class="descb-goal" id="descbGoal">Meta: $80.000</span></div>
       <div class="descb-track"><div class="descb-fill" id="descbFill"></div></div>
       <div class="descb-reward" id="descbRw">¡Descuento por cantidad activado!</div>
     </div>
@@ -1171,14 +1180,31 @@ function _coMarkRequired(id) {
 /* ── El banner sigue el total real del pedido ── */
 var _descbAnim=false;
 function pintarBanner(){
-  var cnt=document.getElementById('descbCnt'), fill=document.getElementById('descbFill'), rw=document.getElementById('descbRw');
+  var cnt=document.getElementById('descbCnt'), fill=document.getElementById('descbFill'),
+      rw=document.getElementById('descbRw'), goal=document.getElementById('descbGoal');
   if(!cnt)return;
   var t=totales();
   if(t.n===0){ if(!_descbAnim) animarBanner(); return; }   // sin pedido: la animación de muestra
   _descbAnim=true;
-  cnt.textContent='$'+fmt(t.base);
+  fill.style.transition='width .5s ease';
   fill.style.width=Math.min(100,(t.base/MIN_MAYORISTA)*100)+'%';
-  rw.classList.toggle('on',t.esMay);
+  if(t.esMay){
+    // Ya superó la meta: mostrar la meta al lado de un número más grande se leía como un error.
+    // Se muestra lo que realmente se cobra (igual que la barra de abajo) y el ahorro.
+    cnt.textContent='$'+fmt(t.final);
+    goal.textContent='✓ Descuento aplicado';
+    goal.style.color='#1c9d63';
+    rw.textContent='¡Descuento por cantidad activado! Ahorrás $'+fmt(t.base-t.may);
+    rw.classList.add('on');
+  }else{
+    cnt.textContent='$'+fmt(t.base);
+    goal.textContent='Meta: $80.000';
+    goal.style.color='';
+    rw.textContent='Te faltan $'+fmt(MIN_MAYORISTA-t.base)+' para el descuento';
+    rw.classList.add('on');
+    rw.style.color='#54677d';
+  }
+  if(t.esMay) rw.style.color='';
 }
 function animarBanner(){
   if(_descbAnim)return; _descbAnim=true;
@@ -1191,7 +1217,7 @@ function animarBanner(){
     var p=Math.min((ts-start)/dur,1), e=1-Math.pow(1-p,3);
     cnt.textContent='$'+Math.round(e*MIN_MAYORISTA).toLocaleString('es-AR');
     fill.style.width=(e*100)+'%';
-    if(p>=1){ rw.classList.add('on'); _descbAnim=false; return; }
+    if(p>=1){ rw.textContent='¡Descuento por cantidad activado!'; rw.style.color=''; rw.classList.add('on'); _descbAnim=false; return; }
     requestAnimationFrame(step);
   }
   fill.style.transition='none'; requestAnimationFrame(step);
