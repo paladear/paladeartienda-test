@@ -2,8 +2,8 @@
   "name": "Paladear Mercado de Sabores",
   "short_name": "Paladear",
   "description": "Dietética, frutos secos y más en Mendoza. Venta minorista y mayorista.",
-  "start_url": "/paladeartienda/?utm_source=pwa",
-  "scope": "/paladeartienda/",
+  "start_url": "/paladeartienda-test/?utm_source=pwa",
+  "scope": "/paladeartienda-test/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#547692",
@@ -36,14 +36,14 @@
       "name": "Minorista",
       "short_name": "Tienda",
       "description": "Ver catálogo minorista",
-      "url": "/paladeartienda/?seccion=minorista&utm_source=pwa_shortcut",
+      "url": "/paladeartienda-test/?seccion=minorista&utm_source=pwa_shortcut",
       "icons": [{ "src": "android-chrome-192x192.png", "sizes": "192x192" }]
     },
     {
       "name": "Mayorista",
       "short_name": "Mayorista",
       "description": "Ver catálogo mayorista",
-      "url": "/paladeartienda/?seccion=mayorista&utm_source=pwa_shortcut",
+      "url": "/paladeartienda-test/?seccion=mayorista&utm_source=pwa_shortcut",
       "icons": [{ "src": "android-chrome-192x192.png", "sizes": "192x192" }]
     }
   ]

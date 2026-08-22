@@ -1,6 +1,6 @@
 // ════════════════════════════════════════════════════════
 // sw.js — Service Worker de Paladear Mercado de Sabores
-// Versión: 1.5
+// Versión: 1.6
 //
 // CAMBIO CLAVE (arregla "no carga si no borrás el historial" y
 // "tarda muchísimo en cargar"):
@@ -22,24 +22,35 @@
 //      en segundo plano. Casi nunca cambian.
 // ════════════════════════════════════════════════════════
 
-const CACHE_VERSION = 'paladear-v6';
+const CACHE_VERSION = 'paladear-v9';
 
 const SHELL_FILES = [
-  '/paladeartienda/',
-  '/paladeartienda/index.html',
-  '/paladeartienda/android-chrome-192x192.png',
-  '/paladeartienda/android-chrome-512x512.png',
-  '/paladeartienda/apple-touch-icon.png',
-  '/paladeartienda/favicon-32x32.png',
-  '/paladeartienda/og-image.jpg',
+  '/paladeartienda-test/android-chrome-192x192.png',
+  '/paladeartienda-test/android-chrome-512x512.png',
+  '/paladeartienda-test/apple-touch-icon.png',
+  '/paladeartienda-test/favicon-32x32.png',
+  '/paladeartienda-test/og-image.jpg',
 ];
 
 // ── INSTALL ─────────────────────────────────────────────
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_VERSION)
-      .then(cache => cache.addAll(SHELL_FILES))
-      .catch(err => console.warn('[SW] Error cacheando shell:', err))
+      .then(async cache => {
+        // El HTML se descarga ignorando cualquier copia HTTP anterior. Así una
+        // instalación/actualización nunca vuelve a sembrar una interfaz vieja.
+        const page = await fetch('/paladeartienda-test/index.html', { cache: 'reload' });
+        if (!page || !page.ok) throw new Error('No se pudo actualizar index.html');
+        await Promise.all([
+          cache.put('/paladeartienda-test/', page.clone()),
+          cache.put('/paladeartienda-test/index.html', page.clone()),
+          cache.addAll(SHELL_FILES)
+        ]);
+      })
+      .catch(err => {
+        console.warn('[SW] Error cacheando shell:', err);
+        throw err; // conservar el SW anterior si la actualización quedó incompleta
+      })
   );
   self.skipWaiting();
 });
@@ -73,12 +84,12 @@ self.addEventListener('fetch', event => {
   // primera visita (sin tener que borrar el historial). Si no hay red,
   // caemos al cache para que la página siga abriendo offline.
   const _path = url.pathname;
-  const _esPagina = _path === '/paladeartienda/' ||
-                    _path === '/paladeartienda/index.html';
+  const _esPagina = _path === '/paladeartienda-test/' ||
+                    _path === '/paladeartienda-test/index.html';
 
   if (_esPagina) {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: 'no-store' })
         .then(response => {
           if (response && response.status === 200) {
             caches.open(CACHE_VERSION)
@@ -89,7 +100,7 @@ self.addEventListener('fetch', event => {
         })
         .catch(() =>
           caches.match(event.request)
-            .then(cached => cached || caches.match('/paladeartienda/index.html'))
+            .then(cached => cached || caches.match('/paladeartienda-test/index.html'))
         )
     );
     return;
@@ -108,7 +119,7 @@ self.addEventListener('fetch', event => {
             }
             return response;
           })
-          .catch(() => cached || caches.match('/paladeartienda/index.html'));
+          .catch(() => cached || caches.match('/paladeartienda-test/index.html'));
         // Servimos el cache al instante si existe; si no, esperamos la red.
         return cached || network;
       })
@@ -123,5 +134,5 @@ self.addEventListener('push', event => {
 
 self.addEventListener('notificationclick', event => {
   event.notification.close();
-  event.waitUntil(clients.openWindow('/paladeartienda/'));
+  event.waitUntil(clients.openWindow('/paladeartienda-test/'));
 });
