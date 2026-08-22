@@ -138,9 +138,18 @@ body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:va
 .panel-h h2{font-size:16.5px;font-weight:800;flex:1}
 .panel-x{background:rgba(255,255,255,.18);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:20px;cursor:pointer;line-height:1}
 .panel-b{overflow-y:auto;padding:11px 13px;flex:1}
-.it{background:#fff;border:1.5px solid var(--border);border-radius:11px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:9px}
+.it{background:#fff;border:1.5px solid var(--border);border-radius:11px;padding:10px 12px;margin-bottom:8px}
+.it-top{display:flex;align-items:flex-start;gap:9px}
 .it-n{flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.3}
 .it-n small{display:block;font-weight:600;color:var(--muted-fg);font-size:12px;margin-top:2px}
+/* Fila de edición: se puede cambiar la cantidad sin salir del pedido */
+.it-edit{display:flex;align-items:center;gap:7px;margin-top:9px}
+.it-edit input{width:74px;flex-shrink:0;border:2px solid var(--border);border-radius:8px;padding:7px 4px;font-family:inherit;font-size:16px;font-weight:700;text-align:center;color:var(--fg);outline:none;background:#fff}
+.it-edit input:focus{border-color:var(--azul)}
+.it-edit select{flex:0 0 52px;border:2px solid var(--border);border-radius:8px;padding:7px 11px;font-family:inherit;font-size:16px;font-weight:700;color:var(--fg);outline:none;cursor:pointer;text-align:center;text-align-last:center;-webkit-appearance:none;appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none' stroke='%2390a4b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 3px center;background-size:7px}
+.it-edit select:focus{border-color:var(--azul)}
+.it-und{flex:0 0 52px;text-align:center;font-size:11.5px;font-weight:700;color:var(--muted-fg)}
+.it-edit .it-s{margin-left:auto}
 .it-s{font-size:14px;font-weight:800;color:var(--azul-dark);text-align:right;white-space:nowrap}
 .it-x{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:28px;height:28px;padding:0;border-radius:7px;background:rgba(212,84,60,.1);border:1.5px solid rgba(212,84,60,.3);color:#b04020;cursor:pointer;transition:all .2s}
 .it-x:hover{border-color:#d4543c;background:rgba(212,84,60,.18)}
@@ -629,8 +638,14 @@ function totales(){
 /* Tachito idéntico al de las cards de la tienda */
 const TRASH='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>';
 
+/* Los productos del pedido salen SIEMPRE en orden alfabético (panel y mensaje de WhatsApp) */
 function idsDelPedido(){
-  return Object.keys(pedido).filter(id=>{const p=PRODS.find(x=>x.id===id);return p&&subConPrecio(p,pedido[id],p.p1)>0;});
+  return Object.keys(pedido)
+    .filter(id=>{const p=PRODS.find(x=>x.id===id);return p&&subConPrecio(p,pedido[id],p.p1)>0;})
+    .sort((a,b)=>{
+      const pa=PRODS.find(x=>x.id===a), pb=PRODS.find(x=>x.id===b);
+      return pa.nombre.localeCompare(pb.nombre,'es');
+    });
 }
 function pintarPanel(){
   const t=totales(), ids=idsDelPedido();
@@ -638,9 +653,21 @@ function pintarPanel(){
     ? ids.map(id=>{
         const p=PRODS.find(x=>x.id===id), it=pedido[id];
         return `<div class="it" id="i_${id}">
-          <div class="it-n">${p.nombre}<small>${cantTexto(p,it)}</small></div>
-          <div class="it-s">$${fmt(subtotalDe(p,it,t.esMay))}</div>
-          <button class="it-x" onclick="borrarDesdePanel('${id}')" aria-label="Quitar ${p.nombre}" title="Quitar">${TRASH}</button>
+          <div class="it-top">
+            <div class="it-n">${p.nombre}</div>
+            <button class="it-x" onclick="borrarDesdePanel('${id}')" aria-label="Quitar ${p.nombre}" title="Quitar">${TRASH}</button>
+          </div>
+          <div class="it-edit">
+            <input type="number" inputmode="decimal" min="0" step="any" value="${it.cant}"
+                   aria-label="Cantidad de ${p.nombre}" oninput="setCantPanel('${id}',this.value)">
+            ${p.esKg
+              ? `<select aria-label="Unidad" onchange="setUniPanel('${id}',this.value)">
+                   <option value="g"${uniDe(id)!=='kg'?' selected':''}>g</option>
+                   <option value="kg"${uniDe(id)==='kg'?' selected':''}>kg</option>
+                 </select>`
+              : `<span class="it-und">un.</span>`}
+            <span class="it-s" id="is_${id}">$${fmt(subtotalDe(p,it,t.esMay))}</span>
+          </div>
         </div>`;
       }).join('')
     : '<div class="vacio">Todavía no cargaste nada.</div>';
@@ -664,6 +691,46 @@ function cerrarPanel(){
 }
 function borrarDesdePanel(pid){ borrar(pid); pintarPanel(); }
 
+/* Editar la cantidad desde el pedido. NO se reconstruye el panel: si no, se perdería
+   el foco mientras se escribe (mismo motivo que en las filas de la lista). */
+function setCantPanel(pid,v){
+  const n=parseFloat(String(v).replace(',','.'));
+  if(!n||n<=0) delete pedido[pid];
+  else pedido[pid]={cant:n,uni:uniDe(pid)};
+  guardar();
+  // el casillero de la lista tiene que quedar con el mismo número que se acaba de escribir acá
+  const fila=document.getElementById('f_'+pid);
+  if(fila){ const i=fila.querySelector('.cant input'); if(i) i.value=(n&&n>0)?n:''; }
+  refrescarFila(pid); actualizarBarra();
+}
+function setUniPanel(pid,u){
+  unidades[pid]=u;
+  if(pedido[pid]) pedido[pid].uni=u;
+  guardar(); refrescarFila(pid); actualizarBarra();
+  // el select de la lista tiene que quedar igual que el del pedido
+  const fila=document.getElementById('f_'+pid);
+  if(fila){ const sel=fila.querySelector('.cant select'); if(sel) sel.value=u; }
+}
+/* Refresca subtotales y total sin tocar los casilleros que se están editando */
+function refrescarPanel(){
+  const t=totales();
+  idsDelPedido().forEach(id=>{
+    const p=PRODS.find(x=>x.id===id), el=document.getElementById('is_'+id);
+    if(el) el.textContent='$'+fmt(subtotalDe(p,pedido[id],t.esMay));
+  });
+  // si se vacía el casillero, el producto deja de sumar: su renglón queda atenuado
+  document.querySelectorAll('.it').forEach(it=>{
+    const id=it.id.slice(2);
+    const vacio=!pedido[id];
+    it.style.opacity=vacio?'.5':'';
+    const s=document.getElementById('is_'+id); if(s&&vacio)s.textContent='$0';
+  });
+  document.getElementById('panelT').textContent='$'+fmt(t.final);
+  document.getElementById('panelMay').innerHTML = t.esMay
+    ? `<div class="aviso-may">✓ Tenés precio mayorista: ahorrás $${fmt(t.base-t.may)}</div>`
+    : (t.n?`<div class="aviso-may" style="background:#fff8e6;border-color:#f0d68a;color:#8a6d1f">Sumá $${fmt(MIN_MAYORISTA-t.base)} más y pagás precio mayorista</div>`:'');
+}
+
 function actualizarBarra(){
   const t=totales();
   const b=document.getElementById('barra');
@@ -678,7 +745,7 @@ function actualizarBarra(){
   // Marca qué columna de precio rige ahora mismo
   document.body.classList.toggle('esmay',t.esMay);
   Object.keys(pedido).forEach(refrescarFila);
-  if(document.getElementById('panel').classList.contains('on')) pintarPanel();
+  if(document.getElementById('panel').classList.contains('on')) refrescarPanel();
   pintarBanner();
 }
 
