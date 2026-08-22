@@ -755,22 +755,6 @@ function enviar(){
   if(!ids.length){ alert('Todavía no cargaste cantidades.\n\nEscribí cuánto querés en el casillero de la derecha de cada producto.'); return; }
   abrirCheckout();   // primero los datos del cliente, después WhatsApp
 }
-/* El armado del mensaje quedó dentro de coEnviar() */
-function _enviarViejo(){
-  const may=esMayorista();
-  const ids=idsDelPedido();
-  const t=totales();
-  let m='🛒 *Pedido - Paladear Mercado de Sabores*\n\n';
-  ids.forEach(id=>{
-    const p=PRODS.find(x=>x.id===id), it=pedido[id];
-    m+=`• ${p.nombre} — ${cantTexto(p,it)} — $${fmt(subtotalDe(p,it,may))}\n`;
-  });
-  m+=`\n*TOTAL: $${fmt(t.final)}*`;
-  if(may) m+='\n_(Precio mayorista aplicado por superar $80.000)_';
-  m+='\n\n_Pedido armado desde la lista de precios_';
-  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(m),'_blank');
-}
-
 /* ── Buscador predictivo (mismo criterio que la tienda: empieza con > palabra > contiene) ── */
 let tBusq=null;
 function alEscribir(v){
