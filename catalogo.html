@@ -1244,15 +1244,12 @@ function _coMarkRequired(id) {
 
 
 /* ── El banner sigue el total real del pedido ── */
-var _descbAnim=false;
+/* El banner refleja SIEMPRE el pedido real: arranca en $0 y sube conforme se cargan productos. */
 function pintarBanner(){
   var cnt=document.getElementById('descbCnt'), fill=document.getElementById('descbFill'),
       rw=document.getElementById('descbRw'), goal=document.getElementById('descbGoal');
   if(!cnt)return;
   var t=totales();
-  if(t.n===0){ if(!_descbAnim) animarBanner(); return; }   // sin pedido: la animación de muestra
-  _descbAnim=true;
-  fill.style.transition='width .5s ease';
   fill.style.width=Math.min(100,(t.base/MIN_MAYORISTA)*100)+'%';
   if(t.esMay){
     // Ya superó la meta: mostrar la meta al lado de un número más grande se leía como un error.
@@ -1261,32 +1258,20 @@ function pintarBanner(){
     goal.textContent='✓ Descuento aplicado';
     goal.style.color='#1c9d63';
     rw.textContent='¡Descuento por cantidad activado! Ahorrás $'+fmt(t.base-t.may);
+    rw.style.color='';
     rw.classList.add('on');
   }else{
     cnt.textContent='$'+fmt(t.base);
     goal.textContent='Meta: $80.000';
     goal.style.color='';
-    rw.textContent='Te faltan $'+fmt(MIN_MAYORISTA-t.base)+' para el descuento';
-    rw.classList.add('on');
-    rw.style.color='#54677d';
+    if(t.n>0){
+      rw.textContent='Te faltan $'+fmt(MIN_MAYORISTA-t.base)+' para el descuento';
+      rw.style.color='#54677d';
+      rw.classList.add('on');
+    }else{
+      rw.classList.remove('on');   // sin nada cargado no hay mensaje
+    }
   }
-  if(t.esMay) rw.style.color='';
-}
-function animarBanner(){
-  if(_descbAnim)return; _descbAnim=true;
-  var cnt=document.getElementById('descbCnt'), fill=document.getElementById('descbFill'), rw=document.getElementById('descbRw');
-  if(!cnt)return;
-  var dur=1700,start=null;
-  function step(ts){
-    if(totales().n>0){ pintarBanner(); return; }          // si el cliente empezó a cargar, manda el pedido real
-    if(!start)start=ts;
-    var p=Math.min((ts-start)/dur,1), e=1-Math.pow(1-p,3);
-    cnt.textContent='$'+Math.round(e*MIN_MAYORISTA).toLocaleString('es-AR');
-    fill.style.width=(e*100)+'%';
-    if(p>=1){ rw.textContent='¡Descuento por cantidad activado!'; rw.style.color=''; rw.classList.add('on'); _descbAnim=false; return; }
-    requestAnimationFrame(step);
-  }
-  fill.style.transition='none'; requestAnimationFrame(step);
 }
 
 document.getElementById('printFecha').textContent='Precios actualizados al '+new Date().toLocaleDateString('es-AR')+' · Consultar stock · @palade.ar';
