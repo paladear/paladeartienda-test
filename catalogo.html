@@ -132,27 +132,28 @@ body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:va
 /* ══ Panel del pedido ══ */
 .ov{position:fixed;inset:0;background:rgba(15,28,42,.55);z-index:71;display:none}
 .ov.on{display:block}
-.panel{position:fixed;left:0;right:0;bottom:0;z-index:72;background:var(--bg);border-radius:18px 18px 0 0;max-height:86vh;display:none;flex-direction:column}
+.panel{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:520px;z-index:72;background:var(--bg);border-radius:18px 18px 0 0;max-height:86vh;display:none;flex-direction:column}
+@media(min-width:600px){.panel{bottom:6vh;border-radius:18px;max-height:80vh}}
 .panel.on{display:flex}
 .panel-h{background:var(--azul);color:#fff;padding:13px 15px;border-radius:18px 18px 0 0;display:flex;align-items:center;gap:10px;flex-shrink:0}
 .panel-h h2{font-size:16.5px;font-weight:800;flex:1}
 .panel-x{background:rgba(255,255,255,.18);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:20px;cursor:pointer;line-height:1}
 .panel-b{overflow-y:auto;padding:11px 13px;flex:1}
-.it{background:#fff;border:1.5px solid var(--border);border-radius:11px;padding:10px 12px;margin-bottom:8px}
-.it-top{display:flex;align-items:flex-start;gap:9px}
+.it{background:#fff;border:1.5px solid var(--border);border-radius:11px;padding:10px 12px 11px;margin-bottom:8px}
+.it-top{display:flex;align-items:flex-start;gap:8px}
 .it-n{flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.3}
 .it-n small{display:block;font-weight:600;color:var(--muted-fg);font-size:12px;margin-top:2px}
 /* Fila de edición: se puede cambiar la cantidad sin salir del pedido */
-.it-edit{display:flex;align-items:center;gap:7px;margin-top:9px}
+.it-edit{display:flex;align-items:center;gap:7px;margin-top:8px}
 .it-edit input{width:74px;flex-shrink:0;border:2px solid var(--border);border-radius:8px;padding:7px 4px;font-family:inherit;font-size:16px;font-weight:700;text-align:center;color:var(--fg);outline:none;background:#fff}
 .it-edit input:focus{border-color:var(--azul)}
 .it-edit select{flex:0 0 52px;border:2px solid var(--border);border-radius:8px;padding:7px 11px;font-family:inherit;font-size:16px;font-weight:700;color:var(--fg);outline:none;cursor:pointer;text-align:center;text-align-last:center;-webkit-appearance:none;appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none' stroke='%2390a4b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 3px center;background-size:7px}
 .it-edit select:focus{border-color:var(--azul)}
 .it-und{flex:0 0 52px;text-align:center;font-size:11.5px;font-weight:700;color:var(--muted-fg)}
-.it-edit .it-s{margin-left:auto}
+.it-edit .it-s{margin-left:auto;font-size:15px}
 .it-s{font-size:14px;font-weight:800;color:var(--azul-dark);text-align:right;white-space:nowrap}
-.it-x{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:28px;height:28px;padding:0;border-radius:7px;background:rgba(212,84,60,.1);border:1.5px solid rgba(212,84,60,.3);color:#b04020;cursor:pointer;transition:all .2s}
-.it-x:hover{border-color:#d4543c;background:rgba(212,84,60,.18)}
+.it-x{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:22px;height:22px;margin:-2px -3px 0 0;padding:0;border:none;border-radius:50%;background:none;color:#a8b6c4;font-size:17px;line-height:1;cursor:pointer;transition:color .2s,background .2s}
+.it-x:hover{color:#b04020;background:rgba(212,84,60,.12)}
 .panel-f{border-top:1.5px solid var(--border);padding:12px 13px;padding-bottom:calc(12px + env(safe-area-inset-bottom));background:#fff;flex-shrink:0}
 .tot{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
 .tot span:first-child{font-size:14.5px;font-weight:700}
@@ -635,8 +636,6 @@ function totales(){
   const esMay=base>=MIN_MAYORISTA;
   return {n,base,conOferta,may,esMay,final:esMay?may:conOferta};
 }
-/* Tachito idéntico al de las cards de la tienda */
-const TRASH='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>';
 
 /* Los productos del pedido salen SIEMPRE en orden alfabético (panel y mensaje de WhatsApp) */
 function idsDelPedido(){
@@ -655,7 +654,7 @@ function pintarPanel(){
         return `<div class="it" id="i_${id}">
           <div class="it-top">
             <div class="it-n">${p.nombre}</div>
-            <button class="it-x" onclick="borrarDesdePanel('${id}')" aria-label="Quitar ${p.nombre}" title="Quitar">${TRASH}</button>
+            <button class="it-x" onclick="borrarDesdePanel('${id}')" aria-label="Quitar ${p.nombre}" title="Quitar">&times;</button>
           </div>
           <div class="it-edit">
             <input type="number" inputmode="decimal" min="0" step="any" value="${it.cant}"
