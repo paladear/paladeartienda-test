@@ -11,7 +11,7 @@ layout: null
 <meta name="supported-color-schemes" content="light">
 <meta name="google-site-verification" content="jZAof6C7e-min-6NmCVtqpdcvkP1vfr2s_rP7np4HEs" />
 <!-- Microsoft Clarity (métricas: grabaciones, mapas de calor y embudo) -->
-<!-- Clarity quitado en la version de prueba: no debe mezclarse con las metricas reales -->
+<!-- Clarity quitado en la version de prueba -->
   
 <!-- ══════════ FAVICON ══════════ -->
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -2063,7 +2063,7 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
     .descb-cnt{font-size:20px;font-weight:800;color:#1a3050;font-variant-numeric:tabular-nums}
     .descb-goal{font-size:12px;font-weight:600;color:#8a9bad}
     .descb-track{height:14px;background:#dde6ee;border-radius:8px;overflow:hidden}
-    .descb-fill{height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,#547692,#6fa3c4)}
+    .descb-fill{height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,#547692,#6fa3c4);transition:width .5s ease}
     .descb-reward{margin-top:14px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:#1c9d63;opacity:0;transform:translateY(5px);transition:all .4s;min-height:20px}
     .descb-reward.on{opacity:1;transform:none}
     .descb-pill{font-size:10.5px;padding:2px 8px;border-radius:20px;color:#fff;background:#1c9d63;white-space:nowrap}
@@ -2076,36 +2076,12 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
         <span class="descb-go">Sin mínimo de compra</span>
       </div>
       <div class="descb-note">Sumá productos al carrito: al superar los <b>$80.000</b> se activan los precios con descuento de tu pedido.</div>
-      <div class="descb-mlabel"><span class="descb-cnt" id="descbCnt">$0</span><span class="descb-goal">Meta: $80.000</span></div>
+      <div class="descb-mlabel"><span class="descb-cnt" id="descbCnt">$0</span><span class="descb-goal" id="descbGoal">Meta: $80.000</span></div>
       <div class="descb-track"><div class="descb-fill" id="descbFill"></div></div>
       <div class="descb-reward" id="descbRw">¡Descuento por cantidad activado!</div>
     </div>
   </div>
-  <script>
-  (function(){
-    var done=false;
-    function anim(){
-      if(done)return;done=true;
-      var cnt=document.getElementById('descbCnt'),fill=document.getElementById('descbFill'),rw=document.getElementById('descbRw');
-      if(!cnt||!fill||!rw)return;
-      var target=80000,dur=1700,start=null;
-      function step(ts){if(!start)start=ts;var t=Math.min((ts-start)/dur,1),e=1-Math.pow(1-t,3);
-        cnt.textContent='$'+Math.round(e*target).toLocaleString('es-AR');fill.style.width=(e*100)+'%';
-        if(t>=1)rw.classList.add('on');if(t<1)requestAnimationFrame(step);}
-      requestAnimationFrame(step);
-    }
-    function init(){
-      var el=document.getElementById('descBanner');
-      if(!el)return;
-      if('IntersectionObserver' in window){
-        var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){anim();io.disconnect();}});},{threshold:.4});
-        io.observe(el);
-      } else { anim(); }
-    }
-    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
-    else init();
-  })();
-  </script>
+  <!-- La barra ya no anima sola: refleja el carrito real (ver _pintarDescBanner) -->
 
 
 
@@ -3134,7 +3110,50 @@ function updateCartCount(){
   if(isMay&&!_wasMay)_triggerMayoristaConfetti();
   _wasMay=isMay;
   _saveCart();
+  _pintarDescBanner();
 }
+
+/* Banner "Descuento por cantidad": arranca en $0 y sube con lo que hay en el carrito.
+   Antes hacía una animación de muestra de 0 a $80.000 al aparecer en pantalla. */
+function _pintarDescBanner(){
+  const cnt=document.getElementById('descbCnt'), fill=document.getElementById('descbFill'),
+        rw=document.getElementById('descbRw'), goal=document.getElementById('descbGoal');
+  if(!cnt||!fill||!rw||!goal)return;
+  const totalMin=cart.reduce((a,i)=>a+_itemMin(i),0);
+  const esMay=totalMin>=80000;
+  fill.style.width=Math.min(100,(totalMin/80000)*100)+'%';
+  if(esMay){
+    // Ya superó la meta: mostrar el total sin descuento al lado de "Meta: $80.000" se leía
+    // como un error. Se muestra lo que realmente se cobra y cuánto ahorra.
+    const totalMay=cart.reduce((a,i)=>a+_itemMay(i),0);
+    cnt.textContent='$'+fmt(totalMay);
+    goal.textContent='✓ Descuento aplicado';
+    goal.style.color='#1c9d63';
+    rw.textContent='¡Descuento por cantidad activado! Ahorrás $'+fmt(totalMin-totalMay);
+    rw.style.color='';
+    rw.classList.add('on');
+  }else{
+    cnt.textContent='$'+fmt(totalMin);
+    goal.textContent='Meta: $80.000';
+    goal.style.color='';
+    if(cart.length){
+      rw.textContent='Te faltan $'+fmt(80000-totalMin)+' para el descuento';
+      rw.style.color='#54677d';
+      rw.classList.add('on');
+    }else{
+      rw.classList.remove('on');   // carrito vacío: sin mensaje
+    }
+  }
+}
+window._pintarDescBanner=_pintarDescBanner;
+/* Al abrir la página hay que pintarlo aparte: updateCartCount() NO corre al cargar
+   (ver la nota de más arriba sobre _wasMay y la pantalla de carga infinita).
+   Va con try/catch para que, pase lo que pase, nunca frene el resto del script. */
+(function(){
+  function _pintarAlInicio(){ try{ _pintarDescBanner(); }catch(e){} }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',_pintarAlInicio);
+  else _pintarAlInicio();
+})();
 
 function openCart(){
   _track('abrio_carrito');
