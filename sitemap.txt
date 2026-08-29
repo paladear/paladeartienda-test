@@ -265,6 +265,7 @@ https://paladear.github.io/paladeartienda/?producto=harina-de-coco-1298
 https://paladear.github.io/paladeartienda/?producto=harina-de-garbanzo-1299
 https://paladear.github.io/paladeartienda/?producto=harina-de-lino-1300
 https://paladear.github.io/paladeartienda/?producto=harina-de-maiz-blanco-1303
+https://paladear.github.io/paladeartienda/?producto=harina-de-nuez-4466
 https://paladear.github.io/paladeartienda/?producto=harina-de-soja-desgrasada-fina-1305
 https://paladear.github.io/paladeartienda/?producto=harina-de-trigo-sarraceno-2041
 https://paladear.github.io/paladeartienda/?producto=harina-integral-fina-1306

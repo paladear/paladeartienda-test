@@ -72,7 +72,7 @@ Articulo,Nombre,Bulto,Sabores,Imagen,Estado,Rubro
 1122,ANILLOS FRUTADOS,2.5 kilos.,,https://drive.google.com/file/d/1Ud1G3_GTKzOJlgQUuWIsDS8gW8W7uN1n/view,✅ en precios,CEREALES
 1123,ANIS EN GRANO,1 kg,,https://drive.google.com/file/d/10Rj5SFRP2MBT2ivj_t8FM0I3xKYEw_G7/view,✅ en precios,ESPECIAS
 1124,ANIS ESTRELLADO,1 kg,,https://drive.google.com/file/d/110BKpRZCGMZVqRQ1US6pEtFzah0Jqd00/view,✅ en precios,ESPECIAS
-1127,ARANDANOS DESHIDRATADOS,"11,34 kg",,https://drive.google.com/file/d/1-3hEiQdp5-wSKlvvcymYZu1DU6SVODsx/view,✅ en precios,DESHIDRATADOS
+1127,ARANDANOS DESHIDRATADOS,11.34,,https://drive.google.com/file/d/1-3hEiQdp5-wSKlvvcymYZu1DU6SVODsx/view,✅ en precios,DESHIDRATADOS
 2214,ARANDANOS X30 COMPRIMIDOS - EL NATURALISTA,,,https://drive.google.com/file/d/10BhNh7ksbDfRed2slcohwcZ07ApXcAXQ/view,✅ en precios,SUPLEMENTOS
 1129,ARROPE DE CHAÑAR X600 GR - MUPAY,12 unidades,,https://drive.google.com/file/d/1Yc780U_gZC-cewfwA6xM2gHW-mGLIeme/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
 1130,ARROPE DE TUNA X600 GR - MUPAY,12 unidades,,https://drive.google.com/file/d/1QpsuR12cFn9MTFbww53gb08i1_BR6UW2/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
@@ -211,13 +211,13 @@ Articulo,Nombre,Bulto,Sabores,Imagen,Estado,Rubro
 1383,MANTEQUILLA DE MANI X 370 GR - ENTRENUTS,12 unidades,,https://drive.google.com/file/d/1qZh_OzE6KEBPY-1IeONmJnUF5PksSrSg/view,✅ en precios,MANTECAS Y PASTAS
 1384,MANZANILLA FLOR,1 kg,,https://drive.google.com/file/d/1QNLQBOe62lw2pV2iskuftZfquII0mtIf/view,✅ en precios,INFUSIONES Y HIERBAS
 1394,MEDALLONES DE DURAZNO,5 kg,,https://drive.google.com/file/d/1MwU_DIjxJKxV2ruB339EY2Ft0EsuzXvR/view,✅ en precios,DESHIDRATADOS
-1901,MERMELADA DE CIRUELA X310 GR - MQA,6 unidades,,https://drive.google.com/file/d/1vtJT3rgI9ZUaxgtO8W0GNYrlOpWlgOj_/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
-1907,MERMELADA DE DURAZNO X310 GR - MQA,6 unidades,,https://drive.google.com/file/d/1wVhTtXfgDpUAMDsbcP0pu8UwBZdi-9rC/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
-1902,MERMELADA FRUTILLA X310 GR - MQA,6 unidades,,https://drive.google.com/file/d/1fckmpdYNEhJ_1MMdHuCMvK9G-DyEICLj/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
-1905,MERMELADA MANZANA X310 GR - MQA,6 unidades,,https://drive.google.com/file/d/1yMk62sKy8HLI95Z1BhUaSdLizgZB_xLv/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
-1903,MERMELADA MEMBRILLO X310 GR - MQA,6 unidades,,https://drive.google.com/file/d/1CAHLQezih3TvX0peI7MgUxPysQEckXfl/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
-1904,MERMELADA NARANJA X310 GR - MQA,6 unidades,,https://drive.google.com/file/d/1bL0hc55atrQVSrZ2eKq4i0fNXNV26z9u/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
-1906,MERMELADA ZANAHORIA Y NARANJA X310 GR,12 unidades,,https://drive.google.com/file/d/1got4Ma1xpSNperiiDL_JS6wBBx2cdluy/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
+1901,MERMELADA DE CIRUELA X310 GR - MQA,,,https://drive.google.com/file/d/1vtJT3rgI9ZUaxgtO8W0GNYrlOpWlgOj_/view,❌ no está en precios,
+1907,MERMELADA DE DURAZNO X310 GR - MQA,,,https://drive.google.com/file/d/1wVhTtXfgDpUAMDsbcP0pu8UwBZdi-9rC/view,❌ no está en precios,
+1902,MERMELADA FRUTILLA X310 GR - MQA,,,https://drive.google.com/file/d/1fckmpdYNEhJ_1MMdHuCMvK9G-DyEICLj/view,❌ no está en precios,
+1905,MERMELADA MANZANA X310 GR - MQA,,,https://drive.google.com/file/d/1yMk62sKy8HLI95Z1BhUaSdLizgZB_xLv/view,❌ no está en precios,
+1903,MERMELADA MEMBRILLO X310 GR - MQA,,,https://drive.google.com/file/d/1CAHLQezih3TvX0peI7MgUxPysQEckXfl/view,❌ no está en precios,
+1904,MERMELADA NARANJA X310 GR - MQA,,,https://drive.google.com/file/d/1bL0hc55atrQVSrZ2eKq4i0fNXNV26z9u/view,❌ no está en precios,
+1906,MERMELADA ZANAHORIA Y NARANJA X310 GR,,,https://drive.google.com/file/d/1got4Ma1xpSNperiiDL_JS6wBBx2cdluy/view,❌ no está en precios,
 1406,MIEL DE ABEJA X1 KG  - MONTE NATURAL,12 unidades,,https://drive.google.com/file/d/1JKsD3XI9xhwpUuvuZRI5zMUyEeqBqd7X/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
 1408,MIEL DE ABEJA X250 GR - MONTE NATURAL,24 unidades,,https://drive.google.com/file/d/1vcqMzMskV0cok-aTNgkYaP_za2vdYYga/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
 1410,MIEL DE ABEJA X500 GR - MONTE NATURAL,24 unidades,,https://drive.google.com/file/d/1InBwP0KdXp-jGKcN5fnd9K5wvxGwvqUJ/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
@@ -366,5 +366,7 @@ Articulo,Nombre,Bulto,Sabores,Imagen,Estado,Rubro
 2079,ZINC X 30 COMPRIMIDOS - EL NATURALISTA,,,https://drive.google.com/file/d/1aeTTL6PsbNFHvzZWpXgTZ6Y4mb8Hap9C/view,✅ en precios,SUPLEMENTOS
 4463,AJO NEGRO,1 KG,,https://drive.google.com/file/d/1lHJ3wzAOnPBQRXp0BF1U4iiSRqkHmQro/view,✅ en precios,DESHIDRATADOS
 4464,TOMATES DESECADOS CONDIMENTADOS X330 GR- AGROIANNI,PACK X 12 UND,,https://drive.google.com/file/d/1i9lz84-8WMdnsX_9ddeyBvGMapvnfsxP/view,✅ en precios,ENCURTIDOS
-5044,MANZANILLA IMPORTADA,,,https://drive.google.com/file/d/1L6DE-kS8DdyzVqNfsNGErBmOR4jwCai9/view,❌ no está en precios,
+5044,MANZANILLA IMPORTADA,1 kg,,https://drive.google.com/file/d/1L6DE-kS8DdyzVqNfsNGErBmOR4jwCai9/view,✅ en precios,INFUSIONES Y HIERBAS
 1636,TUTUCAS SIN AZUCAR X KG,5 kg,,https://drive.google.com/file/d/1ssnRXWRHhOyxkgKCyeSYK4o-f34Shh0d/view,✅ en precios,CEREALES
+4466,HARINA DE NUEZ X 1 KG,1kg,,https://drive.google.com/file/d/1dMoqH_gPk-qT1h1vYmTRTPKNfrEKpDE9/view,✅ en precios,HARINAS
+4467,HARINA DE NUEZ X 500 GR,1 UNIDAD,,https://drive.google.com/file/d/1D84ZalDc_-PZuGZNTQx2QBjUWwfqVIpF/view,✅ en precios,HARINAS
