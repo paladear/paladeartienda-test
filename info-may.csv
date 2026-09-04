@@ -245,7 +245,7 @@ Articulo,Nombre,Bulto,Sabores,Imagen,Estado,Rubro
 1451,NUEZ MOSCADA ENTERA,1 kg,,https://drive.google.com/file/d/1cnsk6mLfHOJqVApd28MQT1AKNt0PRNOW/view,✅ en precios,ESPECIAS
 1452,NUEZ MOSCADA MOLIDA,1 kg,,https://drive.google.com/file/d/1eUcDhT0z9fB8vtXkXh15nPzu2iBvpF4W/view,✅ en precios,ESPECIAS
 1455,OREGANO,1 kg,,https://drive.google.com/file/d/1yMf1m6G2q8Frzabb5BW8NKtODUA8obGd/view,✅ en precios,ESPECIAS
-1670,PANKO,,,https://drive.google.com/file/d/1-WEuzI3iwOy7xxSoPW9YCPAbQGl56JKO/view,✅ en precios,HARINAS
+1670,PANKO,1 kg,,https://drive.google.com/file/d/1-WEuzI3iwOy7xxSoPW9YCPAbQGl56JKO/view,✅ en precios,HARINAS
 2440,PASAS DE UVA CON SEMILLAS,10 kg,,https://drive.google.com/file/d/1Pu2D-RFY57UtSR3BJHr4uot2JKPFAj9Z/view,✅ en precios,DESHIDRATADOS
 1955,PASAS MOROCHA FLAME SIN SEMILLA,10 kg,,https://drive.google.com/file/d/16DnWqgTXff5E0l4ItsA2jI9UNtPPwJjQ/view,✅ en precios,DESHIDRATADOS
 4456,PASAS MOROCHAS JUMBO - ORIGEN CHILE,10 kg,,https://drive.google.com/file/d/1cKCSvqBSLd30SBGisx625jOeuSr9mCei/view,✅ en precios,DESHIDRATADOS
@@ -366,7 +366,8 @@ Articulo,Nombre,Bulto,Sabores,Imagen,Estado,Rubro
 2079,ZINC X 30 COMPRIMIDOS - EL NATURALISTA,,,https://drive.google.com/file/d/1aeTTL6PsbNFHvzZWpXgTZ6Y4mb8Hap9C/view,✅ en precios,SUPLEMENTOS
 4463,AJO NEGRO,1 KG,,https://drive.google.com/file/d/1lHJ3wzAOnPBQRXp0BF1U4iiSRqkHmQro/view,✅ en precios,DESHIDRATADOS
 4464,TOMATES DESECADOS CONDIMENTADOS X330 GR- AGROIANNI,PACK X 12 UND,,https://drive.google.com/file/d/1i9lz84-8WMdnsX_9ddeyBvGMapvnfsxP/view,✅ en precios,ENCURTIDOS
-5044,MANZANILLA IMPORTADA,1 kg,,https://drive.google.com/file/d/1L6DE-kS8DdyzVqNfsNGErBmOR4jwCai9/view,✅ en precios,INFUSIONES Y HIERBAS
+5044,MANZANILLA IMPORTADA,X KG,,https://drive.google.com/file/d/1L6DE-kS8DdyzVqNfsNGErBmOR4jwCai9/view,✅ en precios,INFUSIONES Y HIERBAS
 1636,TUTUCAS SIN AZUCAR X KG,5 kg,,https://drive.google.com/file/d/1ssnRXWRHhOyxkgKCyeSYK4o-f34Shh0d/view,✅ en precios,CEREALES
-4466,HARINA DE NUEZ X 1 KG,1kg,,https://drive.google.com/file/d/1dMoqH_gPk-qT1h1vYmTRTPKNfrEKpDE9/view,✅ en precios,HARINAS
-4467,HARINA DE NUEZ X 500 GR,1 UNIDAD,,https://drive.google.com/file/d/1D84ZalDc_-PZuGZNTQx2QBjUWwfqVIpF/view,✅ en precios,HARINAS
+4466,HARINA DE NUEZ X 1 KG,KG,,https://drive.google.com/file/d/1dMoqH_gPk-qT1h1vYmTRTPKNfrEKpDE9/view,✅ en precios,HARINAS
+4467,HARINA DE NUEZ X 500 GR,1/2KG,,https://drive.google.com/file/d/1D84ZalDc_-PZuGZNTQx2QBjUWwfqVIpF/view,✅ en precios,HARINAS
+1232,CORIANDRO ENTERO X KG,KG,,https://drive.google.com/file/d/1Pg3wwOrxOD_xKjCQ_vZDSrEL-9NrBGoe/view,✅ en precios,SEMILLAS
