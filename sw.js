@@ -22,7 +22,7 @@
 //      en segundo plano. Casi nunca cambian.
 // ════════════════════════════════════════════════════════
 
-const CACHE_VERSION = 'paladear-v9';
+const CACHE_VERSION = 'paladear-v10';
 
 const SHELL_FILES = [
   '/paladeartienda-test/android-chrome-192x192.png',
@@ -87,7 +87,16 @@ self.addEventListener('fetch', event => {
   const _esPagina = _path === '/paladeartienda-test/' ||
                     _path === '/paladeartienda-test/index.html';
 
-  if (_esPagina) {
+  // DATOS DE PRECIOS Y STOCK: tambien NETWORK-FIRST.
+  // Antes los precios venian del Apps Script de Google (otro origen), asi que
+  // este service worker ni los tocaba y siempre llegaban frescos. Ahora salen
+  // de E-Pyme y viajan como archivos del propio sitio, asi que sin esta regla
+  // caerian en stale-while-revalidate y un visitante que vuelve veria los
+  // precios de la carga anterior. Con la red primero, siempre ve los de hoy;
+  // el cache queda solo como respaldo para cuando no hay conexion.
+  const _esDato = /\/(precios-min|info-min|precios-may|info-may)\.csv$|\/catalog-min\.json$/.test(_path);
+
+  if (_esPagina || _esDato) {
     event.respondWith(
       fetch(event.request, { cache: 'no-store' })
         .then(response => {
@@ -99,8 +108,13 @@ self.addEventListener('fetch', event => {
           return response;
         })
         .catch(() =>
-          caches.match(event.request)
-            .then(cached => cached || caches.match('/paladeartienda-test/index.html'))
+          caches.match(event.request).then(cached => {
+            if (cached) return cached;
+            // Un CSV/JSON no puede caer al index.html: devolveria HTML donde se
+            // espera datos. Mejor fallar y que la pagina haga su reintento.
+            return _esDato ? Response.error()
+                           : caches.match('/paladeartienda-test/index.html');
+          })
         )
     );
     return;
