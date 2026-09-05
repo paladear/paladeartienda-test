@@ -78,6 +78,52 @@
   .nota{margin-top:22px;font-size:12.5px;color:var(--suave);line-height:1.6;
         border-top:1px solid var(--linea);padding-top:14px}
 
+  .prod{cursor:pointer;transition:box-shadow .12s,border-color .12s}
+  .prod:hover{border-color:var(--marca);box-shadow:0 2px 10px rgba(18,33,43,.08)}
+  .chip.editada{background:#dcfce7;color:var(--ok);border-color:#86efac}
+
+  /* aviso de importacion inicial */
+  .importar{background:#fff;border:1px solid var(--nuevo-linea);background:var(--nuevo-suave);
+            border-radius:10px;padding:14px 16px;margin-bottom:18px;display:flex;
+            gap:14px;align-items:center;flex-wrap:wrap}
+  .importar p{margin:0;flex:1;min-width:240px;font-size:13.5px;color:#1e3a5f}
+  .btn{border:0;border-radius:8px;padding:9px 16px;font-size:14px;font-weight:600;
+       cursor:pointer;background:var(--marca);color:#fff}
+  .btn:hover{background:var(--marca-osc)}
+  .btn:disabled{opacity:.55;cursor:default}
+  .btn.gris{background:#fff;color:var(--suave);border:1px solid var(--linea)}
+  .btn.gris:hover{background:#f8fafc;color:var(--tinta)}
+
+  /* editor */
+  #editor{position:fixed;inset:0;z-index:200;display:none;background:rgba(15,23,42,.55)}
+  #editor.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;
+                  overflow:auto}
+  .ed-caja{background:#fff;border-radius:14px;width:100%;max-width:560px;
+           box-shadow:0 22px 60px rgba(0,0,0,.3)}
+  .ed-top{display:flex;gap:12px;align-items:center;padding:16px 20px;border-bottom:1px solid var(--linea)}
+  .ed-top img,.ed-top .sinf{width:52px;height:52px;border-radius:8px;object-fit:cover;
+                            background:#eef2f5;border:1px solid var(--linea);flex:0 0 52px;
+                            display:flex;align-items:center;justify-content:center;
+                            font-size:10px;color:var(--suave)}
+  .ed-top h3{margin:0;font-size:15px;font-weight:650;overflow-wrap:anywhere}
+  .ed-top .sub{font-size:12px;color:var(--suave)}
+  .ed-cerrar{margin-left:auto;background:none;border:0;font-size:24px;line-height:1;
+             color:var(--suave);cursor:pointer;padding:0 4px}
+  .ed-cuerpo{padding:18px 20px}
+  .campo{margin-bottom:15px}
+  .campo label{display:block;font-size:12.5px;font-weight:600;margin-bottom:5px}
+  .campo .ayuda{font-weight:400;color:var(--suave)}
+  .campo input,.campo textarea{width:100%;border:1px solid var(--linea);border-radius:8px;
+                               padding:9px 11px;font:inherit;font-size:14px;background:#fff}
+  .campo textarea{min-height:92px;resize:vertical}
+  .campo input:focus,.campo textarea:focus{outline:2px solid var(--marca);outline-offset:-1px;border-color:var(--marca)}
+  .ed-pie{display:flex;gap:10px;align-items:center;padding:14px 20px;border-top:1px solid var(--linea)}
+  .ed-estado{font-size:13px;color:var(--suave);margin-right:auto}
+  .ed-estado.ok{color:var(--ok);font-weight:600}
+  .ed-estado.mal{color:var(--mal);font-weight:600}
+  .solo-lectura{background:#f8fafc;border:1px solid var(--linea);border-radius:8px;
+                padding:9px 11px;font-size:13.5px;color:var(--suave)}
+
   #capaAcceso{position:fixed;inset:0;z-index:9999;display:none;align-items:center;
               justify-content:center;background:#0f172a}
   #capaAcceso .caja{background:#fff;border-radius:16px;padding:36px 32px;max-width:340px;
@@ -110,7 +156,52 @@
   </div>
 </header>
 
+<div id="editor">
+  <div class="ed-caja">
+    <div class="ed-top">
+      <div id="edFoto" class="sinf">sin foto</div>
+      <div style="min-width:0">
+        <h3 id="edTitulo"></h3>
+        <div class="sub" id="edSub"></div>
+      </div>
+      <button class="ed-cerrar" id="edCerrar" title="Cerrar">&times;</button>
+    </div>
+    <div class="ed-cuerpo">
+      <div class="campo">
+        <label>Precio <span class="ayuda">— viene de E-Pyme, no se edita acá</span></label>
+        <div class="solo-lectura" id="edPrecio"></div>
+      </div>
+      <div class="campo">
+        <label for="edNombre">Nombre que ve el cliente</label>
+        <input id="edNombre" maxlength="120">
+      </div>
+      <div class="campo">
+        <label for="edCant">Cantidades <span class="ayuda">— separadas por barra. Ej: 250G / 500G / 1KG</span></label>
+        <input id="edCant" maxlength="120">
+      </div>
+      <div class="campo">
+        <label for="edSabores">Sabores <span class="ayuda">— opcional, separados por barra</span></label>
+        <input id="edSabores" maxlength="200">
+      </div>
+      <div class="campo">
+        <label for="edDesc">Descripción</label>
+        <textarea id="edDesc" maxlength="900"></textarea>
+      </div>
+      <div class="campo">
+        <label for="edOferta">Oferta <span class="ayuda">— porcentaje de descuento. 0 = sin oferta</span></label>
+        <input id="edOferta" type="number" min="0" max="90" step="1">
+      </div>
+    </div>
+    <div class="ed-pie">
+      <span class="ed-estado" id="edEstado"></span>
+      <button class="btn gris" id="edCancelar">Cancelar</button>
+      <button class="btn" id="edGuardar">Guardar</button>
+    </div>
+  </div>
+</div>
+
 <main>
+  <div id="avisoImportar"></div>
   <div class="tarjetas" id="kpis"></div>
   <div class="barra">
     <input id="buscar" placeholder="Buscar por nombre o número de artículo...">
@@ -131,6 +222,7 @@
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
 // ── ACCESO ────────────────────────────────────────────────────────────────────
 const firebaseConfig = {
@@ -154,6 +246,7 @@ if (hayAuth) {
   firebase.auth().onAuthStateChanged(u => {
     if (u) {
       verCapa(false);
+      USUARIO = u;
       document.getElementById('quien').textContent = u.email || '';
       arrancar();
     } else {
@@ -173,9 +266,10 @@ if (hayAuth) {
       });
   });
 } else {
-  // Sin librería de acceso no se bloquea el panel: es de solo lectura sobre
-  // archivos que ya son públicos. Cuando pueda escribir, esto se endurece.
-  arrancar();
+  // Sin librería de acceso no se bloquea la lectura, pero se avisa y no se puede
+  // guardar nada. El setTimeout es necesario: acá todavía no se ejecutaron los
+  // "let" de más abajo y llamar a arrancar() directo daría ReferenceError.
+  setTimeout(arrancar, 0);
 }
 
 // ── DATOS ─────────────────────────────────────────────────────────────────────
@@ -217,6 +311,28 @@ const aNum = v => {
 const pesos = n => '$' + n.toLocaleString('es-AR');
 
 let PRODUCTOS = [], FILTRO = 'todos', BUSCA = '';
+// Fichas guardadas en Firebase. Mandan sobre las del Sheet: si un producto ya se
+// edito desde el panel, esa version es la buena.
+let FICHAS_FB = {}, FICHAS_CSV = {}, USUARIO = null;
+
+const refFichas = () => firebase.database().ref('catalogo/fichas');
+
+async function cargarFichasFirebase(){
+  try {
+    const snap = await refFichas().once('value');
+    FICHAS_FB = snap.val() || {};
+  } catch (e) {
+    console.warn('[fichas] no se pudieron leer de Firebase:', e);
+    FICHAS_FB = {};
+  }
+}
+
+// La ficha efectiva de un producto: lo de Firebase si existe, si no lo del Sheet.
+function fichaDe(id){
+  const fb = FICHAS_FB[id];
+  if (fb) return Object.assign({}, FICHAS_CSV[id] || {}, fb, {_fb:true});
+  return Object.assign({}, FICHAS_CSV[id] || {}, {_fb:false});
+}
 
 async function bajar(archivo){
   const r = await fetch(archivo + '?t=' + Date.now(), {cache:'no-store'});
@@ -235,12 +351,17 @@ async function arrancar(){
     const pend = JSON.parse(jsonPend || '{}');
 
     // fichas del Sheet: nombre,cantidades,info,sabores,imagen,mix,Artículo,oferta,...
-    const fichas = {};
+    FICHAS_CSV = {};
     leerCsv(csvInfo).slice(1).forEach(c => {
       if (c.length < 7) return;
       const id = limpiaId(c[6]); if (!id) return;
-      fichas[id] = { nombre:c[0], cantidades:c[1], desc:c[2], sabores:c[3], imagen:c[4] };
+      FICHAS_CSV[id] = { nombre:c[0], cantidades:c[1], desc:c[2], sabores:c[3],
+                         imagen:c[4], oferta: parseInt(String(c[7]||'').replace('%',''),10) || 0 };
     });
+    await cargarFichasFirebase();
+    const fichas = {};
+    Object.keys(FICHAS_CSV).forEach(id => fichas[id] = fichaDe(id));
+    Object.keys(FICHAS_FB).forEach(id => fichas[id] = fichaDe(id));
 
     const renom = {};
     (pend.renombrados || []).forEach(r => renom[limpiaId(r.numero)] = r);
@@ -254,9 +375,12 @@ async function arrancar(){
       const id = limpiaId(c[6]); if (!id) return;
       const f = fichas[id] || {};
       PRODUCTOS.push({
-        id, nombre:c[2], rubro:c[5], p1:aNum(c[3]), p2:aNum(c[4]),
-        ficha:!!fichas[id], desc:f.desc || '', foto:!!(f.imagen && f.imagen.trim()),
-        cantidades:f.cantidades || '', nuevo:false, renombre:renom[id] || null,
+        id, nombre: f.nombre || c[2], nombreCsv:c[2], rubro:c[5],
+        p1:aNum(c[3]), p2:aNum(c[4]),
+        ficha:!!(FICHAS_CSV[id] || FICHAS_FB[id]), desc:f.desc || '',
+        foto:!!(f.imagen && String(f.imagen).trim()),
+        cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
+        editada:!!f._fb, nuevo:false, renombre:renom[id] || null,
         malRubro:!!malRubro[id]
       });
     });
@@ -265,26 +389,156 @@ async function arrancar(){
       const id = limpiaId(n.numero);
       const f = fichas[id] || {};
       PRODUCTOS.push({
-        id, nombre:n.nombre, rubro:n.rubro, p1:n.precio || 0, p2:0,
-        ficha:!!fichas[id], desc:f.desc || '', foto:!!(f.imagen && f.imagen.trim()),
-        cantidades:f.cantidades || '', nuevo:true, renombre:null, malRubro:false
+        id, nombre: f.nombre || n.nombre, nombreCsv:n.nombre, rubro:n.rubro,
+        p1:n.precio || 0, p2:0,
+        ficha:!!(FICHAS_CSV[id] || FICHAS_FB[id]), desc:f.desc || '',
+        foto:!!(f.imagen && String(f.imagen).trim()),
+        cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
+        editada:!!f._fb, nuevo:true, renombre:null, malRubro:false
       });
     });
     // los de rubro inválido tampoco están publicados
     (pend.rubro_invalido || []).forEach(r => {
       const id = limpiaId(r.numero);
       if (PRODUCTOS.some(p => p.id === id)) return;
-      PRODUCTOS.push({ id, nombre:r.nombre, rubro:r.rubro, p1:0, p2:0, ficha:false,
-                       desc:'', foto:false, cantidades:'', nuevo:false, renombre:null,
+      PRODUCTOS.push({ id, nombre:r.nombre, nombreCsv:r.nombre, rubro:r.rubro, p1:0, p2:0,
+                       ficha:false, desc:'', foto:false, cantidades:'', sabores:'',
+                       oferta:0, editada:false, nuevo:false, renombre:null,
                        malRubro:true });
     });
 
+    avisoImportacion();
     pintarKpis(); pintar();
   } catch (e) {
     document.getElementById('salida').className = 'vacio';
     document.getElementById('salida').textContent = 'No se pudieron cargar los datos: ' + e.message;
   }
 }
+
+// ── IMPORTACION INICIAL ───────────────────────────────────────────────────────
+// Las fichas viven hoy en el Google Sheet. Para poder editarlas hay que copiarlas
+// una vez a Firebase. Se escriben todas juntas en una sola operacion.
+function avisoImportacion(){
+  const cont = document.getElementById('avisoImportar');
+  const enFb = Object.keys(FICHAS_FB).length;
+  const faltan = PRODUCTOS.filter(p => p.ficha && !FICHAS_FB[p.id]).length;
+  if (!faltan) {
+    cont.innerHTML = enFb
+      ? '<div class="importar"><p><b>' + enFb + ' fichas</b> guardadas en Firebase. ' +
+        'Los cambios que hagas acá se guardan ahí, no en el Google Sheet.</p></div>'
+      : '';
+    return;
+  }
+  cont.innerHTML =
+    '<div class="importar">' +
+      '<p><b>Falta importar ' + faltan + ' fichas.</b> Hoy viven en el Google Sheet y son de ' +
+      'solo lectura. Al importarlas quedan en Firebase y podés editarlas desde acá. ' +
+      'No se toca ni el Sheet ni la tienda.</p>' +
+      '<button class="btn" id="btnImportar">Importar ' + faltan + ' fichas</button>' +
+    '</div>';
+  document.getElementById('btnImportar').addEventListener('click', importar);
+}
+
+async function importar(){
+  const b = document.getElementById('btnImportar');
+  b.disabled = true; b.textContent = 'Importando...';
+  const lote = {};
+  PRODUCTOS.forEach(p => {
+    if (!p.ficha || FICHAS_FB[p.id]) return;
+    const f = FICHAS_CSV[p.id] || {};
+    lote[p.id] = {
+      nombre: f.nombre || p.nombreCsv || '',
+      cantidades: f.cantidades || '',
+      desc: f.desc || '',
+      sabores: f.sabores || '',
+      imagen: f.imagen || '',
+      oferta: f.oferta || 0,
+      origen: 'sheet',
+      actualizado: new Date().toISOString(),
+      por: (USUARIO && USUARIO.email) || ''
+    };
+  });
+  try {
+    await refFichas().update(lote);
+    await cargarFichasFirebase();
+    arrancar._ya = false;
+    await arrancar();
+  } catch (e) {
+    b.disabled = false;
+    b.textContent = 'Reintentar importación';
+    alert('No se pudo importar: ' + (e.message || e));
+  }
+}
+
+// ── EDITOR ────────────────────────────────────────────────────────────────────
+let EDITANDO = null;
+const $ = id => document.getElementById(id);
+
+function abrirEditor(id){
+  const p = PRODUCTOS.find(x => x.id === id);
+  if (!p) return;
+  EDITANDO = p;
+  $('edTitulo').textContent = p.nombre;
+  $('edSub').textContent = 'Art. ' + p.id + ' · ' + p.rubro;
+  $('edPrecio').textContent = p.p1
+    ? pesos(p.p1) + (p.p2 ? '  ·  con descuento ' + pesos(p.p2) : '')
+    : 'sin precio publicado';
+  const cont = $('edFoto');
+  if (p.foto) {
+    cont.outerHTML = '<img id="edFoto" src="' + imgDe(p.id) + '" alt="">';
+  } else {
+    cont.outerHTML = '<div id="edFoto" class="sinf">sin foto</div>';
+  }
+  $('edNombre').value = p.nombre || '';
+  $('edCant').value = p.cantidades || '';
+  $('edSabores').value = p.sabores || '';
+  $('edDesc').value = p.desc || '';
+  $('edOferta').value = p.oferta || 0;
+  $('edEstado').textContent = ''; $('edEstado').className = 'ed-estado';
+  $('edGuardar').disabled = false;
+  $('editor').classList.add('abierto');
+}
+
+function cerrarEditor(){ $('editor').classList.remove('abierto'); EDITANDO = null; }
+
+async function guardarFicha(){
+  if (!EDITANDO) return;
+  const p = EDITANDO, b = $('edGuardar'), est = $('edEstado');
+  const datos = {
+    nombre: $('edNombre').value.trim(),
+    cantidades: $('edCant').value.trim(),
+    sabores: $('edSabores').value.trim(),
+    desc: $('edDesc').value.trim(),
+    oferta: Math.max(0, Math.min(90, parseInt($('edOferta').value, 10) || 0)),
+    imagen: (FICHAS_FB[p.id] && FICHAS_FB[p.id].imagen) || (FICHAS_CSV[p.id] && FICHAS_CSV[p.id].imagen) || '',
+    origen: 'panel',
+    actualizado: new Date().toISOString(),
+    por: (USUARIO && USUARIO.email) || ''
+  };
+  if (!datos.nombre) { est.textContent = 'El nombre no puede quedar vacío.'; est.className = 'ed-estado mal'; return; }
+  b.disabled = true; est.textContent = 'Guardando...'; est.className = 'ed-estado';
+  try {
+    await refFichas().child(p.id).update(datos);
+    FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, datos);
+    Object.assign(p, {
+      nombre: datos.nombre, cantidades: datos.cantidades, sabores: datos.sabores,
+      desc: datos.desc, oferta: datos.oferta, editada: true
+    });
+    est.textContent = 'Guardado'; est.className = 'ed-estado ok';
+    pintarKpis(); pintar();
+    setTimeout(cerrarEditor, 700);
+  } catch (e) {
+    b.disabled = false;
+    est.textContent = 'No se pudo guardar: ' + (e.message || e);
+    est.className = 'ed-estado mal';
+  }
+}
+
+$('edCerrar').addEventListener('click', cerrarEditor);
+$('edCancelar').addEventListener('click', cerrarEditor);
+$('edGuardar').addEventListener('click', guardarFicha);
+$('editor').addEventListener('click', e => { if (e.target.id === 'editor') cerrarEditor(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarEditor(); });
 
 function pintarKpis(){
   const t = PRODUCTOS.length;
@@ -341,6 +595,7 @@ function pintar(){
       if (!p.foto) chips.push('<span class="chip falta">Sin foto</span>');
       if (!p.desc) chips.push('<span class="chip falta">Sin descripción</span>');
     }
+    if (p.editada)  chips.push('<span class="chip editada">Editada acá</span>');
     const foto = p.foto
       ? '<img class="foto" loading="lazy" src="' + imgDe(p.id) + '" alt="" ' +
         'onerror="this.classList.add(\'rota\');this.removeAttribute(\'src\');' +
@@ -354,7 +609,7 @@ function pintar(){
     const precio = p.p1
       ? '<div class="precio">' + pesos(p.p1) + (p.p2 ? '<s>' + pesos(p.p2) + '</s>' : '') + '</div>'
       : '';
-    return '<div class="prod ' + clase + '">' + foto +
+    return '<div class="prod ' + clase + '" data-id="' + esc(p.id) + '" title="Clic para editar la ficha">' + foto +
       '<div class="datos">' +
         '<div class="nom">' + esc(p.nombre) + '</div>' +
         '<div class="meta">Art. ' + esc(p.id) + ' · ' + esc(p.rubro) +
@@ -365,6 +620,12 @@ function pintar(){
       '</div></div>';
   }).join('');
 }
+
+// Clic en cualquier tarjeta abre el editor de esa ficha.
+document.getElementById('salida').addEventListener('click', e => {
+  const t = e.target.closest('.prod');
+  if (t && t.dataset.id) abrirEditor(t.dataset.id);
+});
 
 document.querySelectorAll('.filtro').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('.filtro').forEach(x => x.classList.remove('on'));
