@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel de catálogo — Paladear</title>
+<link rel="icon" href="favicon-32x32.png">
+<style>
+  :root{
+    --tinta:#12212b; --suave:#5b7280; --linea:#e2e8ee; --fondo:#f5f7f9;
+    --marca:#3f7d8c; --marca-osc:#356a77;
+    --alerta:#b45309; --alerta-suave:#fff7ed; --alerta-linea:#fdba74;
+    --nuevo:#1d4ed8; --nuevo-suave:#eff6ff; --nuevo-linea:#93c5fd;
+    --mal:#b91c1c; --mal-suave:#fef2f2; --mal-linea:#fca5a5;
+    --ok:#15803d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fondo);color:var(--tinta);
+       font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+  header{background:#fff;border-bottom:1px solid var(--linea);padding:14px 20px;
+         position:sticky;top:0;z-index:50}
+  .hd{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .hd h1{font-size:17px;margin:0;font-weight:650}
+  .hd .marca{color:var(--marca);font-weight:750;font-size:19px}
+  .hd .quien{margin-left:auto;font-size:13px;color:var(--suave)}
+  .env{background:#fef9c3;border:1px solid #fde047;color:#713f12;border-radius:6px;
+       padding:2px 8px;font-size:12px;font-weight:600}
+  main{max-width:1240px;margin:0 auto;padding:20px}
+
+  .tarjetas{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:20px}
+  .kpi{background:#fff;border:1px solid var(--linea);border-radius:10px;padding:14px 16px}
+  .kpi b{display:block;font-size:26px;line-height:1.1;font-weight:700}
+  .kpi span{font-size:12.5px;color:var(--suave)}
+  .kpi.avisa{background:var(--nuevo-suave);border-color:var(--nuevo-linea)}
+  .kpi.avisa b{color:var(--nuevo)}
+  .kpi.ojo{background:var(--alerta-suave);border-color:var(--alerta-linea)}
+  .kpi.ojo b{color:var(--alerta)}
+  .kpi.error{background:var(--mal-suave);border-color:var(--mal-linea)}
+  .kpi.error b{color:var(--mal)}
+
+  .barra{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+  .filtro{border:1px solid var(--linea);background:#fff;border-radius:999px;
+          padding:7px 14px;font-size:13.5px;cursor:pointer;color:var(--suave)}
+  .filtro:hover{border-color:var(--marca)}
+  .filtro.on{background:var(--marca);border-color:var(--marca);color:#fff;font-weight:600}
+  #buscar{flex:1;min-width:200px;border:1px solid var(--linea);border-radius:8px;
+          padding:9px 12px;font-size:14px;background:#fff}
+
+  .grilla{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+  .prod{background:#fff;border:1px solid var(--linea);border-radius:10px;padding:12px;
+        display:flex;gap:12px}
+  .prod.es-nuevo{background:var(--nuevo-suave);border-color:var(--nuevo-linea)}
+  .prod.es-renom{background:var(--alerta-suave);border-color:var(--alerta-linea)}
+  .prod.es-mal{background:var(--mal-suave);border-color:var(--mal-linea)}
+  .foto{width:64px;height:64px;flex:0 0 64px;border-radius:8px;object-fit:cover;
+        background:#eef2f5;border:1px solid var(--linea)}
+  .foto.rota{display:flex;align-items:center;justify-content:center;font-size:10px;
+             color:var(--mal);text-align:center;line-height:1.2;padding:4px}
+  .datos{min-width:0;flex:1}
+  .nom{font-weight:600;font-size:14px;margin-bottom:3px;overflow-wrap:anywhere}
+  .meta{font-size:12px;color:var(--suave);margin-bottom:6px}
+  .precio{font-size:13.5px;font-weight:600}
+  .precio s{color:var(--suave);font-weight:400;margin-left:6px}
+  .chips{margin-top:7px;display:flex;flex-wrap:wrap;gap:4px}
+  .chip{font-size:11px;font-weight:600;border-radius:999px;padding:2px 8px;
+        border:1px solid transparent}
+  .chip.nuevo{background:#dbeafe;color:var(--nuevo);border-color:var(--nuevo-linea)}
+  .chip.renom{background:#ffedd5;color:var(--alerta);border-color:var(--alerta-linea)}
+  .chip.falta{background:#f1f5f9;color:var(--suave);border-color:var(--linea)}
+  .chip.mal{background:#fee2e2;color:var(--mal);border-color:var(--mal-linea)}
+  .renombre{margin-top:7px;font-size:12px;background:#fff;border:1px dashed var(--alerta-linea);
+            border-radius:6px;padding:6px 8px;color:var(--alerta)}
+  .renombre b{color:var(--tinta)}
+  .vacio{background:#fff;border:1px dashed var(--linea);border-radius:10px;padding:40px;
+         text-align:center;color:var(--suave)}
+  .cargando{padding:60px;text-align:center;color:var(--suave)}
+  .nota{margin-top:22px;font-size:12.5px;color:var(--suave);line-height:1.6;
+        border-top:1px solid var(--linea);padding-top:14px}
+
+  #capaAcceso{position:fixed;inset:0;z-index:9999;display:none;align-items:center;
+              justify-content:center;background:#0f172a}
+  #capaAcceso .caja{background:#fff;border-radius:16px;padding:36px 32px;max-width:340px;
+                    width:88%;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+  #capaAcceso .caja h2{margin:0 0 6px;font-size:26px;color:var(--marca)}
+  #capaAcceso .caja p{font-size:14px;color:#555;margin:0 0 22px}
+  #capaAcceso button{width:100%;padding:13px;border:0;border-radius:10px;background:var(--marca);
+                     color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+  #capaAcceso button:hover{background:var(--marca-osc)}
+  #accErr{margin-top:14px;font-size:13px;color:var(--mal)}
+</style>
+</head>
+<body>
+
+<div id="capaAcceso">
+  <div class="caja">
+    <h2>Paladear</h2>
+    <p>Panel de catálogo.<br>Ingresá con tu cuenta de Google.</p>
+    <button id="btnEntrar">Entrar con Google</button>
+    <div id="accErr"></div>
+  </div>
+</div>
+
+<header>
+  <div class="hd">
+    <span class="marca">Paladear</span>
+    <h1>Panel de catálogo</h1>
+    <span class="env">TESTER</span>
+    <span class="quien" id="quien"></span>
+  </div>
+</header>
+
+<main>
+  <div class="tarjetas" id="kpis"></div>
+  <div class="barra">
+    <input id="buscar" placeholder="Buscar por nombre o número de artículo...">
+    <button class="filtro on" data-f="todos">Todos</button>
+    <button class="filtro" data-f="pendientes">Pendientes</button>
+    <button class="filtro" data-f="sinfoto">Sin foto</button>
+    <button class="filtro" data-f="sindesc">Sin descripción</button>
+  </div>
+  <div id="salida" class="cargando">Cargando catálogo...</div>
+  <div class="nota">
+    Los <b>precios</b> vienen de E-Pyme y se actualizan solos cada 15 minutos: no se editan acá.
+    Este panel es de <b>solo lectura</b> por ahora — la edición y la carga de fotos vienen después.
+    Un producto <b>nuevo</b> no se publica en la tienda hasta que lo confirmes, y un
+    <b>cambio de nombre</b> no se aplica hasta que lo revises: mientras tanto la tienda sigue
+    mostrando el nombre anterior.
+  </div>
+</main>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script>
+// ── ACCESO ────────────────────────────────────────────────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSyC0HDffPhplf1dyMOzV9fTkt8l4JNbWV3o",
+  authDomain: "pedidos-proveedores-d8d8a.firebaseapp.com",
+  databaseURL: "https://pedidos-proveedores-d8d8a-default-rtdb.firebaseio.com",
+  projectId: "pedidos-proveedores-d8d8a",
+  storageBucket: "pedidos-proveedores-d8d8a.firebasestorage.app",
+  messagingSenderId: "326909224784",
+  appId: "1:326909224784:web:877cb5a06be412f59aee55"
+};
+let hayAuth = false;
+try {
+  firebase.initializeApp(firebaseConfig);
+  hayAuth = typeof firebase.auth === 'function';
+} catch (e) { console.warn('[acceso] firebase no disponible:', e); }
+
+function verCapa(si){ document.getElementById('capaAcceso').style.display = si ? 'flex' : 'none'; }
+
+if (hayAuth) {
+  firebase.auth().onAuthStateChanged(u => {
+    if (u) {
+      verCapa(false);
+      document.getElementById('quien').textContent = u.email || '';
+      arrancar();
+    } else {
+      verCapa(true);
+    }
+  });
+  document.getElementById('btnEntrar').addEventListener('click', function(){
+    const b = this; b.disabled = true; b.textContent = 'Abriendo Google...';
+    firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(() => location.reload())
+      .catch(e => {
+        b.disabled = false; b.textContent = 'Entrar con Google';
+        document.getElementById('accErr').textContent =
+          (e && e.code === 'auth/popup-blocked')
+            ? 'El navegador bloqueó la ventana de Google. Permití las ventanas emergentes.'
+            : 'No se pudo entrar: ' + ((e && e.message) || e);
+      });
+  });
+} else {
+  // Sin librería de acceso no se bloquea el panel: es de solo lectura sobre
+  // archivos que ya son públicos. Cuando pueda escribir, esto se endurece.
+  arrancar();
+}
+
+// ── DATOS ─────────────────────────────────────────────────────────────────────
+const CLOUD = 'hswu4zpv';
+const imgDe = id => 'https://res.cloudinary.com/' + CLOUD + '/image/upload/f_auto,q_auto,w_140/' + id;
+
+// Mismo parseo que usan los scripts del sitio (comillas dobles escapadas, saltos
+// de línea dentro de celdas).
+function leerCsv(txt){
+  const filas = [], lineas = txt.trim().split(/\r?\n/);
+  let i = 0;
+  while (i < lineas.length) {
+    let cruda = lineas[i++];
+    let comillas = (cruda.match(/"/g) || []).length;
+    while (comillas % 2 !== 0 && i < lineas.length) {
+      cruda += '\n' + lineas[i++];
+      comillas = (cruda.match(/"/g) || []).length;
+    }
+    const cols = []; let act = '', entre = false;
+    for (let j = 0; j < cruda.length; j++) {
+      const c = cruda[j];
+      if (c === '"') {
+        if (entre && cruda[j+1] === '"') { act += '"'; j++; }
+        else entre = !entre;
+      } else if (c === ',' && !entre) { cols.push(act.trim()); act = ''; }
+      else act += c;
+    }
+    cols.push(act.trim());
+    filas.push(cols);
+  }
+  return filas;
+}
+const limpiaId = v => String(v || '').trim().replace(/\./g, '').split(',')[0];
+const aNum = v => {
+  const c = String(v || '').replace(/[^0-9,.]/g, '').replace(/\./g, '').replace(',', '.');
+  const n = parseFloat(c);
+  return isFinite(n) ? Math.round(n) : 0;
+};
+const pesos = n => '$' + n.toLocaleString('es-AR');
+
+let PRODUCTOS = [], FILTRO = 'todos', BUSCA = '';
+
+async function bajar(archivo){
+  const r = await fetch(archivo + '?t=' + Date.now(), {cache:'no-store'});
+  if (!r.ok) throw new Error(archivo + ': HTTP ' + r.status);
+  return r.text();
+}
+
+async function arrancar(){
+  if (arrancar._ya) return; arrancar._ya = true;
+  try {
+    const [csvPrecios, csvInfo, jsonPend] = await Promise.all([
+      bajar('precios-min.csv'),
+      bajar('info-min.csv'),
+      bajar('pendientes.json').catch(() => '{}')
+    ]);
+    const pend = JSON.parse(jsonPend || '{}');
+
+    // fichas del Sheet: nombre,cantidades,info,sabores,imagen,mix,Artículo,oferta,...
+    const fichas = {};
+    leerCsv(csvInfo).slice(1).forEach(c => {
+      if (c.length < 7) return;
+      const id = limpiaId(c[6]); if (!id) return;
+      fichas[id] = { nombre:c[0], cantidades:c[1], desc:c[2], sabores:c[3], imagen:c[4] };
+    });
+
+    const renom = {};
+    (pend.renombrados || []).forEach(r => renom[limpiaId(r.numero)] = r);
+    const malRubro = {};
+    (pend.rubro_invalido || []).forEach(r => malRubro[limpiaId(r.numero)] = r);
+
+    PRODUCTOS = [];
+    // publicados
+    leerCsv(csvPrecios).slice(1).forEach(c => {
+      if (c.length < 7) return;
+      const id = limpiaId(c[6]); if (!id) return;
+      const f = fichas[id] || {};
+      PRODUCTOS.push({
+        id, nombre:c[2], rubro:c[5], p1:aNum(c[3]), p2:aNum(c[4]),
+        ficha:!!fichas[id], desc:f.desc || '', foto:!!(f.imagen && f.imagen.trim()),
+        cantidades:f.cantidades || '', nuevo:false, renombre:renom[id] || null,
+        malRubro:!!malRubro[id]
+      });
+    });
+    // pendientes de alta: todavía NO están en el CSV publicado
+    (pend.nuevos || []).forEach(n => {
+      const id = limpiaId(n.numero);
+      const f = fichas[id] || {};
+      PRODUCTOS.push({
+        id, nombre:n.nombre, rubro:n.rubro, p1:n.precio || 0, p2:0,
+        ficha:!!fichas[id], desc:f.desc || '', foto:!!(f.imagen && f.imagen.trim()),
+        cantidades:f.cantidades || '', nuevo:true, renombre:null, malRubro:false
+      });
+    });
+    // los de rubro inválido tampoco están publicados
+    (pend.rubro_invalido || []).forEach(r => {
+      const id = limpiaId(r.numero);
+      if (PRODUCTOS.some(p => p.id === id)) return;
+      PRODUCTOS.push({ id, nombre:r.nombre, rubro:r.rubro, p1:0, p2:0, ficha:false,
+                       desc:'', foto:false, cantidades:'', nuevo:false, renombre:null,
+                       malRubro:true });
+    });
+
+    pintarKpis(); pintar();
+  } catch (e) {
+    document.getElementById('salida').className = 'vacio';
+    document.getElementById('salida').textContent = 'No se pudieron cargar los datos: ' + e.message;
+  }
+}
+
+function pintarKpis(){
+  const t = PRODUCTOS.length;
+  const nuevos  = PRODUCTOS.filter(p => p.nuevo).length;
+  const renoms  = PRODUCTOS.filter(p => p.renombre).length;
+  const sinFoto = PRODUCTOS.filter(p => !p.foto).length;
+  const sinDesc = PRODUCTOS.filter(p => !p.desc).length;
+  const malos   = PRODUCTOS.filter(p => p.malRubro).length;
+  const kpis = [
+    ['', t - nuevos - malos, 'publicados en la tienda'],
+    [nuevos ? 'avisa' : '', nuevos, 'nuevos, esperan tu OK'],
+    [renoms ? 'ojo' : '', renoms, 'cambios de nombre a revisar'],
+    [sinFoto ? 'ojo' : '', sinFoto, 'sin foto'],
+    [sinDesc ? '' : '', sinDesc, 'sin descripción'],
+    [malos ? 'error' : '', malos, 'con rubro inválido']
+  ];
+  document.getElementById('kpis').innerHTML = kpis.map(k =>
+    '<div class="kpi ' + k[0] + '"><b>' + k[1] + '</b><span>' + k[2] + '</span></div>').join('');
+}
+
+function esc(s){ return String(s == null ? '' : s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function pintar(){
+  let lista = PRODUCTOS.slice();
+  if (FILTRO === 'pendientes') lista = lista.filter(p => p.nuevo || p.renombre || p.malRubro);
+  if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
+  if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
+  if (BUSCA) {
+    const q = BUSCA.toLowerCase();
+    lista = lista.filter(p => p.nombre.toLowerCase().includes(q) || p.id.includes(q));
+  }
+  // los pendientes primero
+  lista.sort((a,b) => {
+    const pa = (a.nuevo?0:a.malRubro?1:a.renombre?2:3), pb = (b.nuevo?0:b.malRubro?1:b.renombre?2:3);
+    return pa !== pb ? pa - pb : a.nombre.localeCompare(b.nombre, 'es');
+  });
+
+  const cont = document.getElementById('salida');
+  if (!lista.length) {
+    cont.className = 'vacio';
+    cont.textContent = 'No hay productos que coincidan.';
+    return;
+  }
+  cont.className = 'grilla';
+  cont.innerHTML = lista.map(p => {
+    const clase = p.nuevo ? 'es-nuevo' : p.malRubro ? 'es-mal' : p.renombre ? 'es-renom' : '';
+    const chips = [];
+    if (p.nuevo)    chips.push('<span class="chip nuevo">NUEVO — sin publicar</span>');
+    if (p.malRubro) chips.push('<span class="chip mal">Rubro inválido</span>');
+    if (p.renombre) chips.push('<span class="chip renom">Nombre cambiado</span>');
+    if (!p.ficha)   chips.push('<span class="chip falta">Sin ficha</span>');
+    else {
+      if (!p.foto) chips.push('<span class="chip falta">Sin foto</span>');
+      if (!p.desc) chips.push('<span class="chip falta">Sin descripción</span>');
+    }
+    const foto = p.foto
+      ? '<img class="foto" loading="lazy" src="' + imgDe(p.id) + '" alt="" ' +
+        'onerror="this.classList.add(\'rota\');this.removeAttribute(\'src\');' +
+        'this.replaceWith(Object.assign(document.createElement(\'div\'),' +
+        '{className:\'foto rota\',textContent:\'foto rota\'}))">'
+      : '<div class="foto rota">sin foto</div>';
+    const ren = p.renombre
+      ? '<div class="renombre">En la tienda dice <b>' + esc(p.renombre.nombre_publicado) +
+        '</b><br>En E-Pyme ahora es <b>' + esc(p.renombre.nombre_nuevo) + '</b></div>'
+      : '';
+    const precio = p.p1
+      ? '<div class="precio">' + pesos(p.p1) + (p.p2 ? '<s>' + pesos(p.p2) + '</s>' : '') + '</div>'
+      : '';
+    return '<div class="prod ' + clase + '">' + foto +
+      '<div class="datos">' +
+        '<div class="nom">' + esc(p.nombre) + '</div>' +
+        '<div class="meta">Art. ' + esc(p.id) + ' · ' + esc(p.rubro) +
+          (p.cantidades ? ' · ' + esc(p.cantidades) : '') + '</div>' +
+        precio +
+        (chips.length ? '<div class="chips">' + chips.join('') + '</div>' : '') +
+        ren +
+      '</div></div>';
+  }).join('');
+}
+
+document.querySelectorAll('.filtro').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.filtro').forEach(x => x.classList.remove('on'));
+  b.classList.add('on'); FILTRO = b.dataset.f; pintar();
+}));
+document.getElementById('buscar').addEventListener('input', e => { BUSCA = e.target.value.trim(); pintar(); });
+</script>
+</body>
+</html>

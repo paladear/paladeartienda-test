@@ -85,7 +85,8 @@ self.addEventListener('fetch', event => {
   // caemos al cache para que la página siga abriendo offline.
   const _path = url.pathname;
   const _esPagina = _path === '/paladeartienda-test/' ||
-                    _path === '/paladeartienda-test/index.html';
+                    _path === '/paladeartienda-test/index.html' ||
+                    _path === '/paladeartienda-test/admin.html';
 
   // DATOS DE PRECIOS Y STOCK: tambien NETWORK-FIRST.
   // Antes los precios venian del Apps Script de Google (otro origen), asi que
