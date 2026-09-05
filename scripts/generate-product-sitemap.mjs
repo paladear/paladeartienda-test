@@ -168,13 +168,17 @@ function locFromEntry(entry) {
   return match ? unescapeXml(match[1].trim()) : '';
 }
 
-const [jsonp, infoResponse, currentSitemap] = await Promise.all([
-  fetchWithRetry(PRICES_URL + '&t=' + Date.now()),
+// TESTER: los precios salen de E-Pyme. La PC del negocio genera precios-min.csv
+// y lo commitea a este repo, asi que aca se lee del disco en vez de pedirlo al
+// Apps Script. La info (descripciones, imagenes, cantidades) sigue viniendo del Sheet,
+// porque esos datos no existen en E-Pyme.
+const [pricesLocal, infoResponse, currentSitemap] = await Promise.all([
+  readFile('precios-min.csv', 'utf8'),
   fetchWithRetry(INFO_URL + '&t=' + Date.now()),
   readFile('sitemap.xml', 'utf8')
 ]);
 
-const pricesCsv = unwrapJsonp(jsonp).replace(/\r\n?/g, '\n');
+const pricesCsv = pricesLocal.replace(/\r\n?/g, '\n');
 const infoCsv = infoResponse.replace(/\r\n?/g, '\n').replace(/[ \t]+$/gm, '');
 const { products, skippedWithoutId } = buildProducts(pricesCsv, infoCsv);
 const staticEntries = currentStaticEntries(currentSitemap);
@@ -197,7 +201,7 @@ const textUrls = [
 ];
 
 await Promise.all([
-  writeFile('precios-min.csv', pricesCsv.endsWith('\n') ? pricesCsv : pricesCsv + '\n'),
+  // precios-min.csv NO se reescribe: es la entrada que manda E-Pyme.
   writeFile('info-min.csv', infoCsv.endsWith('\n') ? infoCsv : infoCsv + '\n'),
   writeFile('sitemap.xml', sitemap),
   writeFile('sitemap.txt', textUrls.join('\n') + '\n')
