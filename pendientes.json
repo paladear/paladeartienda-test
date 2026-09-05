@@ -1,12 +1,19 @@
 {
   "resumen": {
     "nuevos": 0,
-    "renombrados": 0,
+    "renombrados": 1,
     "quitados": 0,
     "rubro_invalido": 0
   },
   "nuevos": [],
-  "renombrados": [],
+  "renombrados": [
+    {
+      "numero": "5038",
+      "nombre_publicado": "MORINGA",
+      "nombre_nuevo": "MORINGA EN HOJAS",
+      "rubro": "INFUSIONES Y HIERBAS"
+    }
+  ],
   "quitados": [],
   "rubro_invalido": []
 }
