@@ -124,6 +124,50 @@
   .solo-lectura{background:#f8fafc;border:1px solid var(--linea);border-radius:8px;
                 padding:9px 11px;font-size:13.5px;color:var(--suave)}
 
+  /* aviso de renombre dentro del editor */
+  .ed-renombre{background:var(--alerta-suave);border:1px solid var(--alerta-linea);
+               border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:13px}
+  .ed-renombre .t{font-weight:700;color:var(--alerta);margin-bottom:6px}
+  .ed-renombre .par{margin:3px 0}
+  .ed-renombre .par b{color:var(--tinta)}
+  .ed-renombre .acc{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .ed-renombre .acc .btn{padding:7px 12px;font-size:13px}
+
+  /* banderas de armadores */
+  .banderas{display:flex;gap:8px;flex-wrap:wrap}
+  .bandera{flex:1;min-width:140px;border:1px solid var(--linea);border-radius:8px;
+           padding:9px 11px;display:flex;gap:8px;align-items:center;cursor:pointer;
+           font-size:13.5px;background:#fff}
+  .bandera:hover{border-color:var(--marca)}
+  .bandera input{width:16px;height:16px;accent-color:var(--marca);cursor:pointer}
+  .bandera.sel{background:#ecfeff;border-color:var(--marca)}
+
+  /* descuentos por rubro */
+  #desc{position:fixed;inset:0;z-index:210;display:none;background:rgba(15,23,42,.55)}
+  #desc.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
+  .dc-caja{background:#fff;border-radius:14px;width:100%;max-width:680px;
+           box-shadow:0 22px 60px rgba(0,0,0,.3)}
+  .dc-top{padding:16px 20px;border-bottom:1px solid var(--linea);display:flex;align-items:center;gap:12px}
+  .dc-top h3{margin:0;font-size:16px}
+  .dc-cuerpo{padding:16px 20px}
+  .dc-fila{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+  .dc-fila > div{flex:1;min-width:150px}
+  .dc-fila label{display:block;font-size:12.5px;font-weight:600;margin-bottom:5px}
+  .dc-fila select,.dc-fila input{width:100%;border:1px solid var(--linea);border-radius:8px;
+                                 padding:9px 11px;font:inherit;font-size:14px;background:#fff}
+  .dc-lista{border:1px solid var(--linea);border-radius:8px;max-height:320px;overflow:auto}
+  .dc-item{display:flex;gap:10px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--linea);font-size:13.5px}
+  .dc-item:last-child{border-bottom:0}
+  .dc-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--marca);flex:0 0 16px}
+  .dc-item .n{flex:1;min-width:0;overflow-wrap:anywhere}
+  .dc-item .act{color:var(--suave);font-size:12px;white-space:nowrap}
+  .dc-item .act b{color:var(--alerta)}
+  .dc-item.apagado{opacity:.5}
+  .dc-tools{display:flex;gap:10px;align-items:center;margin:10px 0;font-size:13px}
+  .dc-tools a{color:var(--marca);cursor:pointer;text-decoration:underline}
+  .dc-previo{background:#f8fafc;border:1px solid var(--linea);border-radius:8px;padding:10px 12px;
+             font-size:13px;margin-top:12px}
+
   #capaAcceso{position:fixed;inset:0;z-index:9999;display:none;align-items:center;
               justify-content:center;background:#0f172a}
   #capaAcceso .caja{background:#fff;border-radius:16px;padding:36px 32px;max-width:340px;
@@ -167,6 +211,7 @@
       <button class="ed-cerrar" id="edCerrar" title="Cerrar">&times;</button>
     </div>
     <div class="ed-cuerpo">
+      <div id="edRenombre"></div>
       <div class="campo">
         <label>Precio <span class="ayuda">— viene de E-Pyme, no se edita acá</span></label>
         <div class="solo-lectura" id="edPrecio"></div>
@@ -191,11 +236,53 @@
         <label for="edOferta">Oferta <span class="ayuda">— porcentaje de descuento. 0 = sin oferta</span></label>
         <input id="edOferta" type="number" min="0" max="90" step="1">
       </div>
+      <div class="campo">
+        <label>Aparece en los armadores <span class="ayuda">— solo productos a granel</span></label>
+        <div class="banderas">
+          <label class="bandera"><input type="checkbox" id="edMix"> Armar mix</label>
+          <label class="bandera"><input type="checkbox" id="edGranola"> Granola</label>
+          <label class="bandera"><input type="checkbox" id="edBlend"> Blend de té</label>
+        </div>
+      </div>
     </div>
     <div class="ed-pie">
       <span class="ed-estado" id="edEstado"></span>
       <button class="btn gris" id="edCancelar">Cancelar</button>
       <button class="btn" id="edGuardar">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div id="desc">
+  <div class="dc-caja">
+    <div class="dc-top">
+      <h3>Descuento por rubro</h3>
+      <button class="ed-cerrar" id="dcCerrar" style="margin-left:auto" title="Cerrar">&times;</button>
+    </div>
+    <div class="dc-cuerpo">
+      <div class="dc-fila">
+        <div>
+          <label for="dcRubro">Rubro</label>
+          <select id="dcRubro"></select>
+        </div>
+        <div style="max-width:150px">
+          <label for="dcPct">Descuento %</label>
+          <input id="dcPct" type="number" min="0" max="90" step="1" value="10">
+        </div>
+      </div>
+      <div class="dc-tools">
+        <span id="dcResumen"></span>
+        <a id="dcTodos">marcar todos</a>
+        <a id="dcNinguno">desmarcar todos</a>
+        <a id="dcSinOferta">solo los que hoy no tienen</a>
+      </div>
+      <div class="dc-lista" id="dcLista"></div>
+      <div class="dc-previo" id="dcPrevio"></div>
+    </div>
+    <div class="ed-pie">
+      <span class="ed-estado" id="dcEstado"></span>
+      <button class="btn gris" id="dcCancelar">Cancelar</button>
+      <button class="btn" id="dcAplicar">Aplicar</button>
     </div>
   </div>
 </div>
@@ -209,6 +296,8 @@
     <button class="filtro" data-f="pendientes">Pendientes</button>
     <button class="filtro" data-f="sinfoto">Sin foto</button>
     <button class="filtro" data-f="sindesc">Sin descripción</button>
+    <button class="filtro" data-f="oferta">Con oferta</button>
+    <button class="btn" id="btnDesc">Descuento por rubro</button>
   </div>
   <div id="salida" class="cargando">Cargando catálogo...</div>
   <div class="nota">
@@ -380,7 +469,8 @@ async function arrancar(){
         ficha:!!(FICHAS_CSV[id] || FICHAS_FB[id]), desc:f.desc || '',
         foto:!!(f.imagen && String(f.imagen).trim()),
         cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
-        editada:!!f._fb, nuevo:false, renombre:renom[id] || null,
+        mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
+        nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:false, renombre:renom[id] || null,
         malRubro:!!malRubro[id]
       });
     });
@@ -394,7 +484,8 @@ async function arrancar(){
         ficha:!!(FICHAS_CSV[id] || FICHAS_FB[id]), desc:f.desc || '',
         foto:!!(f.imagen && String(f.imagen).trim()),
         cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
-        editada:!!f._fb, nuevo:true, renombre:null, malRubro:false
+        mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
+        nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:true, renombre:null, malRubro:false
       });
     });
     // los de rubro inválido tampoco están publicados
@@ -494,9 +585,65 @@ function abrirEditor(id){
   $('edSabores').value = p.sabores || '';
   $('edDesc').value = p.desc || '';
   $('edOferta').value = p.oferta || 0;
+  ['edMix','edGranola','edBlend'].forEach((i, k) => {
+    const v = [p.mix, p.granola, p.blend][k];
+    $(i).checked = !!v;
+    $(i).closest('.bandera').classList.toggle('sel', !!v);
+  });
+  pintarRenombre(p);
   $('edEstado').textContent = ''; $('edEstado').className = 'ed-estado';
   $('edGuardar').disabled = false;
   $('editor').classList.add('abierto');
+}
+
+// Un producto se considera renombrado cuando E-Pyme trae un nombre distinto del
+// ultimo que se reviso desde el panel. Mientras no se decida, la tienda sigue
+// mostrando el nombre de la ficha.
+function hayRenombre(p){
+  if (!p.renombre) return null;
+  if (p.nombreEpyme && p.nombreEpyme === p.renombre.nombre_nuevo) return null;
+  return p.renombre;
+}
+
+function pintarRenombre(p){
+  const r = hayRenombre(p), cont = $('edRenombre');
+  if (!r) { cont.innerHTML = ''; return; }
+  cont.innerHTML =
+    '<div class="ed-renombre">' +
+      '<div class="t">Cambió el nombre en E-Pyme</div>' +
+      '<div class="par">El cliente ve hoy: <b>' + esc(p.nombre) + '</b></div>' +
+      '<div class="par">En E-Pyme ahora dice: <b>' + esc(r.nombre_nuevo) + '</b></div>' +
+      '<div class="acc">' +
+        '<button class="btn" id="rnAceptar">Usar el nombre nuevo</button>' +
+        '<button class="btn gris" id="rnCancelar">Mantener el actual</button>' +
+      '</div>' +
+    '</div>';
+  $('rnAceptar').addEventListener('click', () => decidirRenombre(p, true));
+  $('rnCancelar').addEventListener('click', () => decidirRenombre(p, false));
+}
+
+async function decidirRenombre(p, aceptar){
+  const r = p.renombre; if (!r) return;
+  const est = $('edEstado');
+  est.textContent = 'Guardando...'; est.className = 'ed-estado';
+  // En los dos casos se anota el nombre de E-Pyme como "ya revisado", asi la
+  // alerta no vuelve a aparecer por el mismo cambio.
+  const datos = { nombreEpyme: r.nombre_nuevo, actualizado: new Date().toISOString(),
+                  por: (USUARIO && USUARIO.email) || '' };
+  if (aceptar) datos.nombre = r.nombre_nuevo;
+  try {
+    await refFichas().child(p.id).update(datos);
+    FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, datos);
+    p.nombreEpyme = r.nombre_nuevo;
+    if (aceptar) { p.nombre = r.nombre_nuevo; $('edNombre').value = r.nombre_nuevo; $('edTitulo').textContent = r.nombre_nuevo; }
+    p.editada = true;
+    pintarRenombre(p); pintarKpis(); pintar();
+    est.textContent = aceptar ? 'Nombre actualizado' : 'Se mantiene el nombre actual';
+    est.className = 'ed-estado ok';
+  } catch (e) {
+    est.textContent = 'No se pudo guardar: ' + (e.message || e);
+    est.className = 'ed-estado mal';
+  }
 }
 
 function cerrarEditor(){ $('editor').classList.remove('abierto'); EDITANDO = null; }
@@ -510,6 +657,7 @@ async function guardarFicha(){
     sabores: $('edSabores').value.trim(),
     desc: $('edDesc').value.trim(),
     oferta: Math.max(0, Math.min(90, parseInt($('edOferta').value, 10) || 0)),
+    mix: $('edMix').checked, granola: $('edGranola').checked, blend: $('edBlend').checked,
     imagen: (FICHAS_FB[p.id] && FICHAS_FB[p.id].imagen) || (FICHAS_CSV[p.id] && FICHAS_CSV[p.id].imagen) || '',
     origen: 'panel',
     actualizado: new Date().toISOString(),
@@ -522,7 +670,8 @@ async function guardarFicha(){
     FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, datos);
     Object.assign(p, {
       nombre: datos.nombre, cantidades: datos.cantidades, sabores: datos.sabores,
-      desc: datos.desc, oferta: datos.oferta, editada: true
+      desc: datos.desc, oferta: datos.oferta, mix: datos.mix, granola: datos.granola,
+      blend: datos.blend, editada: true
     });
     est.textContent = 'Guardado'; est.className = 'ed-estado ok';
     pintarKpis(); pintar();
@@ -534,16 +683,120 @@ async function guardarFicha(){
   }
 }
 
+// ── DESCUENTO POR RUBRO ───────────────────────────────────────────────────────
+// No existe un "descuento del rubro" guardado aparte: aplicar el rubro escribe el
+// porcentaje en cada producto elegido. Asi despues se quitan o cambian de a uno
+// sin reglas de precedencia que compliquen.
+let DC_ELEGIDOS = new Set();
+
+function abrirDescuentos(){
+  const rubros = Array.from(new Set(PRODUCTOS.map(p => p.rubro).filter(Boolean))).sort();
+  $('dcRubro').innerHTML = rubros.map(r =>
+    '<option value="' + esc(r) + '">' + esc(r) + ' (' +
+    PRODUCTOS.filter(p => p.rubro === r).length + ')</option>').join('');
+  $('dcEstado').textContent = ''; $('dcEstado').className = 'ed-estado';
+  $('dcAplicar').disabled = false;
+  dcPintarLista();
+  $('desc').classList.add('abierto');
+}
+function cerrarDescuentos(){ $('desc').classList.remove('abierto'); }
+
+function dcProductos(){
+  const r = $('dcRubro').value;
+  return PRODUCTOS.filter(p => p.rubro === r).sort((a,b) => a.nombre.localeCompare(b.nombre,'es'));
+}
+
+function dcPintarLista(reiniciar){
+  const lista = dcProductos();
+  if (reiniciar !== false) { DC_ELEGIDOS = new Set(lista.map(p => p.id)); }
+  $('dcLista').innerHTML = lista.map(p =>
+    '<label class="dc-item' + (DC_ELEGIDOS.has(p.id) ? '' : ' apagado') + '" data-id="' + esc(p.id) + '">' +
+      '<input type="checkbox" ' + (DC_ELEGIDOS.has(p.id) ? 'checked' : '') + '>' +
+      '<span class="n">' + esc(p.nombre) + '</span>' +
+      '<span class="act">' + pesos(p.p1) +
+        (p.oferta ? ' · hoy <b>' + p.oferta + '%</b>' : ' · sin oferta') + '</span>' +
+    '</label>').join('');
+  dcResumen();
+}
+
+function dcResumen(){
+  const lista = dcProductos();
+  const pct = Math.max(0, Math.min(90, parseInt($('dcPct').value, 10) || 0));
+  const n = lista.filter(p => DC_ELEGIDOS.has(p.id)).length;
+  $('dcResumen').textContent = n + ' de ' + lista.length + ' marcados ·';
+  const cambian = lista.filter(p => DC_ELEGIDOS.has(p.id) && (p.oferta || 0) !== pct);
+  $('dcPrevio').innerHTML = !n
+    ? 'No hay productos marcados.'
+    : 'Se les va a poner <b>' + pct + '%</b> a <b>' + n + '</b> producto(s). ' +
+      (cambian.length ? 'Cambian <b>' + cambian.length + '</b>; el resto ya tenía ese valor.'
+                      : 'Ninguno cambia: ya tienen ese porcentaje.') +
+      (pct === 0 ? ' <b>Poner 0 quita la oferta.</b>' : '');
+}
+
+$('dcRubro').addEventListener('change', () => dcPintarLista(true));
+$('dcPct').addEventListener('input', dcResumen);
+$('dcLista').addEventListener('change', e => {
+  const it = e.target.closest('.dc-item'); if (!it) return;
+  const id = it.dataset.id;
+  if (e.target.checked) { DC_ELEGIDOS.add(id); it.classList.remove('apagado'); }
+  else { DC_ELEGIDOS.delete(id); it.classList.add('apagado'); }
+  dcResumen();
+});
+$('dcTodos').addEventListener('click', () => { DC_ELEGIDOS = new Set(dcProductos().map(p => p.id)); dcPintarLista(false); });
+$('dcNinguno').addEventListener('click', () => { DC_ELEGIDOS = new Set(); dcPintarLista(false); });
+$('dcSinOferta').addEventListener('click', () => {
+  DC_ELEGIDOS = new Set(dcProductos().filter(p => !p.oferta).map(p => p.id));
+  dcPintarLista(false);
+});
+
+async function aplicarDescuento(){
+  const pct = Math.max(0, Math.min(90, parseInt($('dcPct').value, 10) || 0));
+  const lista = dcProductos().filter(p => DC_ELEGIDOS.has(p.id));
+  if (!lista.length) return;
+  const b = $('dcAplicar'), est = $('dcEstado');
+  b.disabled = true; est.textContent = 'Aplicando...'; est.className = 'ed-estado';
+  const lote = {}, cuando = new Date().toISOString(), quien = (USUARIO && USUARIO.email) || '';
+  lista.forEach(p => {
+    lote[p.id + '/oferta'] = pct;
+    lote[p.id + '/actualizado'] = cuando;
+    lote[p.id + '/por'] = quien;
+  });
+  try {
+    await refFichas().update(lote);
+    lista.forEach(p => {
+      p.oferta = pct; p.editada = true;
+      FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, {oferta:pct, actualizado:cuando, por:quien});
+    });
+    est.textContent = 'Aplicado a ' + lista.length + ' producto(s)';
+    est.className = 'ed-estado ok';
+    b.disabled = false;
+    dcPintarLista(false); pintarKpis(); pintar();
+  } catch (e) {
+    b.disabled = false;
+    est.textContent = 'No se pudo aplicar: ' + (e.message || e);
+    est.className = 'ed-estado mal';
+  }
+}
+
+$('btnDesc').addEventListener('click', abrirDescuentos);
+$('dcCerrar').addEventListener('click', cerrarDescuentos);
+$('dcCancelar').addEventListener('click', cerrarDescuentos);
+$('dcAplicar').addEventListener('click', aplicarDescuento);
+$('desc').addEventListener('click', e => { if (e.target.id === 'desc') cerrarDescuentos(); });
+
+document.querySelectorAll('.bandera input').forEach(i =>
+  i.addEventListener('change', () => i.closest('.bandera').classList.toggle('sel', i.checked)));
+
 $('edCerrar').addEventListener('click', cerrarEditor);
 $('edCancelar').addEventListener('click', cerrarEditor);
 $('edGuardar').addEventListener('click', guardarFicha);
 $('editor').addEventListener('click', e => { if (e.target.id === 'editor') cerrarEditor(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarEditor(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { cerrarEditor(); cerrarDescuentos(); } });
 
 function pintarKpis(){
   const t = PRODUCTOS.length;
   const nuevos  = PRODUCTOS.filter(p => p.nuevo).length;
-  const renoms  = PRODUCTOS.filter(p => p.renombre).length;
+  const renoms  = PRODUCTOS.filter(p => hayRenombre(p)).length;
   const sinFoto = PRODUCTOS.filter(p => !p.foto).length;
   const sinDesc = PRODUCTOS.filter(p => !p.desc).length;
   const malos   = PRODUCTOS.filter(p => p.malRubro).length;
@@ -564,16 +817,17 @@ function esc(s){ return String(s == null ? '' : s)
 
 function pintar(){
   let lista = PRODUCTOS.slice();
-  if (FILTRO === 'pendientes') lista = lista.filter(p => p.nuevo || p.renombre || p.malRubro);
+  if (FILTRO === 'pendientes') lista = lista.filter(p => p.nuevo || hayRenombre(p) || p.malRubro);
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
   if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
+  if (FILTRO === 'oferta')     lista = lista.filter(p => p.oferta > 0);
   if (BUSCA) {
     const q = BUSCA.toLowerCase();
     lista = lista.filter(p => p.nombre.toLowerCase().includes(q) || p.id.includes(q));
   }
   // los pendientes primero
   lista.sort((a,b) => {
-    const pa = (a.nuevo?0:a.malRubro?1:a.renombre?2:3), pb = (b.nuevo?0:b.malRubro?1:b.renombre?2:3);
+    const pa = (a.nuevo?0:a.malRubro?1:hayRenombre(a)?2:3), pb = (b.nuevo?0:b.malRubro?1:hayRenombre(b)?2:3);
     return pa !== pb ? pa - pb : a.nombre.localeCompare(b.nombre, 'es');
   });
 
@@ -585,16 +839,17 @@ function pintar(){
   }
   cont.className = 'grilla';
   cont.innerHTML = lista.map(p => {
-    const clase = p.nuevo ? 'es-nuevo' : p.malRubro ? 'es-mal' : p.renombre ? 'es-renom' : '';
+    const clase = p.nuevo ? 'es-nuevo' : p.malRubro ? 'es-mal' : hayRenombre(p) ? 'es-renom' : '';
     const chips = [];
     if (p.nuevo)    chips.push('<span class="chip nuevo">NUEVO — sin publicar</span>');
     if (p.malRubro) chips.push('<span class="chip mal">Rubro inválido</span>');
-    if (p.renombre) chips.push('<span class="chip renom">Nombre cambiado</span>');
+    if (hayRenombre(p)) chips.push('<span class="chip renom">Nombre cambiado</span>');
     if (!p.ficha)   chips.push('<span class="chip falta">Sin ficha</span>');
     else {
       if (!p.foto) chips.push('<span class="chip falta">Sin foto</span>');
       if (!p.desc) chips.push('<span class="chip falta">Sin descripción</span>');
     }
+    if (p.oferta)   chips.push('<span class="chip renom">' + p.oferta + '% OFF</span>');
     if (p.editada)  chips.push('<span class="chip editada">Editada acá</span>');
     const foto = p.foto
       ? '<img class="foto" loading="lazy" src="' + imgDe(p.id) + '" alt="" ' +
@@ -602,7 +857,7 @@ function pintar(){
         'this.replaceWith(Object.assign(document.createElement(\'div\'),' +
         '{className:\'foto rota\',textContent:\'foto rota\'}))">'
       : '<div class="foto rota">sin foto</div>';
-    const ren = p.renombre
+    const ren = hayRenombre(p)
       ? '<div class="renombre">En la tienda dice <b>' + esc(p.renombre.nombre_publicado) +
         '</b><br>En E-Pyme ahora es <b>' + esc(p.renombre.nombre_nuevo) + '</b></div>'
       : '';
