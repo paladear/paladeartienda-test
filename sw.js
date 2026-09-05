@@ -94,7 +94,7 @@ self.addEventListener('fetch', event => {
   // caerian en stale-while-revalidate y un visitante que vuelve veria los
   // precios de la carga anterior. Con la red primero, siempre ve los de hoy;
   // el cache queda solo como respaldo para cuando no hay conexion.
-  const _esDato = /\/(precios-min|info-min|precios-may|info-may)\.csv$|\/catalog-min\.json$/.test(_path);
+  const _esDato = /\/(precios-min|info-min|precios-may|info-may|stock)\.csv$|\/(catalog-min|pendientes)\.json$/.test(_path);
 
   if (_esPagina || _esDato) {
     event.respondWith(
