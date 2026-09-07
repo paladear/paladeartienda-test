@@ -192,6 +192,43 @@
 .foto-info .malo{color:#b3261e}
 .foto-fondo{display:inline-block;width:11px;height:11px;border-radius:3px;border:1px solid rgba(0,0,0,.18);
   vertical-align:-1px;margin-right:5px}
+
+/* ══════════ Celular: esto se usa desde el teléfono ══════════ */
+
+/* Tocar dos veces no agranda la página */
+html,body{touch-action:manipulation}
+button,.btn,input,select,label,.tarj,.chip{touch-action:manipulation}
+
+/* El buscador va fijo arriba: administrar precios es, sobre todo, buscar. */
+.busca-fija{position:sticky;top:0;z-index:60;display:flex;gap:8px;align-items:center;
+  background:#f4f7fa;margin:-20px -20px 14px;padding:12px 16px;
+  border-bottom:1px solid var(--linea)}
+.busca-fija input{flex:1;min-width:0;font:inherit;font-size:16px;   /* 16px: menos de eso, iPhone hace zoom al tocar */
+  padding:13px 14px;border:1px solid #cfd8e0;border-radius:11px;background:#fff;
+  -webkit-appearance:none;appearance:none}
+.busca-fija input:focus{outline:none;border-color:#7aa2c4;box-shadow:0 0 0 3px rgba(122,162,196,.22)}
+.busca-x{flex:0 0 auto;width:40px;height:40px;border:0;border-radius:50%;background:#e6edf3;
+  color:#54606c;font-size:22px;line-height:1;cursor:pointer;display:none}
+.busca-fija.con-texto .busca-x{display:block}
+
+/* El input de archivo real queda invisible pero NO oculto:
+   si se oculta con display:none, el iPhone no lo abre. */
+.foto-input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap}
+label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+
+@media(max-width:700px){
+  header{padding:9px 14px}
+  header h1{font-size:15px}
+  .hd .env,.hd .quien{display:none}
+  main{padding:16px 14px}
+  .busca-fija{margin:-16px -14px 12px;padding:10px 14px}
+  /* Botones cómodos para el dedo */
+  .btn{min-height:44px;padding:11px 15px;font-size:14px}
+  .foto-prev{width:88px;height:88px}
+  /* Que el teclado no tape lo que se está buscando */
+  .tarj{scroll-margin-top:132px}
+}
 </style>
 </head>
 <body>
@@ -239,8 +276,8 @@
         <div class="foto-fila">
           <div class="foto-prev" id="edFotoPrev"><span>sin foto</span></div>
           <div class="foto-acc">
-            <input type="file" id="edFotoFile" accept="image/*" hidden>
-            <button type="button" class="btn gris" id="edFotoElegir">Elegir foto…</button>
+            <label class="btn gris" for="edFotoFile" id="edFotoElegir">Elegir foto</label>
+            <input type="file" id="edFotoFile" accept="image/*" class="foto-input">
             <button type="button" class="btn gris" id="edFotoQuitar" hidden>Quitar</button>
             <div class="foto-info" id="edFotoInfo"></div>
           </div>
@@ -318,6 +355,10 @@
 </div>
 
 <main>
+<div class="busca-fija">
+  <input id="buscarFijo" placeholder="Buscar producto o número de artículo" autocomplete="off" enterkeyhint="search">
+  <button type="button" class="busca-x" id="buscarX" aria-label="Borrar">&times;</button>
+</div>
   <div id="avisoImportar"></div>
   <div class="tarjetas" id="kpis"></div>
   <div class="barra">
