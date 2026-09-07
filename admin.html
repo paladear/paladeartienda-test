@@ -363,7 +363,12 @@ if (hayAuth) {
 
 // ── DATOS ─────────────────────────────────────────────────────────────────────
 const CLOUD = 'hswu4zpv';
-const imgDe = id => 'https://res.cloudinary.com/' + CLOUD + '/image/upload/f_auto,q_auto,w_140/' + id;
+// Fotos propias del panel (guardadas en Firebase). Mandan sobre las de Cloudinary.
+let FOTOS_FB = {};
+const refFotos = () => firebase.database().ref('catalogo/fotos');
+const imgDe = id => (FOTOS_FB[id] && FOTOS_FB[id].webp)
+  ? FOTOS_FB[id].webp
+  : ('https://res.cloudinary.com/' + CLOUD + '/image/upload/f_auto,q_auto,w_140/' + id);
 
 // Mismo parseo que usan los scripts del sitio (comillas dobles escapadas, saltos
 // de línea dentro de celdas).
@@ -414,7 +419,67 @@ async function cargarFichasFirebase(){
     console.warn('[fichas] no se pudieron leer de Firebase:', e);
     FICHAS_FB = {};
   }
+  try {
+    const snapF = await refFotos().once('value');
+    FOTOS_FB = snapF.val() || {};
+  } catch (e) {
+    console.warn('[fotos] no se pudieron leer de Firebase:', e);
+    FOTOS_FB = {};
+  }
 }
+
+/* ── FOTOS ────────────────────────────────────────────────────────────────────
+   La foto que sube el dueño se achica y se convierte a WebP acá mismo, en el
+   navegador, antes de guardarla: entra una de 4 MB del celular y sale una de
+   ~25 KB. Además se mira el color de los bordes para saber sobre qué fondo está
+   recortada, y la tienda pinta la tarjeta de ese color: así la foto se funde con
+   la tarjeta aunque el fondo no sea blanco puro. */
+const FOTO_LADO = 700;      // suficiente para verse nítida en tarjeta y en zoom
+const FOTO_CALIDAD = 0.82;
+
+function _colorDeFondo(ctx, w, h){
+  // Toma el color de los cuatro bordes: es el fondo sobre el que está la foto.
+  const muestras = [];
+  const paso = Math.max(1, Math.floor(w / 40));
+  function tomar(x, y){
+    const d = ctx.getImageData(x, y, 1, 1).data;
+    if (d[3] > 200) muestras.push([d[0], d[1], d[2]]);
+  }
+  for (let x = 0; x < w; x += paso){ tomar(x, 0); tomar(x, h - 1); }
+  for (let y = 0; y < h; y += paso){ tomar(0, y); tomar(w - 1, y); }
+  if (!muestras.length) return '#ffffff';
+  // La mediana evita que una esquina rara mueva el color.
+  const canal = i => { const v = muestras.map(m => m[i]).sort((a,b) => a-b); return v[Math.floor(v.length/2)]; };
+  const hex = n => ('0' + Math.max(0, Math.min(255, n)).toString(16)).slice(-2);
+  return '#' + hex(canal(0)) + hex(canal(1)) + hex(canal(2));
+}
+
+function optimizarFoto(file){
+  return new Promise((resolve, reject) => {
+    if (!file.type.startsWith('image/')) return reject(new Error('Eso no es una imagen.'));
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const escala = Math.min(1, FOTO_LADO / Math.max(img.naturalWidth, img.naturalHeight));
+      const w = Math.max(1, Math.round(img.naturalWidth * escala));
+      const h = Math.max(1, Math.round(img.naturalHeight * escala));
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const ctx = c.getContext('2d', { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0, w, h);
+      const fondo = _colorDeFondo(ctx, w, h);
+      const webp = c.toDataURL('image/webp', FOTO_CALIDAD);
+      if (webp.indexOf('data:image/webp') !== 0)
+        return reject(new Error('Este navegador no sabe guardar en WebP.'));
+      resolve({ webp, fondo, w, h, pesoOriginal: file.size, peso: Math.round(webp.length * 0.75) });
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('No se pudo leer la imagen.')); };
+    img.src = url;
+  });
+}
+
+const kb = n => (n >= 1048576 ? (n/1048576).toFixed(1) + ' MB' : Math.round(n/1024) + ' KB');
 
 // La ficha efectiva de un producto: lo de Firebase si existe, si no lo del Sheet.
 function fichaDe(id){
