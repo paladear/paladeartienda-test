@@ -1451,9 +1451,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1QI0JfVC4Lyj9OaS3TMhuDQEx1ywEHv8M/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:48:06.545Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fcf8f3"
   },
   "1380": {
    "nombre": "MANI TOSTADO SALADO",
@@ -6087,6 +6092,14 @@
    "ext": "jpg",
    "v": 1788781670337
   },
+  "1379": {
+   "fondo": "#fcf8f3",
+   "w": 700,
+   "h": 700,
+   "peso": 78233,
+   "ext": "jpg",
+   "v": 1788781688465
+  },
   "1488": {
    "fondo": "#fbf8f3",
    "w": 700,
@@ -6128,5 +6141,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:47:50.337Z"
+ "actualizado": "2026-09-07T11:48:08.465Z"
 }
