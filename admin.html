@@ -285,6 +285,25 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
 body.por-rubro #filtroRubro{border-color:#7aa2c4;background-color:#f2f8fc;font-weight:650}
 /* Al buscar se esconden los números, pero el filtro de rubro se queda */
 body.buscando .busca-fija{display:flex}
+
+/* ── En la tienda / fuera del catálogo ── */
+.grupo{display:grid;gap:12px}
+@media(min-width:900px){ .grupo{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media(min-width:1300px){ .grupo{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.grupo-tit{display:flex;align-items:center;gap:9px;margin:22px 0 12px;
+  font-size:14px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.grupo-tit:first-child{margin-top:4px}
+.grupo-tit span{font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px}
+.grupo-tit.dentro{color:#1f6b4f}
+.grupo-tit.dentro span{background:#dcf5e8;color:#14684a}
+.grupo-tit.fuera{color:#8a6a1f}
+.grupo-tit.fuera span{background:#fbeecd;color:#7a5c14}
+.grupo-ayuda{margin:-6px 0 12px;font-size:12.5px;color:#6b7885;line-height:1.5}
+
+/* El color dice de un vistazo si el cliente lo ve o no */
+.prod.en-catalogo{border-left:4px solid #2fa36b}
+.prod.fuera-catalogo{border-left:4px solid #d8a72e;background:#fffdf5}
+.prod.fuera-catalogo .nom{color:#6d5a22}
 </style>
 </head>
 <body>
@@ -328,6 +347,7 @@ body.buscando .busca-fija{display:flex}
         <label>Precio <span class="ayuda">— viene de E-Pyme, no se edita acá</span></label>
         <div class="solo-lectura" id="edPrecio"></div>
       </div>
+      <div class="campo" id="edEnCatalogo"></div>
       <div class="campo">
         <label>Foto del producto <span class="ayuda">— se achica y se comprime sola</span></label>
         <div class="foto-fila">
@@ -430,6 +450,7 @@ body.buscando .busca-fija{display:flex}
     <button class="filtro" data-f="sinfoto">Sin foto</button>
     <button class="filtro" data-f="sindesc">Sin descripción</button>
     <button class="filtro" data-f="oferta">Con oferta</button>
+    <button class="filtro" data-f="fuera">Fuera del catálogo</button>
     <button class="btn" id="btnDesc">Descuento por rubro</button>
   </div>
   <div id="salida" class="cargando">Cargando catálogo...</div>
@@ -738,7 +759,8 @@ async function arrancar(){
         cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
         mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
         nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:false, renombre:renom[id] || null,
-        malRubro:!!malRubro[id]
+        malRubro:!!malRubro[id],
+        oculto:f.oculto === true
       });
     });
     // pendientes de alta: todavía NO están en el CSV publicado
@@ -755,6 +777,26 @@ async function arrancar(){
         nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:true, renombre:null, malRubro:false
       });
     });
+    // Están en Info (tienen ficha) pero no en la lista de precios: no se publican.
+    // Aparecen igual, marcados como fuera del catálogo, para poder trabajarlos.
+    const yaEstan = {};
+    PRODUCTOS.forEach(p => yaEstan[p.id] = true);
+    Object.keys(fichas).forEach(id => {
+      if (yaEstan[id]) return;
+      const f = fichas[id] || {};
+      if (!f.nombre) return;
+      PRODUCTOS.push({
+        id, nombre: f.nombre, nombreCsv: f.nombre, rubro: f.rubro || '',
+        p1: 0, p2: 0,
+        ficha: true, desc: f.desc || '',
+        foto: !!(f.imagen && String(f.imagen).trim()) || !!FOTOS_FB[id],
+        cantidades: f.cantidades || '', sabores: f.sabores || '', oferta: f.oferta || 0,
+        mix: !!f.mix, granola: !!f.granola, blend: !!f.blend,
+        nombreEpyme: f.nombreEpyme || '', editada: !!f._fb, nuevo: false,
+        renombre: null, malRubro: false, sinPrecio: true
+      });
+    });
+
     // los de rubro inválido tampoco están publicados
     (pend.rubro_invalido || []).forEach(r => {
       const id = limpiaId(r.numero);
@@ -849,6 +891,7 @@ function abrirEditor(id){
     cont.outerHTML = '<div id="edFoto" class="sinf">sin foto</div>';
   }
   FOTO_NUEVA = null; FOTO_BORRAR = false;
+  pintarEnCatalogo(p);
   pintarFotoEditor(p);
   $('edNombre').value = p.nombre || '';
   $('edCant').value = p.cantidades || '';
@@ -936,6 +979,38 @@ function cerrarEditor(desdeAtras){
 
 let FOTO_NUEVA = null, FOTO_BORRAR = false, FOTO_PROCESANDO = false;
 
+/* Muestra si el producto se ve o no en la tienda, y deja sacarlo o volverlo a poner. */
+function pintarEnCatalogo(p){
+  const c = $('edEnCatalogo');
+  if (!c) return;
+  if (p.sinPrecio) {
+    c.innerHTML = '<div class="estado-cat fuera">' +
+      '<b>No está en la tienda</b>' +
+      '<span>No tiene precio en la lista de E-Pyme. Cuando lo tenga, aparece solo.</span></div>';
+    return;
+  }
+  if (p.nuevo || p.malRubro) {
+    c.innerHTML = '<div class="estado-cat fuera"><b>No está en la tienda</b>' +
+      '<span>' + (p.nuevo ? 'Es un alta nueva sin confirmar.' : 'Tiene un rubro que la tienda no reconoce.') +
+      '</span></div>';
+    return;
+  }
+  const fuera = p.oculto === true;
+  c.innerHTML = '<div class="estado-cat ' + (fuera ? 'fuera' : 'dentro') + '">' +
+      '<b>' + (fuera ? 'Sacado del catálogo' : 'Se ve en la tienda') + '</b>' +
+      '<span>' + (fuera ? 'Los clientes no lo ven.' : 'Los clientes lo pueden comprar.') + '</span>' +
+    '</div>' +
+    '<button type="button" class="btn ' + (fuera ? '' : 'gris') + '" id="edToggleCat" style="width:100%;margin-top:8px">' +
+      (fuera ? 'Volver a ponerlo en el catálogo' : 'Sacar del catálogo') + '</button>';
+  const b = $('edToggleCat');
+  if (b) b.addEventListener('click', function(){
+    p.oculto = !fuera;
+    pintarEnCatalogo(p);
+    $('edEstado').textContent = 'Acordate de Guardar.';
+    $('edEstado').className = 'ed-estado';
+  });
+}
+
 function pintarFotoEditor(p){
   const prev = $('edFotoPrev'), info = $('edFotoInfo'), quitar = $('edFotoQuitar');
   if (!prev) return;
@@ -1000,6 +1075,7 @@ async function guardarFicha(){
     oferta: Math.max(0, Math.min(90, parseInt($('edOferta').value, 10) || 0)),
     mix: $('edMix').checked, granola: $('edGranola').checked, blend: $('edBlend').checked,
     imagen: (FICHAS_FB[p.id] && FICHAS_FB[p.id].imagen) || (FICHAS_CSV[p.id] && FICHAS_CSV[p.id].imagen) || '',
+    oculto: p.oculto === true,
     fotoPropia: FOTO_NUEVA ? true : (FOTO_BORRAR ? false : !!FOTOS_FB[p.id]),
     fondo: FOTO_NUEVA ? FOTO_NUEVA.fondo : (FOTO_BORRAR ? '' : ((FOTOS_FB[p.id] && FOTOS_FB[p.id].fondo) || '')),
     origen: 'panel',
@@ -1033,6 +1109,7 @@ async function guardarFicha(){
       nombre: datos.nombre, cantidades: datos.cantidades, sabores: datos.sabores,
       desc: datos.desc, oferta: datos.oferta, mix: datos.mix, granola: datos.granola,
       blend: datos.blend, editada: true,
+      oculto: datos.oculto,
       foto: datos.fotoPropia || p.foto
     });
     FOTO_NUEVA = null; FOTO_BORRAR = false;
@@ -1212,6 +1289,9 @@ function llenarRubros(){
   });
 }
 
+/* Un producto se ve en la tienda si tiene precio y no fue sacado a mano. */
+function enCatalogo(p){ return !p.sinPrecio && !p.nuevo && !p.malRubro && !p.oculto; }
+
 function pintar(){
   let lista = PRODUCTOS.slice();
   if (FILTRO === 'pendientes') lista = lista.filter(p => p.nuevo || hayRenombre(p) || p.malRubro);
@@ -1219,6 +1299,7 @@ function pintar(){
   if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
   if (FILTRO === 'oferta')     lista = lista.filter(p => p.oferta > 0);
   if (RUBRO)                   lista = lista.filter(p => (p.rubro || '') === RUBRO);
+  if (FILTRO === 'fuera')      lista = lista.filter(p => !enCatalogo(p));
   if (BUSCA) {
     const q = BUSCA.toLowerCase();
     lista = lista.filter(p => p.nombre.toLowerCase().includes(q) || p.id.includes(q));
@@ -1237,8 +1318,12 @@ function pintar(){
     return;
   }
   cont.className = 'grilla';
-  cont.innerHTML = lista.map(p => {
-    const clase = p.nuevo ? 'es-nuevo' : p.malRubro ? 'es-mal' : hayRenombre(p) ? 'es-renom' : '';
+  // Dos grupos: lo que se ve en la tienda y lo que no. Separados y con otro color.
+  const dentro = lista.filter(enCatalogo);
+  const fuera  = lista.filter(p => !enCatalogo(p));
+  const tarjeta = p => {
+    const clase = (p.nuevo ? 'es-nuevo' : p.malRubro ? 'es-mal' : hayRenombre(p) ? 'es-renom' : '') +
+                  (enCatalogo(p) ? ' en-catalogo' : ' fuera-catalogo');
     const chips = [];
     if (p.nuevo)    chips.push('<span class="chip nuevo">NUEVO — sin publicar</span>');
     if (p.malRubro) chips.push('<span class="chip mal">Rubro inválido</span>');
@@ -1272,7 +1357,20 @@ function pintar(){
         (chips.length ? '<div class="chips">' + chips.join('') + '</div>' : '') +
         ren +
       '</div></div>';
-  }).join('');
+  };
+
+  var html = '';
+  if (dentro.length) {
+    html += '<h2 class="grupo-tit dentro">En la tienda <span>' + dentro.length + '</span></h2>' +
+            '<div class="grupo">' + dentro.map(tarjeta).join('') + '</div>';
+  }
+  if (fuera.length) {
+    html += '<h2 class="grupo-tit fuera">Fuera del catálogo <span>' + fuera.length + '</span></h2>' +
+            '<p class="grupo-ayuda">No se ven en la tienda: o no tienen precio en E-Pyme, o los sacaste vos.</p>' +
+            '<div class="grupo">' + fuera.map(tarjeta).join('') + '</div>';
+  }
+  cont.className = '';
+  cont.innerHTML = html;
 }
 
 // Clic en cualquier tarjeta abre el editor de esa ficha.
