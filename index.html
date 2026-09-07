@@ -2676,7 +2676,7 @@ function _cardHTML(p, xopts){
   const opts2=(xopts&&typeof xopts==='object'&&!Array.isArray(xopts))?xopts:{};
   const opts=_sortOpts(Object.keys(p[7]));
   const precio=opts.length?p[7][opts[0]][0]:0;
-  const hasSrc=p[6]&&p[6].startsWith('http');
+  const hasSrc=!!p[6];   // puede ser una URL de Cloudinary o una foto propia del sitio
   const cat=CATS.find(c=>c.id===p[1]);
   const oferta=p[12]&&p[12].oferta?p[12].oferta:0;
   const precioOferta=oferta>0?Math.round(precio*(1-oferta/100)):precio;
@@ -2866,7 +2866,7 @@ function _priceMinContent(precio,oferta){
 function renderCard(p,prefix){
   const opts=_sortOpts(Object.keys(p[7]));if(!opts.length)return'';
   const id=prefix+'_'+p[0];
-  const hasSrc=p[6]&&p[6].startsWith('http');
+  const hasSrc=!!p[6];   // puede ser una URL de Cloudinary o una foto propia del sitio
   const infoText=p[8]||'';
   const sabores=p[9]||null;
   const acumLbl=_acumLabel(p);
@@ -2941,7 +2941,7 @@ function showInfo(pid){
   m.id='infoModal';
   m.className='info-modal';
   m.onclick=e=>{if(e.target===m)m.remove()};
-  const hasSrc=p[6]&&p[6].startsWith('http');
+  const hasSrc=!!p[6];   // puede ser una URL de Cloudinary o una foto propia del sitio
   m.innerHTML=`<div class="info-modal-box">
     <button class="info-modal-close" onclick="document.getElementById('infoModal').remove()">×</button>
     ${hasSrc?`<div class="info-modal-img"><img src="${p[6]}" alt="${p[2]}"></div>`:''}
@@ -5662,7 +5662,7 @@ function hvRenderOfertas(){
       var opts=_sortOpts(Object.keys(p[7]));
       var precio=opts.length?p[7][opts[0]][0]:0;
       var pct=p[12].oferta;
-      var img=(p[6]&&p[6].indexOf('http')===0)?'<img src="'+p[6]+'" alt="" loading="lazy">':'<span class="hvof-emoji">🌿</span>';
+      var img=(!!p[6])?'<img src="'+p[6]+'" alt="" loading="lazy">':'<span class="hvof-emoji">🌿</span>';
       return '<span class="hvof-card"><span class="hvof-badge">−'+pct+'%</span>'+img
         +'<span class="hvof-name">'+_tc(p[2])+'</span>'
         +'<span class="hvof-precio"><s>$'+fmt(precio)+'</s> <b>$'+fmt(Math.round(precio*(1-pct/100)))+'</b></span></span>';
@@ -6240,7 +6240,7 @@ function rotarCarruselesMay() {
 function _cardHTMLMay(p) {
   const opts = Object.keys(p[7]);
   const precio = opts.length ? p[7][opts[0]][0] : 0;
-  const hasSrc = p[6] && p[6].startsWith('http');
+  const hasSrc = !!p[6];   // puede ser una URL de Cloudinary o una foto propia del sitio
   const cat = CATS_MAY.find(c => c.id === p[1]);
   const bulto = p[12] ? p[12].bulto : 1;
   return `<div class="carousel-card" onclick="selectMayCat('${p[1]}', ${p[0]})">
@@ -6325,7 +6325,7 @@ window.volverMayInicio = volverMayInicio;
 function renderCardMay(p, suffix) {
   const opts      = Object.keys(p[7]);
   const precio    = opts.length ? p[7][opts[0]][0] : 0;
-  const hasSrc    = p[6] && p[6].startsWith('http');
+  const hasSrc    = !!p[6];   // puede ser una URL de Cloudinary o una foto propia del sitio
   const sabores   = p[9];
   const bulto     = p[12] ? p[12].bulto : 1;
   const bultoLabel = opts[0] || ('Bulto x' + bulto);
@@ -6810,7 +6810,7 @@ function _doSearchMay(val) {
     results.forEach(p => {
       const opts = Object.keys(p[7]);
       const precio = opts.length ? p[7][opts[0]][0] : 0;
-      const hasSrc = p[6] && p[6].startsWith('http');
+      const hasSrc = !!p[6];   // puede ser una URL de Cloudinary o una foto propia del sitio
       const cat = CATS_MAY.find(c => c.id === p[1]);
       const bulto = p[12] ? p[12].bulto : 1;
     h += `<div class="search-item" onclick="selectMayCat('${p[1]}', ${p[0]})">
