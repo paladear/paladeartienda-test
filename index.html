@@ -4044,64 +4044,26 @@ function _cargarInfo(){
 }
 
 /* ── LO QUE SE EDITA EN EL PANEL ──────────────────────────────────────────────
-   El panel (admin.html) guarda en Firebase los nombres, cantidades, ofertas y las
-   fotos propias. Acá se leen y pisan lo que viene del Sheet. Si algo falla, la
-   tienda sigue andando igual que antes: es todo opcional. */
-const _FB_CONF = {
-  apiKey: "AIzaSyC0HDffPhplf1dyMOzV9fTkt8l4JNbWV3o",
-  authDomain: "pedidos-proveedores-d8d8a.firebaseapp.com",
-  databaseURL: "https://pedidos-proveedores-d8d8a-default-rtdb.firebaseio.com",
-  projectId: "pedidos-proveedores-d8d8a",
-  storageBucket: "pedidos-proveedores-d8d8a.firebasestorage.app",
-  messagingSenderId: "326909224784", appId: "1:326909224784:web:0"
-};
+   El panel (admin.html) guarda las fichas en catalogo-panel.json y las fotos como
+   archivos en fotos/<articulo>.webp, todo en este mismo repo. Acá se leen y pisan
+   lo que viene del Sheet. Si el archivo no existe, la tienda anda igual que antes. */
+const ARCHIVO_PANEL = 'catalogo-panel.json';
 let FICHAS_FB = {}, FOTOS_FB = {};
 
-function _fbListo(){
-  return new Promise(function(res){
-    var t0 = Date.now();
-    (function esperar(){
-      if (typeof firebase !== 'undefined' && firebase.database) return res(true);
-      if (Date.now() - t0 > 4000) return res(false);
-      setTimeout(esperar, 60);
-    })();
-  });
+async function _cargarPanel(){
+  try {
+    const r = await fetch(ARCHIVO_PANEL + '?t=' + Date.now(), {cache:'no-store'});
+    if (!r.ok) return;                       // todavía no se guardó nada: normal
+    const j = await r.json();
+    FICHAS_FB = j.fichas || {};
+    FOTOS_FB  = j.fotos  || {};
+    const nF = Object.keys(FICHAS_FB).length, nP = Object.keys(FOTOS_FB).length;
+    if (nF || nP) console.log('📋 Panel: ' + nF + ' fichas, ' + nP + ' fotos propias');
+  } catch(e) { console.warn('[panel] no se pudo leer:', e && e.message); }
 }
 
-async function _cargarPanelFB(){
-  try {
-    if (!(await _fbListo())) return;
-    if (!firebase.apps.length) firebase.initializeApp(_FB_CONF);
-    const db = firebase.database();
-    // Las fichas son livianas: se esperan. Las fotos pesan más y van después.
-    const snap = await db.ref('catalogo/fichas').once('value');
-    FICHAS_FB = snap.val() || {};
-    console.log('📋 Panel: ' + Object.keys(FICHAS_FB).length + ' fichas editadas');
-  } catch(e) { console.warn('[panel] no se pudieron leer las fichas:', e && e.message); }
-}
-
-/* Las fotos se traen después de pintar, para no demorar la primera vista.
-   Cuando llegan, se vuelven a dibujar las tarjetas que cambiaron. */
-async function _cargarFotosFB(){
-  try {
-    if (typeof firebase === 'undefined' || !firebase.database) return;
-    const snap = await firebase.database().ref('catalogo/fotos').once('value');
-    FOTOS_FB = snap.val() || {};
-    const ids = Object.keys(FOTOS_FB);
-    if (!ids.length) return;
-    let cambiadas = 0;
-    PRODS.forEach(function(p){
-      const art = p[12] && p[12].productId;
-      const f = art && FOTOS_FB[art];
-      if (!f || !f.webp) return;
-      p[6] = f.webp;
-      if (f.fondo) p[12].fondo = f.fondo;
-      cambiadas++;
-    });
-    console.log('🖼️ Panel: ' + cambiadas + ' fotos propias');
-    if (cambiadas) { try{ renderCatsUI(); renderCarruseles(); }catch(e){} }
-  } catch(e) { console.warn('[panel] no se pudieron leer las fotos:', e && e.message); }
-}
+// La foto propia es un archivo del repo; el ?v= la refresca cuando se cambia.
+const _urlFotoPanel = id => 'fotos/' + id + '.webp?v=' + ((FOTOS_FB[id] && FOTOS_FB[id].v) || 1);
 
 function sincronizarDesdeSheets(){
   // Stale-while-revalidate: hidratar UI desde cache local para render instantáneo
@@ -4120,7 +4082,7 @@ function sincronizarDesdeSheets(){
       }
     }
   } catch(e) {}
-  Promise.all([_cargarInfo(), _cargarPanelFB()]).then(function(res){
+  Promise.all([_cargarInfo(), _cargarPanel()]).then(function(res){
     const INFO = res[0];
 
     function _procesarCSV(csv){
@@ -4157,7 +4119,7 @@ function sincronizarDesdeSheets(){
         const esEspecia=['especias','infusiones'].includes(cat.id);
         // Si el panel tiene una foto propia, se usa esa; si no, la de siempre.
         const _fotoPanel=FOTOS_FB[productId];
-        const imgUrl=(_fotoPanel&&_fotoPanel.webp)?_fotoPanel.webp
+        const imgUrl=_fotoPanel?_urlFotoPanel(productId)
           :((inf.imagen||imgPrecios)?_prodImg(productId,500):'');
         const infoText=inf.info||'';
         const sabores=inf.sabores||null;
@@ -4185,7 +4147,7 @@ function sincronizarDesdeSheets(){
       renderCatsUI();
       renderCarruseles();
       hideLoader();
-      _cargarFotosFB();   // las fotos del panel llegan después, sin demorar la primera vista
+      // Las fotos del panel ya vienen resueltas: son archivos, se cargan solas.
       // Cargar recetas en background (no bloquea la UI)
       if (typeof cargarRecetas === 'function') {
         cargarRecetas().then(function() {
@@ -8757,8 +8719,5 @@ window.copiarLinkParaNavegador = function() {
 })();
 </script>
 
-<!-- Panel de la tester: la tienda toma de acá los nombres y las fotos que se editan -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js" defer></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js" defer></script>
 </body>
 </html>
