@@ -474,6 +474,7 @@ body.buscando .busca-fija{display:flex}
     <button class="filtro" data-f="oferta">Con oferta</button>
     <button class="filtro" data-f="fuera">Fuera del catálogo</button>
     <button class="btn" id="btnDesc">Descuento por rubro</button>
+    <button class="btn gris" id="btnSync">Traer del Sheet</button>
   </div>
   <div id="salida" class="cargando">Cargando catálogo...</div>
   <div class="nota">
@@ -641,6 +642,66 @@ async function cargarFichasGuardadas(){
 }
 
 /* Escribe el JSON con todas las fichas y los datos de las fotos. */
+/* Trae la planilla en vivo y actualiza las fichas que nunca se editaron a mano.
+   Sirve para que lo guardado sea copia fiel del Sheet, que es lo que va a quedar
+   el día que se deje de leer la planilla. Lo editado desde el panel NO se pisa. */
+const SHEET_INFO_URL = 'https://docs.google.com/spreadsheets/d/1aANKgaQFoiAixKQvPlRpZ0_PBQhES-iBWqOG1bsuLyg/gviz/tq?tqx=out:csv&sheet=Info';
+
+async function traerDelSheet(){
+  const b = $('btnSync');
+  const antes = b ? b.textContent : '';
+  if (b) { b.disabled = true; b.textContent = 'Leyendo la planilla...'; }
+  try {
+    const r = await fetch(SHEET_INFO_URL + '&t=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const filas = leerCsv(await r.text());
+    if (filas.length < 2) throw new Error('la planilla vino vacía');
+
+    let tocadas = 0, respetadas = 0;
+    const cambios = [];
+    filas.slice(1).forEach(c => {
+      if (c.length < 7) return;
+      const id = limpiaId(c[6]); if (!id) return;
+      const delSheet = {
+        nombre: (c[0] || '').trim(),
+        cantidades: (c[1] || '').trim(),
+        desc: (c[2] || '').trim(),
+        sabores: (c[3] || '').trim(),
+        oferta: parseInt(String(c[7] || '').replace('%', ''), 10) || 0,
+        rubro: (c[9] || '').trim()
+      };
+      if (!delSheet.nombre) return;
+      const actual = FICHAS_FB[id];
+      if (actual && actual.origen === 'panel') { respetadas++; return; }
+      const distinto = !actual || ['nombre','cantidades','desc','sabores','oferta','rubro']
+        .some(k => String(actual[k] || '') !== String(delSheet[k] || ''));
+      if (!distinto) return;
+      if (cambios.length < 6 && actual && actual.cantidades !== delSheet.cantidades)
+        cambios.push(delSheet.nombre.slice(0,28) + ': ' + (actual.cantidades||'-') + ' -> ' + delSheet.cantidades);
+      FICHAS_FB[id] = Object.assign({}, actual || {}, delSheet, {
+        origen: 'sheet', actualizado: new Date().toISOString(), por: 'panel'
+      });
+      tocadas++;
+    });
+
+    if (!tocadas) {
+      alert('Ya estaba todo igual que en la planilla.\n' + respetadas + ' fichas editadas a mano quedaron como estaban.');
+      return;
+    }
+    if (b) b.textContent = 'Guardando ' + tocadas + '...';
+    await guardarFichasEnRepo('Panel: traer ' + tocadas + ' fichas de la planilla');
+    arrancar._ya = false;
+    await arrancar();
+    alert('Listo: ' + tocadas + ' fichas actualizadas desde la planilla.\n' +
+          respetadas + ' editadas a mano quedaron intactas.' +
+          (cambios.length ? '\n\nAlgunos cambios:\n' + cambios.join('\n') : ''));
+  } catch (e) {
+    alert('No se pudo leer la planilla: ' + (e.message || e));
+  } finally {
+    if (b) { b.disabled = false; b.textContent = antes; }
+  }
+}
+
 async function guardarFichasEnRepo(mensaje){
   await guardarEnRepo(ARCHIVO_FICHAS,
     aB64(JSON.stringify({ fichas: FICHAS_FB, fotos: FOTOS_FB,
@@ -1332,6 +1393,7 @@ async function aplicarDescuento(){
 }
 
 $('btnDesc').addEventListener('click', abrirDescuentos);
+$('btnSync').addEventListener('click', traerDelSheet);
 $('dcCerrar').addEventListener('click', cerrarDescuentos);
 $('dcCancelar').addEventListener('click', cerrarDescuentos);
 $('dcAplicar').addEventListener('click', aplicarDescuento);
