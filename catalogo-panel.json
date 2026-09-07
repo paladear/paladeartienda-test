@@ -2691,9 +2691,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/16PznJURYBrA658AwGfRM2tXNLzkz196Y/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.848Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T01:32:50.005Z",
+   "por": "",
+   "mix": true,
+   "granola": true,
+   "blend": false,
+   "fotoPropia": false,
+   "fondo": ""
   },
   "1849": {
    "nombre": "HIBISCUS FLOR",
@@ -5992,5 +5997,5 @@
   }
  },
  "fotos": {},
- "actualizado": "2026-09-07T01:05:17.851Z"
+ "actualizado": "2026-09-07T01:32:50.005Z"
 }
