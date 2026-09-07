@@ -2267,9 +2267,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1U5Jqu_LvImJMk1FQxUZXFHfBOJTdhqU3/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T03:39:44.850Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fcf8f3"
   },
   "1588": {
    "nombre": "SEMOLIN DE TRIGO",
@@ -6020,6 +6025,14 @@
    "ext": "jpg",
    "v": 1788752326601
   },
+  "1587": {
+   "fondo": "#fcf8f3",
+   "w": 700,
+   "h": 700,
+   "peso": 82061,
+   "ext": "jpg",
+   "v": 1788752386400
+  },
   "1842": {
    "fondo": "#fcf9f3",
    "w": 700,
@@ -6037,5 +6050,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T03:39:19.882Z"
+ "actualizado": "2026-09-07T03:39:46.400Z"
 }
