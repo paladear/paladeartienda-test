@@ -1,27 +1,5 @@
 {
  "fichas": {
-  "0": {
-   "nombre": "NULO",
-   "cantidades": "",
-   "desc": "Registro auxiliar interno sin producto asociado.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "1": {
-   "nombre": "VARIOS",
-   "cantidades": "",
-   "desc": "Registro interno para movimientos o artículos varios sin ficha individual.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "1002": {
    "nombre": "ACEITE DE OLIVA X 500 CC - LAUR",
    "cantidades": "1 UNIDAD",
@@ -43,17 +21,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "1005": {
-   "nombre": "MIX CITRICOS",
-   "cantidades": "100G/250G/1KG",
-   "desc": "Mezcla aromática de trozos y cáscaras de cítricos seleccionados, con notas frescas, dulces y levemente amargas. Ideal para preparar infusiones, blends de té y bebidas saborizadas.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/12QBbEObkcuELenw4Hw1i5M2bxaDm3aIy/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1007": {
    "nombre": "ACEITE DE OLIVA X 5 L - RODRIGO DE VIVAR",
@@ -230,17 +197,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "1051": {
-   "nombre": "ACEITUNAS VERDES Nº0 X 500GR - RODRIGO DE VIVAR",
-   "cantidades": "1 UNIDAD",
-   "desc": "Aceitunas verdes grandes, carnosas y de sabor equilibrado, ideales para picadas, ensaladas, panes y platos mediterráneos. Aportan grasas monoinsaturadas y una textura firme muy agradable.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1YSpxUfC3TdhW3OckOg1xnBGCzSHTIX3U/view",
-   "oferta": 15,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1064": {
    "nombre": "ACETO BALSAMICO 500CC - ALCARAZ GOURMET",
@@ -643,17 +599,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "1151": {
-   "nombre": "BICARBONATO DE SODIO X50 GR - INDIAS",
-   "cantidades": "1 UNIDAD",
-   "desc": "Ingrediente versátil que ayuda a regular la acidez y favorece preparaciones más aireadas cuando se combina con ingredientes ácidos. Ideal para repostería, panificados y distintas recetas caseras.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/17575rt-rqMMtAt_utc3qRj5ufJubO4OO/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "1154": {
    "nombre": "BOLDO",
    "cantidades": "50G/250G/1KG",
@@ -719,17 +664,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "1170": {
-   "nombre": "CARAMELOS",
-   "cantidades": "1 UNIDAD",
-   "desc": "Caramelos de sabor agradable y formato práctico, ideales para llevar y disfrutar en cualquier momento. Una opción clásica para sumar un toque dulce al día.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1176": {
    "nombre": "CARDAMOMO",
@@ -1011,17 +945,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "1242": {
-   "nombre": "DATILES DE EGIPTO CON CAROZO",
-   "cantidades": "250G/500G/1KG",
-   "desc": "Dátiles de sabor dulce y textura carnosa, ideales para colaciones, rellenos y preparaciones sin azúcar refinada. Aportan hidratos de carbono, fibra y minerales como potasio y magnesio.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1ggYi4CGKjZ9XCLcLwiXQoKgRtp-IhCP9/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "1244": {
    "nombre": "DULCE DE ALCAYOTA X500 GR - DON FRANCISCO",
    "cantidades": "1 UNIDAD",
@@ -1032,17 +955,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "1251": {
-   "nombre": "SALES DE BAÑO",
-   "cantidades": "1 UNIDAD",
-   "desc": "Sales minerales para disfrutar baños relajantes y momentos de cuidado personal. Ideales para preparar un baño de inmersión o de pies con una experiencia reconfortante.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1ioPvMfu-dbAw-qN9go0VGewIKoWuTAik/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1253": {
    "nombre": "DULCE DE MEMBRILLO X500 GR - MUPAY",
@@ -1087,17 +999,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "1265": {
-   "nombre": "MASTROENI - ESPUMANTE DULCE NATURAL X750 CC",
-   "cantidades": "1 UNIDAD",
-   "desc": "El espumante dulce natural de Mastroeni es un vino de perfil frutado y agradable dulzor. Presenta burbujas suaves y buena frescura. Es ideal para postres o para quienes prefieren opciones más dulces.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1dal4VjBCSTX90h98Q8iopr2Znu-hTM9_/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1269": {
    "nombre": "FECULA DE MANDIOCA",
@@ -1330,17 +1231,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "1308": {
-   "nombre": "HIGOS EN ALMIBAR X3,8 KG - MUPAY",
-   "cantidades": "1 UNIDAD",
-   "desc": "Higos enteros en almíbar, de textura tierna y sabor naturalmente frutal. Ideales para postres, tablas de quesos, helados o para disfrutar solos.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "1309": {
    "nombre": "HIGOS EN ALMIBAR X450 GR - MUPAY",
    "cantidades": "1 UNIDAD",
@@ -1384,17 +1274,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "1317": {
-   "nombre": "INFUSOR PARA TE",
-   "cantidades": "1 UNIDAD",
-   "desc": "Un infusor de té es un accesorio diseñado para contener las hojas de té sueltas (en hebras) mientras se sumergen en agua caliente, permitiendo que el sabor se libere sin que los residuos queden en la taza.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1BlrA_NJ-JowO6ypUPqQ_LVOlAX210o7I/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1319": {
    "nombre": "JENGIBRE GLASEADO",
@@ -1450,17 +1329,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "1351": {
-   "nombre": "LECHE DE ALMENDRAS X 1 L - COCOON",
-   "cantidades": "1 UNIDAD",
-   "desc": "Bebida vegetal de sabor suave, práctica para desayunos, licuados y recetas. Su aporte de proteínas, calcio y azúcares depende de la formulación y del agregado de nutrientes indicado en la etiqueta.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/16mVUrrkYQ7WWD2YJW9mEQjNalKXaBiCD/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1358": {
    "nombre": "LENTEJAS TURCAS",
@@ -1635,17 +1503,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "1384": {
-   "nombre": "MANZANILLA FLOR",
-   "cantidades": "50G/250G/1KG",
-   "desc": "Flores secas de aroma suave y sabor delicado, ideales para preparar una infusión sin cafeína. Su perfil floral invita a disfrutar una taza cálida y reconfortante en cualquier momento.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1QNLQBOe62lw2pV2iskuftZfquII0mtIf/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "1394": {
    "nombre": "MEDALLONES DE DURAZNO",
    "cantidades": "250G/500G/1KG",
@@ -1819,17 +1676,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "1441": {
-   "nombre": "NUEZ CUARTILLO",
-   "cantidades": "250G/500G/1KG",
-   "desc": "Nueces de sabor suave y textura crocante, ideales para colaciones, ensaladas y repostería. Aportan grasas poliinsaturadas, incluido omega 3 vegetal, además de fibra, proteína y minerales.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/14S3MSYxxh2QTPkE9oteOswe1cHG7X6Dl/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1445": {
    "nombre": "NUEZ CUARTOS",
@@ -2184,23 +2030,18 @@
   "1522": {
    "nombre": "PISTACHOS CON CASCARA",
    "cantidades": "250G/500G/1KG",
+   "sabores": "",
    "desc": "Pistachos de sabor delicado y textura crocante, prácticos para colaciones, picadas y repostería. Aportan grasas insaturadas, proteína vegetal, fibra, potasio y vitamina B6.",
-   "sabores": "",
+   "oferta": 0,
+   "mix": false,
+   "granola": false,
+   "blend": false,
    "imagen": "https://drive.google.com/file/d/1NN9wZhH-cezQ5-KsuvBegMHA2zb-MY1p/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "1523": {
-   "nombre": "POLVO PARA HORNEAR X50 GR - INDIAS",
-   "cantidades": "1 UNIDAD",
-   "desc": "Agente leudante que ayuda a lograr tortas, budines, galletas y panificados más aireados y livianos. Se integra fácilmente a las mezclas secas.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1w9damY3bRm1gvLHRwOXX9dDWA0HlenN0/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
+   "oculto": false,
+   "fotoPropia": true,
+   "fondo": "#fcf8f3",
+   "origen": "panel",
+   "actualizado": "2026-09-07T12:14:32.670Z",
    "por": "panel"
   },
   "1525": {
@@ -2268,17 +2109,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "1532": {
-   "nombre": "POROTOS DE SOJA",
-   "cantidades": "250G/500G/1KG",
-   "desc": "Legumbre de sabor suave y gran versatilidad, fuente de proteínas vegetales, fibra y grasas insaturadas. Ideal para guisos, hamburguesas, bebidas vegetales y preparaciones caseras.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1WSc31MWHh-HRvIhrvNhmmhAfTnd15B7E/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1533": {
    "nombre": "POROTOS PALLARES",
@@ -2412,17 +2242,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "1571": {
-   "nombre": "SALSA DE SOJA X180 CC - ALCARAZ GOURMET",
-   "cantidades": "1 UNIDAD",
-   "desc": "Salsa fermentada de sabor salado y umami, ideal para marinadas, arroces y salteados. Aporta profundidad, color y un toque oriental a carnes, vegetales y fideos.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1PAn7aEWgCX6yH7pqg9NMjr3VaqWWthZM/view",
-   "oferta": 15,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "1573": {
    "nombre": "SALSA JALAPEÑO ROJA X180 CC - ALCARAZ GOURMET",
    "cantidades": "1 UNIDAD",
@@ -2433,17 +2252,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "1574": {
-   "nombre": "SALSA SOJA X1 L - FUMEIGA",
-   "cantidades": "1 UNIDAD",
-   "desc": "Salsa fermentada de sabor salado y umami, ideal para marinadas, arroces y salteados. Aporta profundidad, color y un toque oriental a carnes, vegetales y fideos.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1qQsHGWKKEjSAWNU7GUaTFoQHX5ykncDo/view",
-   "oferta": 15,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1575": {
    "nombre": "SALSA TERIYAKI X250 CC - HASHI",
@@ -2615,17 +2423,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "1620": {
-   "nombre": "LA IRIDE - CHAMPAÑA",
-   "cantidades": "1 UNIDAD",
-   "desc": "Espumante de burbuja delicada y perfil fresco, ideal para brindar, acompañar entradas o disfrutar en celebraciones. Servido bien frío realza su carácter vivaz.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "1621": {
    "nombre": "TEXTURIZADO DE SOJA",
    "cantidades": "250G/500G/1KG",
@@ -2769,17 +2566,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "1655": {
-   "nombre": "ZAPALLO EN ALMIBAR X3.8 KG - MUPAY",
-   "cantidades": "1 UNIDAD",
-   "desc": "Zapallo en almíbar de textura tierna y sabor dulce tradicional. Ideal para servir como postre, acompañar quesos o disfrutar en porciones.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "1656": {
    "nombre": "ZAPALLO EN ALMIBAR X360 GR - MUPAY",
    "cantidades": "1 UNIDAD",
@@ -2895,17 +2681,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "1705": {
-   "nombre": "LAS PERDICES - CABERNET SAUVIGNON X750 CC",
-   "cantidades": "1 UNIDAD",
-   "desc": "El Cabernet Sauvignon de Las Perdices es un vino tinto mendocino de perfil clásico, con predominio de frutas negras y especias. Presenta estructura media a alta, taninos firmes y buena persistencia. Es adecuado para acompañar comidas intensas.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1qzciXlfdSuYrO8XqsgqSz7qipQqapWjc/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "1706": {
    "nombre": "LAS PERDICES - SAUVIGNON BLANC X750 CC",
    "cantidades": "1 UNIDAD",
@@ -2916,72 +2691,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "1707": {
-   "nombre": "LAS PERDICES - PARTRIDGE MALBEC X750 CC",
-   "cantidades": "1 UNIDAD",
-   "desc": "l Partridge Malbec de Las Perdices es un vino tinto joven que expresa el carácter frutado típico de la variedad en la región de Agrelo. Presenta buena intensidad de fruta, cuerpo medio y un perfil accesible, pensado para consumo cotidiano. Es una opción versátil, fácil de beber y adaptable a diferentes comidas.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1lE1YjzQ1PvLSgq1Z2DWHq4didlHmJ9kA/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "1708": {
-   "nombre": "LAS PERDICES - PARTRIDGE CHARDONNAY X750 CC",
-   "cantidades": "1 UNIDAD",
-   "desc": "El Partridge Chardonnay de Las Perdices es un vino blanco joven elaborado en Agrelo, Luján de Cuyo, 100% Chardonnay. Presenta un perfil fresco, con notas cítricas y un leve carácter floral, junto a sutiles aportes de su paso por roble. En boca es suave y equilibrado, ideal para acompañar comidas livianas o disfrutar en consumo cotidiano.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1ih-YMa_RJ0Um24RGCWyVFfR15ODm_buj/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "1709": {
-   "nombre": "LAS PERDICES - RESERVA MALBEC X750 CC",
-   "cantidades": "1 UNIDAD",
-   "desc": "El Reserva Malbec de Las Perdices es un vino tinto con crianza en madera que aporta mayor estructura y complejidad. Presenta notas de fruta madura integradas con aportes del roble, logrando un perfil equilibrado y persistente. Es una opción ideal para maridajes intensos y platos elaborados.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1ME72qUpYIFSpK95o2iIVj_TDprTQHt-n/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "1710": {
-   "nombre": "LAS PERDICES - RESERVA CHARDONNAY X750 CC",
-   "cantidades": "1 UNIDAD",
-   "desc": "El Reserva Chardonnay de Las Perdices es un vino blanco de mayor complejidad, elaborado en Agrelo con fermentación y crianza en barricas de roble francés durante 6 meses. Presenta aromas cítricos con notas de tostado, y en boca combina fruta tropical, matices florales y un toque de vainilla. De excelente estructura y textura untuosa, es ideal para acompañar carnes blancas, pescados y frutos de mar.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1Jcg_KrV3r9okXxZ2ZiS7DUciNI6Vzk1c/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "1711": {
-   "nombre": "LAS PERDICES - ALA COLORADA ANCELLOTA X750 CC",
-   "cantidades": "1 UNIDAD",
-   "desc": "Ala Colorada Ancellotta de Las Perdices es un vino tinto mendocino que destaca por su intensidad colorante y concentración aromática. Elaborado con uvas Ancellotta, presenta notas de frutas negras maduras y buena estructura. Es ideal para quienes buscan vinos con carácter y profundidad.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1DxAt8IFnWfkA4Pci_qJ0TNndoaClQgaF/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "1712": {
-   "nombre": "LAS PERDICES - EXTRA BRUT CORTO X750 CC",
-   "cantidades": "1 UNIDAD",
-   "desc": "El Extra Brut de Las Perdices es un vino espumante mendocino de perfil seco, caracterizado por su color amarillo dorado con reflejos brillantes y burbujas finas de buena persistencia. Presenta aromas de miel, almendras, pan tostado y frutas, con una boca suave, equilibrada y de buena acidez. Es una opción elegante y versátil, ideal como aperitivo o para acompañar frutos de mar, ceviches y platos de pescado.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1r76noGBx3eyq-qnZcZnh50zzeDF00yvA/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1716": {
    "nombre": "NUEZ MARIPOSA EXTRA LIGHT",
@@ -3010,17 +2719,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "1783": {
-   "nombre": "TOSTADITAS DE ARROZ - DELICEL",
-   "cantidades": "1 UNIDAD",
-   "desc": "Tostaditas de arroz livianas y crocantes, ideales para desayunos, meriendas o snacks. Se pueden disfrutar solas o acompañadas con untables dulces y salados.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1Sz9Gu4mWnwOdjQew6u_cKox5KCWncp2c/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1789": {
    "nombre": "PETALOS DE ROSA",
@@ -3099,17 +2797,6 @@
    "actualizado": "2026-09-07T01:05:17.850Z",
    "por": ""
   },
-  "1822": {
-   "nombre": "HARINILLA DE MAIZ PARAGUAYA",
-   "cantidades": "250G/500G/1KG",
-   "desc": "Harina fina de maíz, ingrediente tradicional para preparar sopa paraguaya, chipá guazú, polenta, panes y otras recetas. Aporta sabor suave, color dorado y energía proveniente de sus carbohidratos.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1rx-t9NwtNgzUjHfOO-5-RZeN5GpPi6kQ/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "1842": {
    "nombre": "ALMENDRAS NONPAREIL",
    "cantidades": "250G/500G/1KG",
@@ -3181,17 +2868,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "1884": {
-   "nombre": "ALMENDRA GUARA",
-   "cantidades": "250G/500G/1KG",
-   "desc": "Almendras de sabor suave y textura crocante, fuente de proteínas vegetales, fibra, vitamina E y grasas monoinsaturadas. Ideales como snack o para sumar a granolas, ensaladas y repostería.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1OKnlEIbNEdHqr-OyZSrkASU4v0KUHRco/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "1894": {
    "nombre": "ACEITE DE OLIVA X 900ML - VERDE OLIVA",
    "cantidades": "1 UNIDAD",
@@ -3224,17 +2900,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "1898": {
-   "nombre": "LA IRIDE - HUELGA DE AMORES X750 ML",
-   "cantidades": "1 UNIDAD",
-   "desc": "Vino de perfil expresivo y agradable, pensado para compartir y acompañar comidas. Una etiqueta con personalidad para disfrutar en encuentros y ocasiones especiales.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1u0-5x1L28ICM2U9tTulVhMn2vhU1MPJg/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "1900": {
    "nombre": "PROSTASANA X30 COMPRIMIDOS - EL NATURALISTA",
@@ -3357,28 +3022,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "1958": {
-   "nombre": "ALMENDRAS TOSTADA CON ACEITE DE OLIVA Y SAL",
-   "cantidades": "1 UNIDAD",
-   "desc": "Almendras tostadas con aceite de oliva y sal, de textura extra crocante y sabor intenso. Un snack sabroso que aporta proteínas vegetales, fibra y grasas saludables.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "1972": {
-   "nombre": "OREGANO SINERGICO X30 ML - SUPPLY",
-   "cantidades": "1 UNIDAD",
-   "desc": "Extracto concentrado de orégano de perfil herbal intenso, elegido para acompañar rutinas de bienestar. Su presentación líquida resulta práctica y rendidora.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2001": {
    "nombre": "ALMENDRAS CON CHOCOLATE",
    "cantidades": "250G/500G/1KG",
@@ -3422,17 +3065,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "2006": {
-   "nombre": "ACEITERO SPRAY X 200 ML",
-   "cantidades": "1 UNIDAD",
-   "desc": "Rociador reutilizable diseñado para distribuir aceite de manera fina y uniforme. Facilita controlar la cantidad utilizada al cocinar, condimentar o preparar moldes.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1BmbRO-PstyqdU8C4MgNANoGIWNgEzw5Q/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2007": {
    "nombre": "CHIPS DE CHOCOLATE SEMIAMARGO",
@@ -3510,17 +3142,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "2024": {
-   "nombre": "YOGURT CON COLCHON DE FRUTAS X160 - YOGURLAC",
-   "cantidades": "1 UNIDAD",
-   "desc": "Yogur saborizado de textura cremosa, práctico para desayunos y colaciones. Aporta proteína, calcio y cultivos lácticos, con un perfil frutal fresco y agradable.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1PFlV0NsG3YVxDPVF7HUEl1x34SU8eVSI/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2027": {
    "nombre": "ALFAJORES DE MAICENA SIN GLUTEN X6 UNIDADES",
@@ -4017,17 +3638,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2096": {
-   "nombre": "MAPLE JARABE DE ARCE X250 ML - SYRUP",
-   "cantidades": "1 UNIDAD",
-   "desc": "El maple syrup es un endulzante natural obtenido de la savia del arce. Se caracteriza por su sabor suave y acaramelado, ideal para acompañar desayunos y preparaciones dulces. Es una alternativa al azúcar refinado, con aporte de minerales.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/170irm8-Z36RpbZkhy8M3Av8wK2G1DKkk/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2098": {
    "nombre": "STEVIA X100 SOBRES SIN TACC - DULRI",
    "cantidades": "1 UNIDAD",
@@ -4214,17 +3824,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "2125": {
-   "nombre": "COLADOR COMUN ROSE",
-   "cantidades": "1 UNIDAD",
-   "desc": "Colador de diseño práctico y terminación color rose, ideal para filtrar infusiones, té o preparaciones pequeñas. Fácil de usar, limpiar y guardar.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2126": {
    "nombre": "DELANTAL JEAN",
@@ -4523,17 +4122,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2205": {
-   "nombre": "AGAR AGAR",
-   "cantidades": "100G/250G/1KG",
-   "desc": "Gelificante de origen vegetal obtenido de algas, sin sabor y muy versátil. Ideal para preparar gelatinas, postres, salsas y recetas veganas; además aporta fibra de origen vegetal.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1nfDwEzADkkZ_M2syCT1_c39j6E6fHWj1/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2211": {
    "nombre": "POTASIO + MAGNESIO X30 CAPSULAS - EL NATURALISTA",
    "cantidades": "1 UNIDAD",
@@ -4704,17 +4292,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2251": {
-   "nombre": "MORTERO DE MARMOL",
-   "cantidades": "1 UNIDAD",
-   "desc": "Mortero de mármol resistente y estable, ideal para moler especias, semillas, hierbas y preparar aderezos o pastas. Su peso facilita un triturado uniforme.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1Kn9UEGqwFqVtJrciwDf0AHiM8hokko6D/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2256": {
    "nombre": "SPIRULINA EN POLVO",
    "cantidades": "1 UNIDAD",
@@ -4869,28 +4446,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "2282": {
-   "nombre": "ACEITE DE ROMERO X 30ML - SUPPLY",
-   "cantidades": "1 UNIDAD",
-   "desc": "Aceite aromático de romero de perfil herbal y fresco, ideal para sumar a rutinas de masajes y cuidado corporal. Su formato concentrado permite disfrutar de su aroma característico usando pocas gotas.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2285": {
-   "nombre": "MIEL CREMOGENADA  X500 GR - TRES SOLES",
-   "cantidades": "1 UNIDAD",
-   "desc": "Miel trabajada hasta lograr una textura cremosa, uniforme y fácil de untar, conservando su sabor natural. Ideal para tostadas, yogures, frutas e infusiones.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1r83iEtXZ9D9Q_u13fgPxTgTVk245jy0H/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2286": {
    "nombre": "MIEL X500 GR - TRES SOLES",
    "cantidades": "1 UNIDAD",
@@ -4913,17 +4468,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2290": {
-   "nombre": "CERA DE MIEL",
-   "cantidades": "1 UNIDAD",
-   "desc": "Cera natural de abeja de aroma suave y textura maleable, ideal para elaborar velas, bálsamos, envoltorios reutilizables y distintos proyectos artesanales.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2292": {
    "nombre": "CUENCOS DE CERÁMICA",
    "cantidades": "1 UNIDAD",
@@ -4934,17 +4478,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "2293": {
-   "nombre": "ACEITE DE TOMILLO X 30ML - SUPPLY",
-   "cantidades": "1 UNIDAD",
-   "desc": "Aceite aromático de tomillo de perfil herbal e intenso, ideal para masajes y rutinas de cuidado corporal. Su presentación concentrada resulta práctica y rendidora.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2295": {
    "nombre": "RELAX BLEND X50 CAPSULAS - NATIER",
@@ -4979,17 +4512,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "2305": {
-   "nombre": "TARRITOS PARA MATE",
-   "cantidades": "1 UNIDAD",
-   "desc": "Recipientes prácticos para guardar yerba, azúcar, hierbas o complementos del mate. Ayudan a mantener todo ordenado y listo para usar.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2307": {
    "nombre": "MANTELITOS ARTESANALES",
    "cantidades": "1 UNIDAD",
@@ -5011,28 +4533,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "2309": {
-   "nombre": "ESENCIA DE PAN DULCE 60 CC",
-   "cantidades": "1 UNIDAD",
-   "desc": "Esencia aromática especialmente pensada para pan dulce, budines y masas festivas. Aporta notas cálidas y especiadas que realzan el sabor de las preparaciones.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2310": {
-   "nombre": "ESENCIA DE AGUA DE AZAHAR 60 CC",
-   "cantidades": "1 UNIDAD",
-   "desc": "Esencia floral de aroma delicado y cítrico, ideal para perfumar masas, almíbares, budines, panificados y bebidas. Unas pocas gotas aportan un perfil elegante y característico.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1mzh5QK15PYaKWabU9r8NaS9ab1UduMVn/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2311": {
    "nombre": "VITAMINA C X60 COMPRIMIDOS - EL NATURALISTA",
@@ -5089,17 +4589,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2322": {
-   "nombre": "SEN HOJAS",
-   "cantidades": "50G/250G/1KG",
-   "desc": "Hojas de sen seleccionadas para preparar una infusión herbal de sabor intenso. Tradicionalmente elegidas para acompañar rutinas de bienestar digestivo.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1zoARS7yr2QEKuw66reNksJfVez2hGLzK/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2323": {
    "nombre": "ALOE VERA BEBIBLE DIGESTIVO X250 ML - NATIER",
    "cantidades": "1 UNIDAD",
@@ -5132,17 +4621,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "2327": {
-   "nombre": "TOFU ORGANICO 350 GR - SOYANA",
-   "cantidades": "1 UNIDAD",
-   "desc": "Alimento de soja de sabor suave y textura firme, ideal para salteados, marinadas y preparaciones vegetales. Aporta proteína vegetal, grasas insaturadas y minerales en cantidades que dependen del proceso de elaboración.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1HkJPoQjOkzdDEaWYkhpMSF-GwWVKQI60/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2328": {
    "nombre": "BOMBITA DEFUMACION X4 UNIDADES - SAGRADA MADRE",
@@ -5210,28 +4688,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "2337": {
-   "nombre": "MELENA DE LEON 60 ML - SUPPLY",
-   "cantidades": "1 UNIDAD",
-   "desc": "Extracto concentrado de melena de león, hongo funcional elegido para acompañar rutinas de enfoque, claridad y bienestar cotidiano. Su formato líquido permite incorporarlo de manera práctica.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2339": {
-   "nombre": "SCHISANDRA X60 ML - SUPPLY",
-   "cantidades": "1 UNIDAD",
-   "desc": "Extracto concentrado de schisandra, fruto adaptógeno tradicionalmente valorado en rutinas de vitalidad y equilibrio. Su presentación líquida permite incorporarlo de forma práctica.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2346": {
    "nombre": "ACIDO ASCORBICO",
    "cantidades": "250G/500G/1KG",
@@ -5242,17 +4698,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "2347": {
-   "nombre": "TILO EN HOJAS",
-   "cantidades": "100G/250G/1KG",
-   "desc": "Hojas y flores de tilo de aroma suave y delicado, ideales para una infusión reconfortante. Tradicionalmente elegidas para acompañar momentos de calma y descanso.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1yOXQb7t0d69ngQzo9QPaOE4WK8HJlkIs/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2348": {
    "nombre": "POLVO PARA HORNEAR",
@@ -5308,17 +4753,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "2355": {
-   "nombre": "AVENA INSTANTANEA SIN GLUTEN X400 GR - RESPONSABLE",
-   "cantidades": "1 UNIDAD",
-   "desc": "La avena es naturalmente libre de gluten, pero suele contaminarse en el campo o la fábrica. La etiqueta \"Sin Gluten\" garantiza que fue procesada en instalaciones limpias y certificadas.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1ilWhhclEOGB0IAPMDb7ymqNlimn7BHCf/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2364": {
    "nombre": "VINAGRE  DE SIDRA DE MANZANA X500 ML - VERDE VIDA",
@@ -5523,28 +4957,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "2384": {
-   "nombre": "FILTROS PARA CAFE X10 UNIDADES",
-   "cantidades": "1 UNIDAD",
-   "desc": "Filtros descartables para preparar café de forma limpia y práctica. Ayudan a obtener una bebida más clara, reteniendo partículas y facilitando la limpieza.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2385": {
-   "nombre": "CALCIO + VITAMINA D X60 UNIDADES - EL NATURALISTA",
-   "cantidades": "1 UNIDAD",
-   "desc": "Complemento que combina calcio y vitamina D, dos nutrientes que trabajan en conjunto y forman parte del mantenimiento normal de huesos y dientes. Su formato en comprimidos facilita incorporarlo a la rutina diaria.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1QUK8EEKByUJbLDEGGuhHYRGmVQhDwlGh/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2386": {
    "nombre": "ACEITE DE LINO X 150 cc - NUTRA SEM",
    "cantidades": "1 UNIDAD",
@@ -5555,28 +4967,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.847Z",
    "por": ""
-  },
-  "2387": {
-   "nombre": "ACEITE DE LINO X 250 cc - NUTRA SEM",
-   "cantidades": "1 UNIDAD",
-   "desc": "Aceite vegetal de sabor suave, indicado para usar en frío sobre ensaladas, tostadas o preparaciones terminadas. Aporta grasas poliinsaturadas y ácido alfa-linolénico, un tipo de omega 3 de origen vegetal.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1rLGrJu31pwNrrLTwElmBOGFvxJJyOHbV/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2388": {
-   "nombre": "ENVIO",
-   "cantidades": "",
-   "desc": "Registro interno utilizado para cargar el servicio de envío. No corresponde a un producto disponible para la venta.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2392": {
    "nombre": "VERMUT - AQUI Y AHORA",
@@ -5699,28 +5089,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2413": {
-   "nombre": "PSYLLIUM SEMILLA",
-   "cantidades": "100G/250G/1KG",
-   "desc": "Semillas naturalmente ricas en fibra soluble, con gran capacidad de absorción. Pueden incorporarse a yogures, licuados, panes y distintas preparaciones para sumar textura y fibra.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1u9qOS3GDbtdUIKydP8QlcVUcyd_8ah66/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2415": {
-   "nombre": "BLEND DE TE",
-   "cantidades": "100G/250G/1KG",
-   "desc": "Combinación equilibrada de hebras, hierbas, flores o frutas seleccionadas para crear una infusión aromática y con identidad propia. Ideal para disfrutar caliente o fría y descubrir nuevos matices de sabor.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2416": {
    "nombre": "ACETO BALSAMICO X 250CC - MILLAN",
    "cantidades": "1 UNIDAD",
@@ -5743,17 +5111,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2420": {
-   "nombre": "PSYLLIUM MOLIDO",
-   "cantidades": "100G/250G/1KG",
-   "desc": "Fibra vegetal soluble finamente molida, de textura suave y gran capacidad de absorción. Ideal para sumar a yogures, licuados, panes y recetas, y para mejorar la textura de preparaciones sin gluten.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1AIhso6Z-IePh_Kmsd43ueWbMnAKpgKDG/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2421": {
    "nombre": "PALO SANTO X30 GR",
    "cantidades": "1 UNIDAD",
@@ -5775,28 +5132,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "2429": {
-   "nombre": "FRASCO BLEND DE TE - CHICO",
-   "cantidades": "1 UNIDAD",
-   "desc": "Frasco chico diseñado para conservar blends de té, hierbas e infusiones protegidos de la humedad. Su tamaño compacto permite organizar y exhibir cada mezcla de forma prolija.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2430": {
-   "nombre": "FRASCO BLEND DE TE - GRANDE",
-   "cantidades": "1 UNIDAD",
-   "desc": "Frasco grande ideal para guardar y conservar blends de té, hierbas e infusiones. Su capacidad permite mantener una buena cantidad de producto ordenada y protegida.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2432": {
    "nombre": "CLORURO DE MAGNESIO",
@@ -5831,17 +5166,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2437": {
-   "nombre": "TAZA VIDRIO",
-   "cantidades": "1 UNIDAD",
-   "desc": "Taza de vidrio de diseño limpio y versátil, ideal para té, café e infusiones. Permite apreciar el color de la bebida y combina con cualquier mesa.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2439": {
    "nombre": "JARABE DE DATILES - LYNA",
    "cantidades": "1 UNIDAD",
@@ -5864,28 +5188,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2441": {
-   "nombre": "LEVADURA X13 GR - LEVEX",
-   "cantidades": "1 UNIDAD",
-   "desc": "Levadura seca de acción confiable para panes, pizzas, focaccias y masas caseras. Su formato práctico ayuda a lograr preparaciones aireadas y de buen volumen.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1gt-1bLjb6gjjkeTJRfRfLVCLA6Rs_k5b/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2442": {
-   "nombre": "CAJA FUERZA DIVINA",
-   "cantidades": "1 UNIDAD",
-   "desc": "Caja de regalo con una selección especial de productos para sorprender y compartir. Su presentación cuidada la convierte en una opción ideal para ocasiones especiales.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2447": {
    "nombre": "LA IRIDE - ESPUMANTE EXTRA BRUT X 750 CC",
    "cantidades": "1 UNIDAD",
@@ -5896,28 +5198,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "2451": {
-   "nombre": "TETERA REDONDA 800 ML",
-   "cantidades": "1 UNIDAD",
-   "desc": "Tetera redonda de 800 ml, práctica para preparar y servir té o infusiones. Su capacidad es ideal para el uso cotidiano.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2452": {
-   "nombre": "TETERA REDONDA 1L",
-   "cantidades": "1 UNIDAD",
-   "desc": "Tetera redonda de 1 litro, ideal para preparar y servir varias tazas de té o infusiones. Su formato amplio resulta cómodo para compartir.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2455": {
    "nombre": "BANANITAS CON CHOCOLATE",
@@ -5962,17 +5242,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "2460": {
-   "nombre": "BARRA DE CEREAL - INTEGRA",
-   "cantidades": "1 UNIDAD",
-   "desc": "Barra de cereal práctica para una colación o para llevar. Combina cereales e ingredientes seleccionados en un formato cómodo, ideal para disfrutar en cualquier momento.",
-   "sabores": "Arándanos y semillas/cajú y arándanos/banana y nuez",
-   "imagen": "https://drive.google.com/file/d/1I3sXrAbibz4MXrj8IPUAQRXKdqth-LIA/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2463": {
    "nombre": "BISGLICINATO DE MAGNESIO X50 CAPSULAS - NATIER",
@@ -6073,17 +5342,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2475": {
-   "nombre": "CAJA CHOCOLATE",
-   "cantidades": "1 UNIDAD",
-   "desc": "Presentación especial pensada para regalar y disfrutar una selección de chocolates. Una opción cuidada y tentadora para celebraciones, agradecimientos o pequeños gustos.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2476": {
    "nombre": "MOSTAZA CON MIEL ORGANICA X190 GR - ALCARAZ GOURMET",
    "cantidades": "1 UNIDAD",
@@ -6105,28 +5363,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
-  },
-  "2478": {
-   "nombre": "MAITAKE X60 CAPSULAS - SOMOS SETAS",
-   "cantidades": "1 UNIDAD",
-   "desc": "Cápsulas de maitake, hongo funcional tradicionalmente valorado en rutinas de vitalidad y bienestar integral. Una presentación práctica para incorporarlo de manera simple al día a día.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2479": {
-   "nombre": "RHODIOLA X60 CAPSULAS - SOMOS SETAS",
-   "cantidades": "1 UNIDAD",
-   "desc": "Cápsulas de rhodiola, planta adaptógena tradicionalmente elegida para acompañar rutinas de vitalidad, equilibrio y rendimiento cotidiano. Su formato facilita una incorporación práctica.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1q6skpqmawMY2kVSB97YQ38vtfBYGyLzy/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2480": {
    "nombre": "RHODIOLA ROSEA EXTRACTO X60 CC - SOMOS SETAS",
@@ -6161,17 +5397,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "2484": {
-   "nombre": "BARRA DE CEREAL PROTEICA - MUECA",
-   "cantidades": "1 UNIDAD",
-   "desc": "Barra práctica para una colación, formulada con un aporte adicional de proteína. También puede aportar hidratos de carbono, grasas y fibra; los valores y edulcorantes dependen de la variedad.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1nXMBYKQO0h5oN3_D5PytHf4LYrQGF8iM/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2485": {
    "nombre": "ELECTROLITOS X9 GR - SUMA",
    "cantidades": "1 UNIDAD",
@@ -6182,50 +5407,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "2486": {
-   "nombre": "PITA CHIPS DE MASA MADRE - ALMADRE",
-   "cantidades": "1 UNIDAD",
-   "desc": "Chips crocantes elaborados con masa madre, ideales para picadas, dips y snacks. Su textura liviana y sabor tostado combinan muy bien con quesos, hummus y untables.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1q6Qj1vfrxUKkbteBFAUyAX42s3ih5-28/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2487": {
-   "nombre": "CHIPS DE PAPAS - SIN TACC - BOUTIQUE CHIPS",
-   "cantidades": "1 UNIDAD",
-   "desc": "Las papas Boutique Chips son una de las opciones más populares en el mercado de snacks saludables y artesanales.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1oyLAu56tApYKgNFGm2h58eYfvP34Kujj/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2488": {
-   "nombre": "CHIPS DE BATATA - SIN TACC - BOUTIQUE CHIPS",
-   "cantidades": "1 UNIDAD",
-   "desc": "Las Chips de Batata Boutique Chips son una opción de snack gourmet argentina diseñada para quienes buscan alternativas naturales y aptas para celíacos. Se destacan por su textura crujiente y su elaboración artesanal con ingredientes mínimos.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1fPcn3OGtjydPCFO2ROIav_VHPeR6bD0J/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2489": {
-   "nombre": "MANTECA CLARIFICADA GHEE X150 GR - COW'S PURE",
-   "cantidades": "1 UNIDAD",
-   "desc": "El ghee Cow’s Pure es manteca clarificada de alta pureza, apta para dietas sin lactosa. Se destaca por su estabilidad al calor y su sabor suave. Es ideal para cocinar, saltear o untar.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1kFLX7dHd_D-WXBze7oYh-3uuso6egfgs/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "2490": {
    "nombre": "PREMEZCLA SIN TACC UNIVERSAL PANADERIA REPOSTERIA Y PASTAS X500 GR - DELICEL",
@@ -6287,28 +5468,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2497": {
-   "nombre": "BARRA CHOCOLATE MAPRICUBER",
-   "cantidades": "250G/500G/1KG",
-   "desc": "El Chocolate Mapricuber es una marca profesional de la empresa Arcor diseñada específicamente para la repostería y el moldeo artesanal. Se destaca por ser un baño de repostería de uso directo, lo que significa que no requiere templado (atado o atemperado) para obtener un acabado brillante y firme.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1aLfrFpfrLtZr2OHYqMYXUB_JiCQEqg5L/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2501": {
-   "nombre": "ACEITERO SPRAY X 100 ML",
-   "cantidades": "1 UNIDAD",
-   "desc": "Rociador reutilizable diseñado para distribuir aceite de manera fina y uniforme. Facilita controlar la cantidad utilizada al cocinar, condimentar o preparar moldes.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/14hUmwVfVltOyHhOTEDnkOnzCx3muWmZK/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2502": {
    "nombre": "SALSA INGLESA X180 CC - ALCARAZ GOURMET",
    "cantidades": "1 UNIDAD",
@@ -6364,61 +5523,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "2507": {
-   "nombre": "SHITAKE X60 CAPSULAS - SOMOS SETAS",
-   "cantidades": "1 UNIDAD",
-   "desc": "Cápsulas de shiitake, hongo funcional apreciado por su perfil nutricional y su uso tradicional en rutinas de bienestar. Una presentación cómoda para el día a día.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2508": {
-   "nombre": "COLA DE PAVO X60 CAPSULAS - SOMOS SETA",
-   "cantidades": "1 UNIDAD",
-   "desc": "Cápsulas de cola de pavo, un hongo funcional tradicionalmente valorado en rutinas de bienestar integral. Su presentación resulta cómoda y simple para incorporar a la vida cotidiana.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2509": {
-   "nombre": "AVENA SIN GLUTEN 400 GR - BIO",
-   "cantidades": "1 UNIDAD",
-   "desc": "Avena certificada sin gluten, ideal para desayunos, granolas y repostería. Aporta hidratos de carbono complejos, fibra soluble y proteína vegetal, con la misma versatilidad de la avena tradicional.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1VVBGz9tYtvkFt5YfsrR-NhdWsaAiHHIv/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2510": {
-   "nombre": "DULCE DE MEMBRILLO X454 GR - PIZARRO",
-   "cantidades": "1 UNIDAD",
-   "desc": "Dulce de membrillo de textura firme, sabor frutal y dulzor equilibrado. Ideal para acompañar quesos, rellenar pastafrolas o disfrutar en desayunos y meriendas.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1WB9x4IEIWsAQbMrV0NyGvq16COsM_jG_/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "2511": {
-   "nombre": "DULCE BATATA SIN AZUCAR X400 GR - ORIETA",
-   "cantidades": "1 UNIDAD",
-   "desc": "Dulce de batata de textura firme y sabor suave, elaborado sin azúcar agregada. Ideal para postres, rellenos y combinaciones con queso, con el dulzor propio de la fruta.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1RbjjqLrmtLjhpbsYusDczai4yf-tlhRp/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2512": {
    "nombre": "DULCE DE MEMBRILLO SIN AZUCAR X400 GR - ORIETA",
    "cantidades": "1 UNIDAD",
@@ -6441,17 +5545,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "2514": {
-   "nombre": "MIXTURAS",
-   "cantidades": "",
-   "desc": "Combinaciones seleccionadas de hierbas, especias u otros ingredientes, pensadas para crear perfiles de sabor equilibrados y prácticos. Ideales para explorar nuevas preparaciones.",
-   "sabores": "",
-   "imagen": "",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2515": {
    "nombre": "MAYONESA X270GR - MAYOV",
    "cantidades": "1 UNIDAD",
@@ -6463,17 +5556,6 @@
    "actualizado": "2026-09-07T01:05:17.849Z",
    "por": ""
   },
-  "2516": {
-   "nombre": "VELA EN LATA MANDALA CHICA",
-   "cantidades": "1 UNIDAD",
-   "desc": "Vela decorativa y aromática pensada para ambientar espacios con calidez y estilo. Encender sobre una superficie estable y resistente al calor, siempre bajo supervisión.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1dOVl95_PeEs-gJVdf28DGysIz4uxS7sq/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "2517": {
    "nombre": "CHIPA X480 GR - AFG",
    "cantidades": "1 UNIDAD",
@@ -6484,17 +5566,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "4452": {
-   "nombre": "ALMENDRA PARTIDA",
-   "cantidades": "250G/500G/1KG",
-   "desc": "Almendras de sabor suave y textura crocante, prácticas para colaciones, granolas, repostería y ensaladas. Aportan grasas insaturadas, proteína vegetal, fibra, vitamina E y minerales como el magnesio.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1haZ64ESOumYBedGUI0AvxzAmGItSUbYz/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "4453": {
    "nombre": "NUEZ DE BRASIL",
@@ -6578,17 +5649,6 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
-  "4464": {
-   "nombre": "TOMATE DESECADOS CONDIMENTADOS X330 GR - AGROIANNI",
-   "cantidades": "1 UNIDAD",
-   "desc": "Tomates desecados condimentados, de sabor concentrado y textura tierna. Ideales para pastas, pizzas, ensaladas, sándwiches, picadas y panes.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/1i9lz84-8WMdnsX_9ddeyBvGMapvnfsxP/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
   "4465": {
    "nombre": "CORIANDRO ENTERO",
    "cantidades": "50G/250G/1KG",
@@ -6610,28 +5670,6 @@
    "origen": "sheet",
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
-  },
-  "4800": {
-   "nombre": "BOX 1",
-   "cantidades": "1 UNIDAD",
-   "desc": "Selección de productos presentada en un formato listo para regalar. Una propuesta práctica y cuidada para sorprender, compartir o disfrutar una experiencia Paladear.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/19L10Xn1d1-HVnGsrzOPxfvrAl3iQp3GI/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
-  },
-  "4801": {
-   "nombre": "BOX 2",
-   "cantidades": "1 UNIDAD",
-   "desc": "Selección de productos presentada en un formato listo para regalar. Una propuesta práctica y cuidada para sorprender, compartir o disfrutar una experiencia Paladear.",
-   "sabores": "",
-   "imagen": "https://drive.google.com/file/d/13YAEf-xRatYypkXwerKhEz6_xm_j04ng/view",
-   "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T12:12:00.615Z",
-   "por": "panel"
   },
   "5000": {
    "nombre": "CRACKERS MEDITERRANEAS X100GR - SHIVA",
@@ -7230,6 +6268,14 @@
    "ext": "jpg",
    "v": 1788752326601
   },
+  "1522": {
+   "fondo": "#fcf8f3",
+   "w": 700,
+   "h": 700,
+   "peso": 85070,
+   "ext": "jpg",
+   "v": 1788783274580
+  },
   "1587": {
    "fondo": "#fcf8f3",
    "w": 700,
@@ -7303,5 +6349,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T12:12:00.616Z"
+ "actualizado": "2026-09-07T12:14:34.581Z"
 }
