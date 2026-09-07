@@ -226,6 +226,11 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
   /* Botones cómodos para el dedo */
   .btn{min-height:44px;padding:11px 15px;font-size:14px}
   .foto-prev{width:88px;height:88px}
+  /* Mientras se busca, lo único que importa son los resultados: los números y
+     los avisos se guardan para que la lista suba y quede a la vista. */
+  body.buscando .kpis,
+  body.buscando #avisoImportar,
+  body.buscando .barra{display:none}
   /* Que el teclado no tape lo que se está buscando */
   .prod{scroll-margin-top:128px}
   /* La lista arranca justo debajo del buscador */
@@ -1147,6 +1152,7 @@ function buscarAhora(txt, origen){
   if (viejo && origen !== 'viejo') viejo.value = txt;
   const caja = document.querySelector('.busca-fija');
   if (caja) caja.classList.toggle('con-texto', !!BUSCA);
+  document.body.classList.toggle('buscando', !!BUSCA);
   pintar();
 }
 
