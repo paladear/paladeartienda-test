@@ -2692,13 +2692,13 @@
    "imagen": "https://drive.google.com/file/d/16PznJURYBrA658AwGfRM2tXNLzkz196Y/view",
    "oferta": 0,
    "origen": "panel",
-   "actualizado": "2026-09-07T01:32:50.005Z",
-   "por": "",
+   "actualizado": "2026-09-07T02:05:07.246Z",
+   "por": "panel",
    "mix": true,
    "granola": true,
    "blend": false,
-   "fotoPropia": false,
-   "fondo": ""
+   "fotoPropia": true,
+   "fondo": "#fcf9f3"
   },
   "1849": {
    "nombre": "HIBISCUS FLOR",
@@ -5996,6 +5996,15 @@
    "por": ""
   }
  },
- "fotos": {},
- "actualizado": "2026-09-07T01:32:50.005Z"
+ "fotos": {
+  "1842": {
+   "fondo": "#fcf9f3",
+   "w": 700,
+   "h": 700,
+   "peso": 110759,
+   "ext": "jpg",
+   "v": 1788746709429
+  }
+ },
+ "actualizado": "2026-09-07T02:05:09.430Z"
 }
