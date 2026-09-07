@@ -284,7 +284,7 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
         <div class="foto-fila">
           <div class="foto-prev" id="edFotoPrev"><span>sin foto</span></div>
           <div class="foto-acc">
-            <label class="btn gris" for="edFotoFile" id="edFotoElegir">Elegir foto</label>
+            <label class="btn gris" for="edFotoFile">Elegir foto</label>
             <input type="file" id="edFotoFile" accept="image/*" class="foto-input">
             <button type="button" class="btn gris" id="edFotoQuitar" hidden>Quitar</button>
             <div class="foto-info" id="edFotoInfo"></div>
@@ -521,7 +521,7 @@ const pesos = n => '$' + n.toLocaleString('es-AR');
 let PRODUCTOS = [], FILTRO = 'todos', BUSCA = '';
 // Fichas guardadas en el repo. Mandan sobre las del Sheet: si un producto ya se
 // edito desde el panel, esa version es la buena.
-let FICHAS_FB = {}, FICHAS_CSV = {}, USUARIO = null;
+let FICHAS_FB = {}, FICHAS_CSV = {};
 
 // Las fichas viven en un JSON del repo: se leen por HTTP, sin permisos.
 
@@ -728,7 +728,7 @@ async function importar(){
       oferta: f.oferta || 0,
       origen: 'sheet',
       actualizado: new Date().toISOString(),
-      por: (USUARIO && USUARIO.email) || ''
+      por: 'panel'
     };
   });
   try {
@@ -814,7 +814,7 @@ async function decidirRenombre(p, aceptar){
   // En los dos casos se anota el nombre de E-Pyme como "ya revisado", asi la
   // alerta no vuelve a aparecer por el mismo cambio.
   const datos = { nombreEpyme: r.nombre_nuevo, actualizado: new Date().toISOString(),
-                  por: (USUARIO && USUARIO.email) || '' };
+                  por: 'panel' };
   if (aceptar) datos.nombre = r.nombre_nuevo;
   try {
     FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, datos);
@@ -896,7 +896,7 @@ async function guardarFicha(){
     fondo: FOTO_NUEVA ? FOTO_NUEVA.fondo : (FOTO_BORRAR ? '' : ((FOTOS_FB[p.id] && FOTOS_FB[p.id].fondo) || '')),
     origen: 'panel',
     actualizado: new Date().toISOString(),
-    por: (USUARIO && USUARIO.email) || ''
+    por: 'panel'
   };
   if (!datos.nombre) { est.textContent = 'El nombre no puede quedar vacío.'; est.className = 'ed-estado mal'; return; }
   // Si eligió una foto y todavía se está procesando, no dejarlo guardar sin ella.
@@ -1009,7 +1009,7 @@ async function aplicarDescuento(){
   if (!lista.length) return;
   const b = $('dcAplicar'), est = $('dcEstado');
   b.disabled = true; est.textContent = 'Aplicando...'; est.className = 'ed-estado';
-  const lote = {}, cuando = new Date().toISOString(), quien = (USUARIO && USUARIO.email) || '';
+  const lote = {}, cuando = new Date().toISOString(), quien = 'panel';
   lista.forEach(p => {
     lote[p.id + '/oferta'] = pct;
     lote[p.id + '/actualizado'] = cuando;
