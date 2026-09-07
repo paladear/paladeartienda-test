@@ -1565,9 +1565,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1OCCwZkBFZdM5oEWywgt5TXQ1goqX7DwU/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:49:08.507Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fcf9f4"
   },
   "1418": {
    "nombre": "MIX  4 PIMIENTAS",
@@ -6126,6 +6131,14 @@
    "ext": "jpg",
    "v": 1788781728813
   },
+  "1416": {
+   "fondo": "#fcf9f4",
+   "w": 700,
+   "h": 700,
+   "peso": 90200,
+   "ext": "jpg",
+   "v": 1788781750553
+  },
   "1488": {
    "fondo": "#fbf8f3",
    "w": 700,
@@ -6167,5 +6180,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:48:48.813Z"
+ "actualizado": "2026-09-07T11:49:10.554Z"
 }
