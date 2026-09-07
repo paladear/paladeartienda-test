@@ -5303,9 +5303,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1HFCaYgpwpKVnBhVOXTIuLR69SUA3EzXj/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.848Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T03:34:51.266Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": false,
+   "fondo": ""
   },
   "2494": {
    "nombre": "TREMELLA 60 CAPSULAS - SOMOS SETAS",
@@ -5787,14 +5792,9 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1dZUjWQHF6h5rsDysfV-ufxUtCWv5qXtz/view",
    "oferta": 0,
-   "origen": "panel",
-   "actualizado": "2026-09-07T03:01:51.254Z",
-   "por": "panel",
-   "mix": false,
-   "granola": false,
-   "blend": false,
-   "fotoPropia": true,
-   "fondo": "#faf8f2"
+   "origen": "sheet",
+   "actualizado": "2026-09-07T01:05:17.849Z",
+   "por": ""
   },
   "5030": {
    "nombre": "MANTEQUILLA DE MANI CON STEVIA X370 CC - ENTRENUTS",
@@ -6009,15 +6009,7 @@
    "peso": 110759,
    "ext": "jpg",
    "v": 1788746831870
-  },
-  "5029": {
-   "fondo": "#faf8f2",
-   "w": 700,
-   "h": 700,
-   "peso": 129266,
-   "ext": "jpg",
-   "v": 1788750113606
   }
  },
- "actualizado": "2026-09-07T03:01:53.606Z"
+ "actualizado": "2026-09-07T03:34:51.270Z"
 }
