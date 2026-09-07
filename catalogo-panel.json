@@ -1641,9 +1641,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1-roSiofiHxkMmDM-Bd_K_DBgWcXC8Ge0/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:50:30.683Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fcf8f3"
   },
   "1430": {
    "nombre": "MIX TROPICAL",
@@ -6162,6 +6167,14 @@
    "ext": "jpg",
    "v": 1788781791073
   },
+  "1429": {
+   "fondo": "#fcf8f3",
+   "w": 700,
+   "h": 700,
+   "peso": 99983,
+   "ext": "jpg",
+   "v": 1788781832442
+  },
   "1488": {
    "fondo": "#fbf8f3",
    "w": 700,
@@ -6219,5 +6232,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:50:12.270Z"
+ "actualizado": "2026-09-07T11:50:32.442Z"
 }
