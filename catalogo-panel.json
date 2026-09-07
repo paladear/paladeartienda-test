@@ -4771,9 +4771,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1ao2TPp5bV6oht4e9lYmJGp2QLY5VMn9q/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:52:58.031Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fcf8f2"
   },
   "2370": {
    "nombre": "HIPERICO TINTURA MADRE X60 CC - EL NATURALISTA",
@@ -6272,6 +6277,14 @@
    "ext": "jpg",
    "v": 1788781774690
   },
+  "2369": {
+   "fondo": "#fcf8f2",
+   "w": 700,
+   "h": 700,
+   "peso": 84545,
+   "ext": "jpg",
+   "v": 1788781980234
+  },
   "4453": {
    "fondo": "#fcf9f3",
    "w": 700,
@@ -6297,5 +6310,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:52:21.294Z"
+ "actualizado": "2026-09-07T11:53:00.234Z"
 }
