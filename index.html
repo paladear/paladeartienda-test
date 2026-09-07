@@ -8111,6 +8111,34 @@ window.addEventListener('online', function() {
 
 <!-- ══════════ SERVICE WORKER (PWA) ══════════ -->
 <script>
+/* Cuando la tienda está instalada como app no hay barra de direcciones ni botón
+   de recargar. Si se publicó una versión nueva, aparece esta barra abajo. */
+function _avisarVersionNueva(nuevo){
+  if (document.getElementById('avisoVersion')) return;
+  var b = document.createElement('div');
+  b.id = 'avisoVersion';
+  b.innerHTML = '<span>Hay una versión nueva de la tienda</span>' +
+                '<button type="button">Actualizar</button>';
+  b.style.cssText = 'position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));' +
+    'z-index:10050;background:#3d5a72;color:#fff;border-radius:14px;' +
+    'padding:12px 14px;display:flex;align-items:center;gap:10px;' +
+    'box-shadow:0 10px 30px rgba(15,35,55,.35);font-size:14px;font-weight:600;' +
+    'font-family:inherit;animation:avisoSube .25s ease';
+  var btn = b.querySelector('button');
+  btn.style.cssText = 'margin-left:auto;flex:0 0 auto;border:0;border-radius:9px;' +
+    'background:#fff;color:#3d5a72;font-weight:800;font-size:14px;padding:10px 16px;' +
+    'cursor:pointer;font-family:inherit;min-height:42px';
+  btn.addEventListener('click', function(){
+    btn.textContent = 'Actualizando...';
+    try { if (nuevo) nuevo.postMessage({ tipo: 'ACTUALIZAR_YA' }); } catch(e) {}
+    setTimeout(function(){ location.reload(); }, 400);
+  });
+  var st = document.createElement('style');
+  st.textContent = '@keyframes avisoSube{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}';
+  document.head.appendChild(st);
+  document.body.appendChild(b);
+}
+
 (function() {
   if (!('serviceWorker' in navigator)) return;
 
@@ -8121,11 +8149,19 @@ window.addEventListener('online', function() {
     .then(function(reg) {
       console.log('[PWA] Service Worker registrado. Scope:', reg.scope);
 
+      // Al volver a la app (o cada 20 min) se fija si hay algo nuevo publicado.
+      var revisar = function(){ try { reg.update(); } catch(e) {} };
+      document.addEventListener('visibilitychange', function(){
+        if (document.visibilityState === 'visible') revisar();
+      });
+      setInterval(revisar, 20 * 60 * 1000);
+
       reg.addEventListener('updatefound', function() {
         var newWorker = reg.installing;
         newWorker.addEventListener('statechange', function() {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            console.log('[PWA] Nueva versión disponible.');
+            // Instalada como app no hay botón de recargar: se avisa acá.
+            _avisarVersionNueva(newWorker);
           }
         });
       });
