@@ -671,6 +671,8 @@ function abrirEditor(id){
   } else {
     cont.outerHTML = '<div id="edFoto" class="sinf">sin foto</div>';
   }
+  FOTO_NUEVA = null; FOTO_BORRAR = false;
+  pintarFotoEditor(p);
   $('edNombre').value = p.nombre || '';
   $('edCant').value = p.cantidades || '';
   $('edSabores').value = p.sabores || '';
@@ -739,6 +741,51 @@ async function decidirRenombre(p, aceptar){
 
 function cerrarEditor(){ $('editor').classList.remove('abierto'); EDITANDO = null; }
 
+let FOTO_NUEVA = null, FOTO_BORRAR = false;
+
+function pintarFotoEditor(p){
+  const prev = $('edFotoPrev'), info = $('edFotoInfo'), quitar = $('edFotoQuitar');
+  if (!prev) return;
+  const guardada = FOTOS_FB[p.id];
+  const mostrar = FOTO_NUEVA || (!FOTO_BORRAR && guardada) || null;
+  if (mostrar) {
+    prev.innerHTML = '<img src="' + mostrar.webp + '" alt="">';
+    prev.style.background = mostrar.fondo || '#f2f5f8';
+    quitar.hidden = false;
+  } else {
+    prev.innerHTML = '<span>sin foto</span>';
+    prev.style.background = '#f2f5f8';
+    quitar.hidden = true;
+  }
+  if (FOTO_NUEVA) {
+    info.innerHTML = '<b>Lista para guardar.</b><br>' +
+      kb(FOTO_NUEVA.pesoOriginal) + ' &rarr; <b>' + kb(FOTO_NUEVA.peso) + '</b> en WebP &middot; ' +
+      FOTO_NUEVA.w + '&times;' + FOTO_NUEVA.h + '<br>' +
+      '<span class="foto-fondo" style="background:' + FOTO_NUEVA.fondo + '"></span>fondo ' + FOTO_NUEVA.fondo;
+  } else if (FOTO_BORRAR) {
+    info.innerHTML = 'Se quita al guardar.';
+  } else if (guardada) {
+    info.innerHTML = '<b>' + kb(guardada.peso || 0) + '</b> &middot; ' + (guardada.w||'?') + '&times;' + (guardada.h||'?') + '<br>' +
+      '<span class="foto-fondo" style="background:' + (guardada.fondo||'#fff') + '"></span>fondo ' + (guardada.fondo||'-');
+  } else {
+    info.innerHTML = p.foto ? 'Hoy usa la foto de Cloudinary.' : 'Sin foto propia.';
+  }
+}
+
+async function elegirFoto(file){
+  const info = $('edFotoInfo');
+  if (!file) return;
+  info.innerHTML = 'Procesando...';
+  try {
+    FOTO_NUEVA = await optimizarFoto(file);
+    FOTO_BORRAR = false;
+    pintarFotoEditor(EDITANDO);
+  } catch (e) {
+    FOTO_NUEVA = null;
+    info.innerHTML = '<span class="malo">' + (e.message || e) + '</span>';
+  }
+}
+
 async function guardarFicha(){
   if (!EDITANDO) return;
   const p = EDITANDO, b = $('edGuardar'), est = $('edEstado');
@@ -750,6 +797,8 @@ async function guardarFicha(){
     oferta: Math.max(0, Math.min(90, parseInt($('edOferta').value, 10) || 0)),
     mix: $('edMix').checked, granola: $('edGranola').checked, blend: $('edBlend').checked,
     imagen: (FICHAS_FB[p.id] && FICHAS_FB[p.id].imagen) || (FICHAS_CSV[p.id] && FICHAS_CSV[p.id].imagen) || '',
+    fotoPropia: FOTO_NUEVA ? true : (FOTO_BORRAR ? false : !!FOTOS_FB[p.id]),
+    fondo: FOTO_NUEVA ? FOTO_NUEVA.fondo : (FOTO_BORRAR ? '' : ((FOTOS_FB[p.id] && FOTOS_FB[p.id].fondo) || '')),
     origen: 'panel',
     actualizado: new Date().toISOString(),
     por: (USUARIO && USUARIO.email) || ''
@@ -757,13 +806,27 @@ async function guardarFicha(){
   if (!datos.nombre) { est.textContent = 'El nombre no puede quedar vacío.'; est.className = 'ed-estado mal'; return; }
   b.disabled = true; est.textContent = 'Guardando...'; est.className = 'ed-estado';
   try {
+    // La foto va en su propio nodo: así las fichas siguen siendo livianas de leer.
+    if (FOTO_NUEVA) {
+      await refFotos().child(p.id).set({
+        webp: FOTO_NUEVA.webp, fondo: FOTO_NUEVA.fondo,
+        w: FOTO_NUEVA.w, h: FOTO_NUEVA.h, peso: FOTO_NUEVA.peso,
+        actualizado: datos.actualizado, por: datos.por
+      });
+      FOTOS_FB[p.id] = FOTO_NUEVA;
+    } else if (FOTO_BORRAR) {
+      await refFotos().child(p.id).remove();
+      delete FOTOS_FB[p.id];
+    }
     await refFichas().child(p.id).update(datos);
     FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, datos);
     Object.assign(p, {
       nombre: datos.nombre, cantidades: datos.cantidades, sabores: datos.sabores,
       desc: datos.desc, oferta: datos.oferta, mix: datos.mix, granola: datos.granola,
-      blend: datos.blend, editada: true
+      blend: datos.blend, editada: true,
+      foto: datos.fotoPropia || p.foto
     });
+    FOTO_NUEVA = null; FOTO_BORRAR = false;
     est.textContent = 'Guardado'; est.className = 'ed-estado ok';
     pintarKpis(); pintar();
     setTimeout(cerrarEditor, 700);
@@ -881,6 +944,11 @@ document.querySelectorAll('.bandera input').forEach(i =>
 $('edCerrar').addEventListener('click', cerrarEditor);
 $('edCancelar').addEventListener('click', cerrarEditor);
 $('edGuardar').addEventListener('click', guardarFicha);
+$('edFotoElegir').addEventListener('click', () => $('edFotoFile').click());
+$('edFotoFile').addEventListener('change', e => { elegirFoto(e.target.files[0]); e.target.value = ''; });
+$('edFotoQuitar').addEventListener('click', () => {
+  FOTO_NUEVA = null; FOTO_BORRAR = true; pintarFotoEditor(EDITANDO);
+});
 $('editor').addEventListener('click', e => { if (e.target.id === 'editor') cerrarEditor(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { cerrarEditor(); cerrarDescuentos(); } });
 
