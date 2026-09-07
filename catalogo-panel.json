@@ -1467,9 +1467,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1aEl6_09KtMcXJIFFqzh82v3nytZX3UfZ/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:48:24.177Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fcf8f2"
   },
   "1381": {
    "nombre": "MANI TOSTADO SIN SAL",
@@ -6100,6 +6105,14 @@
    "ext": "jpg",
    "v": 1788781688465
   },
+  "1380": {
+   "fondo": "#fcf8f2",
+   "w": 700,
+   "h": 700,
+   "peso": 77450,
+   "ext": "jpg",
+   "v": 1788781706580
+  },
   "1488": {
    "fondo": "#fbf8f3",
    "w": 700,
@@ -6141,5 +6154,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:48:08.465Z"
+ "actualizado": "2026-09-07T11:48:26.580Z"
 }
