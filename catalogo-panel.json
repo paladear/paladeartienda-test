@@ -694,9 +694,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1Xoz8PXa0yjIg4WT0HIART70CGIFopFWP/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.848Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:46:46.910Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fbf8f3"
   },
   "1182": {
    "nombre": "CEBOLLA EN ESCAMAS",
@@ -6035,6 +6040,14 @@
    "ext": "jpg",
    "v": 1788781579629
   },
+  "1180": {
+   "fondo": "#fbf8f3",
+   "w": 700,
+   "h": 700,
+   "peso": 76538,
+   "ext": "jpg",
+   "v": 1788781608579
+  },
   "1488": {
    "fondo": "#fbf8f3",
    "w": 700,
@@ -6076,5 +6089,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:46:19.630Z"
+ "actualizado": "2026-09-07T11:46:48.579Z"
 }
