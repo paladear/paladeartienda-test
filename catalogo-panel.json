@@ -1679,19 +1679,21 @@
   },
   "1445": {
    "nombre": "NUEZ CUARTOS",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Nueces de sabor suave y textura crocante, ideales para colaciones, ensaladas y repostería. Aportan grasas poliinsaturadas, incluido omega 3 vegetal, además de fibra, proteína y minerales.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1RyQfFCD3Rz7nBnh11Udnd-ziuNEtWWL-/view",
    "oferta": 0,
    "origen": "panel",
-   "actualizado": "2026-09-07T11:51:33.649Z",
+   "actualizado": "2026-09-07T12:31:28.421Z",
    "por": "panel",
    "mix": false,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fbf8f2"
+   "fondo": "#fbf8f2",
+   "rubro": "FRUTOS SECOS",
+   "oculto": false
   },
   "1446": {
    "nombre": "NUEZ CON CASCARA",
@@ -6349,5 +6351,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T12:14:34.581Z"
+ "actualizado": "2026-09-07T12:31:28.421Z"
 }
