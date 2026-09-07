@@ -1392,9 +1392,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1w8K6DYN0lCj_gFSuXDq3dJ_uV1nPv9cf/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:47:18.413Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fbf8f2"
   },
   "1366": {
    "nombre": "MAIZ PSINGALLO",
@@ -6048,6 +6053,14 @@
    "ext": "jpg",
    "v": 1788781608579
   },
+  "1365": {
+   "fondo": "#fbf8f2",
+   "w": 700,
+   "h": 700,
+   "peso": 87302,
+   "ext": "jpg",
+   "v": 1788781640933
+  },
   "1488": {
    "fondo": "#fbf8f3",
    "w": 700,
@@ -6089,5 +6102,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:46:48.579Z"
+ "actualizado": "2026-09-07T11:47:20.934Z"
 }
