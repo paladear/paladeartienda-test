@@ -479,7 +479,8 @@ setTimeout(async function(){
 const CLOUD = 'hswu4zpv';
 // Fotos propias del panel (archivos del repo). Mandan sobre las de Cloudinary.
 let FOTOS_FB = {};   // { id: {fondo,w,h,peso,v} } — la imagen es fotos/<id>.webp
-const urlFoto = id => CARPETA_FOTOS + '/' + id + '.webp?v=' + ((FOTOS_FB[id] && FOTOS_FB[id].v) || 1);
+const urlFoto = id => CARPETA_FOTOS + '/' + id + '.' + ((FOTOS_FB[id] && FOTOS_FB[id].ext) || 'webp')
+  + '?v=' + ((FOTOS_FB[id] && FOTOS_FB[id].v) || 1);
 const imgDe = id => FOTOS_FB[id]
   ? urlFoto(id)
   : ('https://res.cloudinary.com/' + CLOUD + '/image/upload/f_auto,q_auto,w_140/' + id);
@@ -573,26 +574,51 @@ function _colorDeFondo(ctx, w, h){
 
 function optimizarFoto(file){
   return new Promise((resolve, reject) => {
-    if (!file.type.startsWith('image/')) return reject(new Error('Eso no es una imagen.'));
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = () => {
-      URL.revokeObjectURL(url);
-      const escala = Math.min(1, FOTO_LADO / Math.max(img.naturalWidth, img.naturalHeight));
-      const w = Math.max(1, Math.round(img.naturalWidth * escala));
-      const h = Math.max(1, Math.round(img.naturalHeight * escala));
-      const c = document.createElement('canvas');
-      c.width = w; c.height = h;
-      const ctx = c.getContext('2d', { willReadFrequently: true });
-      ctx.drawImage(img, 0, 0, w, h);
-      const fondo = _colorDeFondo(ctx, w, h);
-      const webp = c.toDataURL('image/webp', FOTO_CALIDAD);
-      if (webp.indexOf('data:image/webp') !== 0)
-        return reject(new Error('Este navegador no sabe guardar en WebP.'));
-      resolve({ webp, fondo, w, h, pesoOriginal: file.size, peso: Math.round(webp.length * 0.75) });
-    };
-    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('No se pudo leer la imagen.')); };
-    img.src = url;
+    if (!file) return reject(new Error('No llegó ninguna foto.'));
+    if (file.type && file.type.indexOf('image/') !== 0)
+      return reject(new Error('Eso no parece una foto (' + (file.type || 'sin tipo') + ').'));
+
+    function trabajar(fuente, ancho, alto){
+      try {
+        const escala = Math.min(1, FOTO_LADO / Math.max(ancho, alto));
+        const w = Math.max(1, Math.round(ancho * escala));
+        const h = Math.max(1, Math.round(alto * escala));
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        const ctx = c.getContext('2d', { willReadFrequently: true });
+        ctx.drawImage(fuente, 0, 0, w, h);
+        const fondo = _colorDeFondo(ctx, w, h);
+
+        // WebP es lo mejor, pero los iPhone anteriores a iOS 16.4 no lo saben
+        // generar. En ese caso se guarda JPG: pesa un poco más y funciona igual.
+        let datos = c.toDataURL('image/webp', FOTO_CALIDAD);
+        let ext = 'webp';
+        if (datos.indexOf('data:image/webp') !== 0) {
+          datos = c.toDataURL('image/jpeg', 0.86);
+          ext = 'jpg';
+          if (datos.indexOf('data:image/jpeg') !== 0)
+            return reject(new Error('Este navegador no pudo preparar la foto.'));
+        }
+        resolve({ webp: datos, ext: ext, fondo, w, h,
+                  pesoOriginal: file.size, peso: Math.round(datos.length * 0.75) });
+      } catch(e) { reject(new Error('No se pudo preparar la foto: ' + (e.message || e))); }
+    }
+
+    // createImageBitmap entiende más formatos del celular (HEIC incluido).
+    if (typeof createImageBitmap === 'function') {
+      createImageBitmap(file)
+        .then(bm => trabajar(bm, bm.width, bm.height))
+        .catch(() => porImagen());
+    } else porImagen();
+
+    function porImagen(){
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+      img.onload = () => { URL.revokeObjectURL(url); trabajar(img, img.naturalWidth, img.naturalHeight); };
+      img.onerror = () => { URL.revokeObjectURL(url);
+        reject(new Error('El navegador no pudo abrir esa foto. Probá sacarle una captura o elegir otra.')); };
+      img.src = url;
+    }
   });
 }
 
@@ -851,7 +877,8 @@ function pintarFotoEditor(p){
   }
   if (FOTO_NUEVA) {
     info.innerHTML = '<b>Lista para guardar.</b><br>' +
-      kb(FOTO_NUEVA.pesoOriginal) + ' &rarr; <b>' + kb(FOTO_NUEVA.peso) + '</b> en WebP &middot; ' +
+      kb(FOTO_NUEVA.pesoOriginal) + ' &rarr; <b>' + kb(FOTO_NUEVA.peso) + '</b> en ' +
+      (FOTO_NUEVA.ext === 'jpg' ? 'JPG' : 'WebP') + ' &middot; ' +
       FOTO_NUEVA.w + '&times;' + FOTO_NUEVA.h + '<br>' +
       '<span class="foto-fondo" style="background:' + FOTO_NUEVA.fondo + '"></span>fondo ' + FOTO_NUEVA.fondo;
   } else if (FOTO_BORRAR) {
@@ -866,16 +893,20 @@ function pintarFotoEditor(p){
 
 async function elegirFoto(file){
   const info = $('edFotoInfo');
-  if (!file) return;
+  function decir(html){ if (info) info.innerHTML = html; }
+  if (!file) { decir('<span class="malo">No llegó ninguna foto del teléfono.</span>'); return; }
+  if (!EDITANDO) { decir('<span class="malo">Abrí primero un producto.</span>'); return; }
   FOTO_PROCESANDO = true;
-  info.innerHTML = 'Preparando la foto...';
+  decir('Preparando la foto...');
   try {
     FOTO_NUEVA = await optimizarFoto(file);
     FOTO_BORRAR = false;
     pintarFotoEditor(EDITANDO);
   } catch (e) {
     FOTO_NUEVA = null;
-    info.innerHTML = '<span class="malo">No se pudo usar esa foto: ' + (e.message || e) + '</span>';
+    decir('<span class="malo">' + (e.message || e) + '</span>');
+    // Si el editor estuviera cerrado, que igual se entere de que falló.
+    if (!info) alert('No se pudo usar esa foto: ' + (e.message || e));
   } finally {
     FOTO_PROCESANDO = false;
   }
@@ -909,11 +940,11 @@ async function guardarFicha(){
     // La foto se sube como archivo al repo; el JSON sólo guarda sus datos.
     if (FOTO_NUEVA) {
       est.textContent = 'Subiendo la foto...';
-      await guardarEnRepo(CARPETA_FOTOS + '/' + p.id + '.webp',
+      await guardarEnRepo(CARPETA_FOTOS + '/' + p.id + '.' + (FOTO_NUEVA.ext || 'webp'),
         FOTO_NUEVA.webp.split(',')[1],
         'Foto de ' + datos.nombre + ' (art. ' + p.id + ')');
       FOTOS_FB[p.id] = { fondo: FOTO_NUEVA.fondo, w: FOTO_NUEVA.w, h: FOTO_NUEVA.h,
-                         peso: FOTO_NUEVA.peso, v: Date.now() };
+                         peso: FOTO_NUEVA.peso, ext: FOTO_NUEVA.ext || 'webp', v: Date.now() };
     } else if (FOTO_BORRAR) {
       delete FOTOS_FB[p.id];
     }
