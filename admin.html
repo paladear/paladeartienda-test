@@ -197,7 +197,7 @@
 
 /* Tocar dos veces no agranda la página */
 html,body{touch-action:manipulation}
-button,.btn,input,select,label,.tarj,.chip{touch-action:manipulation}
+button,.btn,input,select,label,.prod,.chip,.filtro{touch-action:manipulation}
 
 /* El buscador va fijo arriba: administrar precios es, sobre todo, buscar. */
 .busca-fija{position:sticky;top:0;z-index:60;display:flex;gap:8px;align-items:center;
@@ -227,7 +227,9 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
   .btn{min-height:44px;padding:11px 15px;font-size:14px}
   .foto-prev{width:88px;height:88px}
   /* Que el teclado no tape lo que se está buscando */
-  .tarj{scroll-margin-top:132px}
+  .prod{scroll-margin-top:128px}
+  /* La lista arranca justo debajo del buscador */
+  #lista,.lista{scroll-margin-top:120px}
 }
 </style>
 </head>
