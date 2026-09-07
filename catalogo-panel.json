@@ -5957,9 +5957,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1L6DE-kS8DdyzVqNfsNGErBmOR4jwCai9/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T03:39:18.189Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fdf9f4"
   },
   "5045": {
    "nombre": "DIFUSORES TAO 150ml",
@@ -6022,7 +6027,15 @@
    "peso": 110759,
    "ext": "jpg",
    "v": 1788746831870
+  },
+  "5044": {
+   "fondo": "#fdf9f4",
+   "w": 700,
+   "h": 700,
+   "peso": 99746,
+   "ext": "jpg",
+   "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T03:38:46.602Z"
+ "actualizado": "2026-09-07T03:39:19.882Z"
 }
