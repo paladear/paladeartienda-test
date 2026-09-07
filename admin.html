@@ -304,6 +304,23 @@ body.buscando .busca-fija{display:flex}
 .prod.en-catalogo{border-left:4px solid #2fa36b}
 .prod.fuera-catalogo{border-left:4px solid #d8a72e;background:#fffdf5}
 .prod.fuera-catalogo .nom{color:#6d5a22}
+
+/* ── Cantidades como botones ── */
+.medidas{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.medida{min-height:42px;padding:9px 15px;border:1.5px solid #cfd8e0;border-radius:10px;
+  background:#fff;color:#41505f;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s}
+.medida:hover{border-color:#9db6cc}
+.medida.on{background:#2c7a8c;border-color:#2c7a8c;color:#fff}
+.medida.apagada{opacity:.4}
+.medidas-sep{width:1px;height:26px;background:#dde4ea;margin:0 3px}
+.medidas-otro{margin-top:8px;font-size:12.5px;color:#6b7885}
+.medidas-otro b{color:#1f2d3a}
+#edRubro{width:100%;font:inherit;font-size:15px;padding:11px 12px;border:1px solid #cfd8e0;
+  border-radius:10px;background:#fff;color:#1f2d3a;-webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235d6b7a' stroke-width='1.7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center}
+#edRubro:focus{outline:none;border-color:#7aa2c4;box-shadow:0 0 0 3px rgba(122,162,196,.22)}
 </style>
 </head>
 <body>
@@ -365,8 +382,14 @@ body.buscando .busca-fija{display:flex}
         <input id="edNombre" maxlength="120">
       </div>
       <div class="campo">
-        <label for="edCant">Cantidades <span class="ayuda">— separadas por barra. Ej: 250G / 500G / 1KG</span></label>
-        <input id="edCant" maxlength="120">
+        <label for="edRubro">Rubro <span class="ayuda">— la categoría donde aparece en la tienda</span></label>
+        <select id="edRubro"></select>
+      </div>
+      <div class="campo">
+        <label>Cantidades <span class="ayuda">— tocá las medidas que se venden</span></label>
+        <div class="medidas" id="edMedidas"></div>
+        <input id="edCant" maxlength="120" hidden>
+        <div class="medidas-otro" id="edMedidasOtro"></div>
       </div>
       <div class="campo">
         <label for="edSabores">Sabores <span class="ayuda">— opcional, separados por barra</span></label>
@@ -892,6 +915,8 @@ function abrirEditor(id){
     cont.outerHTML = '<div id="edFoto" class="sinf">sin foto</div>';
   }
   FOTO_NUEVA = null; FOTO_BORRAR = false;
+  pintarRubroEditor(p);
+  pintarMedidas(p.cantidades || '');
   pintarEnCatalogo(p);
   pintarFotoEditor(p);
   $('edNombre').value = p.nombre || '';
@@ -979,6 +1004,65 @@ function cerrarEditor(desdeAtras){
 }
 
 let FOTO_NUEVA = null, FOTO_BORRAR = false, FOTO_PROCESANDO = false;
+
+/* Rubro: se elige entre los que ya existen, para no inventar nombres nuevos. */
+function pintarRubroEditor(p){
+  const sel = $('edRubro');
+  if (!sel) return;
+  const rubros = {};
+  PRODUCTOS.forEach(x => { const r = (x.rubro || '').trim(); if (r) rubros[r] = 1; });
+  const lista = Object.keys(rubros).sort((a, b) => a.localeCompare(b, 'es'));
+  const actual = (p.rubro || '').trim();
+  sel.innerHTML = '<option value="">- sin rubro -</option>' +
+    lista.map(r => '<option value="' + esc(r) + '"' + (r === actual ? ' selected' : '') + '>' + esc(r) + '</option>').join('');
+}
+
+/* Cantidades con botones en vez de texto libre: así no se cuelan errores de
+   tipeo (como el "1K" al que le faltaba la G). "1 unidad" es excluyente. */
+const MEDIDAS = ['50G', '100G', '250G', '500G', '1KG'];
+let MEDIDAS_SEL = [];
+
+function pintarMedidas(txt){
+  const partes = String(txt || '').split('/').map(x => x.trim()).filter(Boolean);
+  const esUnidad = partes.some(x => /unidad/i.test(x));
+  MEDIDAS_SEL = esUnidad ? ['1 UNIDAD'] : partes.map(x => x.toUpperCase().replace(/\s+/g, ''));
+  dibujarMedidas();
+}
+
+function dibujarMedidas(){
+  const cont = $('edMedidas');
+  if (!cont) return;
+  const unidad = MEDIDAS_SEL.indexOf('1 UNIDAD') > -1;
+  cont.innerHTML =
+    '<button type="button" class="medida' + (unidad ? ' on' : '') + '" data-m="1 UNIDAD">1 unidad</button>' +
+    '<span class="medidas-sep"></span>' +
+    MEDIDAS.map(m => '<button type="button" class="medida' +
+      (!unidad && MEDIDAS_SEL.indexOf(m) > -1 ? ' on' : '') +
+      (unidad ? ' apagada' : '') + '" data-m="' + m + '">' + m.toLowerCase() + '</button>').join('');
+  const raras = MEDIDAS_SEL.filter(m => m !== '1 UNIDAD' && MEDIDAS.indexOf(m) < 0);
+  const otro = $('edMedidasOtro');
+  if (otro) otro.innerHTML = raras.length ? 'Además tiene: <b>' + raras.map(esc).join(' / ') + '</b>' : '';
+  const inp = $('edCant');
+  if (inp) inp.value = textoMedidas();
+  cont.querySelectorAll('.medida').forEach(b => b.addEventListener('click', function(){
+    const m = this.dataset.m;
+    if (m === '1 UNIDAD') {
+      MEDIDAS_SEL = unidad ? [] : ['1 UNIDAD'];
+    } else {
+      MEDIDAS_SEL = MEDIDAS_SEL.filter(x => x !== '1 UNIDAD');
+      const i = MEDIDAS_SEL.indexOf(m);
+      if (i > -1) MEDIDAS_SEL.splice(i, 1); else MEDIDAS_SEL.push(m);
+    }
+    dibujarMedidas();
+  }));
+}
+
+/* Se guardan de la más chica a la más grande, con el formato de siempre. */
+function textoMedidas(){
+  if (MEDIDAS_SEL.indexOf('1 UNIDAD') > -1) return '1 UNIDAD';
+  const peso = m => { const n = parseFloat(m); return /KG/i.test(m) ? n * 1000 : n; };
+  return MEDIDAS_SEL.slice().sort((a, b) => peso(a) - peso(b)).join('/');
+}
 
 /* Muestra si el producto se ve o no en la tienda, y deja sacarlo o volverlo a poner. */
 function pintarEnCatalogo(p){
@@ -1070,7 +1154,8 @@ async function guardarFicha(){
   const p = EDITANDO, b = $('edGuardar'), est = $('edEstado');
   const datos = {
     nombre: $('edNombre').value.trim(),
-    cantidades: $('edCant').value.trim(),
+    cantidades: textoMedidas(),
+    rubro: $('edRubro') ? $('edRubro').value : '',
     sabores: $('edSabores').value.trim(),
     desc: $('edDesc').value.trim(),
     oferta: Math.max(0, Math.min(90, parseInt($('edOferta').value, 10) || 0)),
@@ -1108,6 +1193,7 @@ async function guardarFicha(){
     await guardarFichasEnRepo('Panel: ' + datos.nombre + ' (art. ' + p.id + ')');
     Object.assign(p, {
       nombre: datos.nombre, cantidades: datos.cantidades, sabores: datos.sabores,
+      rubro: datos.rubro || p.rubro,
       desc: datos.desc, oferta: datos.oferta, mix: datos.mix, granola: datos.granola,
       blend: datos.blend, editada: true,
       oculto: datos.oculto,
