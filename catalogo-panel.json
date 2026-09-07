@@ -1684,9 +1684,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1RyQfFCD3Rz7nBnh11Udnd-ziuNEtWWL-/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:51:33.649Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fbf8f2"
   },
   "1446": {
    "nombre": "NUEZ CON CASCARA",
@@ -6193,6 +6198,14 @@
    "ext": "jpg",
    "v": 1788781857020
   },
+  "1445": {
+   "fondo": "#fbf8f2",
+   "w": 700,
+   "h": 700,
+   "peso": 89051,
+   "ext": "jpg",
+   "v": 1788781896547
+  },
   "1446": {
    "fondo": "#fcf8f2",
    "w": 700,
@@ -6258,5 +6271,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:51:19.755Z"
+ "actualizado": "2026-09-07T11:51:36.547Z"
 }
