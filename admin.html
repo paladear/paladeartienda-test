@@ -228,9 +228,10 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
   .foto-prev{width:88px;height:88px}
   /* Mientras se busca, lo único que importa son los resultados: los números y
      los avisos se guardan para que la lista suba y quede a la vista. */
+  body.buscando #kpis,
   body.buscando .kpis,
   body.buscando #avisoImportar,
-  body.buscando .barra{display:none}
+  body.buscando .barra{display:none!important}
   /* Que el teclado no tape lo que se está buscando */
   .prod{scroll-margin-top:128px}
   /* La lista arranca justo debajo del buscador */
