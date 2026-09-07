@@ -444,7 +444,6 @@ body.buscando .busca-fija{display:flex}
   <div id="avisoImportar"></div>
   <div class="tarjetas" id="kpis"></div>
   <div class="barra">
-    <input id="buscar" placeholder="Buscar por nombre o número de artículo...">
     <button class="filtro on" data-f="todos">Todos</button>
     <button class="filtro" data-f="pendientes">Pendientes</button>
     <button class="filtro" data-f="sinfoto">Sin foto</button>
@@ -1394,24 +1393,18 @@ document.querySelectorAll('.filtro').forEach(b => b.addEventListener('click', ()
 }));
 /* Hay dos cajas de búsqueda: la fija de arriba (la que se usa desde el celular) y
    la de los filtros. Escriben la misma búsqueda y se copian el texto entre ellas. */
-function buscarAhora(txt, origen){
+function buscarAhora(txt){
   BUSCA = (txt || '').trim();
-  const fijo = document.getElementById('buscarFijo');
-  const viejo = document.getElementById('buscar');
-  if (fijo && origen !== 'fijo') fijo.value = txt;
-  if (viejo && origen !== 'viejo') viejo.value = txt;
   const caja = document.querySelector('.busca-fija');
   if (caja) caja.classList.toggle('con-texto', !!BUSCA);
   document.body.classList.toggle('buscando', !!BUSCA);
   pintar();
 }
 
-document.getElementById('buscar').addEventListener('input', e => buscarAhora(e.target.value, 'viejo'));
-
 (function(){
   const fijo = document.getElementById('buscarFijo');
   if (!fijo) return;
-  fijo.addEventListener('input', e => buscarAhora(e.target.value, 'fijo'));
+  fijo.addEventListener('input', e => buscarAhora(e.target.value));
   // Al tocar el buscador, la lista sube hasta debajo de la caja: así el teclado
   // del teléfono no tapa los productos que van apareciendo.
   fijo.addEventListener('focus', function(){
@@ -1427,7 +1420,7 @@ document.getElementById('buscar').addEventListener('input', e => buscarAhora(e.t
     if (e.key === 'Enter') fijo.blur();   // cierra el teclado y deja ver la lista entera
   });
   const x = document.getElementById('buscarX');
-  if (x) x.addEventListener('click', function(){ buscarAhora('', ''); fijo.focus(); });
+  if (x) x.addEventListener('click', function(){ buscarAhora(''); fijo.focus(); });
 })();
 </script>
 </body>
