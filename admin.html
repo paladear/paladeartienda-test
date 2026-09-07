@@ -270,6 +270,21 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
   display:inline-flex;align-items:center}
 .btn-tienda:hover{filter:brightness(1.08)}
 @media(max-width:700px){ .btn-tienda{padding:9px 11px;font-size:12px} }
+
+/* El buscador fijo ahora lleva también el filtro por rubro */
+.busca-fija{flex-direction:column;align-items:stretch;gap:8px}
+.busca-linea{display:flex;gap:8px;align-items:center;position:relative}
+.busca-linea input{flex:1;min-width:0}
+#filtroRubro{width:100%;font:inherit;font-size:15px;padding:11px 12px;
+  border:1px solid #cfd8e0;border-radius:10px;background:#fff;color:#1f2d3a;
+  -webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235d6b7a' stroke-width='1.7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center}
+#filtroRubro:focus{outline:none;border-color:#7aa2c4;box-shadow:0 0 0 3px rgba(122,162,196,.22)}
+/* Si hay un rubro elegido, el selector queda marcado */
+body.por-rubro #filtroRubro{border-color:#7aa2c4;background-color:#f2f8fc;font-weight:650}
+/* Al buscar se esconden los números, pero el filtro de rubro se queda */
+body.buscando .busca-fija{display:flex}
 </style>
 </head>
 <body>
@@ -398,8 +413,13 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
 
 <main>
 <div class="busca-fija">
-  <input id="buscarFijo" placeholder="Buscar producto o número de artículo" autocomplete="off" enterkeyhint="search">
-  <button type="button" class="busca-x" id="buscarX" aria-label="Borrar">&times;</button>
+  <div class="busca-linea">
+    <input id="buscarFijo" placeholder="Buscar producto o número de artículo" autocomplete="off" enterkeyhint="search">
+    <button type="button" class="busca-x" id="buscarX" aria-label="Borrar">&times;</button>
+  </div>
+  <select id="filtroRubro" aria-label="Filtrar por rubro">
+    <option value="">Todos los rubros</option>
+  </select>
 </div>
   <div id="avisoImportar"></div>
   <div class="tarjetas" id="kpis"></div>
@@ -558,7 +578,7 @@ const aNum = v => {
 };
 const pesos = n => '$' + n.toLocaleString('es-AR');
 
-let PRODUCTOS = [], FILTRO = 'todos', BUSCA = '';
+let PRODUCTOS = [], FILTRO = 'todos', BUSCA = '', RUBRO = '';
 // Fichas guardadas en el repo. Mandan sobre las del Sheet: si un producto ya se
 // edito desde el panel, esa version es la buena.
 let FICHAS_FB = {}, FICHAS_CSV = {};
@@ -1174,12 +1194,31 @@ function pintarKpis(){
 function esc(s){ return String(s == null ? '' : s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
+/* Los rubros salen del propio catálogo, con la cuenta de productos de cada uno.
+   Se arma una sola vez: si no, se perdería lo elegido en cada repintado. */
+function llenarRubros(){
+  const sel = document.getElementById('filtroRubro');
+  if (!sel || sel.dataset.listo === '1' || !PRODUCTOS.length) return;
+  const cuenta = {};
+  PRODUCTOS.forEach(p => { const r = p.rubro || ''; if (r) cuenta[r] = (cuenta[r] || 0) + 1; });
+  const rubros = Object.keys(cuenta).sort((a, b) => a.localeCompare(b, 'es'));
+  sel.innerHTML = '<option value="">Todos los rubros (' + PRODUCTOS.length + ')</option>' +
+    rubros.map(r => '<option value="' + esc(r) + '">' + esc(r) + ' (' + cuenta[r] + ')</option>').join('');
+  sel.dataset.listo = '1';
+  sel.addEventListener('change', function(){
+    RUBRO = this.value;
+    document.body.classList.toggle('por-rubro', !!RUBRO);
+    pintar();
+  });
+}
+
 function pintar(){
   let lista = PRODUCTOS.slice();
   if (FILTRO === 'pendientes') lista = lista.filter(p => p.nuevo || hayRenombre(p) || p.malRubro);
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
   if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
   if (FILTRO === 'oferta')     lista = lista.filter(p => p.oferta > 0);
+  if (RUBRO)                   lista = lista.filter(p => (p.rubro || '') === RUBRO);
   if (BUSCA) {
     const q = BUSCA.toLowerCase();
     lista = lista.filter(p => p.nombre.toLowerCase().includes(q) || p.id.includes(q));
@@ -1190,6 +1229,7 @@ function pintar(){
     return pa !== pb ? pa - pb : a.nombre.localeCompare(b.nombre, 'es');
   });
 
+  llenarRubros();
   const cont = document.getElementById('salida');
   if (!lista.length) {
     cont.className = 'vacio';
