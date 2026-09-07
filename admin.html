@@ -833,7 +833,7 @@ async function decidirRenombre(p, aceptar){
 
 function cerrarEditor(){ $('editor').classList.remove('abierto'); EDITANDO = null; }
 
-let FOTO_NUEVA = null, FOTO_BORRAR = false;
+let FOTO_NUEVA = null, FOTO_BORRAR = false, FOTO_PROCESANDO = false;
 
 function pintarFotoEditor(p){
   const prev = $('edFotoPrev'), info = $('edFotoInfo'), quitar = $('edFotoQuitar');
@@ -867,14 +867,17 @@ function pintarFotoEditor(p){
 async function elegirFoto(file){
   const info = $('edFotoInfo');
   if (!file) return;
-  info.innerHTML = 'Procesando...';
+  FOTO_PROCESANDO = true;
+  info.innerHTML = 'Preparando la foto...';
   try {
     FOTO_NUEVA = await optimizarFoto(file);
     FOTO_BORRAR = false;
     pintarFotoEditor(EDITANDO);
   } catch (e) {
     FOTO_NUEVA = null;
-    info.innerHTML = '<span class="malo">' + (e.message || e) + '</span>';
+    info.innerHTML = '<span class="malo">No se pudo usar esa foto: ' + (e.message || e) + '</span>';
+  } finally {
+    FOTO_PROCESANDO = false;
   }
 }
 
@@ -896,6 +899,11 @@ async function guardarFicha(){
     por: (USUARIO && USUARIO.email) || ''
   };
   if (!datos.nombre) { est.textContent = 'El nombre no puede quedar vacío.'; est.className = 'ed-estado mal'; return; }
+  // Si eligió una foto y todavía se está procesando, no dejarlo guardar sin ella.
+  if (FOTO_PROCESANDO) {
+    est.textContent = 'Esperá un segundo: la foto se está preparando.';
+    est.className = 'ed-estado mal'; return;
+  }
   b.disabled = true; est.textContent = 'Guardando...'; est.className = 'ed-estado';
   try {
     // La foto se sube como archivo al repo; el JSON sólo guarda sus datos.
@@ -1042,8 +1050,13 @@ document.querySelectorAll('.bandera input').forEach(i =>
 $('edCerrar').addEventListener('click', cerrarEditor);
 $('edCancelar').addEventListener('click', cerrarEditor);
 $('edGuardar').addEventListener('click', guardarFicha);
-$('edFotoElegir').addEventListener('click', () => $('edFotoFile').click());
-$('edFotoFile').addEventListener('change', e => { elegirFoto(e.target.files[0]); e.target.value = ''; });
+// El <label for="edFotoFile"> ya abre el selector solo: no hay que dispararlo por
+// código, porque se abría dos veces y en el celular terminaba no abriéndose.
+$('edFotoFile').addEventListener('change', function(e){
+  const f = e.target.files && e.target.files[0];
+  e.target.value = '';                   // permite volver a elegir la misma foto
+  if (f) elegirFoto(f);
+});
 $('edFotoQuitar').addEventListener('click', () => {
   FOTO_NUEVA = null; FOTO_BORRAR = true; pintarFotoEditor(EDITANDO);
 });
