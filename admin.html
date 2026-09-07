@@ -733,7 +733,8 @@ async function arrancar(){
       if (c.length < 7) return;
       const id = limpiaId(c[6]); if (!id) return;
       FICHAS_CSV[id] = { nombre:c[0], cantidades:c[1], desc:c[2], sabores:c[3],
-                         imagen:c[4], oferta: parseInt(String(c[7]||'').replace('%',''),10) || 0 };
+                         imagen:c[4], oferta: parseInt(String(c[7]||'').replace('%',''),10) || 0,
+                         rubro: (c[9] || '').trim() };   // la hoja Info también trae el rubro
     });
     await cargarFichasGuardadas();
     const fichas = {};
@@ -1277,10 +1278,17 @@ function llenarRubros(){
   const sel = document.getElementById('filtroRubro');
   if (!sel || sel.dataset.listo === '1' || !PRODUCTOS.length) return;
   const cuenta = {};
-  PRODUCTOS.forEach(p => { const r = p.rubro || ''; if (r) cuenta[r] = (cuenta[r] || 0) + 1; });
+  let sinRubro = 0;
+  PRODUCTOS.forEach(p => {
+    const r = (p.rubro || '').trim();
+    if (r) cuenta[r] = (cuenta[r] || 0) + 1; else sinRubro++;
+  });
   const rubros = Object.keys(cuenta).sort((a, b) => a.localeCompare(b, 'es'));
   sel.innerHTML = '<option value="">Todos los rubros (' + PRODUCTOS.length + ')</option>' +
-    rubros.map(r => '<option value="' + esc(r) + '">' + esc(r) + ' (' + cuenta[r] + ')</option>').join('');
+    rubros.map(r => '<option value="' + esc(r) + '">' + esc(r) + ' (' + cuenta[r] + ')</option>').join('') +
+    // Los que no están en precios no tienen rubro cargado en el Sheet: si no
+    // estuviera esta opción, no habría forma de encontrarlos filtrando.
+    (sinRubro ? '<option value="__sin__">Sin rubro (' + sinRubro + ')</option>' : '');
   sel.dataset.listo = '1';
   sel.addEventListener('change', function(){
     RUBRO = this.value;
@@ -1298,7 +1306,8 @@ function pintar(){
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
   if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
   if (FILTRO === 'oferta')     lista = lista.filter(p => p.oferta > 0);
-  if (RUBRO)                   lista = lista.filter(p => (p.rubro || '') === RUBRO);
+  if (RUBRO === '__sin__')     lista = lista.filter(p => !(p.rubro || '').trim());
+  else if (RUBRO)              lista = lista.filter(p => (p.rubro || '').trim() === RUBRO);
   if (FILTRO === 'fuera')      lista = lista.filter(p => !enCatalogo(p));
   if (BUSCA) {
     const q = BUSCA.toLowerCase();
