@@ -242,23 +242,26 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
    Antes era un recuadro flotante en el medio: incómodo en el teléfono y el botón
    de Guardar quedaba fuera de la vista. Ahora ocupa todo, el encabezado queda
    arriba y Guardar abajo, siempre visibles; en el medio scrollea el formulario. */
+/* No es una ventanita flotante: es una pantalla más, ocupa todo. */
+#editor{background:#fff}
 #editor.abierto{padding:0;align-items:stretch;background:#fff}
-.ed-caja{max-width:none;width:100%;border-radius:0;box-shadow:none;
-  display:flex;flex-direction:column;height:100dvh;height:100vh}
+.ed-caja{max-width:none;width:100%;border-radius:0;box-shadow:none;border:0;
+  display:flex;flex-direction:column;height:100dvh;height:100vh;margin:0}
 .ed-top{flex:0 0 auto;position:sticky;top:0;background:#fff;z-index:2}
 .ed-cuerpo{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;
   padding-bottom:20px;overscroll-behavior:contain}
 .ed-pie{flex:0 0 auto;position:sticky;bottom:0;background:#fff;
   box-shadow:0 -6px 18px rgba(15,23,42,.10);
   padding-bottom:calc(14px + env(safe-area-inset-bottom))}
-.ed-pie .btn{min-height:46px}
-.ed-pie #edGuardar{flex:1}          /* el botón principal, ancho y a mano */
-.ed-estado{flex:1 1 100%;order:-1}  /* el aviso, arriba de los botones */
+.ed-pie{flex-wrap:wrap}
+.ed-pie .btn{min-height:50px;font-size:15px}
+.ed-pie #edGuardar{flex:1 1 auto;min-width:60%}   /* Guardar: grande y siempre a mano */
+.ed-pie #edCancelar{flex:0 0 auto}
+.ed-estado{flex:1 1 100%;order:-1;margin-bottom:4px}
 
 @media(min-width:760px){
-  /* En la compu se puede dar un respiro a los costados, pero sigue siendo alto completo */
-  #editor.abierto{padding:0}
-  .ed-caja{max-width:720px;margin:0 auto;box-shadow:0 0 60px rgba(0,0,0,.18)}
+  /* En la compu se centra, pero sigue ocupando todo el alto */
+  .ed-caja{max-width:760px;margin:0 auto;border-left:1px solid var(--linea);border-right:1px solid var(--linea)}
 }
 
 .btn-tienda{margin-left:auto;flex:0 0 auto;text-decoration:none;
@@ -841,7 +844,15 @@ function abrirEditor(id){
   $('edEstado').textContent = ''; $('edEstado').className = 'ed-estado';
   $('edGuardar').disabled = false;
   $('editor').classList.add('abierto');
+  // Como es una pantalla y no una ventanita, el botón "atrás" del teléfono la cierra.
+  if (!history.state || history.state.editor !== true) {
+    try { history.pushState({ editor: true }, ''); } catch(e) {}
+  }
 }
+
+window.addEventListener('popstate', function(){
+  if ($('editor').classList.contains('abierto')) cerrarEditor(true);
+});
 
 // Un producto se considera renombrado cuando E-Pyme trae un nombre distinto del
 // ultimo que se reviso desde el panel. Mientras no se decida, la tienda sigue
@@ -893,7 +904,15 @@ async function decidirRenombre(p, aceptar){
   }
 }
 
-function cerrarEditor(){ $('editor').classList.remove('abierto'); EDITANDO = null; }
+function cerrarEditor(desdeAtras){
+  $('editor').classList.remove('abierto');
+  EDITANDO = null;
+  FOTO_NUEVA = null; FOTO_BORRAR = false;
+  // Si se cerró con el botón, sacar del historial la entrada que abrió la pantalla.
+  if (!desdeAtras && history.state && history.state.editor === true) {
+    try { history.back(); } catch(e) {}
+  }
+}
 
 let FOTO_NUEVA = null, FOTO_BORRAR = false, FOTO_PROCESANDO = false;
 
