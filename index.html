@@ -4101,6 +4101,9 @@ function sincronizarDesdeSheets(){
         if(!nombre||!p1||!p2||!rubro)return;
         const cat=RUBRO_MAP[rubro];if(!cat)return;
         if(!catMap[cat.id])catMap[cat.id]=cat;
+        // Si desde el panel se sacó del catálogo, la tienda ni lo arma.
+        const _fbOculto=FICHAS_FB[productId];
+        if(_fbOculto&&_fbOculto.oculto===true)return;
         const _infSheet=INFO[productId]||INFO[_norm(nombre)]||{};
         // Lo editado en el panel manda sobre el Sheet.
         const _fb=FICHAS_FB[productId];
