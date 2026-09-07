@@ -5802,9 +5802,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1dZUjWQHF6h5rsDysfV-ufxUtCWv5qXtz/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T03:41:44.171Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#faf8f2"
   },
   "5030": {
    "nombre": "MANTEQUILLA DE MANI CON STEVIA X370 CC - ENTRENUTS",
@@ -6041,6 +6046,14 @@
    "ext": "jpg",
    "v": 1788746831870
   },
+  "5029": {
+   "fondo": "#faf8f2",
+   "w": 700,
+   "h": 700,
+   "peso": 104357,
+   "ext": "jpg",
+   "v": 1788752506314
+  },
   "5044": {
    "fondo": "#fdf9f4",
    "w": 700,
@@ -6050,5 +6063,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T03:39:46.400Z"
+ "actualizado": "2026-09-07T03:41:46.314Z"
 }
