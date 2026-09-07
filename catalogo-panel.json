@@ -1716,9 +1716,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1rjXARkriZMbrdSDNvJ7iOKfGBHxI-Pki/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:52:19.488Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fbf8f2"
   },
   "1451": {
    "nombre": "NUEZ MOSCADA ENTERA",
@@ -6219,6 +6224,14 @@
    "ext": "jpg",
    "v": 1788781879755
   },
+  "1450": {
+   "fondo": "#fbf8f2",
+   "w": 700,
+   "h": 700,
+   "peso": 96221,
+   "ext": "jpg",
+   "v": 1788781941294
+  },
   "1488": {
    "fondo": "#fbf8f3",
    "w": 700,
@@ -6284,5 +6297,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:51:52.250Z"
+ "actualizado": "2026-09-07T11:52:21.294Z"
 }
