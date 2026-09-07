@@ -742,11 +742,31 @@ async function bajar(archivo){
 async function arrancar(){
   if (arrancar._ya) return; arrancar._ya = true;
   try {
-    const [csvPrecios, csvInfo, jsonPend] = await Promise.all([
+    const [csvPrecios, csvInfo, jsonPend, csvInfoMay, csvPreciosMay] = await Promise.all([
       bajar('precios-min.csv'),
       bajar('info-min.csv'),
-      bajar('pendientes.json').catch(() => '{}')
+      bajar('pendientes.json').catch(() => '{}'),
+      // Las hojas de la distribuidora sirven para completar rubros: los productos
+      // que no están en la lista minorista suelen tenerlo cargado allá.
+      bajar('info-may.csv').catch(() => ''),
+      bajar('precios-may.csv').catch(() => '')
     ]);
+
+    const RUBRO_MAY = {};
+    [csvInfoMay, csvPreciosMay].forEach(csv => {
+      if (!csv) return;
+      const filas = leerCsv(csv);
+      if (!filas.length) return;
+      const cab = filas[0].map(x => String(x || '').trim().toLowerCase());
+      const iA = cab.findIndex(x => x === 'articulo' || x === 'artículo');
+      const iR = cab.indexOf('rubro');
+      if (iA < 0 || iR < 0) return;
+      filas.slice(1).forEach(c => {
+        if (c.length <= Math.max(iA, iR)) return;
+        const a = limpiaId(c[iA]), r = String(c[iR] || '').trim();
+        if (a && r && !RUBRO_MAY[a]) RUBRO_MAY[a] = r;
+      });
+    });
     const pend = JSON.parse(jsonPend || '{}');
 
     // fichas del Sheet: nombre,cantidades,info,sabores,imagen,mix,Artículo,oferta,...
