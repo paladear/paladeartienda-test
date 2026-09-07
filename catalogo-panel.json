@@ -1657,9 +1657,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1GoCWwa9uCvBeTnZeY6KA0pYRGoSCytkb/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:50:55.329Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fdfaf5"
   },
   "1436": {
    "nombre": "MOSTAZA EN GRANOS",
@@ -6175,6 +6180,14 @@
    "ext": "jpg",
    "v": 1788781832442
   },
+  "1430": {
+   "fondo": "#fdfaf5",
+   "w": 700,
+   "h": 700,
+   "peso": 105206,
+   "ext": "jpg",
+   "v": 1788781857020
+  },
   "1488": {
    "fondo": "#fbf8f3",
    "w": 700,
@@ -6232,5 +6245,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:50:32.442Z"
+ "actualizado": "2026-09-07T11:50:57.020Z"
 }
