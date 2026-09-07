@@ -4063,7 +4063,10 @@ async function _cargarPanel(){
 }
 
 // La foto propia es un archivo del repo; el ?v= la refresca cuando se cambia.
-const _urlFotoPanel = id => 'fotos/' + id + '.webp?v=' + ((FOTOS_FB[id] && FOTOS_FB[id].v) || 1);
+// El panel guarda en WebP, o en JPG si el teléfono no sabe hacer WebP: la ficha
+// dice cuál es, y acá se respeta.
+const _urlFotoPanel = id => 'fotos/' + id + '.' + ((FOTOS_FB[id] && FOTOS_FB[id].ext) || 'webp')
+  + '?v=' + ((FOTOS_FB[id] && FOTOS_FB[id].v) || 1);
 
 function sincronizarDesdeSheets(){
   // Stale-while-revalidate: hidratar UI desde cache local para render instantáneo
