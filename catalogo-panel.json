@@ -2542,9 +2542,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1eZQKbgdKDK9dmVT4r8IdA7CZyNIe_QLq/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:50:10.478Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#faf7f1"
   },
   "1670": {
    "nombre": "PANKO",
@@ -6173,6 +6178,14 @@
    "ext": "jpg",
    "v": 1788752386400
   },
+  "1660": {
+   "fondo": "#faf7f1",
+   "w": 700,
+   "h": 700,
+   "peso": 106448,
+   "ext": "jpg",
+   "v": 1788781812270
+  },
   "1842": {
    "fondo": "#fcf9f3",
    "w": 700,
@@ -6206,5 +6219,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:49:51.073Z"
+ "actualizado": "2026-09-07T11:50:12.270Z"
 }
