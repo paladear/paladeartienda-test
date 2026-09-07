@@ -491,9 +491,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1aJSoUs-mQkVvjAII9QM7n73cIpDNFwmr/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.848Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:46:16.987Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fcf9f3"
   },
   "1135": {
    "nombre": "AVENA ARROLLADA GRUESA",
@@ -6022,6 +6027,14 @@
   }
  },
  "fotos": {
+  "1134": {
+   "fondo": "#fcf9f3",
+   "w": 700,
+   "h": 700,
+   "peso": 86597,
+   "ext": "jpg",
+   "v": 1788781579629
+  },
   "1488": {
    "fondo": "#fbf8f3",
    "w": 700,
@@ -6063,5 +6076,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T03:42:50.377Z"
+ "actualizado": "2026-09-07T11:46:19.630Z"
 }
