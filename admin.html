@@ -237,6 +237,29 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
   /* La lista arranca justo debajo del buscador */
   #lista,.lista{scroll-margin-top:120px}
 }
+
+/* ══════════ El editor ocupa toda la pantalla ══════════
+   Antes era un recuadro flotante en el medio: incómodo en el teléfono y el botón
+   de Guardar quedaba fuera de la vista. Ahora ocupa todo, el encabezado queda
+   arriba y Guardar abajo, siempre visibles; en el medio scrollea el formulario. */
+#editor.abierto{padding:0;align-items:stretch;background:#fff}
+.ed-caja{max-width:none;width:100%;border-radius:0;box-shadow:none;
+  display:flex;flex-direction:column;height:100dvh;height:100vh}
+.ed-top{flex:0 0 auto;position:sticky;top:0;background:#fff;z-index:2}
+.ed-cuerpo{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding-bottom:20px;overscroll-behavior:contain}
+.ed-pie{flex:0 0 auto;position:sticky;bottom:0;background:#fff;
+  box-shadow:0 -6px 18px rgba(15,23,42,.10);
+  padding-bottom:calc(14px + env(safe-area-inset-bottom))}
+.ed-pie .btn{min-height:46px}
+.ed-pie #edGuardar{flex:1}          /* el botón principal, ancho y a mano */
+.ed-estado{flex:1 1 100%;order:-1}  /* el aviso, arriba de los botones */
+
+@media(min-width:760px){
+  /* En la compu se puede dar un respiro a los costados, pero sigue siendo alto completo */
+  #editor.abierto{padding:0}
+  .ed-caja{max-width:720px;margin:0 auto;box-shadow:0 0 60px rgba(0,0,0,.18)}
+}
 </style>
 </head>
 <body>
@@ -479,8 +502,13 @@ setTimeout(async function(){
 const CLOUD = 'hswu4zpv';
 // Fotos propias del panel (archivos del repo). Mandan sobre las de Cloudinary.
 let FOTOS_FB = {};   // { id: {fondo,w,h,peso,v} } — la imagen es fotos/<id>.webp
-const urlFoto = id => CARPETA_FOTOS + '/' + id + '.' + ((FOTOS_FB[id] && FOTOS_FB[id].ext) || 'webp')
-  + '?v=' + ((FOTOS_FB[id] && FOTOS_FB[id].v) || 1);
+/* Recién subida, la foto todavía no está publicada (GitHub tarda cerca de un
+   minuto). Mientras tanto se muestra la copia que quedó en memoria, así no se ve
+   rota. */
+const FOTOS_RECIEN = {};
+const urlFoto = id => FOTOS_RECIEN[id] ||
+  (CARPETA_FOTOS + '/' + id + '.' + ((FOTOS_FB[id] && FOTOS_FB[id].ext) || 'webp')
+   + '?v=' + ((FOTOS_FB[id] && FOTOS_FB[id].v) || 1));
 const imgDe = id => FOTOS_FB[id]
   ? urlFoto(id)
   : ('https://res.cloudinary.com/' + CLOUD + '/image/upload/f_auto,q_auto,w_140/' + id);
@@ -594,7 +622,7 @@ function optimizarFoto(file){
         let datos = c.toDataURL('image/webp', FOTO_CALIDAD);
         let ext = 'webp';
         if (datos.indexOf('data:image/webp') !== 0) {
-          datos = c.toDataURL('image/jpeg', 0.86);
+          datos = c.toDataURL('image/jpeg', 0.78);   // el JPG pesa más que WebP: se ajusta
           ext = 'jpg';
           if (datos.indexOf('data:image/jpeg') !== 0)
             return reject(new Error('Este navegador no pudo preparar la foto.'));
@@ -945,6 +973,7 @@ async function guardarFicha(){
         'Foto de ' + datos.nombre + ' (art. ' + p.id + ')');
       FOTOS_FB[p.id] = { fondo: FOTO_NUEVA.fondo, w: FOTO_NUEVA.w, h: FOTO_NUEVA.h,
                          peso: FOTO_NUEVA.peso, ext: FOTO_NUEVA.ext || 'webp', v: Date.now() };
+      FOTOS_RECIEN[p.id] = FOTO_NUEVA.webp;   // se ve desde memoria hasta que el repo la publique
     } else if (FOTO_BORRAR) {
       delete FOTOS_FB[p.id];
     }
