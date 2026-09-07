@@ -199,9 +199,13 @@
 <div id="capaAcceso">
   <div class="caja">
     <h2>Paladear</h2>
-    <p>Panel de catálogo.<br>Ingresá con tu cuenta de Google.</p>
-    <button id="btnEntrar">Entrar con Google</button>
+    <p>Panel de catálogo.<br>Pegá tu clave de GitHub para poder guardar.</p>
+    <input id="inpToken" type="password" placeholder="Clave de GitHub" autocomplete="off"
+           style="width:100%;padding:11px 12px;border:1px solid #cfd8e0;border-radius:9px;font-size:14px;margin-bottom:10px;font-family:inherit">
+    <button id="btnEntrar">Entrar</button>
     <div id="accErr"></div>
+    <p style="font-size:12px;color:#7a8794;margin-top:12px;line-height:1.5">
+      Queda guardada sólo en este navegador. Sin ella podés mirar, pero no guardar.</p>
   </div>
 </div>
 
@@ -335,65 +339,100 @@
   </div>
 </main>
 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
 // ── ACCESO ────────────────────────────────────────────────────────────────────
-const firebaseConfig = {
-  apiKey: "AIzaSyC0HDffPhplf1dyMOzV9fTkt8l4JNbWV3o",
-  authDomain: "pedidos-proveedores-d8d8a.firebaseapp.com",
-  databaseURL: "https://pedidos-proveedores-d8d8a-default-rtdb.firebaseio.com",
-  projectId: "pedidos-proveedores-d8d8a",
-  storageBucket: "pedidos-proveedores-d8d8a.firebasestorage.app",
-  messagingSenderId: "326909224784",
-  appId: "1:326909224784:web:877cb5a06be412f59aee55"
-};
-let hayAuth = false;
-try {
-  firebase.initializeApp(firebaseConfig);
-  hayAuth = typeof firebase.auth === 'function';
-} catch (e) { console.warn('[acceso] firebase no disponible:', e); }
+// Todo vive en el repo de la tester: las fotos como archivos y las fichas en un JSON.
+// La llave para guardar es una clave de GitHub, guardada sólo en este navegador.
+const REPO = 'paladear/paladeartienda-test';
+const ARCHIVO_FICHAS = 'catalogo-panel.json';
+const CARPETA_FOTOS = 'fotos';
+const LS_TOKEN = 'paladear_panel_token';
+
+let TOKEN = '';
+try { TOKEN = localStorage.getItem(LS_TOKEN) || ''; } catch(e) {}
 
 function verCapa(si){ document.getElementById('capaAcceso').style.display = si ? 'flex' : 'none'; }
 
-if (hayAuth) {
-  firebase.auth().onAuthStateChanged(u => {
-    if (u) {
-      verCapa(false);
-      USUARIO = u;
-      document.getElementById('quien').textContent = u.email || '';
-      arrancar();
-    } else {
-      verCapa(true);
-    }
-  });
-  document.getElementById('btnEntrar').addEventListener('click', function(){
-    const b = this; b.disabled = true; b.textContent = 'Abriendo Google...';
-    firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(() => location.reload())
-      .catch(e => {
-        b.disabled = false; b.textContent = 'Entrar con Google';
-        document.getElementById('accErr').textContent =
-          (e && e.code === 'auth/popup-blocked')
-            ? 'El navegador bloqueó la ventana de Google. Permití las ventanas emergentes.'
-            : 'No se pudo entrar: ' + ((e && e.message) || e);
-      });
-  });
-} else {
-  // Sin librería de acceso no se bloquea la lectura, pero se avisa y no se puede
-  // guardar nada. El setTimeout es necesario: acá todavía no se ejecutaron los
-  // "let" de más abajo y llamar a arrancar() directo daría ReferenceError.
-  setTimeout(arrancar, 0);
+async function gh(ruta, opciones){
+  const o = Object.assign({}, opciones || {});
+  o.headers = Object.assign({
+    'Accept': 'application/vnd.github+json',
+    'Authorization': 'token ' + TOKEN
+  }, o.headers || {});
+  const r = await fetch('https://api.github.com/repos/' + REPO + ruta, o);
+  if (!r.ok) {
+    let msg = 'HTTP ' + r.status;
+    try { const j = await r.json(); if (j.message) msg = j.message; } catch(e) {}
+    const err = new Error(msg); err.status = r.status; throw err;
+  }
+  return r.json();
 }
+
+async function claveSirve(){
+  try {
+    const info = await gh('');
+    return !!(info && info.permissions && info.permissions.push);
+  } catch(e) { return false; }
+}
+
+/* Guarda un archivo en el repo. Si otro proceso lo cambió mientras tanto (el robot
+   de precios corre cada 2 horas), se reintenta con el sha nuevo. */
+async function guardarEnRepo(ruta, contenidoB64, mensaje, intento){
+  intento = intento || 0;
+  let sha = null;
+  try { sha = (await gh('/contents/' + encodeURI(ruta) + '?ref=main')).sha; }
+  catch(e) { if (e.status !== 404) throw e; }
+  const cuerpo = { message: mensaje, content: contenidoB64, branch: 'main' };
+  if (sha) cuerpo.sha = sha;
+  try {
+    return await gh('/contents/' + encodeURI(ruta), { method:'PUT', body: JSON.stringify(cuerpo) });
+  } catch(e) {
+    if ((e.status === 409 || e.status === 422) && intento < 2)
+      return guardarEnRepo(ruta, contenidoB64, mensaje, intento + 1);
+    throw e;
+  }
+}
+
+const aB64 = txt => btoa(unescape(encodeURIComponent(txt)));
+
+document.getElementById('btnEntrar').addEventListener('click', async function(){
+  const b = this, inp = document.getElementById('inpToken'), err = document.getElementById('accErr');
+  const val = (inp.value || '').trim();
+  if (!val) { err.textContent = 'Pegá la clave.'; return; }
+  b.disabled = true; b.textContent = 'Comprobando...'; err.textContent = '';
+  TOKEN = val;
+  if (await claveSirve()) {
+    try { localStorage.setItem(LS_TOKEN, TOKEN); } catch(e) {}
+    verCapa(false);
+    document.getElementById('quien').textContent = 'podés guardar';
+    arrancar();
+  } else {
+    TOKEN = '';
+    b.disabled = false; b.textContent = 'Entrar';
+    err.textContent = 'Esa clave no sirve para este repositorio.';
+  }
+});
+
+document.getElementById('inpToken').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('btnEntrar').click();
+});
+
+// Al abrir: si ya hay clave guardada y sigue sirviendo, entra derecho.
+setTimeout(async function(){
+  if (TOKEN && await claveSirve()) {
+    verCapa(false);
+    document.getElementById('quien').textContent = 'podés guardar';
+    arrancar();
+  } else { TOKEN = ''; verCapa(true); }
+}, 0);
 
 // ── DATOS ─────────────────────────────────────────────────────────────────────
 const CLOUD = 'hswu4zpv';
-// Fotos propias del panel (guardadas en Firebase). Mandan sobre las de Cloudinary.
-let FOTOS_FB = {};
-const refFotos = () => firebase.database().ref('catalogo/fotos');
-const imgDe = id => (FOTOS_FB[id] && FOTOS_FB[id].webp)
-  ? FOTOS_FB[id].webp
+// Fotos propias del panel (archivos del repo). Mandan sobre las de Cloudinary.
+let FOTOS_FB = {};   // { id: {fondo,w,h,peso,v} } — la imagen es fotos/<id>.webp
+const urlFoto = id => CARPETA_FOTOS + '/' + id + '.webp?v=' + ((FOTOS_FB[id] && FOTOS_FB[id].v) || 1);
+const imgDe = id => FOTOS_FB[id]
+  ? urlFoto(id)
   : ('https://res.cloudinary.com/' + CLOUD + '/image/upload/f_auto,q_auto,w_140/' + id);
 
 // Mismo parseo que usan los scripts del sitio (comillas dobles escapadas, saltos
@@ -431,27 +470,30 @@ const aNum = v => {
 const pesos = n => '$' + n.toLocaleString('es-AR');
 
 let PRODUCTOS = [], FILTRO = 'todos', BUSCA = '';
-// Fichas guardadas en Firebase. Mandan sobre las del Sheet: si un producto ya se
+// Fichas guardadas en el repo. Mandan sobre las del Sheet: si un producto ya se
 // edito desde el panel, esa version es la buena.
 let FICHAS_FB = {}, FICHAS_CSV = {}, USUARIO = null;
 
-const refFichas = () => firebase.database().ref('catalogo/fichas');
+// Las fichas viven en un JSON del repo: se leen por HTTP, sin permisos.
 
-async function cargarFichasFirebase(){
+async function cargarFichasGuardadas(){
   try {
-    const snap = await refFichas().once('value');
-    FICHAS_FB = snap.val() || {};
+    const r = await fetch(ARCHIVO_FICHAS + '?t=' + Date.now(), {cache:'no-store'});
+    const j = r.ok ? await r.json() : {};
+    FICHAS_FB = j.fichas || {};
+    FOTOS_FB  = j.fotos  || {};
   } catch (e) {
-    console.warn('[fichas] no se pudieron leer de Firebase:', e);
-    FICHAS_FB = {};
+    console.warn('[panel] todavía no hay fichas guardadas:', e && e.message);
+    FICHAS_FB = {}; FOTOS_FB = {};
   }
-  try {
-    const snapF = await refFotos().once('value');
-    FOTOS_FB = snapF.val() || {};
-  } catch (e) {
-    console.warn('[fotos] no se pudieron leer de Firebase:', e);
-    FOTOS_FB = {};
-  }
+}
+
+/* Escribe el JSON con todas las fichas y los datos de las fotos. */
+async function guardarFichasEnRepo(mensaje){
+  await guardarEnRepo(ARCHIVO_FICHAS,
+    aB64(JSON.stringify({ fichas: FICHAS_FB, fotos: FOTOS_FB,
+                          actualizado: new Date().toISOString() }, null, 1)),
+    mensaje);
 }
 
 /* ── FOTOS ────────────────────────────────────────────────────────────────────
@@ -507,7 +549,7 @@ function optimizarFoto(file){
 
 const kb = n => (n >= 1048576 ? (n/1048576).toFixed(1) + ' MB' : Math.round(n/1024) + ' KB');
 
-// La ficha efectiva de un producto: lo de Firebase si existe, si no lo del Sheet.
+// La ficha efectiva de un producto: lo guardado si existe, si no lo del Sheet.
 function fichaDe(id){
   const fb = FICHAS_FB[id];
   if (fb) return Object.assign({}, FICHAS_CSV[id] || {}, fb, {_fb:true});
@@ -538,7 +580,7 @@ async function arrancar(){
       FICHAS_CSV[id] = { nombre:c[0], cantidades:c[1], desc:c[2], sabores:c[3],
                          imagen:c[4], oferta: parseInt(String(c[7]||'').replace('%',''),10) || 0 };
     });
-    await cargarFichasFirebase();
+    await cargarFichasGuardadas();
     const fichas = {};
     Object.keys(FICHAS_CSV).forEach(id => fichas[id] = fichaDe(id));
     Object.keys(FICHAS_FB).forEach(id => fichas[id] = fichaDe(id));
@@ -599,14 +641,14 @@ async function arrancar(){
 
 // ── IMPORTACION INICIAL ───────────────────────────────────────────────────────
 // Las fichas viven hoy en el Google Sheet. Para poder editarlas hay que copiarlas
-// una vez a Firebase. Se escriben todas juntas en una sola operacion.
+// una vez al repo. Se escriben todas juntas en una sola operacion.
 function avisoImportacion(){
   const cont = document.getElementById('avisoImportar');
   const enFb = Object.keys(FICHAS_FB).length;
   const faltan = PRODUCTOS.filter(p => p.ficha && !FICHAS_FB[p.id]).length;
   if (!faltan) {
     cont.innerHTML = enFb
-      ? '<div class="importar"><p><b>' + enFb + ' fichas</b> guardadas en Firebase. ' +
+      ? '<div class="importar"><p><b>' + enFb + ' fichas</b> guardadas en el repo. ' +
         'Los cambios que hagas acá se guardan ahí, no en el Google Sheet.</p></div>'
       : '';
     return;
@@ -614,7 +656,7 @@ function avisoImportacion(){
   cont.innerHTML =
     '<div class="importar">' +
       '<p><b>Falta importar ' + faltan + ' fichas.</b> Hoy viven en el Google Sheet y son de ' +
-      'solo lectura. Al importarlas quedan en Firebase y podés editarlas desde acá. ' +
+      'solo lectura. Al importarlas quedan en el repo y podés editarlas desde acá. ' +
       'No se toca ni el Sheet ni la tienda.</p>' +
       '<button class="btn" id="btnImportar">Importar ' + faltan + ' fichas</button>' +
     '</div>';
@@ -641,8 +683,9 @@ async function importar(){
     };
   });
   try {
-    await refFichas().update(lote);
-    await cargarFichasFirebase();
+    FICHAS_FB = Object.assign({}, FICHAS_FB, lote);
+    await guardarFichasEnRepo('Panel: importar ' + Object.keys(lote).length + ' fichas del Sheet');
+    await cargarFichasGuardadas();
     arrancar._ya = false;
     await arrancar();
   } catch (e) {
@@ -725,8 +768,8 @@ async function decidirRenombre(p, aceptar){
                   por: (USUARIO && USUARIO.email) || '' };
   if (aceptar) datos.nombre = r.nombre_nuevo;
   try {
-    await refFichas().child(p.id).update(datos);
     FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, datos);
+    await guardarFichasEnRepo('Panel: nombre de ' + (datos.nombre || p.id));
     p.nombreEpyme = r.nombre_nuevo;
     if (aceptar) { p.nombre = r.nombre_nuevo; $('edNombre').value = r.nombre_nuevo; $('edTitulo').textContent = r.nombre_nuevo; }
     p.editada = true;
@@ -806,20 +849,20 @@ async function guardarFicha(){
   if (!datos.nombre) { est.textContent = 'El nombre no puede quedar vacío.'; est.className = 'ed-estado mal'; return; }
   b.disabled = true; est.textContent = 'Guardando...'; est.className = 'ed-estado';
   try {
-    // La foto va en su propio nodo: así las fichas siguen siendo livianas de leer.
+    // La foto se sube como archivo al repo; el JSON sólo guarda sus datos.
     if (FOTO_NUEVA) {
-      await refFotos().child(p.id).set({
-        webp: FOTO_NUEVA.webp, fondo: FOTO_NUEVA.fondo,
-        w: FOTO_NUEVA.w, h: FOTO_NUEVA.h, peso: FOTO_NUEVA.peso,
-        actualizado: datos.actualizado, por: datos.por
-      });
-      FOTOS_FB[p.id] = FOTO_NUEVA;
+      est.textContent = 'Subiendo la foto...';
+      await guardarEnRepo(CARPETA_FOTOS + '/' + p.id + '.webp',
+        FOTO_NUEVA.webp.split(',')[1],
+        'Foto de ' + datos.nombre + ' (art. ' + p.id + ')');
+      FOTOS_FB[p.id] = { fondo: FOTO_NUEVA.fondo, w: FOTO_NUEVA.w, h: FOTO_NUEVA.h,
+                         peso: FOTO_NUEVA.peso, v: Date.now() };
     } else if (FOTO_BORRAR) {
-      await refFotos().child(p.id).remove();
       delete FOTOS_FB[p.id];
     }
-    await refFichas().child(p.id).update(datos);
     FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, datos);
+    est.textContent = 'Guardando la ficha...';
+    await guardarFichasEnRepo('Panel: ' + datos.nombre + ' (art. ' + p.id + ')');
     Object.assign(p, {
       nombre: datos.nombre, cantidades: datos.cantidades, sabores: datos.sabores,
       desc: datos.desc, oferta: datos.oferta, mix: datos.mix, granola: datos.granola,
@@ -916,7 +959,13 @@ async function aplicarDescuento(){
     lote[p.id + '/por'] = quien;
   });
   try {
-    await refFichas().update(lote);
+    Object.keys(lote).forEach(function(k){
+      const corte = k.indexOf('/');
+      const id = k.slice(0, corte), campo = k.slice(corte + 1);
+      FICHAS_FB[id] = Object.assign({}, FICHAS_FB[id] || {});
+      FICHAS_FB[id][campo] = lote[k];
+    });
+    await guardarFichasEnRepo('Panel: descuento por rubro (' + lista.length + ' productos)');
     lista.forEach(p => {
       p.oferta = pct; p.editada = true;
       FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, {oferta:pct, actualizado:cuando, por:quien});
