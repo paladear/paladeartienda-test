@@ -1419,9 +1419,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/11SXWudmCqa7TyAEUmhGj5wsAn-YIdBom/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:47:33.561Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fbf8f2"
   },
   "1378": {
    "nombre": "MANI JAPONES",
@@ -6061,6 +6066,14 @@
    "ext": "jpg",
    "v": 1788781640933
   },
+  "1375": {
+   "fondo": "#fbf8f2",
+   "w": 700,
+   "h": 700,
+   "peso": 89768,
+   "ext": "jpg",
+   "v": 1788781655378
+  },
   "1488": {
    "fondo": "#fbf8f3",
    "w": 700,
@@ -6102,5 +6115,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:47:20.934Z"
+ "actualizado": "2026-09-07T11:47:35.379Z"
 }
