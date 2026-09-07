@@ -4170,9 +4170,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1mxIbgm9P-xQtXref_PIV0oxiCeJH0WBC/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:49:32.574Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fcf9f3"
   },
   "2229": {
    "nombre": "MEMBRILLITOS X30 GR - PIZARRO",
@@ -6163,6 +6168,14 @@
    "ext": "jpg",
    "v": 1788746831870
   },
+  "2228": {
+   "fondo": "#fcf9f3",
+   "w": 700,
+   "h": 700,
+   "peso": 109241,
+   "ext": "jpg",
+   "v": 1788781774690
+  },
   "5029": {
    "fondo": "#faf8f2",
    "w": 700,
@@ -6180,5 +6193,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:49:10.554Z"
+ "actualizado": "2026-09-07T11:49:34.690Z"
 }
