@@ -2875,7 +2875,10 @@ function renderCard(p,prefix){
   let h=`<div class="pcard" id="${id}" data-pid="${p[0]}">`;
   h+=`<button type="button" class="fav-btn${favOn?' active':''}" data-fav-pid="${p[0]}" onclick="return toggleFavorite(${p[0]})" aria-label="${favOn?'Quitar de favoritos':'Agregar a favoritos'}" aria-pressed="${favOn?'true':'false'}" title="${favOn?'Quitar de favoritos':'Agregar a favoritos'}"><span class="fav-heart" aria-hidden="true"></span></button>`;
   if(oferta>0)h+=`<div class="oferta-badge oferta-badge-lg">−${oferta}% OFF</div>`;
-  h+=`<div class="pcard-img" onclick="zoomImg(this)" data-src="${hasSrc?p[6]:''}">${hasSrc?`<img src="${p[6]}" alt="${p[2]}" onerror="this.parentNode.innerHTML='🌿'" loading="lazy">`:`🌿`}</div>`;
+  // El recuadro de la foto se pinta del color del fondo de la propia foto, así
+  // la imagen se funde con la tarjeta aunque el fondo no sea blanco puro.
+  const _fondo=(p[12]&&p[12].fondo)?` style="background:${p[12].fondo}"`:'';
+  h+=`<div class="pcard-img"${_fondo} onclick="zoomImg(this)" data-src="${hasSrc?p[6]:''}">${hasSrc?`<img src="${p[6]}" alt="${p[2]}" onerror="this.parentNode.innerHTML='🌿'" loading="lazy">`:`🌿`}</div>`;
   h+=`<div class="pcard-body">`;
   h+=`<div class="pcard-head"><div class="pcard-name">${_tc(p[2])}</div>`;
   if(infoText)h+=`<button class="info-btn" onclick="showInfo(${p[0]})" title="Ver información">ℹ️</button>`;
@@ -4040,6 +4043,66 @@ function _cargarInfo(){
   });
 }
 
+/* ── LO QUE SE EDITA EN EL PANEL ──────────────────────────────────────────────
+   El panel (admin.html) guarda en Firebase los nombres, cantidades, ofertas y las
+   fotos propias. Acá se leen y pisan lo que viene del Sheet. Si algo falla, la
+   tienda sigue andando igual que antes: es todo opcional. */
+const _FB_CONF = {
+  apiKey: "AIzaSyC0HDffPhplf1dyMOzV9fTkt8l4JNbWV3o",
+  authDomain: "pedidos-proveedores-d8d8a.firebaseapp.com",
+  databaseURL: "https://pedidos-proveedores-d8d8a-default-rtdb.firebaseio.com",
+  projectId: "pedidos-proveedores-d8d8a",
+  storageBucket: "pedidos-proveedores-d8d8a.firebasestorage.app",
+  messagingSenderId: "326909224784", appId: "1:326909224784:web:0"
+};
+let FICHAS_FB = {}, FOTOS_FB = {};
+
+function _fbListo(){
+  return new Promise(function(res){
+    var t0 = Date.now();
+    (function esperar(){
+      if (typeof firebase !== 'undefined' && firebase.database) return res(true);
+      if (Date.now() - t0 > 4000) return res(false);
+      setTimeout(esperar, 60);
+    })();
+  });
+}
+
+async function _cargarPanelFB(){
+  try {
+    if (!(await _fbListo())) return;
+    if (!firebase.apps.length) firebase.initializeApp(_FB_CONF);
+    const db = firebase.database();
+    // Las fichas son livianas: se esperan. Las fotos pesan más y van después.
+    const snap = await db.ref('catalogo/fichas').once('value');
+    FICHAS_FB = snap.val() || {};
+    console.log('📋 Panel: ' + Object.keys(FICHAS_FB).length + ' fichas editadas');
+  } catch(e) { console.warn('[panel] no se pudieron leer las fichas:', e && e.message); }
+}
+
+/* Las fotos se traen después de pintar, para no demorar la primera vista.
+   Cuando llegan, se vuelven a dibujar las tarjetas que cambiaron. */
+async function _cargarFotosFB(){
+  try {
+    if (typeof firebase === 'undefined' || !firebase.database) return;
+    const snap = await firebase.database().ref('catalogo/fotos').once('value');
+    FOTOS_FB = snap.val() || {};
+    const ids = Object.keys(FOTOS_FB);
+    if (!ids.length) return;
+    let cambiadas = 0;
+    PRODS.forEach(function(p){
+      const art = p[12] && p[12].productId;
+      const f = art && FOTOS_FB[art];
+      if (!f || !f.webp) return;
+      p[6] = f.webp;
+      if (f.fondo) p[12].fondo = f.fondo;
+      cambiadas++;
+    });
+    console.log('🖼️ Panel: ' + cambiadas + ' fotos propias');
+    if (cambiadas) { try{ renderCatsUI(); renderCarruseles(); }catch(e){} }
+  } catch(e) { console.warn('[panel] no se pudieron leer las fotos:', e && e.message); }
+}
+
 function sincronizarDesdeSheets(){
   // Stale-while-revalidate: hidratar UI desde cache local para render instantáneo
   try {
@@ -4057,7 +4120,8 @@ function sincronizarDesdeSheets(){
       }
     }
   } catch(e) {}
-  _cargarInfo().then(INFO=>{
+  Promise.all([_cargarInfo(), _cargarPanelFB()]).then(function(res){
+    const INFO = res[0];
 
     function _procesarCSV(csv){
       const filas=_parseCSV(csv);
@@ -4072,14 +4136,29 @@ function sincronizarDesdeSheets(){
         if(!nombre||!p1||!p2||!rubro)return;
         const cat=RUBRO_MAP[rubro];if(!cat)return;
         if(!catMap[cat.id])catMap[cat.id]=cat;
-        const inf=INFO[productId]||INFO[_norm(nombre)]||{};
+        const _infSheet=INFO[productId]||INFO[_norm(nombre)]||{};
+        // Lo editado en el panel manda sobre el Sheet.
+        const _fb=FICHAS_FB[productId];
+        const inf=_fb?Object.assign({},_infSheet,{
+          nombre:_fb.nombre||_infSheet.nombre,
+          cantidades:_fb.cantidades?_parseCantidades(_fb.cantidades):_infSheet.cantidades,
+          sabores:_fb.sabores?_parseCantidades(_fb.sabores):_infSheet.sabores,
+          info:(_fb.desc!==undefined&&_fb.desc!=='')?_fb.desc:_infSheet.info,
+          oferta:(_fb.oferta!==undefined)?_fb.oferta:_infSheet.oferta,
+          mix:(_fb.mix!==undefined)?_fb.mix:_infSheet.mix,
+          granola:(_fb.granola!==undefined)?_fb.granola:_infSheet.granola,
+          imagen:_fb.fotoPropia?'panel':_infSheet.imagen
+        }):_infSheet;
         const nombreFinal=inf.nombre||nombre;
         const _infCants=inf.cantidades||[];
         const esKgInfo=_infCants.some(o=>/g$|kg$/i.test(o.replace(/\s+/g,'')));
         const esKgNombre=/x kg|xkg|x 1 kg| kg/i.test(nombre);
         const esKg=_infCants.length?esKgInfo:esKgNombre;
         const esEspecia=['especias','infusiones'].includes(cat.id);
-        const imgUrl=(inf.imagen||imgPrecios)?_prodImg(productId,500):'';
+        // Si el panel tiene una foto propia, se usa esa; si no, la de siempre.
+        const _fotoPanel=FOTOS_FB[productId];
+        const imgUrl=(_fotoPanel&&_fotoPanel.webp)?_fotoPanel.webp
+          :((inf.imagen||imgPrecios)?_prodImg(productId,500):'');
         const infoText=inf.info||'';
         const sabores=inf.sabores||null;
         let opts;
@@ -4095,7 +4174,7 @@ function sincronizarDesdeSheets(){
         }
         const esMix=inf.mix===true;const esGranola=inf.granola===true;
         const ofertaPct=inf.oferta||0;
-        prodsTemp.push([pid++,cat.id,nombreFinal,esKg?'Granel':'Varios',esKg?'kg':'und',false,imgUrl,opts,infoText,sabores,esMix,esGranola,{productId,oferta:ofertaPct}]);
+        prodsTemp.push([pid++,cat.id,nombreFinal,esKg?'Granel':'Varios',esKg?'kg':'und',false,imgUrl,opts,infoText,sabores,esMix,esGranola,{productId,oferta:ofertaPct,fondo:(_fotoPanel&&_fotoPanel.fondo)||(_fb&&_fb.fondo)||''}]);
       });
       CATS=Object.keys(RUBRO_MAP).filter(k=>catMap[RUBRO_MAP[k].id]).map(k=>RUBRO_MAP[k]);
       PRODS=prodsTemp;
@@ -4106,6 +4185,7 @@ function sincronizarDesdeSheets(){
       renderCatsUI();
       renderCarruseles();
       hideLoader();
+      _cargarFotosFB();   // las fotos del panel llegan después, sin demorar la primera vista
       // Cargar recetas en background (no bloquea la UI)
       if (typeof cargarRecetas === 'function') {
         cargarRecetas().then(function() {
@@ -8677,5 +8757,8 @@ window.copiarLinkParaNavegador = function() {
 })();
 </script>
 
+<!-- Panel de la tester: la tienda toma de acá los nombres y las fotos que se editan -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js" defer></script>
 </body>
 </html>
