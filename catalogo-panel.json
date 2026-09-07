@@ -5577,13 +5577,15 @@
    "imagen": "https://drive.google.com/file/d/17a3w7qdy8D4B_Uqz2l__2mTjwdeG3his/view",
    "oferta": 0,
    "origen": "panel",
-   "actualizado": "2026-09-07T11:51:50.476Z",
+   "actualizado": "2026-09-07T12:32:28.046Z",
    "por": "panel",
    "mix": false,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf9f3"
+   "fondo": "#fcf9f3",
+   "rubro": "FRUTOS SECOS",
+   "oculto": false
   },
   "4454": {
    "nombre": "BARRA  PROTEICA X59 GR - PROTA",
@@ -6351,5 +6353,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T12:31:28.421Z"
+ "actualizado": "2026-09-07T12:32:28.047Z"
 }
