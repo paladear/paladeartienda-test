@@ -1789,9 +1789,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1G2SEtD_Q1ayam3utq_qterHqoY4_g2kP/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T03:38:44.146Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fbf8f3"
   },
   "1489": {
    "nombre": "PEREJIL EN HOJAS",
@@ -6002,6 +6007,14 @@
   }
  },
  "fotos": {
+  "1488": {
+   "fondo": "#fbf8f3",
+   "w": 700,
+   "h": 700,
+   "peso": 89288,
+   "ext": "jpg",
+   "v": 1788752326601
+  },
   "1842": {
    "fondo": "#fcf9f3",
    "w": 700,
@@ -6011,5 +6024,5 @@
    "v": 1788746831870
   }
  },
- "actualizado": "2026-09-07T03:34:51.270Z"
+ "actualizado": "2026-09-07T03:38:46.602Z"
 }
