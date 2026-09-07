@@ -2682,9 +2682,15 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/167aPKGseonfAupfKO_SlZyXf4KgRZuGN/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T12:10:07.959Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "oculto": false,
+   "fotoPropia": true,
+   "fondo": "#fbf8f2"
   },
   "1727": {
    "nombre": "LECHE DE COCO EN POLVO",
@@ -6261,6 +6267,14 @@
    "ext": "jpg",
    "v": 1788781812270
   },
+  "1716": {
+   "fondo": "#fbf8f2",
+   "w": 700,
+   "h": 700,
+   "peso": 89003,
+   "ext": "jpg",
+   "v": 1788783010081
+  },
   "1842": {
    "fondo": "#fcf9f3",
    "w": 700,
@@ -6310,5 +6324,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:53:00.234Z"
+ "actualizado": "2026-09-07T12:10:10.083Z"
 }
