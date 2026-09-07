@@ -786,7 +786,8 @@ async function arrancar(){
       const f = fichas[id] || {};
       if (!f.nombre) return;
       PRODUCTOS.push({
-        id, nombre: f.nombre, nombreCsv: f.nombre, rubro: f.rubro || '',
+        id, nombre: f.nombre, nombreCsv: f.nombre,
+        rubro: f.rubro || RUBRO_MAY[id] || '',   // si Info no lo trae, se busca en la distribuidora
         p1: 0, p2: 0,
         ficha: true, desc: f.desc || '',
         foto: !!(f.imagen && String(f.imagen).trim()) || !!FOTOS_FB[id],
