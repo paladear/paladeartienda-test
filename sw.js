@@ -22,7 +22,7 @@
 //      en segundo plano. Casi nunca cambian.
 // ════════════════════════════════════════════════════════
 
-const CACHE_VERSION = 'paladear-v10';
+const CACHE_VERSION = 'paladear-v11';   // subir esto en cada publicación de la tester
 
 const SHELL_FILES = [
   '/paladeartienda-test/android-chrome-192x192.png',
@@ -150,4 +150,11 @@ self.addEventListener('push', event => {
 self.addEventListener('notificationclick', event => {
   event.notification.close();
   event.waitUntil(clients.openWindow('/paladeartienda-test/'));
+});
+
+// ── El botón "Actualizar" de la tienda ─────────────────
+// Cuando el visitante toca Actualizar, esta versión toma el control enseguida
+// en vez de esperar a que cierre todas las pestañas.
+self.addEventListener('message', event => {
+  if (event.data && event.data.tipo === 'ACTUALIZAR_YA') self.skipWaiting();
 });
