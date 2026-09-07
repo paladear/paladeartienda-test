@@ -1483,9 +1483,14 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1WjRKtTo5EirWVe7gwDKwjb6O93qfG_J6/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-07T01:05:17.849Z",
-   "por": ""
+   "origen": "panel",
+   "actualizado": "2026-09-07T11:48:47.213Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "fotoPropia": true,
+   "fondo": "#fbf8f1"
   },
   "1383": {
    "nombre": "MANTEQUILLA DE MANI X 370 GR - ENTRENUTS",
@@ -6113,6 +6118,14 @@
    "ext": "jpg",
    "v": 1788781706580
   },
+  "1381": {
+   "fondo": "#fbf8f1",
+   "w": 700,
+   "h": 700,
+   "peso": 76496,
+   "ext": "jpg",
+   "v": 1788781728813
+  },
   "1488": {
    "fondo": "#fbf8f3",
    "w": 700,
@@ -6154,5 +6167,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T11:48:26.580Z"
+ "actualizado": "2026-09-07T11:48:48.813Z"
 }
