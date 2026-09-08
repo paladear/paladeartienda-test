@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 4,
+    "nuevos": 11,
     "renombrados": 1,
     "quitados": 0,
     "rubro_invalido": 0
@@ -32,6 +32,55 @@
       "nombre": "DULCE BATATA SIN AZUCAR ORIETA 400GR",
       "rubro": "PRODUCTOS SIN TACC",
       "precio": 4820,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "2096",
+      "nombre": "MAPLE \"SYRUP\" JARABE DE ARCE X250ML",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+      "precio": 25380,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "2285",
+      "nombre": "MIEL CREMOGENADA x 500 g \"TRES SOLES\" - FLOR DEL ALGARROBO",
+      "rubro": "DULCES, MIEL Y CHOCOLATES",
+      "precio": 7310,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "2420",
+      "nombre": "PSYLLIUM MOLIDO X KG",
+      "rubro": "HARINAS",
+      "precio": 64140,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "2413",
+      "nombre": "PSYLLIUM SEMILLA X KG",
+      "rubro": "SEMILLAS",
+      "precio": 41830,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "1571",
+      "nombre": "SALSA DE SOJA X 180 CC",
+      "rubro": "LINEA GOURMET",
+      "precio": 5240,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "2322",
+      "nombre": "SEN HOJAS X KG",
+      "rubro": "INFUSIONES Y HIERBAS",
+      "precio": 10880,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "4464",
+      "nombre": "TOMATE DESECADOS CONDIMENTADOS X360 GR - AGROIANNI",
+      "rubro": "LINEA GOURMET",
+      "precio": 8340,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
