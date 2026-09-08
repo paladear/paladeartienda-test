@@ -1,19 +1,11 @@
 {
   "resumen": {
-    "nuevos": 1,
+    "nuevos": 0,
     "renombrados": 1,
     "quitados": 0,
     "rubro_invalido": 0
   },
-  "nuevos": [
-    {
-      "numero": "1441",
-      "nombre": "NUEZ CUARTILLO X KG",
-      "rubro": "FRUTOS SECOS",
-      "precio": 17350,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    }
-  ],
+  "nuevos": [],
   "renombrados": [
     {
       "numero": "5038",
