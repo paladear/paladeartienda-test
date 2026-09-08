@@ -198,6 +198,24 @@
    "actualizado": "2026-09-07T01:05:17.848Z",
    "por": ""
   },
+  "1051": {
+   "nombre": "ACEITUNAS VERDES Nº0 X 500GR - RODRIGO DE VIVAR",
+   "cantidades": "1 UNIDAD",
+   "rubro": "ACEITUNAS",
+   "sabores": "",
+   "desc": "Aceitunas verdes grandes, carnosas y de sabor equilibrado, ideales para picadas, ensaladas, panes y platos mediterráneos. Aportan grasas monoinsaturadas y una textura firme muy agradable.",
+   "oferta": 15,
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "imagen": "https://drive.google.com/file/d/1YSpxUfC3TdhW3OckOg1xnBGCzSHTIX3U/view",
+   "oculto": false,
+   "fotoPropia": false,
+   "fondo": "",
+   "origen": "panel",
+   "actualizado": "2026-09-08T13:38:09.393Z",
+   "por": "panel"
+  },
   "1064": {
    "nombre": "ACETO BALSAMICO 500CC - ALCARAZ GOURMET",
    "cantidades": "1 UNIDAD",
@@ -6353,5 +6371,5 @@
    "v": 1788752359881
   }
  },
- "actualizado": "2026-09-07T12:32:28.047Z"
+ "actualizado": "2026-09-08T13:38:09.396Z"
 }
