@@ -1,11 +1,40 @@
 {
   "resumen": {
-    "nuevos": 0,
+    "nuevos": 4,
     "renombrados": 1,
     "quitados": 0,
     "rubro_invalido": 0
   },
-  "nuevos": [],
+  "nuevos": [
+    {
+      "numero": "1051",
+      "nombre": "ACEITUNAS VERDES X 1/2 KG Nº0",
+      "rubro": "ACEITUNAS",
+      "precio": 7450,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "2205",
+      "nombre": "AGAR AGAR",
+      "rubro": "ESPECIAS",
+      "precio": 25070,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "2509",
+      "nombre": "AVENA BIO SIN GLUTEN 500 GR",
+      "rubro": "PRODUCTOS SIN TACC",
+      "precio": 6830,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "2511",
+      "nombre": "DULCE BATATA SIN AZUCAR ORIETA 400GR",
+      "rubro": "PRODUCTOS SIN TACC",
+      "precio": 4820,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    }
+  ],
   "renombrados": [
     {
       "numero": "5038",
