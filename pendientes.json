@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 11,
+    "nuevos": 12,
     "renombrados": 1,
     "quitados": 0,
     "rubro_invalido": 0
@@ -46,6 +46,13 @@
       "nombre": "MIEL CREMOGENADA x 500 g \"TRES SOLES\" - FLOR DEL ALGARROBO",
       "rubro": "DULCES, MIEL Y CHOCOLATES",
       "precio": 7310,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "1522",
+      "nombre": "PISTACHOS CON CÁSCARA X KG",
+      "rubro": "FRUTOS SECOS",
+      "precio": 47030,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
