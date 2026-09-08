@@ -1,8 +1,8 @@
 {
   "resumen": {
-    "nuevos": 13,
+    "nuevos": 14,
     "renombrados": 1,
-    "quitados": 0,
+    "quitados": 1,
     "rubro_invalido": 0
   },
   "nuevos": [
@@ -39,6 +39,13 @@
       "nombre": "DULCE BATATA SIN AZUCAR ORIETA 400GR",
       "rubro": "PRODUCTOS SIN TACC",
       "precio": 4820,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "4930",
+      "nombre": "GRANOLA TRADICIONAL X KG",
+      "rubro": "CEREALES",
+      "precio": 8160,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
@@ -106,6 +113,11 @@
       "rubro": "INFUSIONES Y HIERBAS"
     }
   ],
-  "quitados": [],
+  "quitados": [
+    {
+      "numero": "1911",
+      "nombre": "GRANOLA TRADICIONAL X KG"
+    }
+  ],
   "rubro_invalido": []
 }
