@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 12,
+    "nuevos": 13,
     "renombrados": 1,
     "quitados": 0,
     "rubro_invalido": 0
@@ -18,6 +18,13 @@
       "nombre": "AGAR AGAR",
       "rubro": "ESPECIAS",
       "precio": 25070,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5049",
+      "nombre": "ALFAJORES DE NUEZ SIN TACC",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+      "precio": 6000,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
