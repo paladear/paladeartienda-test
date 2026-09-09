@@ -2,7 +2,7 @@
   "resumen": {
     "nuevos": 14,
     "renombrados": 1,
-    "quitados": 1,
+    "quitados": 2,
     "rubro_invalido": 0
   },
   "nuevos": [
@@ -114,6 +114,10 @@
     }
   ],
   "quitados": [
+    {
+      "numero": "5028",
+      "nombre": "DATILES DORADOS DE EGIPTO"
+    },
     {
       "numero": "1911",
       "nombre": "GRANOLA TRADICIONAL X KG"
