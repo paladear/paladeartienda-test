@@ -37,6 +37,7 @@ const SHELL_FILES = [
   '/paladeartienda-test/home-banner-blend.jpg',
   '/paladeartienda-test/home-banner-lista.jpg',
   '/paladeartienda-test/may-icon-home-filled.png',
+  '/paladeartienda-test/may-icon-bag-paladear.svg',
   '/paladeartienda-test/may-icon-catalog-filled.png',
   '/paladeartienda-test/may-icon-offers-filled.png',
   '/paladeartienda-test/may-icon-account-outline.png',

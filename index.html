@@ -1925,7 +1925,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
       <span>Home</span>
     </button>
     <button class="may-tab" id="tabMinorista" onclick="switchTab('minorista')">
-      <img class="may-tab-icon" src="may-icon-catalog-filled.png" alt="" aria-hidden="true">
+      <img class="may-tab-icon" src="may-icon-bag-paladear.svg" alt="" aria-hidden="true">
       <span>Productos</span>
     </button>
     <button class="may-tab tab-desktop" id="tabOfertas" onclick="hvIrOfertas()">
@@ -3661,12 +3661,12 @@ function renderCuenta(){
   if(!tienePerfil)h+='<button class="cta-completar" onclick="_cuentaAbrirForm()">Completar mis datos</button>';
   h+='</div>';
   h+=_cuentaFormHTML(p,dirs);
-  var boxSvg='<img src="may-icon-catalog-filled.png" alt="" loading="lazy">';
+  var boxSvg='<img src="may-icon-bag-paladear.svg" alt="" loading="lazy">';
   var chevSvg='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
   var ped=_cuentaCargarPedidos();
   h+='<div class="cta-sec"><h3 class="cta-sec-title">Mis pedidos</h3>';
   if(!ped.length){
-    h+='<div class="cta-vacio"><img src="may-icon-catalog-filled.png" alt="" loading="lazy" style="width:34px;height:34px;object-fit:contain;display:block;margin:0 auto 10px;opacity:.55">Todavía no hiciste pedidos.<br>Cuando envíes uno por WhatsApp, va a quedar guardado acá.</div>';
+    h+='<div class="cta-vacio"><img src="may-icon-bag-paladear.svg" alt="" loading="lazy" style="width:34px;height:34px;object-fit:contain;display:block;margin:0 auto 10px;opacity:.55">Todavía no hiciste pedidos.<br>Cuando envíes uno por WhatsApp, va a quedar guardado acá.</div>';
   }else{
     h+='<div class="cta-pedidos">';
     ped.forEach(function(pe,i){
@@ -9171,7 +9171,7 @@ window.copiarLinkParaNavegador = function() {
     </div>
     <div class="tutb-opt tutb-min" onclick="tutorialIr('minorista')">
       <div class="tutb-top">
-        <img class="tutb-ic" src="may-icon-catalog-filled.png" alt="">
+        <img class="tutb-ic" src="may-icon-bag-paladear.svg" alt="">
         <span class="tutb-name">Descuento por cantidad</span>
         <span class="tutb-go">Sin mínimo →</span>
       </div>
