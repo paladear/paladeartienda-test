@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="">
+  <defs>
+    <linearGradient id="heartBlue" x1="50" y1="34" x2="198" y2="222" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#315f82"/>
+      <stop offset="1" stop-color="#173f61"/>
+    </linearGradient>
+  </defs>
+  <path d="M128 222 33 132C8 108 9 68 34 44c25-24 65-23 89 2l5 6 5-6c24-25 64-26 89-2 25 24 26 64 1 88Z" fill="url(#heartBlue)" stroke="#517d9c" stroke-width="4" stroke-linejoin="round"/>
+</svg>
