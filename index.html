@@ -19,7 +19,7 @@
 <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
 <link rel="manifest" href="manifest.json">
 <link rel="preload" as="image" href="home-hero-minorista-desktop-hq.jpg" media="(min-width:768px)" fetchpriority="high">
-<link rel="preload" as="image" href="home-hero-minorista-mobile-v2.jpg" media="(max-width:767px)" fetchpriority="high">
+<link rel="preload" as="image" href="home-hero-minorista-mobile-v3.jpg" media="(max-width:767px)" fetchpriority="high">
 <link rel="preload" as="image" href="home-discount-strip-v2.png">
 
 <!-- ══════════ PWA ══════════ -->
@@ -2450,7 +2450,17 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 }
 .min-redesign .hv-cat{display:flex;min-width:0;flex-direction:column;align-items:center;gap:9px;padding:0 3px;background:transparent;border:0;color:#244f71;cursor:pointer}
 .min-redesign .hv-cat .bub{display:block;width:clamp(100px,9.5vw,132px);height:clamp(100px,9.5vw,132px);aspect-ratio:1;border:0;border-radius:50%;overflow:hidden;background:#e9e1d5;box-shadow:none}
-.min-redesign .hv-cat .bub img{position:static!important;display:block;width:100%!important;height:100%!important;padding:0!important;object-fit:cover!important;transform:none!important;filter:none!important}
+.min-redesign .hv-cat .bub img{position:static!important;display:block;width:100%!important;height:100%!important;padding:4px!important;box-sizing:border-box;border-radius:50%;background:#eee8de;object-fit:cover!important;transform:none!important;filter:none!important}
+.min-redesign .hv-cat[data-cat="deshidratados"] .bub img,
+.min-redesign .hv-cat[data-cat="dulces"] .bub img,
+.min-redesign .hv-cat[data-cat="encurtidos"] .bub img,
+.min-redesign .hv-cat[data-cat="infusiones"] .bub img,
+.min-redesign .hv-cat[data-cat="reposteria"] .bub img,
+.min-redesign .hv-cat[data-cat="sintacc"] .bub img,
+.min-redesign .hv-cat[data-cat="suplementos"] .bub img,
+.min-redesign .hv-cat[data-cat="tomate"] .bub img,
+.min-redesign .hv-cat[data-cat="vinos"] .bub img,
+.min-redesign .hv-cat[data-cat="home"] .bub img{padding:7px!important}
 .min-redesign .hv-cat:hover .bub img,.min-redesign .hv-cat:focus-visible .bub img{transform:scale(1.045)!important}
 .min-redesign .hv-cat>span:last-child{min-height:36px!important;font-size:13px;line-height:1.22;font-weight:750;text-align:center;overflow:visible!important}
 .min-redesign .hv-cats-pagination{display:flex;align-items:center;justify-content:center;gap:3px;margin-top:8px}
@@ -2544,7 +2554,7 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 <div id="homeView">
   <section class="min-home-hero" aria-label="El placer de elegir, descubrir y Paladear">
     <picture>
-      <source media="(max-width: 767px)" srcset="home-hero-minorista-mobile-v2.jpg">
+      <source media="(max-width: 767px)" srcset="home-hero-minorista-mobile-v3.jpg">
       <img src="home-hero-minorista-desktop-hq.jpg" alt="El placer de elegir, descubrir y Paladear. Frutos secos y productos Paladear." fetchpriority="high" decoding="async">
     </picture>
     <button class="min-home-hero-hotspot" type="button" onclick="switchTab('minorista')" aria-label="Ver productos"></button>
