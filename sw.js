@@ -22,7 +22,7 @@
 //      en segundo plano. Casi nunca cambian.
 // ════════════════════════════════════════════════════════
 
-const CACHE_VERSION = 'paladear-v17';   // subir esto en cada publicación de la tester
+const CACHE_VERSION = 'paladear-v18';   // subir esto en cada publicación de la tester
 
 const SHELL_FILES = [
   '/paladeartienda-test/android-chrome-192x192.png',
@@ -30,8 +30,8 @@ const SHELL_FILES = [
   '/paladeartienda-test/apple-touch-icon.png',
   '/paladeartienda-test/favicon-32x32.png',
   '/paladeartienda-test/og-image.jpg',
-  '/paladeartienda-test/home-hero-minorista-desktop-hq.jpg',
-  '/paladeartienda-test/home-hero-minorista-mobile-v3.jpg',
+  '/paladeartienda-test/home-hero-minorista-desktop-v2.jpg',
+  '/paladeartienda-test/home-hero-minorista-mobile-v4.jpg',
   '/paladeartienda-test/home-discount-strip-v2.png',
   '/paladeartienda-test/home-banner-mix.jpg',
   '/paladeartienda-test/home-banner-granola.jpg',

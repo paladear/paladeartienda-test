@@ -18,8 +18,8 @@
 <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
 <link rel="manifest" href="manifest.json">
-<link rel="preload" as="image" href="home-hero-minorista-desktop-hq.jpg" media="(min-width:768px)" fetchpriority="high">
-<link rel="preload" as="image" href="home-hero-minorista-mobile-v3.jpg" media="(max-width:767px)" fetchpriority="high">
+<link rel="preload" as="image" href="home-hero-minorista-desktop-v2.jpg" media="(min-width:768px)" fetchpriority="high">
+<link rel="preload" as="image" href="home-hero-minorista-mobile-v4.jpg" media="(max-width:767px)" fetchpriority="high">
 <link rel="preload" as="image" href="home-discount-strip-v2.png">
 
 <!-- ══════════ PWA ══════════ -->
@@ -2389,8 +2389,8 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 }
 .min-redesign .min-header-search{max-width:none}
 .min-redesign .min-header-search .compact-search{
-  height:48px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.96);color:#244f71;
-  box-shadow:0 7px 22px rgba(25,62,90,.1);backdrop-filter:blur(16px) saturate(130%);-webkit-backdrop-filter:blur(16px) saturate(130%)
+  height:48px;background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.98);color:#244f71;
+  box-shadow:0 7px 22px rgba(25,62,90,.09);backdrop-filter:blur(16px) saturate(105%);-webkit-backdrop-filter:blur(16px) saturate(105%)
 }
 .min-redesign .social-btns,.min-redesign .header-dropdowns>.hdrop,
 .min-redesign .header-dropdowns>.cuenta-btn,.min-redesign .header-dropdowns>.header-search-btn{display:none!important}
@@ -2410,12 +2410,15 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 .min-redesign .tabs-pill{display:none!important}
 .min-redesign .may-tab{
   flex:0 0 auto;min-height:42px;padding:0 16px;gap:7px;border:1px solid rgba(255,255,255,.92)!important;border-radius:999px;
-  background:rgba(255,255,255,.48)!important;color:#174a71!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 7px 17px rgba(22,59,88,.12)!important;
-  backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%)
+  background:rgba(255,255,255,.72)!important;color:#174a71!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 7px 17px rgba(22,59,88,.11)!important;
+  backdrop-filter:blur(18px) saturate(105%);-webkit-backdrop-filter:blur(18px) saturate(105%)
 }
 .min-redesign .may-tab-icon{display:block;width:21px;height:21px;object-fit:contain;filter:none}
-.min-redesign .may-tab.active{background:rgba(255,255,255,.94)!important;transform:translateY(-1px);box-shadow:inset 0 1px 0 #fff,0 9px 20px rgba(22,59,88,.18)!important}
-.min-redesign .may-tab:hover{background:rgba(255,255,255,.75)!important}
+.min-redesign .may-tab.active{background:rgba(255,255,255,.97)!important;transform:translateY(-1px);box-shadow:inset 0 1px 0 #fff,0 9px 20px rgba(22,59,88,.16)!important}
+.min-redesign .may-tab:hover{background:rgba(255,255,255,.9)!important}
+body.min-redesign.hv-home .may-tab{background:rgba(255,255,255,.76)!important;border-color:rgba(255,255,255,.98)!important;box-shadow:inset 0 1px 0 #fff,0 7px 17px rgba(22,59,88,.1)!important;backdrop-filter:blur(18px) saturate(105%);-webkit-backdrop-filter:blur(18px) saturate(105%)}
+body.min-redesign.hv-home .may-tab.active{background:rgba(255,255,255,.97)!important}
+body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!important}
 
 /* Franja crema: la ilustración no contiene textos ni medidor; ambos son HTML real. */
 .min-redesign .descb-banner{aspect-ratio:1280/193;background:#f4efe6;color:#173f61}
@@ -2499,10 +2502,10 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 
 /* Nav inferior celeste tipo vidrio, únicamente las cuatro secciones principales. */
 .min-redesign .bnav{
-  grid-template-columns:repeat(4,minmax(0,1fr));background:rgba(217,236,247,.88);border:1px solid rgba(255,255,255,.96);
-  box-shadow:0 10px 30px rgba(24,58,83,.16);backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%)
+  grid-template-columns:repeat(4,minmax(0,1fr));background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.98);
+  box-shadow:0 10px 30px rgba(24,58,83,.14);backdrop-filter:blur(18px) saturate(105%);-webkit-backdrop-filter:blur(18px) saturate(105%)
 }
-.min-redesign .bnav-pill{background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.98);box-shadow:0 5px 14px rgba(31,71,100,.1)}
+.min-redesign .bnav-pill{background:rgba(255,255,255,.98);border:1px solid #fff;box-shadow:0 5px 14px rgba(31,71,100,.09)}
 .min-redesign .bnav button{color:#315f82}.min-redesign .bnav button>img{display:block;width:27px;height:27px;object-fit:contain;filter:none}
 .min-redesign .bnav button[data-b="favoritos"]>img{width:29px;height:29px}
 .min-redesign .bnav button,
@@ -2511,11 +2514,13 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 .min-redesign .bnav button:not(.active) span{
   color:#173f61!important;-webkit-text-fill-color:#173f61!important
 }
+.min-redesign .min-featured-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
 
 @media(max-width:1050px) and (min-width:768px){
   .min-redesign .header-inner{padding-left:132px}.min-redesign .header .logo-wrap{left:16px}.min-redesign .header .logo{width:100px;height:100px}
   .min-redesign .tabs-zone{left:132px;width:min(690px,calc(100vw - 220px))}.min-redesign .may-tab{padding-inline:12px}
   .min-redesign .cats-dropdown-panel{left:132px}.min-redesign .cats-dropdown-list{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .min-redesign .min-featured-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media(max-width:767px){
   .min-redesign{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
@@ -2528,7 +2533,10 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
   .min-redesign .min-header-cart>img{width:23px;height:23px}.min-redesign .tabs-zone{display:none!important}
   body.min-redesign.hv-home .min-home-hero{width:100%;height:auto;min-height:0;aspect-ratio:2/3;background:#cae1ef}
   body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-position:center top}
-  body.min-redesign.hv-home .min-home-hero-hotspot{left:5.2%;top:51.5%;width:40%;height:7.5%}
+  body.min-redesign.hv-home .min-home-hero-hotspot{left:5.2%;top:54.5%;width:40%;height:6.5%}
+  body.min-redesign.hv-home .min-header-search .compact-search{background:rgba(255,255,255,.9);border-color:#fff;backdrop-filter:blur(16px) saturate(105%);-webkit-backdrop-filter:blur(16px) saturate(105%)}
+  body.min-redesign.hv-home .min-header-cart,
+  body.min-redesign.hv-home .min-header-menu{background:rgba(255,255,255,.78)}
   .min-redesign .catalog-intro{min-height:76px;padding:12px 13px;gap:9px}
   .min-redesign .catalog-intro h1{font-size:19px;line-height:1.15;margin:0}
   .min-redesign .catalog-intro-ic{width:48px;height:48px;flex-basis:48px}
@@ -2540,6 +2548,7 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
   .min-redesign .hv-cat-page{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}
   .min-redesign .hv-cat{min-height:128px}.min-redesign .hv-cat .bub{width:102px;height:102px}.min-redesign .hv-cat>span:last-child{min-height:30px!important;font-size:11px}
   .min-redesign .hv-cats-pagination{margin-top:5px}
+  .min-redesign .min-featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .min-redesign .cats-dropdown-panel{left:0;right:0;top:auto;bottom:0;width:100%;max-height:78vh;padding:20px 16px calc(26px + env(safe-area-inset-bottom));border:0;border-radius:22px 22px 0 0;background:#f9fcfe}
   .min-redesign .cats-dropdown-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.min-cat-menu-btn{grid-template-columns:42px minmax(0,1fr);min-height:58px;padding:7px 9px}.min-cat-thumb{width:42px;height:42px;border-radius:10px}.min-cat-menu-arrow{display:none}.min-cat-menu-name{font-size:11.5px}
   .min-redesign .bnav{display:grid!important;left:8px;right:8px;bottom:calc(7px + env(safe-area-inset-bottom));width:auto;padding:6px;border-radius:22px;grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -2554,8 +2563,8 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 <div id="homeView">
   <section class="min-home-hero" aria-label="El placer de elegir, descubrir y Paladear">
     <picture>
-      <source media="(max-width: 767px)" srcset="home-hero-minorista-mobile-v3.jpg">
-      <img src="home-hero-minorista-desktop-hq.jpg" alt="El placer de elegir, descubrir y Paladear. Frutos secos y productos Paladear." fetchpriority="high" decoding="async">
+      <source media="(max-width: 767px)" srcset="home-hero-minorista-mobile-v4.jpg">
+      <img src="home-hero-minorista-desktop-v2.jpg" alt="El placer de elegir, descubrir y Paladear. Frutos secos y productos Paladear." fetchpriority="high" decoding="async">
     </picture>
     <button class="min-home-hero-hotspot" type="button" onclick="switchTab('minorista')" aria-label="Ver productos"></button>
   </section>
@@ -6213,12 +6222,15 @@ function hvRenderCats(force){
 function hvGoCatPage(index){
   var track=document.getElementById('hvCatsScroller');if(!track)return;
   var pages=Array.prototype.slice.call(track.querySelectorAll('.hv-cat-page'));if(!pages.length)return;
-  var safe=Math.max(0,Math.min(pages.length-1,index));var start=track.scrollLeft;var target=pages[safe].offsetLeft;var duration=440;var begun=performance.now();
+  var safe=Math.max(0,Math.min(pages.length-1,index));
+  Array.prototype.slice.call(document.querySelectorAll('#hvCatsPagination button')).forEach(function(dot,dotIndex){if(dotIndex===safe)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current');});
+  var start=track.scrollLeft;var target=pages[safe].offsetLeft;var duration=360;var begun=performance.now();
   if(_hvCatScrollFrame)cancelAnimationFrame(_hvCatScrollFrame);
   function step(now){var t=Math.min(1,(now-begun)/duration);var eased=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;track.scrollLeft=start+(target-start)*eased;if(t<1)_hvCatScrollFrame=requestAnimationFrame(step);else{_hvCatScrollFrame=0;hvUpdateCatPagination();}}
   _hvCatScrollFrame=requestAnimationFrame(step);
 }
 function hvUpdateCatPagination(){
+  if(_hvCatScrollFrame)return;
   var track=document.getElementById('hvCatsScroller');if(!track)return;
   var pages=Array.prototype.slice.call(track.querySelectorAll('.hv-cat-page'));var dots=Array.prototype.slice.call(document.querySelectorAll('#hvCatsPagination button'));if(!pages.length||!dots.length)return;
   var current=0;pages.forEach(function(page,index){if(Math.abs(page.offsetLeft-track.scrollLeft)<Math.abs(pages[current].offsetLeft-track.scrollLeft))current=index;});
@@ -6239,25 +6251,25 @@ window.hvGoCat=hvGoCat;
 function minRenderFeatured(){
   var grid=document.getElementById('minFeaturedGrid');
   if(!grid||typeof PRODS==='undefined'||!PRODS.length)return;
-  var preferidas=['frutos','deshidratados','semillas','aceitunas','cereales'];
+  var preferidas=['frutos','deshidratados','semillas','aceitunas','cereales','granos'];
   var elegidas=[];
   preferidas.forEach(function(cid){
     var p=PRODS.find(function(x){return x[1]===cid&&x[6]&&x[7]&&Object.keys(x[7]).length;});
     if(p)elegidas.push(p);
   });
-  if(elegidas.length<5){
+  if(elegidas.length<6){
     PRODS.some(function(p){
       if(p[6]&&p[7]&&Object.keys(p[7]).length&&!elegidas.some(function(x){return x[1]===p[1];}))elegidas.push(p);
-      return elegidas.length>=5;
+      return elegidas.length>=6;
     });
   }
-  if(elegidas.length<5){
+  if(elegidas.length<6){
     PRODS.some(function(p){
       if(p[6]&&p[7]&&Object.keys(p[7]).length&&!elegidas.some(function(x){return x[0]===p[0];}))elegidas.push(p);
-      return elegidas.length>=5;
+      return elegidas.length>=6;
     });
   }
-  grid.innerHTML=elegidas.slice(0,5).map(function(p){
+  grid.innerHTML=elegidas.slice(0,6).map(function(p){
     var cat=CATS.find(function(c){return c.id===p[1];});
     var opts=_sortOpts(Object.keys(p[7]));
     var precio=opts.length?p[7][opts[0]][0]:0;
