@@ -18,9 +18,9 @@
 <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
 <link rel="manifest" href="manifest.json">
-<link rel="preload" as="image" href="home-hero-minorista-desktop.jpg" media="(min-width:768px)" fetchpriority="high">
-<link rel="preload" as="image" href="home-hero-minorista-desktop.jpg" media="(max-width:767px)" fetchpriority="high">
-<link rel="preload" as="image" href="home-discount-strip.jpg">
+<link rel="preload" as="image" href="home-hero-minorista-desktop-hq.jpg" media="(min-width:768px)" fetchpriority="high">
+<link rel="preload" as="image" href="home-hero-minorista-mobile-v2.jpg" media="(max-width:767px)" fetchpriority="high">
+<link rel="preload" as="image" href="home-discount-strip-v2.png">
 
 <!-- ══════════ PWA ══════════ -->
 <meta name="mobile-web-app-capable" content="yes">
@@ -1972,7 +1972,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
       <span>Home</span>
     </button>
     <button class="may-tab" id="tabMinorista" onclick="switchTab('minorista')">
-      <img class="may-tab-icon" src="may-icon-bag-paladear.svg" alt="" aria-hidden="true">
+      <img class="may-tab-icon" src="may-icon-products-bag.png" alt="" aria-hidden="true">
       <span>Productos</span>
     </button>
     <button class="may-tab tab-desktop" id="tabOfertas" onclick="hvIrOfertas()">
@@ -2275,6 +2275,10 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 .min-redesign .cats-sidebar{display:none!important}
 .min-redesign .main-layout{display:block!important}
 .min-redesign .info-btn{background:#e3eff6;color:#285b83;font:italic 700 16px/1 Georgia,serif}
+.min-redesign .catalog-intro{align-items:center}
+.min-redesign .catalog-intro>div:first-child{flex:1 1 auto;min-width:0}
+.min-redesign .catalog-intro h1{overflow-wrap:normal;word-break:normal}
+.min-redesign .catalog-intro-ic{display:block;width:56px;height:56px;flex:0 0 56px;object-fit:contain}
 @media(min-width:768px){
   .min-redesign .prod-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
   body.min-redesign.hv-home .header{
@@ -2455,6 +2459,13 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 .min-redesign .hv-cats-pagination button[aria-current="true"]::before{background:#547f9f;transform:scale(1.08)}
 .min-redesign .hv-cats-pagination button:focus-visible{outline:2px solid #547f9f;outline-offset:-3px;border-radius:10px}
 .min-redesign .hv-cats-grid{display:none!important}
+.min-redesign .min-home-cats{background:#4c7192;color:#fff}
+.min-redesign .min-home-categories-head .min-section-kicker{color:#fff;border-bottom-color:rgba(255,255,255,.72)}
+.min-redesign .min-home-cats .hv-cat,
+.min-redesign .min-home-cats .hv-cat>span:last-child{color:#fff}
+.min-redesign .min-home-cats .hv-cats-pagination button::before{border-color:rgba(255,255,255,.72)}
+.min-redesign .min-home-cats .hv-cats-pagination button[aria-current="true"]::before{background:#fff}
+.min-redesign .min-home-cats .hv-cats-pagination button:focus-visible{outline-color:#fff}
 
 /* Menú de categorías: mega-menú en desktop y hoja inferior en mobile. */
 .min-redesign .cats-dropdown-overlay{z-index:9000;background:rgba(17,48,72,.18)}
@@ -2484,6 +2495,12 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 .min-redesign .bnav-pill{background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.98);box-shadow:0 5px 14px rgba(31,71,100,.1)}
 .min-redesign .bnav button{color:#315f82}.min-redesign .bnav button>img{display:block;width:27px;height:27px;object-fit:contain;filter:none}
 .min-redesign .bnav button[data-b="favoritos"]>img{width:29px;height:29px}
+.min-redesign .bnav button,
+.min-redesign .bnav button:not(.active),
+.min-redesign .bnav button span,
+.min-redesign .bnav button:not(.active) span{
+  color:#173f61!important;-webkit-text-fill-color:#173f61!important
+}
 
 @media(max-width:1050px) and (min-width:768px){
   .min-redesign .header-inner{padding-left:132px}.min-redesign .header .logo-wrap{left:16px}.min-redesign .header .logo{width:100px;height:100px}
@@ -2499,6 +2516,13 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
   .min-redesign .min-header-search .compact-search{height:42px;padding:0 31px 0 36px;font-size:13px}
   .min-redesign .min-header-menu,.min-redesign .min-header-cart{width:39px;height:39px}
   .min-redesign .min-header-cart>img{width:23px;height:23px}.min-redesign .tabs-zone{display:none!important}
+  body.min-redesign.hv-home .min-home-hero{width:100%;height:auto;min-height:0;aspect-ratio:2/3;background:#cae1ef}
+  body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-position:center top}
+  body.min-redesign.hv-home .min-home-hero-hotspot{left:5.2%;top:51.5%;width:40%;height:7.5%}
+  .min-redesign .catalog-intro{min-height:76px;padding:12px 13px;gap:9px}
+  .min-redesign .catalog-intro h1{font-size:19px;line-height:1.15;margin:0}
+  .min-redesign .catalog-intro-ic{width:48px;height:48px;flex-basis:48px}
+  .min-redesign .catalog-filter-btn{padding:8px 10px;font-size:10.5px}
   .min-redesign .descb-banner{aspect-ratio:auto;min-height:108px}
   .min-redesign .descb-copy{left:21%;width:32%;gap:3px}.min-redesign .descb-copy strong{font-size:11px}.min-redesign .descb-copy span{font-size:6.6px;line-height:1.3}
   .min-redesign .descb-meter{left:57%;right:5.5%}.min-redesign .descb-cnt{font-size:13px}.min-redesign .descb-goal{font-size:7px}.min-redesign .descb-track{height:6px}.min-redesign .descb-reward{min-height:8px;margin-top:4px;font-size:6.5px}
@@ -2520,7 +2544,7 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 <div id="homeView">
   <section class="min-home-hero" aria-label="El placer de elegir, descubrir y Paladear">
     <picture>
-      <source media="(max-width: 767px)" srcset="home-hero-minorista-desktop-hq.jpg">
+      <source media="(max-width: 767px)" srcset="home-hero-minorista-mobile-v2.jpg">
       <img src="home-hero-minorista-desktop-hq.jpg" alt="El placer de elegir, descubrir y Paladear. Frutos secos y productos Paladear." fetchpriority="high" decoding="async">
     </picture>
     <button class="min-home-hero-hotspot" type="button" onclick="switchTab('minorista')" aria-label="Ver productos"></button>
@@ -3764,12 +3788,12 @@ function renderCuenta(){
   if(!tienePerfil)h+='<button class="cta-completar" onclick="_cuentaAbrirForm()">Completar mis datos</button>';
   h+='</div>';
   h+=_cuentaFormHTML(p,dirs);
-  var boxSvg='<img src="may-icon-bag-paladear.svg" alt="" loading="lazy">';
+  var boxSvg='<img src="may-icon-products-bag.png" alt="" loading="lazy">';
   var chevSvg='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
   var ped=_cuentaCargarPedidos();
   h+='<div class="cta-sec"><h3 class="cta-sec-title">Mis pedidos</h3>';
   if(!ped.length){
-    h+='<div class="cta-vacio"><img src="may-icon-bag-paladear.svg" alt="" loading="lazy" style="width:34px;height:34px;object-fit:contain;display:block;margin:0 auto 10px;opacity:.55">Todavía no hiciste pedidos.<br>Cuando envíes uno por WhatsApp, va a quedar guardado acá.</div>';
+    h+='<div class="cta-vacio"><img src="may-icon-products-bag.png" alt="" loading="lazy" style="width:34px;height:34px;object-fit:contain;display:block;margin:0 auto 10px;opacity:.55">Todavía no hiciste pedidos.<br>Cuando envíes uno por WhatsApp, va a quedar guardado acá.</div>';
   }else{
     h+='<div class="cta-pedidos">';
     ped.forEach(function(pe,i){
@@ -6567,7 +6591,7 @@ function renderCarruseles(){
       <div>
         <h1>Todos los productos</h1>
       </div>
-      <img class="catalog-intro-ic" src="may-icon-bag-paladear.svg" alt="" aria-hidden="true" loading="eager" decoding="async">
+      <img class="catalog-intro-ic" src="may-icon-products-bag.png" alt="" aria-hidden="true" loading="eager" decoding="async">
       <button class="catalog-filter-btn" onclick="toggleCatsDropdown()"><span aria-hidden="true">☰</span> Categorías</button>
     </div>
     <div class="catalog-progressive-sections"></div>
@@ -9339,7 +9363,7 @@ window.copiarLinkParaNavegador = function() {
     </div>
     <div class="tutb-opt tutb-min" onclick="tutorialIr('minorista')">
       <div class="tutb-top">
-        <img class="tutb-ic" src="may-icon-bag-paladear.svg" alt="">
+        <img class="tutb-ic" src="may-icon-products-bag.png" alt="">
         <span class="tutb-name">Descuento por cantidad</span>
         <span class="tutb-go">Sin mínimo →</span>
       </div>
