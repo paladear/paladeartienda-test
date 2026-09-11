@@ -475,7 +475,9 @@ body.buscando .busca-fija{display:flex}
     <button class="filtro" data-f="fuera">Fuera del catálogo</button>
     <button class="btn" id="btnDesc">Descuento por rubro</button>
     <button class="btn gris" id="btnSync">Traer del Sheet</button>
+    <button class="btn" id="btnPublicar" title="Publica en la tienda los precios que tiene E-Pyme ahora">Publicar precios en la tienda</button>
   </div>
+  <div id="estadoPublicar"></div>
   <div id="salida" class="cargando">Cargando catálogo...</div>
   <div class="nota">
     Los <b>precios</b> vienen de E-Pyme y se actualizan solos cada 15 minutos: no se editan acá.
@@ -1394,6 +1396,96 @@ async function aplicarDescuento(){
 
 $('btnDesc').addEventListener('click', abrirDescuentos);
 $('btnSync').addEventListener('click', traerDelSheet);
+
+// ── PUBLICAR PRECIOS EN LA TIENDA ─────────────────────────────────────────────
+// El panel no puede hablarle a la PC del negocio, asi que le deja el pedido en un
+// archivo del repositorio. La PC lo revisa cada pocos minutos, publica los precios
+// que tiene E-Pyme en ese momento y escribe la respuesta en el mismo archivo.
+// Nada llega a la tienda si nadie aprieta este boton.
+const ARCHIVO_COMANDO = 'comando-precios.json';
+let _vigilando = null;
+
+function estadoPublicar(html, tono){
+  const colores = {ok:['#dcfce7','#86efac','#15803d'], mal:['#fef2f2','#fca5a5','#b91c1c'],
+                   espera:['#eff6ff','#93c5fd','#1d4ed8']};
+  const c = colores[tono] || colores.espera;
+  $('estadoPublicar').innerHTML = html
+    ? '<div style="background:' + c[0] + ';border:1px solid ' + c[1] + ';color:' + c[2] +
+      ';border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13.5px">' + html + '</div>'
+    : '';
+}
+
+async function leerComando(){
+  try {
+    const r = await fetch(ARCHIVO_COMANDO + '?t=' + Date.now(), {cache:'no-store'});
+    if (!r.ok) return null;
+    return await r.json();
+  } catch(e) { return null; }
+}
+
+async function publicarPrecios(){
+  const b = $('btnPublicar');
+  if (!TOKEN) { estadoPublicar('Necesitás entrar con la clave para publicar.', 'mal'); return; }
+  b.disabled = true; b.textContent = 'Pidiendo...';
+  const pedido = { estado:'pendiente', solicitado: new Date().toISOString() };
+  try {
+    await guardarEnRepo(ARCHIVO_COMANDO, aB64(JSON.stringify(pedido, null, 2)),
+                        'Pedido: publicar precios en la tienda');
+  } catch(e) {
+    b.disabled = false; b.textContent = 'Publicar precios en la tienda';
+    estadoPublicar('No se pudo enviar el pedido: ' + (e.message || e), 'mal');
+    return;
+  }
+  b.textContent = 'Esperando a la PC...';
+  estadoPublicar('Pedido enviado. La PC del negocio lo toma en los próximos minutos. ' +
+                 'Podés cerrar esta página, el pedido queda igual.', 'espera');
+  vigilarComando(pedido.solicitado);
+}
+
+function vigilarComando(desde){
+  clearInterval(_vigilando);
+  let vueltas = 0;
+  _vigilando = setInterval(async () => {
+    vueltas++;
+    const c = await leerComando();
+    if (c && c.solicitado === desde && c.estado !== 'pendiente') {
+      clearInterval(_vigilando);
+      $('btnPublicar').disabled = false;
+      $('btnPublicar').textContent = 'Publicar precios en la tienda';
+      if (c.estado === 'hecho') {
+        estadoPublicar('<b>Precios publicados.</b> ' + (c.detalle || '') +
+                       '<br>La tienda tarda alrededor de un minuto en mostrarlos.', 'ok');
+      } else {
+        estadoPublicar('<b>La PC no pudo publicar.</b> ' + (c.detalle || ''), 'mal');
+      }
+      return;
+    }
+    if (vueltas > 60) {  // 10 minutos sin respuesta
+      clearInterval(_vigilando);
+      $('btnPublicar').disabled = false;
+      $('btnPublicar').textContent = 'Publicar precios en la tienda';
+      estadoPublicar('La PC no respondió en 10 minutos. Puede estar apagada o sin internet. ' +
+                     'El pedido sigue en pie: se va a ejecutar cuando vuelva.', 'mal');
+    }
+  }, 10000);
+}
+
+// Al abrir el panel, mostrar como termino el ultimo pedido.
+leerComando().then(c => {
+  if (!c) return;
+  if (c.estado === 'pendiente') {
+    estadoPublicar('Hay un pedido de publicación esperando a que la PC lo tome.', 'espera');
+    vigilarComando(c.solicitado);
+  } else if (c.estado === 'hecho' && c.terminado) {
+    const f = new Date(c.terminado).toLocaleString('es-AR');
+    estadoPublicar('Última publicación: ' + f + '. ' + (c.detalle || ''), 'ok');
+  } else if (c.estado === 'error') {
+    estadoPublicar('<b>El último pedido falló.</b> ' + (c.detalle || ''), 'mal');
+  }
+});
+
+$('btnPublicar').addEventListener('click', publicarPrecios);
+
 $('dcCerrar').addEventListener('click', cerrarDescuentos);
 $('dcCancelar').addEventListener('click', cerrarDescuentos);
 $('dcAplicar').addEventListener('click', aplicarDescuento);
