@@ -4910,7 +4910,7 @@ const _urlFotoPanel = id => 'fotos/' + id + '.' + ((FOTOS_FB[id] && FOTOS_FB[id]
 function sincronizarDesdeSheets(){
   // Stale-while-revalidate: hidratar UI desde cache local para render instantáneo
   try {
-    const raw = localStorage.getItem('paladear_min_v2');
+    const raw = localStorage.getItem('paladear_min_v3');
     if (raw) {
       const data = JSON.parse(raw);
       if (data && data.prods && data.prods.length && data.cats && data.cats.length) {
@@ -4944,7 +4944,9 @@ function sincronizarDesdeSheets(){
         const _fbOculto=FICHAS_FB[productId];
         if(_fbOculto&&_fbOculto.oculto===true)return;
         const _infSheet=INFO[productId]||INFO[_norm(nombre)]||{};
-        // Lo editado en el panel manda sobre el Sheet.
+        // Lo editado en el panel manda sobre el Sheet, salvo los flags de los
+        // armadores: el panel historico guardo `false` por defecto al editar una
+        // foto y eso no debe borrar un "si" explicito de la hoja Info.
         const _fb=FICHAS_FB[productId];
         const inf=_fb?Object.assign({},_infSheet,{
           nombre:_fb.nombre||_infSheet.nombre,
@@ -4952,8 +4954,8 @@ function sincronizarDesdeSheets(){
           sabores:_fb.sabores?_parseCantidades(_fb.sabores):_infSheet.sabores,
           info:(_fb.desc!==undefined&&_fb.desc!=='')?_fb.desc:_infSheet.info,
           oferta:(_fb.oferta!==undefined)?_fb.oferta:_infSheet.oferta,
-          mix:(_fb.mix!==undefined)?_fb.mix:_infSheet.mix,
-          granola:(_fb.granola!==undefined)?_fb.granola:_infSheet.granola,
+          mix:_fb.mix===true||_infSheet.mix===true,
+          granola:_fb.granola===true||_infSheet.granola===true,
           imagen:_fb.fotoPropia?'panel':_infSheet.imagen
         }):_infSheet;
         const nombreFinal=inf.nombre||nombre;
@@ -4987,7 +4989,7 @@ function sincronizarDesdeSheets(){
       PRODS=prodsTemp;
       _MIN_BY_ID=null;
       // Guardar en localStorage para hidratación instantánea en próxima visita
-      try{localStorage.setItem('paladear_min_v2',JSON.stringify({cats:CATS,prods:PRODS,ts:Date.now()}));}catch(e){}
+      try{localStorage.setItem('paladear_min_v3',JSON.stringify({cats:CATS,prods:PRODS,ts:Date.now()}));}catch(e){}
       console.log(`✅ Paladear: ${PRODS.length} productos, ${CATS.length} categorías`);
       renderCatsUI();
       renderCarruseles();
