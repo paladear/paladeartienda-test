@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 14,
+    "nuevos": 15,
     "renombrados": 1,
     "quitados": 2,
     "rubro_invalido": 0
@@ -60,6 +60,13 @@
       "nombre": "MIEL CREMOGENADA x 500 g \"TRES SOLES\" - FLOR DEL ALGARROBO",
       "rubro": "DULCES, MIEL Y CHOCOLATES",
       "precio": 7310,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5050",
+      "nombre": "PASTA DENTAL X50 GR",
+      "rubro": "PALADEAR HOME",
+      "precio": 5250,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
