@@ -22,7 +22,7 @@
 //      en segundo plano. Casi nunca cambian.
 // ════════════════════════════════════════════════════════
 
-const CACHE_VERSION = 'paladear-v18';   // subir esto en cada publicación de la tester
+const CACHE_VERSION = 'paladear-v19';   // subir esto en cada publicación de la tester
 
 const SHELL_FILES = [
   '/paladeartienda-test/android-chrome-192x192.png',
@@ -33,10 +33,34 @@ const SHELL_FILES = [
   '/paladeartienda-test/home-hero-minorista-desktop-v2.jpg',
   '/paladeartienda-test/home-hero-minorista-mobile-v4.jpg',
   '/paladeartienda-test/home-discount-strip-v2.png',
-  '/paladeartienda-test/home-banner-mix.jpg',
-  '/paladeartienda-test/home-banner-granola.jpg',
-  '/paladeartienda-test/home-banner-blend.jpg',
-  '/paladeartienda-test/home-banner-lista.jpg',
+  '/paladeartienda-test/home-banner-v2-mix.jpg',
+  '/paladeartienda-test/home-banner-v2-granola.jpg',
+  '/paladeartienda-test/home-banner-v2-blend.jpg',
+  '/paladeartienda-test/home-banner-v2-lista.jpg',
+  '/paladeartienda-test/cat-v2-frutos.jpg',
+  '/paladeartienda-test/cat-v2-deshidratados.jpg',
+  '/paladeartienda-test/cat-v2-semillas.jpg',
+  '/paladeartienda-test/cat-v2-especias.jpg',
+  '/paladeartienda-test/cat-v2-infusiones.jpg',
+  '/paladeartienda-test/cat-v2-cereales.jpg',
+  '/paladeartienda-test/cat-v2-granos.jpg',
+  '/paladeartienda-test/cat-v2-harinas.jpg',
+  '/paladeartienda-test/cat-v2-sintacc.jpg',
+  '/paladeartienda-test/cat-v2-dulces.jpg',
+  '/paladeartienda-test/cat-v2-reposteria.jpg',
+  '/paladeartienda-test/cat-v2-mantecas.jpg',
+  '/paladeartienda-test/cat-v2-aceites.jpg',
+  '/paladeartienda-test/cat-v2-aceitunas.jpg',
+  '/paladeartienda-test/cat-v2-encurtidos.jpg',
+  '/paladeartienda-test/cat-v2-tomate.jpg',
+  '/paladeartienda-test/cat-v2-snack.jpg',
+  '/paladeartienda-test/cat-v2-suplementos.jpg',
+  '/paladeartienda-test/cat-v2-gourmet.jpg',
+  '/paladeartienda-test/cat-v2-bebidas.jpg',
+  '/paladeartienda-test/cat-v2-vinos.jpg',
+  '/paladeartienda-test/cat-v2-frio.jpg',
+  '/paladeartienda-test/cat-v2-congelados.jpg',
+  '/paladeartienda-test/cat-v2-home.jpg',
   '/paladeartienda-test/may-icon-home-filled.png',
   '/paladeartienda-test/may-icon-products-bag.png',
   '/paladeartienda-test/may-icon-catalog-filled.png',

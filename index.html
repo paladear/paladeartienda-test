@@ -2396,7 +2396,7 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 .min-redesign .header-dropdowns>.cuenta-btn,.min-redesign .header-dropdowns>.header-search-btn{display:none!important}
 .min-redesign .header-dropdowns{flex:0 0 auto;gap:6px}
 .min-redesign .min-header-menu,.min-redesign .min-header-cart{
-  display:flex!important;width:42px;height:42px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.96);color:#285b83;
+  display:flex!important;width:42px;height:42px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.96);color:#4a7fa5;
   box-shadow:0 6px 17px rgba(22,59,88,.1);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)
 }
 .min-redesign .min-header-menu:hover,.min-redesign .min-header-cart:hover{background:rgba(255,255,255,.82)!important;transform:translateY(-1px)}
@@ -2453,17 +2453,7 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
 }
 .min-redesign .hv-cat{display:flex;min-width:0;flex-direction:column;align-items:center;gap:9px;padding:0 3px;background:transparent;border:0;color:#244f71;cursor:pointer}
 .min-redesign .hv-cat .bub{display:block;width:clamp(100px,9.5vw,132px);height:clamp(100px,9.5vw,132px);aspect-ratio:1;border:0;border-radius:50%;overflow:hidden;background:#e9e1d5;box-shadow:none}
-.min-redesign .hv-cat .bub img{position:static!important;display:block;width:100%!important;height:100%!important;padding:4px!important;box-sizing:border-box;border-radius:50%;background:#eee8de;object-fit:cover!important;transform:none!important;filter:none!important}
-.min-redesign .hv-cat[data-cat="deshidratados"] .bub img,
-.min-redesign .hv-cat[data-cat="dulces"] .bub img,
-.min-redesign .hv-cat[data-cat="encurtidos"] .bub img,
-.min-redesign .hv-cat[data-cat="infusiones"] .bub img,
-.min-redesign .hv-cat[data-cat="reposteria"] .bub img,
-.min-redesign .hv-cat[data-cat="sintacc"] .bub img,
-.min-redesign .hv-cat[data-cat="suplementos"] .bub img,
-.min-redesign .hv-cat[data-cat="tomate"] .bub img,
-.min-redesign .hv-cat[data-cat="vinos"] .bub img,
-.min-redesign .hv-cat[data-cat="home"] .bub img{padding:7px!important}
+.min-redesign .hv-cat .bub img{position:static!important;display:block;width:100%!important;height:100%!important;padding:0!important;box-sizing:border-box;border-radius:50%;background:transparent;object-fit:cover!important;transform:none!important;filter:none!important}
 .min-redesign .hv-cat:hover .bub img,.min-redesign .hv-cat:focus-visible .bub img{transform:scale(1.045)!important}
 .min-redesign .hv-cat>span:last-child{min-height:36px!important;font-size:13px;line-height:1.22;font-weight:750;text-align:center;overflow:visible!important}
 .min-redesign .hv-cats-pagination{display:flex;align-items:center;justify-content:center;gap:3px;margin-top:8px}
@@ -2508,6 +2498,28 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
 .min-redesign .bnav-pill{background:rgba(255,255,255,.98);border:1px solid #fff;box-shadow:0 5px 14px rgba(31,71,100,.09)}
 .min-redesign .bnav button{color:#315f82}.min-redesign .bnav button>img{display:block;width:27px;height:27px;object-fit:contain;filter:none}
 .min-redesign .bnav button[data-b="favoritos"]>img{width:29px;height:29px}
+.min-redesign .bnav button>img,
+.min-redesign .may-tab-icon,
+.min-redesign .min-header-cart>img,
+.min-redesign .cuenta-btn>img,
+.min-redesign .catalog-intro-ic,
+.min-redesign .ofview-icon,
+.min-redesign .wishlist-icon,
+.min-redesign .min-cat-all img{
+  filter:brightness(0) saturate(100%) invert(48%) sepia(22%) saturate(1040%) hue-rotate(162deg) brightness(94%) contrast(89%)!important
+}
+.min-redesign .min-header-search-icon{color:#4a7fa5}
+
+/* Banners fotográficos: imagen de fondo y tipografía HTML siempre nítida. */
+.min-redesign #homeView .min-image-banner{aspect-ratio:8/3;background:#edf4f7}
+.min-redesign #homeView .min-image-banner>img{width:100%;height:100%;object-fit:cover;object-position:center}
+.min-banner-copy{position:absolute;z-index:2;left:5.2%;top:50%;width:39%;display:flex;flex-direction:column;align-items:flex-start;transform:translateY(-50%);color:#194d73;text-align:left}
+.min-banner-kicker{margin:0 0 5px;font-size:clamp(7px,.68vw,10px);font-weight:750;letter-spacing:.18em;text-transform:uppercase}
+.min-banner-copy h3{max-width:9ch;margin:0 0 7px;font-size:clamp(21px,2.15vw,31px);font-weight:850;line-height:.98;letter-spacing:-.035em;color:#123f67}
+.min-banner-copy p{max-width:22ch;margin:0 0 10px;font-size:clamp(8px,.82vw,12px);font-weight:520;line-height:1.3;color:#315f7b}
+.min-image-banner .min-banner-btn{position:static;width:auto;height:auto;min-height:34px;padding:8px 13px;border:0;border-radius:999px;background:#4a7fa5;color:#fff;font:750 clamp(8px,.78vw,11px)/1 'Montserrat',sans-serif;box-shadow:0 5px 12px rgba(32,75,106,.16);cursor:pointer}
+.min-image-banner .min-banner-btn:hover{background:#3e7095;transform:translateY(-1px)}
+.min-image-banner .min-banner-btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .min-redesign .bnav button,
 .min-redesign .bnav button:not(.active),
 .min-redesign .bnav button span,
@@ -2553,6 +2565,12 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
   .min-redesign .cats-dropdown-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.min-cat-menu-btn{grid-template-columns:42px minmax(0,1fr);min-height:58px;padding:7px 9px}.min-cat-thumb{width:42px;height:42px;border-radius:10px}.min-cat-menu-arrow{display:none}.min-cat-menu-name{font-size:11.5px}
   .min-redesign .bnav{display:grid!important;left:8px;right:8px;bottom:calc(7px + env(safe-area-inset-bottom));width:auto;padding:6px;border-radius:22px;grid-template-columns:repeat(4,minmax(0,1fr))}
   .min-redesign .bnav button{font-size:8.5px;gap:2px}.min-redesign .bnav button>img{width:25px;height:25px}.min-redesign .bnav button[data-b="favoritos"]>img{width:27px;height:27px}
+  .min-redesign #homeView .min-image-banner{aspect-ratio:2.42/1}
+  .min-banner-copy{left:5%;width:40%}
+  .min-banner-kicker{margin-bottom:3px;font-size:6.5px;letter-spacing:.14em}
+  .min-banner-copy h3{margin-bottom:4px;font-size:18px;line-height:1}
+  .min-banner-copy p{margin-bottom:7px;font-size:7.8px;line-height:1.25}
+  .min-image-banner .min-banner-btn{min-height:27px;padding:6px 10px;font-size:7.5px;box-shadow:0 3px 8px rgba(32,75,106,.15)}
   .min-redesign #cart-fab{bottom:calc(88px + env(safe-area-inset-bottom))!important}
 }
 @media(max-width:370px){
@@ -2609,20 +2627,20 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
 <div class="banners-track-wrap" id="bannersTrackWrap">
   <div class="banners-track" id="bannersTrack">
     <article class="banner-slide min-image-banner min-image-banner-mix">
-      <img src="home-banner-mix.jpg" alt="Armá tu mix: tu mix, tu forma" loading="eager" decoding="async">
-      <button type="button" onclick="openMix()" aria-label="Armar tu mix personalizado"></button>
+      <img src="home-banner-v2-mix.jpg" alt="Mix de frutos secos servido en un bowl" loading="eager" decoding="async">
+      <div class="min-banner-copy"><span class="min-banner-kicker">Armá tu mix</span><h3>Tu mix,<br>tu forma</h3><p>Elegí tus ingredientes favoritos.</p><button class="min-banner-btn" type="button" onclick="openMix()">Armar mix&nbsp; →</button></div>
     </article>
     <article class="banner-slide min-image-banner min-image-banner-granola">
-      <img src="home-banner-granola.jpg" alt="Creá tu granola: granola a tu gusto" loading="eager" decoding="async">
-      <button type="button" onclick="openGranola()" aria-label="Crear tu granola"></button>
+      <img src="home-banner-v2-granola.jpg" alt="Granola artesanal servida en un bowl" loading="eager" decoding="async">
+      <div class="min-banner-copy"><span class="min-banner-kicker">Creá tu granola</span><h3>Granola<br>a tu gusto</h3><p>Seleccioná tus ingredientes y creá tu mezcla.</p><button class="min-banner-btn" type="button" onclick="openGranola()">Crear granola&nbsp; →</button></div>
     </article>
     <article class="banner-slide min-image-banner min-image-banner-blend">
-      <img src="home-banner-blend.jpg" alt="Prepará tu blend: tu té, a tu manera" loading="eager" decoding="async">
-      <button type="button" onclick="openBlend()" aria-label="Crear tu blend de té"></button>
+      <img src="home-banner-v2-blend.jpg" alt="Taza completa de té con hierbas y flores" loading="eager" decoding="async">
+      <div class="min-banner-copy"><span class="min-banner-kicker">Prepará tu blend</span><h3>Tu té,<br>a tu manera</h3><p>Mezclá hierbas, flores y especias.</p><button class="min-banner-btn" type="button" onclick="openBlend()">Crear blend&nbsp; →</button></div>
     </article>
     <article class="banner-slide min-image-banner min-image-banner-lista">
-      <img src="home-banner-lista.jpg" alt="Lista sábana: todos los productos en una sola hoja" loading="eager" decoding="async">
-      <button type="button" onclick="location.href='catalogo.html'" aria-label="Ver la lista completa de precios"></button>
+      <img src="home-banner-v2-lista.jpg" alt="Lista de precios sobre un portapapeles" loading="eager" decoding="async">
+      <div class="min-banner-copy"><span class="min-banner-kicker">Lista sábana</span><h3>Lista de<br>precios</h3><p>Todos los productos en una sola hoja.</p><button class="min-banner-btn" type="button" onclick="location.href='catalogo.html'">Ver lista&nbsp; →</button></div>
     </article>
   </div>
 </div>
@@ -3312,7 +3330,7 @@ function renderCatsUI(){
 
   // Menú de categorías compartido por Home y catálogo
   const dg=document.getElementById('catsDropdownGrid');
-  if(dg)dg.innerHTML=`<button class="min-cat-menu-btn" type="button" onclick="window.switchTab('minorista');volverInicio();closeCatsDropdown()"><span class="min-cat-thumb min-cat-all"><img src="may-icon-catalog-filled.png" alt="" aria-hidden="true"></span><span class="min-cat-menu-name">Todos los productos</span><span class="min-cat-menu-arrow" aria-hidden="true">›</span></button>`+sortedCats.map(c=>`<button class="min-cat-menu-btn${activeCatId===c.id?' active':''}" type="button" onclick="hvGoCat('${c.id}');closeCatsDropdown()"><span class="min-cat-thumb"><img src="cat-home-${c.id}.webp" alt="" aria-hidden="true" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"></span><span class="min-cat-menu-name">${c.n}</span><span class="min-cat-menu-arrow" aria-hidden="true">›</span></button>`).join('');
+  if(dg)dg.innerHTML=`<button class="min-cat-menu-btn" type="button" onclick="window.switchTab('minorista');volverInicio();closeCatsDropdown()"><span class="min-cat-thumb min-cat-all"><img src="may-icon-catalog-filled.png" alt="" aria-hidden="true"></span><span class="min-cat-menu-name">Todos los productos</span><span class="min-cat-menu-arrow" aria-hidden="true">›</span></button>`+sortedCats.map(c=>`<button class="min-cat-menu-btn${activeCatId===c.id?' active':''}" type="button" onclick="hvGoCat('${c.id}');closeCatsDropdown()"><span class="min-cat-thumb"><img src="cat-v2-${c.id}.jpg" alt="" aria-hidden="true" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"></span><span class="min-cat-menu-name">${c.n}</span><span class="min-cat-menu-arrow" aria-hidden="true">›</span></button>`).join('');
 }
 
 /* ── SELECCIONAR CATEGORÍA ── */
@@ -6209,14 +6227,14 @@ function hvRenderCats(force){
   track.dataset.pageSize=String(pageSize);
   track.innerHTML=pages.map(function(page,pageIndex){
     return '<div class="hv-cat-page" data-hv-cat-page="'+pageIndex+'" role="group" aria-label="Página '+(pageIndex+1)+' de categorías">'+page.map(function(c){
-      return '<button type="button" class="hv-cat" data-cat="'+c.id+'" onclick="hvGoCat(\''+c.id+'\')"><span class="bub"><img src="cat-home-'+c.id+'.webp" width="512" height="512" alt="" loading="'+(pageIndex<2?'eager':'lazy')+'" decoding="async"'+(pageIndex===0?' fetchpriority="high"':'')+' onerror="this.style.visibility=\'hidden\'"></span><span>'+c.n+'</span></button>';
+      return '<button type="button" class="hv-cat" data-cat="'+c.id+'" onclick="hvGoCat(\''+c.id+'\')"><span class="bub"><img src="cat-v2-'+c.id+'.jpg" width="640" height="640" alt="" loading="'+(pageIndex<2?'eager':'lazy')+'" decoding="async"'+(pageIndex===0?' fetchpriority="high"':'')+' onerror="this.style.visibility=\'hidden\'"></span><span>'+c.n+'</span></button>';
     }).join('')+'</div>';
   }).join('');
   var pagination=document.getElementById('hvCatsPagination');
   if(pagination)pagination.innerHTML=pages.map(function(page,index){return '<button type="button" onclick="hvGoCatPage('+index+')" aria-label="Ver categorías '+(index*pageSize+1)+' a '+(index*pageSize+page.length)+'"'+(index===0?' aria-current="true"':'')+'></button>';}).join('');
   track.onscroll=hvUpdateCatPagination;
   requestAnimationFrame(hvUpdateCatPagination);
-  var warm=function(){cats.forEach(function(c){var src='cat-home-'+c.id+'.webp';if(_hvCatPreloads[src])return;var img=new Image();img.decoding='async';img.src=src;_hvCatPreloads[src]=img;});};
+  var warm=function(){cats.forEach(function(c){var src='cat-v2-'+c.id+'.jpg';if(_hvCatPreloads[src])return;var img=new Image();img.decoding='async';img.src=src;_hvCatPreloads[src]=img;});};
   if('requestIdleCallback' in window)requestIdleCallback(warm,{timeout:700});else setTimeout(warm,180);
 }
 function hvGoCatPage(index){
@@ -6631,7 +6649,7 @@ function renderCarruseles(){
       var holder=document.createElement('div');
       holder.innerHTML=`<section class="allcat-sec" id="catalogo-${prefix}-${item.cat.id}">
         <div class="allcat-head">
-          <img class="allcat-img" src="cat-home-${item.cat.id}.webp" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
+          <img class="allcat-img" src="cat-v2-${item.cat.id}.jpg" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
           <span class="allcat-name">${item.cat.n}</span>
           <span class="allcat-count">${item.prods.length}</span>
         </div>
