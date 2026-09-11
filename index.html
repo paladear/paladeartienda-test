@@ -1205,6 +1205,47 @@ body.cart-open #cart-fab,body.cart-open #chat-fab{display:none!important}
 #imgZoom{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;cursor:zoom-out;animation:fadeIn .2s}
 #imgZoom img{max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5);object-fit:contain}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.product-detail{position:fixed;inset:0;z-index:9300;background:#f8f5ef;overflow-y:auto;animation:fadeIn .18s ease}
+.product-detail-bar{position:sticky;top:0;z-index:3;min-height:68px;padding:10px 18px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:10px;background:#285b83;color:#fff;box-shadow:0 4px 16px rgba(19,57,86,.14)}
+.product-detail-bar strong{text-align:center;font-size:15px;font-weight:800;letter-spacing:.02em}
+.product-detail-back,.product-detail-close{width:42px;height:42px;border:1px solid rgba(255,255,255,.34);border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;font-family:inherit}
+.product-detail-close{font-size:24px;line-height:1}
+.product-detail-shell{width:min(1100px,calc(100% - 40px));margin:0 auto;padding:34px 0 52px}
+.product-detail-main{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(360px,.98fr);gap:42px;align-items:start}
+.product-detail-image{position:relative;aspect-ratio:1;border:1px solid #dce6ec;border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 18px 44px rgba(31,74,107,.10)}
+.product-detail-image img{display:block;width:100%;height:100%;object-fit:contain;padding:22px}
+.product-detail-copy{padding-top:8px}
+.product-detail-category{display:flex;align-items:center;gap:10px;margin-bottom:10px;color:#4e7898;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.product-detail-category::after{content:"";width:42px;height:1px;background:currentColor;opacity:.5}
+.product-detail-title{margin:0 0 18px;color:#123f67;font-size:clamp(30px,3.2vw,46px);font-weight:800;line-height:1.04;letter-spacing:-.035em}
+.product-detail-info{margin:0 0 22px;color:#496579;font-size:14px;line-height:1.62}
+.product-detail-buy{padding:20px;border:1px solid #d8e4eb;border-radius:20px;background:#fff;box-shadow:0 12px 30px rgba(31,74,107,.08)}
+.product-detail-buy h3{margin:0 0 12px;color:#173f61;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.product-detail-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:15px}
+.product-detail-options .opt-btn{min-height:42px;background:#edf4f8;border-color:#d7e5ed;font-size:13px}
+.product-detail-options .opt-btn.active{background:#285b83;border-color:#285b83;color:#fff}
+.product-detail-buy .sabor-row{margin:0 0 14px}
+.product-detail-buy .prices{margin:4px 0 14px;padding:14px;border-radius:14px;background:#edf5f9}
+.product-detail-buy .qty-row{justify-content:center;margin:4px 0 12px}
+.product-detail-buy .add-btn{min-height:50px;margin:0;font-size:15px}
+.product-detail-cart-state{min-height:20px;margin-top:10px;text-align:center;color:#426c88;font-size:12px;font-weight:700}
+.min-redesign .pcard{cursor:pointer}
+.min-redesign .pcard-img{cursor:pointer}
+.min-redesign .pcard:focus-visible{outline:3px solid #5d94bb;outline-offset:3px}
+@media(max-width:760px){
+  .product-detail-bar{min-height:62px;padding:8px 12px}
+  .product-detail-shell{width:100%;padding:0 0 34px}
+  .product-detail-main{display:block}
+  .product-detail-image{height:min(48vh,390px);aspect-ratio:auto;border:0;border-radius:0;box-shadow:none}
+  .product-detail-image img{padding:14px}
+  .product-detail-copy{padding:24px 18px 0}
+  .product-detail-title{font-size:29px;margin-bottom:14px}
+  .product-detail-info{font-size:13px;line-height:1.55;margin-bottom:18px}
+  .product-detail-buy{padding:16px;border-radius:17px}
+  .product-detail-options{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+  .product-detail-options .opt-btn{min-height:39px;padding-inline:1px;font-size:11px}
+}
+@media(max-width:360px){.product-detail-options{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .hidden{display:none!important}
 .desktop-only{display:block}
 .mobile-only{display:none!important}
@@ -1774,6 +1815,30 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 .min-redesign .granola-step-final,.min-redesign .blend-step-final,.min-redesign .granola-sum-head,.min-redesign .blend-sum-head{background:#e3eff6;color:#285b83}
 .min-redesign .granola-step-final.ready,.min-redesign .blend-step-final.ready,.min-redesign .granola-add-btn,.min-redesign .blend-add-btn{background:#285b83;color:#fff}
 .min-redesign .granola-add-btn:hover,.min-redesign .blend-add-btn:hover{background:#123f67}
+.min-redesign .builder-showcase{position:relative;min-height:172px;margin:0 0 22px;border:1px solid rgba(40,91,131,.14);border-radius:20px;overflow:hidden;background-color:#dcecf5;background-position:center;background-size:cover;box-shadow:0 12px 30px rgba(31,74,107,.10)}
+.min-redesign .builder-showcase--mix{background-image:url('home-banner-v2-mix.jpg')}
+.min-redesign .builder-showcase--granola{background-image:url('home-banner-v2-granola.jpg')}
+.min-redesign .builder-showcase--blend{background-image:url('home-banner-v2-blend.jpg')}
+.min-redesign .builder-showcase-copy{position:absolute;z-index:1;left:clamp(20px,4vw,48px);top:50%;width:min(43%,430px);transform:translateY(-50%);color:#123e62}
+.min-redesign .builder-showcase-copy small{display:block;margin-bottom:7px;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#3d7197}
+.min-redesign .builder-showcase-copy strong{display:block;font-size:clamp(23px,2.5vw,34px);font-weight:800;line-height:1.02;letter-spacing:-.035em}
+.min-redesign .builder-showcase-copy span{display:block;max-width:34ch;margin-top:9px;font-size:13px;font-weight:600;line-height:1.4;color:#315f7f}
+.min-redesign .builder-prod-main{display:flex;align-items:center;gap:11px;min-width:0}
+.min-redesign .builder-prod-thumb{width:52px;height:52px;flex:0 0 52px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #d9e6ee;border-radius:12px;background:#fff}
+.min-redesign .builder-prod-thumb img{display:block;width:100%;height:100%;object-fit:contain}
+.min-redesign .builder-prod-main .mix-prod-name,.min-redesign .builder-prod-main .granola-prod-name{min-width:0;line-height:1.3}
+.min-redesign .granola-cat-tab.active{background:#285b83!important;color:#fff!important;box-shadow:0 0 0 2px #fff,0 0 0 3px #285b83}
+.min-redesign .granola-size-btn.sel{border-color:#285b83;background:#eef6fa;color:#174f78}
+@media(max-width:520px){
+  .min-redesign .builder-showcase{min-height:142px;margin-bottom:18px;border-radius:16px;background-position:58% center}
+  .min-redesign .builder-showcase-copy{left:18px;width:48%}
+  .min-redesign .builder-showcase-copy small{margin-bottom:5px;font-size:9px;letter-spacing:.13em}
+  .min-redesign .builder-showcase-copy strong{font-size:21px;line-height:1.04}
+  .min-redesign .builder-showcase-copy span{margin-top:6px;font-size:10.5px;line-height:1.32}
+  .min-redesign .builder-prod-main{grid-area:name;gap:10px}
+  .min-redesign .builder-prod-thumb{width:50px;height:50px;flex-basis:50px;border-radius:11px}
+  .min-redesign .builder-prod-main .mix-prod-name,.min-redesign .builder-prod-main .granola-prod-name{grid-area:auto;font-size:13px}
+}
 @media(max-width:900px){
   .min-redesign .social-btns{display:none}
   .min-redesign .header .logo{width:80px;height:80px}
@@ -2903,6 +2968,9 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
       <div class="mini-bar"><div class="mini-fill" id="mixMiniFill" style="width:0%"></div></div>
     </div>
     <div class="mix-modal-body">
+      <div class="builder-showcase builder-showcase--mix" aria-hidden="true">
+        <div class="builder-showcase-copy"><small>Armalo a tu manera</small><strong>Tu mix ideal empieza acá</strong><span>Combiná tus frutos secos favoritos en la medida justa.</span></div>
+      </div>
       <div class="mix-step-label">1. Elegí el tamaño del bolsón</div>
       <div class="mix-sizes" id="mixSizes"></div>
       <div id="mixBuilderArea" style="display:none">
@@ -2958,6 +3026,9 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
       <div class="mini-bar"><div class="mini-fill" id="granolaMiniFill" style="width:0%"></div></div>
     </div>
     <div class="granola-modal-body">
+      <div class="builder-showcase builder-showcase--granola" aria-hidden="true">
+        <div class="builder-showcase-copy"><small>Una mezcla única</small><strong>Granola a tu gusto</strong><span>Elegí cada ingrediente y creá tu propia combinación.</span></div>
+      </div>
       <div class="mix-step-label">1. Elegí el tamaño del bolsón</div>
       <div class="mix-sizes" id="granolaSizes"></div>
       <div id="granolaBuilderArea" style="display:none">
@@ -3002,7 +3073,7 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
   <div class="blend-modal-box">
     <div class="blend-modal-header">
       <button class="blend-modal-back" onclick="closeBlend()" aria-label="Volver"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <h2>Preparé tu blend de té</h2>
+      <h2>Prepará tu blend de té</h2>
       <button class="blend-modal-close" onclick="closeBlend()" aria-label="Cerrar">×</button>
     </div>
     <div class="mix-mini-progress blend-mini-progress" id="blendMiniProgress" style="display:none">
@@ -3013,6 +3084,9 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
       <div class="mini-bar"><div class="mini-fill" id="blendMiniFill" style="width:0%"></div></div>
     </div>
     <div class="blend-modal-body">
+      <div class="builder-showcase builder-showcase--blend" aria-hidden="true">
+        <div class="builder-showcase-copy"><small>Tu momento de té</small><strong>Creá un blend propio</strong><span>Mezclá hierbas, flores y especias de a 10 gramos.</span></div>
+      </div>
       <div class="mix-step-label">1. Elegí el tamaño del blend</div>
       <div class="mix-sizes" id="blendSizes"></div>
       <div id="blendBuilderArea" style="display:none">
@@ -3287,6 +3361,65 @@ function _imgZoomGoBack(){if(history.state&&history.state.modal==='imgZoom')hist
 function zoomImg(el){let src=el.dataset.src||'';if(!src)return;src=src.replace(/=w\d+/,'=w1200').replace(/\/w_\d+\//,'/w_1200/');const old=document.getElementById('imgZoom');if(old)old.remove();const z=document.createElement('div');z.id='imgZoom';z.onclick=e=>{if(e.target===z||e.target.tagName==='IMG')_imgZoomGoBack();};z.innerHTML=`<img src="${src}" alt="">`;document.body.appendChild(z);_palPushOverlay('imgZoom',{modal:'imgZoom'});}
 window.addEventListener('popstate',function(e){const z=document.getElementById('imgZoom');if(z){z.remove();e.stopImmediatePropagation();}});
 
+/* Ficha completa de producto: reemplaza el zoom aislado en la tienda minorista. */
+function _productDetailCloseDirect(){
+  const modal=document.getElementById('productDetail');
+  if(modal)modal.remove();
+  document.body.style.overflow=(typeof _searchOverlayOpen!=='undefined'&&_searchOverlayOpen&&window.innerWidth<768)?'hidden':'';
+}
+function closeProductDetail(){
+  if(history.state&&history.state.modal==='productDetail')history.back();
+  else _productDetailCloseDirect();
+}
+function openProductDetail(pid){
+  const p=PRODS.find(x=>x[0]===pid);if(!p||!p[7])return;
+  _track('producto_abierto');
+  _productDetailCloseDirect();
+  const opts=_sortOpts(Object.keys(p[7]));if(!opts.length)return;
+  const opt=opts[0],optsVis=opts.slice().reverse();
+  const cat=CATS.find(c=>c.id===p[1]);
+  const oferta=p[12]&&p[12].oferta?p[12].oferta:0;
+  const sabores=p[9]||null;
+  const fondo=p[12]&&p[12].fondo?p[12].fondo:'#fff';
+  const src=(p[6]||'').replace(/=w\d+/,'=w1200').replace(/\/w_\d+\//,'/w_1200/');
+  const opciones=optsVis.map(o=>`<button class="opt-btn${o===opt?' active':''}" data-opt="${o.replace(/"/g,'&quot;')}" onclick="selOpt('productDetailCard','${o.replace(/'/g,"\\'")}',${p[7][o][0]},${p[7][o][1]})">${_medidaCorta(o)}</button>`).join('');
+  const saboresHTML=sabores&&sabores.length?`<div class="sabor-row"><label class="sabor-label" for="productDetailCard_sab">Sabor:</label><select class="sabor-select" id="productDetailCard_sab" onchange="selSabor('productDetailCard',this.value)">${sabores.map(s=>`<option value="${s.replace(/"/g,'&quot;')}">${s}</option>`).join('')}</select></div>`:'';
+  const info=(p[8]||'Consultanos si querés conocer más detalles sobre este producto.').replace(/\n/g,'<br>');
+  const acum=_acumLabel(p);
+  const modal=document.createElement('section');
+  modal.id='productDetail';modal.className='product-detail';modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');modal.setAttribute('aria-label','Detalle de '+_tc(p[2]));
+  modal.innerHTML=`<div class="product-detail-bar">
+    <button class="product-detail-back" type="button" onclick="closeProductDetail()" aria-label="Volver"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+    <strong>Detalle del producto</strong>
+    <button class="product-detail-close" type="button" onclick="closeProductDetail()" aria-label="Cerrar">×</button>
+  </div><div class="product-detail-shell"><div class="product-detail-main">
+    <div class="product-detail-image" style="background:${fondo}">${src?`<img src="${src}" alt="${p[2]}" decoding="async">`:'<span class="product-image-placeholder" aria-hidden="true"></span>'}</div>
+    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2><div class="product-detail-info">${info}</div>
+      <div class="product-detail-buy" id="productDetailCard" data-pid="${p[0]}" data-opt="${opt}">
+        <h3>Elegí la presentación</h3><div class="product-detail-options opt-btns${opts.length>=4?' opt-btns-4':''}">${opciones}</div>${saboresHTML}
+        <div class="prices"><div><span class="price-label">Precio${oferta>0?' (Oferta)':''}</span><div class="price-min">${_priceMinContent(p[7][opt][0],oferta)}</div></div><div><span class="price-label">+$80.000</span><div class="price-may">$${fmt(p[7][opt][1])}</div></div></div>
+        <div class="qty-row"><button class="qty-btn" onclick="chgQty('productDetailCard',-1)" aria-label="Restar cantidad">−</button><span class="qty-val" id="productDetailCard_q">1</span><button class="qty-btn" onclick="chgQty('productDetailCard',1)" aria-label="Sumar cantidad">+</button></div>
+        <button class="add-btn" id="productDetailCard_ab" onclick="productDetailAdd(${p[0]})">${ADD_CART_ICON} Agregar al carrito</button>
+        <div class="product-detail-cart-state" id="productDetailCartState">${acum?'En tu carrito: '+acum:''}</div>
+      </div>
+    </div>
+  </div></div>`;
+  document.body.appendChild(modal);
+  document.body.style.overflow='hidden';
+  modal.scrollTop=0;
+  _palPushOverlay('productDetail',{modal:'productDetail',pid:pid});
+}
+function productDetailAdd(pid){
+  addToCart(pid,'productDetailCard');
+  setTimeout(function(){
+    const p=PRODS.find(x=>x[0]===pid),state=document.getElementById('productDetailCartState');
+    if(p&&state){const acum=_acumLabel(p);state.textContent=acum?'En tu carrito: '+acum:'';}
+  },40);
+}
+window.openProductDetail=openProductDetail;
+window.closeProductDetail=closeProductDetail;
+window.productDetailAdd=productDetailAdd;
+
 /* ── CARRUSELES ── */
 let _carRotationInterval=null;
 const _carState={}; // {cid:{prods:[...],cursor:0}}
@@ -3339,7 +3472,7 @@ function _cardHTML(p, xopts){
   const precioHTML=oferta>0
     ? `<div class="carousel-card-price"><span class="precio-tachado">$${fmt(precio)}</span> <span class="precio-oferta">$${fmt(precioOferta)}</span></div>`
     : `<div class="carousel-card-price">$${fmt(precio)}</div>`;
-  const onclick=opts2.onclick||`selectCat('${p[1]}',${p[0]})`;
+  const onclick=opts2.onclick||`openProductDetail(${p[0]})`;
   return `<div class="carousel-card" onclick="${onclick}">
     ${ofertaBadge}
     <div class="carousel-card-img">${hasSrc?`<img src="${p[6]}" alt="${p[2]}" onerror="this.parentNode.innerHTML='🌿'" loading="lazy">`:`${cat?cat.ic:'🌿'}`}</div>
@@ -3526,17 +3659,17 @@ function renderCard(p,prefix,prioritizeImage){
   const acumLbl=_acumLabel(p);
   const oferta=p[12]&&p[12].oferta?p[12].oferta:0;
   const favOn=_isFavoriteProduct(p);
-  let h=`<div class="pcard" id="${id}" data-pid="${p[0]}">`;
+  let h=`<div class="pcard" id="${id}" data-pid="${p[0]}" tabindex="0" onclick="if(!event.target.closest('button,select'))openProductDetail(${p[0]})" onkeydown="if(event.key==='Enter'&&event.target===this)openProductDetail(${p[0]})">`;
   h+=`<button type="button" class="fav-btn${favOn?' active':''}" data-fav-pid="${p[0]}" onclick="return toggleFavorite(${p[0]})" aria-label="${favOn?'Quitar de favoritos':'Agregar a favoritos'}" aria-pressed="${favOn?'true':'false'}" title="${favOn?'Quitar de favoritos':'Agregar a favoritos'}"><span class="fav-heart" aria-hidden="true"></span></button>`;
   if(oferta>0)h+=`<div class="oferta-badge oferta-badge-lg">−${oferta}% OFF</div>`;
   // El recuadro de la foto se pinta del color del fondo de la propia foto, así
   // la imagen se funde con la tarjeta aunque el fondo no sea blanco puro.
   const _fondo=(p[12]&&p[12].fondo)?` style="background:${p[12].fondo}"`:'';
   const imgLoading=prioritizeImage?'loading="eager" fetchpriority="high"':'loading="lazy"';
-  h+=`<div class="pcard-img"${_fondo} onclick="zoomImg(this)" data-src="${hasSrc?p[6]:''}">${hasSrc?`<img src="${p[6]}" alt="${p[2]}" onerror="this.style.display='none'" ${imgLoading} decoding="async">`:`<span class="product-image-placeholder" aria-hidden="true"></span>`}</div>`;
+  h+=`<div class="pcard-img"${_fondo}>${hasSrc?`<img src="${p[6]}" alt="${p[2]}" onerror="this.style.display='none'" ${imgLoading} decoding="async">`:`<span class="product-image-placeholder" aria-hidden="true"></span>`}</div>`;
   h+=`<div class="pcard-body">`;
   h+=`<div class="pcard-head"><div class="pcard-name">${_tc(p[2])}</div>`;
-  if(infoText)h+=`<button class="info-btn" onclick="showInfo(${p[0]})" title="Ver información" aria-label="Ver información"><span aria-hidden="true">i</span></button>`;
+  if(infoText)h+=`<button class="info-btn" onclick="openProductDetail(${p[0]})" title="Ver detalle" aria-label="Ver detalle"><span aria-hidden="true">i</span></button>`;
   h+=`</div>`;
   if(p[3]&&p[3]!=='Varios'&&p[3]!=='Granel')h+=`<div class="pcard-brand">${p[3]}</div>`;
   // En pantalla: menor a mayor. La medida activa sigue siendo opts[0],
@@ -4685,6 +4818,17 @@ function _parseCantidades(str){
   return items.length?items:null;
 }
 
+// El panel puede conservar una ficha anterior de tres medidas aunque la tienda
+// oficial ya tenga cuatro. En ese caso se usa la lista más completa; si el panel
+// agregó más opciones que la hoja, su edición sigue teniendo prioridad.
+function _cantidadesMasCompletas(panelRaw,sheetVals){
+  const panelVals=_parseCantidades(panelRaw)||[];
+  const hojaVals=Array.isArray(sheetVals)?sheetVals:[];
+  if(!panelVals.length)return hojaVals.length?hojaVals:null;
+  if(hojaVals.length>panelVals.length)return hojaVals;
+  return panelVals;
+}
+
 // Dada una opción (ej "250g", "1 kg", "1 unidad") y precios base (precio por kg o por und),
 // calcula el precio final para esa opción
 function _calcPrecioOpc(opc,p1,p2,esKg){
@@ -4766,7 +4910,7 @@ const _urlFotoPanel = id => 'fotos/' + id + '.' + ((FOTOS_FB[id] && FOTOS_FB[id]
 function sincronizarDesdeSheets(){
   // Stale-while-revalidate: hidratar UI desde cache local para render instantáneo
   try {
-    const raw = localStorage.getItem('paladear_min_v1');
+    const raw = localStorage.getItem('paladear_min_v2');
     if (raw) {
       const data = JSON.parse(raw);
       if (data && data.prods && data.prods.length && data.cats && data.cats.length) {
@@ -4804,7 +4948,7 @@ function sincronizarDesdeSheets(){
         const _fb=FICHAS_FB[productId];
         const inf=_fb?Object.assign({},_infSheet,{
           nombre:_fb.nombre||_infSheet.nombre,
-          cantidades:_fb.cantidades?_parseCantidades(_fb.cantidades):_infSheet.cantidades,
+          cantidades:_fb.cantidades?_cantidadesMasCompletas(_fb.cantidades,_infSheet.cantidades):_infSheet.cantidades,
           sabores:_fb.sabores?_parseCantidades(_fb.sabores):_infSheet.sabores,
           info:(_fb.desc!==undefined&&_fb.desc!=='')?_fb.desc:_infSheet.info,
           oferta:(_fb.oferta!==undefined)?_fb.oferta:_infSheet.oferta,
@@ -4843,7 +4987,7 @@ function sincronizarDesdeSheets(){
       PRODS=prodsTemp;
       _MIN_BY_ID=null;
       // Guardar en localStorage para hidratación instantánea en próxima visita
-      try{localStorage.setItem('paladear_min_v1',JSON.stringify({cats:CATS,prods:PRODS,ts:Date.now()}));}catch(e){}
+      try{localStorage.setItem('paladear_min_v2',JSON.stringify({cats:CATS,prods:PRODS,ts:Date.now()}));}catch(e){}
       console.log(`✅ Paladear: ${PRODS.length} productos, ${CATS.length} categorías`);
       renderCatsUI();
       renderCarruseles();
@@ -4934,8 +5078,10 @@ function _palRestoreScroll(y){
   [60,220,600,1200,2200].forEach(function(ms){setTimeout(function(){window.scrollTo(0,y);},ms);});
 }
 function _palCloseTopLayer(){
+  var el=document.getElementById('productDetail');
+  if(el){_productDetailCloseDirect();return true;}
   if(_searchOverlayOpen){cerrarBusqueda();return true;}
-  var el=document.getElementById('inspLightbox');
+  el=document.getElementById('inspLightbox');
   if(el&&!el.classList.contains('hidden')){cerrarLightbox();return true;}
   el=document.getElementById('recetaProdOverlay');
   if(el&&!el.classList.contains('hidden')){cerrarProductoReceta();var rm=document.getElementById('recetaModalOverlay');if(rm&&!rm.classList.contains('hidden'))document.body.style.overflow='hidden';return true;}
@@ -5249,6 +5395,10 @@ function _mixQuickNav(){
       </div>`;
     }).join('')+'</div>';
 }
+function _builderProdMain(p,nameClass){
+  const thumb=p[6]?`<span class="builder-prod-thumb"><img src="${p[6]}" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></span>`:'';
+  return `<div class="builder-prod-main">${thumb}<div class="${nameClass}">${_capName(p[2])}</div></div>`;
+}
 function mixRenderProdList(){
   if(!mixSelSize){document.getElementById('mixProdList').innerHTML='<div style="padding:16px;font-size:13px;color:var(--muted-fg);text-align:center">Elegí primero el tamaño del bolsón</div>';_mixQuickNav();return;}
   const prods=mixGranelProds().filter(p=>p[1]===mixActiveCat);
@@ -5259,7 +5409,7 @@ function mixRenderProdList(){
     const isOver=usedG>mixSelSize.g;
     const canAdd=usedG<mixSelSize.g;
     return`<div class="mix-prod-row${cur>0?' has-trash is-sel':''}">
-      <div class="mix-prod-name">${_capName(p[2])}</div>
+      ${_builderProdMain(p,'mix-prod-name')}
       <div class="mix-prod-price">$${fmt(pxkg)}/kg</div>
       <div class="prod-stepper${isOver?' over':''}">
         <button class="prod-step-btn" ${cur<=0?'disabled':''} onclick="mixDecProd(${p[0]},${pxkg})" aria-label="Restar 100g">−</button>
@@ -5635,7 +5785,7 @@ function granolaRenderProdList(){
     const isOver=usedG>granolaSelSize.g;
     const canAddG=usedG<granolaSelSize.g;
     return`<div class="granola-prod-row${cur>0?' has-trash is-sel':''}">
-      <div class="granola-prod-name">${_capName(p[2])}</div>
+      ${_builderProdMain(p,'granola-prod-name')}
       <div class="granola-prod-price">$${fmt(pxkg)}/kg</div>
       <div class="prod-stepper granola-stepper${isOver?' over':''}">
         <button class="prod-step-btn" ${cur<=0?'disabled':''} onclick="granolaDecProd(${p[0]},${pxkg})" aria-label="Restar 100g">−</button>
@@ -5888,7 +6038,7 @@ function blendRenderProdList(){
     const isOver=usedG>blendSelSize.g;
     const canAdd=usedG<blendSelSize.g;
     return`<div class="mix-prod-row${cur>0?' has-trash is-sel':''}">
-      <div class="mix-prod-name">${_capName(p[2])}</div>
+      ${_builderProdMain(p,'mix-prod-name')}
       <div class="mix-prod-price">$${fmt(pxkg)}/kg</div>
       <div class="prod-stepper${isOver?' over':''}">
         <button class="prod-step-btn" ${cur<=0?'disabled':''} onclick="blendDecProd(${p[0]},${pxkg})" aria-label="Restar 10 g">−</button>
@@ -6406,8 +6556,7 @@ function minRenderFeatured(){
 function minOpenFeatured(pid){
   var p=PRODS.find(function(x){return x[0]===pid;});
   if(!p)return;
-  window.switchTab('minorista');
-  setTimeout(function(){selectCat(p[1],pid);},30);
+  openProductDetail(pid);
 }
 window.minOpenFeatured=minOpenFeatured;
 function hvRenderOfertas(){
