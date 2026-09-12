@@ -18,7 +18,8 @@
 <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
 <link rel="manifest" href="manifest.json">
-<link rel="preload" as="image" href="home-hero-minorista-mobile-v5.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="home-hero-minorista-mobile-v6.webp" media="(max-width:767px)" fetchpriority="high">
+<link rel="preload" as="image" href="home-hero-minorista-mobile-v5.jpg" media="(min-width:768px)" fetchpriority="high">
 <link rel="preload" as="image" href="home-discount-strip-v2.png">
 
 <!-- ══════════ PWA ══════════ -->
@@ -1765,7 +1766,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 .min-redesign .hv-cat .bub{width:100%;height:auto;aspect-ratio:1;border-radius:50%;background:#eee8de;border:1px solid #e6ded1;overflow:hidden;box-shadow:none}
 .min-redesign .hv-cat .bub img{width:100%;height:100%;object-fit:cover;transform:scale(1.02);transition:transform .28s ease}
 .min-redesign .hv-cat:hover .bub img{transform:scale(1.08)}
-.min-redesign .hv-cat>span:last-child{min-height:38px;font-size:14px;line-height:1.22;font-weight:700;text-align:center}
+
 .min-redesign .hv-cats-grid{width:min(1180px,100%);margin:18px auto 0;grid-template-columns:repeat(8,minmax(0,1fr));gap:20px}
 .min-home-banners{order:4}
 .min-redesign #homeView>.banners-track-wrap{order:4;width:100%;margin:0;padding:44px max(4vw,28px);background:#f7f3eb;overflow:visible}
@@ -1789,9 +1790,9 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 .min-redesign #hvOfertas{order:6;width:min(1180px,calc(100% - 8vw));margin:0 auto 48px;border-radius:18px;background:#577fa3;color:#fff;border:0}
 .min-home-footer{order:7;display:grid;grid-template-columns:1.1fr 1fr auto;gap:38px;align-items:center;padding:38px max(5vw,32px) calc(38px + env(safe-area-inset-bottom));background:#dceef8;color:#173f61;border-top:1px solid #c8dce8}
 .min-footer-brand{display:flex;align-items:center;gap:14px}.min-footer-brand img{width:72px;height:72px;border-radius:50%;border:2px solid #7fa7c1;background:#fff}
-.min-footer-brand strong{display:block;font-size:18px}.min-footer-brand span,.min-footer-copy span{display:block;margin-top:4px;font-size:12px;color:#607b90}
-.min-footer-copy strong{font-size:13px}.min-footer-social{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.min-footer-social a{padding:9px 12px;border:1px solid #bfd3df;border-radius:999px;color:#285b83;text-decoration:none;font-size:11px;font-weight:700;background:#fff}
+.min-footer-brand strong{display:block;font-size:18px}.min-footer-brand span,.min-footer-copy span{display:block;margin-top:4px;font-size:13.5px;color:#607b90}
+.min-footer-copy strong{font-size:14.5px}.min-footer-social{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.min-footer-social a{padding:9px 12px;border:1px solid #bfd3df;border-radius:999px;color:#285b83;text-decoration:none;font-size:12.5px;font-weight:700;background:#fff}
 .min-redesign .bnav svg{width:25px;height:25px;display:block;fill:#315f82;stroke:#315f82;stroke-width:1.7}
 .min-redesign .bnav button:not(.active) svg{fill:none}
 .min-redesign .bnav button:nth-of-type(4):not(.active) svg{fill:none}
@@ -1868,9 +1869,9 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
   .min-redesign .descb-reward{min-height:7px;margin-top:2px;font-size:5.5px}
   .min-home-cats{padding:25px 14px 22px}
   .min-section-head{margin-bottom:17px;align-items:center}.min-section-kicker{font-size:8.5px;margin-bottom:4px}.min-section-head h2{font-size:22px}
-  .min-section-head button{font-size:10.5px}
+  .min-section-head button{font-size:12.5px}
   .min-redesign .hv-cats-scroller{grid-auto-columns:86px;gap:13px;padding-bottom:8px}
-  .min-redesign .hv-cat>span:last-child{font-size:9.5px;min-height:26px}
+  
   .min-redesign .hv-cats-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:14px}
   .min-redesign #homeView>.banners-track-wrap{padding:20px 12px 24px}
   .min-redesign #homeView .banners-track{grid-template-columns:1fr;gap:9px}
@@ -2127,7 +2128,7 @@ body.hv-home #mayoristaSection{display:none!important}
 .hv-cat{display:flex;flex-direction:column;align-items:center;gap:6px;scroll-snap-align:start;text-align:center;background:none;border:none;cursor:pointer;font-family:inherit;padding:0}
 .hv-cat .bub{width:62px;height:62px;border-radius:50%;background:#fff;border:1.5px solid var(--border);display:grid;place-items:center;font-size:27px;box-shadow:0 2px 8px rgba(61,90,114,.08);transition:transform .18s,border-color .18s}
 .hv-cat:hover .bub{transform:translateY(-2px);border-color:var(--azul-mid)}
-.hv-cat>span:last-child{font-size:10.5px;font-weight:700;color:var(--fg);line-height:1.15;max-width:84px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
 .hv-cats-grid{display:none;grid-template-columns:repeat(4,1fr);gap:24px 14px;padding:6px 2px 14px}
 #hvCats.expanded .hv-cats-scroller{display:none}
 #hvCats.expanded .hv-cats-grid{display:grid}
@@ -2313,7 +2314,7 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 .min-redesign #homeView .banner-slide{display:block!important;width:auto!important;min-width:0!important;max-width:none!important;flex:none!important}
 .min-redesign .hv-cat .bub img{position:static!important;top:auto!important;left:auto!important;width:100%!important;height:100%!important;transform:scale(1)!important;filter:none!important;object-fit:contain!important}
 .min-redesign .hv-cat:hover .bub img,.min-redesign .hv-cat:focus-visible .bub img{transform:scale(1.035)!important}
-.min-redesign .hv-cat>span:last-child{max-width:none!important;display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important;min-height:42px}
+
 .min-redesign .hv-cats-scroller{display:grid!important;grid-template-rows:1fr!important}
 .min-redesign .hv-cats-grid{display:none!important}
 .min-redesign #hvCats.expanded .hv-cats-scroller{display:none!important}
@@ -2403,7 +2404,7 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
     overflow:hidden;
   }
   .min-redesign .min-featured-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
-  .min-redesign .hv-cat>span:last-child{max-width:none;display:block;-webkit-line-clamp:unset;overflow:visible;min-height:52px}
+  
 }
 @media(min-width:768px) and (max-width:999px){
   .min-redesign #homeView .banners-track{grid-template-columns:1fr!important;max-width:760px}
@@ -2519,7 +2520,7 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
 .min-redesign .hv-cat .bub{display:block;width:clamp(100px,9.5vw,132px);height:clamp(100px,9.5vw,132px);aspect-ratio:1;border:0;border-radius:50%;overflow:hidden;background:#e9e1d5;box-shadow:none}
 .min-redesign .hv-cat .bub img{position:static!important;display:block;width:100%!important;height:100%!important;padding:0!important;box-sizing:border-box;border-radius:50%;background:transparent;object-fit:cover!important;transform:none!important;filter:none!important}
 .min-redesign .hv-cat:hover .bub img,.min-redesign .hv-cat:focus-visible .bub img{transform:scale(1.045)!important}
-.min-redesign .hv-cat>span:last-child{min-height:36px!important;font-size:13px;line-height:1.22;font-weight:750;text-align:center;overflow:visible!important}
+
 .min-redesign .hv-cats-pagination{display:flex;align-items:center;justify-content:center;gap:3px;margin-top:8px}
 .min-redesign .hv-cats-pagination button{position:relative;width:30px;height:30px;padding:0;border:0;background:transparent;cursor:pointer}
 .min-redesign .hv-cats-pagination button::before{content:"";position:absolute;left:10px;top:10px;width:10px;height:10px;border:1.5px solid #789bb4;border-radius:50%;background:transparent;transition:background .2s,transform .2s}
@@ -2623,9 +2624,11 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
   .min-redesign .descb-banner{aspect-ratio:auto;min-height:108px}
   .min-redesign .descb-copy{left:21%;width:32%;gap:3px}.min-redesign .descb-copy strong{font-size:11px}.min-redesign .descb-copy span{font-size:6.6px;line-height:1.3}
   .min-redesign .descb-meter{left:57%;right:5.5%}.min-redesign .descb-cnt{font-size:13px}.min-redesign .descb-goal{font-size:7px}.min-redesign .descb-track{height:6px}.min-redesign .descb-reward{min-height:8px;margin-top:4px;font-size:6.5px}
-  .min-redesign .min-home-cats{padding:21px 14px 18px}.min-redesign .min-home-categories-head{margin-bottom:14px}.min-redesign .min-home-categories-head .min-section-kicker{font-size:10px}
+  .min-redesign .min-home-cats{padding:21px 14px 18px}.min-redesign .min-home-categories-head{margin-bottom:14px}.min-redesign .min-home-categories-head .min-section-kicker{font-size:12px}
   .min-redesign .hv-cat-page{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}
-  .min-redesign .hv-cat{min-height:128px}.min-redesign .hv-cat .bub{width:102px;height:102px}.min-redesign .hv-cat>span:last-child{min-height:30px!important;font-size:11px}
+  .min-redesign .hv-cat{min-height:128px}.min-redesign .hv-cat .bub{width:102px;height:102px}
+.hv-cat{gap:3px}
+
   .min-redesign .hv-cats-pagination{margin-top:5px}
   .min-redesign .min-featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .min-redesign .cats-dropdown-panel{left:0;right:0;top:auto;bottom:0;width:100%;max-height:78vh;padding:20px 16px calc(26px + env(safe-area-inset-bottom));border:0;border-radius:22px 22px 0 0;background:#f9fcfe}
@@ -2782,7 +2785,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 
 @media(max-width:767px){
   body.min-redesign.hv-home .min-home-hero{aspect-ratio:2/3}
-  body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-position:45% bottom;transform:scale(1.55) translateX(18px);transform-origin:right bottom}
+  body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-position:center bottom}
   .min-home-hero-copy{left:6%;top:17%;width:74%}
   .min-home-hero-copy h1{font-size:clamp(29px,8.35vw,35px);line-height:1;letter-spacing:-.045em}
   .min-brand-word{width:5.2em;height:1.65em}
@@ -2794,16 +2797,17 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
   .min-redesign .descb-copy strong{font-size:20px}
   .min-redesign .descb-copy span{font-size:12.5px;line-height:1.42}
   .min-redesign #homeView .min-image-banner{aspect-ratio:1.92/1}
-  .min-banner-copy{left:5.5%;width:46%}
-  .min-banner-kicker{margin-bottom:5px;font-size:8.5px;letter-spacing:.14em}
-  .min-banner-copy h3{margin-bottom:7px;font-size:24px;line-height:.98}
-  .min-banner-copy p{max-width:20ch;margin-bottom:10px;font-size:10.5px;line-height:1.28}
-  .min-image-banner .min-banner-btn{min-height:36px;padding:9px 14px;font-size:10.5px}
+  .min-banner-copy{left:5.5%;width:52%}
+  .min-banner-kicker{margin-bottom:6px;font-size:11px;letter-spacing:.13em}
+  .min-banner-copy h3{margin-bottom:11px;font-size:27px;line-height:.98}
+  .min-banner-copy p{display:none}
+  .min-image-banner .min-banner-btn{min-height:44px;padding:12px 20px;font-size:13px}
 }
 </style>
 <div id="homeView">
   <section class="min-home-hero" aria-label="El placer de elegir, descubrir y Paladear">
     <picture>
+      <source media="(max-width:767px)" srcset="home-hero-minorista-mobile-v6.webp">
       <img src="home-hero-minorista-mobile-v5.jpg" alt="Selección real de productos Paladear" fetchpriority="high" decoding="async">
     </picture>
     <div class="min-home-hero-copy">
@@ -6534,11 +6538,36 @@ function hvRenderCats(force){
   var pages=[];
   for(var i=0;i<cats.length;i+=pageSize)pages.push(cats.slice(i,i+pageSize));
   track.dataset.pageSize=String(pageSize);
+  // Si un nombre no entra en el arco, se achica solo hasta que entre (minimo 10px).
+  // Asi ninguna categoria se desborda aunque tenga nombre largo.
+  window.hvAjustarArcos=function(){
+    document.querySelectorAll('.hv-arc').forEach(function(svg){
+      var p=svg.querySelector('path'), t=svg.querySelector('text');
+      if(!p||!t||!t.getComputedTextLength) return;
+      var util=p.getTotalLength()*0.92, base=13;
+      t.style.fontSize=base+'px';
+      var largo=0;
+      try{ largo=t.getComputedTextLength(); }catch(e){ return; }
+      if(largo>util) t.style.fontSize=Math.max(10, base*util/largo).toFixed(2)+'px';
+    });
+  };
+  // Titulo curvado en semicirculo debajo de cada imagen redonda.
+  // Cuerda 164 con flecha 34: abre 90 grados, arco ~182. Con esa curvatura entran
+  // todos los rubros a 13px salvo el mas largo, que el ajuste deja en 12.5px.
+  function hvArco(id,nombre){
+    var t=String(nombre).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return '<span class="hv-cat-lbl"><svg class="hv-arc" viewBox="0 0 170 50" '+
+      'preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">'+
+      '<path id="hvarc-'+id+'" d="M 3 11 A 115.9 115.9 0 0 0 167 11" fill="none"></path>'+
+      '<text><textPath href="#hvarc-'+id+'" startOffset="50%" text-anchor="middle">'+t+'</textPath></text>'+
+      '</svg></span>';
+  }
   track.innerHTML=pages.map(function(page,pageIndex){
     return '<div class="hv-cat-page" data-hv-cat-page="'+pageIndex+'" role="group" aria-label="Página '+(pageIndex+1)+' de categorías">'+page.map(function(c){
-      return '<button type="button" class="hv-cat" data-cat="'+c.id+'" onclick="hvGoCat(\''+c.id+'\')"><span class="bub"><img src="cat-v2-'+c.id+'.jpg" width="640" height="640" alt="" loading="'+(pageIndex<2?'eager':'lazy')+'" decoding="async"'+(pageIndex===0?' fetchpriority="high"':'')+' onerror="this.style.visibility=\'hidden\'"></span><span>'+c.n+'</span></button>';
+      return '<button type="button" class="hv-cat" data-cat="'+c.id+'" aria-label="'+c.n+'" onclick="hvGoCat(\''+c.id+'\')"><span class="bub"><img src="cat-v2-'+c.id+'.jpg" width="640" height="640" alt="" loading="'+(pageIndex<2?'eager':'lazy')+'" decoding="async"'+(pageIndex===0?' fetchpriority="high"':'')+' onerror="this.style.visibility=\'hidden\'"></span>'+hvArco(c.id,c.n)+'</button>';
     }).join('')+'</div>';
   }).join('');
+  hvAjustarArcos();
   var pagination=document.getElementById('hvCatsPagination');
   if(pagination)pagination.innerHTML=pages.map(function(page,index){return '<button type="button" onclick="hvGoCatPage('+index+')" aria-label="Ver categorías '+(index*pageSize+1)+' a '+(index*pageSize+page.length)+'"'+(index===0?' aria-current="true"':'')+'></button>';}).join('');
   track.onscroll=hvUpdateCatPagination;
@@ -9769,5 +9798,13 @@ window.copiarLinkParaNavegador = function() {
 })();
 </script>
 
+<style>
+/* Titulo curvo de las categorias. Va al final para que no lo pisen las capas
+   de reglas que quedaron de cuando el titulo era texto plano. */
+.hv-cat>span.hv-cat-lbl{display:block;align-self:stretch;width:100%;max-width:none;min-height:0;line-height:0;overflow:visible}
+.hv-arc{display:block;width:100%;max-width:190px;margin:0 auto;overflow:visible}
+.hv-arc text{font-family:'Montserrat',sans-serif;font-weight:750;font-size:13px;fill:currentColor}
+@media(max-width:767px){.hv-arc{max-width:none}}
+</style>
 </body>
 </html>
