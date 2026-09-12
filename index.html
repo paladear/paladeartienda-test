@@ -18,8 +18,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
 <link rel="manifest" href="manifest.json">
-<link rel="preload" as="image" href="home-hero-minorista-desktop-v2.jpg" media="(min-width:768px)" fetchpriority="high">
-<link rel="preload" as="image" href="home-hero-minorista-mobile-v4.jpg" media="(max-width:767px)" fetchpriority="high">
+<link rel="preload" as="image" href="home-hero-minorista-mobile-v5.jpg" fetchpriority="high">
 <link rel="preload" as="image" href="home-discount-strip-v2.png">
 
 <!-- ══════════ PWA ══════════ -->
@@ -2748,6 +2747,22 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
   .min-redesign .bnav button{font-size:9px}
 }
 
+/* Hero con la fotografía real nueva: se recorta sólo el aire sobrante. */
+body.min-redesign.hv-home .min-home-hero{aspect-ratio:16/9;background:#c9e4f4}
+body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-position:center bottom}
+.min-home-hero-copy{position:absolute;z-index:2;left:5.8%;top:28.5%;width:min(43vw,620px);color:#073b68;pointer-events:none}
+.min-home-hero-copy h1{margin:0;font-size:clamp(44px,4.45vw,70px);font-weight:850;line-height:.98;letter-spacing:-.05em;color:#073b68}
+.min-home-hero-copy h1>span{display:block;white-space:nowrap}
+.min-home-hero-copy .min-brand-line{display:flex;align-items:center;gap:.13em}
+.min-brand-word{display:inline-block;width:5em;height:1.55em;background:#477fa9;mask:url('paladear-wordmark.png') center/contain no-repeat;-webkit-mask:url('paladear-wordmark.png') center/contain no-repeat}
+.min-home-hero-copy p{max-width:23ch;margin:28px 0 0;font-size:clamp(17px,1.55vw,24px);font-weight:500;line-height:1.35;color:#174d75}
+.min-home-hero-cta{display:inline-flex;align-items:center;gap:14px;min-height:58px;margin-top:24px;padding:0 29px;border:0;border-radius:999px;background:#3f789f;color:#fff;font:700 clamp(15px,1.25vw,19px)/1 'Montserrat',sans-serif;box-shadow:0 10px 24px rgba(28,75,108,.2);cursor:pointer;pointer-events:auto}
+.min-home-hero-cta:hover{background:#326a92;transform:translateY(-1px)}
+.min-home-hero-cta:active{transform:scale(.98)}
+.min-home-hero-cta:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.min-home-hero-hotspot{display:none}
+.min-visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
 /* Franja informativa amplia, sin precio ni medidor. */
 .min-redesign .descb-banner{height:clamp(240px,20.8vw,300px);min-height:240px;aspect-ratio:auto;background:#f4efe6}
 .min-redesign .descb-art{object-fit:cover;object-position:center}
@@ -2766,6 +2781,13 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
 .min-image-banner .min-banner-btn{min-height:46px;padding:12px 20px;font-size:clamp(12px,1vw,15px)}
 
 @media(max-width:767px){
+  body.min-redesign.hv-home .min-home-hero{aspect-ratio:2/3}
+  body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-position:45% bottom;transform:scale(1.55) translateX(18px);transform-origin:right bottom}
+  .min-home-hero-copy{left:6%;top:17%;width:74%}
+  .min-home-hero-copy h1{font-size:clamp(29px,8.35vw,35px);line-height:1;letter-spacing:-.045em}
+  .min-brand-word{width:5.2em;height:1.65em}
+  .min-home-hero-copy p{max-width:21ch;margin-top:10px;font-size:clamp(12.5px,3.55vw,15px);line-height:1.35}
+  .min-home-hero-cta{min-height:44px;margin-top:16px;padding:0 20px;gap:10px;font-size:13px;box-shadow:0 7px 17px rgba(28,75,108,.18)}
   .min-redesign .descb-banner{height:180px;min-height:180px}
   .min-redesign .descb-art{object-fit:fill}
   .min-redesign .descb-copy{left:24%;right:14%;gap:8px}
@@ -2782,9 +2804,13 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
 <div id="homeView">
   <section class="min-home-hero" aria-label="El placer de elegir, descubrir y Paladear">
     <picture>
-      <source media="(max-width: 767px)" srcset="home-hero-minorista-mobile-v4.jpg">
-      <img src="home-hero-minorista-desktop-v2.jpg" alt="El placer de elegir, descubrir y Paladear. Frutos secos y productos Paladear." fetchpriority="high" decoding="async">
+      <img src="home-hero-minorista-mobile-v5.jpg" alt="Selección real de productos Paladear" fetchpriority="high" decoding="async">
     </picture>
+    <div class="min-home-hero-copy">
+      <h1><span>El placer de</span><span>elegir, descubrir</span><span class="min-brand-line">y <i class="min-brand-word" aria-hidden="true"></i><i class="min-visually-hidden">Paladear</i></span></h1>
+      <p>Recorré todos nuestros productos y convertí cada elección en una nueva experiencia de sabor.</p>
+      <button class="min-home-hero-cta" type="button" onclick="switchTab('minorista')">Ver productos <span aria-hidden="true">→</span></button>
+    </div>
     <button class="min-home-hero-hotspot" type="button" onclick="switchTab('minorista')" aria-label="Ver productos"></button>
   </section>
 
