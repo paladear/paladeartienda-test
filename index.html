@@ -6564,8 +6564,9 @@ function hvRenderCats(force){
       texts.forEach(function(t,i){
         var p=paths[i];
         if(!p||!t.getComputedTextLength) return;
-        var util=p.getTotalLength()*0.92, base=15;
-        t.style.fontSize=base+'px';
+        t.style.fontSize='';                       // leer el que pone el CSS
+        var util=p.getTotalLength()*0.92,
+            base=parseFloat(getComputedStyle(t).fontSize)||15;
         var largo=0;
         try{ largo=t.getComputedTextLength(); }catch(e){ return; }
         if(largo>util) t.style.fontSize=Math.max(10, base*util/largo).toFixed(2)+'px';
@@ -6593,6 +6594,7 @@ function hvRenderCats(force){
     function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     var partes=hvPartir(nombre), out='';
     partes.forEach(function(t,i){
+      t=String(t).toUpperCase();
       var R = (i===0 ? 70 : 87);              // radio 49 = borde de la burbuja
       out += '<path id="hvarc-'+id+'-'+i+'" d="M '+(85-R)+' -49 A '+R+' '+R+' 0 0 0 '+(85+R)+' -49" fill="none"></path>'+
              '<text><textPath href="#hvarc-'+id+'-'+i+'" startOffset="50%" text-anchor="middle">'+esc(t)+'</textPath></text>';
@@ -9846,8 +9848,17 @@ window.copiarLinkParaNavegador = function() {
    de reglas que quedaron de cuando el titulo era texto plano. */
 .hv-cat>span.hv-cat-lbl{display:block;align-self:stretch;width:100%;max-width:none;min-height:0;line-height:0;overflow:visible}
 .hv-arc{display:block;width:100%;max-width:190px;margin:0 auto;overflow:visible}
-.hv-arc text{font-family:'Montserrat',sans-serif;font-weight:750;font-size:15px;fill:currentColor}
+.hv-arc text{font-family:'Montserrat',sans-serif;font-weight:750;font-size:15px;letter-spacing:.07em;fill:currentColor}
 @media(max-width:767px){.hv-arc{max-width:none}}
+/* En desktop la seccion quedaba chica: la burbuja topeaba en 132px dentro de una
+   tarjeta de 183, con 51px de aire sin usar. Va con !important porque las capas de
+   CSS que quedaron de versiones anteriores ya lo usan y si no, no gana. */
+@media(min-width:768px){
+  .min-home-cats-carousel,.hv-cats-scroller{width:min(1400px,100%)!important}
+  .hv-cat .bub{width:clamp(120px,11vw,168px)!important;height:clamp(120px,11vw,168px)!important}
+  .hv-arc{max-width:230px}
+  .hv-arc text{font-size:17px}
+}
 </style>
 </body>
 </html>
