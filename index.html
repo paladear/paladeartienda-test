@@ -19,7 +19,7 @@
 <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
 <link rel="manifest" href="manifest.json">
 <link rel="preload" as="image" href="home-hero-minorista-mobile-v7.webp" media="(max-width:767px)" fetchpriority="high">
-<link rel="preload" as="image" href="home-hero-minorista-mobile-v5.jpg" media="(min-width:768px)" fetchpriority="high">
+<link rel="preload" as="image" href="home-hero-minorista-desktop-v2.webp" media="(min-width:768px)" fetchpriority="high">
 <link rel="preload" as="image" href="home-discount-strip-v2.png">
 
 <!-- ══════════ PWA ══════════ -->
@@ -2808,7 +2808,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
   <section class="min-home-hero" aria-label="El placer de elegir, descubrir y Paladear">
     <picture>
       <source media="(max-width:767px)" srcset="home-hero-minorista-mobile-v7.webp">
-      <img src="home-hero-minorista-mobile-v5.jpg" alt="Selección real de productos Paladear" fetchpriority="high" decoding="async">
+      <img src="home-hero-minorista-desktop-v2.webp" alt="Selección real de productos Paladear" fetchpriority="high" decoding="async">
     </picture>
     <div class="min-home-hero-copy">
       <h1><span>El placer de</span><span>elegir, descubrir</span><span class="min-brand-line">y <i class="min-brand-word" aria-hidden="true"></i><i class="min-visually-hidden">Paladear</i></span></h1>
@@ -9858,6 +9858,32 @@ window.copiarLinkParaNavegador = function() {
   .hv-cat .bub{width:clamp(120px,11vw,168px)!important;height:clamp(120px,11vw,168px)!important}
   .hv-arc{max-width:230px}
   .hv-arc text{font-size:17px}
+}
+
+/* ── HERO ──────────────────────────────────────────────────────────
+   Mobile: el titulo va centrado y en blanco, con "Paladear" y el boton
+   en azul. La sombra suave es para que el blanco se lea sobre el celeste
+   claro del fondo, que por si solo da poco contraste. */
+@media(max-width:767px){
+  .min-home-hero-copy{
+    left:50%!important; right:auto; width:88%!important;
+    transform:translateX(-50%); text-align:center;
+    color:#fff!important;
+  }
+  .min-home-hero-copy h1{color:#fff!important;text-shadow:0 2px 12px rgba(12,52,86,.30)}
+  .min-home-hero-copy h1>span{white-space:normal}
+  .min-brand-line{justify-content:center}
+  .min-brand-word{background:#0d4d80!important;filter:drop-shadow(0 2px 10px rgba(12,52,86,.22))}
+  .min-home-hero-copy p{
+    max-width:26ch;margin-left:auto;margin-right:auto;
+    color:#fff!important;text-shadow:0 1px 8px rgba(12,52,86,.30)
+  }
+  .min-home-hero-cta{background:#0d4d80!important;margin-left:auto;margin-right:auto}
+}
+/* Desktop: el titulo se veia chico al lado de la foto */
+@media(min-width:768px){
+  .min-home-hero-copy h1{font-size:clamp(52px,5.3vw,84px)}
+  .min-home-hero-copy p{font-size:clamp(18px,1.7vw,26px)}
 }
 </style>
 </body>
