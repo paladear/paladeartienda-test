@@ -2627,7 +2627,7 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
   .min-redesign .min-home-cats{padding:21px 14px 18px}.min-redesign .min-home-categories-head{margin-bottom:14px}.min-redesign .min-home-categories-head .min-section-kicker{font-size:12px}
   .min-redesign .hv-cat-page{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}
   .min-redesign .hv-cat{min-height:128px}.min-redesign .hv-cat .bub{width:102px;height:102px}
-.hv-cat{gap:3px}
+.hv-cat{gap:0}
 
   .min-redesign .hv-cats-pagination{margin-top:5px}
   .min-redesign .min-featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -6541,33 +6541,76 @@ function hvRenderCats(force){
   // Si un nombre no entra en el arco, se achica solo hasta que entre (minimo 10px).
   // Asi ninguna categoria se desborda aunque tenga nombre largo.
   window.hvAjustarArcos=function(){
+    // El arco es concentrico con la burbuja, y la burbuja cambia de tamano segun la
+    // pantalla: se mide y se rehace el arco, en vez de dar por sentado un radio fijo.
+    document.querySelectorAll('.hv-cat').forEach(function(c){
+      var b=c.querySelector('.bub'), svg=c.querySelector('.hv-arc');
+      if(!b||!svg) return;
+      var bw=b.getBoundingClientRect().width, sw=svg.getBoundingClientRect().width;
+      if(!bw||!sw) return;
+      svg.style.marginTop=(-bw/2)+'px';   // el borde de arriba del svg queda en el centro de la burbuja
+      var esc=sw/170;                     // pixeles por unidad del viewBox
+      var rb=bw/2;                        // radio de la burbuja, en pixeles
+      var paths=svg.querySelectorAll('path'), mayor=0;
+      paths.forEach(function(p,i){
+        var R=(rb+22+i*17)/esc;           // 7px de aire + la altura de la letra
+        if(R>mayor) mayor=R;
+        p.setAttribute('d','M '+(85-R).toFixed(1)+' -49 A '+R.toFixed(1)+' '+R.toFixed(1)+' 0 0 0 '+(85+R).toFixed(1)+' -49');
+      });
+      svg.setAttribute('viewBox','0 -49 170 '+Math.ceil(mayor+8));
+    });
     document.querySelectorAll('.hv-arc').forEach(function(svg){
-      var p=svg.querySelector('path'), t=svg.querySelector('text');
-      if(!p||!t||!t.getComputedTextLength) return;
-      var util=p.getTotalLength()*0.92, base=13;
-      t.style.fontSize=base+'px';
-      var largo=0;
-      try{ largo=t.getComputedTextLength(); }catch(e){ return; }
-      if(largo>util) t.style.fontSize=Math.max(10, base*util/largo).toFixed(2)+'px';
+      var paths=svg.querySelectorAll('path'), texts=svg.querySelectorAll('text');
+      texts.forEach(function(t,i){
+        var p=paths[i];
+        if(!p||!t.getComputedTextLength) return;
+        var util=p.getTotalLength()*0.92, base=15;
+        t.style.fontSize=base+'px';
+        var largo=0;
+        try{ largo=t.getComputedTextLength(); }catch(e){ return; }
+        if(largo>util) t.style.fontSize=Math.max(10, base*util/largo).toFixed(2)+'px';
+      });
     });
   };
   // Titulo curvado en semicirculo debajo de cada imagen redonda.
-  // Cuerda 164 con flecha 34: abre 90 grados, arco ~182. Con esa curvatura entran
-  // todos los rubros a 13px salvo el mas largo, que el ajuste deja en 12.5px.
+  // El arco es CONCENTRICO con la burbuja (radio 49 en estas unidades): centro en
+  // (85,-49) y radio 70, asi el texto la abraza a ~7px del borde en vez de caer al
+  // fondo de una curva suelta. Arco util ~211px: entran todos a 15px menos el mas largo.
+  // Los nombres largos se parten en dos arcos concentricos (el de adentro primero)
+  // en vez de dar media vuelta a la burbuja.
+  function hvPartir(nombre){
+    var pal=String(nombre).split(' ');
+    if(pal.length<2 || nombre.length<14) return [nombre];
+    var mejor=null, dif=1e9;
+    for(var i=1;i<pal.length;i++){
+      var a=pal.slice(0,i).join(' '), b=pal.slice(i).join(' ');
+      var d=Math.abs(a.length-b.length);
+      if(d<dif){ dif=d; mejor=[a,b]; }
+    }
+    return mejor;
+  }
   function hvArco(id,nombre){
-    var t=String(nombre).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    return '<span class="hv-cat-lbl"><svg class="hv-arc" viewBox="0 0 170 50" '+
-      'preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">'+
-      '<path id="hvarc-'+id+'" d="M 3 11 A 115.9 115.9 0 0 0 167 11" fill="none"></path>'+
-      '<text><textPath href="#hvarc-'+id+'" startOffset="50%" text-anchor="middle">'+t+'</textPath></text>'+
-      '</svg></span>';
+    function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    var partes=hvPartir(nombre), out='';
+    partes.forEach(function(t,i){
+      var R = (i===0 ? 70 : 87);              // radio 49 = borde de la burbuja
+      out += '<path id="hvarc-'+id+'-'+i+'" d="M '+(85-R)+' -49 A '+R+' '+R+' 0 0 0 '+(85+R)+' -49" fill="none"></path>'+
+             '<text><textPath href="#hvarc-'+id+'-'+i+'" startOffset="50%" text-anchor="middle">'+esc(t)+'</textPath></text>';
+    });
+    return '<span class="hv-cat-lbl"><svg class="hv-arc" viewBox="0 -49 170 93" '+
+      'preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">'+out+'</svg></span>';
   }
   track.innerHTML=pages.map(function(page,pageIndex){
     return '<div class="hv-cat-page" data-hv-cat-page="'+pageIndex+'" role="group" aria-label="Página '+(pageIndex+1)+' de categorías">'+page.map(function(c){
       return '<button type="button" class="hv-cat" data-cat="'+c.id+'" aria-label="'+c.n+'" onclick="hvGoCat(\''+c.id+'\')"><span class="bub"><img src="cat-v2-'+c.id+'.jpg" width="640" height="640" alt="" loading="'+(pageIndex<2?'eager':'lazy')+'" decoding="async"'+(pageIndex===0?' fetchpriority="high"':'')+' onerror="this.style.visibility=\'hidden\'"></span>'+hvArco(c.id,c.n)+'</button>';
     }).join('')+'</div>';
   }).join('');
+  // Se llama varias veces a proposito: al renderizar el layout todavia puede medir 0,
+  // y el ancho del texto recien es definitivo cuando cargo la tipografia.
   hvAjustarArcos();
+  requestAnimationFrame(function(){ hvAjustarArcos(); });
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ hvAjustarArcos(); });
+  if(!window._hvResize){window._hvResize=1;window.addEventListener('resize',function(){window.hvAjustarArcos&&window.hvAjustarArcos();});}
   var pagination=document.getElementById('hvCatsPagination');
   if(pagination)pagination.innerHTML=pages.map(function(page,index){return '<button type="button" onclick="hvGoCatPage('+index+')" aria-label="Ver categorías '+(index*pageSize+1)+' a '+(index*pageSize+page.length)+'"'+(index===0?' aria-current="true"':'')+'></button>';}).join('');
   track.onscroll=hvUpdateCatPagination;
@@ -9803,7 +9846,7 @@ window.copiarLinkParaNavegador = function() {
    de reglas que quedaron de cuando el titulo era texto plano. */
 .hv-cat>span.hv-cat-lbl{display:block;align-self:stretch;width:100%;max-width:none;min-height:0;line-height:0;overflow:visible}
 .hv-arc{display:block;width:100%;max-width:190px;margin:0 auto;overflow:visible}
-.hv-arc text{font-family:'Montserrat',sans-serif;font-weight:750;font-size:13px;fill:currentColor}
+.hv-arc text{font-family:'Montserrat',sans-serif;font-weight:750;font-size:15px;fill:currentColor}
 @media(max-width:767px){.hv-arc{max-width:none}}
 </style>
 </body>
