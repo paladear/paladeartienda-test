@@ -2811,7 +2811,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
       <img src="home-hero-minorista-desktop-v4.webp" alt="Selección real de productos Paladear" fetchpriority="high" decoding="async">
     </picture>
     <div class="min-home-hero-copy">
-      <h1><span>El placer de</span><span>elegir, descubrir</span><span class="min-brand-line">y<span class="min-brand-pts">&hellip;</span> <i class="min-brand-word" aria-hidden="true"></i><i class="min-visually-hidden">Paladear</i></span></h1>
+      <h1><span>El placer de</span><span>elegir, descubrir</span><span class="min-brand-line">y<span class="min-brand-pts">...</span> <i class="min-brand-word" aria-hidden="true"></i><i class="min-visually-hidden">Paladear</i></span></h1>
       <p>Recorré todos nuestros productos y convertí cada elección en una nueva experiencia de sabor.</p>
       <button class="min-home-hero-cta" type="button" onclick="switchTab('minorista')">Ver productos <span aria-hidden="true">→</span></button>
     </div>
@@ -9911,7 +9911,13 @@ window.copiarLinkParaNavegador = function() {
 .min-home-hero-copy p{color:#194d73!important}
 .min-home-hero-cta{background:#4a7fa5!important}
 .min-home-hero-cta:hover{background:#3e7095!important}
-.min-brand-pts{font-size:.55em;letter-spacing:.02em;vertical-align:.06em}
+.min-brand-pts{
+  display:inline-block;font-size:.55em;
+  letter-spacing:.17em;          /* separacion entre los puntos */
+  vertical-align:-.12em;         /* apoyados abajo, no a media altura de la "y" */
+}
+/* "Paladear" un toque mas abajo y corrido a la derecha */
+.min-brand-word{position:relative;top:.07em;left:.09em}
 /* Desktop: el titulo se veia chico al lado de la foto */
 @media(min-width:768px){
   .min-home-hero-copy h1{font-size:clamp(52px,5.3vw,84px)}
