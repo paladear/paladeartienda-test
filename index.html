@@ -9987,6 +9987,20 @@ window.copiarLinkParaNavegador = function() {
 /* ── PANEL DE CATEGORIAS (hamburguesa) ──────────────────────────────
    Fondo alternado para no perder la fila que uno venia leyendo. */
 .cats-dropdown-list .min-cat-menu-btn:nth-child(even){background:#e6f1f9}
+
+/* ── DESTACADOS: imagenes completas ─────────────────────────────────
+   La caja mide 145px de alto pero la imagen se dibujaba a 168 (y las
+   verticales a 215), asi que el overflow de la caja las recortaba. */
+/* El contenedor era un grid con place-items:center: ahi el height:100% del
+   <img> no tiene contra que resolverse y el navegador lo toma como auto, asi
+   que la imagen se dibujaba mas alta que la caja. Con display:block si vale. */
+.min-feature-card-img{display:block!important;overflow:hidden}
+.min-feature-card-img img{
+  display:block;width:100%!important;height:100%!important;
+  max-width:100%!important;max-height:100%!important;
+  object-fit:contain!important;object-position:center!important
+}
+.hvof-card img{max-height:100%!important;object-fit:contain!important}
 </style>
 </body>
 </html>
