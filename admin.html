@@ -394,6 +394,51 @@ body.es-mayorista label[for=fileExcel]{display:none}
   border-radius:0 11px 11px 0;background:#eff6fb;color:#2b5c80;font-size:13.5px;line-height:1.55}
 .ayuda-filtro b{color:#123f67}
 @media(max-width:700px){.ayuda-filtro{font-size:13px;padding:10px 12px}}
+.precio .p-uno{font-weight:800}
+.precio .p-dos{margin-left:10px;color:#2f6d99;font-weight:700}
+.precio .p-dos i{display:block;font-style:normal;font-size:9.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:#7d93a6;font-weight:700}
+.precio{display:flex;align-items:flex-end;gap:4px;flex-wrap:wrap}
+/* la barra con el botón que hace que los precios lleguen a la web */
+.barra-fija{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:12px;
+  margin:0 0 12px;padding:11px 14px;border:1px solid #cfe0ec;border-radius:13px;
+  background:#eaf4fb;box-shadow:0 3px 12px rgba(20,50,80,.07)}
+.barra-fija .btn{white-space:nowrap}
+.barra-fija-nota{font-size:12.5px;color:#4a6b85;line-height:1.35}
+.barra-fija[hidden]{display:none}
+.orden-fila{display:flex;align-items:center;gap:9px;margin:0 0 12px;font-size:13px;color:var(--suave)}
+.orden-fila select{flex:1;max-width:260px;min-height:40px;padding:0 10px;
+  border:1px solid var(--linea);border-radius:10px;background:#fff;font:inherit}
+@media(max-width:700px){
+  .barra-fija{flex-direction:column;align-items:stretch;gap:7px;padding:10px 12px}
+  .barra-fija .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
+  .barra-fija-nota{text-align:center;font-size:12px}
+  .orden-fila{flex-direction:column;align-items:stretch;gap:5px}
+  .orden-fila select{max-width:none;min-height:44px}
+}
+.cmp-intro{margin:0 0 12px;font-size:13.5px;line-height:1.55;color:var(--suave)}
+.cmp-busca input{width:100%;min-height:46px;padding:0 13px;border:1px solid var(--linea);
+  border-radius:11px;font:inherit;background:#fff}
+.cmp-acc{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:11px 0}
+.cmp-acc #cmpResumen{margin-left:auto;font-size:13px;color:var(--suave);font-weight:700}
+.cmp-lista{display:flex;flex-direction:column;gap:7px}
+.cmp-item{display:flex;align-items:center;gap:11px;padding:8px 11px;border:1px solid var(--linea);
+  border-radius:11px;background:#fff;cursor:pointer}
+.cmp-item.off{opacity:.5;background:#f6f8fa}
+.cmp-item input{width:22px;height:22px;flex-shrink:0}
+.cmp-item img{width:46px;height:46px;object-fit:contain;border-radius:8px;background:#f2f5f8;flex-shrink:0}
+.cmp-n{display:flex;flex-direction:column;gap:2px;min-width:0}
+.cmp-n b{font-size:13.5px;line-height:1.25}
+.cmp-n i{font-style:normal;font-size:11.5px;color:var(--suave)}
+@media(max-width:700px){
+  .cmp-acc .btn{flex:1;min-height:44px}
+  .cmp-acc #cmpResumen{width:100%;margin:4px 0 0;text-align:center}
+  .cmp-item{padding:9px 10px}
+}
+.btn-catalogo{margin-top:9px;width:100%;min-height:42px;padding:0 14px;border:0;border-radius:10px;
+  background:#2e9e63;color:#fff;font:700 13.5px/1 inherit;cursor:pointer}
+.btn-catalogo:hover{background:#278553}
+.btn-catalogo:disabled{opacity:.6}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
@@ -540,6 +585,20 @@ body.es-mayorista label[for=fileExcel]{display:none}
   </select>
 </div>
   <div id="avisoImportar"></div>
+  <div class="barra-fija" id="barraFija">
+    <button class="btn primario" id="btnPublicarFijo" onclick="publicarPrecios()" title="Le pide a la PC del negocio que mande los precios de E-Pyme a la tienda">Publicar precios en la tienda</button>
+    <span class="barra-fija-nota" id="notaPublicar"></span>
+  </div>
+  <div class="orden-fila">
+    <label for="selOrden">Ordenar por</label>
+    <select id="selOrden">
+      <option value="cambios">Lo que cambió, primero</option>
+      <option value="alfa">Alfabético</option>
+      <option value="caro">Más caro primero</option>
+      <option value="barato">Más barato primero</option>
+      <option value="rubro">Por rubro</option>
+    </select>
+  </div>
   <div class="tienda-sel" role="group" aria-label="Elegí la tienda">
     <button type="button" data-t="min" class="on">Tienda minorista</button>
     <button type="button" data-t="may">Distribuidora</button>
@@ -552,6 +611,7 @@ body.es-mayorista label[for=fileExcel]{display:none}
     <input type="file" id="fileExcel" class="foto-input" accept=".xlsx,.xls,.xlsm,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv">
     <button class="btn gris" id="btnSync">Traer del Sheet</button>
     <button class="btn gris" id="btnDesc">Descuento por rubro</button>
+    <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
     <button class="filtro oculto-btn" data-f="todos">Todos</button>
     <button class="filtro oculto-btn" data-f="pendientes">Pendientes</button>
     <button class="filtro oculto-btn" data-f="fuera">Fuera del catálogo</button>
@@ -588,6 +648,7 @@ var CSV_MAY_INFO = '', CSV_MAY_PRECIOS = '';
 var GUARDADO_MIN = null, GUARDADO_MAY = null;   // fichas/fotos/productos de cada una
 var FICHAS_MAY_LISTAS = false;
 var PRECIOS_VISTOS = {};        // {id: precio que ya revisaste}
+var ORDEN = 'cambios';          // como se ordena la lista
 var GUARDANDO_VISTOS = false;
 function repoActivo(){ return TIENDA === 'may' ? REPO_MAY : REPO; }
 const LS_TOKEN = 'paladear_panel_token';
@@ -1637,6 +1698,7 @@ function pintarKpis(){
   ];
   if (malos) kpis.push(['malrubro', malos, 'con rubro inválido', 'k-mal']);
 
+  try { avisarPublicar(); } catch(e) {}
   const bv = document.getElementById('btnVistos');
   if (bv) { bv.hidden = !cambios; bv.textContent = 'Dar por vistos los ' + cambios + ' cambios'; }
   document.getElementById('kpis').innerHTML =
@@ -1711,12 +1773,16 @@ function pintar(){
     const q = BUSCA.toLowerCase();
     lista = lista.filter(p => p.nombre.toLowerCase().includes(q) || p.id.includes(q));
   }
-  // Orden por lo que hay que mirar primero: precios que cambiaron, después
-  // los nuevos, después lo que falta cargar.
+  // El orden lo elige Juani; por defecto, lo que hay que mirar primero.
   const prioridad = p => p.cambioPrecio ? 0 : p.nuevo ? 1 : p.malRubro ? 2 : hayRenombre(p) ? 3 : !p.foto ? 4 : 5;
-  lista.sort((a,b) => {
+  const alfa = (a,b) => String(a.nombre).localeCompare(String(b.nombre), 'es');
+  if (ORDEN === 'alfa')        lista.sort(alfa);
+  else if (ORDEN === 'caro')   lista.sort((a,b) => (b.p1||0) - (a.p1||0) || alfa(a,b));
+  else if (ORDEN === 'barato') lista.sort((a,b) => (a.p1||0) - (b.p1||0) || alfa(a,b));
+  else if (ORDEN === 'rubro')  lista.sort((a,b) => String(a.rubro).localeCompare(String(b.rubro),'es') || alfa(a,b));
+  else lista.sort((a,b) => {
     const pa = prioridad(a), pb = prioridad(b);
-    return pa !== pb ? pa - pb : a.nombre.localeCompare(b.nombre, 'es');
+    return pa !== pb ? pa - pb : alfa(a,b);
   });
 
   llenarRubros();
@@ -1724,9 +1790,9 @@ function pintar(){
   // flujos y no todos son evidentes.
   const ayudas = {
     nuevos: 'Son productos que aparecieron en E-Pyme y todavía no están en la tienda. Tocá uno, completale la foto y la descripción, y al guardar queda listo para publicarse.',
-    precio: 'Cambiaron de precio desde tu última revisión. Miralos y tocá <b>Visto</b> en cada uno, o usá el botón de arriba para darlos por vistos todos juntos.',
+    precio: 'Cambiaron de precio desde tu última revisión. Aceptá los que estén bien con el tilde de cada uno, o usá el botón de arriba para aceptarlos todos (eso además publica los precios en la tienda).',
     sinfoto: 'Tocá un producto para subirle la foto. Dentro del editor, con la foto ya cargada, aparece el botón <b>Compartir con la distribuidora</b> para usar la misma imagen allá.',
-    fuera: 'Están en la planilla pero no se ven en la tienda. Abrí uno y usá el botón de mostrarlo u ocultarlo del catálogo.'
+    fuera: 'No se ven en la tienda. Los que sacaste vos tienen el botón <b>Agregar al catálogo</b> en la misma tarjeta; los que no tienen precio en E-Pyme aparecen solos cuando lo tengan.'
   };
   const cajaAyuda = document.getElementById('ayudaFiltro');
   if (cajaAyuda) {
@@ -1748,8 +1814,15 @@ function pintar(){
     const chips = [];
     if (p.cambioPrecio) chips.push('<span class="chip precio">' +
       (p.subio ? 'SUBIÓ' : 'BAJÓ') + ' — antes $' + (p.precioAntes || 0).toLocaleString('es-AR') +
-      '</span><button type="button" class="chip-ok" data-ok="' + esc(p.id) + '" title="Dar por visto este cambio">Visto</button>');
-    if (p.nuevo)    chips.push('<span class="chip nuevo">NUEVO — sin publicar</span>');
+      '</span><button type="button" class="chip-ok" data-ok="' + esc(p.id) + '" aria-label="Aceptar este precio" title="Aceptar este precio">&#10003; Aceptar</button>');
+    if (p.nuevo) {
+      const falta = [];
+      if (!p.foto) falta.push('foto');
+      if (!p.desc) falta.push('descripción');
+      if (!p.cantidades) falta.push('cantidades');
+      chips.push('<span class="chip nuevo">NUEVO — ' +
+        (falta.length ? 'falta ' + falta.join(' y ') : 'listo para publicar') + '</span>');
+    }
     if (p.malRubro) chips.push('<span class="chip mal">Rubro inválido</span>');
     if (hayRenombre(p)) chips.push('<span class="chip renom">Nombre cambiado</span>');
     if (!p.ficha)   chips.push('<span class="chip falta">Sin ficha</span>');
@@ -1769,8 +1842,10 @@ function pintar(){
       ? '<div class="renombre">En la tienda dice <b>' + esc(p.renombre.nombre_publicado) +
         '</b><br>En E-Pyme ahora es <b>' + esc(p.renombre.nombre_nuevo) + '</b></div>'
       : '';
+    // Los dos precios importan: el de lista y el de +$80.000. Ninguno va tachado.
     const precio = p.p1
-      ? '<div class="precio">' + pesos(p.p1) + (p.p2 ? '<s>' + pesos(p.p2) + '</s>' : '') + '</div>'
+      ? '<div class="precio"><span class="p-uno">' + pesos(p.p1) + '</span>' +
+        (p.p2 ? '<span class="p-dos"><i>+$80.000</i>' + pesos(p.p2) + '</span>' : '') + '</div>'
       : '';
     return '<div class="prod ' + clase + '" data-id="' + esc(p.id) + '" title="Clic para editar la ficha">' + foto +
       '<div class="datos">' +
@@ -1780,6 +1855,11 @@ function pintar(){
         precio +
         (chips.length ? '<div class="chips">' + chips.join('') + '</div>' : '') +
         ren +
+        // Si lo sacaste vos del catálogo, el botón para volver a ponerlo va acá
+        // mismo: no hace falta abrir la ficha.
+        (p.oculto === true
+          ? '<button type="button" class="btn-catalogo" data-cat="' + esc(p.id) + '">Agregar al catálogo</button>'
+          : '') +
       '</div></div>';
   };
 
@@ -2186,6 +2266,10 @@ async function marcarPreciosRevisados(){
     await guardarFichasEnRepo('Precios revisados' + (n ? ' (' + n + ' cambios)' : ''));
     PRODUCTOS.forEach(function(p){ p.cambioPrecio = false; p.precioAntes = p.p1; });
     pintarKpis(); pintar();
+    // Aceptar todo implica que querés que eso llegue a la tienda: se publica solo.
+    if (n && TIENDA === 'min' && typeof publicarPrecios === 'function') {
+      try { await publicarPrecios(); } catch(e) {}
+    }
   } catch (e) {
     alert('No pude guardar la revisión: ' + e.message);
   } finally {
@@ -2211,17 +2295,210 @@ async function verPrecioVisto(id){
     pintarKpis(); pintar();
   } catch (e) {
     alert('No pude guardarlo: ' + e.message);
-    if (btn) { btn.disabled = false; btn.textContent = 'Visto'; }
+    if (btn) { btn.disabled = false; btn.innerHTML = '&#10003; Aceptar'; }
   }
 }
+// En fase de CAPTURA: el listener de la tarjeta ya estaba registrado y, en
+// burbuja, corría primero y abría el editor igual.
 document.addEventListener('click', function(ev){
   var b = ev.target.closest && ev.target.closest('.chip-ok[data-ok]');
   if (!b) return;
-  ev.stopPropagation();   // que no abra el editor
+  ev.stopPropagation();
+  ev.stopImmediatePropagation();
   ev.preventDefault();
   verPrecioVisto(b.dataset.ok);
+}, true);
+
+
+/* ── ORDEN DE LA LISTA ────────────────────────────────────────────────────── */
+document.addEventListener('change', function(ev){
+  if (ev.target && ev.target.id === 'selOrden') { ORDEN = ev.target.value; pintar(); }
 });
 
+/* ── PUBLICAR: el paso que hace que los precios lleguen de verdad a la web ───
+   Si no se aprieta, la tienda sigue con los precios viejos. Por eso el botón
+   está anclado arriba y, al aceptar todos los cambios de una, se dispara solo. */
+function avisarPublicar(){
+  var nota = document.getElementById('notaPublicar');
+  var barra = document.getElementById('barraFija');
+  if (!nota || !barra) return;
+  var n = PRODUCTOS.filter(function(p){ return p.cambioPrecio; }).length;
+  if (TIENDA === 'may') {
+    barra.hidden = true;   // en la distribuidora los precios no se automatizan
+    return;
+  }
+  barra.hidden = false;
+  nota.textContent = n
+    ? 'Tenés ' + n + ' cambio' + (n === 1 ? '' : 's') + ' sin revisar'
+    : 'Sin esto, la tienda sigue con los precios viejos';
+}
+window.avisarPublicar = avisarPublicar;
+
+
+/* ── COMPARTIR FOTOS CON LA DISTRIBUIDORA, DE A MUCHAS ────────────────────────
+   Busca los productos que tienen el MISMO número de artículo en las dos tiendas
+   y que acá ya tienen foto. Vienen todos marcados, pero hay productos que
+   comparten número y no la misma imagen: por eso se pueden destildar, con un
+   buscador adentro para encontrarlos rápido. */
+var CMP_LISTA = [], CMP_MARCADOS = new Set(), CMP_FILTRO = '';
+
+function abrirCompartir(){
+  var capa = $('capaCompartir');
+  capa.hidden = false;
+  document.body.style.overflow = 'hidden';
+  $('cmpLista').innerHTML = '<div class="cargando">Buscando productos compatibles...</div>';
+  cmpBuscarCompatibles();
+}
+function cerrarCompartir(){
+  $('capaCompartir').hidden = true;
+  document.body.style.overflow = '';
+}
+window.abrirCompartir = abrirCompartir; window.cerrarCompartir = cerrarCompartir;
+
+async function cmpBuscarCompatibles(){
+  // los artículos que existen en la distribuidora
+  var idsMay = {};
+  [CSV_MAY_INFO, CSV_MAY_PRECIOS].forEach(function(csv){
+    if (!csv) return;
+    var filas = leerCsv(csv);
+    if (filas.length < 2) return;
+    var cab = filas[0];
+    var iA = colDe(cab, ['articulo']);
+    if (iA < 0) return;
+    filas.slice(1).forEach(function(c){
+      var id = limpiaId(c[iA]);
+      if (id) idsMay[id] = true;
+    });
+  });
+  // de los de acá, los que tienen foto propia y existen allá
+  var base = (GUARDADO_MIN && GUARDADO_MIN.productos) ? GUARDADO_MIN.productos : PRODUCTOS;
+  var fotos = (GUARDADO_MIN && GUARDADO_MIN.fotos) ? GUARDADO_MIN.fotos : FOTOS_FB;
+  CMP_LISTA = base.filter(function(p){ return idsMay[p.id] && fotos[p.id]; })
+                  .sort(function(a,b){ return String(a.nombre).localeCompare(String(b.nombre),'es'); });
+  CMP_MARCADOS = new Set(CMP_LISTA.map(function(p){ return p.id; }));
+  cmpPintar();
+}
+
+function cmpPintar(){
+  var q = CMP_FILTRO.toLowerCase();
+  var vis = CMP_LISTA.filter(function(p){
+    return !q || String(p.nombre).toLowerCase().indexOf(q) >= 0 || p.id.indexOf(q) >= 0;
+  });
+  $('cmpResumen').textContent = CMP_MARCADOS.size + ' de ' + CMP_LISTA.length + ' marcadas';
+  if (!CMP_LISTA.length) {
+    $('cmpLista').innerHTML = '<div class="vacio">No encontré productos con el mismo número de artículo que ya tengan foto acá.</div>';
+    return;
+  }
+  $('cmpLista').innerHTML = vis.map(function(p){
+    return '<label class="cmp-item' + (CMP_MARCADOS.has(p.id) ? '' : ' off') + '" data-id="' + esc(p.id) + '">' +
+      '<input type="checkbox" ' + (CMP_MARCADOS.has(p.id) ? 'checked' : '') + '>' +
+      '<img loading="lazy" src="' + imgDe(p.id) + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
+      '<span class="cmp-n"><b>' + esc(p.nombre) + '</b><i>Art. ' + esc(p.id) + '</i></span>' +
+    '</label>';
+  }).join('') || '<div class="vacio">Ninguno coincide con la búsqueda.</div>';
+}
+
+function cmpTodos(si){
+  var q = CMP_FILTRO.toLowerCase();
+  CMP_LISTA.forEach(function(p){
+    var entra = !q || String(p.nombre).toLowerCase().indexOf(q) >= 0 || p.id.indexOf(q) >= 0;
+    if (!entra) return;
+    if (si) CMP_MARCADOS.add(p.id); else CMP_MARCADOS.delete(p.id);
+  });
+  cmpPintar();
+}
+window.cmpTodos = cmpTodos;
+
+document.addEventListener('input', function(ev){
+  if (ev.target && ev.target.id === 'cmpBuscar') { CMP_FILTRO = ev.target.value || ''; cmpPintar(); }
+});
+document.addEventListener('change', function(ev){
+  var it = ev.target.closest && ev.target.closest('.cmp-item[data-id]');
+  if (!it) return;
+  var id = it.dataset.id;
+  if (ev.target.checked) CMP_MARCADOS.add(id); else CMP_MARCADOS.delete(id);
+  it.classList.toggle('off', !ev.target.checked);
+  $('cmpResumen').textContent = CMP_MARCADOS.size + ' de ' + CMP_LISTA.length + ' marcadas';
+});
+
+async function cmpCompartir(){
+  var ids = CMP_LISTA.filter(function(p){ return CMP_MARCADOS.has(p.id); }).map(function(p){ return p.id; });
+  if (!ids.length) { $('cmpEstado').textContent = 'No hay ninguna marcada.'; return; }
+  if (!TOKEN) { $('cmpEstado').textContent = 'Entrá con la clave para poder compartir.'; return; }
+  var b = $('cmpEnviar');
+  b.disabled = true;
+  var fotos = (GUARDADO_MIN && GUARDADO_MIN.fotos) ? GUARDADO_MIN.fotos : FOTOS_FB;
+  var ok = 0, mal = 0;
+  for (var i = 0; i < ids.length; i++) {
+    var id = ids[i];
+    b.textContent = 'Compartiendo ' + (i + 1) + ' de ' + ids.length + '...';
+    try {
+      var ext = (fotos[id] && fotos[id].ext) || 'webp';
+      var arch = await gh('/contents/' + CARPETA_FOTOS + '/' + id + '.' + ext + '?ref=main');
+      await guardarEnRepo(CARPETA_FOTOS + '/' + id + '.' + ext,
+        (arch.content || '').replace(/\n/g, ''),
+        'Foto del artículo ' + id + ' compartida desde la tienda', 0, REPO_MAY);
+      ok++;
+    } catch (e) { mal++; }
+  }
+  b.disabled = false; b.textContent = 'Compartir las marcadas';
+  $('cmpEstado').innerHTML = '<span class="ok">' + ok + ' compartidas</span>' +
+    (mal ? ' · <span class="malo">' + mal + ' fallaron</span>' : '');
+}
+window.cmpCompartir = cmpCompartir;
+
+
+/* Volver a poner un producto en el catálogo desde la misma tarjeta. */
+async function volverAlCatalogo(id){
+  var p = PRODUCTOS.find(function(x){ return x.id === id; });
+  if (!p) return;
+  if (!TOKEN) { alert('Entrá con la clave para poder guardar.'); return; }
+  var b = document.querySelector('.btn-catalogo[data-cat="' + id + '"]');
+  if (b) { b.disabled = true; b.textContent = 'Agregando...'; }
+  try {
+    p.oculto = false;
+    FICHAS_FB[id] = Object.assign({}, FICHAS_FB[id] || {}, { oculto: false, origen: 'panel' });
+    await guardarFichasEnRepo('Vuelve al catálogo: ' + (p.nombre || id));
+    pintarKpis(); pintar();
+  } catch (e) {
+    p.oculto = true;
+    alert('No pude agregarlo: ' + e.message);
+    if (b) { b.disabled = false; b.textContent = 'Agregar al catálogo'; }
+  }
+}
+document.addEventListener('click', function(ev){
+  var b = ev.target.closest && ev.target.closest('.btn-catalogo[data-cat]');
+  if (!b) return;
+  ev.stopPropagation(); ev.stopImmediatePropagation(); ev.preventDefault();
+  volverAlCatalogo(b.dataset.cat);
+}, true);
+
 </script>
+<!-- Compartir fotos con la distribuidora, de a muchas -->
+<div class="capa" id="capaCompartir" hidden>
+  <div class="ed-caja">
+    <div class="ed-top">
+      <b>Compartir fotos con la distribuidora</b>
+      <button type="button" class="btn gris" onclick="cerrarCompartir()">Cerrar</button>
+    </div>
+    <div class="ed-cuerpo">
+      <p class="cmp-intro">Estos productos tienen el <b>mismo número de artículo</b> en las dos tiendas
+        y acá ya tienen foto. Destildá los que no compartan la misma imagen.</p>
+      <div class="cmp-busca">
+        <input id="cmpBuscar" type="search" placeholder="Buscar para destildar (nombre o artículo)" autocomplete="off">
+      </div>
+      <div class="cmp-acc">
+        <button type="button" class="btn gris" onclick="cmpTodos(true)">Marcar todos</button>
+        <button type="button" class="btn gris" onclick="cmpTodos(false)">Desmarcar todos</button>
+        <span id="cmpResumen"></span>
+      </div>
+      <div id="cmpLista" class="cmp-lista"></div>
+    </div>
+    <div class="ed-pie">
+      <button type="button" class="btn primario" id="cmpEnviar" onclick="cmpCompartir()">Compartir las marcadas</button>
+      <span id="cmpEstado"></span>
+    </div>
+  </div>
+</div>
 </body>
 </html>
