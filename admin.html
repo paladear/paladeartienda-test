@@ -321,6 +321,14 @@ body.buscando .busca-fija{display:flex}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235d6b7a' stroke-width='1.7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 12px center}
 #edRubro:focus{outline:none;border-color:#7aa2c4;box-shadow:0 0 0 3px rgba(122,162,196,.22)}
+.tienda-sel{display:inline-flex;gap:0;margin:0 0 14px;padding:4px;border-radius:999px;
+  background:var(--suave-bg,#eef2f6);border:1px solid var(--linea)}
+.tienda-sel button{padding:9px 18px;border:0;border-radius:999px;background:transparent;
+  color:var(--suave);font:700 13.5px/1 inherit;cursor:pointer}
+.tienda-sel button.on{background:#fff;color:var(--texto);box-shadow:0 2px 7px rgba(20,45,70,.13)}
+body.es-mayorista .tienda-sel button.on{background:#2f6d99;color:#fff}
+body.es-mayorista #btnSync,body.es-mayorista #btnPublicar,
+body.es-mayorista label[for=fileExcel]{display:none}
 .excel-caja{margin-top:13px;padding:14px 16px;border:1px solid var(--linea);border-radius:13px;
   background:#fff;font-size:13.5px;line-height:1.6;color:var(--texto)}
 .excel-caja.ok{border-color:#bcd9c4;background:#f4faf6}
@@ -472,6 +480,10 @@ body.buscando .busca-fija{display:flex}
   </select>
 </div>
   <div id="avisoImportar"></div>
+  <div class="tienda-sel" role="group" aria-label="Elegí la tienda">
+    <button type="button" data-t="min" class="on">Tienda minorista</button>
+    <button type="button" data-t="may">Distribuidora</button>
+  </div>
   <div class="tarjetas" id="kpis"></div>
   <div class="barra">
     <button class="filtro on" data-f="todos">Todos</button>
@@ -505,6 +517,17 @@ body.buscando .busca-fija{display:flex}
 const REPO = 'paladear/paladeartienda-test';
 const ARCHIVO_FICHAS = 'catalogo-panel.json';
 const CARPETA_FOTOS = 'fotos';
+
+/* ── LAS DOS TIENDAS ──────────────────────────────────────────────────────────
+   El panel maneja la tienda minorista y la distribuidora. Cada una tiene su
+   propio repo, sus fichas y sus fotos; acá se guarda cuál está activa.
+   OJO: la distribuidora apunta a la TESTER, no a la oficial. */
+const REPO_MAY = 'paladear/paladeardistribuidora-test';
+var TIENDA = 'min';
+var CSV_MAY_INFO = '', CSV_MAY_PRECIOS = '';
+var GUARDADO_MIN = null, GUARDADO_MAY = null;   // fichas/fotos/productos de cada una
+var FICHAS_MAY_LISTAS = false;
+function repoActivo(){ return TIENDA === 'may' ? REPO_MAY : REPO; }
 const LS_TOKEN = 'paladear_panel_token';
 
 let TOKEN = '';
@@ -593,8 +616,9 @@ let FOTOS_FB = {};   // { id: {fondo,w,h,peso,v} } — la imagen es fotos/<id>.w
    minuto). Mientras tanto se muestra la copia que quedó en memoria, así no se ve
    rota. */
 const FOTOS_RECIEN = {};
+const baseSitio = () => (TIENDA === 'may' ? 'https://paladear.github.io/paladeardistribuidora-test/' : '');
 const urlFoto = id => FOTOS_RECIEN[id] ||
-  (CARPETA_FOTOS + '/' + id + '.' + ((FOTOS_FB[id] && FOTOS_FB[id].ext) || 'webp')
+  (baseSitio() + CARPETA_FOTOS + '/' + id + '.' + ((FOTOS_FB[id] && FOTOS_FB[id].ext) || 'webp')
    + '?v=' + ((FOTOS_FB[id] && FOTOS_FB[id].v) || 1));
 const imgDe = id => FOTOS_FB[id]
   ? urlFoto(id)
@@ -718,7 +742,7 @@ async function guardarFichasEnRepo(mensaje){
   await guardarEnRepo(ARCHIVO_FICHAS,
     aB64(JSON.stringify({ fichas: FICHAS_FB, fotos: FOTOS_FB,
                           actualizado: new Date().toISOString() }, null, 1)),
-    mensaje);
+    mensaje, 0, repoActivo());
 }
 
 /* ── FOTOS ────────────────────────────────────────────────────────────────────
@@ -825,6 +849,7 @@ async function arrancar(){
       bajar('precios-may.csv').catch(() => '')
     ]);
 
+    CSV_MAY_INFO = csvInfoMay; CSV_MAY_PRECIOS = csvPreciosMay;   // quedan para la vista de la distribuidora
     const RUBRO_MAY = {};
     [csvInfoMay, csvPreciosMay].forEach(csv => {
       if (!csv) return;
@@ -925,6 +950,8 @@ async function arrancar(){
     });
 
     avisoImportacion();
+    // Queda guardado el estado de la tienda minorista para poder volver sin recargar.
+    GUARDADO_MIN = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS };
     pintarKpis(); pintar();
   } catch (e) {
     document.getElementById('salida').className = 'vacio';
@@ -1277,7 +1304,7 @@ async function guardarFicha(){
       est.textContent = 'Subiendo la foto...';
       await guardarEnRepo(CARPETA_FOTOS + '/' + p.id + '.' + (FOTO_NUEVA.ext || 'webp'),
         FOTO_NUEVA.webp.split(',')[1],
-        'Foto de ' + datos.nombre + ' (art. ' + p.id + ')');
+        'Foto de ' + datos.nombre + ' (art. ' + p.id + ')', 0, repoActivo());
       FOTOS_FB[p.id] = { fondo: FOTO_NUEVA.fondo, w: FOTO_NUEVA.w, h: FOTO_NUEVA.h,
                          peso: FOTO_NUEVA.peso, ext: FOTO_NUEVA.ext || 'webp', v: Date.now() };
       FOTOS_RECIEN[p.id] = FOTO_NUEVA.webp;   // se ve desde memoria hasta que el repo la publique
@@ -1871,6 +1898,141 @@ async function compartirFotoConMayorista(){
 
 document.addEventListener('click', function(ev){
   if (ev.target && ev.target.id === 'edFotoMay') compartirFotoConMayorista();
+});
+
+
+/* ── VISTA DE LA DISTRIBUIDORA ────────────────────────────────────────────────
+   Arma la lista de productos mayoristas con las mismas hojas que ya baja el
+   panel (info-may.csv y precios-may.csv). Las columnas se buscan por su nombre,
+   no por posición, porque las hojas mayoristas tienen otro orden que las
+   minoristas. Todo lo que se edita acá se guarda en el repo de la tester de la
+   distribuidora. */
+function colDe(cab, nombres){
+  var norm = cab.map(function(h){
+    return String(h == null ? '' : h).toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  });
+  for (var i = 0; i < nombres.length; i++){
+    var b = nombres[i].normalize('NFD').replace(/[̀-ͯ]/g,'');
+    var j = norm.indexOf(b);
+    if (j >= 0) return j;
+  }
+  return -1;
+}
+
+function armarProductosMay(){
+  var porId = {};
+  // Info Mayorista: Articulo, Nombre, Bulto, Sabores, Imagen, Estado, Rubro
+  if (CSV_MAY_INFO) {
+    var fi = leerCsv(CSV_MAY_INFO);
+    if (fi.length > 1) {
+      var ci = fi[0];
+      var iA = colDe(ci, ['articulo']), iN = colDe(ci, ['nombre']),
+          iB = colDe(ci, ['bulto','cantidades']), iS = colDe(ci, ['sabores']),
+          iR = colDe(ci, ['rubro']);
+      fi.slice(1).forEach(function(c){
+        if (iA < 0) return;
+        var id = limpiaId(c[iA]); if (!id) return;
+        porId[id] = {
+          id: id,
+          nombreCsv: iN >= 0 ? String(c[iN] || '').trim() : '',
+          cantidades: iB >= 0 ? String(c[iB] || '').trim() : '',
+          sabores: iS >= 0 ? String(c[iS] || '').trim() : '',
+          rubro: iR >= 0 ? String(c[iR] || '').trim() : '',
+          p1: 0
+        };
+      });
+    }
+  }
+  // Mayorista (precios): Rubro, Artículo, Nombre, Bt.LISTA 1, Patente
+  if (CSV_MAY_PRECIOS) {
+    var fp = leerCsv(CSV_MAY_PRECIOS);
+    if (fp.length > 1) {
+      var cp = fp[0];
+      var pA = colDe(cp, ['articulo']), pN = colDe(cp, ['nombre']),
+          pP = colDe(cp, ['bt.lista 1','lista 1','precio']), pR = colDe(cp, ['rubro']);
+      fp.slice(1).forEach(function(c){
+        if (pA < 0) return;
+        var id = limpiaId(c[pA]); if (!id) return;
+        var base = porId[id] || { id: id, nombreCsv: '', cantidades: '', sabores: '', rubro: '' };
+        if (pN >= 0 && c[pN]) base.nombreCsv = String(c[pN]).trim();
+        if (pR >= 0 && c[pR]) base.rubro = String(c[pR]).trim();
+        base.p1 = pP >= 0 ? aNum(c[pP]) : 0;
+        base.enPrecios = true;
+        porId[id] = base;
+      });
+    }
+  }
+  return Object.keys(porId).map(function(id){
+    var b = porId[id];
+    var f = FICHAS_FB[id] || {};
+    return {
+      id: id,
+      nombre: f.nombre || b.nombreCsv,
+      nombreCsv: b.nombreCsv,
+      rubro: b.rubro,
+      p1: b.p1 || 0, p2: 0,
+      ficha: !!FICHAS_FB[id],
+      desc: f.desc || '',
+      foto: !!(f.imagen && String(f.imagen).trim()),
+      cantidades: f.cantidades || b.cantidades || '',
+      sabores: f.sabores || b.sabores || '',
+      oferta: f.oferta || 0,
+      mix: false, granola: false, blend: false,
+      nombreEpyme: '', editada: !!FICHAS_FB[id], nuevo: false, renombre: null,
+      malRubro: false,
+      oculto: f.oculto === true || !b.enPrecios
+    };
+  }).sort(function(a,b){ return String(a.nombre).localeCompare(String(b.nombre), 'es'); });
+}
+
+async function cargarFichasMay(){
+  try {
+    var r = await fetch('https://paladear.github.io/paladeardistribuidora-test/catalogo-panel.json?t=' + Date.now(), {cache:'no-store'});
+    var j = r.ok ? await r.json() : {};
+    return { fichas: j.fichas || {}, fotos: j.fotos || {} };
+  } catch (e) {
+    console.warn('[panel] la distribuidora todavía no tiene fichas guardadas:', e && e.message);
+    return { fichas: {}, fotos: {} };
+  }
+}
+
+async function cambiarTienda(cual){
+  if (cual === TIENDA) return;
+  var caja = $('excelCaja'); if (caja) caja.innerHTML = '';
+  // guardar lo de la tienda que se deja
+  var estado = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS };
+  if (TIENDA === 'min') GUARDADO_MIN = estado; else GUARDADO_MAY = estado;
+
+  TIENDA = cual;
+  var salida = $('salida');
+  if (salida) salida.innerHTML = '<div class="cargando">Cargando ' + (cual === 'may' ? 'la distribuidora' : 'la tienda') + '...</div>';
+
+  if (cual === 'may') {
+    if (!GUARDADO_MAY) {
+      var d = await cargarFichasMay();
+      FICHAS_FB = d.fichas; FOTOS_FB = d.fotos;
+      PRODUCTOS = armarProductosMay();
+      GUARDADO_MAY = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS };
+    } else {
+      FICHAS_FB = GUARDADO_MAY.fichas; FOTOS_FB = GUARDADO_MAY.fotos; PRODUCTOS = GUARDADO_MAY.productos;
+    }
+  } else {
+    FICHAS_FB = GUARDADO_MIN.fichas; FOTOS_FB = GUARDADO_MIN.fotos; PRODUCTOS = GUARDADO_MIN.productos;
+  }
+
+  document.querySelectorAll('.tienda-sel button').forEach(function(b){
+    b.classList.toggle('on', b.dataset.t === TIENDA);
+  });
+  document.body.classList.toggle('es-mayorista', TIENDA === 'may');
+  try { llenarRubros(); } catch(e) {}
+  try { pintarKpis(); } catch(e) {}
+  pintar();
+}
+window.cambiarTienda = cambiarTienda;
+
+document.addEventListener('click', function(ev){
+  var b = ev.target.closest && ev.target.closest('.tienda-sel button');
+  if (b && b.dataset.t) cambiarTienda(b.dataset.t);
 });
 
 </script>
