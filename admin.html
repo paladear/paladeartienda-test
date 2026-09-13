@@ -2161,7 +2161,10 @@ function marcarCambiosDePrecio(lista){
     var antes = PRECIOS_VISTOS ? PRECIOS_VISTOS[p.id] : undefined;
     p.precioAntes = antes;
     // La primera vez no se marca nada: no habría con qué comparar y saldría todo en rojo.
-    p.cambioPrecio = (!primeraVez && antes !== undefined && Number(antes) !== Number(p.p1) && p.p1 > 0);
+    // Y se ignoran las diferencias de centavos: el sistema de precios redondea distinto
+    // según el día y marcaría decenas de cambios que no son cambios.
+    var dif = (antes === undefined) ? 0 : Math.abs(Number(antes) - Number(p.p1));
+    p.cambioPrecio = (!primeraVez && antes !== undefined && p.p1 > 0 && dif >= 1);
     p.subio = p.cambioPrecio && Number(p.p1) > Number(antes);
   });
   return lista;
