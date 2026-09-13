@@ -334,6 +334,57 @@ body.es-mayorista label[for=fileExcel]{display:none}
 .excel-caja.ok{border-color:#bcd9c4;background:#f4faf6}
 .excel-caja.mal{border-color:var(--mal-linea);background:var(--mal-suave)}
 .excel-caja .btn{margin-top:10px}
+
+/* ── ORGANIZACIÓN DEL PANEL ───────────────────────────────────────────────────
+   Pensado para el celular, que es donde más se usa: los recuadros de arriba son
+   los filtros (se tocan), en dos columnas y con blanco suficiente para el dedo.
+   El color de cada uno es el mismo que después lleva el borde de la tarjeta, así
+   se sabe de un vistazo qué es cada cosa. */
+#kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin-bottom:14px}
+.kpi{display:flex;flex-direction:column;align-items:flex-start;gap:2px;
+  min-height:62px;padding:11px 13px;border:1.5px solid var(--linea);border-left-width:5px;
+  border-radius:13px;background:#fff;text-align:left;cursor:pointer;font:inherit;
+  -webkit-tap-highlight-color:transparent;transition:border-color .15s,box-shadow .15s,transform .12s}
+.kpi b{font-size:22px;line-height:1.1;color:var(--texto)}
+.kpi span{font-size:12px;line-height:1.25;color:var(--suave)}
+.kpi:active{transform:scale(.985)}
+.kpi.on{box-shadow:0 0 0 3px rgba(47,109,153,.20);border-color:#2f6d99}
+.kpi.vacio{opacity:.5}
+.kpi.k-todos{border-left-color:#9fb4c4}
+.kpi.k-precio{border-left-color:#e08a1e}
+.kpi.k-nuevo{border-left-color:#2e9e63}
+.kpi.k-foto{border-left-color:#c2582f}
+.kpi.k-fuera{border-left-color:#8a93a0}
+.kpi.k-renom{border-left-color:#7b5bb5}
+.kpi.k-desc{border-left-color:#b9c3cd}
+.kpi.k-mal{border-left-color:#c8402c}
+
+/* el borde de la tarjeta usa el mismo color que su recuadro */
+.es-precio{border-left:5px solid #e08a1e!important}
+.es-nuevo{border-left:5px solid #2e9e63!important}
+.es-sinfoto{border-left:5px solid #c2582f!important}
+.es-renom{border-left:5px solid #7b5bb5!important}
+.es-mal{border-left:5px solid #c8402c!important}
+.chip.precio{background:#fdf0dc;color:#8a5310;border:1px solid #f0d6a8}
+
+/* acciones: las tres de siempre destacadas, el resto en gris */
+.barra.acciones{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.btn.primario{background:#2f6d99;color:#fff;border-color:#2f6d99;font-weight:700}
+.btn.primario:hover{background:#27597d}
+.filtro.oculto-btn{display:none}
+
+@media(max-width:700px){
+  #kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .kpi{min-height:70px;padding:10px 12px}
+  .kpi b{font-size:20px}
+  .kpi span{font-size:11.5px}
+  /* en el celu los botones ocupan el ancho: se aciertan sin apuntar */
+  .barra.acciones{flex-direction:column;align-items:stretch}
+  .barra.acciones .btn,.barra.acciones label.btn{width:100%;min-height:48px;
+    display:flex;align-items:center;justify-content:center;font-size:14.5px}
+  .tienda-sel{display:flex;width:100%}
+  .tienda-sel button{flex:1;min-height:44px;font-size:14px}
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
@@ -485,18 +536,17 @@ body.es-mayorista label[for=fileExcel]{display:none}
     <button type="button" data-t="may">Distribuidora</button>
   </div>
   <div class="tarjetas" id="kpis"></div>
-  <div class="barra">
-    <button class="filtro on" data-f="todos">Todos</button>
-    <button class="filtro" data-f="pendientes">Pendientes</button>
-    <button class="filtro" data-f="sinfoto">Sin foto</button>
-    <button class="filtro" data-f="sindesc">Sin descripción</button>
-    <button class="filtro" data-f="oferta">Con oferta</button>
-    <button class="filtro" data-f="fuera">Fuera del catálogo</button>
-    <button class="btn" id="btnDesc">Descuento por rubro</button>
-    <button class="btn gris" id="btnSync">Traer del Sheet</button>
-    <button class="btn" id="btnPublicar" title="Publica en la tienda los precios que tiene E-Pyme ahora">Publicar precios en la tienda</button>
-    <label class="btn gris" for="fileExcel" title="Por si falla el pase automático: subí el mismo Excel que cargás al Sheet">Subir Excel de precios</label>
+  <div class="barra acciones">
+    <button class="btn primario" id="btnVistos" onclick="marcarPreciosRevisados()" title="Deja constancia de que ya miraste los cambios de precio">Marcar precios como revisados</button>
+    <button class="btn primario" id="btnPublicar" title="Publica en la tienda los precios que tiene E-Pyme ahora">Publicar precios en la tienda</button>
+    <label class="btn primario" for="fileExcel" title="Por si falla el pase automático: subí el mismo Excel que cargás al Sheet">Subir Excel de precios</label>
     <input type="file" id="fileExcel" class="foto-input" accept=".xlsx,.xls,.xlsm,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv">
+    <button class="btn gris" id="btnSync">Traer del Sheet</button>
+    <button class="btn gris" id="btnDesc">Descuento por rubro</button>
+    <button class="filtro oculto-btn" data-f="todos">Todos</button>
+    <button class="filtro oculto-btn" data-f="pendientes">Pendientes</button>
+    <button class="filtro oculto-btn" data-f="fuera">Fuera del catálogo</button>
+    <button class="filtro oculto-btn" data-f="oferta">Con oferta</button>
   </div>
   <div id="estadoPublicar"></div>
   <div id="excelCaja"></div>
@@ -527,6 +577,8 @@ var TIENDA = 'min';
 var CSV_MAY_INFO = '', CSV_MAY_PRECIOS = '';
 var GUARDADO_MIN = null, GUARDADO_MAY = null;   // fichas/fotos/productos de cada una
 var FICHAS_MAY_LISTAS = false;
+var PRECIOS_VISTOS = {};        // {id: precio que ya revisaste}
+var GUARDANDO_VISTOS = false;
 function repoActivo(){ return TIENDA === 'may' ? REPO_MAY : REPO; }
 const LS_TOKEN = 'paladear_panel_token';
 
@@ -671,9 +723,10 @@ async function cargarFichasGuardadas(){
     const j = r.ok ? await r.json() : {};
     FICHAS_FB = j.fichas || {};
     FOTOS_FB  = j.fotos  || {};
+    PRECIOS_VISTOS = j.preciosVistos || {};   // para saber cuáles cambiaron desde la última revisión
   } catch (e) {
     console.warn('[panel] todavía no hay fichas guardadas:', e && e.message);
-    FICHAS_FB = {}; FOTOS_FB = {};
+    FICHAS_FB = {}; FOTOS_FB = {}; PRECIOS_VISTOS = {};
   }
 }
 
@@ -741,6 +794,7 @@ async function traerDelSheet(){
 async function guardarFichasEnRepo(mensaje){
   await guardarEnRepo(ARCHIVO_FICHAS,
     aB64(JSON.stringify({ fichas: FICHAS_FB, fotos: FOTOS_FB,
+                          preciosVistos: PRECIOS_VISTOS,
                           actualizado: new Date().toISOString() }, null, 1)),
     mensaje, 0, repoActivo());
 }
@@ -949,6 +1003,7 @@ async function arrancar(){
                        malRubro:true });
     });
 
+    marcarCambiosDePrecio(PRODUCTOS);
     avisoImportacion();
     // Queda guardado el estado de la tienda minorista para poder volver sin recargar.
     GUARDADO_MIN = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS };
@@ -1550,24 +1605,47 @@ $('edFotoQuitar').addEventListener('click', () => {
 $('editor').addEventListener('click', e => { if (e.target.id === 'editor') cerrarEditor(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { cerrarEditor(); cerrarDescuentos(); } });
 
+/* Los recuadros SON los filtros: se tocan y filtran. Van en el orden en que
+   Juani los usa, no en el orden en que salieron. */
 function pintarKpis(){
   const t = PRODUCTOS.length;
+  const cambios = PRODUCTOS.filter(p => p.cambioPrecio).length;
   const nuevos  = PRODUCTOS.filter(p => p.nuevo).length;
-  const renoms  = PRODUCTOS.filter(p => hayRenombre(p)).length;
+  const fuera   = PRODUCTOS.filter(p => !enCatalogo(p)).length;
   const sinFoto = PRODUCTOS.filter(p => !p.foto).length;
+  const renoms  = PRODUCTOS.filter(p => hayRenombre(p)).length;
   const sinDesc = PRODUCTOS.filter(p => !p.desc).length;
   const malos   = PRODUCTOS.filter(p => p.malRubro).length;
+
   const kpis = [
-    ['', t - nuevos - malos, 'publicados en la tienda'],
-    [nuevos ? 'avisa' : '', nuevos, 'nuevos, esperan tu OK'],
-    [renoms ? 'ojo' : '', renoms, 'cambios de nombre a revisar'],
-    [sinFoto ? 'ojo' : '', sinFoto, 'sin foto'],
-    [sinDesc ? '' : '', sinDesc, 'sin descripción'],
-    [malos ? 'error' : '', malos, 'con rubro inválido']
+    ['precio',  cambios, cambios === 1 ? 'cambió de precio' : 'cambiaron de precio', 'k-precio'],
+    ['nuevos',  nuevos,  nuevos === 1 ? 'nuevo, espera tu OK' : 'nuevos, esperan tu OK', 'k-nuevo'],
+    ['sinfoto', sinFoto, 'sin foto', 'k-foto'],
+    ['fuera',   fuera,   'fuera del catálogo', 'k-fuera'],
+    ['renom',   renoms,  renoms === 1 ? 'nombre cambiado' : 'nombres cambiados', 'k-renom'],
+    ['sindesc', sinDesc, 'sin descripción', 'k-desc']
   ];
-  document.getElementById('kpis').innerHTML = kpis.map(k =>
-    '<div class="kpi ' + k[0] + '"><b>' + k[1] + '</b><span>' + k[2] + '</span></div>').join('');
+  if (malos) kpis.push(['malrubro', malos, 'con rubro inválido', 'k-mal']);
+
+  document.getElementById('kpis').innerHTML =
+    '<button type="button" class="kpi k-todos' + (FILTRO === 'todos' ? ' on' : '') + '" data-f="todos">' +
+      '<b>' + t + '</b><span>en total</span></button>' +
+    kpis.map(k =>
+      '<button type="button" class="kpi ' + k[3] + (FILTRO === k[0] ? ' on' : '') + (k[1] ? '' : ' vacio') + '" data-f="' + k[0] + '">' +
+      '<b>' + k[1] + '</b><span>' + k[2] + '</span></button>').join('');
 }
+
+// tocar un recuadro = filtrar por eso
+document.addEventListener('click', function(ev){
+  const k = ev.target.closest && ev.target.closest('.kpi[data-f]');
+  if (!k) return;
+  FILTRO = k.dataset.f;
+  document.querySelectorAll('.filtro').forEach(b => b.classList.toggle('on', b.dataset.f === FILTRO));
+  pintarKpis();
+  pintar();
+  const cont = document.getElementById('salida');
+  if (cont) cont.scrollIntoView({block:'start', behavior:'smooth'});
+});
 
 function esc(s){ return String(s == null ? '' : s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -1603,6 +1681,10 @@ function enCatalogo(p){ return !p.sinPrecio && !p.nuevo && !p.malRubro && !p.ocu
 function pintar(){
   let lista = PRODUCTOS.slice();
   if (FILTRO === 'pendientes') lista = lista.filter(p => p.nuevo || hayRenombre(p) || p.malRubro);
+  if (FILTRO === 'precio')     lista = lista.filter(p => p.cambioPrecio);
+  if (FILTRO === 'nuevos')     lista = lista.filter(p => p.nuevo);
+  if (FILTRO === 'renom')      lista = lista.filter(p => hayRenombre(p));
+  if (FILTRO === 'malrubro')   lista = lista.filter(p => p.malRubro);
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
   if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
   if (FILTRO === 'oferta')     lista = lista.filter(p => p.oferta > 0);
@@ -1613,9 +1695,11 @@ function pintar(){
     const q = BUSCA.toLowerCase();
     lista = lista.filter(p => p.nombre.toLowerCase().includes(q) || p.id.includes(q));
   }
-  // los pendientes primero
+  // Orden por lo que hay que mirar primero: precios que cambiaron, después
+  // los nuevos, después lo que falta cargar.
+  const prioridad = p => p.cambioPrecio ? 0 : p.nuevo ? 1 : p.malRubro ? 2 : hayRenombre(p) ? 3 : !p.foto ? 4 : 5;
   lista.sort((a,b) => {
-    const pa = (a.nuevo?0:a.malRubro?1:hayRenombre(a)?2:3), pb = (b.nuevo?0:b.malRubro?1:hayRenombre(b)?2:3);
+    const pa = prioridad(a), pb = prioridad(b);
     return pa !== pb ? pa - pb : a.nombre.localeCompare(b.nombre, 'es');
   });
 
@@ -1631,9 +1715,11 @@ function pintar(){
   const dentro = lista.filter(enCatalogo);
   const fuera  = lista.filter(p => !enCatalogo(p));
   const tarjeta = p => {
-    const clase = (p.nuevo ? 'es-nuevo' : p.malRubro ? 'es-mal' : hayRenombre(p) ? 'es-renom' : '') +
+    const clase = (p.cambioPrecio ? 'es-precio' : p.nuevo ? 'es-nuevo' : p.malRubro ? 'es-mal' : hayRenombre(p) ? 'es-renom' : !p.foto ? 'es-sinfoto' : '') +
                   (enCatalogo(p) ? ' en-catalogo' : ' fuera-catalogo');
     const chips = [];
+    if (p.cambioPrecio) chips.push('<span class="chip precio">' +
+      (p.subio ? 'SUBIÓ' : 'BAJÓ') + ' — antes $' + (p.precioAntes || 0).toLocaleString('es-AR') + '</span>');
     if (p.nuevo)    chips.push('<span class="chip nuevo">NUEVO — sin publicar</span>');
     if (p.malRubro) chips.push('<span class="chip mal">Rubro inválido</span>');
     if (hayRenombre(p)) chips.push('<span class="chip renom">Nombre cambiado</span>');
@@ -2011,7 +2097,7 @@ async function cambiarTienda(cual){
     if (!GUARDADO_MAY) {
       var d = await cargarFichasMay();
       FICHAS_FB = d.fichas; FOTOS_FB = d.fotos;
-      PRODUCTOS = armarProductosMay();
+      PRODUCTOS = marcarCambiosDePrecio(armarProductosMay());
       GUARDADO_MAY = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS };
     } else {
       FICHAS_FB = GUARDADO_MAY.fichas; FOTOS_FB = GUARDADO_MAY.fotos; PRODUCTOS = GUARDADO_MAY.productos;
@@ -2034,6 +2120,48 @@ document.addEventListener('click', function(ev){
   var b = ev.target.closest && ev.target.closest('.tienda-sel button');
   if (b && b.dataset.t) cambiarTienda(b.dataset.t);
 });
+
+
+/* ── QUÉ CAMBIÓ DESDE LA ÚLTIMA VEZ ───────────────────────────────────────────
+   Se guarda el precio de cada producto tal como quedó la última vez que lo
+   revisaste (PRECIOS_VISTOS). Al abrir el panel se compara con el precio de
+   ahora: los que difieren van primero y con el borde marcado. */
+function marcarCambiosDePrecio(lista){
+  var primeraVez = !PRECIOS_VISTOS || !Object.keys(PRECIOS_VISTOS).length;
+  lista.forEach(function(p){
+    var antes = PRECIOS_VISTOS ? PRECIOS_VISTOS[p.id] : undefined;
+    p.precioAntes = antes;
+    // La primera vez no se marca nada: no habría con qué comparar y saldría todo en rojo.
+    p.cambioPrecio = (!primeraVez && antes !== undefined && Number(antes) !== Number(p.p1) && p.p1 > 0);
+    p.subio = p.cambioPrecio && Number(p.p1) > Number(antes);
+  });
+  return lista;
+}
+
+function contarCambios(){ return PRODUCTOS.filter(function(p){ return p.cambioPrecio; }).length; }
+
+// Deja constancia de que ya los miraste: los precios de ahora pasan a ser los "vistos".
+async function marcarPreciosRevisados(){
+  if (GUARDANDO_VISTOS) return;
+  var n = contarCambios();
+  if (!n && Object.keys(PRECIOS_VISTOS || {}).length) { return; }
+  GUARDANDO_VISTOS = true;
+  var btn = $('btnVistos');
+  if (btn) { btn.disabled = true; btn.textContent = 'Guardando...'; }
+  try {
+    PRECIOS_VISTOS = {};
+    PRODUCTOS.forEach(function(p){ if (p.p1 > 0) PRECIOS_VISTOS[p.id] = p.p1; });
+    await guardarFichasEnRepo('Precios revisados' + (n ? ' (' + n + ' cambios)' : ''));
+    PRODUCTOS.forEach(function(p){ p.cambioPrecio = false; p.precioAntes = p.p1; });
+    pintarKpis(); pintar();
+  } catch (e) {
+    alert('No pude guardar la revisión: ' + e.message);
+  } finally {
+    GUARDANDO_VISTOS = false;
+    if (btn) { btn.disabled = false; btn.textContent = 'Marcar precios como revisados'; }
+  }
+}
+window.marcarPreciosRevisados = marcarPreciosRevisados;
 
 </script>
 </body>
