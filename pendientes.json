@@ -1,134 +1,146 @@
 {
-  "resumen": {
-    "nuevos": 15,
-    "renombrados": 1,
-    "quitados": 2,
-    "rubro_invalido": 0
+ "resumen": {
+  "nuevos": 15,
+  "renombrados": 3,
+  "quitados": 2,
+  "rubro_invalido": 0
+ },
+ "nuevos": [
+  {
+   "numero": "1051",
+   "nombre": "ACEITUNAS VERDES X 1/2 KG Nº0",
+   "rubro": "ACEITUNAS",
+   "precio": 7450,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
   },
-  "nuevos": [
-    {
-      "numero": "1051",
-      "nombre": "ACEITUNAS VERDES X 1/2 KG Nº0",
-      "rubro": "ACEITUNAS",
-      "precio": 7450,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "2205",
-      "nombre": "AGAR AGAR",
-      "rubro": "ESPECIAS",
-      "precio": 25070,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5049",
-      "nombre": "ALFAJORES DE NUEZ SIN TACC",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 6000,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "2509",
-      "nombre": "AVENA BIO SIN GLUTEN 500 GR",
-      "rubro": "PRODUCTOS SIN TACC",
-      "precio": 6830,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "2511",
-      "nombre": "DULCE BATATA SIN AZUCAR ORIETA 400GR",
-      "rubro": "PRODUCTOS SIN TACC",
-      "precio": 4820,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "4930",
-      "nombre": "GRANOLA TRADICIONAL X KG",
-      "rubro": "CEREALES",
-      "precio": 8160,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "2096",
-      "nombre": "MAPLE \"SYRUP\" JARABE DE ARCE X250ML",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 25380,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "2285",
-      "nombre": "MIEL CREMOGENADA x 500 g \"TRES SOLES\" - FLOR DEL ALGARROBO",
-      "rubro": "DULCES, MIEL Y CHOCOLATES",
-      "precio": 7310,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5050",
-      "nombre": "PASTA DENTAL X50 GR",
-      "rubro": "PALADEAR HOME",
-      "precio": 5250,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "1522",
-      "nombre": "PISTACHOS CON CÁSCARA X KG",
-      "rubro": "FRUTOS SECOS",
-      "precio": 47030,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "2420",
-      "nombre": "PSYLLIUM MOLIDO X KG",
-      "rubro": "HARINAS",
-      "precio": 64140,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "2413",
-      "nombre": "PSYLLIUM SEMILLA X KG",
-      "rubro": "SEMILLAS",
-      "precio": 41830,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "1571",
-      "nombre": "SALSA DE SOJA X 180 CC",
-      "rubro": "LINEA GOURMET",
-      "precio": 5240,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "2322",
-      "nombre": "SEN HOJAS X KG",
-      "rubro": "INFUSIONES Y HIERBAS",
-      "precio": 10880,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "4464",
-      "nombre": "TOMATE DESECADOS CONDIMENTADOS X360 GR - AGROIANNI",
-      "rubro": "LINEA GOURMET",
-      "precio": 8340,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    }
-  ],
-  "renombrados": [
-    {
-      "numero": "5038",
-      "nombre_publicado": "MORINGA",
-      "nombre_nuevo": "MORINGA EN HOJAS",
-      "rubro": "INFUSIONES Y HIERBAS"
-    }
-  ],
-  "quitados": [
-    {
-      "numero": "5028",
-      "nombre": "DATILES DORADOS DE EGIPTO"
-    },
-    {
-      "numero": "1911",
-      "nombre": "GRANOLA TRADICIONAL X KG"
-    }
-  ],
-  "rubro_invalido": []
+  {
+   "numero": "2205",
+   "nombre": "AGAR AGAR",
+   "rubro": "ESPECIAS",
+   "precio": 25070,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "5049",
+   "nombre": "ALFAJORES DE NUEZ SIN TACC",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio": 6000,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "2509",
+   "nombre": "AVENA BIO SIN GLUTEN 500 GR",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio": 6830,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "2511",
+   "nombre": "DULCE BATATA SIN AZUCAR ORIETA 400GR",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio": 4820,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "4930",
+   "nombre": "GRANOLA TRADICIONAL X KG",
+   "rubro": "CEREALES",
+   "precio": 8160,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "2096",
+   "nombre": "MAPLE \"SYRUP\" JARABE DE ARCE X250ML",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio": 25380,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "2285",
+   "nombre": "MIEL CREMOGENADA x 500 g \"TRES SOLES\" - FLOR DEL ALGARROBO",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio": 7310,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "5050",
+   "nombre": "PASTA DENTAL X50 GR",
+   "rubro": "PALADEAR HOME",
+   "precio": 5250,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "1522",
+   "nombre": "PISTACHOS CON CÁSCARA X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio": 47030,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "2420",
+   "nombre": "PSYLLIUM MOLIDO X KG",
+   "rubro": "HARINAS",
+   "precio": 64140,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "2413",
+   "nombre": "PSYLLIUM SEMILLA X KG",
+   "rubro": "SEMILLAS",
+   "precio": 41830,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "1571",
+   "nombre": "SALSA DE SOJA X 180 CC",
+   "rubro": "LINEA GOURMET",
+   "precio": 5240,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "2322",
+   "nombre": "SEN HOJAS X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio": 10880,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  },
+  {
+   "numero": "4464",
+   "nombre": "TOMATE DESECADOS CONDIMENTADOS X360 GR - AGROIANNI",
+   "rubro": "LINEA GOURMET",
+   "precio": 8340,
+   "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+  }
+ ],
+ "renombrados": [
+  {
+   "numero": "5038",
+   "nombre_publicado": "MORINGA",
+   "nombre_nuevo": "MORINGA EN HOJAS",
+   "rubro": "INFUSIONES Y HIERBAS"
+  },
+  {
+   "numero": "1044",
+   "nombre_publicado": "ACEITUNAS VERDES X 1 KG Nº0",
+   "nombre_nuevo": "ACEITUNAS VERDES X 1 KG Nº0 (ENVASE NUEVO)",
+   "rubro": "ACEITUNAS"
+  },
+  {
+   "numero": "1045",
+   "nombre_publicado": "ACEITUNAS VERDES X 1 KG Nº1",
+   "nombre_nuevo": "ACEITUNAS VERDES X 1 KG Nº1 (ENVASE NUEVO)",
+   "rubro": "ACEITUNAS"
+  }
+ ],
+ "quitados": [
+  {
+   "numero": "5028",
+   "nombre": "DATILES DORADOS DE EGIPTO"
+  },
+  {
+   "numero": "1911",
+   "nombre": "GRANOLA TRADICIONAL X KG"
+  }
+ ],
+ "rubro_invalido": []
 }

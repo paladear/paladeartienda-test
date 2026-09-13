@@ -249,7 +249,7 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
   display:flex;flex-direction:column;height:100dvh;height:100vh;margin:0}
 .ed-top{flex:0 0 auto;position:sticky;top:0;background:#fff;z-index:2}
 .ed-cuerpo{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;
-  padding-bottom:20px;overscroll-behavior:contain}
+  padding-bottom:96px;overscroll-behavior:contain}
 .ed-pie{flex:0 0 auto;position:sticky;bottom:0;background:#fff;
   box-shadow:0 -6px 18px rgba(15,23,42,.10);
   padding-bottom:calc(14px + env(safe-area-inset-bottom))}
@@ -385,6 +385,15 @@ body.es-mayorista label[for=fileExcel]{display:none}
   .tienda-sel{display:flex;width:100%}
   .tienda-sel button{flex:1;min-height:44px;font-size:14px}
 }
+.chip-ok{margin-left:6px;padding:3px 11px;border:1px solid #cfa25c;border-radius:999px;
+  background:#fff;color:#8a5310;font:700 11px/1.5 inherit;cursor:pointer}
+.chip-ok:hover{background:#fdf3e4}
+.chip-ok:disabled{opacity:.6}
+@media(max-width:700px){.chip-ok{padding:5px 13px;font-size:12px}}
+.ayuda-filtro{margin:0 0 13px;padding:11px 14px;border-left:4px solid #7fa7c1;
+  border-radius:0 11px 11px 0;background:#eff6fb;color:#2b5c80;font-size:13.5px;line-height:1.55}
+.ayuda-filtro b{color:#123f67}
+@media(max-width:700px){.ayuda-filtro{font-size:13px;padding:10px 12px}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
@@ -500,7 +509,7 @@ body.es-mayorista label[for=fileExcel]{display:none}
         </div>
         <div style="max-width:150px">
           <label for="dcPct">Descuento %</label>
-          <input id="dcPct" type="number" min="0" max="90" step="1" value="10">
+          <input id="dcPct" type="number" min="0" max="90" step="1" value="0" placeholder="0">
         </div>
       </div>
       <div class="dc-tools">
@@ -537,7 +546,7 @@ body.es-mayorista label[for=fileExcel]{display:none}
   </div>
   <div class="tarjetas" id="kpis"></div>
   <div class="barra acciones">
-    <button class="btn primario" id="btnVistos" onclick="marcarPreciosRevisados()" title="Deja constancia de que ya miraste los cambios de precio">Marcar precios como revisados</button>
+    <button class="btn primario" id="btnVistos" onclick="marcarPreciosRevisados()" title="Da por vistos todos los cambios de precio de una vez" hidden>Dar por vistos todos los cambios</button>
     <button class="btn primario" id="btnPublicar" title="Publica en la tienda los precios que tiene E-Pyme ahora">Publicar precios en la tienda</button>
     <label class="btn primario" for="fileExcel" title="Por si falla el pase automático: subí el mismo Excel que cargás al Sheet">Subir Excel de precios</label>
     <input type="file" id="fileExcel" class="foto-input" accept=".xlsx,.xls,.xlsm,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv">
@@ -550,6 +559,7 @@ body.es-mayorista label[for=fileExcel]{display:none}
   </div>
   <div id="estadoPublicar"></div>
   <div id="excelCaja"></div>
+  <div id="ayudaFiltro"></div>
   <div id="salida" class="cargando">Cargando catálogo...</div>
   <div class="nota">
     Los <b>precios</b> vienen de E-Pyme y se actualizan solos cada 15 minutos: no se editan acá.
@@ -1627,6 +1637,8 @@ function pintarKpis(){
   ];
   if (malos) kpis.push(['malrubro', malos, 'con rubro inválido', 'k-mal']);
 
+  const bv = document.getElementById('btnVistos');
+  if (bv) { bv.hidden = !cambios; bv.textContent = 'Dar por vistos los ' + cambios + ' cambios'; }
   document.getElementById('kpis').innerHTML =
     '<button type="button" class="kpi k-todos' + (FILTRO === 'todos' ? ' on' : '') + '" data-f="todos">' +
       '<b>' + t + '</b><span>en total</span></button>' +
@@ -1640,6 +1652,10 @@ document.addEventListener('click', function(ev){
   const k = ev.target.closest && ev.target.closest('.kpi[data-f]');
   if (!k) return;
   FILTRO = k.dataset.f;
+  // Los filtros no se suman: tocar un recuadro deja de lado el rubro elegido.
+  RUBRO = '';
+  const selR = document.getElementById('filtroRubro');
+  if (selR) selR.value = '';
   document.querySelectorAll('.filtro').forEach(b => b.classList.toggle('on', b.dataset.f === FILTRO));
   pintarKpis();
   pintar();
@@ -1704,6 +1720,18 @@ function pintar(){
   });
 
   llenarRubros();
+  // Una línea de ayuda según lo que se esté mirando: el panel tiene varios
+  // flujos y no todos son evidentes.
+  const ayudas = {
+    nuevos: 'Son productos que aparecieron en E-Pyme y todavía no están en la tienda. Tocá uno, completale la foto y la descripción, y al guardar queda listo para publicarse.',
+    precio: 'Cambiaron de precio desde tu última revisión. Miralos y tocá <b>Visto</b> en cada uno, o usá el botón de arriba para darlos por vistos todos juntos.',
+    sinfoto: 'Tocá un producto para subirle la foto. Dentro del editor, con la foto ya cargada, aparece el botón <b>Compartir con la distribuidora</b> para usar la misma imagen allá.',
+    fuera: 'Están en la planilla pero no se ven en la tienda. Abrí uno y usá el botón de mostrarlo u ocultarlo del catálogo.'
+  };
+  const cajaAyuda = document.getElementById('ayudaFiltro');
+  if (cajaAyuda) {
+    cajaAyuda.innerHTML = ayudas[FILTRO] ? '<div class="ayuda-filtro">' + ayudas[FILTRO] + '</div>' : '';
+  }
   const cont = document.getElementById('salida');
   if (!lista.length) {
     cont.className = 'vacio';
@@ -1719,7 +1747,8 @@ function pintar(){
                   (enCatalogo(p) ? ' en-catalogo' : ' fuera-catalogo');
     const chips = [];
     if (p.cambioPrecio) chips.push('<span class="chip precio">' +
-      (p.subio ? 'SUBIÓ' : 'BAJÓ') + ' — antes $' + (p.precioAntes || 0).toLocaleString('es-AR') + '</span>');
+      (p.subio ? 'SUBIÓ' : 'BAJÓ') + ' — antes $' + (p.precioAntes || 0).toLocaleString('es-AR') +
+      '</span><button type="button" class="chip-ok" data-ok="' + esc(p.id) + '" title="Dar por visto este cambio">Visto</button>');
     if (p.nuevo)    chips.push('<span class="chip nuevo">NUEVO — sin publicar</span>');
     if (p.malRubro) chips.push('<span class="chip mal">Rubro inválido</span>');
     if (hayRenombre(p)) chips.push('<span class="chip renom">Nombre cambiado</span>');
@@ -2158,10 +2187,37 @@ async function marcarPreciosRevisados(){
     alert('No pude guardar la revisión: ' + e.message);
   } finally {
     GUARDANDO_VISTOS = false;
-    if (btn) { btn.disabled = false; btn.textContent = 'Marcar precios como revisados'; }
+    if (btn) { btn.disabled = false; btn.textContent = 'Dar por vistos todos los cambios'; }
   }
 }
 window.marcarPreciosRevisados = marcarPreciosRevisados;
+
+
+/* ── ACEPTAR LOS CAMBIOS DE PRECIO DE A UNO ───────────────────────────────────
+   El botón "Visto" de cada tarjeta da por revisado ese producto y nada más. Los
+   demás siguen marcados. Se guarda de a uno para no perder nada si se corta. */
+async function verPrecioVisto(id){
+  var p = PRODUCTOS.find(function(x){ return x.id === id; });
+  if (!p) return;
+  var btn = document.querySelector('.chip-ok[data-ok="' + id + '"]');
+  if (btn) { btn.disabled = true; btn.textContent = '...'; }
+  try {
+    PRECIOS_VISTOS[id] = p.p1;
+    await guardarFichasEnRepo('Precio revisado: ' + (p.nombre || id));
+    p.cambioPrecio = false; p.precioAntes = p.p1;
+    pintarKpis(); pintar();
+  } catch (e) {
+    alert('No pude guardarlo: ' + e.message);
+    if (btn) { btn.disabled = false; btn.textContent = 'Visto'; }
+  }
+}
+document.addEventListener('click', function(ev){
+  var b = ev.target.closest && ev.target.closest('.chip-ok[data-ok]');
+  if (!b) return;
+  ev.stopPropagation();   // que no abra el editor
+  ev.preventDefault();
+  verPrecioVisto(b.dataset.ok);
+});
 
 </script>
 </body>
