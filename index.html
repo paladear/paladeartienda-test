@@ -2811,7 +2811,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
       <img src="home-hero-minorista-desktop-v3.webp" alt="Selección real de productos Paladear" fetchpriority="high" decoding="async">
     </picture>
     <div class="min-home-hero-copy">
-      <h1><span>El placer de</span><span>elegir, descubrir</span><span class="min-brand-line">y&hellip; <i class="min-brand-word" aria-hidden="true"></i><i class="min-visually-hidden">Paladear</i></span></h1>
+      <h1><span>El placer de</span><span>elegir, descubrir</span><span class="min-brand-line">y<span class="min-brand-pts">&hellip;</span> <i class="min-brand-word" aria-hidden="true"></i><i class="min-visually-hidden">Paladear</i></span></h1>
       <p>Recorré todos nuestros productos y convertí cada elección en una nueva experiencia de sabor.</p>
       <button class="min-home-hero-cta" type="button" onclick="switchTab('minorista')">Ver productos <span aria-hidden="true">→</span></button>
     </div>
@@ -9904,9 +9904,14 @@ window.copiarLinkParaNavegador = function() {
    claro del fondo, que por si solo da poco contraste. */
 /* El titulo vuelve al azul de siempre, alineado a la izquierda. "Paladear" y el
    boton usan el azul de la franja de categorias para no sumar otro azul mas. */
-.min-brand-word{background:#073b68!important}
-.min-home-hero-cta{background:#073b68!important}
-.min-home-hero-cta:hover{background:#0a2f52!important}
+/* Misma paleta que los banners de mix y granola: las letras con el color de
+   sus titulos (#123f67) y el boton con el de sus botones (#4a7fa5). */
+.min-home-hero-copy h1{color:#123f67!important}
+.min-brand-word{background:#123f67!important}
+.min-home-hero-copy p{color:#194d73!important}
+.min-home-hero-cta{background:#4a7fa5!important}
+.min-home-hero-cta:hover{background:#3e7095!important}
+.min-brand-pts{font-size:.55em;letter-spacing:.02em;vertical-align:.06em}
 /* Desktop: el titulo se veia chico al lado de la foto */
 @media(min-width:768px){
   .min-home-hero-copy h1{font-size:clamp(52px,5.3vw,84px)}
