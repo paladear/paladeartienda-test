@@ -18,7 +18,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
 <link rel="manifest" href="manifest.json">
-<link rel="preload" as="image" href="home-hero-minorista-mobile-v8.webp" media="(max-width:767px)" fetchpriority="high">
+<link rel="preload" as="image" href="home-hero-minorista-mobile-v9.webp" media="(max-width:767px)" fetchpriority="high">
 <link rel="preload" as="image" href="home-hero-minorista-desktop-v4.webp" media="(min-width:768px)" fetchpriority="high">
 <link rel="preload" as="image" href="home-discount-strip-v2.png">
 
@@ -2807,7 +2807,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 <div id="homeView">
   <section class="min-home-hero" aria-label="El placer de elegir, descubrir y Paladear">
     <picture>
-      <source media="(max-width:767px)" srcset="home-hero-minorista-mobile-v8.webp">
+      <source media="(max-width:767px)" srcset="home-hero-minorista-mobile-v9.webp">
       <img src="home-hero-minorista-desktop-v4.webp" alt="Selección real de productos Paladear" fetchpriority="high" decoding="async">
     </picture>
     <div class="min-home-hero-copy">
@@ -10017,6 +10017,13 @@ window.copiarLinkParaNavegador = function() {
   object-fit:contain!important;object-position:center!important
 }
 .hvof-card img{max-height:100%!important;object-fit:contain!important}
+
+/* El hero de mobile va un poco mas alto (375x610 en vez de 375x563): con la
+   proporcion anterior el bodegon llegaba hasta el boton "Ver productos". */
+@media(max-width:767px){
+  body.min-redesign.hv-home .min-home-hero{aspect-ratio:375/610!important}
+  .min-home-hero>picture img{object-position:center bottom!important}
+}
 </style>
 </body>
 </html>
