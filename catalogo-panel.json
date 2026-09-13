@@ -221,9 +221,10 @@
    "imagen": "https://drive.google.com/file/d/1_JEVQnhaBGEd7N9I2nZCGb7CEOGNDCgC/view",
    "oferta": 15,
    "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.788Z",
+   "actualizado": "2026-09-13T13:42:53.997Z",
    "por": "panel",
-   "rubro": "ACEITUNAS"
+   "rubro": "ACEITUNAS",
+   "nombreEpyme": "ACEITUNAS VERDES X 1 KG Nº1 (ENVASE NUEVO)"
   },
   "1049": {
    "nombre": "ACEITUNAS VERDES Nº 00 X 500GR - RODRIGO DE VIVAR",
@@ -10204,5 +10205,5 @@
   "5047": 38708.98,
   "5048": 22500
  },
- "actualizado": "2026-09-13T13:20:24.528Z"
+ "actualizado": "2026-09-13T13:42:53.997Z"
 }
