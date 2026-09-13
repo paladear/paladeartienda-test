@@ -321,7 +321,13 @@ body.buscando .busca-fija{display:flex}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235d6b7a' stroke-width='1.7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 12px center}
 #edRubro:focus{outline:none;border-color:#7aa2c4;box-shadow:0 0 0 3px rgba(122,162,196,.22)}
+.excel-caja{margin-top:13px;padding:14px 16px;border:1px solid var(--linea);border-radius:13px;
+  background:#fff;font-size:13.5px;line-height:1.6;color:var(--texto)}
+.excel-caja.ok{border-color:#bcd9c4;background:#f4faf6}
+.excel-caja.mal{border-color:var(--mal-linea);background:var(--mal-suave)}
+.excel-caja .btn{margin-top:10px}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
 
@@ -476,8 +482,11 @@ body.buscando .busca-fija{display:flex}
     <button class="btn" id="btnDesc">Descuento por rubro</button>
     <button class="btn gris" id="btnSync">Traer del Sheet</button>
     <button class="btn" id="btnPublicar" title="Publica en la tienda los precios que tiene E-Pyme ahora">Publicar precios en la tienda</button>
+    <label class="btn gris" for="fileExcel" title="Por si falla el pase automático: subí el mismo Excel que cargás al Sheet">Subir Excel de precios</label>
+    <input type="file" id="fileExcel" class="foto-input" accept=".xlsx,.xls,.xlsm,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv">
   </div>
   <div id="estadoPublicar"></div>
+  <div id="excelCaja"></div>
   <div id="salida" class="cargando">Cargando catálogo...</div>
   <div class="nota">
     Los <b>precios</b> vienen de E-Pyme y se actualizan solos cada 15 minutos: no se editan acá.
@@ -1683,6 +1692,134 @@ function buscarAhora(txt){
   const x = document.getElementById('buscarX');
   if (x) x.addEventListener('click', function(){ buscarAhora(''); fijo.focus(); });
 })();
+
+/* ── SUBIR EL EXCEL DE PRECIOS ────────────────────────────────────────────────
+   Respaldo por si falla el pase automático de precios desde E-Pyme. Se sube el
+   MISMO Excel que va al Sheet: las columnas se reconocen por el nombre de la
+   primera fila, así no importa en qué orden estén ni si se agrega alguna.
+   Acepta lo mismo que el gestor de pedidos (.xlsx, .xls, .xlsm y .csv). */
+var EXCEL_FILAS = null;
+
+// Busca una columna por cualquiera de sus nombres posibles (sin acentos ni mayúsculas).
+function excelCol(hdr, alternativas){
+  var norm = hdr.map(function(h){
+    return String(h == null ? '' : h).toLowerCase().trim()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '');
+  });
+  for (var i = 0; i < alternativas.length; i++){
+    var buscado = alternativas[i].normalize('NFD').replace(/[̀-ͯ]/g, '');
+    var j = norm.indexOf(buscado);
+    if (j >= 0) return j;
+  }
+  // segunda vuelta: que lo contenga
+  for (var k = 0; k < alternativas.length; k++){
+    var b2 = alternativas[k].normalize('NFD').replace(/[̀-ͯ]/g, '');
+    var idx = norm.findIndex(function(h){ return h && h.indexOf(b2) >= 0; });
+    if (idx >= 0) return idx;
+  }
+  return -1;
+}
+
+function excelTexto(v){ return String(v == null ? '' : v).trim(); }
+
+// Deja el número como lo escribe el Excel argentino: 1.234,56
+function excelPrecio(v){
+  if (v == null || v === '') return '';
+  if (typeof v === 'number') return v.toLocaleString('es-AR', {minimumFractionDigits:2, maximumFractionDigits:2});
+  var t = String(v).trim().replace(/^\$\s*/, '');
+  return t;
+}
+
+function excelCelda(t){
+  t = String(t == null ? '' : t);
+  return /[",\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t;
+}
+
+function excelLeer(file){
+  var caja = $('excelCaja');
+  caja.innerHTML = '<div class="excel-caja">Leyendo ' + esc(file.name) + '...</div>';
+  var lector = new FileReader();
+  lector.onerror = function(){ caja.innerHTML = '<div class="excel-caja mal">No pude leer el archivo.</div>'; };
+  lector.onload = function(e){
+    try {
+      if (typeof XLSX === 'undefined') throw new Error('no cargó la librería para leer Excel');
+      var wb = XLSX.read(e.target.result, {type:'binary'});
+      // Si el libro tiene varias hojas, se usa la que se llame "precios"; si no, la primera.
+      var nom = wb.SheetNames.find(function(n){ return /precio/i.test(n); }) || wb.SheetNames[0];
+      var filas = XLSX.utils.sheet_to_json(wb.Sheets[nom], {header:1, defval:''});
+      // La fila de títulos puede no ser la primera si el Excel trae filas en blanco arriba.
+      var iHdr = filas.findIndex(function(f){
+        return f.some(function(c){ return /articulo|artículo/i.test(String(c)); });
+      });
+      if (iHdr < 0) iHdr = 0;
+      var hdr = filas[iHdr];
+      var cId  = excelCol(hdr, ['articulo','codigo','cod','sku','id']);
+      var cNom = excelCol(hdr, ['nombre','producto','descripcion','detalle']);
+      var cP1  = excelCol(hdr, ['bt.lista 1','lista 1','precio 1','precio','lista1','publico']);
+      var cP2  = excelCol(hdr, ['bt.lista 2','lista 2','precio 2','lista2','mayorista']);
+      var cRub = excelCol(hdr, ['rubro','categoria','familia','grupo']);
+      if (cNom < 0 || cP1 < 0) throw new Error('no encontré las columnas de Nombre y de precio (Bt.LISTA 1)');
+
+      var datos = filas.slice(iHdr + 1).map(function(f){
+        return {
+          nombre: excelTexto(f[cNom]),
+          p1: excelPrecio(f[cP1]),
+          p2: cP2 >= 0 ? excelPrecio(f[cP2]) : '',
+          rubro: cRub >= 0 ? excelTexto(f[cRub]) : '',
+          id: cId >= 0 ? excelPrecio(f[cId]) : ''
+        };
+      }).filter(function(x){ return x.nombre && x.p1; });
+
+      if (!datos.length) throw new Error('no encontré filas con nombre y precio');
+      EXCEL_FILAS = datos;
+
+      var cols = [];
+      if (cId>=0) cols.push('Artículo'); cols.push('Nombre'); cols.push('Bt.LISTA 1');
+      if (cP2>=0) cols.push('Bt.LISTA 2'); if (cRub>=0) cols.push('Rubro');
+      caja.innerHTML =
+        '<div class="excel-caja ok"><b>' + datos.length + ' productos leídos</b> de la hoja "' + esc(nom) + '".<br>' +
+        'Columnas reconocidas: ' + esc(cols.join(' · ')) + '.<br>' +
+        '<span style="opacity:.75">Ejemplo: ' + esc(datos[0].nombre.slice(0,42)) + ' — $' + esc(datos[0].p1) + '</span><br><br>' +
+        '<button class="btn" onclick="excelPublicar()">Publicar estos precios en la tienda</button> ' +
+        '<button class="btn gris" onclick="excelCancelar()">Cancelar</button></div>';
+    } catch (err) {
+      EXCEL_FILAS = null;
+      caja.innerHTML = '<div class="excel-caja mal">No pude usar el archivo: ' + esc(err.message) + '</div>';
+    }
+  };
+  lector.readAsBinaryString(file);
+}
+
+function excelCancelar(){ EXCEL_FILAS = null; $('excelCaja').innerHTML = ''; var i=$('fileExcel'); if(i) i.value=''; }
+
+async function excelPublicar(){
+  if (!EXCEL_FILAS || !EXCEL_FILAS.length) return;
+  var caja = $('excelCaja');
+  caja.innerHTML = '<div class="excel-caja">Publicando...</div>';
+  try {
+    // Se arma el mismo CSV que genera el pase automático, con sus dos columnas vacías al inicio.
+    var lineas = [',,Nombre,Bt.LISTA 1,Bt.LISTA 2,Rubro,Artículo'];
+    EXCEL_FILAS.forEach(function(p){
+      lineas.push(',,' + [p.nombre, p.p1, p.p2, p.rubro, p.id].map(excelCelda).join(','));
+    });
+    var csv = lineas.join('\n') + '\n';
+    await guardarEnRepo('precios-min.csv', aB64(csv),
+      'Precios actualizados desde el Excel (' + EXCEL_FILAS.length + ' productos)');
+    caja.innerHTML = '<div class="excel-caja ok"><b>Listo.</b> Se publicaron ' + EXCEL_FILAS.length +
+      ' precios. La tienda los toma en unos minutos.</div>';
+    EXCEL_FILAS = null;
+    var i=$('fileExcel'); if(i) i.value='';
+  } catch (err) {
+    caja.innerHTML = '<div class="excel-caja mal">No pude publicar: ' + esc(err.message) + '</div>';
+  }
+}
+
+document.addEventListener('change', function(ev){
+  if (ev.target && ev.target.id === 'fileExcel' && ev.target.files && ev.target.files[0]) {
+    excelLeer(ev.target.files[0]);
+  }
+});
+
 </script>
 </body>
 </html>
