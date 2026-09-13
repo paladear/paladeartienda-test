@@ -6550,7 +6550,7 @@ function hvRenderCats(force){
       var b=document.createElement('button');
       b.id=id; b.type='button'; b.className='hv-cat-flecha '+lado;
       b.setAttribute('aria-label', lado==='izq'?'Categorías anteriores':'Más categorías');
-      b.innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="'+
+      b.innerHTML='<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="'+
         (lado==='izq'?'M15 18l-6-6 6-6':'M9 18l6-6-6-6')+'"/></svg>';
       b.addEventListener('click',function(){
         track.scrollBy({left:(lado==='izq'?-1:1)*track.clientWidth, behavior:'smooth'});
@@ -6582,8 +6582,15 @@ function hvRenderCats(force){
       var esc=sw/170;                     // pixeles por unidad del viewBox
       var rb=bw/2;                        // radio de la burbuja, en pixeles
       var paths=svg.querySelectorAll('path'), mayor=0;
+      // Se limpia el tamano inline para leer el que pone el CSS: si se usara el
+      // achicado de una pasada anterior, los radios quedarian cortos.
+      var t0=svg.querySelector('text');
+      if(t0) svg.querySelectorAll('text').forEach(function(t){ t.style.fontSize=''; });
+      var fs=t0?(parseFloat(getComputedStyle(t0).fontSize)||15):15;
       paths.forEach(function(p,i){
-        var R=(rb+22+i*17)/esc;           // 7px de aire + la altura de la letra
+        // El radio y la interlinea van en proporcion a la letra: con valores fijos,
+        // al agrandar el texto en desktop las dos lineas se superponian.
+        var R=(rb + 7 + fs + i*fs*1.38)/esc;
         if(R>mayor) mayor=R;
         p.setAttribute('d','M '+(85-R).toFixed(1)+' -49 A '+R.toFixed(1)+' '+R.toFixed(1)+' 0 0 0 '+(85+R).toFixed(1)+' -49');
       });
@@ -9897,9 +9904,9 @@ window.copiarLinkParaNavegador = function() {
    claro del fondo, que por si solo da poco contraste. */
 /* El titulo vuelve al azul de siempre, alineado a la izquierda. "Paladear" y el
    boton usan el azul de la franja de categorias para no sumar otro azul mas. */
-.min-brand-word{background:#4c7192!important}
-.min-home-hero-cta{background:#4c7192!important}
-.min-home-hero-cta:hover{background:#41617e!important}
+.min-brand-word{background:#073b68!important}
+.min-home-hero-cta{background:#073b68!important}
+.min-home-hero-cta:hover{background:#0a2f52!important}
 /* Desktop: el titulo se veia chico al lado de la foto */
 @media(min-width:768px){
   .min-home-hero-copy h1{font-size:clamp(52px,5.3vw,84px)}
@@ -9970,17 +9977,21 @@ window.copiarLinkParaNavegador = function() {
   .hv-cat-page{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:30px 22px!important}
   .hv-arc text{letter-spacing:.105em}
   .min-home-cats .hv-cats-pagination{display:none!important}
+  /* Van por dentro del area: el carrusel recorta lo que se sale y las
+     flechas quedaban cortadas contra el borde. */
   .hv-cat-flecha{
     position:absolute;top:50%;transform:translateY(-50%);
-    display:grid;place-items:center;width:52px;height:52px;padding:0;
-    border:0;border-radius:50%;background:#f4efe6;color:#3f6b90;
-    box-shadow:0 6px 18px rgba(18,48,74,.22);cursor:pointer;z-index:4;
-    transition:background .18s ease,transform .18s ease
+    display:grid;place-items:center;width:46px;height:46px;padding:0;
+    border:1px solid rgba(255,255,255,.55);border-radius:50%;
+    background:#f4efe6;color:#37658c;
+    box-shadow:0 3px 10px rgba(16,42,66,.18);cursor:pointer;z-index:4;
+    transition:background .18s ease,box-shadow .18s ease
   }
-  .hv-cat-flecha:hover{background:#fff;transform:translateY(-50%) scale(1.06)}
+  .hv-cat-flecha:hover{background:#fffdf8;box-shadow:0 5px 16px rgba(16,42,66,.26)}
+  .hv-cat-flecha:active{background:#ece5d8}
   .hv-cat-flecha[hidden]{display:none}
-  .hv-cat-flecha.izq{left:-10px}
-  .hv-cat-flecha.der{right:-10px}
+  .hv-cat-flecha.izq{left:6px}
+  .hv-cat-flecha.der{right:6px}
 }
 @media(max-width:767px){ .hv-cat-flecha{display:none!important} }
 
