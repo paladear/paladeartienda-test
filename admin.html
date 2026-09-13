@@ -447,6 +447,23 @@ body.es-mayorista label[for=fileExcel]{display:none}
 .btn-catalogo{margin:0 0 9px}
 .sello-ver{display:inline-block;margin-right:10px;padding:3px 9px;border-radius:999px;
   background:#eef3f7;color:#6b8095;font-size:11px;font-weight:700;vertical-align:middle}
+/* La pantalla de compartir usa el mismo esquema que el editor: si no, queda
+   dibujada al final de la página y parece que no pasó nada. */
+#capaCompartir{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
+#capaCompartir.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
+#capaCompartir .ed-caja{background:#fff;border-radius:14px;width:100%;max-width:620px;
+  box-shadow:0 22px 60px rgba(0,0,0,.3);display:flex;flex-direction:column;max-height:calc(100vh - 48px)}
+#capaCompartir .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 18px;border-bottom:1px solid var(--linea)}
+#capaCompartir .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
+#capaCompartir .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  padding:13px 18px;border-top:1px solid var(--linea);background:#fff}
+@media(max-width:700px){
+  #capaCompartir.abierto{padding:0;align-items:stretch}
+  #capaCompartir .ed-caja{max-width:none;border-radius:0;max-height:none;height:100dvh;height:100vh}
+  #capaCompartir .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
+  #capaCompartir .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
@@ -471,7 +488,7 @@ body.es-mayorista label[for=fileExcel]{display:none}
     <h1>Panel de catálogo</h1>
     <span class="env">TESTER</span>
     <span class="quien" id="quien"></span>
-    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 13/09 10:52</span><a class="btn-tienda" href="./" target="_blank" rel="noopener">Ver la tienda</a>
+    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 13/09 10:58</span><a class="btn-tienda" href="./" target="_blank" rel="noopener">Ver la tienda</a>
   </div>
 </header>
 
@@ -1324,14 +1341,33 @@ function pintarEnCatalogo(p){
   if (!c) return;
   if (p.sinPrecio) {
     c.innerHTML = '<div class="estado-cat fuera">' +
-      '<b>No está en la tienda</b>' +
-      '<span>No tiene precio en la lista de E-Pyme. Cuando lo tenga, aparece solo.</span></div>';
+      '<b>No se puede poner en el catálogo</b>' +
+      '<span>No tiene precio en E-Pyme. Cargáselo allá y aparece en la tienda solo, ' +
+      'sin que tengas que hacer nada acá.</span></div>';
     return;
   }
-  if (p.nuevo || p.malRubro) {
+  if (p.nuevo) {
+    // Sí se puede dar de alta: ya tiene precio, le falta pasar a la tienda.
+    var falta = [];
+    if (!p.foto) falta.push('la foto');
+    if (!p.desc) falta.push('la descripción');
+    c.innerHTML = '<div class="estado-cat fuera"><b>Todavía no está en la tienda</b>' +
+      '<span>' + (falta.length
+        ? 'Completá ' + falta.join(' y ') + ', guardá, y después tocá el botón de abajo.'
+        : 'Ya tiene todo cargado: tocá el botón de abajo y sale publicado.') + '</span></div>' +
+      '<button type="button" class="btn" id="edAltaYa" style="width:100%;margin-top:8px">' +
+      'Agregar al catálogo (publicar precios)</button>';
+    var ba = $('edAltaYa');
+    if (ba) ba.addEventListener('click', function(){
+      if (typeof publicarPrecios === 'function') publicarPrecios();
+      $('edEstado').textContent = 'Pedido enviado. En unos minutos entra a la tienda.';
+      $('edEstado').className = 'ed-estado';
+    });
+    return;
+  }
+  if (p.malRubro) {
     c.innerHTML = '<div class="estado-cat fuera"><b>No está en la tienda</b>' +
-      '<span>' + (p.nuevo ? 'Es un alta nueva sin confirmar.' : 'Tiene un rubro que la tienda no reconoce.') +
-      '</span></div>';
+      '<span>Tiene un rubro que la tienda no reconoce. Corregilo en la planilla y entra solo.</span></div>';
     return;
   }
   const fuera = p.oculto === true;
@@ -2367,13 +2403,13 @@ var CMP_LISTA = [], CMP_MARCADOS = new Set(), CMP_FILTRO = '';
 
 function abrirCompartir(){
   var capa = $('capaCompartir');
-  capa.hidden = false;
+  capa.classList.add('abierto');   // mismo mecanismo que el editor
   document.body.style.overflow = 'hidden';
   $('cmpLista').innerHTML = '<div class="cargando">Buscando productos compatibles...</div>';
   cmpBuscarCompatibles();
 }
 function cerrarCompartir(){
-  $('capaCompartir').hidden = true;
+  $('capaCompartir').classList.remove('abierto');
   document.body.style.overflow = '';
 }
 window.abrirCompartir = abrirCompartir; window.cerrarCompartir = cerrarCompartir;
@@ -2539,7 +2575,7 @@ document.addEventListener('click', function(ev){
 
 </script>
 <!-- Compartir fotos con la distribuidora, de a muchas -->
-<div class="capa" id="capaCompartir" hidden>
+<div id="capaCompartir">
   <div class="ed-caja">
     <div class="ed-top">
       <b>Compartir fotos con la distribuidora</b>
