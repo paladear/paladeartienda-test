@@ -246,7 +246,7 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
 #editor{background:#fff}
 #editor.abierto{padding:0;align-items:stretch;background:#fff}
 .ed-caja{max-width:none;width:100%;border-radius:0;box-shadow:none;border:0;
-  display:flex;flex-direction:column;height:100dvh;height:100vh;margin:0}
+  display:flex;flex-direction:column;height:100vh;height:100dvh;margin:0}
 .ed-top{flex:0 0 auto;position:sticky;top:0;background:#fff;z-index:2}
 .ed-cuerpo{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;
   padding-bottom:96px;overscroll-behavior:contain}
@@ -460,9 +460,32 @@ body.es-mayorista label[for=fileExcel]{display:none}
   padding:13px 18px;border-top:1px solid var(--linea);background:#fff}
 @media(max-width:700px){
   #capaCompartir.abierto{padding:0;align-items:stretch}
-  #capaCompartir .ed-caja{max-width:none;border-radius:0;max-height:none;height:100dvh;height:100vh}
+  #capaCompartir .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
   #capaCompartir .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
   #capaCompartir .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
+}
+/* En iPhone, un input con menos de 16px hace que la página se acerque sola al
+   tocarlo. A partir de acá todos los campos del panel van en 16px en mobile. */
+@media(max-width:700px){
+  input,select,textarea,.campo input,.campo textarea,#buscar,.cmp-busca input{font-size:16px!important}
+  .cmp-busca input{min-height:48px}
+}
+#capaAltas{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
+#capaAltas.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
+#capaAltas .ed-caja{background:#fff;border-radius:14px;width:100%;max-width:620px;
+  box-shadow:0 22px 60px rgba(0,0,0,.3);display:flex;flex-direction:column;max-height:calc(100vh - 48px)}
+#capaAltas .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 18px;border-bottom:1px solid var(--linea)}
+#capaAltas .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
+#capaAltas .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  padding:13px 18px;border-top:1px solid var(--linea);background:#fff}
+.alt-item.on{border-color:#2e9e63;background:#f3faf6}
+.alt-falta{color:#c2582f}
+@media(max-width:700px){
+  #capaAltas.abierto{padding:0;align-items:stretch}
+  #capaAltas .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
+  #capaAltas .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
+  #capaAltas .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -488,7 +511,7 @@ body.es-mayorista label[for=fileExcel]{display:none}
     <h1>Panel de catálogo</h1>
     <span class="env">TESTER</span>
     <span class="quien" id="quien"></span>
-    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 13/09 10:58</span><a class="btn-tienda" href="./" target="_blank" rel="noopener">Ver la tienda</a>
+    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 13/09 12:24</span><a class="btn-tienda" href="./" target="_blank" rel="noopener">Ver la tienda</a>
   </div>
 </header>
 
@@ -637,6 +660,7 @@ body.es-mayorista label[for=fileExcel]{display:none}
     <button class="btn gris" id="btnSync">Traer del Sheet</button>
     <button class="btn gris" id="btnDesc">Descuento por rubro</button>
     <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
+    <button class="btn gris" id="btnAltas" onclick="abrirAltas()">Agregar productos al catálogo</button>
     <button class="filtro oculto-btn" data-f="todos">Todos</button>
     <button class="filtro oculto-btn" data-f="pendientes">Pendientes</button>
     <button class="filtro oculto-btn" data-f="fuera">Fuera del catálogo</button>
@@ -2573,8 +2597,140 @@ document.addEventListener('click', function(ev){
   volverAlCatalogo(b.dataset.cat);
 }, true);
 
+
+/* ── ELEGIR QUÉ ENTRA AL CATÁLOGO ─────────────────────────────────────────────
+   Muestra solo los que se PUEDEN publicar: los nuevos de E-Pyme (ya tienen
+   precio) y los que ocultaste vos. Los que no tienen precio no aparecen porque
+   no hay forma de publicarlos desde acá.
+   Arrancan todos destildados: se marca lo que se quiere que se vea. */
+var ALT_LISTA = [], ALT_MARCADOS = new Set(), ALT_FILTRO = '';
+
+function abrirAltas(){
+  $('capaAltas').classList.add('abierto');
+  document.body.style.overflow = 'hidden';
+  ALT_LISTA = PRODUCTOS.filter(function(p){
+    return (p.nuevo || p.oculto === true) && !p.sinPrecio && !p.malRubro;
+  }).sort(function(a,b){ return String(a.nombre).localeCompare(String(b.nombre),'es'); });
+  ALT_MARCADOS = new Set();          // ninguno marcado al abrir
+  ALT_FILTRO = '';
+  var i = $('altBuscar'); if (i) i.value = '';
+  $('altEstado').textContent = '';
+  altPintar();
+}
+function cerrarAltas(){
+  $('capaAltas').classList.remove('abierto');
+  document.body.style.overflow = '';
+}
+window.abrirAltas = abrirAltas; window.cerrarAltas = cerrarAltas;
+
+function altPintar(){
+  var q = ALT_FILTRO.toLowerCase();
+  var vis = ALT_LISTA.filter(function(p){
+    return !q || String(p.nombre).toLowerCase().indexOf(q) >= 0 || p.id.indexOf(q) >= 0;
+  });
+  $('altResumen').textContent = ALT_MARCADOS.size + ' de ' + ALT_LISTA.length + ' marcados';
+  if (!ALT_LISTA.length) {
+    $('altLista').innerHTML = '<div class="vacio">No hay productos para agregar. ' +
+      'Los que están fuera del catálogo no tienen precio en E-Pyme: cargáselo allá y entran solos.</div>';
+    return;
+  }
+  $('altLista').innerHTML = vis.map(function(p){
+    var falta = [];
+    if (!p.foto) falta.push('foto');
+    if (!p.desc) falta.push('descripción');
+    return '<label class="cmp-item alt-item' + (ALT_MARCADOS.has(p.id) ? ' on' : ' off') + '" data-alt="' + esc(p.id) + '">' +
+      '<input type="checkbox" ' + (ALT_MARCADOS.has(p.id) ? 'checked' : '') + '>' +
+      '<span class="cmp-n"><b>' + esc(p.nombre) + '</b>' +
+        '<i>Art. ' + esc(p.id) + ' · ' + pesos(p.p1 || 0) +
+        (falta.length ? ' · <span class="alt-falta">falta ' + falta.join(' y ') + '</span>' : '') + '</i></span>' +
+    '</label>';
+  }).join('') || '<div class="vacio">Ninguno coincide con la búsqueda.</div>';
+}
+
+function altTodos(si){
+  var q = ALT_FILTRO.toLowerCase();
+  ALT_LISTA.forEach(function(p){
+    var entra = !q || String(p.nombre).toLowerCase().indexOf(q) >= 0 || p.id.indexOf(q) >= 0;
+    if (!entra) return;
+    if (si) ALT_MARCADOS.add(p.id); else ALT_MARCADOS.delete(p.id);
+  });
+  altPintar();
+}
+window.altTodos = altTodos;
+
+var _altTimer = 0;
+document.addEventListener('input', function(ev){
+  if (!ev.target || ev.target.id !== 'altBuscar') return;
+  ALT_FILTRO = ev.target.value || '';
+  clearTimeout(_altTimer);
+  _altTimer = setTimeout(altPintar, 160);
+});
+document.addEventListener('change', function(ev){
+  var it = ev.target.closest && ev.target.closest('.alt-item[data-alt]');
+  if (!it) return;
+  var id = it.dataset.alt;
+  if (ev.target.checked) ALT_MARCADOS.add(id); else ALT_MARCADOS.delete(id);
+  it.classList.toggle('on', ev.target.checked);
+  it.classList.toggle('off', !ev.target.checked);
+  $('altResumen').textContent = ALT_MARCADOS.size + ' de ' + ALT_LISTA.length + ' marcados';
+});
+
+async function altAgregar(){
+  var marcados = ALT_LISTA.filter(function(p){ return ALT_MARCADOS.has(p.id); });
+  if (!marcados.length) { $('altEstado').textContent = 'No marcaste ninguno.'; return; }
+  if (!TOKEN) { $('altEstado').textContent = 'Entrá con la clave para poder guardar.'; return; }
+  var b = $('altEnviar');
+  b.disabled = true; b.textContent = 'Agregando...';
+  try {
+    // Los marcados quedan visibles; los que no, guardados como ocultos.
+    ALT_LISTA.forEach(function(p){
+      var quiere = ALT_MARCADOS.has(p.id);
+      p.oculto = !quiere;
+      FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, { oculto: !quiere, origen: 'panel' });
+    });
+    await guardarFichasEnRepo('Al catálogo: ' + marcados.length + ' producto' + (marcados.length === 1 ? '' : 's'));
+    var hayNuevos = marcados.some(function(p){ return p.nuevo; });
+    $('altEstado').innerHTML = '<span class="ok">' + marcados.length + ' agregados.</span>' +
+      (hayNuevos ? ' Falta tocar <b>Publicar precios en la tienda</b> para que salgan.' : '');
+    pintarKpis(); pintar();
+  } catch (e) {
+    $('altEstado').innerHTML = '<span class="malo">No pude guardar: ' + esc(e.message) + '</span>';
+  } finally {
+    b.disabled = false; b.textContent = 'Agregar los marcados';
+  }
+}
+window.altAgregar = altAgregar;
+
 </script>
 <!-- Compartir fotos con la distribuidora, de a muchas -->
+<!-- Elegir qué productos entran al catálogo -->
+<div id="capaAltas">
+  <div class="ed-caja">
+    <div class="ed-top">
+      <b>Agregar productos al catálogo</b>
+      <button type="button" class="btn gris" onclick="cerrarAltas()">Cerrar</button>
+    </div>
+    <div class="ed-cuerpo">
+      <p class="cmp-intro">Estos son los que <b>se pueden</b> poner en la tienda. Vienen todos
+        destildados: marcá solo los que quieras que se vean. Los que dejes sin marcar quedan
+        guardados como ocultos y los podés agregar cuando quieras.</p>
+      <div class="cmp-busca">
+        <input id="altBuscar" type="search" placeholder="Buscar por nombre o artículo" autocomplete="off">
+      </div>
+      <div class="cmp-acc">
+        <button type="button" class="btn gris" onclick="altTodos(true)">Marcar todos</button>
+        <button type="button" class="btn gris" onclick="altTodos(false)">Desmarcar todos</button>
+        <span id="altResumen"></span>
+      </div>
+      <div id="altLista" class="cmp-lista"></div>
+    </div>
+    <div class="ed-pie">
+      <button type="button" class="btn primario" id="altEnviar" onclick="altAgregar()">Agregar los marcados</button>
+      <span id="altEstado"></span>
+    </div>
+  </div>
+</div>
+
 <div id="capaCompartir">
   <div class="ed-caja">
     <div class="ed-top">
