@@ -439,6 +439,12 @@ body.es-mayorista label[for=fileExcel]{display:none}
   background:#2e9e63;color:#fff;font:700 13.5px/1 inherit;cursor:pointer}
 .btn-catalogo:hover{background:#278553}
 .btn-catalogo:disabled{opacity:.6}
+.aviso-cat{display:flex;flex-direction:column;gap:2px;margin:0 0 9px;padding:8px 11px;border-radius:9px;font-size:12.5px;line-height:1.4}
+.aviso-cat b{font-size:12.5px}
+.aviso-cat span{color:inherit;opacity:.85}
+.aviso-cat.espera{background:#eaf6ee;border:1px solid #bfe0cb;color:#1f6b42}
+.aviso-cat.traba{background:#f4f6f8;border:1px solid #dde3e9;color:#5c6b7a}
+.btn-catalogo{margin:0 0 9px}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
@@ -1792,7 +1798,7 @@ function pintar(){
     nuevos: 'Son productos que aparecieron en E-Pyme y todavía no están en la tienda. Tocá uno, completale la foto y la descripción, y al guardar queda listo para publicarse.',
     precio: 'Cambiaron de precio desde tu última revisión. Aceptá los que estén bien con el tilde de cada uno, o usá el botón de arriba para aceptarlos todos (eso además publica los precios en la tienda).',
     sinfoto: 'Tocá un producto para subirle la foto. Dentro del editor, con la foto ya cargada, aparece el botón <b>Compartir con la distribuidora</b> para usar la misma imagen allá.',
-    fuera: 'No se ven en la tienda. Los que sacaste vos tienen el botón <b>Agregar al catálogo</b> en la misma tarjeta; los que no tienen precio en E-Pyme aparecen solos cuando lo tengan.'
+    fuera: 'Cada tarjeta te dice arriba qué le falta: los que sacaste vos vuelven con un botón, los nuevos salen al tocar <b>Publicar precios en la tienda</b>, y los que no tienen precio en E-Pyme hay que cargarlos allá.'
   };
   const cajaAyuda = document.getElementById('ayudaFiltro');
   if (cajaAyuda) {
@@ -1847,19 +1853,34 @@ function pintar(){
       ? '<div class="precio"><span class="p-uno">' + pesos(p.p1) + '</span>' +
         (p.p2 ? '<span class="p-dos"><i>+$80.000</i>' + pesos(p.p2) + '</span>' : '') + '</div>'
       : '';
+    // Arriba de todo: si está fuera del catálogo, qué se puede hacer o por qué no.
+    var avisoCat = '';
+    if (!enCatalogo(p)) {
+      if (p.oculto === true) {
+        avisoCat = '<button type="button" class="btn-catalogo" data-cat="' + esc(p.id) + '">Agregar al catálogo</button>';
+      } else if (p.nuevo) {
+        var f2 = [];
+        if (!p.foto) f2.push('la foto');
+        if (!p.desc) f2.push('la descripción');
+        avisoCat = '<div class="aviso-cat espera"><b>Falta darlo de alta</b>' +
+          (f2.length ? '<span>Completá ' + f2.join(' y ') + ', y después tocá <b>Publicar precios en la tienda</b>.</span>'
+                     : '<span>Ya tiene todo: tocá <b>Publicar precios en la tienda</b> y sale publicado.</span>') + '</div>';
+      } else if (p.sinPrecio) {
+        avisoCat = '<div class="aviso-cat traba"><b>No se puede publicar</b>' +
+          '<span>No tiene precio en E-Pyme. Cargáselo allá y aparece solo.</span></div>';
+      } else if (p.malRubro) {
+        avisoCat = '<div class="aviso-cat traba"><b>No se puede publicar</b>' +
+          '<span>Tiene un rubro que la tienda no reconoce. Corregilo en la planilla.</span></div>';
+      }
+    }
     return '<div class="prod ' + clase + '" data-id="' + esc(p.id) + '" title="Clic para editar la ficha">' + foto +
-      '<div class="datos">' +
+      '<div class="datos">' + avisoCat +
         '<div class="nom">' + esc(p.nombre) + '</div>' +
         '<div class="meta">Art. ' + esc(p.id) + ' · ' + esc(p.rubro) +
           (p.cantidades ? ' · ' + esc(p.cantidades) : '') + '</div>' +
         precio +
         (chips.length ? '<div class="chips">' + chips.join('') + '</div>' : '') +
         ren +
-        // Si lo sacaste vos del catálogo, el botón para volver a ponerlo va acá
-        // mismo: no hace falta abrir la ficha.
-        (p.oculto === true
-          ? '<button type="button" class="btn-catalogo" data-cat="' + esc(p.id) + '">Agregar al catálogo</button>'
-          : '') +
       '</div></div>';
   };
 
@@ -2389,14 +2410,51 @@ function cmpPintar(){
     $('cmpLista').innerHTML = '<div class="vacio">No encontré productos con el mismo número de artículo que ya tengan foto acá.</div>';
     return;
   }
+  if (typeof cmpVerFotos !== 'undefined') cmpVerFotos.desconectar();
   $('cmpLista').innerHTML = vis.map(function(p){
     return '<label class="cmp-item' + (CMP_MARCADOS.has(p.id) ? '' : ' off') + '" data-id="' + esc(p.id) + '">' +
       '<input type="checkbox" ' + (CMP_MARCADOS.has(p.id) ? 'checked' : '') + '>' +
-      '<img loading="lazy" src="' + imgDe(p.id) + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
+      '<img loading="lazy" data-src="' + imgDe(p.id) + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
       '<span class="cmp-n"><b>' + esc(p.nombre) + '</b><i>Art. ' + esc(p.id) + '</i></span>' +
     '</label>';
   }).join('') || '<div class="vacio">Ninguno coincide con la búsqueda.</div>';
+  if (typeof cmpVerFotos !== 'undefined') cmpVerFotos.observar();
 }
+
+/* Las fotos se piden recién cuando el renglón se acerca a la pantalla. Con las
+   200 juntas el navegador se trababa, sobre todo en el celular con datos. */
+var cmpVerFotos = (function(){
+  var obs = null;
+  function crear(){
+    if (obs || !('IntersectionObserver' in window)) return;
+    if (!document.querySelector('#capaCompartir .ed-cuerpo')) return;
+    obs = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var img = e.target;
+        if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
+        obs.unobserve(img);
+      });
+    }, {
+      // El que scrollea es el cuerpo de la pantalla, no la lista: con el root
+      // equivocado el navegador considera visibles a los 200 y los pide todos.
+      root: document.querySelector('#capaCompartir .ed-cuerpo'),
+      rootMargin: '250px 0px'
+    });
+  }
+  return {
+    observar: function(){
+      crear();
+      var imgs = document.querySelectorAll('#cmpLista img[data-src]');
+      if (!obs) {   // navegador viejo: se cargan igual, pero de a poco
+        [].slice.call(imgs, 0, 30).forEach(function(i){ i.src = i.dataset.src; delete i.dataset.src; });
+        return;
+      }
+      [].forEach.call(imgs, function(i){ obs.observe(i); });
+    },
+    desconectar: function(){ if (obs) obs.disconnect(); }
+  };
+})();
 
 function cmpTodos(si){
   var q = CMP_FILTRO.toLowerCase();
@@ -2409,8 +2467,12 @@ function cmpTodos(si){
 }
 window.cmpTodos = cmpTodos;
 
+var _cmpTimer = 0;
 document.addEventListener('input', function(ev){
-  if (ev.target && ev.target.id === 'cmpBuscar') { CMP_FILTRO = ev.target.value || ''; cmpPintar(); }
+  if (!ev.target || ev.target.id !== 'cmpBuscar') return;
+  CMP_FILTRO = ev.target.value || '';
+  clearTimeout(_cmpTimer);
+  _cmpTimer = setTimeout(cmpPintar, 160);   // no repintar en cada tecla
 });
 document.addEventListener('change', function(ev){
   var it = ev.target.closest && ev.target.closest('.cmp-item[data-id]');
