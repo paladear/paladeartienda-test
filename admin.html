@@ -379,6 +379,7 @@ body.buscando .busca-fija{display:flex}
             <label class="btn gris" for="edFotoFile">Elegir foto</label>
             <input type="file" id="edFotoFile" accept="image/*" class="foto-input">
             <button type="button" class="btn gris" id="edFotoQuitar" hidden>Quitar</button>
+             <button type="button" class="btn gris" id="edFotoMay" hidden title="Sube la misma foto a la distribuidora, con el mismo número de artículo">Compartir con la distribuidora</button>
             <div class="foto-info" id="edFotoInfo"></div>
           </div>
         </div>
@@ -511,13 +512,13 @@ try { TOKEN = localStorage.getItem(LS_TOKEN) || ''; } catch(e) {}
 
 function verCapa(si){ document.getElementById('capaAcceso').style.display = si ? 'flex' : 'none'; }
 
-async function gh(ruta, opciones){
+async function gh(ruta, opciones, repo){
   const o = Object.assign({}, opciones || {});
   o.headers = Object.assign({
     'Accept': 'application/vnd.github+json',
     'Authorization': 'token ' + TOKEN
   }, o.headers || {});
-  const r = await fetch('https://api.github.com/repos/' + REPO + ruta, o);
+  const r = await fetch('https://api.github.com/repos/' + (repo || REPO) + ruta, o);
   if (!r.ok) {
     let msg = 'HTTP ' + r.status;
     try { const j = await r.json(); if (j.message) msg = j.message; } catch(e) {}
@@ -535,18 +536,18 @@ async function claveSirve(){
 
 /* Guarda un archivo en el repo. Si otro proceso lo cambió mientras tanto (el robot
    de precios corre cada 2 horas), se reintenta con el sha nuevo. */
-async function guardarEnRepo(ruta, contenidoB64, mensaje, intento){
+async function guardarEnRepo(ruta, contenidoB64, mensaje, intento, repo){
   intento = intento || 0;
   let sha = null;
-  try { sha = (await gh('/contents/' + encodeURI(ruta) + '?ref=main')).sha; }
+  try { sha = (await gh('/contents/' + encodeURI(ruta) + '?ref=main', null, repo)).sha; }
   catch(e) { if (e.status !== 404) throw e; }
   const cuerpo = { message: mensaje, content: contenidoB64, branch: 'main' };
   if (sha) cuerpo.sha = sha;
   try {
-    return await gh('/contents/' + encodeURI(ruta), { method:'PUT', body: JSON.stringify(cuerpo) });
+    return await gh('/contents/' + encodeURI(ruta), { method:'PUT', body: JSON.stringify(cuerpo) }, repo);
   } catch(e) {
     if ((e.status === 409 || e.status === 422) && intento < 2)
-      return guardarEnRepo(ruta, contenidoB64, mensaje, intento + 1);
+      return guardarEnRepo(ruta, contenidoB64, mensaje, intento + 1, repo);
     throw e;
   }
 }
@@ -1190,6 +1191,7 @@ function pintarEnCatalogo(p){
 
 function pintarFotoEditor(p){
   const prev = $('edFotoPrev'), info = $('edFotoInfo'), quitar = $('edFotoQuitar');
+  const compartir = $('edFotoMay');
   if (!prev) return;
   const guardada = FOTOS_FB[p.id];
   // La foto nueva viene en memoria; la ya guardada es un archivo del repo.
@@ -1199,10 +1201,12 @@ function pintarFotoEditor(p){
     prev.innerHTML = '<img src="' + src + '" alt="" onerror="this.style.display=\'none\'">';
     prev.style.background = fondo || '#f2f5f8';
     quitar.hidden = false;
+    if (compartir) compartir.hidden = false;
   } else {
     prev.innerHTML = '<span>sin foto</span>';
     prev.style.background = '#f2f5f8';
     quitar.hidden = true;
+    if (compartir) compartir.hidden = true;
   }
   if (FOTO_NUEVA) {
     info.innerHTML = '<b>Lista para guardar.</b><br>' +
@@ -1818,6 +1822,55 @@ document.addEventListener('change', function(ev){
   if (ev.target && ev.target.id === 'fileExcel' && ev.target.files && ev.target.files[0]) {
     excelLeer(ev.target.files[0]);
   }
+});
+
+
+/* ── COMPARTIR LA FOTO CON LA DISTRIBUIDORA ───────────────────────────────────
+   Casi todos los productos usan el mismo número de artículo en las dos tiendas,
+   así que la misma foto sirve. Este botón copia la foto del producto abierto al
+   repo de la distribuidora, con el mismo nombre de archivo.
+   OJO: apunta a la TESTER de la distribuidora, no a la oficial. */
+const REPO_MAY_FOTOS = 'paladear/paladeardistribuidora-test';
+
+async function compartirFotoConMayorista(){
+  var info = $('edFotoInfo');
+  function avisar(html){ if (info) info.innerHTML = html; }
+  if (!EDITANDO) { avisar('<span class="malo">Abrí primero un producto.</span>'); return; }
+  var id = EDITANDO.id;
+  var b = $('edFotoMay');
+  if (b) { b.disabled = true; b.textContent = 'Compartiendo...'; }
+  try {
+    var b64, ext;
+    if (FOTO_NUEVA && FOTO_NUEVA.webp) {
+      // foto recién elegida: se usa la misma que se va a guardar acá
+      b64 = FOTO_NUEVA.webp.split(',')[1];
+      ext = FOTO_NUEVA.ext || 'webp';
+    } else {
+      // ya guardada: se lee del repo de la tienda y se copia tal cual
+      var hallada = null;
+      for (var i = 0; i < ['webp','jpg','png'].length; i++) {
+        var e = ['webp','jpg','png'][i];
+        try {
+          var arch = await gh('/contents/' + CARPETA_FOTOS + '/' + id + '.' + e + '?ref=main');
+          hallada = { b64: (arch.content || '').replace(/\n/g, ''), ext: e };
+          break;
+        } catch (err) { if (err.status !== 404) throw err; }
+      }
+      if (!hallada) { avisar('<span class="malo">Este producto todavía no tiene foto guardada.</span>'); return; }
+      b64 = hallada.b64; ext = hallada.ext;
+    }
+    await guardarEnRepo(CARPETA_FOTOS + '/' + id + '.' + ext, b64,
+      'Foto del artículo ' + id + ' compartida desde la tienda minorista', 0, REPO_MAY_FOTOS);
+    avisar('<span class="ok">Listo: la distribuidora ya tiene esta foto (artículo ' + esc(id) + ').</span>');
+  } catch (err) {
+    avisar('<span class="malo">No pude compartirla: ' + esc(err.message) + '</span>');
+  } finally {
+    if (b) { b.disabled = false; b.textContent = 'Compartir con la distribuidora'; }
+  }
+}
+
+document.addEventListener('click', function(ev){
+  if (ev.target && ev.target.id === 'edFotoMay') compartirFotoConMayorista();
 });
 
 </script>
