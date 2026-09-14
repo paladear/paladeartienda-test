@@ -298,9 +298,12 @@ body.buscando .busca-fija{display:flex}
 .grupo-tit.dentro span{background:#dcf5e8;color:#14684a}
 .grupo-tit.fuera{color:#8a6a1f}
 .grupo-tit.fuera span{background:#fbeecd;color:#7a5c14}
+.grupo-tit.espera{color:#8a5310}
+.grupo-tit.espera span{background:#fbe3c2;color:#7a4709}
 .grupo-ayuda{margin:-6px 0 12px;font-size:12.5px;color:#6b7885;line-height:1.5}
 
 /* El color dice de un vistazo si el cliente lo ve o no */
+.prod.es-precio{border-left:4px solid #d98c1e!important;background:#fffaf1}
 .prod.en-catalogo{border-left:4px solid #2fa36b}
 .prod.fuera-catalogo{border-left:4px solid #d8a72e;background:#fffdf5}
 .prod.fuera-catalogo .nom{color:#6d5a22}
@@ -446,10 +449,11 @@ body.es-mayorista label[for=fileExcel]{display:none}
   width:4px;height:8px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(42deg)}
 
 /* Catálogo: verde cuando el producto se ve en la tienda, ámbar cuando no. */
-.bander-cat{width:64px;justify-content:center;padding:0 4px;min-height:40px;
-  flex-direction:column;gap:3px;font-size:9.5px;text-align:center;line-height:1.15}
+.bander-cat{width:64px;justify-content:center;padding:0 4px;min-height:40px;height:40px;
+  border-radius:9px;flex-direction:column;gap:3px;font-size:9.5px;text-align:center;line-height:1.15}
 .bander-cat i{width:13px;height:13px;flex:0 0 13px}
 .bander-cat.on{background:#e9f7ef;border-color:#9cd4b4;color:#1d7a4a}
+.bander-cat.on.alta{background:#eaf1fb;border-color:#a8c2e6;color:#28578f}
 .bander-cat:not(.on):not(.trabada){background:#fdf6e6;border-color:#e4cd95;color:#8a6b1c}
 .bander-cat.trabada{background:#f4f6f8;border-color:#dde3e9;color:#93a0ad;cursor:default}
 .bander-cat:disabled{cursor:default}
@@ -462,7 +466,7 @@ body.es-mayorista label[for=fileExcel]{display:none}
   padding-left:0;font-weight:600;cursor:default}
 .bander:disabled{opacity:.6}
 @media(max-width:700px){
-  .bander-cat{min-height:44px}
+  .bander-cat{min-height:44px;height:44px}
   .bander-precio{min-height:44px;width:100%;justify-content:center}
   .bander-precio.lista{justify-content:flex-start}
 }
@@ -1127,7 +1131,8 @@ async function arrancar(){
         foto:!!(f.imagen && String(f.imagen).trim()),
         cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
         mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
-        nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:true, renombre:null, malRubro:false
+        nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:true, renombre:null, malRubro:false,
+        altaOk: f.altaOk === true
       });
     });
     // Están en Info (tienen ficha) pero no en la lista de precios: no se publican.
@@ -1788,7 +1793,7 @@ function pintarKpis(){
   const t = PRODUCTOS.length;
   const cambios = PRODUCTOS.filter(p => p.cambioPrecio).length;
   const nuevos  = PRODUCTOS.filter(p => p.nuevo).length;
-  const fuera   = PRODUCTOS.filter(p => !enCatalogo(p)).length;
+  const fuera   = PRODUCTOS.filter(p => !resuelto(p)).length;
   const sinFoto = PRODUCTOS.filter(p => !p.foto).length;
   const renoms  = PRODUCTOS.filter(p => hayRenombre(p)).length;
   const sinDesc = PRODUCTOS.filter(p => !p.desc).length;
@@ -1862,6 +1867,15 @@ function llenarRubros(){
 /* Un producto se ve en la tienda si tiene precio y no fue sacado a mano. */
 function enCatalogo(p){ return !p.sinPrecio && !p.nuevo && !p.malRubro && !p.oculto; }
 
+/* Un producto nuevo con la banderilla puesta ya está aceptado, pero no se ve en
+   la tienda hasta que la PC vuelva a generar la lista de precios. Son dos cosas
+   distintas y la banderilla lo tiene que decir. */
+function esperandoAlta(p){ return !!(p.nuevo && p.altaOk && !p.sinPrecio && !p.malRubro); }
+
+/* Los que NO hay que ir a buscar: o ya están publicados, o están aceptados y
+   sólo falta que la PC genere la lista. */
+function resuelto(p){ return enCatalogo(p) || esperandoAlta(p); }
+
 function pintar(){
   let lista = PRODUCTOS.slice();
   if (FILTRO === 'pendientes') lista = lista.filter(p => p.nuevo || hayRenombre(p) || p.malRubro);
@@ -1874,7 +1888,7 @@ function pintar(){
   if (FILTRO === 'oferta')     lista = lista.filter(p => p.oferta > 0);
   if (RUBRO === '__sin__')     lista = lista.filter(p => !(p.rubro || '').trim());
   else if (RUBRO)              lista = lista.filter(p => (p.rubro || '').trim() === RUBRO);
-  if (FILTRO === 'fuera')      lista = lista.filter(p => !enCatalogo(p));
+  if (FILTRO === 'fuera')      lista = lista.filter(p => !resuelto(p));
   if (BUSCA) {
     const q = BUSCA.toLowerCase();
     lista = lista.filter(p => p.nombre.toLowerCase().includes(q) || p.id.includes(q));
@@ -1917,12 +1931,16 @@ function pintar(){
     return;
   }
   cont.className = 'grilla';
-  // Dos grupos: lo que se ve en la tienda y lo que no. Separados y con otro color.
-  const dentro = lista.filter(enCatalogo);
-  const fuera  = lista.filter(p => !enCatalogo(p));
+  // Tres grupos, en el orden en que hay que mirarlos. Lo que espera una decisión
+  // va arriba de todo, mezclando cambios de precio y productos nuevos: si no, los
+  // nuevos caían en "fuera del catálogo" y quedaban al final de la página.
+  const esperan = lista.filter(p => p.cambioPrecio);
+  const resto   = lista.filter(p => !p.cambioPrecio);
+  const dentro  = resto.filter(resuelto);
+  const fuera   = resto.filter(p => !resuelto(p));
   const tarjeta = p => {
     const clase = (p.cambioPrecio ? 'es-precio' : p.nuevo ? 'es-nuevo' : p.malRubro ? 'es-mal' : hayRenombre(p) ? 'es-renom' : !p.foto ? 'es-sinfoto' : '') +
-                  (enCatalogo(p) ? ' en-catalogo' : ' fuera-catalogo');
+                  (resuelto(p) ? ' en-catalogo' : ' fuera-catalogo');
     const chips = [];
     if (p.nuevo) chips.push('<span class="chip nuevo">NUEVO</span>');
     if (p.cambioPrecio && !p.nuevo) chips.push('<span class="chip precio">' +
@@ -1938,7 +1956,7 @@ function pintar(){
     if (p.malRubro) chips.push('<span class="chip mal">Rubro inválido</span>');
     if (hayRenombre(p)) chips.push('<span class="chip renom">Nombre cambiado</span>');
     if (!p.ficha)   chips.push('<span class="chip falta">Sin ficha</span>');
-    else {
+    else if (!p.nuevo) {   // en los nuevos ya lo dice el chip de arriba
       if (!p.foto) chips.push('<span class="chip falta">Sin foto</span>');
       if (!p.desc) chips.push('<span class="chip falta">Sin descripción</span>');
     }
@@ -1966,13 +1984,15 @@ function pintar(){
     if (p.sinPrecio) traba = 'No tiene precio en E-Pyme. Cargáselo allá.';
     else if (p.malRubro) traba = 'Tiene un rubro que la tienda no reconoce. Corregilo en la planilla.';
     var enCat = enCatalogo(p);
+    var esperaAlta = esperandoAlta(p);
+    var puesta = enCat || esperaAlta;
     var bandCat = traba
       ? '<button type="button" class="bander bander-cat trabada" disabled title="' + esc(traba) + '">' +
           '<i></i><span>No se puede</span></button>'
-      : '<button type="button" class="bander bander-cat' + (enCat ? ' on' : '') + '" data-cat="' + esc(p.id) + '"' +
-          ' aria-pressed="' + (enCat ? 'true' : 'false') + '"' +
-          ' title="' + (enCat ? 'Sacar de la tienda' : 'Poner en la tienda') + '">' +
-          '<i></i><span>' + (enCat ? 'En la tienda' : 'Fuera') + '</span></button>';
+      : '<button type="button" class="bander bander-cat' + (puesta ? ' on' : '') + (esperaAlta ? ' alta' : '') +
+          '" data-cat="' + esc(p.id) + '" aria-pressed="' + (puesta ? 'true' : 'false') + '"' +
+          ' title="' + (puesta ? 'Sacar de la tienda' : 'Poner en la tienda') + '">' +
+          '<i></i><span>' + (esperaAlta ? 'Al publicar' : puesta ? 'En la tienda' : 'Fuera') + '</span></button>';
 
     // ── BANDERILLA DE PRECIO (dentro de la mini tarjeta) ──
     var bandPrecio = p.cambioPrecio
@@ -1998,13 +2018,18 @@ function pintar(){
   };
 
   var html = '';
+  if (esperan.length) {
+    html += '<h2 class="grupo-tit espera">Esperan tu OK <span>' + esperan.length + '</span></h2>' +
+            '<p class="grupo-ayuda">Cambiaron de precio o son nuevos. Hasta que les des el OK, la tienda muestra el precio anterior.</p>' +
+            '<div class="grupo">' + esperan.map(tarjeta).join('') + '</div>';
+  }
   if (dentro.length) {
     html += '<h2 class="grupo-tit dentro">En la tienda <span>' + dentro.length + '</span></h2>' +
             '<div class="grupo">' + dentro.map(tarjeta).join('') + '</div>';
   }
   if (fuera.length) {
     html += '<h2 class="grupo-tit fuera">Fuera del catálogo <span>' + fuera.length + '</span></h2>' +
-            '<p class="grupo-ayuda">No se ven en la tienda: o no tienen precio en E-Pyme, o los sacaste vos.</p>' +
+            '<p class="grupo-ayuda">No se ven en la tienda: o no tienen precio en E-Pyme, o les bajaste la banderilla.</p>' +
             '<div class="grupo">' + fuera.map(tarjeta).join('') + '</div>';
   }
   cont.className = '';
@@ -2713,19 +2738,23 @@ async function volverAlCatalogo(id){
   if (!TOKEN) { alert('Entrá con la clave para poder guardar.'); return; }
   var b = document.querySelector('.bander-cat[data-cat="' + id + '"]');
   if (b) { b.disabled = true; }
-  var estaba = { oculto: p.oculto, nuevo: p.nuevo };
-  var entra = !enCatalogo(p);      // si está afuera, esta banderilla lo mete
+  var estaba = { oculto: p.oculto, altaOk: p.altaOk };
+  var entra = !(enCatalogo(p) || esperandoAlta(p));   // si está afuera, lo mete
   try {
     p.oculto = !entra;
     var ficha = { oculto: p.oculto, origen: 'panel' };
-    // Un producto nuevo no necesita un segundo OK: meterlo al catálogo YA implica
-    // que el precio con el que entra está bien.
-    if (entra && p.nuevo) { aprobarPrecio(p); p.nuevo = false; }
+    // Un producto nuevo no necesita un segundo OK: ponerle la banderilla YA vale
+    // como aprobación del precio con el que entra.
+    if (p.nuevo) {
+      p.altaOk = entra;
+      ficha.altaOk = entra;
+      if (entra) aprobarPrecio(p);
+    }
     FICHAS_FB[id] = Object.assign({}, FICHAS_FB[id] || {}, ficha);
     await guardarFichasEnRepo((entra ? 'Entra al catálogo: ' : 'Sale del catálogo: ') + (p.nombre || id));
     pintarKpis(); pintar();
   } catch (e) {
-    p.oculto = estaba.oculto; p.nuevo = estaba.nuevo;
+    p.oculto = estaba.oculto; p.altaOk = estaba.altaOk;
     alert('No pude guardarlo: ' + e.message);
     pintar();
   }
