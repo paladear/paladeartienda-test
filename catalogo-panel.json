@@ -7686,9 +7686,11 @@
    "sabores": "CARBON Y MENTA",
    "oferta": 0,
    "rubro": "PALADEAR HOME",
-   "origen": "sheet",
+   "origen": "panel",
    "actualizado": "2026-09-13T12:51:39.796Z",
-   "por": "panel"
+   "por": "panel",
+   "oculto": false,
+   "altaOk": true
   },
   "5051": {
    "nombre": "MACA NEGRA X 60 CAPSULAS - MACHU PICHU",
@@ -10236,7 +10238,8 @@
   "5046": 29580,
   "5047": 38708.98,
   "5048": 22500,
-  "5049": 6000
+  "5049": 6000,
+  "5050": 5250
  },
  "cambiosPrecio": {
   "1051": {
@@ -10343,7 +10346,11 @@
   "5049": [
    6000,
    0
+  ],
+  "5050": [
+   5250,
+   0
   ]
  },
- "actualizado": "2026-09-14T02:25:13.897Z"
+ "actualizado": "2026-09-14T02:25:50.737Z"
 }
