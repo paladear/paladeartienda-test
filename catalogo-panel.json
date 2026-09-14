@@ -7841,9 +7841,16 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "PALADEAR HOME",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.796Z",
-   "por": "panel"
+   "origen": "panel",
+   "actualizado": "2026-09-14T03:07:04.655Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "imagen": "",
+   "oculto": false,
+   "fotoPropia": true,
+   "fondo": "#fefefe"
   }
  },
  "fotos": {
@@ -9806,6 +9813,14 @@
    "peso": 154537,
    "ext": "webp",
    "v": 1789213751000
+  },
+  "5053": {
+   "fondo": "#fefefe",
+   "w": 700,
+   "h": 640,
+   "peso": 86474,
+   "ext": "jpg",
+   "v": 1789355226691
   }
  },
  "preciosVistos": {
@@ -12679,5 +12694,5 @@
    0
   ]
  },
- "actualizado": "2026-09-14T03:06:12.311Z"
+ "actualizado": "2026-09-14T03:07:06.691Z"
 }
