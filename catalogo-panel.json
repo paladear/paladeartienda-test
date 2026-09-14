@@ -4354,9 +4354,11 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-   "origen": "sheet",
+   "origen": "panel",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "oculto": false,
+   "altaOk": true
   },
   "2098": {
    "nombre": "STEVIA X100 SOBRES SIN TACC - DULRI",
@@ -10003,6 +10005,7 @@
   "2092": 28490,
   "2093": 54660,
   "2095": 10260,
+  "2096": 25380,
   "2098": 7190,
   "2099": 8220,
   "2101": 29850,
@@ -10314,6 +10317,10 @@
    7450,
    0
   ],
+  "2096": [
+   25380,
+   0
+  ],
   "2205": [
    25070,
    0
@@ -10331,5 +10338,5 @@
    0
   ]
  },
- "actualizado": "2026-09-14T02:25:02.945Z"
+ "actualizado": "2026-09-14T02:25:08.386Z"
 }
