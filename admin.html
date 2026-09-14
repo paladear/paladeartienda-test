@@ -2137,6 +2137,29 @@ document.addEventListener('change', function(ev){
    OJO: apunta a la TESTER de la distribuidora, no a la oficial. */
 const REPO_MAY_FOTOS = 'paladear/paladeardistribuidora-test';
 
+/* Un JPG de la tienda pesa ~120 KB; en WebP baja a ~40 KB. Convertimos antes de
+   copiarlo para que la distribuidora no arrastre ese peso. */
+function aWebpB64(b64, ext){
+  return new Promise(function(listo){
+    if (ext === 'webp') return listo({ b64: b64, ext: 'webp' });
+    var im = new Image();
+    im.onload = function(){
+      try {
+        var lado = 700, esc = Math.min(1, lado / Math.max(im.width, im.height));
+        var cv = document.createElement('canvas');
+        cv.width  = Math.round(im.width  * esc);
+        cv.height = Math.round(im.height * esc);
+        cv.getContext('2d').drawImage(im, 0, 0, cv.width, cv.height);
+        var d = cv.toDataURL('image/webp', 0.82);
+        if (d.indexOf('data:image/webp') !== 0) return listo({ b64: b64, ext: ext });
+        listo({ b64: d.split(',')[1], ext: 'webp' });
+      } catch(e){ listo({ b64: b64, ext: ext }); }
+    };
+    im.onerror = function(){ listo({ b64: b64, ext: ext }); };
+    im.src = 'data:image/' + (ext === 'jpg' ? 'jpeg' : ext) + ';base64,' + b64;
+  });
+}
+
 async function compartirFotoConMayorista(){
   var info = $('edFotoInfo');
   function avisar(html){ if (info) info.innerHTML = html; }
@@ -2164,8 +2187,11 @@ async function compartirFotoConMayorista(){
       if (!hallada) { avisar('<span class="malo">Este producto todavía no tiene foto guardada.</span>'); return; }
       b64 = hallada.b64; ext = hallada.ext;
     }
+    var liviana = await aWebpB64(b64, ext);
+    b64 = liviana.b64; ext = liviana.ext;
     await guardarEnRepo(CARPETA_FOTOS + '/' + id + '.' + ext, b64,
       'Foto del artículo ' + id + ' compartida desde la tienda minorista', 0, REPO_MAY_FOTOS);
+    await anotarFotoPropia(id, ext);
     avisar('<span class="ok">Listo: la distribuidora ya tiene esta foto (artículo ' + esc(id) + ').</span>');
   } catch (err) {
     avisar('<span class="malo">No pude compartirla: ' + esc(err.message) + '</span>');
@@ -2564,36 +2590,43 @@ async function cmpCompartir(){
   var b = $('cmpEnviar');
   b.disabled = true;
   var fotos = (GUARDADO_MIN && GUARDADO_MIN.fotos) ? GUARDADO_MIN.fotos : FOTOS_FB;
-  var ok = 0, mal = 0;
+  var ok = 0, mal = 0, compartidas = {};
   for (var i = 0; i < ids.length; i++) {
     var id = ids[i];
     b.textContent = 'Compartiendo ' + (i + 1) + ' de ' + ids.length + '...';
     try {
       var ext = (fotos[id] && fotos[id].ext) || 'webp';
       var arch = await gh('/contents/' + CARPETA_FOTOS + '/' + id + '.' + ext + '?ref=main');
-      await guardarEnRepo(CARPETA_FOTOS + '/' + id + '.' + ext,
-        (arch.content || '').replace(/\n/g, ''),
+      var liviana = await aWebpB64((arch.content || '').replace(/\n/g, ''), ext);
+      await guardarEnRepo(CARPETA_FOTOS + '/' + id + '.' + liviana.ext, liviana.b64,
         'Foto del artículo ' + id + ' compartida desde la tienda', 0, REPO_MAY);
+      compartidas[id] = liviana.ext;
       ok++;
     } catch (e) { mal++; }
   }
-  // La tienda mayorista necesita saber cuáles tienen foto propia: si no, sigue
-  // mostrando las de Cloudinary aunque el archivo ya esté subido.
+  await anotarFotoPropia(compartidas);
+  b.disabled = false; b.textContent = 'Compartir las marcadas';
+  $('cmpEstado').innerHTML = '<span class="ok">' + ok + ' compartidas</span>' +
+    (mal ? ' · <span class="malo">' + mal + ' fallaron</span>' : '');
+}
+window.cmpCompartir = cmpCompartir;
+
+/* La tienda mayorista no adivina qué fotos hay en su repo: lee este índice.
+   Sin esto la foto queda subida pero el sitio sigue mostrando la de Cloudinary. */
+async function anotarFotoPropia(id, ext){
+  var nuevas = (typeof id === 'object') ? id : (function(o){ o[id] = ext; return o; })({});
+  if (!Object.keys(nuevas).length) return;
   try {
     var indice = {};
     try {
       var prev = await gh('/contents/fotos-propias.json?ref=main', null, REPO_MAY);
       indice = JSON.parse(decodeURIComponent(escape(atob((prev.content||'').replace(/\n/g,''))))) || {};
     } catch(e) {}
-    ids.forEach(function(id){ indice[id] = (fotos[id] && fotos[id].ext) || 'webp'; });
+    Object.keys(nuevas).forEach(function(k){ indice[k] = nuevas[k]; });
     await guardarEnRepo('fotos-propias.json', aB64(JSON.stringify(indice, null, 1)),
       'Índice de fotos propias (' + Object.keys(indice).length + ')', 0, REPO_MAY);
   } catch(e) {}
-  b.disabled = false; b.textContent = 'Compartir las marcadas';
-  $('cmpEstado').innerHTML = '<span class="ok">' + ok + ' compartidas</span>' +
-    (mal ? ' · <span class="malo">' + mal + ' fallaron</span>' : '');
 }
-window.cmpCompartir = cmpCompartir;
 
 
 /* Volver a poner un producto en el catálogo desde la misma tarjeta. */
