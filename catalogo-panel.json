@@ -460,7 +460,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1115": {
    "nombre": "ALMOHADITAS DE CHOCOLATE",
@@ -472,7 +473,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1117": {
    "nombre": "ALMOHADITAS DE FRUTILLA",
@@ -484,7 +486,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1118": {
    "nombre": "ALMOHADITAS DE LIMON",
@@ -496,7 +499,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1121": {
    "nombre": "ANILLOS DE AVENA Y MIEL",
@@ -508,7 +512,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1122": {
    "nombre": "ANILLOS FRUTADOS",
@@ -520,7 +525,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1123": {
    "nombre": "ANIS EN GRANO",
@@ -532,7 +538,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "mix": true
   },
   "1124": {
    "nombre": "ANIS ESTRELLADO",
@@ -544,7 +551,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "mix": true
   },
   "1126": {
    "nombre": "ARANDANOS CONGELADOS X1 KG",
@@ -568,7 +576,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "DESHIDRATADOS"
+   "rubro": "DESHIDRATADOS",
+   "mix": true
   },
   "1131": {
    "nombre": "ARROZ INTEGRAL",
@@ -604,11 +613,12 @@
    "origen": "panel",
    "actualizado": "2026-09-07T11:46:16.987Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf9f3"
+   "fondo": "#fcf9f3",
+   "rubro": "FRUTOS SECOS"
   },
   "1135": {
    "nombre": "AVENA ARROLLADA GRUESA",
@@ -620,7 +630,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1136": {
    "nombre": "AVENA INSTANTÁNEA",
@@ -632,7 +643,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1137": {
    "nombre": "AVENA TRADICIONAL",
@@ -644,7 +656,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1138": {
    "nombre": "AZAFRAN ESPAÑOL X CAPSULA",
@@ -704,7 +717,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1150": {
    "nombre": "BERENJENAS CONDIMENTADAS X200 GR - DURANG",
@@ -739,7 +753,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "1155": {
    "nombre": "BOLITAS DE CHOCOLATE",
@@ -751,7 +766,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1159": {
    "nombre": "MASTROENI - CABERNET FRANC X750 CC",
@@ -787,7 +803,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "mix": true
   },
   "1168": {
    "nombre": "CANELA MOLIDA",
@@ -799,7 +816,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "mix": true
   },
   "1170": {
    "nombre": "CARAMELOS",
@@ -822,7 +840,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "mix": true
   },
   "1178": {
    "nombre": "CASCARILLA DE CACAO",
@@ -846,11 +865,12 @@
    "origen": "panel",
    "actualizado": "2026-09-07T11:46:46.910Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fbf8f3"
+   "fondo": "#fbf8f3",
+   "rubro": "FRUTOS SECOS"
   },
   "1182": {
    "nombre": "CEBOLLA EN ESCAMAS",
@@ -910,7 +930,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
    "por": "panel",
-   "rubro": "DESHIDRATADOS"
+   "rubro": "DESHIDRATADOS",
+   "mix": true
   },
   "1204": {
    "nombre": "CHUCRUT X600 GR - ALCARAZ GOURMET",
@@ -934,7 +955,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
    "por": "panel",
-   "rubro": "DESHIDRATADOS"
+   "rubro": "DESHIDRATADOS",
+   "mix": true
   },
   "1207": {
    "nombre": "CIRUELAS D`AGEN CON CAROZO",
@@ -958,7 +980,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
    "por": "panel",
-   "rubro": "DESHIDRATADOS"
+   "rubro": "DESHIDRATADOS",
+   "mix": true
   },
   "1209": {
    "nombre": "CLAVO DE OLOR ENTERO",
@@ -970,7 +993,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "mix": true
   },
   "1211": {
    "nombre": "COCO EN ESCAMAS",
@@ -982,7 +1006,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
    "por": "panel",
-   "rubro": "AZUCAR, CACAO Y REPOSTERIA"
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "mix": true
   },
   "1212": {
    "nombre": "COCO RALLADO",
@@ -994,7 +1019,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
    "por": "panel",
-   "rubro": "AZUCAR, CACAO Y REPOSTERIA"
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "mix": true
   },
   "1214": {
    "nombre": "COMINO MOLIDO",
@@ -1030,7 +1056,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1229": {
    "nombre": "COPOS DE MAIZ",
@@ -1042,7 +1069,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1230": {
    "nombre": "CORAZONES DE ALCAUCIL EN VINAGRE X300 GR - DURANG",
@@ -1494,7 +1522,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "DESHIDRATADOS"
+   "rubro": "DESHIDRATADOS",
+   "mix": true
   },
   "1314": {
    "nombre": "HONGOS SECOS DE PINO",
@@ -1553,7 +1582,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "mix": true
   },
   "1324": {
    "nombre": "JUGO DE ARANDANOS X1,5 L - FITOPLUS",
@@ -1672,11 +1702,12 @@
    "origen": "panel",
    "actualizado": "2026-09-07T11:47:18.413Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fbf8f2"
+   "fondo": "#fbf8f2",
+   "rubro": "FRUTOS SECOS"
   },
   "1366": {
    "nombre": "MAIZ PSINGALLO",
@@ -1704,7 +1735,8 @@
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fbf8f2"
+   "fondo": "#fbf8f2",
+   "rubro": "FRUTOS SECOS"
   },
   "1378": {
    "nombre": "MANI JAPONES",
@@ -1716,11 +1748,12 @@
    "origen": "panel",
    "actualizado": "2026-09-07T11:47:48.630Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf9f3"
+   "fondo": "#fcf9f3",
+   "rubro": "FRUTOS SECOS"
   },
   "1379": {
    "nombre": "MANI SABORIZADO",
@@ -1732,11 +1765,12 @@
    "origen": "panel",
    "actualizado": "2026-09-07T11:48:06.545Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf8f3"
+   "fondo": "#fcf8f3",
+   "rubro": "FRUTOS SECOS"
   },
   "1380": {
    "nombre": "MANI TOSTADO SALADO",
@@ -1748,11 +1782,12 @@
    "origen": "panel",
    "actualizado": "2026-09-07T11:48:24.177Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf8f2"
+   "fondo": "#fcf8f2",
+   "rubro": "FRUTOS SECOS"
   },
   "1381": {
    "nombre": "MANI TOSTADO SIN SAL",
@@ -1764,11 +1799,12 @@
    "origen": "panel",
    "actualizado": "2026-09-07T11:48:47.213Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fbf8f1"
+   "fondo": "#fbf8f1",
+   "rubro": "FRUTOS SECOS"
   },
   "1383": {
    "nombre": "MANTEQUILLA DE MANI X 370 GR - ENTRENUTS",
@@ -1791,7 +1827,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "mix": true
   },
   "1394": {
    "nombre": "MEDALLONES DE DURAZNO",
@@ -1803,7 +1840,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "DESHIDRATADOS"
+   "rubro": "DESHIDRATADOS",
+   "mix": true
   },
   "1406": {
    "nombre": "MIEL DE ABEJA X1 KG  - MONTE NATURAL",
@@ -1851,7 +1889,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "rubro": "SEMILLAS"
+   "rubro": "SEMILLAS",
+   "mix": true
   },
   "1416": {
    "nombre": "MIX CERVECERO",
@@ -1867,7 +1906,8 @@
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf9f4"
+   "fondo": "#fcf9f4",
+   "rubro": "FRUTOS SECOS"
   },
   "1418": {
    "nombre": "MIX  4 PIMIENTAS",
@@ -1891,7 +1931,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "rubro": "SEMILLAS"
+   "rubro": "SEMILLAS",
+   "mix": true
   },
   "1422": {
    "nombre": "MIX SEMILLAS PARA ENSALADA",
@@ -1903,7 +1944,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "rubro": "SEMILLAS"
+   "rubro": "SEMILLAS",
+   "mix": true
   },
   "1424": {
    "nombre": "CHOCOLATE 80%  COBERTURA SEMIAMARGO - COLONIAL",
@@ -1931,7 +1973,8 @@
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fdfaf3"
+   "fondo": "#fdfaf3",
+   "rubro": "FRUTOS SECOS"
   },
   "1429": {
    "nombre": "MIX TRADICIONAL",
@@ -1947,7 +1990,8 @@
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf8f3"
+   "fondo": "#fcf8f3",
+   "rubro": "FRUTOS SECOS"
   },
   "1430": {
    "nombre": "MIX TROPICAL",
@@ -1963,7 +2007,8 @@
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fdfaf5"
+   "fondo": "#fdfaf5",
+   "rubro": "FRUTOS SECOS"
   },
   "1436": {
    "nombre": "MOSTAZA EN GRANOS",
@@ -1986,7 +2031,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
-   "por": "panel"
+   "por": "panel",
+   "mix": true
   },
   "1445": {
    "nombre": "NUEZ CUARTOS",
@@ -1998,7 +2044,7 @@
    "origen": "panel",
    "actualizado": "2026-09-07T12:31:28.421Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
@@ -2020,7 +2066,8 @@
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf8f2"
+   "fondo": "#fcf8f2",
+   "rubro": "FRUTOS SECOS"
   },
   "1450": {
    "nombre": "NUEZ MARIPOSA LIGHT",
@@ -2032,11 +2079,12 @@
    "origen": "panel",
    "actualizado": "2026-09-07T11:52:19.488Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fbf8f2"
+   "fondo": "#fbf8f2",
+   "rubro": "FRUTOS SECOS"
   },
   "1451": {
    "nombre": "NUEZ MOSCADA ENTERA",
@@ -2096,7 +2144,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "rubro": "DESHIDRATADOS"
+   "rubro": "DESHIDRATADOS",
+   "mix": true
   },
   "1462": {
    "nombre": "PASTA ACEITUNAS CONDIMENTADAS X200 GR - AGROIANNI",
@@ -2192,11 +2241,12 @@
    "origen": "panel",
    "actualizado": "2026-09-07T03:38:44.146Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fbf8f3"
+   "fondo": "#fbf8f3",
+   "rubro": "DESHIDRATADOS"
   },
   "1489": {
    "nombre": "PEREJIL EN HOJAS",
@@ -2382,7 +2432,8 @@
    "origen": "panel",
    "actualizado": "2026-09-07T12:14:32.670Z",
    "por": "panel",
-   "altaOk": true
+   "altaOk": true,
+   "rubro": "FRUTOS SECOS"
   },
   "1523": {
    "nombre": "POLVO PARA HORNEAR X50 GR - INDIAS",
@@ -2524,7 +2575,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "mix": true
   },
   "1551": {
    "nombre": "QUINOA NACIONAL",
@@ -2560,7 +2612,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "mix": true
   },
   "1557": {
    "nombre": "SAL DEL HIMALAYA FINA",
@@ -2704,7 +2757,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "1581": {
    "nombre": "SEMILLA DE AMAPOLA",
@@ -2716,7 +2770,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "SEMILLAS"
+   "rubro": "SEMILLAS",
+   "mix": true
   },
   "1582": {
    "nombre": "SEMILLA DE AMARANTO",
@@ -2728,7 +2783,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "SEMILLAS"
+   "rubro": "SEMILLAS",
+   "mix": true
   },
   "1583": {
    "nombre": "SEMILLA DE CHIA NACIONAL",
@@ -2740,7 +2796,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "SEMILLAS"
+   "rubro": "SEMILLAS",
+   "mix": true
   },
   "1585": {
    "nombre": "SEMILLA DE GIRASOL",
@@ -2752,7 +2809,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "SEMILLAS"
+   "rubro": "SEMILLAS",
+   "mix": true
   },
   "1586": {
    "nombre": "SEMILLA DE LINO",
@@ -2764,7 +2822,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "SEMILLAS"
+   "rubro": "SEMILLAS",
+   "mix": true
   },
   "1587": {
    "nombre": "SEMILLA DE ZAPALLO PELADO",
@@ -2776,11 +2835,12 @@
    "origen": "panel",
    "actualizado": "2026-09-07T03:39:44.850Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf8f3"
+   "fondo": "#fcf8f3",
+   "rubro": "SEMILLAS"
   },
   "1588": {
    "nombre": "SEMOLIN DE TRIGO",
@@ -2804,7 +2864,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "SEMILLAS"
+   "rubro": "SEMILLAS",
+   "mix": true
   },
   "1591": {
    "nombre": "SESAMO NEGRO",
@@ -2816,7 +2877,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "SEMILLAS"
+   "rubro": "SEMILLAS",
+   "mix": true
   },
   "1618": {
    "nombre": "TE NEGRO",
@@ -2828,7 +2890,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "1619": {
    "nombre": "TE ROJO",
@@ -2840,7 +2903,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "1620": {
    "nombre": "LA IRIDE - CHAMPAÑA",
@@ -2923,7 +2987,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "mix": true
   },
   "1634": {
    "nombre": "TRIGO BURGOL",
@@ -3007,7 +3072,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "1655": {
    "nombre": "ZAPALLO EN ALMIBAR X3.8 KG - MUPAY",
@@ -3046,7 +3112,8 @@
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#faf7f1"
+   "fondo": "#faf7f1",
+   "rubro": "FRUTOS SECOS"
   },
   "1670": {
    "nombre": "PANKO",
@@ -3243,12 +3310,13 @@
    "origen": "panel",
    "actualizado": "2026-09-07T12:10:07.959Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "oculto": false,
    "fotoPropia": true,
-   "fondo": "#fbf8f2"
+   "fondo": "#fbf8f2",
+   "rubro": "FRUTOS SECOS"
   },
   "1727": {
    "nombre": "LECHE DE COCO EN POLVO",
@@ -3283,7 +3351,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "1795": {
    "nombre": "YOGURT PROTEICO X1 L - YOGURLAC",
@@ -3382,7 +3451,8 @@
    "granola": true,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf9f3"
+   "fondo": "#fcf9f3",
+   "rubro": "FRUTOS SECOS"
   },
   "1849": {
    "nombre": "HIBISCUS FLOR",
@@ -3394,7 +3464,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "1863": {
    "nombre": "FIDEOS DE ARROZ X280 GR - PARTY BECK",
@@ -3442,7 +3513,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "1884": {
    "nombre": "ALMENDRA GUARA",
@@ -3608,7 +3680,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "DESHIDRATADOS"
+   "rubro": "DESHIDRATADOS",
+   "mix": true
   },
   "1955": {
    "nombre": "PASAS MOROCHA FLAME SIN SEMILLA",
@@ -3620,7 +3693,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "rubro": "DESHIDRATADOS"
+   "rubro": "DESHIDRATADOS",
+   "mix": true
   },
   "1957": {
    "nombre": "NUECES CONFITADAS X100 GR",
@@ -3666,7 +3740,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "mix": true
   },
   "2002": {
    "nombre": "ARANDANOS CON CHOCOLATE",
@@ -3678,7 +3753,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "mix": true
   },
   "2003": {
    "nombre": "BARRA DE CHOCOLATE 70% CON STEVIA x 100 GR - COLONIAL",
@@ -3725,7 +3801,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "mix": true
   },
   "2008": {
    "nombre": "MANI CON CHOCOLATE SEMIAMARGO",
@@ -3737,7 +3814,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "mix": true
   },
   "2009": {
    "nombre": "PASAS DE UVA CON CHOCOLATE",
@@ -3749,7 +3827,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "mix": true
   },
   "2010": {
    "nombre": "AVELLANAS CON CHOCOLATE",
@@ -3761,7 +3840,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "mix": true
   },
   "2011": {
    "nombre": "MOLINILLO CAFE DE CERAMICA",
@@ -3844,7 +3924,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2033": {
    "nombre": "YERBA DEL PLATERO",
@@ -3856,7 +3937,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.796Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2035": {
    "nombre": "TE DE BURRO",
@@ -3868,7 +3950,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2036": {
    "nombre": "SEN FOLICULOS",
@@ -3880,7 +3963,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2037": {
    "nombre": "LAVANDA",
@@ -3892,7 +3976,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2038": {
    "nombre": "CEDRON",
@@ -3904,7 +3989,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2039": {
    "nombre": "MELISA",
@@ -3916,7 +4002,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2040": {
    "nombre": "MENTA EN HOJAS",
@@ -3928,7 +4015,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2041": {
    "nombre": "HARINA DE TRIGO SARRACENO",
@@ -3952,7 +4040,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.796Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2044": {
    "nombre": "ALOE VERA BEBIBLE DEFENSAS X250 ML - NATIER",
@@ -3976,7 +4065,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2049": {
    "nombre": "COLAGENO HIDROLIZADO X50 CAPSULAS - NATIER",
@@ -4144,7 +4234,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.791Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2073": {
    "nombre": "ASHWAGANDHA X 60 CAPSULAS - SOMOS SETA",
@@ -4324,7 +4415,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "mix": true
   },
   "2093": {
    "nombre": "ROSA MOSQUETA",
@@ -4336,7 +4428,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2095": {
    "nombre": "MALVA",
@@ -4348,7 +4441,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2096": {
    "nombre": "MAPLE JARABE DE ARCE X250 ML - SYRUP",
@@ -4816,7 +4910,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2179": {
    "nombre": "MATCHA",
@@ -4828,7 +4923,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2180": {
    "nombre": "PROBIOTICOS X60 ML - KYOJIN",
@@ -5037,7 +5133,8 @@
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf9f3"
+   "fondo": "#fcf9f3",
+   "rubro": "FRUTOS SECOS"
   },
   "2229": {
    "nombre": "MEMBRILLITOS X30 GR - PIZARRO",
@@ -5085,7 +5182,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "mix": true
   },
   "2250": {
    "nombre": "MOLINILLO DE ACERO INOXIDABLE",
@@ -5156,7 +5254,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "mix": true
   },
   "2265": {
    "nombre": "ACEITE DE COCO NEUTRO X 200GR - ENTRENUTS",
@@ -5487,7 +5586,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "mix": true
   },
   "2317": {
    "nombre": "MANGO EN TROZOS CONGELADOS  X 1 KG",
@@ -5807,11 +5907,12 @@
    "origen": "panel",
    "actualizado": "2026-09-07T11:52:58.031Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fcf8f2"
+   "fondo": "#fcf8f2",
+   "rubro": "FRUTOS SECOS"
   },
   "2370": {
    "nombre": "HIPERICO TINTURA MADRE X60 CC - EL NATURALISTA",
@@ -6071,7 +6172,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "2400": {
    "nombre": "DIFUSOR X125 ML - ILUMINARTE",
@@ -6413,7 +6515,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "mix": true
   },
   "2457": {
    "nombre": "TETERA CUADRADA 550 ML",
@@ -6756,7 +6859,8 @@
    "granola": false,
    "blend": false,
    "fotoPropia": false,
-   "fondo": ""
+   "fondo": "",
+   "rubro": "SUPLEMENTOS"
   },
   "2494": {
    "nombre": "TREMELLA 60 CAPSULAS - SOMOS SETAS",
@@ -7014,7 +7118,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
-   "por": "panel"
+   "por": "panel",
+   "mix": true
   },
   "4453": {
    "nombre": "NUEZ DE BRASIL",
@@ -7026,7 +7131,7 @@
    "origen": "panel",
    "actualizado": "2026-09-07T12:32:28.046Z",
    "por": "panel",
-   "mix": false,
+   "mix": true,
    "granola": false,
    "blend": false,
    "fotoPropia": true,
@@ -7068,7 +7173,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "rubro": "DESHIDRATADOS"
+   "rubro": "DESHIDRATADOS",
+   "mix": true
   },
   "4457": {
    "nombre": "PASTA DENTAL X 100 - SRISRI",
@@ -7379,7 +7485,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
-   "rubro": "INFUSIONES Y HIERBAS"
+   "rubro": "INFUSIONES Y HIERBAS",
+   "mix": true
   },
   "5025": {
    "nombre": "SHAMPOO SOLIDO",
@@ -7443,7 +7550,8 @@
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#faf8f2"
+   "fondo": "#faf8f2",
+   "rubro": "FRUTOS SECOS"
   },
   "5030": {
    "nombre": "MANTEQUILLA DE MANI CON STEVIA X370 CC - ENTRENUTS",
@@ -7627,7 +7735,8 @@
    "granola": false,
    "blend": false,
    "fotoPropia": true,
-   "fondo": "#fdf9f4"
+   "fondo": "#fdf9f4",
+   "rubro": "INFUSIONES Y HIERBAS"
   },
   "5045": {
    "nombre": "DIFUSORES TAO 150ml",
@@ -7743,7 +7852,7 @@
    "w": 700,
    "h": 700,
    "peso": 135835,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1068": {
@@ -7751,7 +7860,7 @@
    "w": 700,
    "h": 700,
    "peso": 143461,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1079": {
@@ -7759,7 +7868,7 @@
    "w": 700,
    "h": 700,
    "peso": 147676,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1085": {
@@ -7767,7 +7876,7 @@
    "w": 700,
    "h": 700,
    "peso": 108452,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1088": {
@@ -7775,7 +7884,7 @@
    "w": 700,
    "h": 700,
    "peso": 122330,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1099": {
@@ -7783,7 +7892,7 @@
    "w": 700,
    "h": 700,
    "peso": 141508,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1113": {
@@ -7791,7 +7900,7 @@
    "w": 700,
    "h": 700,
    "peso": 88646,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1114": {
@@ -7799,7 +7908,7 @@
    "w": 700,
    "h": 700,
    "peso": 142490,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1115": {
@@ -7807,7 +7916,7 @@
    "w": 700,
    "h": 700,
    "peso": 140006,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1117": {
@@ -7815,7 +7924,7 @@
    "w": 700,
    "h": 700,
    "peso": 140478,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1118": {
@@ -7823,7 +7932,7 @@
    "w": 700,
    "h": 700,
    "peso": 131704,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1121": {
@@ -7831,7 +7940,7 @@
    "w": 700,
    "h": 700,
    "peso": 131914,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1122": {
@@ -7839,7 +7948,7 @@
    "w": 700,
    "h": 700,
    "peso": 126795,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1123": {
@@ -7847,7 +7956,7 @@
    "w": 700,
    "h": 700,
    "peso": 133660,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1124": {
@@ -7855,7 +7964,7 @@
    "w": 700,
    "h": 700,
    "peso": 140642,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789130166000
   },
   "1127": {
@@ -7863,7 +7972,7 @@
    "w": 700,
    "h": 700,
    "peso": 135163,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129602000
   },
   "1131": {
@@ -7871,7 +7980,7 @@
    "w": 700,
    "h": 700,
    "peso": 119621,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129878000
   },
   "1133": {
@@ -7879,7 +7988,7 @@
    "w": 700,
    "h": 700,
    "peso": 117182,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129878000
   },
   "1134": {
@@ -7887,7 +7996,7 @@
    "w": 700,
    "h": 700,
    "peso": 122816,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789126317000
   },
   "1135": {
@@ -7895,7 +8004,7 @@
    "w": 700,
    "h": 700,
    "peso": 118173,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128884000
   },
   "1136": {
@@ -7903,7 +8012,7 @@
    "w": 700,
    "h": 700,
    "peso": 120441,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1137": {
@@ -7911,7 +8020,7 @@
    "w": 700,
    "h": 700,
    "peso": 127734,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1140": {
@@ -7919,7 +8028,7 @@
    "w": 700,
    "h": 700,
    "peso": 89593,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1141": {
@@ -7927,7 +8036,7 @@
    "w": 700,
    "h": 700,
    "peso": 142964,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1142": {
@@ -7935,7 +8044,7 @@
    "w": 700,
    "h": 700,
    "peso": 134470,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1147": {
@@ -7943,7 +8052,7 @@
    "w": 700,
    "h": 700,
    "peso": 129830,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1154": {
@@ -7951,7 +8060,7 @@
    "w": 700,
    "h": 700,
    "peso": 129773,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1155": {
@@ -7959,7 +8068,7 @@
    "w": 700,
    "h": 700,
    "peso": 133074,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1163": {
@@ -7967,7 +8076,7 @@
    "w": 700,
    "h": 700,
    "peso": 128161,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1167": {
@@ -7975,7 +8084,7 @@
    "w": 700,
    "h": 700,
    "peso": 134830,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789130166000
   },
   "1168": {
@@ -7983,7 +8092,7 @@
    "w": 700,
    "h": 700,
    "peso": 131044,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1176": {
@@ -7991,7 +8100,7 @@
    "w": 700,
    "h": 700,
    "peso": 125186,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1178": {
@@ -7999,7 +8108,7 @@
    "w": 700,
    "h": 700,
    "peso": 128111,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1180": {
@@ -8007,7 +8116,7 @@
    "w": 700,
    "h": 700,
    "peso": 108996,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789126317000
   },
   "1182": {
@@ -8015,7 +8124,7 @@
    "w": 700,
    "h": 700,
    "peso": 117577,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1201": {
@@ -8023,7 +8132,7 @@
    "w": 700,
    "h": 700,
    "peso": 134327,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1202": {
@@ -8031,7 +8140,7 @@
    "w": 700,
    "h": 700,
    "peso": 122222,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129602000
   },
   "1206": {
@@ -8039,7 +8148,7 @@
    "w": 700,
    "h": 700,
    "peso": 146944,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129602000
   },
   "1207": {
@@ -8047,7 +8156,7 @@
    "w": 700,
    "h": 700,
    "peso": 138215,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1208": {
@@ -8055,7 +8164,7 @@
    "w": 700,
    "h": 700,
    "peso": 135005,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1209": {
@@ -8063,7 +8172,7 @@
    "w": 700,
    "h": 700,
    "peso": 125937,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1211": {
@@ -8071,7 +8180,7 @@
    "w": 700,
    "h": 700,
    "peso": 87843,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1212": {
@@ -8079,7 +8188,7 @@
    "w": 700,
    "h": 700,
    "peso": 90657,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1214": {
@@ -8087,7 +8196,7 @@
    "w": 700,
    "h": 700,
    "peso": 122275,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1219": {
@@ -8095,7 +8204,7 @@
    "w": 700,
    "h": 700,
    "peso": 134904,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1228": {
@@ -8103,7 +8212,7 @@
    "w": 700,
    "h": 700,
    "peso": 122520,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1229": {
@@ -8111,7 +8220,7 @@
    "w": 700,
    "h": 700,
    "peso": 118741,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1233": {
@@ -8119,7 +8228,7 @@
    "w": 700,
    "h": 700,
    "peso": 137222,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1236": {
@@ -8127,7 +8236,7 @@
    "w": 700,
    "h": 700,
    "peso": 126795,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1239": {
@@ -8135,7 +8244,7 @@
    "w": 700,
    "h": 700,
    "peso": 134343,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1240": {
@@ -8143,7 +8252,7 @@
    "w": 700,
    "h": 700,
    "peso": 113137,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1242": {
@@ -8151,7 +8260,7 @@
    "w": 700,
    "h": 700,
    "peso": 134073,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1259": {
@@ -8159,7 +8268,7 @@
    "w": 700,
    "h": 700,
    "peso": 126588,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1269": {
@@ -8167,7 +8276,7 @@
    "w": 700,
    "h": 700,
    "peso": 93643,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1270": {
@@ -8175,7 +8284,7 @@
    "w": 700,
    "h": 700,
    "peso": 128624,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1271": {
@@ -8183,7 +8292,7 @@
    "w": 700,
    "h": 700,
    "peso": 126929,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1276": {
@@ -8191,7 +8300,7 @@
    "w": 700,
    "h": 700,
    "peso": 131169,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1281": {
@@ -8199,7 +8308,7 @@
    "w": 700,
    "h": 700,
    "peso": 126837,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1282": {
@@ -8207,7 +8316,7 @@
    "w": 700,
    "h": 700,
    "peso": 113132,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1290": {
@@ -8215,7 +8324,7 @@
    "w": 700,
    "h": 700,
    "peso": 139622,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1291": {
@@ -8223,7 +8332,7 @@
    "w": 700,
    "h": 700,
    "peso": 130300,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1293": {
@@ -8231,7 +8340,7 @@
    "w": 700,
    "h": 700,
    "peso": 112735,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1294": {
@@ -8239,7 +8348,7 @@
    "w": 700,
    "h": 700,
    "peso": 97300,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1295": {
@@ -8247,7 +8356,7 @@
    "w": 700,
    "h": 700,
    "peso": 119150,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1297": {
@@ -8255,7 +8364,7 @@
    "w": 700,
    "h": 700,
    "peso": 130335,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1298": {
@@ -8263,7 +8372,7 @@
    "w": 700,
    "h": 700,
    "peso": 101500,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1299": {
@@ -8271,7 +8380,7 @@
    "w": 700,
    "h": 700,
    "peso": 114197,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1300": {
@@ -8279,7 +8388,7 @@
    "w": 700,
    "h": 700,
    "peso": 129049,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1303": {
@@ -8287,7 +8396,7 @@
    "w": 700,
    "h": 700,
    "peso": 101301,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1305": {
@@ -8295,7 +8404,7 @@
    "w": 700,
    "h": 700,
    "peso": 112380,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1306": {
@@ -8303,7 +8412,7 @@
    "w": 700,
    "h": 700,
    "peso": 127581,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1311": {
@@ -8311,7 +8420,7 @@
    "w": 700,
    "h": 700,
    "peso": 142856,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1314": {
@@ -8319,7 +8428,7 @@
    "w": 700,
    "h": 700,
    "peso": 134942,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1319": {
@@ -8327,7 +8436,7 @@
    "w": 700,
    "h": 700,
    "peso": 109408,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1320": {
@@ -8335,7 +8444,7 @@
    "w": 700,
    "h": 700,
    "peso": 118635,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1333": {
@@ -8343,7 +8452,7 @@
    "w": 700,
    "h": 700,
    "peso": 139246,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1350": {
@@ -8351,7 +8460,7 @@
    "w": 700,
    "h": 700,
    "peso": 121469,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1358": {
@@ -8359,7 +8468,7 @@
    "w": 700,
    "h": 700,
    "peso": 117228,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129356000
   },
   "1359": {
@@ -8367,7 +8476,7 @@
    "w": 700,
    "h": 700,
    "peso": 118163,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128884000
   },
   "1360": {
@@ -8375,7 +8484,7 @@
    "w": 700,
    "h": 700,
    "peso": 120833,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1363": {
@@ -8383,7 +8492,7 @@
    "w": 700,
    "h": 700,
    "peso": 120713,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1364": {
@@ -8391,7 +8500,7 @@
    "w": 700,
    "h": 700,
    "peso": 100586,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1365": {
@@ -8399,7 +8508,7 @@
    "w": 700,
    "h": 700,
    "peso": 124208,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128032000
   },
   "1366": {
@@ -8407,7 +8516,7 @@
    "w": 700,
    "h": 700,
    "peso": 113371,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129878000
   },
   "1375": {
@@ -8415,7 +8524,7 @@
    "w": 700,
    "h": 700,
    "peso": 89768,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1788781655378
   },
   "1378": {
@@ -8423,7 +8532,7 @@
    "w": 700,
    "h": 700,
    "peso": 123003,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128032000
   },
   "1379": {
@@ -8431,7 +8540,7 @@
    "w": 700,
    "h": 700,
    "peso": 127294,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128032000
   },
   "1380": {
@@ -8439,7 +8548,7 @@
    "w": 700,
    "h": 700,
    "peso": 118952,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128032000
   },
   "1381": {
@@ -8447,7 +8556,7 @@
    "w": 700,
    "h": 700,
    "peso": 110322,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128292000
   },
   "1384": {
@@ -8455,7 +8564,7 @@
    "w": 700,
    "h": 700,
    "peso": 136478,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1394": {
@@ -8463,7 +8572,7 @@
    "w": 700,
    "h": 700,
    "peso": 119894,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1415": {
@@ -8471,7 +8580,7 @@
    "w": 700,
    "h": 700,
    "peso": 124479,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1416": {
@@ -8479,7 +8588,7 @@
    "w": 700,
    "h": 700,
    "peso": 129703,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128292000
   },
   "1418": {
@@ -8487,7 +8596,7 @@
    "w": 700,
    "h": 700,
    "peso": 115696,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1421": {
@@ -8495,7 +8604,7 @@
    "w": 700,
    "h": 700,
    "peso": 128357,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1422": {
@@ -8503,7 +8612,7 @@
    "w": 700,
    "h": 700,
    "peso": 116031,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1424": {
@@ -8511,7 +8620,7 @@
    "w": 700,
    "h": 700,
    "peso": 122958,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "1426": {
@@ -8519,7 +8628,7 @@
    "w": 700,
    "h": 700,
    "peso": 143974,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128605000
   },
   "1429": {
@@ -8527,7 +8636,7 @@
    "w": 700,
    "h": 700,
    "peso": 135289,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128605000
   },
   "1430": {
@@ -8535,7 +8644,7 @@
    "w": 700,
    "h": 700,
    "peso": 130427,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128605000
   },
   "1436": {
@@ -8543,7 +8652,7 @@
    "w": 700,
    "h": 700,
    "peso": 119865,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1441": {
@@ -8551,7 +8660,7 @@
    "w": 700,
    "h": 700,
    "peso": 123872,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1445": {
@@ -8559,7 +8668,7 @@
    "w": 700,
    "h": 700,
    "peso": 130981,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789127717000
   },
   "1446": {
@@ -8567,7 +8676,7 @@
    "w": 700,
    "h": 700,
    "peso": 128031,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789127717000
   },
   "1450": {
@@ -8575,7 +8684,7 @@
    "w": 700,
    "h": 700,
    "peso": 135315,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789127717000
   },
   "1451": {
@@ -8583,7 +8692,7 @@
    "w": 700,
    "h": 700,
    "peso": 123173,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1452": {
@@ -8591,7 +8700,7 @@
    "w": 700,
    "h": 700,
    "peso": 118293,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1455": {
@@ -8599,7 +8708,7 @@
    "w": 700,
    "h": 700,
    "peso": 134905,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1461": {
@@ -8607,7 +8716,7 @@
    "w": 700,
    "h": 700,
    "peso": 130890,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129602000
   },
   "1488": {
@@ -8615,7 +8724,7 @@
    "w": 700,
    "h": 700,
    "peso": 126791,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128292000
   },
   "1489": {
@@ -8623,7 +8732,7 @@
    "w": 700,
    "h": 700,
    "peso": 123245,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1495": {
@@ -8631,7 +8740,7 @@
    "w": 700,
    "h": 700,
    "peso": 137170,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1502": {
@@ -8639,7 +8748,7 @@
    "w": 700,
    "h": 700,
    "peso": 129852,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1505": {
@@ -8647,7 +8756,7 @@
    "w": 700,
    "h": 700,
    "peso": 125738,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1506": {
@@ -8655,7 +8764,7 @@
    "w": 700,
    "h": 700,
    "peso": 132426,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1508": {
@@ -8663,7 +8772,7 @@
    "w": 700,
    "h": 700,
    "peso": 115594,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1510": {
@@ -8671,7 +8780,7 @@
    "w": 700,
    "h": 700,
    "peso": 116123,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1511": {
@@ -8679,7 +8788,7 @@
    "w": 700,
    "h": 700,
    "peso": 134623,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1512": {
@@ -8687,7 +8796,7 @@
    "w": 700,
    "h": 700,
    "peso": 119978,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1513": {
@@ -8695,7 +8804,7 @@
    "w": 700,
    "h": 700,
    "peso": 128926,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1522": {
@@ -8703,7 +8812,7 @@
    "w": 700,
    "h": 700,
    "peso": 126343,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789127466000
   },
   "1525": {
@@ -8711,7 +8820,7 @@
    "w": 700,
    "h": 700,
    "peso": 93228,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129356000
   },
   "1526": {
@@ -8719,7 +8828,7 @@
    "w": 700,
    "h": 700,
    "peso": 120812,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1527": {
@@ -8727,7 +8836,7 @@
    "w": 700,
    "h": 700,
    "peso": 95527,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1528": {
@@ -8735,7 +8844,7 @@
    "w": 700,
    "h": 700,
    "peso": 122061,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1529": {
@@ -8743,7 +8852,7 @@
    "w": 700,
    "h": 700,
    "peso": 107184,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129356000
   },
   "1532": {
@@ -8751,7 +8860,7 @@
    "w": 700,
    "h": 700,
    "peso": 106850,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1533": {
@@ -8759,7 +8868,7 @@
    "w": 700,
    "h": 700,
    "peso": 93318,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1545": {
@@ -8767,7 +8876,7 @@
    "w": 700,
    "h": 700,
    "peso": 151948,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1549": {
@@ -8775,7 +8884,7 @@
    "w": 700,
    "h": 700,
    "peso": 117423,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1551": {
@@ -8783,7 +8892,7 @@
    "w": 700,
    "h": 700,
    "peso": 126690,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129356000
   },
   "1555": {
@@ -8791,7 +8900,7 @@
    "w": 700,
    "h": 700,
    "peso": 135083,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1557": {
@@ -8799,7 +8908,7 @@
    "w": 700,
    "h": 700,
    "peso": 123420,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1558": {
@@ -8807,7 +8916,7 @@
    "w": 700,
    "h": 700,
    "peso": 118124,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1576": {
@@ -8815,7 +8924,7 @@
    "w": 700,
    "h": 700,
    "peso": 135546,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1577": {
@@ -8823,7 +8932,7 @@
    "w": 700,
    "h": 700,
    "peso": 143661,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1578": {
@@ -8831,7 +8940,7 @@
    "w": 700,
    "h": 700,
    "peso": 144686,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1581": {
@@ -8839,7 +8948,7 @@
    "w": 700,
    "h": 700,
    "peso": 143518,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1582": {
@@ -8847,7 +8956,7 @@
    "w": 700,
    "h": 700,
    "peso": 135150,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1583": {
@@ -8855,7 +8964,7 @@
    "w": 700,
    "h": 700,
    "peso": 136130,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128884000
   },
   "1585": {
@@ -8863,7 +8972,7 @@
    "w": 700,
    "h": 700,
    "peso": 118317,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129114000
   },
   "1586": {
@@ -8871,7 +8980,7 @@
    "w": 700,
    "h": 700,
    "peso": 132193,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129114000
   },
   "1587": {
@@ -8879,7 +8988,7 @@
    "w": 700,
    "h": 700,
    "peso": 123843,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789126317000
   },
   "1588": {
@@ -8887,7 +8996,7 @@
    "w": 700,
    "h": 700,
    "peso": 113162,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1589": {
@@ -8895,7 +9004,7 @@
    "w": 700,
    "h": 700,
    "peso": 112263,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129114000
   },
   "1591": {
@@ -8903,7 +9012,7 @@
    "w": 700,
    "h": 700,
    "peso": 117910,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129114000
   },
   "1618": {
@@ -8911,7 +9020,7 @@
    "w": 700,
    "h": 700,
    "peso": 136308,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1619": {
@@ -8919,7 +9028,7 @@
    "w": 700,
    "h": 700,
    "peso": 148779,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1621": {
@@ -8927,7 +9036,7 @@
    "w": 700,
    "h": 700,
    "peso": 137527,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789215347000
   },
   "1632": {
@@ -8935,7 +9044,7 @@
    "w": 700,
    "h": 700,
    "peso": 152838,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789215347000
   },
   "1633": {
@@ -8943,7 +9052,7 @@
    "w": 700,
    "h": 700,
    "peso": 141544,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789215347000
   },
   "1634": {
@@ -8951,7 +9060,7 @@
    "w": 700,
    "h": 700,
    "peso": 120750,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789129878000
   },
   "1635": {
@@ -8959,7 +9068,7 @@
    "w": 700,
    "h": 700,
    "peso": 120939,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789215347000
   },
   "1636": {
@@ -8967,7 +9076,7 @@
    "w": 700,
    "h": 700,
    "peso": 109286,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789215347000
   },
   "1654": {
@@ -8975,7 +9084,7 @@
    "w": 700,
    "h": 700,
    "peso": 125854,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1660": {
@@ -8983,7 +9092,7 @@
    "w": 700,
    "h": 700,
    "peso": 135972,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128605000
   },
   "1670": {
@@ -8991,7 +9100,7 @@
    "w": 700,
    "h": 700,
    "peso": 102932,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "1692": {
@@ -8999,7 +9108,7 @@
    "w": 700,
    "h": 700,
    "peso": 140720,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "1702": {
@@ -9007,7 +9116,7 @@
    "w": 700,
    "h": 700,
    "peso": 97465,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1716": {
@@ -9015,7 +9124,7 @@
    "w": 700,
    "h": 700,
    "peso": 130778,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789127717000
   },
   "1727": {
@@ -9023,7 +9132,7 @@
    "w": 700,
    "h": 700,
    "peso": 88684,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1789": {
@@ -9031,7 +9140,7 @@
    "w": 700,
    "h": 700,
    "peso": 129678,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1822": {
@@ -9039,7 +9148,7 @@
    "w": 700,
    "h": 700,
    "peso": 105199,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1842": {
@@ -9047,7 +9156,7 @@
    "w": 700,
    "h": 700,
    "peso": 121101,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789126317000
   },
   "1849": {
@@ -9055,7 +9164,7 @@
    "w": 700,
    "h": 700,
    "peso": 140575,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1866": {
@@ -9063,7 +9172,7 @@
    "w": 700,
    "h": 700,
    "peso": 115246,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "1883": {
@@ -9071,7 +9180,7 @@
    "w": 700,
    "h": 700,
    "peso": 129667,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "1884": {
@@ -9079,7 +9188,7 @@
    "w": 700,
    "h": 700,
    "peso": 122797,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "1897": {
@@ -9087,7 +9196,7 @@
    "w": 700,
    "h": 700,
    "peso": 138055,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1911": {
@@ -9095,7 +9204,7 @@
    "w": 700,
    "h": 700,
    "peso": 137244,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1912": {
@@ -9103,7 +9212,7 @@
    "w": 700,
    "h": 700,
    "peso": 126239,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1954": {
@@ -9111,7 +9220,7 @@
    "w": 700,
    "h": 700,
    "peso": 139596,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "1955": {
@@ -9119,7 +9228,7 @@
    "w": 700,
    "h": 700,
    "peso": 123504,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "2001": {
@@ -9127,7 +9236,7 @@
    "w": 700,
    "h": 700,
    "peso": 119583,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "2002": {
@@ -9135,7 +9244,7 @@
    "w": 700,
    "h": 700,
    "peso": 118939,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "2007": {
@@ -9143,7 +9252,7 @@
    "w": 700,
    "h": 700,
    "peso": 104877,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "2008": {
@@ -9151,7 +9260,7 @@
    "w": 700,
    "h": 700,
    "peso": 111492,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789201800000
   },
   "2009": {
@@ -9159,7 +9268,7 @@
    "w": 700,
    "h": 700,
    "peso": 105737,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "2010": {
@@ -9167,7 +9276,7 @@
    "w": 700,
    "h": 700,
    "peso": 97192,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "2031": {
@@ -9175,7 +9284,7 @@
    "w": 700,
    "h": 700,
    "peso": 89496,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "2032": {
@@ -9183,7 +9292,7 @@
    "w": 700,
    "h": 700,
    "peso": 129082,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "2033": {
@@ -9191,7 +9300,7 @@
    "w": 700,
    "h": 700,
    "peso": 148964,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789215347000
   },
   "2035": {
@@ -9199,7 +9308,7 @@
    "w": 700,
    "h": 700,
    "peso": 156583,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "2036": {
@@ -9207,7 +9316,7 @@
    "w": 700,
    "h": 700,
    "peso": 138607,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "2037": {
@@ -9215,7 +9324,7 @@
    "w": 700,
    "h": 700,
    "peso": 128296,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "2038": {
@@ -9223,7 +9332,7 @@
    "w": 700,
    "h": 700,
    "peso": 141280,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "2039": {
@@ -9231,7 +9340,7 @@
    "w": 700,
    "h": 700,
    "peso": 140116,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "2040": {
@@ -9239,7 +9348,7 @@
    "w": 700,
    "h": 700,
    "peso": 135529,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "2041": {
@@ -9247,7 +9356,7 @@
    "w": 700,
    "h": 700,
    "peso": 122190,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "2043": {
@@ -9255,7 +9364,7 @@
    "w": 700,
    "h": 700,
    "peso": 147599,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789242843000
   },
   "2048": {
@@ -9263,7 +9372,7 @@
    "w": 700,
    "h": 700,
    "peso": 146374,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "2072": {
@@ -9271,7 +9380,7 @@
    "w": 700,
    "h": 700,
    "peso": 135549,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "2089": {
@@ -9279,7 +9388,7 @@
    "w": 700,
    "h": 700,
    "peso": 83057,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "2092": {
@@ -9287,7 +9396,7 @@
    "w": 700,
    "h": 700,
    "peso": 123631,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "2093": {
@@ -9295,7 +9404,7 @@
    "w": 700,
    "h": 700,
    "peso": 142492,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "2095": {
@@ -9303,7 +9412,7 @@
    "w": 700,
    "h": 700,
    "peso": 132540,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789201800000
   },
   "2101": {
@@ -9311,7 +9420,7 @@
    "w": 700,
    "h": 700,
    "peso": 139277,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "2159": {
@@ -9319,7 +9428,7 @@
    "w": 700,
    "h": 700,
    "peso": 114151,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "2178": {
@@ -9327,7 +9436,7 @@
    "w": 700,
    "h": 700,
    "peso": 151555,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "2179": {
@@ -9335,7 +9444,7 @@
    "w": 700,
    "h": 700,
    "peso": 131652,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "2205": {
@@ -9343,7 +9452,7 @@
    "w": 700,
    "h": 700,
    "peso": 97402,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "2228": {
@@ -9351,7 +9460,7 @@
    "w": 700,
    "h": 700,
    "peso": 129095,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789130166000
   },
   "2238": {
@@ -9359,7 +9468,7 @@
    "w": 700,
    "h": 700,
    "peso": 89314,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "2241": {
@@ -9367,7 +9476,7 @@
    "w": 700,
    "h": 700,
    "peso": 92082,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "2256": {
@@ -9375,7 +9484,7 @@
    "w": 700,
    "h": 700,
    "peso": 124911,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "2264": {
@@ -9383,7 +9492,7 @@
    "w": 700,
    "h": 700,
    "peso": 116740,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "2280": {
@@ -9391,7 +9500,7 @@
    "w": 700,
    "h": 700,
    "peso": 144850,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "2308": {
@@ -9399,7 +9508,7 @@
    "w": 700,
    "h": 700,
    "peso": 136705,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "2315": {
@@ -9407,7 +9516,7 @@
    "w": 700,
    "h": 700,
    "peso": 135317,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "2316": {
@@ -9415,7 +9524,7 @@
    "w": 700,
    "h": 700,
    "peso": 102551,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "2322": {
@@ -9423,7 +9532,7 @@
    "w": 700,
    "h": 700,
    "peso": 134732,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "2335": {
@@ -9431,7 +9540,7 @@
    "w": 700,
    "h": 700,
    "peso": 113955,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128884000
   },
   "2346": {
@@ -9439,7 +9548,7 @@
    "w": 700,
    "h": 700,
    "peso": 91116,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "2347": {
@@ -9447,7 +9556,7 @@
    "w": 700,
    "h": 700,
    "peso": 150039,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789215347000
   },
   "2348": {
@@ -9455,7 +9564,7 @@
    "w": 700,
    "h": 700,
    "peso": 91324,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "2367": {
@@ -9463,7 +9572,7 @@
    "w": 700,
    "h": 700,
    "peso": 125954,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789215347000
   },
   "2369": {
@@ -9471,7 +9580,7 @@
    "w": 700,
    "h": 700,
    "peso": 121087,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789127466000
   },
   "2379": {
@@ -9479,7 +9588,7 @@
    "w": 700,
    "h": 700,
    "peso": 127523,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789215347000
   },
   "2397": {
@@ -9487,7 +9596,7 @@
    "w": 700,
    "h": 700,
    "peso": 134607,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "2408": {
@@ -9495,7 +9604,7 @@
    "w": 700,
    "h": 700,
    "peso": 104669,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "2413": {
@@ -9503,7 +9612,7 @@
    "w": 700,
    "h": 700,
    "peso": 137193,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "2415": {
@@ -9511,7 +9620,7 @@
    "w": 700,
    "h": 700,
    "peso": 131262,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789242843000
   },
   "2420": {
@@ -9519,7 +9628,7 @@
    "w": 700,
    "h": 700,
    "peso": 135016,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "2432": {
@@ -9527,7 +9636,7 @@
    "w": 700,
    "h": 700,
    "peso": 80781,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "2433": {
@@ -9535,7 +9644,7 @@
    "w": 700,
    "h": 700,
    "peso": 138172,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "2440": {
@@ -9543,7 +9652,7 @@
    "w": 700,
    "h": 700,
    "peso": 124841,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "2455": {
@@ -9551,7 +9660,7 @@
    "w": 700,
    "h": 700,
    "peso": 125857,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "2483": {
@@ -9559,7 +9668,7 @@
    "w": 700,
    "h": 700,
    "peso": 89838,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "2497": {
@@ -9567,7 +9676,7 @@
    "w": 700,
    "h": 700,
    "peso": 124201,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "4452": {
@@ -9575,7 +9684,7 @@
    "w": 700,
    "h": 700,
    "peso": 120171,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "4453": {
@@ -9583,7 +9692,7 @@
    "w": 700,
    "h": 700,
    "peso": 117418,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789127466000
   },
   "4456": {
@@ -9591,7 +9700,7 @@
    "w": 700,
    "h": 700,
    "peso": 131905,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   },
   "4463": {
@@ -9599,7 +9708,7 @@
    "w": 700,
    "h": 700,
    "peso": 128594,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789146726000
   },
   "4465": {
@@ -9607,7 +9716,7 @@
    "w": 700,
    "h": 700,
    "peso": 123297,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "4466": {
@@ -9615,7 +9724,7 @@
    "w": 700,
    "h": 700,
    "peso": 123734,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789176616000
   },
   "5024": {
@@ -9623,7 +9732,7 @@
    "w": 700,
    "h": 700,
    "peso": 152911,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789214849000
   },
   "5028": {
@@ -9631,7 +9740,7 @@
    "w": 700,
    "h": 700,
    "peso": 129513,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "5029": {
@@ -9639,7 +9748,7 @@
    "w": 700,
    "h": 700,
    "peso": 135987,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789127466000
   },
   "5037": {
@@ -9647,7 +9756,7 @@
    "w": 700,
    "h": 700,
    "peso": 126901,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "5038": {
@@ -9655,7 +9764,7 @@
    "w": 700,
    "h": 700,
    "peso": 133327,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789212230205
   },
   "5040": {
@@ -9663,7 +9772,7 @@
    "w": 700,
    "h": 700,
    "peso": 137504,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789174019000
   },
   "5044": {
@@ -9671,7 +9780,7 @@
    "w": 700,
    "h": 700,
    "peso": 137924,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789128292000
   },
   "5046": {
@@ -9679,7 +9788,7 @@
    "w": 700,
    "h": 700,
    "peso": 139629,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "5047": {
@@ -9687,7 +9796,7 @@
    "w": 700,
    "h": 700,
    "peso": 141122,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789175445000
   },
   "5048": {
@@ -9695,7 +9804,7 @@
    "w": 700,
    "h": 700,
    "peso": 154537,
-   "ext": "jpg",
+   "ext": "webp",
    "v": 1789213751000
   }
  },

@@ -20,7 +20,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="preload" as="image" href="home-hero-minorista-mobile-v10.webp" media="(max-width:767px)" fetchpriority="high">
 <link rel="preload" as="image" href="home-hero-minorista-desktop-v4.webp" media="(min-width:768px)" fetchpriority="high">
-<link rel="preload" as="image" href="home-discount-strip-v2.png">
+<link rel="preload" as="image" href="home-discount-strip-v2.webp">
 
 <!-- ══════════ PWA ══════════ -->
 <meta name="mobile-web-app-capable" content="yes">
@@ -597,211 +597,6 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .banner-may-pdf{display:flex;align-items:center;gap:6px;background:var(--azul-light);color:var(--azul-dark);border:1.5px solid var(--azul-mid);border-radius:8px;padding:7px 12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .2s}
 .banner-may-pdf:hover{background:var(--azul);color:#fff;border-color:var(--azul)}
 @media(max-width:600px){.banner-may-text{display:none}.banner-may-inner{justify-content:center}.banner-may-wa{padding:9px 16px;font-size:13px}.banner-may-pdf{padding:8px 14px;font-size:13px}}
-/* ═══ INSPIRACIÓN PALADEAR ═══ */
-.recetas-section{font-family:'Montserrat',sans-serif}
-.recetas-hero{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,var(--card) 0%,rgba(84,118,146,.06) 100%);border-radius:20px;padding:20px 22px;margin-bottom:20px;border:1px solid var(--muted)}
-.recetas-hero-icon{font-size:36px;line-height:1;flex-shrink:0}
-.recetas-hero-title{font-size:22px;font-weight:800;margin:0;color:var(--azul-dark);line-height:1.1}
-.recetas-hero-sub{font-size:13px;color:var(--muted-fg);margin:4px 0 0;line-height:1.4}
-/* Filtros */
-.recetas-filters{display:flex;gap:8px;margin-bottom:20px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.recetas-filters::-webkit-scrollbar{display:none}
-.recetas-filter-chip{flex-shrink:0;padding:8px 16px;border:1.5px solid var(--muted);border-radius:999px;background:var(--card);color:var(--muted-fg);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
-.recetas-filter-chip.active{background:var(--azul);color:#fff;border-color:var(--azul)}
-.recetas-filter-chip:not(.active):hover{border-color:var(--azul);color:var(--azul)}
-/* Grid de cards */
-.recetas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
-@media(max-width:600px){.recetas-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
-/* Card inspiración */
-.insp-card{background:var(--card);border:1px solid var(--muted);border-radius:18px;overflow:hidden;cursor:pointer;transition:transform .22s,box-shadow .22s,border-color .22s;display:flex;flex-direction:column}
-.insp-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.11);border-color:rgba(84,118,146,.4)}
-.insp-card-thumb{overflow:hidden;position:relative;background:#f5f5f5;min-height:140px;display:flex;align-items:center;justify-content:center}
-.insp-card-thumb img{width:100%;height:auto;object-fit:contain;display:block;transition:transform .4s ease}
-.insp-card:hover .insp-card-thumb img{transform:scale(1.04)}
-.insp-card-fallback{width:100%;min-height:140px;display:flex;align-items:center;justify-content:center;font-size:52px}
-.insp-card-body{padding:12px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;text-align:center}
-.insp-card-badge{display:inline-flex;align-items:center;gap:4px;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.2px;align-self:center}
-.insp-card-title{font-size:14px;font-weight:700;color:var(--fg);line-height:1.35;margin:0;text-align:center}
-@media(max-width:600px){.insp-card-title{font-size:13px}}
-.insp-card-sub{font-size:12px;color:var(--muted-fg);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:center}
-.insp-card-meta{font-size:11px;color:var(--muted-fg);text-align:center}
-.insp-card-type{display:none}
-.insp-card-prod{display:none}
-/* Sección vacía */
-.recetas-empty{text-align:center;padding:60px 20px}
-/* Modal de receta / inspiración */
-.receta-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10010;display:flex;align-items:flex-end;justify-content:center;padding:0}
-@media(min-width:600px){.receta-modal-overlay{align-items:center;padding:20px}}
-.receta-modal-overlay.hidden{display:none}
-.receta-modal-sheet{background:var(--card);border-radius:22px 22px 0 0;width:100%;max-width:560px;max-height:94vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(0,0,0,.25)}
-@media(min-width:600px){.receta-modal-sheet{border-radius:20px;max-height:88vh}}
-.receta-modal-hdr{display:flex;align-items:center;padding:14px 16px;border-bottom:1px solid var(--muted);background:var(--card);z-index:1;gap:10px;flex-shrink:0}
-.receta-modal-title{flex:1;font-size:16px;font-weight:700;margin:0;color:var(--azul-dark);line-height:1.3}
-.receta-modal-close{background:var(--muted);border:none;border-radius:50%;width:32px;height:32px;font-size:14px;cursor:pointer;color:var(--fg);display:flex;align-items:center;justify-content:center;font-family:inherit;flex-shrink:0}
-.receta-modal-body{padding:14px 16px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
-/* Hero del modal */
-.receta-modal-hero{overflow:hidden;margin:-14px -16px 14px;width:calc(100% + 32px);background:#f0f0f0}
-.receta-modal-hero img{width:100%;height:auto;display:block;object-fit:contain}
-.receta-modal-hero-empty{display:flex;align-items:center;justify-content:center;font-size:56px;height:160px;margin:-14px -16px 14px;width:calc(100% + 32px)}
-/* Meta + subtítulo del modal */
-.receta-modal-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-.receta-modal-time{font-size:13px;color:var(--muted-fg)}
-.insp-modal-sub{font-size:14px;color:var(--muted-fg);line-height:1.5;margin:0 0 14px;font-style:italic}
-/* Contenido de texto */
-.insp-modal-content{font-size:14px;color:var(--fg);line-height:1.7;background:var(--muted);border-radius:12px;padding:14px;margin-bottom:14px;white-space:pre-line}
-.insp-modal-prods-title{font-size:12px;color:var(--muted-fg);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin:16px 0 8px}
-/* Slides carrusel */
-.insp-slides-wrap{overflow:hidden;border-radius:16px;margin-bottom:14px;border:1px solid var(--muted);background:var(--muted)}
-.insp-slides-track{display:flex;transition:transform .35s cubic-bezier(.4,0,.2,1);will-change:transform}
-.insp-slide{min-width:100%;width:100%;flex-shrink:0;display:flex;flex-direction:column;box-sizing:border-box}
-.insp-slide-img{width:100%;overflow:hidden;background:#f0f0f0;cursor:zoom-in;position:relative}
-.insp-slide-img img{width:100%;height:auto;display:block;max-height:300px;object-fit:contain;transition:transform .2s}
-.insp-slide-img:hover img{transform:scale(1.02)}
-.insp-slide-img-empty{display:flex;align-items:center;justify-content:center;font-size:60px;height:160px;cursor:default}
-.insp-slide-body{padding:14px 16px}
-.insp-slide-num{font-size:11px;color:var(--muted-fg);margin-bottom:5px;font-weight:600}
-.insp-slide-title{font-size:17px;font-weight:800;color:var(--azul-dark);margin-bottom:7px;line-height:1.2}
-.insp-slide-text{font-size:13px;color:var(--fg);line-height:1.6}
-.insp-slides-nav{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 14px;background:var(--card);border-top:1px solid var(--muted)}
-.insp-slide-btn{background:var(--muted);border:none;border-radius:50%;width:34px;height:34px;font-size:22px;cursor:pointer;color:var(--fg);display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;padding-bottom:1px}
-.insp-slide-btn:hover{background:var(--azul);color:#fff}
-.insp-slides-dots{display:flex;gap:6px;align-items:center}
-.insp-slide-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);cursor:pointer;transition:all .2s}
-.insp-slide-dot.active{background:var(--azul);transform:scale(1.3)}
-/* Lightbox */
-.insp-lightbox{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:10015;display:flex;align-items:center;justify-content:center;cursor:zoom-out;padding:16px}
-.insp-lightbox.hidden{display:none}
-.insp-lightbox img{max-width:calc(100% - 80px);max-height:86vh;object-fit:contain;border-radius:6px;cursor:default}
-.insp-lightbox-close{position:fixed;top:14px;right:14px;background:rgba(255,255,255,.15);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1}
-.insp-lb-nav{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;border-radius:50%;width:44px;height:44px;color:#fff;font-size:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1;padding-bottom:2px;transition:background .2s}
-.insp-lb-nav:hover{background:rgba(255,255,255,.3)}
-.insp-lb-prev{left:10px}
-.insp-lb-next{right:10px}
-.insp-lb-counter{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:13px;font-weight:600;font-family:'Montserrat',sans-serif}
-@media(max-width:600px){
-  .insp-lightbox img{max-width:100%;max-height:72vh}
-  .insp-lb-nav{top:auto;transform:none;bottom:18px;width:48px;height:48px}
-  .insp-lb-prev{left:calc(50% - 56px)}
-  .insp-lb-next{right:auto;left:calc(50% + 8px)}
-  .insp-lb-counter{bottom:74px}
-}
-/* Productos verticales scrolleables en modal inspiración */
-.insp-prods-compact{max-height:174px;overflow-y:auto;border:0.5px solid var(--muted);border-radius:12px;margin-bottom:10px;-webkit-overflow-scrolling:touch}
-.insp-prods-compact::-webkit-scrollbar{width:3px}
-.insp-prods-compact::-webkit-scrollbar-thumb{background:var(--muted-fg);border-radius:2px;opacity:.5}
-.insp-prod-pill{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:13px;font-weight:500;color:var(--fg);cursor:pointer;border-bottom:0.5px solid var(--muted);transition:background .15s}
-.insp-prod-pill:last-child{border-bottom:none}
-.insp-prod-pill:hover,.insp-prod-pill:active{background:rgba(84,118,146,.08)}
-.insp-prod-pill .pp-ic{font-size:15px;flex-shrink:0;color:var(--azul)}
-.insp-prod-pill .pp-name{flex:1;line-height:1.3}
-.insp-prod-pill .pp-arr{font-size:16px;color:var(--muted-fg);flex-shrink:0}
-/* Instagram block */
-.insp-ig-block{border-radius:14px;overflow:hidden;border:2px solid #e1306c;margin-bottom:14px;cursor:pointer;transition:opacity .2s;text-decoration:none;display:block}
-.insp-ig-block:hover{opacity:.9}
-.insp-ig-thumb{width:100%;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);position:relative;overflow:hidden;min-height:120px;display:flex;align-items:center;justify-content:center}
-.insp-ig-thumb img{width:100%;height:auto;display:block;object-fit:contain}
-.insp-ig-thumb-fallback{display:flex;align-items:center;justify-content:center;padding:30px;gap:14px;flex-direction:column}
-.insp-ig-play{color:rgba(255,255,255,.9);font-size:28px;margin-top:6px}
-.insp-ig-footer{background:linear-gradient(135deg,#833ab4,#fd1d1d 50%,#fcb045);padding:12px 16px;display:flex;align-items:center;gap:10px}
-.insp-ig-footer svg{fill:#fff;flex-shrink:0;width:20px;height:20px}
-.insp-ig-footer-text{flex:1}
-.insp-ig-footer-label{display:block;color:#fff;font-size:13px;font-weight:700}
-.insp-ig-footer-sub{display:block;color:rgba(255,255,255,.75);font-size:11px;margin-top:1px}
-.insp-ig-arrow{font-size:18px;color:rgba(255,255,255,.85)}
-.receta-ig-link{display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;background:linear-gradient(135deg,#e1306c,#833ab4);color:#fff;font-size:14px;font-weight:600;text-decoration:none;padding:13px 20px;margin-top:16px;border-radius:12px;letter-spacing:.01em}
-.receta-ig-link:active{opacity:.85}
-.receta-badge-prod{display:inline-flex;align-items:center;gap:4px;background:transparent;color:var(--muted-fg);font-size:11px;font-weight:500;padding:3px 0;margin-top:4px;cursor:pointer;border:none;font-family:inherit;font-style:italic}
-.receta-badge-prod:hover{color:var(--azul)}
-/* Cantidades/receta box */
-.receta-cantidades-box{background:linear-gradient(135deg,#fdf8f0,#fdefd8);border:1px solid #e8c88a;border-radius:12px;padding:14px;margin-bottom:14px;font-size:13px;color:#5a3a10;line-height:1.6;white-space:pre-line}
-.receta-cantidades-title{font-weight:800;margin-bottom:8px;display:block;font-size:14px;color:#8a3520}
-/* Modal de producto desde receta */
-.receta-prod-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10011;display:flex;align-items:flex-end;justify-content:center}
-@media(min-width:600px){.receta-prod-overlay{align-items:center}}
-.receta-prod-overlay.hidden{display:none}
-.receta-prod-sheet{background:var(--card);border-radius:22px 22px 0 0;width:100%;max-width:480px;max-height:88vh;overflow-y:auto;padding:18px 16px;box-shadow:0 -8px 40px rgba(0,0,0,.3);position:relative}
-@media(min-width:600px){.receta-prod-sheet{border-radius:18px;max-height:82vh}}
-.receta-prod-sheet-close{position:absolute;top:14px;right:14px;background:var(--muted);border:none;border-radius:50%;width:32px;height:32px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;color:var(--fg)}
-.receta-prod-link{display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(84,118,146,.07);border:1.5px solid var(--azul);border-radius:12px;cursor:pointer;transition:all .2s;margin-bottom:8px}
-.receta-prod-link:hover{background:rgba(84,118,146,.14)}
-.receta-prod-link-icon{font-size:20px;flex-shrink:0}
-.receta-prod-link-info{flex:1}
-.receta-prod-link-label{font-size:11px;color:var(--muted-fg);text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:2px}
-.receta-prod-link-name{font-size:14px;font-weight:700;color:var(--azul-dark);line-height:1.3}
-.receta-prod-link-arrow{font-size:18px;color:var(--azul);flex-shrink:0}
-.recetas-hero{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#fdefd8 0%,#fbe2bd 100%);border-radius:18px;padding:18px 20px;margin-bottom:18px;border:2px solid #b07030}
-.recetas-hero-icon{font-size:38px;line-height:1;flex-shrink:0}
-.recetas-hero-title{font-size:22px;font-weight:800;margin:0;color:#8a3520;line-height:1.1}
-.recetas-hero-sub{font-size:13px;color:#a44a25;margin:4px 0 0;line-height:1.3}
-.recetas-filters{display:flex;gap:8px;margin-bottom:18px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
-.recetas-filter-chip{flex-shrink:0;padding:7px 14px;border:2px solid var(--muted);border-radius:999px;background:var(--card);color:var(--muted-fg);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
-.recetas-filter-chip:hover{border-color:var(--azul);color:var(--azul)}
-.recetas-filter-chip.active{background:var(--azul);color:#fff;border-color:var(--azul)}
-.recetas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-@media(max-width:600px){.recetas-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
-.receta-card{background:var(--card);border:1px solid var(--muted);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
-.receta-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1);border-color:var(--azul)}
-.receta-thumb{position:relative;background:linear-gradient(135deg,#fdefd8,#f5c4b3);overflow:hidden;min-height:160px;display:flex;align-items:center;justify-content:center}
-.receta-thumb img{width:100%;height:auto;object-fit:contain;display:block}
-.receta-thumb-fallback{width:100%;min-height:160px;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#fdefd8,#f5c4b3)}
-.receta-tags-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-bottom:4px}
-.receta-cat-badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:rgba(84,118,146,.12);color:var(--azul-dark)}
-.receta-video-badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#b04020;color:#fff}
-.receta-body{padding:12px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
-.receta-title{font-size:14px;font-weight:700;color:var(--fg);line-height:1.3;margin:0}
-.receta-meta{font-size:11px;color:var(--muted-fg);display:flex;align-items:center;gap:5px}
-.receta-prod-chip{margin-top:auto;font-size:11px;color:var(--azul);background:rgba(84,118,146,.1);padding:5px 9px;border-radius:8px;align-self:flex-start;font-weight:600;line-height:1.3}
-.recetas-empty{text-align:center;padding:60px 20px}
-/* Modal de receta */
-.receta-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10010;display:flex;align-items:flex-end;justify-content:center;padding:0}
-@media(min-width:600px){.receta-modal-overlay{align-items:center;padding:20px}}
-.receta-modal-overlay.hidden{display:none}
-.receta-modal-sheet{background:var(--card);border-radius:20px 20px 0 0;width:100%;max-width:540px;max-height:94vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(0,0,0,.3)}
-@media(min-width:600px){.receta-modal-sheet{border-radius:18px;max-height:90vh}}
-.receta-modal-hdr{display:flex;align-items:center;padding:14px 16px;border-bottom:1px solid var(--muted);position:sticky;top:0;background:var(--card);z-index:1;gap:10px;flex-shrink:0}
-.receta-modal-title{flex:1;font-size:16px;font-weight:700;margin:0;color:var(--azul-dark);line-height:1.3}
-.receta-modal-close{background:var(--muted);border:none;border-radius:50%;width:32px;height:32px;font-size:14px;cursor:pointer;color:var(--fg);display:flex;align-items:center;justify-content:center;font-family:inherit;flex-shrink:0}
-.receta-modal-body{padding:14px 16px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
-.receta-prep-time{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted-fg);margin-bottom:10px;padding:8px 12px;background:var(--muted);border-radius:8px}
-.receta-cantidades-box{background:#fdefd8;border:1px solid #b07030;border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:13px;color:#8a3520;line-height:1.5;white-space:pre-line}
-.receta-cantidades-box .receta-cantidades-title{font-weight:700;margin-bottom:6px;display:block}
-.receta-ig-embed{margin:16px 0;border-radius:14px;overflow:hidden;border:1px solid #eee;background:#fafafa}
-.receta-ig-embed-title{font-size:13px;font-weight:600;color:#666;padding:10px 14px;background:#fff;border-bottom:1px solid #eee}
-.receta-ig-embed iframe{display:block;max-width:100%!important;width:100%!important;margin:0 auto!important;border:none}
-.receta-prod-link{display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(84,118,146,.08);border:1.5px solid var(--azul);border-radius:12px;cursor:pointer;transition:all .2s}
-.receta-prod-link:hover{background:rgba(84,118,146,.15);transform:translateX(2px)}
-.receta-prod-link-icon{font-size:22px;flex-shrink:0}
-.receta-prod-link-info{flex:1}
-.receta-prod-link-label{font-size:11px;color:var(--muted-fg);text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:2px}
-.receta-prod-link-name{font-size:14px;font-weight:700;color:var(--azul-dark);line-height:1.3}
-.receta-prod-link-arrow{font-size:18px;color:var(--azul);flex-shrink:0}
-.receta-prod-section{margin:14px 0 16px;padding:12px;background:rgba(84,118,146,.06);border:1px solid var(--border);border-radius:14px}
-.receta-prod-section-title{font-size:12px;color:var(--azul-dark);font-weight:800;margin-bottom:9px;text-transform:uppercase;letter-spacing:.45px;display:flex;align-items:center;gap:6px}
-.receta-prod-list{display:grid;grid-template-columns:1fr;gap:7px;max-height:260px;overflow-y:auto;padding-right:2px;-webkit-overflow-scrolling:touch}
-@media(min-width:600px){.receta-prod-list{grid-template-columns:repeat(2,1fr);max-height:230px}}
-.receta-prod-mini{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:11px;padding:9px 10px;cursor:pointer;transition:all .18s;min-width:0}
-.receta-prod-mini:hover{border-color:var(--azul);background:rgba(84,118,146,.05);transform:translateY(-1px)}
-.receta-prod-mini-ic{width:26px;height:26px;border-radius:8px;background:rgba(84,118,146,.12);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.receta-prod-mini-name{font-size:12px;font-weight:700;color:var(--fg);line-height:1.25;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.receta-prod-mini-arrow{margin-left:auto;color:var(--azul);font-weight:800;font-size:14px;flex-shrink:0}
-/* Modal hero + botón IG */
-.receta-modal-hero{overflow:hidden;margin:-14px -16px 14px;width:calc(100% + 32px);background:linear-gradient(135deg,#fdefd8,#f5c4b3)}
-.receta-modal-hero img{width:100%;height:auto;display:block;object-fit:contain}
-.receta-modal-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:12px}
-.receta-modal-time{font-size:13px;color:var(--muted-fg)}
-.receta-ig-link{display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;background:linear-gradient(135deg,#e1306c,#833ab4);color:#fff;font-size:14px;font-weight:600;text-decoration:none;padding:13px 20px;margin-top:16px;border-radius:12px;letter-spacing:.01em}
-.receta-ig-link:active{opacity:.85}
-/* Badge "Tiene receta" en cards de producto */
-.receta-badge-prod{display:inline-flex;align-items:center;gap:4px;background:transparent;color:var(--muted-fg);font-size:11px;font-weight:500;padding:3px 0;margin-top:4px;cursor:pointer;border:none;font-family:inherit;font-style:italic}
-.receta-badge-prod:hover{color:var(--azul)}
-/* Modal de producto embebido en receta */
-.receta-prod-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10011;display:flex;align-items:flex-end;justify-content:center}
-@media(min-width:600px){.receta-prod-overlay{align-items:center}}
-.receta-prod-overlay.hidden{display:none}
-.receta-prod-sheet{background:var(--card);border-radius:22px 22px 0 0;width:100%;max-width:480px;max-height:88vh;overflow-y:auto;padding:18px 16px;box-shadow:0 -8px 40px rgba(0,0,0,.3);position:relative}
-@media(min-width:600px){.receta-prod-sheet{border-radius:18px;max-height:82vh}}
-.receta-prod-sheet-close{position:absolute;top:14px;right:14px;background:var(--muted);border:none;border-radius:50%;width:32px;height:32px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;color:var(--fg)}
-.receta-prod-sheet .pcard{box-shadow:none;border:none;background:transparent}
 
 /* ── BUSCADOR ── */
 .search-wrap{position:relative;margin-bottom:22px}
@@ -1040,8 +835,7 @@ button,.opt-btn,.qty-btn,.add-btn,.cats-dd-btn,.card-edit-btn,.card-del-btn,.cat
   .pcard-img{height:120px}
   .pcard-body{padding:8px 9px 9px}
   .catalog-intro--rubro h1{font-size:23px}
-  .receta-badge-prod{font-size:9.5px;line-height:1.25}
-  .oferta-badge-lg{top:7px;left:7px;font-size:10px;padding:4px 7px}
+    .oferta-badge-lg{top:7px;left:7px;font-size:10px;padding:4px 7px}
 }
 
 /* ── BOTÓN VOLVER ── */
@@ -1311,14 +1105,6 @@ body.cart-open #cart-fab,body.cart-open #chat-fab{display:none!important}
   #homeView .lista-banner-ic{width:110px;height:134px}
 }
 /* ── GRANOLA BANNER ── */
-/* ── ÍCONOS ANIMADOS (mix / granola) ── */
-.sprite-icon{flex-shrink:0;background-repeat:no-repeat;background-size:500% 100%;background-position:0 0;filter:drop-shadow(0 2px 3px rgba(0,0,0,.2))}
-.sprite-mix{width:54px;aspect-ratio:120/382;background-image:url('sprite-mix.png');animation:spriteCycle 2.5s steps(5,jump-none) infinite}
-.sprite-granola{width:72px;aspect-ratio:120/260;background-image:url('sprite-granola.png');animation:spriteCycle 2.5s steps(5,jump-none) infinite}
-.sprite-blend{width:82px;height:156px;background-image:url('sprite-blend.png');background-size:500% auto;animation:spriteBlendCycle 2.5s steps(5,jump-none) infinite;filter:drop-shadow(0 2px 2.5px rgba(20,45,70,.20))}
-@keyframes spriteCycle{0%{background-position:0% 0}100%{background-position:100% 0}}
-@keyframes spriteBlendCycle{0%{background-position:0% 50%}100%{background-position:100% 50%}}
-@media(max-width:480px){.sprite-mix{width:44px}.sprite-granola{width:58px}.sprite-blend{width:66px;height:136px}}
 
 .granola-banner{background:linear-gradient(135deg,#7a4f1e 0%,#b07030 100%);border-radius:16px;padding:18px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 18px rgba(160,100,30,.35);flex-wrap:wrap}
 .granola-banner:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(160,100,30,.45)}
@@ -1734,7 +1520,6 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 .min-redesign .may-tab-icon{display:none}
 .min-redesign .tabs-pill{top:7px;bottom:7px;background:#e3f0f7;border-radius:999px!important}
 .min-redesign .tabs-pill::before,.min-redesign .tabs-pill::after{display:none}
-.min-redesign #tabRecetas{display:none!important}
 .min-redesign #homeView{max-width:none;margin:0;padding:0;background:var(--min-cream)}
 .min-redesign.hv-home #homeView{display:flex;flex-direction:column}
 .min-home-hero{position:relative;order:1;width:100%;height:auto;min-height:0;aspect-ratio:1280/757;overflow:hidden;background:#d3e6f7}
@@ -1798,7 +1583,6 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 .min-redesign .bnav button:nth-of-type(4):not(.active) svg{fill:none}
 .min-redesign .bnav{grid-template-columns:repeat(5,minmax(0,1fr))}
 .min-redesign .bnav-pill{background:#e1eff7}
-.min-redesign #tabRecetas,.min-redesign #recetasSection{display:none!important}
 .min-redesign .cats-dropdown-panel{border-radius:0 0 22px 22px;background:#f8f5ef}
 .min-redesign .cats-dd-btn{background:#fff!important;color:#244f71!important;border:1px solid #e0e9ef}
 .min-redesign .cats-dd-thumb{background:#eee8de;border-radius:12px;overflow:hidden}
@@ -1816,9 +1600,9 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 .min-redesign .granola-step-final.ready,.min-redesign .blend-step-final.ready,.min-redesign .granola-add-btn,.min-redesign .blend-add-btn{background:#285b83;color:#fff}
 .min-redesign .granola-add-btn:hover,.min-redesign .blend-add-btn:hover{background:#123f67}
 .min-redesign .builder-showcase{position:relative;min-height:172px;margin:0 0 22px;border:1px solid rgba(40,91,131,.14);border-radius:20px;overflow:hidden;background-color:#dcecf5;background-position:center;background-size:cover;box-shadow:0 12px 30px rgba(31,74,107,.10)}
-.min-redesign .builder-showcase--mix{background-image:url('home-banner-v2-mix.jpg')}
-.min-redesign .builder-showcase--granola{background-image:url('home-banner-v2-granola.jpg')}
-.min-redesign .builder-showcase--blend{background-image:url('home-banner-v2-blend.jpg')}
+.min-redesign .builder-showcase--mix{background-image:url('home-banner-v2-mix.webp')}
+.min-redesign .builder-showcase--granola{background-image:url('home-banner-v2-granola.webp')}
+.min-redesign .builder-showcase--blend{background-image:url('home-banner-v2-blend.webp')}
 .min-redesign .builder-showcase-copy{position:absolute;z-index:1;left:clamp(20px,4vw,48px);top:50%;width:min(43%,430px);transform:translateY(-50%);color:#123e62}
 .min-redesign .builder-showcase-copy small{display:block;margin-bottom:7px;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#3d7197}
 .min-redesign .builder-showcase-copy strong{display:block;font-size:clamp(23px,2.5vw,34px);font-weight:800;line-height:1.02;letter-spacing:-.035em}
@@ -2044,10 +1828,6 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
       <img class="may-tab-icon" src="may-icon-offers-filled.png" alt="" aria-hidden="true">
       <span>Ofertas</span>
     </button>
-    <button class="may-tab" id="tabRecetas" onclick="switchTab('recetas')">
-      <img class="may-tab-icon" src="icon-inspiracion.png" alt="" aria-hidden="true">
-      <span>Inspiración</span>
-    </button>
     <button class="may-tab tab-desktop" id="tabFavoritos" onclick="openWishlist()">
       <img class="may-tab-icon" src="may-icon-favorites-filled.svg" alt="" aria-hidden="true">
       <span>Favoritos</span>
@@ -2060,27 +1840,17 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 #homeView{display:none}
 body.hv-home #homeView{display:block}
 body.hv-home #mainContainer{display:none!important}
-body.hv-home #recetasSection{display:none!important}
 body.hv-home #mayoristaSection{display:none!important}
 .may-tab-emoji{font-size:30px;line-height:36px;height:36px;display:block;filter:drop-shadow(0 2px 2.5px rgba(0,0,0,.22))}
 #homeView{max-width:1100px;margin:0 auto;padding:6px 20px 18px}
 /* Un poco más de aire a los costados en pantallas grandes: los banners (hero,
    mix/granola, ofertas, etc.) se veían demasiado anchos pegados al viewport. */
 @media(min-width:1024px){
-  #homeView,#mainContainer,#recetasSection{padding-left:56px!important;padding-right:56px!important}
+  #homeView,#mainContainer{padding-left:56px!important;padding-right:56px!important}
 }
-.hv-hero{position:relative;margin-top:16px;min-height:clamp(560px,72vh,680px);padding:78px 54px 58px 70px;overflow:hidden;border-radius:22px;background:#304d6b url('herobannerazul.PNG') center/cover no-repeat;display:flex;align-items:stretch;text-align:left;isolation:isolate}
-.hv-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(28,51,76,.36) 0%,rgba(28,51,76,.12) 43%,transparent 62%);pointer-events:none}
-.hv-hero-copy{width:min(52%,540px);display:flex;flex-direction:column}
-.hv-hero h1{font-size:clamp(40px,4.3vw,56px);font-weight:850;color:#fff;line-height:1.04;letter-spacing:-.025em;margin:0;width:max-content;max-width:none;text-shadow:0 2px 12px rgba(16,35,54,.24)}
 /* Composición editorial: una sola alineación izquierda y jerarquía por tipografía. */
-.hv-hero h1 span.hv-l1,.hv-hero h1 span.hv-l2,.hv-hero h1 span.hv-l3{display:block;width:max-content;margin-left:0;margin-right:0}
-.hv-hero h1 .hv-l1{font-size:1em;white-space:nowrap}
-.hv-hero h1 .hv-l2{font-size:1em;white-space:nowrap}
-.hv-hero h1 .hv-l3{font-size:1em;margin-top:12px;line-height:1}
 .hv-brand-word{display:inline-flex;height:1.85em;vertical-align:-.22em;line-height:0;filter:drop-shadow(0 2px 6px rgba(16,35,54,.28))}
 .hv-brand-word img{display:block;width:auto;height:100%;object-fit:contain}
-.hv-hero p{font-size:15.5px;color:rgba(255,255,255,.94);margin:auto 0 0;max-width:43ch;line-height:1.45;font-weight:500;text-shadow:0 1px 8px rgba(16,35,54,.30)}
 .hv-cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--azul-dark);font-weight:800;font-size:15px;border-radius:999px;padding:13px 16px 13px 23px;margin-top:14px;border:none;cursor:pointer;font-family:inherit;box-shadow:0 8px 22px rgba(15,34,52,.24);transition:transform .18s,background .2s;align-self:flex-start}
 .hv-cta:hover{background:#edf7fa;transform:translateY(-1px)}
 .hv-cta .arr{width:30px;height:30px;border-radius:50%;background:var(--azul-light);display:grid;place-items:center}
@@ -2090,15 +1860,7 @@ body.hv-home #mayoristaSection{display:none!important}
   /* Sin relleno azul de fondo: el box mide justo lo que mide la imagen (aspect-ratio real
      1341x1173), sin bandas de color arriba/abajo. El espacio que ese relleno ocupaba pasa
      a ser aire real arriba (margin-top), así el hero sigue quedando a la misma altura. */
-  .hv-hero{margin-top:46px;aspect-ratio:1341/1173;min-height:0;padding:clamp(28px,9vw,40px) 14px 18px 20px;border-radius:15px;background-color:transparent;background-image:url('herobannerazul.PNG');background-size:100% auto;background-position:center;background-repeat:no-repeat;align-items:stretch;box-shadow:0 16px 28px -10px rgba(15,28,42,.35)}
-  .hv-hero::after{background:linear-gradient(90deg,rgba(27,50,74,.48) 0%,rgba(27,50,74,.18) 45%,transparent 59%)}
-  .hv-hero-copy{width:50%;max-width:198px}
-  .hv-hero h1{font-size:clamp(22px,6.7vw,25px);line-height:1.12;letter-spacing:-.02em}
-  .hv-hero h1 .hv-l1{font-size:1em}
-  .hv-hero h1 .hv-l2{font-size:1em}
-  .hv-hero h1 .hv-l3{font-size:1em;margin-top:10px}
   .hv-brand-word{height:clamp(37px,11.47vw,43px)}
-  .hv-hero p{font-size:11.5px;line-height:1.34;margin-top:auto;max-width:100%;font-weight:550}
   .hv-cta{font-size:12.5px;padding:9px 11px 9px 17px;margin-top:11px;gap:7px;box-shadow:0 5px 14px rgba(15,34,52,.22);align-self:flex-start}
   .hv-cta .arr{width:26px;height:26px}
   .hv-cta .arr svg{width:15px;height:15px}
@@ -2113,9 +1875,6 @@ body.hv-home #mayoristaSection{display:none!important}
   .descb-banner{box-shadow:0 4px 16px rgba(84,118,146,.16),0 14px 24px -10px rgba(15,28,42,.32)!important}
 }
 @media(max-width:340px){
-  .hv-hero{padding-top:24px}
-  .hv-hero h1{font-size:22px}
-  .hv-hero p{font-size:10.5px;line-height:1.28}
 }
 #hvCats{padding:40px 0}
 .hv-sec-head{display:flex;flex-direction:column;align-items:center;gap:9px;margin:4px 0 26px}
@@ -2188,7 +1947,7 @@ body.hv-home #mayoristaSection{display:none!important}
 #ofertasView{display:none;max-width:1100px;margin:0 auto;padding:12px 20px 32px}
 body.hv-ofertas,body.hv-ofertas #ofertasView{background:var(--bg)!important}
 body.hv-ofertas #ofertasView{display:block}
-body.hv-ofertas #homeView,body.hv-ofertas #mainContainer,body.hv-ofertas #recetasSection,body.hv-ofertas #mayoristaSection{display:none!important}
+body.hv-ofertas #homeView,body.hv-ofertas #mainContainer,body.hv-ofertas #mayoristaSection{display:none!important}
 body.hv-ofertas #tabsPill{display:none}
 
 body.hv-ofertas .envios-banner,body.hv-ofertas .envios-msg,body.hv-ofertas .envios-discount{color:#fff!important;-webkit-text-fill-color:#fff!important;forced-color-adjust:none;-webkit-forced-color-adjust:none}
@@ -2215,7 +1974,7 @@ body.hv-ofertas .bnav a,.bnav button.active,body.hv-ofertas .bnav a,.bnav button
 #wishlistView{display:none;max-width:1100px;margin:0 auto;padding:14px 20px 32px}
 body.hv-favoritos,body.hv-favoritos #wishlistView{background:var(--bg)!important}
 body.hv-favoritos #wishlistView{display:block}
-body.hv-favoritos #homeView,body.hv-favoritos #ofertasView,body.hv-favoritos #mainContainer,body.hv-favoritos #recetasSection,body.hv-favoritos #mayoristaSection{display:none!important}
+body.hv-favoritos #homeView,body.hv-favoritos #ofertasView,body.hv-favoritos #mainContainer,body.hv-favoritos #mayoristaSection{display:none!important}
 body.hv-favoritos #tabsPill{display:none}
 body.hv-favoritos .envios-banner,body.hv-favoritos .envios-msg,body.hv-favoritos .envios-discount{color:#fff!important;-webkit-text-fill-color:#fff!important}
 body.hv-favoritos .bnav a,.bnav button:not(.active),body.hv-favoritos .bnav a,.bnav button:not(.active) span{color:#fff!important;-webkit-text-fill-color:#fff!important}
@@ -2831,7 +2590,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 <!-- ── BANNER DESCUENTO POR CANTIDAD ($80.000) ── -->
   <div class="descb-wrap">
     <div class="descb-banner" id="descBanner">
-      <img class="descb-art" src="home-discount-strip-v2.png" alt="" aria-hidden="true">
+      <img class="descb-art" src="home-discount-strip-v2.webp" alt="" aria-hidden="true">
       <div class="descb-copy">
         <strong>Descuento por cantidad</strong>
         <span>Al superar los <b class="descb-monto">$80.000</b> en tu carrito se activan los descuentos en tu pedido.</span>
@@ -2852,19 +2611,19 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 <div class="banners-track-wrap" id="bannersTrackWrap">
   <div class="banners-track" id="bannersTrack">
     <article class="banner-slide min-image-banner min-image-banner-mix">
-      <img src="home-banner-v2-mix.jpg" alt="Mix de frutos secos servido en un bowl" loading="eager" decoding="async">
+      <img src="home-banner-v2-mix.webp" alt="Mix de frutos secos servido en un bowl" loading="eager" decoding="async">
       <div class="min-banner-copy"><span class="min-banner-kicker">Armá tu mix</span><h3>Tu mix,<br>tu forma</h3><p>Elegí tus ingredientes favoritos.</p><button class="min-banner-btn" type="button" onclick="openMix()">Armar mix&nbsp; →</button></div>
     </article>
     <article class="banner-slide min-image-banner min-image-banner-granola">
-      <img src="home-banner-v2-granola.jpg" alt="Granola artesanal servida en un bowl" loading="eager" decoding="async">
+      <img src="home-banner-v2-granola.webp" alt="Granola artesanal servida en un bowl" loading="eager" decoding="async">
       <div class="min-banner-copy"><span class="min-banner-kicker">Creá tu granola</span><h3>Granola<br>a tu gusto</h3><p>Seleccioná tus ingredientes y creá tu mezcla.</p><button class="min-banner-btn" type="button" onclick="openGranola()">Crear granola&nbsp; →</button></div>
     </article>
     <article class="banner-slide min-image-banner min-image-banner-blend">
-      <img src="home-banner-v2-blend.jpg" alt="Taza completa de té con hierbas y flores" loading="eager" decoding="async">
+      <img src="home-banner-v2-blend.webp" alt="Taza completa de té con hierbas y flores" loading="eager" decoding="async">
       <div class="min-banner-copy"><span class="min-banner-kicker">Prepará tu blend</span><h3>Tu té,<br>a tu manera</h3><p>Mezclá hierbas, flores y especias.</p><button class="min-banner-btn" type="button" onclick="openBlend()">Crear blend&nbsp; →</button></div>
     </article>
     <article class="banner-slide min-image-banner min-image-banner-lista">
-      <img src="home-banner-v2-lista.jpg" alt="Lista de precios sobre un portapapeles" loading="eager" decoding="async">
+      <img src="home-banner-v2-lista.webp" alt="Lista de precios sobre un portapapeles" loading="eager" decoding="async">
       <span class="min-list-sheet-logo" aria-hidden="true"><img src="android-chrome-512x512.png" alt=""></span>
       <div class="min-banner-copy"><span class="min-banner-kicker">Lista sábana</span><h3>Lista de<br>precios</h3><p>Todos los productos en una sola hoja.</p><button class="min-banner-btn" type="button" onclick="location.href='catalogo.html'">Ver lista&nbsp; →</button></div>
     </article>
@@ -2975,25 +2734,6 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
   <div style="text-align:center;padding:30px 16px 10px;font-size:13px;color:var(--muted-fg)">¿Sos revendedor o comprás en cantidad? <a href="https://paladear.github.io/paladeardistribuidora/" style="color:var(--azul);font-weight:700;text-decoration:none">Entrá a la Distribuidora →</a></div>
 </div>
 
-<!-- ═══ SECCIÓN RECETAS ═══ -->
-<div style="max-width:1100px;margin:0 auto;padding:18px 20px 30px;display:none" id="recetasSection" class="recetas-section">
-  <div class="recetas-hero">
-    <div class="recetas-hero-icon">✨</div>
-    <div>
-      <h1 class="recetas-hero-title">Inspiración Paladear</h1>
-      <p class="recetas-hero-sub">Recetas, tips, guías y todo lo que necesitás para vivir más saludable</p>
-    </div>
-  </div>
-  <div class="recetas-filters" id="recetasFilters">
-    <button class="recetas-filter-chip active" data-cat="">Todo</button>
-  </div>
-  <div id="recetasGrid" class="recetas-grid"></div>
-  <div id="recetasEmpty" class="recetas-empty hidden">
-    <div style="font-size:42px;margin-bottom:10px">🍴</div>
-    <div style="font-size:15px;font-weight:600;color:var(--azul-dark);margin-bottom:4px">Aún no hay recetas cargadas</div>
-    <div style="font-size:13px;color:var(--muted-fg)">Pronto vamos a publicar ideas para sacarle el jugo a nuestros productos</div>
-  </div>
-</div>
 
 
 <div class="modal-overlay hidden" id="catModal">
@@ -3281,7 +3021,6 @@ window.toggleFavorite=function(pid){
 // rompía todo el script cuando había productos guardados → pantalla de carga
 // infinita. Actualizamos el badge a mano; updateCartCount() corre normal después.
 try{if(cart.length){var _badge0=document.getElementById('cartCount');if(_badge0)_badge0.textContent=cart.length;var _headerBadge0=document.getElementById('minHeaderCartCount');if(_headerBadge0)_headerBadge0.textContent=cart.length;}}catch(e){}
-const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbwpRm16QpdpCNTtRwtmoZsNPesqA3Vfli2LEubvunNiV0lFTH-rKPLNaIpsm531F3c9/exec';
 function fmt(n){return n.toLocaleString('es-AR')}
 let _loaderHidden=false;
 function hideLoader(){if(_loaderHidden)return;_loaderHidden=true;const o=document.getElementById('loadingOverlay');if(o){o.classList.add('hidden');setTimeout(()=>{if(o.parentNode)o.remove()},500)}}
@@ -3311,7 +3050,6 @@ document.addEventListener('pointerdown',function(e){
 
 // ── HEADER COMPACTO AL SCROLLEAR ──
 // Aparece cuando scrolleas > umbral, SOLO en minorista o mayorista.
-// En "Inspiración" (recetas) no aparece.
 (function(){
   const THRESHOLD=180;
   let ticking=false;
@@ -3624,7 +3362,7 @@ function renderCatsUI(){
 
   // Menú de categorías compartido por Home y catálogo
   const dg=document.getElementById('catsDropdownGrid');
-  if(dg)dg.innerHTML=`<button class="min-cat-menu-btn" type="button" onclick="window.switchTab('minorista');volverInicio();closeCatsDropdown()"><span class="min-cat-thumb min-cat-all"><img src="may-icon-catalog-filled.png" alt="" aria-hidden="true"></span><span class="min-cat-menu-name">Todos los productos</span><span class="min-cat-menu-arrow" aria-hidden="true">›</span></button>`+sortedCats.map(c=>`<button class="min-cat-menu-btn${activeCatId===c.id?' active':''}" type="button" onclick="hvGoCat('${c.id}');closeCatsDropdown()"><span class="min-cat-thumb"><img src="cat-v2-${c.id}.jpg" alt="" aria-hidden="true" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"></span><span class="min-cat-menu-name">${c.n}</span><span class="min-cat-menu-arrow" aria-hidden="true">›</span></button>`).join('');
+  if(dg)dg.innerHTML=`<button class="min-cat-menu-btn" type="button" onclick="window.switchTab('minorista');volverInicio();closeCatsDropdown()"><span class="min-cat-thumb min-cat-all"><img src="may-icon-catalog-filled.png" alt="" aria-hidden="true"></span><span class="min-cat-menu-name">Todos los productos</span><span class="min-cat-menu-arrow" aria-hidden="true">›</span></button>`+sortedCats.map(c=>`<button class="min-cat-menu-btn${activeCatId===c.id?' active':''}" type="button" onclick="hvGoCat('${c.id}');closeCatsDropdown()"><span class="min-cat-thumb"><img src="cat-v2-${c.id}.webp" alt="" aria-hidden="true" loading="eager" decoding="async" onerror="this.style.visibility='hidden'"></span><span class="min-cat-menu-name">${c.n}</span><span class="min-cat-menu-arrow" aria-hidden="true">›</span></button>`).join('');
 }
 
 /* ── SELECCIONAR CATEGORÍA ── */
@@ -5058,16 +4796,6 @@ function sincronizarDesdeSheets(){
       renderCarruseles();
       hideLoader();
       // Las fotos del panel ya vienen resueltas: son archivos, se cargan solas.
-      // Cargar recetas en background (no bloquea la UI)
-      if (typeof cargarRecetas === 'function') {
-        cargarRecetas().then(function() {
-          // Re-render del catálogo si hay recetas (para mostrar badges)
-          if (RECETAS && RECETAS.length && typeof renderCatsUI === 'function') {
-            renderCatsUI();
-            if (activeCatId && typeof selectCat === 'function') selectCat(activeCatId);
-          }
-        });
-      }
     }
 
     // TESTER: los precios salen de E-Pyme, no del Apps Script de Google.
@@ -5148,10 +4876,6 @@ function _palCloseTopLayer(){
   if(_searchOverlayOpen){cerrarBusqueda();return true;}
   el=document.getElementById('inspLightbox');
   if(el&&!el.classList.contains('hidden')){cerrarLightbox();return true;}
-  el=document.getElementById('recetaProdOverlay');
-  if(el&&!el.classList.contains('hidden')){cerrarProductoReceta();var rm=document.getElementById('recetaModalOverlay');if(rm&&!rm.classList.contains('hidden'))document.body.style.overflow='hidden';return true;}
-  el=document.getElementById('recetaModalOverlay');
-  if(el&&!el.classList.contains('hidden')){cerrarRecetaModal();return true;}
   el=document.getElementById('checkoutOverlay');
   if(el&&!el.classList.contains('hidden')){cerrarCheckout();return true;}
   el=document.getElementById('modalInstalarApp');
@@ -5312,7 +5036,7 @@ function _restoreAppState() {
     }, 100);
   } else {
     // Restaurar la pestaña (con Home como default del tester, hay que volver explícitamente)
-    if (state.tab === 'home' || state.tab === 'minorista' || state.tab === 'recetas' || state.tab === 'ofertas' || state.tab === 'favoritos') window.switchTab(state.tab);
+    if (state.tab === 'home' || state.tab === 'minorista' || state.tab === 'ofertas' || state.tab === 'favoritos') window.switchTab(state.tab);
     // Minorista: esperar a que PRODS esté listo
     let intentos = 0;
     const waitMin = setInterval(function() {
@@ -6446,22 +6170,18 @@ function switchTab(tab) {
   currentTab = tab;
   const minSection = document.getElementById('mainContainer');
   const maySection = document.getElementById('mayoristaSection');
-  const recSection = document.getElementById('recetasSection');
   const tabMin = document.getElementById('tabMinorista');
   const tabMay = document.getElementById('tabMayorista');
-  const tabRec = document.getElementById('tabRecetas');
   const fabMin = document.getElementById('cart-fab');
   const fabMay = document.getElementById('cart-fab-may');
   // Reset
   if (tabMin) tabMin.classList.remove('active');
   if (tabMay) tabMay.classList.remove('active');
-  if (tabRec) tabRec.classList.remove('active');
   const bannerMin = document.getElementById('bannerRotativo');
   const bannerMay = document.getElementById('bannerMayorista');
   if (tab === 'mayorista') {
     if (minSection) minSection.style.display = 'none';
     if (maySection) maySection.classList.add('active');
-    if (recSection) recSection.style.display = 'none';
     if (tabMay) tabMay.classList.add('active');
     if (fabMin) fabMin.style.display = 'none';
     if (fabMay) fabMay.style.display = 'flex';
@@ -6476,24 +6196,9 @@ function switchTab(tab) {
     } else {
       renderMayUI();
     }
-  } else if (tab === 'recetas') {
-    if (minSection) minSection.style.display = 'none';
-    if (maySection) maySection.classList.remove('active');
-    if (recSection) recSection.style.display = '';
-    if (tabRec) tabRec.classList.add('active');
-    if (fabMin) fabMin.style.display = 'flex';
-    if (fabMay) fabMay.style.display = 'none';
-    if (bannerMin) bannerMin.style.display = '';
-    if (bannerMay) bannerMay.style.display = 'none';
-    const waHeader = document.querySelector('.social-btn[title^="WhatsApp"]');
-    if (waHeader) { waHeader.href = 'https://wa.me/' + WA_MINORISTA; waHeader.title = 'WhatsApp Minorista'; }
-    const mapHeader = document.getElementById('headerMapBtn');
-    if (mapHeader) { mapHeader.href = MAPA_MINORISTA; mapHeader.title = 'Cómo llegar (local minorista)'; }
-    if (typeof _mostrarRecetas === 'function') _mostrarRecetas();
   } else {
     if (minSection) minSection.style.display = '';
     if (maySection) maySection.classList.remove('active');
-    if (recSection) recSection.style.display = 'none';
     if (tabMin) tabMin.classList.add('active');
     if (fabMin) fabMin.style.display = 'flex';
     if (fabMay) fabMay.style.display = 'none';
@@ -6649,7 +6354,7 @@ function hvRenderCats(force){
   }
   track.innerHTML=pages.map(function(page,pageIndex){
     return '<div class="hv-cat-page" data-hv-cat-page="'+pageIndex+'" role="group" aria-label="Página '+(pageIndex+1)+' de categorías">'+page.map(function(c){
-      return '<button type="button" class="hv-cat" data-cat="'+c.id+'" aria-label="'+c.n+'" onclick="hvGoCat(\''+c.id+'\')"><span class="bub"><img src="cat-v2-'+c.id+'.jpg" width="640" height="640" alt="" loading="'+(pageIndex<2?'eager':'lazy')+'" decoding="async"'+(pageIndex===0?' fetchpriority="high"':'')+' onerror="this.style.visibility=\'hidden\'"></span>'+hvArco(c.id,c.n)+'</button>';
+      return '<button type="button" class="hv-cat" data-cat="'+c.id+'" aria-label="'+c.n+'" onclick="hvGoCat(\''+c.id+'\')"><span class="bub"><img src="cat-v2-'+c.id+'.webp" width="640" height="640" alt="" loading="'+(pageIndex<2?'eager':'lazy')+'" decoding="async"'+(pageIndex===0?' fetchpriority="high"':'')+' onerror="this.style.visibility=\'hidden\'"></span>'+hvArco(c.id,c.n)+'</button>';
     }).join('')+'</div>';
   }).join('');
   // Se llama varias veces a proposito: al renderizar el layout todavia puede medir 0,
@@ -6663,7 +6368,7 @@ function hvRenderCats(force){
   if(pagination)pagination.innerHTML=pages.map(function(page,index){return '<button type="button" onclick="hvGoCatPage('+index+')" aria-label="Ver categorías '+(index*pageSize+1)+' a '+(index*pageSize+page.length)+'"'+(index===0?' aria-current="true"':'')+'></button>';}).join('');
   track.onscroll=hvUpdateCatPagination;
   requestAnimationFrame(hvUpdateCatPagination);
-  var warm=function(){cats.forEach(function(c){var src='cat-v2-'+c.id+'.jpg';if(_hvCatPreloads[src])return;var img=new Image();img.decoding='async';img.src=src;_hvCatPreloads[src]=img;});};
+  var warm=function(){cats.forEach(function(c){var src='cat-v2-'+c.id+'.webp';if(_hvCatPreloads[src])return;var img=new Image();img.decoding='async';img.src=src;_hvCatPreloads[src]=img;});};
   if('requestIdleCallback' in window)requestIdleCallback(warm,{timeout:700});else setTimeout(warm,180);
 }
 function hvGoCatPage(index){
@@ -6958,7 +6663,7 @@ function _bnavActiveTab(){
     if(resetCatalog)volverInicio();
     else if(tab==='minorista'&&!activeCatId&&!searchTerm)renderCarruseles();
     try{ var act=document.querySelector('#mainTabs .may-tab.active'); if(act) _setPill(act); }catch(e){}
-    _bnavSet(tab==='recetas' ? 'recetas' : 'minorista');
+    _bnavSet('minorista');
   };
 })();
 // La navegación visible también forma parte del historial del navegador.
@@ -6996,10 +6701,7 @@ window.selectOfertasMes=selectOfertasMes;
   if(typeof window.compactOnSearch==='function'){
     var _o=window.compactOnSearch;
     window.compactOnSearch=function(v){
-      // Inspiración ("recetas") no tiene clase propia en <body> como sí tienen Home/Ofertas/Favoritos,
-      // por eso se detecta con currentTab en vez de una clase.
-      var _tab=(typeof currentTab!=='undefined')?currentTab:'';
-      if((document.body.classList.contains('hv-home')||document.body.classList.contains('hv-ofertas')||document.body.classList.contains('hv-favoritos')||_tab==='recetas') && v && String(v).trim()){
+      if((document.body.classList.contains('hv-home')||document.body.classList.contains('hv-ofertas')||document.body.classList.contains('hv-favoritos')) && v && String(v).trim()){
         _catalogSkipNextAllRender=true;
         try{window.switchTab('minorista');}finally{_catalogSkipNextAllRender=false;}
       }
@@ -7078,7 +6780,7 @@ function renderCarruseles(){
       var holder=document.createElement('div');
       holder.innerHTML=`<section class="allcat-sec" id="catalogo-${prefix}-${item.cat.id}">
         <div class="allcat-head">
-          <img class="allcat-img" src="cat-v2-${item.cat.id}.jpg" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
+          <img class="allcat-img" src="cat-v2-${item.cat.id}.webp" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
           <span class="allcat-name">${item.cat.n}</span>
           <span class="allcat-count">${item.prods.length}</span>
         </div>
@@ -8629,516 +8331,6 @@ function descargarListaMayorista() {
 }
 window.descargarListaMayorista = descargarListaMayorista;
 
-// SISTEMA DE RECETAS
-// ═══════════════════════════════════════════
-
-var RECETAS = [];
-var _recetasCargadas = false;
-var _recetasFiltroActivo = '';
-var _ultimaCatRecetas = '';
-
-// URL de la hoja "inspiracion" — usa gviz/tq para resolver por nombre
-const RECETAS_URL = 'https://docs.google.com/spreadsheets/d/1aANKgaQFoiAixKQvPlRpZ0_PBQhES-iBWqOG1bsuLyg/gviz/tq?tqx=out:csv&sheet=inspiracion';
-
-function _parseCSVRows(text) {
-  // Parser CSV completo que respeta comillas (incluso saltos de línea dentro de campos)
-  const rows = [];
-  let cur = '', row = [], inQ = false;
-  for (let i = 0; i < text.length; i++) {
-    const ch = text[i];
-    if (ch === '"') {
-      if (inQ && text[i+1] === '"') { cur += '"'; i++; }
-      else inQ = !inQ;
-    } else if (ch === ',' && !inQ) {
-      row.push(cur); cur = '';
-    } else if ((ch === '\n' || ch === '\r') && !inQ) {
-      // Fin de fila (solo si NO estamos dentro de comillas)
-      if (ch === '\r' && text[i+1] === '\n') i++; // saltar \n del \r\n
-      row.push(cur); cur = '';
-      if (row.some(c => c.trim().length)) rows.push(row);
-      row = [];
-    } else {
-      cur += ch;
-    }
-  }
-  if (cur || row.length) {
-    row.push(cur);
-    if (row.some(c => c.trim().length)) rows.push(row);
-  }
-  return rows.map(r => r.map(c => c.trim()));
-}
-
-function _parseRecetasCSV(text) {
-  const rows = _parseCSVRows(text);
-  if (rows.length <= 1) return [];
-  const out = [];
-  for (let i = 1; i < rows.length; i++) {
-    const cols = rows[i];
-    const titulo = (cols[0] || '').trim();
-    if (!titulo) continue;
-    const categoria = (cols[1] || '').trim();
-    const subtitulo = (cols[2] || '').trim();
-    const miniatura = (cols[3] || '').trim();
-    const tiempo = (cols[4] || '').trim();
-    const contenido = (cols[5] || '').trim();
-    const urlIG = (cols[6] || '').trim();
-    const productos = (cols[7] || '').trim();
-    const slidesRaw = (cols[8] || '').trim();
-    const destacado = /^si$/i.test((cols[9] || '').trim());
-    let slides = null;
-    if (slidesRaw) {
-      slides = slidesRaw.split(';;').map(s => {
-        const parts = s.split('||');
-        return { titulo:(parts[0]||'').trim(), texto:(parts[1]||'').trim(), imagen:(parts[2]||'').trim() };
-      }).filter(s => s.titulo);
-    }
-    out.push({ titulo, categoria, subtitulo, miniatura, tiempo, contenido, urlIG, productos, slides, destacado });
-  }
-  out.sort((a, b) => (b.destacado?1:0)-(a.destacado?1:0));
-  return out;
-}
-
-
-function cargarRecetas() {
-  if (_recetasCargadas) return Promise.resolve(RECETAS);
-  return fetch(RECETAS_URL + '&t=' + Date.now(), { cache: 'no-store' })
-    .then(r => r.text())
-    .then(text => {
-      RECETAS = _parseRecetasCSV(text);
-      _recetasCargadas = true;
-      console.log('🍴 Paladear: ' + RECETAS.length + ' recetas cargadas');
-      return RECETAS;
-    })
-    .catch(err => {
-      console.warn('No se pudieron cargar las recetas:', err);
-      RECETAS = [];
-      _recetasCargadas = true;
-      return RECETAS;
-    });
-}
-
-function _getInstagramPostId(url) {
-  if (!url) return null;
-  const m = url.match(/instagram\.com\/(?:p|reel|tv)\/([A-Za-z0-9_-]+)/);
-  return m ? m[1] : null;
-}
-
-function _normalizeInstagramUrl(url) {
-  // Convertir cualquier URL de IG en una versión limpia (sin params)
-  const id = _getInstagramPostId(url);
-  if (!id) return url;
-  // Detectar si es reel o post
-  if (url.includes('/reel/')) return 'https://www.instagram.com/reel/' + id + '/';
-  if (url.includes('/tv/')) return 'https://www.instagram.com/tv/' + id + '/';
-  return 'https://www.instagram.com/p/' + id + '/';
-}
-
-// Resolver IDs/rubros del campo "productos" en productos reales del catálogo
-// ── LIGHTBOX ──
-var _lbImages = [];   // lista de todas las imgs del modal actual
-var _lbIndex = 0;     // índice actual
-
-function abrirLightbox(src, alt, allImgs, startIdx) {
-  const lb = document.getElementById('inspLightbox');
-  const img = document.getElementById('inspLightboxImg');
-  if (!lb || !img) return;
-  _lbImages = allImgs || [src];
-  _lbIndex = startIdx || 0;
-  _lbSetImg(_lbIndex);
-  lb.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-  _palPushOverlay('lightbox');
-}
-window.abrirLightbox = abrirLightbox;
-
-function _lbSetImg(i) {
-  _lbIndex = Math.max(0, Math.min(i, _lbImages.length - 1));
-  const img = document.getElementById('inspLightboxImg');
-  if (img) img.src = _lbImages[_lbIndex];
-  // prev/next buttons
-  const prev = document.getElementById('lbPrev');
-  const next = document.getElementById('lbNext');
-  if (prev) prev.style.display = _lbImages.length > 1 ? '' : 'none';
-  if (next) next.style.display = _lbImages.length > 1 ? '' : 'none';
-  const counter = document.getElementById('lbCounter');
-  if (counter) counter.textContent = _lbImages.length > 1 ? (_lbIndex+1) + ' / ' + _lbImages.length : '';
-}
-
-function lbPrev(e) { e && e.stopPropagation(); _lbSetImg(_lbIndex - 1); }
-function lbNext(e) { e && e.stopPropagation(); _lbSetImg(_lbIndex + 1); }
-window.lbPrev = lbPrev; window.lbNext = lbNext;
-
-function cerrarLightbox() {
-  const lb = document.getElementById('inspLightbox');
-  if (lb) lb.classList.add('hidden');
-  document.body.style.overflow = '';
-}
-window.cerrarLightbox = cerrarLightbox;
-
-// Swipe en el lightbox
-(function() {
-  var tx0 = 0;
-  document.addEventListener('touchstart', function(e) {
-    const lb = document.getElementById('inspLightbox');
-    if (!lb || lb.classList.contains('hidden')) return;
-    tx0 = e.touches[0].clientX;
-  }, {passive:true});
-  document.addEventListener('touchend', function(e) {
-    const lb = document.getElementById('inspLightbox');
-    if (!lb || lb.classList.contains('hidden')) return;
-    const dx = e.changedTouches[0].clientX - tx0;
-    if (Math.abs(dx) > 50) { if (dx < 0) lbNext(); else lbPrev(); }
-  }, {passive:true});
-})();
-
-
-function _resolveRecetaProductos(refs) {
-  if (!refs || !PRODS || !CATS) return [];
-  const tokens = refs.split(',').map(s => s.trim()).filter(Boolean);
-  const found = [];
-  const seen = new Set();
-  tokens.forEach(token => {
-    const num = parseInt(token, 10);
-    if (!isNaN(num) && String(num) === token) {
-      // Es un ID numérico → buscar por productId
-      const match = PRODS.find(p => {
-        const pid = p[12] && p[12].productId;
-        return String(pid) === token;
-      });
-      if (match && !seen.has(match[0])) { found.push(match); seen.add(match[0]); }
-    } else {
-      // Es un nombre de rubro → buscar todos los productos del rubro
-      const cat = CATS.find(c => c.n.toLowerCase() === token.toLowerCase());
-      if (cat) {
-        PRODS.filter(p => p[1] === cat.id).forEach(p => {
-          if (!seen.has(p[0])) { found.push(p); seen.add(p[0]); }
-        });
-      }
-    }
-  });
-  return found;
-}
-
-// Configuración de categorías
-function _escHtml(s) {
-  if (s == null) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-const INSP_CATS = {
-  'Receta':      { emoji:'🍽', bg:'#b07030', light:'#fdf3e8' },
-  'Hierbas':     { emoji:'🌿', bg:'#4a8a62', light:'#eaf4ee' },
-  'Suplementos': { emoji:'💊', bg:'#547692', light:'#e8f0f6' },
-  'Tips':        { emoji:'💡', bg:'#c4853a', light:'#fdf0e3' },
-  'Tops':        { emoji:'⭐', bg:'#8a5a9a', light:'#f3edf7' },
-  'Guías':       { emoji:'📖', bg:'#4a7a9b', light:'#e8f2f8' },
-  'Infusiones':  { emoji:'🫖', bg:'#6a8a3a', light:'#eef4e5' },
-  'Wellness':    { emoji:'🌱', bg:'#5a8a72', light:'#eaf5ef' },
-};
-function _catCfg(cat) {
-  return INSP_CATS[cat] || { emoji:'✨', bg:'var(--azul)', light:'rgba(84,118,146,.08)' };
-}
-
-function _renderFiltrosRecetas() {
-  const cats = [...new Set(RECETAS.map(r => r.categoria).filter(Boolean))]
-    .sort((a, b) => a.localeCompare(b, 'es'));
-  const cont = document.getElementById('recetasFilters');
-  if (!cont) return;
-  let h = '<button class="recetas-filter-chip ' + (_recetasFiltroActivo === '' ? 'active' : '') + '" data-cat="" onclick="filtrarRecetas(\'\')">Todas</button>';
-  cats.forEach(c => {
-    h += '<button class="recetas-filter-chip ' + (_recetasFiltroActivo === c ? 'active' : '') + '" data-cat="' + c + '" onclick="filtrarRecetas(\'' + c.replace(/'/g, "\\'") + '\')">' + c + '</button>';
-  });
-  cont.innerHTML = h;
-}
-
-function filtrarRecetas(cat) {
-  _recetasFiltroActivo = cat;
-  _renderFiltrosRecetas();
-  _renderRecetasGrid();
-}
-window.filtrarRecetas = filtrarRecetas;
-
-function _renderRecetasGrid() {
-  const grid = document.getElementById('recetasGrid');
-  const empty = document.getElementById('recetasEmpty');
-  if (!grid) return;
-  let recetas = RECETAS;
-  if (_recetasFiltroActivo) recetas = recetas.filter(r => r.categoria === _recetasFiltroActivo);
-  if (!recetas.length) { grid.innerHTML = ''; empty.classList.remove('hidden'); return; }
-  empty.classList.add('hidden');
-  let h = '';
-  recetas.forEach((r, i) => {
-    const idx = RECETAS.indexOf(r);
-    const cfg = _catCfg(r.categoria);
-    const thumbSrc = r.miniatura ? _driveToImg(r.miniatura) : '';
-    const thumbHTML = thumbSrc
-      ? '<img src="' + thumbSrc + '" alt="' + _escHtml(r.titulo) + '" loading="lazy" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\'">' +
-        '<div class="insp-card-fallback" style="display:none;background:' + cfg.light + ';color:' + cfg.bg + '">' + cfg.emoji + '</div>'
-      : '<div class="insp-card-fallback" style="background:' + cfg.light + ';color:' + cfg.bg + '">' + cfg.emoji + '</div>';
-    const hasSlides = r.slides && r.slides.length > 0;
-    const typeIcon = hasSlides ? '🗂' : r.urlIG ? '▶' : '📄';
-    let prodChip = '';
-    if (r.productos) {
-      const prods = _resolveRecetaProductos(r.productos);
-      if (prods.length) {
-        prodChip = '<div class="insp-card-prod">🛒 ' + _escHtml(prods.slice(0,2).map(p=>p[2].split(' ')[0]).join(', ')) + (prods.length>2?'...':'') + '</div>';
-      }
-    }
-    h += '<div class="insp-card" onclick="abrirReceta(' + idx + ')">' +
-      '<div class="insp-card-thumb">' + thumbHTML + '</div>' +
-      '<div class="insp-card-body">' +
-        '<div class="insp-card-badge" style="background:' + cfg.bg + '">' + cfg.emoji + ' ' + _escHtml(r.categoria||'') + '</div>' +
-        '<div class="insp-card-title">' + _escHtml(r.titulo) + '</div>' +
-        (r.subtitulo ? '<div class="insp-card-sub">' + _escHtml(r.subtitulo) + '</div>' : '') +
-        (r.tiempo ? '<div class="insp-card-meta"><span>⏱ ' + _escHtml(r.tiempo) + '</span></div>' : '') +
-      '</div>' +
-    '</div>';
-  });
-  grid.innerHTML = h;
-}
-
-
-function _getInstagramEmbedUrl(url) {
-  const id = _getInstagramPostId(url);
-  if (!id) return null;
-  if (url.includes('/reel/')) return 'https://www.instagram.com/reel/' + id + '/embed/captioned/';
-  if (url.includes('/tv/')) return 'https://www.instagram.com/tv/' + id + '/embed/captioned/';
-  return 'https://www.instagram.com/p/' + id + '/embed/captioned/';
-}
-
-var _inspSlideActual = 0;
-var _inspSlideTotalActual = 0;
-
-function abrirReceta(idx, skipHistory) {
-  const r = RECETAS[idx];
-  if (!r) return;
-  _recetaActualIdx = idx;
-  const cfg = _catCfg(r.categoria);
-  const body = document.getElementById('recetaModalBody');
-  let html = '';
-
-  // Hero image
-  if (r.miniatura) {
-    const imgSrc = _driveToImg(r.miniatura);
-    html += '<div class="receta-modal-hero" style="background:' + cfg.light + '">' +
-      '<img src="' + imgSrc + '" alt="' + _escHtml(r.titulo) + '" loading="lazy" onerror="this.parentNode.style.display=\'none\'">' +
-    '</div>';
-  } else {
-    html += '<div class="receta-modal-hero receta-modal-hero-empty" style="background:' + cfg.light + ';color:' + cfg.bg + '">' + cfg.emoji + '</div>';
-  }
-
-  // Badge + tiempo
-  html += '<div class="receta-modal-meta">' +
-    '<span class="insp-card-badge" style="background:' + cfg.bg + '">' + cfg.emoji + ' ' + _escHtml(r.categoria||'') + '</span>' +
-    (r.tiempo ? '<span class="receta-modal-time">⏱ ' + _escHtml(r.tiempo) + '</span>' : '') +
-    '</div>';
-
-  // Subtítulo descriptivo
-  if (r.subtitulo) {
-    html += '<p class="insp-modal-sub">' + _escHtml(r.subtitulo) + '</p>';
-  }
-
-  // SLIDES (carrusel)
-  if (r.slides && r.slides.length > 0) {
-    _inspSlideActual = 0;
-    _inspSlideTotalActual = r.slides.length;
-    html += '<div class="insp-slides-wrap">';
-    html += '<div class="insp-slides-track" id="inspSlidesTrack">';
-    r.slides.forEach((sl, si) => {
-      const slImg = sl.imagen ? _driveToImg(sl.imagen) : '';
-      const cfg2 = _catCfg(r.categoria);
-      html += '<div class="insp-slide">' +
-        (slImg
-          ? '<div class="insp-slide-img"><img src="' + slImg + '" alt="' + _escHtml(sl.titulo) + '" loading="lazy"></div>'
-          : '<div class="insp-slide-img insp-slide-img-empty" style="background:' + cfg2.light + ';color:' + cfg2.bg + '">' + cfg2.emoji + '</div>'
-        ) +
-        '<div class="insp-slide-body">' +
-          '<div class="insp-slide-num">' + (si+1) + ' / ' + r.slides.length + '</div>' +
-          '<div class="insp-slide-title">' + _escHtml(sl.titulo) + '</div>' +
-          '<div class="insp-slide-text">' + _escHtml(sl.texto) + '</div>' +
-        '</div>' +
-      '</div>';
-    });
-    html += '</div>'; // track
-    if (r.slides.length > 1) {
-      html += '<div class="insp-slides-nav">' +
-        '<button class="insp-slide-btn" onclick="inspSlideGo(-1)">‹</button>' +
-        '<div class="insp-slides-dots" id="inspSlidesDots">' +
-          r.slides.map((_, si) => '<span class="insp-slide-dot' + (si===0?' active':'') + '" onclick="inspSlideGoTo(' + si + ')"></span>').join('') +
-        '</div>' +
-        '<button class="insp-slide-btn" onclick="inspSlideGo(1)">›</button>' +
-      '</div>';
-    }
-    html += '</div>'; // wrap
-  }
-
-  // Contenido de texto (si no hay slides)
-  if (r.contenido && (!r.slides || !r.slides.length)) {
-    html += '<div class="insp-modal-content">' + _escHtml(r.contenido).replace(/\n/g, '<br>') + '</div>';
-  }
-
-  // Productos vinculados — pills compactos sin límite
-  const prods = _resolveRecetaProductos(r.productos);
-  if (prods.length) {
-    html += '<div class="insp-modal-prods-title">Productos de esta publicación</div>';
-    html += '<div class="insp-prods-compact">';
-    prods.forEach(p => {
-      html += '<div class="insp-prod-pill insp-prod-link" data-pid="' + p[0] + '" data-cat="' + p[1] + '">' +
-        '<span class="pp-ic">🛒</span>' +
-        '<span class="pp-name">' + _escHtml(p[2]) + '</span>' +
-        '<span class="pp-arr">›</span>' +
-      '</div>';
-    });
-    html += '</div>';
-  }
-
-  // Instagram — link al perfil de Paladear (los reels no se pueden reproducir inline, así que redirigimos al perfil)
-  if (r.urlIG) {
-    html += '<a class="receta-ig-link" href="https://www.instagram.com/palade.ar" target="_blank" rel="noopener noreferrer">'
-      + '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>'
-      + 'Seguinos en Instagram @palade.ar'
-      + '</a>';
-  }
-
-  document.getElementById('recetaModalTitle').textContent = r.titulo;
-  body.innerHTML = html;
-  // Event delegation para productos (pills)
-  body.querySelectorAll('.insp-prod-link[data-pid]').forEach(function(el) {
-    el.addEventListener('click', function() {
-      _irAProductoDesdeReceta(parseInt(el.dataset.pid), el.dataset.cat);
-    });
-  });
-  // Lightbox: recopilar TODAS las imágenes del modal (hero + slides)
-  var allLbImgs = [];
-  var heroImg = body.querySelector('.receta-modal-hero img');
-  if (heroImg) allLbImgs.push(heroImg.src);
-  body.querySelectorAll('.insp-slide-img img').forEach(function(img) { allLbImgs.push(img.src); });
-  // Hero clickeable
-  if (heroImg) {
-    heroImg.style.cursor = 'zoom-in';
-    heroImg.addEventListener('click', function(e) {
-      e.stopPropagation();
-      abrirLightbox(heroImg.src, heroImg.alt, allLbImgs, 0);
-    });
-  }
-  // Slides clickeables
-  body.querySelectorAll('.insp-slide-img img').forEach(function(img, si) {
-    img.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var heroOffset = heroImg ? 1 : 0;
-      abrirLightbox(img.src, img.alt, allLbImgs, heroOffset + si);
-    });
-  });
-  document.getElementById('recetaModalOverlay').classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-  if (!skipHistory) {
-    _palPushOverlay('recetaModal',{recetaIdx:idx});
-  }
-  // Touch swipe para slides
-  _initSlideSwipe();
-}
-window.abrirReceta = abrirReceta;
-
-function inspSlideGo(dir) {
-  inspSlideGoTo(_inspSlideActual + dir);
-}
-window.inspSlideGo = inspSlideGo;
-
-function inspSlideGoTo(i) {
-  const total = _inspSlideTotalActual;
-  _inspSlideActual = Math.max(0, Math.min(i, total - 1));
-  const track = document.getElementById('inspSlidesTrack');
-  if (track) track.style.transform = 'translateX(-' + (_inspSlideActual * 100) + '%)';
-  document.querySelectorAll('.insp-slide-dot').forEach((d, j) => d.classList.toggle('active', j === _inspSlideActual));
-}
-window.inspSlideGoTo = inspSlideGoTo;
-
-function _initSlideSwipe() {
-  const track = document.getElementById('inspSlidesTrack');
-  if (!track || _inspSlideTotalActual <= 1) return;
-  let tx0 = 0;
-  track.addEventListener('touchstart', function(e) { tx0 = e.touches[0].clientX; }, {passive:true, once:false});
-  track.addEventListener('touchend', function(e) {
-    const dx = e.changedTouches[0].clientX - tx0;
-    if (Math.abs(dx) > 40) inspSlideGo(dx < 0 ? 1 : -1);
-  }, {passive:true});
-}
-
-
-function cerrarRecetaModal() {
-  document.getElementById('recetaModalOverlay').classList.add('hidden');
-  document.body.style.overflow = '';
-  document.getElementById('recetaModalBody').innerHTML = '';
-}
-window.cerrarRecetaModal = cerrarRecetaModal;
-
-function _irAProductoDesdeReceta(pid, catId) {
-  const p = PRODS.find(x => x[0] === pid);
-  if (!p) return;
-  // Crear overlay si no existe
-  let ov = document.getElementById('recetaProdOverlay');
-  if (!ov) {
-    ov = document.createElement('div');
-    ov.id = 'recetaProdOverlay';
-    ov.className = 'receta-prod-overlay hidden';
-    ov.innerHTML = '<div class="receta-prod-sheet" id="recetaProdSheet"><button class="receta-prod-sheet-close" id="recetaProdClose">✕</button><div id="recetaProdBody"></div></div>';
-    document.body.appendChild(ov);
-    ov.addEventListener('click', function(e) { if (e.target === ov) cerrarProductoReceta(); });
-    document.getElementById('recetaProdClose').addEventListener('click', cerrarProductoReceta);
-  }
-  const prefix = 'rp';
-  document.getElementById('recetaProdBody').innerHTML = renderCard(p, prefix);
-  const opts = _sortOpts(Object.keys(p[7]));
-  if (opts.length) selOpt(prefix + '_' + p[0], opts[0], p[7][opts[0]][0], p[7][opts[0]][1]);
-  ov.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-  if (!history.state || history.state.view !== 'productReceta') {
-    _palPushOverlay('productReceta');
-  }
-}
-window._irAProductoDesdeReceta = _irAProductoDesdeReceta;
-
-function cerrarProductoReceta() {
-  const ov = document.getElementById('recetaProdOverlay');
-  if (ov) ov.classList.add('hidden');
-  document.body.style.overflow = '';
-}
-window.cerrarProductoReceta = cerrarProductoReceta;
-
-// Mostrar/ocultar sección recetas + cargar si es la primera vez
-function _mostrarRecetas() {
-  cargarRecetas().then(function() {
-    _renderFiltrosRecetas();
-    _renderRecetasGrid();
-  });
-}
-
-// Verificar si un producto tiene receta vinculada
-function _productoTieneReceta(pid, catId) {
-  if (!RECETAS || !RECETAS.length) return null;
-  // Buscar el productId numérico del producto (no el pid interno)
-  const prod = PRODS.find(p => p[0] === pid);
-  if (!prod) return null;
-  const productIdNum = prod[12] && prod[12].productId;
-  for (let i = 0; i < RECETAS.length; i++) {
-    const r = RECETAS[i];
-    if (!r.productos) continue;
-    const tokens = r.productos.split(',').map(s => s.trim());
-    for (const token of tokens) {
-      const num = parseInt(token, 10);
-      if (!isNaN(num) && String(num) === token && String(num) === String(productIdNum)) {
-        return { idx: i, receta: r };
-      }
-      // Rubro
-      const cat = CATS.find(c => c.n.toLowerCase() === token.toLowerCase());
-      if (cat && cat.id === catId) {
-        return { idx: i, receta: r };
-      }
-    }
-  }
-  return null;
-}
-window._productoTieneReceta = _productoTieneReceta;
 
 })(); // fin IIFE
 
@@ -9652,15 +8844,6 @@ window.copiarLinkParaNavegador = function() {
   <div id="lbCounter" class="insp-lb-counter"></div>
 </div>
 
-<div id="recetaModalOverlay" class="receta-modal-overlay hidden" onclick="if(event.target===this)cerrarRecetaModal()">
-  <div class="receta-modal-sheet">
-    <div class="receta-modal-hdr">
-      <h2 id="recetaModalTitle" class="receta-modal-title">Receta</h2>
-      <button class="receta-modal-close" onclick="cerrarRecetaModal()" title="Cerrar">✕</button>
-    </div>
-    <div class="receta-modal-body" id="recetaModalBody"></div>
-  </div>
-</div>
 
 <!-- ═══ MODAL CHECKOUT — ENTREGA Y DATOS ═══ -->
 <div id="checkoutOverlay" class="checkout-overlay hidden" onclick="if(event.target===this)cerrarCheckout()">
@@ -10099,7 +9282,7 @@ window.pintarTableroCats=pintarTableroCats;
    mouse comun solo manda deltaY, que el navegador aplica a la pagina y no al
    carrusel: lo que quedaba fuera de pantalla era inalcanzable. */
 (function(){
-  var SEL='.carousel-track,.recetas-filters,.mix-cat-tabs,.hv-cats-scroller,.cats-mobile-grid,.cat-chips';
+  var SEL='.carousel-track,.mix-cat-tabs,.hv-cats-scroller,.cats-mobile-grid,.cat-chips';
   document.addEventListener('wheel', function(e){
     if (e.deltaX !== 0) return;               // trackpad horizontal: ya anda solo
     if (!e.target || !e.target.closest) return;
