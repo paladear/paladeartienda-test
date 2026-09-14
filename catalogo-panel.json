@@ -5520,9 +5520,11 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "INFUSIONES Y HIERBAS",
-   "origen": "sheet",
+   "origen": "panel",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "oculto": false,
+   "altaOk": true
   },
   "2323": {
    "nombre": "ALOE VERA BEBIBLE DIGESTIVO X250 ML - NATIER",
@@ -10107,6 +10109,7 @@
   "2316": 59400,
   "2317": 12750,
   "2320": 25020,
+  "2322": 10880,
   "2323": 14360,
   "2325": 16820,
   "2326": 2000,
@@ -10354,6 +10357,10 @@
    7310,
    0
   ],
+  "2322": [
+   10880,
+   0
+  ],
   "2413": [
    41830,
    0
@@ -10379,5 +10386,5 @@
    0
   ]
  },
- "actualizado": "2026-09-14T02:26:09.998Z"
+ "actualizado": "2026-09-14T02:26:15.051Z"
 }
