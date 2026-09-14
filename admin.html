@@ -339,8 +339,48 @@ body.buscando .busca-fija{display:flex}
   color:var(--suave);font:700 13.5px/1 inherit;cursor:pointer}
 .tienda-sel button.on{background:var(--papel);color:var(--texto);box-shadow:0 2px 7px rgba(20,45,70,.13)}
 body.es-mayorista .tienda-sel button.on{background:#2f6d99;color:#fff}
-body.es-mayorista #btnSync,body.es-mayorista #btnPublicar,
-body.es-mayorista label[for=fileExcel]{display:none}
+
+/* ── EN QUÉ TIENDA ESTOY ──────────────────────────────────────────────────────
+   Las dos tiendas se ven casi iguales en el panel y es fácil confundirse. Este
+   cartel queda siempre a la vista y cambia de color según cuál esté activa. */
+.cartel-tienda{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 16px;
+  padding:11px 15px;border-radius:11px;font-size:14.5px;
+  background:#e9f2f8;border:1px solid #b6d2e6;color:#1d5480}
+.cartel-tienda b{font-weight:800}
+.ct-punto{width:11px;height:11px;flex:0 0 11px;border-radius:50%;background:#2f6d99;
+  box-shadow:0 0 0 3px rgba(47,109,153,.18)}
+.ct-archivo{margin-left:auto;font-size:12px;font-weight:700;letter-spacing:.02em;
+  padding:3px 9px;border-radius:999px;background:rgba(29,84,128,.10)}
+body.es-mayorista .cartel-tienda{background:#fdf3e3;border-color:#e2c48e;color:#7d5410}
+body.es-mayorista .ct-punto{background:#c98a1e;box-shadow:0 0 0 3px rgba(201,138,30,.20)}
+body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
+@media(max-width:700px){
+  .cartel-tienda{font-size:14px;padding:12px 14px}
+  .ct-archivo{margin-left:0;width:100%;text-align:center}
+}
+
+/* El destino del Excel, dentro de la caja de importación. */
+.excel-destino{margin:12px 0;padding:10px 13px;border-radius:9px;display:flex;
+  flex-direction:column;gap:3px;background:#fdf3e3;border:1px solid #e2c48e;color:#7d5410}
+.excel-destino span{font-size:12.5px;opacity:.9}
+
+/* Las cuentas del Excel contra lo que ya hay, y las alarmas si algo no cierra. */
+.excel-cuentas{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.excel-cuentas span{padding:6px 11px;border-radius:9px;background:var(--papel-2);
+  border:1px solid var(--linea);font-size:13px}
+.excel-cuentas span b{font-size:15px;margin-right:4px}
+.excel-cuentas span.ojo{background:#fdeee0;border-color:#e6b98a;color:#8a4a10}
+.excel-alarma{margin:12px 0 0;padding:12px 14px;border-radius:10px;
+  background:#fdecec;border:1px solid #e8a8a8;color:#8a1f1f;font-size:13.5px;line-height:1.5}
+.excel-alarma ul{margin:6px 0 0;padding-left:20px}
+.excel-alarma li{margin:3px 0}
+.excel-saltos{display:flex;flex-direction:column;gap:3px;margin:9px 0 0;padding:9px 11px;
+  border-radius:8px;background:rgba(138,31,31,.07);font-size:12.5px}
+.excel-alarma-pie{display:block;margin-top:9px;font-size:12.5px;opacity:.85}
+.btn.peligro{background:#b4392f;border-color:#b4392f}
+.btn.peligro:hover{background:#9c3028}
+.excel-caja.ojo{border-color:#e6b98a;background:#fffaf3}
+body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
 .excel-caja{margin-top:13px;padding:14px 16px;border:1px solid var(--linea);border-radius:13px;
   background:var(--papel);font-size:13.5px;line-height:1.6;color:var(--texto)}
 .excel-caja.ok{border-color:#bcd9c4;background:#f4faf6}
@@ -690,12 +730,17 @@ body.es-mayorista label[for=fileExcel]{display:none}
     <button type="button" data-t="min" class="on">Tienda minorista</button>
     <button type="button" data-t="may">Distribuidora</button>
   </div>
+  <div class="cartel-tienda" id="cartelTienda" role="status">
+    <span class="ct-punto"></span>
+    <span>Estás trabajando en <b id="ctNombre">la Tienda minorista</b></span>
+    <span class="ct-archivo" id="ctArchivo">paladeartienda-test</span>
+  </div>
   <div class="tarjetas" id="kpis"></div>
   <div class="barra acciones">
     <button class="btn primario" id="btnVistos" onclick="marcarPreciosRevisados()" title="Aprueba de una vez todos los precios que esperan tu OK" hidden>Dar el OK a todos los precios</button>
     <button class="btn primario" id="btnPublicar" title="Publica en la tienda los precios que tiene E-Pyme ahora">Publicar precios en la tienda</button>
     <label class="btn primario" for="fileExcel" title="Por si falla el pase automático: subí el mismo Excel que cargás al Sheet">Subir Excel de precios</label>
-    <input type="file" id="fileExcel" class="foto-input" accept=".xlsx,.xls,.xlsm,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv">
+    <input type="file" id="fileExcel" class="foto-input">
     <button class="btn gris" id="btnSync">Traer del Sheet</button>
     <button class="btn gris" id="btnDesc">Descuento por rubro</button>
     <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
@@ -746,6 +791,11 @@ var PRECIOS_APROBADOS = {};     // {id: [p1, p2]}
 var ORDEN = 'cambios';          // como se ordena la lista
 var GUARDANDO_VISTOS = false;
 function repoActivo(){ return TIENDA === 'may' ? REPO_MAY : REPO; }
+/* Cómo se llama y dónde guarda cada tienda. Se usa en todos los avisos para que
+   nunca haya dudas de sobre cuál de las dos se está trabajando. */
+function nombreTienda(){ return TIENDA === 'may' ? 'la Distribuidora (mayorista)' : 'la Tienda minorista'; }
+function nombreCorto(){ return TIENDA === 'may' ? 'Distribuidora' : 'Tienda minorista'; }
+function archivoPrecios(){ return TIENDA === 'may' ? 'precios-may.csv' : 'precios-min.csv'; }
 const LS_TOKEN = 'paladear_panel_token';
 
 let TOKEN = '';
@@ -2145,13 +2195,16 @@ function excelCol(hdr, alternativas){
 }
 
 function excelTexto(v){ return String(v == null ? '' : v).trim(); }
+function bytesDe(buf){ return new Uint8Array(buf); }
 
 // Deja el número como lo escribe el Excel argentino: 1.234,56
 function excelPrecio(v){
   if (v == null || v === '') return '';
   if (typeof v === 'number') return v.toLocaleString('es-AR', {minimumFractionDigits:2, maximumFractionDigits:2});
   var t = String(v).trim().replace(/^\$\s*/, '');
-  return t;
+  // Viene como texto: se lleva al mismo formato que usa la lista (1.234,56).
+  var n = excelAPesos(t);
+  return n ? n.toLocaleString('es-AR', {minimumFractionDigits:2, maximumFractionDigits:2}) : t;
 }
 
 function excelCelda(t){
@@ -2162,12 +2215,31 @@ function excelCelda(t){
 function excelLeer(file){
   var caja = $('excelCaja');
   caja.innerHTML = '<div class="excel-caja">Leyendo ' + esc(file.name) + '...</div>';
+  // Se valida acá y no con `accept`: iOS deja en gris los .xlsx si el input filtra por MIME.
+  if (!/\.(xlsx|xlsm|xls|csv)$/i.test(file.name || '')) {
+    caja.innerHTML = '<div class="excel-caja mal">Eso no es un Excel ni un CSV (' +
+      esc(file.name || 'sin nombre') + '). Elegí un archivo .xlsx, .xls o .csv.</div>';
+    var iX=$('fileExcel'); if(iX) iX.value=''; return;
+  }
   var lector = new FileReader();
   lector.onerror = function(){ caja.innerHTML = '<div class="excel-caja mal">No pude leer el archivo.</div>'; };
   lector.onload = function(e){
     try {
       if (typeof XLSX === 'undefined') throw new Error('no cargó la librería para leer Excel');
-      var wb = XLSX.read(e.target.result, {type:'binary'});
+      // Un .xlsx viene con su propia codificación adentro y se lee como bytes.
+      // Un .csv no dice en qué está: el de E-Pyme sale en Windows/latin, y si se
+      // lo lee como UTF-8 la "í" de Artículo llega rota y esa columna se pierde.
+      var wb;
+      if (/\.csv$/i.test(file.name || '')) {
+        var bytes = new Uint8Array(e.target.result), texto;
+        try { texto = new TextDecoder('utf-8', {fatal:true}).decode(bytes); }
+        catch (e1) { texto = new TextDecoder('windows-1252').decode(bytes); }
+        // raw:true = no interpretar nada. Si no, "4.070,00" se lee como 4,07:
+        // toma el punto como decimal y el precio queda mil veces más barato.
+        wb = XLSX.read(texto, {type:'string', raw:true});
+      } else {
+        wb = XLSX.read(bytesDe(e.target.result), {type:'array', cellDates:false});
+      }
       // Si el libro tiene varias hojas, se usa la que se llame "precios"; si no, la primera.
       var nom = wb.SheetNames.find(function(n){ return /precio/i.test(n); }) || wb.SheetNames[0];
       var filas = XLSX.utils.sheet_to_json(wb.Sheets[nom], {header:1, defval:''});
@@ -2179,9 +2251,12 @@ function excelLeer(file){
       var hdr = filas[iHdr];
       var cId  = excelCol(hdr, ['articulo','codigo','cod','sku','id']);
       var cNom = excelCol(hdr, ['nombre','producto','descripcion','detalle']);
-      var cP1  = excelCol(hdr, ['bt.lista 1','lista 1','precio 1','precio','lista1','publico']);
+      var cP1  = excelCol(hdr, ['bt.lista 1','lista 1','precio 1','lista1','publico',
+                                'precios sin iva','precio sin iva','sin iva','precios','precio']);
       var cP2  = excelCol(hdr, ['bt.lista 2','lista 2','precio 2','lista2','mayorista']);
       var cRub = excelCol(hdr, ['rubro','categoria','familia','grupo']);
+      // Solo la lista mayorista trae el bulto ("Patente": 6 unid., 1 kg, etc.).
+      var cPat = excelCol(hdr, ['patente','cantidad por bulto','bulto','presentacion','presentación']);
       if (cNom < 0 || cP1 < 0) throw new Error('no encontré las columnas de Nombre y de precio (Bt.LISTA 1)');
 
       var datos = filas.slice(iHdr + 1).map(function(f){
@@ -2190,7 +2265,8 @@ function excelLeer(file){
           p1: excelPrecio(f[cP1]),
           p2: cP2 >= 0 ? excelPrecio(f[cP2]) : '',
           rubro: cRub >= 0 ? excelTexto(f[cRub]) : '',
-          id: cId >= 0 ? excelPrecio(f[cId]) : ''
+          id: cId >= 0 ? limpiaId(f[cId]) : '',
+          patente: cPat >= 0 ? excelTexto(f[cPat]) : ''
         };
       }).filter(function(x){ return x.nombre && x.p1; });
 
@@ -2200,18 +2276,103 @@ function excelLeer(file){
       var cols = [];
       if (cId>=0) cols.push('Artículo'); cols.push('Nombre'); cols.push('Bt.LISTA 1');
       if (cP2>=0) cols.push('Bt.LISTA 2'); if (cRub>=0) cols.push('Rubro');
+      if (cPat>=0) cols.push('Patente');
+      // Que quede clarísimo a qué tienda van a parar estos precios.
+      var destino = nombreTienda(), archivo = archivoPrecios();
+      // La tienda mayorista todavía saca sus precios del Google Sheet, no de este
+      // archivo. Decirlo acá evita creer que el sitio ya quedó actualizado.
+      var nota = (TIENDA === 'may')
+        ? '<span>Se reescribe ' + esc(archivo) + ', que es lo que ves <b>en este panel</b>. ' +
+          'La web de la distribuidora sigue tomando sus precios del Google Sheet: para que los vea el cliente, ' +
+          'subí el Excel al Sheet como siempre.</span>'
+        : '<span>Se reescribe ' + esc(archivo) + ', que es de donde la tienda saca los precios.</span>';
+      var rev = excelRevisar(datos);
+      var resumen = '<div class="excel-cuentas">' +
+        '<span><b>' + rev.total + '</b> en el Excel</span>' +
+        '<span><b>' + rev.cruzan + '</b> ya estaban</span>' +
+        '<span><b>' + rev.nuevos + '</b> nuevos</span>' +
+        '<span class="' + (rev.faltan ? 'ojo' : '') + '"><b>' + rev.faltan + '</b> no vienen</span>' +
+        '</div>';
+      var aviso = '';
+      if (rev.alarmas.length) {
+        aviso = '<div class="excel-alarma"><b>Pará un momento, esto no cierra:</b><ul>' +
+          rev.alarmas.map(function(a){ return '<li>' + a + '</li>'; }).join('') + '</ul>';
+        if (rev.saltos.length) {
+          aviso += '<div class="excel-saltos">' + rev.saltos.slice(0,4).map(function(x){
+            return '<span>' + esc(String(x.nombre).slice(0,30)) + ': $' +
+              Math.round(x.antes).toLocaleString('es-AR') + ' &rarr; $' +
+              Math.round(x.ahora).toLocaleString('es-AR') + '</span>'; }).join('') +
+            (rev.saltos.length > 4 ? '<span>y ' + (rev.saltos.length - 4) + ' más</span>' : '') + '</div>';
+        }
+        aviso += '<span class="excel-alarma-pie">Si igual estás seguro, podés publicar. Si no, cancelá y revisá el Excel.</span></div>';
+      }
       caja.innerHTML =
-        '<div class="excel-caja ok"><b>' + datos.length + ' productos leídos</b> de la hoja "' + esc(nom) + '".<br>' +
+        '<div class="excel-caja ' + (rev.alarmas.length ? 'ojo' : 'ok') + '">' +
+        '<b>' + datos.length + ' productos leídos</b> de la hoja "' + esc(nom) + '".<br>' +
         'Columnas reconocidas: ' + esc(cols.join(' · ')) + '.<br>' +
-        '<span style="opacity:.75">Ejemplo: ' + esc(datos[0].nombre.slice(0,42)) + ' — $' + esc(datos[0].p1) + '</span><br><br>' +
-        '<button class="btn" onclick="excelPublicar()">Publicar estos precios en la tienda</button> ' +
+        '<span style="opacity:.75">Ejemplo: ' + esc(datos[0].nombre.slice(0,42)) + ' — $' + esc(datos[0].p1) + '</span>' +
+        resumen + aviso +
+        '<div class="excel-destino"><b>Destino: ' + esc(destino) + '</b>' + nota +
+        '<span>Si no es la que querés, cancelá y cambiá de tienda arriba.</span></div>' +
+        '<button class="btn' + (rev.alarmas.length ? ' peligro' : '') + '" onclick="excelPublicar()">' +
+        (rev.alarmas.length ? 'Publicar igual en ' : 'Publicar en ') + esc(nombreCorto()) + '</button> ' +
         '<button class="btn gris" onclick="excelCancelar()">Cancelar</button></div>';
     } catch (err) {
       EXCEL_FILAS = null;
       caja.innerHTML = '<div class="excel-caja mal">No pude usar el archivo: ' + esc(err.message) + '</div>';
     }
   };
-  lector.readAsBinaryString(file);
+  // readAsBinaryString está obsoleto y en iOS devuelve basura con archivos grandes.
+  lector.readAsArrayBuffer(file);
+}
+
+/* ── CONTROL ANTES DE PUBLICAR ────────────────────────────────────────────────
+   Un Excel mal exportado puede traer los precios corridos, el punto decimal en
+   otro lado o media lista faltante. Antes de pisar nada se compara con lo que
+   hay hoy y se avisa si algo no cierra. */
+function excelAPesos(txt){
+  var t = String(txt == null ? '' : txt).replace(/[^\d.,-]/g, '');
+  if (!t) return 0;
+  // Formato argentino: el punto separa miles y la coma los centavos.
+  if (t.indexOf(',') >= 0) t = t.replace(/\./g, '').replace(',', '.');
+  else if ((t.match(/\./g) || []).length > 1) t = t.replace(/\./g, '');
+  var n = parseFloat(t);
+  return isNaN(n) ? 0 : n;
+}
+
+function excelRevisar(datos){
+  var actuales = {};
+  PRODUCTOS.forEach(function(p){ if (p.p1 > 0) actuales[p.id] = p.p1; });
+  var r = { total: datos.length, hoy: Object.keys(actuales).length, sinId: 0,
+            cruzan: 0, nuevos: 0, faltan: 0, saltos: [], iguales: 0 };
+  var vistos = {};
+  datos.forEach(function(d){
+    var id = limpiaId(d.id);
+    if (!id) { r.sinId++; return; }
+    vistos[id] = true;
+    var antes = actuales[id];
+    if (antes === undefined) { r.nuevos++; return; }
+    r.cruzan++;
+    var ahora = excelAPesos(d.p1);
+    if (!ahora || !antes) return;
+    var veces = ahora / antes;
+    if (Math.abs(ahora - antes) < 1) { r.iguales++; return; }
+    // Un precio que se multiplica o se divide por más de 3 casi siempre es un
+    // error de formato, no un cambio de precio real.
+    if (veces >= 3 || veces <= 0.34) r.saltos.push({ id: id, nombre: d.nombre, antes: antes, ahora: ahora, veces: veces });
+  });
+  Object.keys(actuales).forEach(function(id){ if (!vistos[id]) r.faltan++; });
+  r.alarmas = [];
+  if (r.sinId === datos.length && datos.length)
+    r.alarmas.push('Ninguna fila trae número de artículo. Revisá que el Excel tenga la columna <b>Artículo</b>.');
+  if (r.saltos.length)
+    r.alarmas.push('<b>' + r.saltos.length + ' precio' + (r.saltos.length===1?'':'s') + '</b> cambia' +
+      (r.saltos.length===1?'':'n') + ' más de 3 veces su valor. Suele ser el punto decimal mal puesto.');
+  if (r.hoy && r.faltan > r.hoy * 0.2)
+    r.alarmas.push('Faltan <b>' + r.faltan + '</b> productos que hoy sí están. El Excel podría estar incompleto.');
+  if (r.hoy && r.cruzan < r.hoy * 0.5 && r.total)
+    r.alarmas.push('Solo <b>' + r.cruzan + '</b> de los ' + r.hoy + ' productos actuales aparecen en el Excel.');
+  return r;
 }
 
 function excelCancelar(){ EXCEL_FILAS = null; $('excelCaja').innerHTML = ''; var i=$('fileExcel'); if(i) i.value=''; }
@@ -2220,17 +2381,29 @@ async function excelPublicar(){
   if (!EXCEL_FILAS || !EXCEL_FILAS.length) return;
   var caja = $('excelCaja');
   caja.innerHTML = '<div class="excel-caja">Publicando...</div>';
+  var esMay = TIENDA === 'may';
   try {
-    // Se arma el mismo CSV que genera el pase automático, con sus dos columnas vacías al inicio.
-    var lineas = [',,Nombre,Bt.LISTA 1,Bt.LISTA 2,Rubro,Artículo'];
-    EXCEL_FILAS.forEach(function(p){
-      lineas.push(',,' + [p.nombre, p.p1, p.p2, p.rubro, p.id].map(excelCelda).join(','));
-    });
-    var csv = lineas.join('\n') + '\n';
-    await guardarEnRepo('precios-min.csv', aB64(csv),
-      'Precios actualizados desde el Excel (' + EXCEL_FILAS.length + ' productos)');
+    // Se arma el mismo CSV que genera el pase automático, con sus dos columnas
+    // vacías al inicio. Cada tienda tiene su propio orden de columnas.
+    var lineas, csv;
+    if (esMay) {
+      lineas = [',,Rubro,Artículo,Nombre,Bt.LISTA 1,Patente'];
+      EXCEL_FILAS.forEach(function(p){
+        lineas.push(',,' + [p.rubro, p.id, p.nombre, p.p1, p.patente || ''].map(excelCelda).join(','));
+      });
+    } else {
+      lineas = [',,Nombre,Bt.LISTA 1,Bt.LISTA 2,Rubro,Artículo'];
+      EXCEL_FILAS.forEach(function(p){
+        lineas.push(',,' + [p.nombre, p.p1, p.p2, p.rubro, p.id].map(excelCelda).join(','));
+      });
+    }
+    csv = lineas.join('\n') + '\n';
+    await guardarEnRepo(archivoPrecios(), aB64(csv),
+      'Precios de ' + nombreTienda() + ' actualizados desde el Excel (' + EXCEL_FILAS.length + ' productos)');
     caja.innerHTML = '<div class="excel-caja ok"><b>Listo.</b> Se publicaron ' + EXCEL_FILAS.length +
-      ' precios. La tienda los toma en unos minutos.</div>';
+      ' precios en <b>' + esc(nombreTienda()) + '</b>. ' +
+      (esMay ? 'Ya los ves acá en el panel; la web de la distribuidora sigue leyendo el Google Sheet.'
+             : 'La tienda los toma en unos minutos.') + '</div>';
     EXCEL_FILAS = null;
     var i=$('fileExcel'); if(i) i.value='';
   } catch (err) {
@@ -2455,11 +2628,20 @@ async function cambiarTienda(cual){
     b.classList.toggle('on', b.dataset.t === TIENDA);
   });
   document.body.classList.toggle('es-mayorista', TIENDA === 'may');
+  pintarCartelTienda();
   try { llenarRubros(); } catch(e) {}
   try { pintarKpis(); } catch(e) {}
   pintar();
 }
 window.cambiarTienda = cambiarTienda;
+
+/* El cartel de arriba dice siempre en cuál de las dos tiendas estás parado. */
+function pintarCartelTienda(){
+  var n = document.getElementById('ctNombre'), a = document.getElementById('ctArchivo');
+  if (n) n.textContent = nombreTienda();
+  if (a) a.textContent = repoActivo().split('/').pop();
+}
+pintarCartelTienda();
 
 document.addEventListener('click', function(ev){
   var b = ev.target.closest && ev.target.closest('.tienda-sel button');
