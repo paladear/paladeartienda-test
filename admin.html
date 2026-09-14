@@ -2265,9 +2265,21 @@ function armarProductosMay(){
 
 async function cargarFichasMay(){
   try {
-    var r = await fetch('https://paladear.github.io/paladeardistribuidora-test/catalogo-panel.json?t=' + Date.now(), {cache:'no-store'});
+    var base = 'https://paladear.github.io/paladeardistribuidora-test/';
+    var r = await fetch(base + 'catalogo-panel.json?t=' + Date.now(), {cache:'no-store'});
     var j = r.ok ? await r.json() : {};
-    return { fichas: j.fichas || {}, fotos: j.fotos || {} };
+    var fotos = j.fotos || {};
+    // Las fotos compartidas viven como archivos sueltos; el índice dice cuáles hay.
+    try {
+      var ri = await fetch(base + 'fotos-propias.json?t=' + Date.now(), {cache:'no-store'});
+      if (ri.ok) {
+        var idx = await ri.json();
+        Object.keys(idx || {}).forEach(function(id){
+          if (!fotos[id]) fotos[id] = { ext: idx[id], v: 1 };
+        });
+      }
+    } catch(e) {}
+    return { fichas: j.fichas || {}, fotos: fotos };
   } catch (e) {
     console.warn('[panel] la distribuidora todavía no tiene fichas guardadas:', e && e.message);
     return { fichas: {}, fotos: {} };
@@ -2565,6 +2577,18 @@ async function cmpCompartir(){
       ok++;
     } catch (e) { mal++; }
   }
+  // La tienda mayorista necesita saber cuáles tienen foto propia: si no, sigue
+  // mostrando las de Cloudinary aunque el archivo ya esté subido.
+  try {
+    var indice = {};
+    try {
+      var prev = await gh('/contents/fotos-propias.json?ref=main', null, REPO_MAY);
+      indice = JSON.parse(decodeURIComponent(escape(atob((prev.content||'').replace(/\n/g,''))))) || {};
+    } catch(e) {}
+    ids.forEach(function(id){ indice[id] = (fotos[id] && fotos[id].ext) || 'webp'; });
+    await guardarEnRepo('fotos-propias.json', aB64(JSON.stringify(indice, null, 1)),
+      'Índice de fotos propias (' + Object.keys(indice).length + ')', 0, REPO_MAY);
+  } catch(e) {}
   b.disabled = false; b.textContent = 'Compartir las marcadas';
   $('cmpEstado').innerHTML = '<span class="ok">' + ok + ' compartidas</span>' +
     (mal ? ' · <span class="malo">' + mal + ' fallaron</span>' : '');
