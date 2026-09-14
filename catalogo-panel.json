@@ -605,7 +605,7 @@
   },
   "1134": {
    "nombre": "AVELLANAS SIN CASCARA",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Avellanas de sabor delicado y textura crocante, ideales para colaciones, chocolates y repostería. Aportan grasas insaturadas, fibra, vitamina E y minerales como magnesio y cobre.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1aJSoUs-mQkVvjAII9QM7n73cIpDNFwmr/view",
@@ -857,7 +857,7 @@
   },
   "1180": {
    "nombre": "CASTAÑAS CAJU",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Fruto seco de textura crocante, ideal para colaciones, granolas y preparaciones. Aporta grasas insaturadas, proteína vegetal, fibra y minerales.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1Xoz8PXa0yjIg4WT0HIART70CGIFopFWP/view",
@@ -1694,7 +1694,7 @@
   },
   "1365": {
    "nombre": "MAIZ FRITO SALADO",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Maíz frito de textura muy crocante y sabor salado, pensado para picadas y colaciones. Un snack sabroso, rendidor y perfecto para compartir.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1w8K6DYN0lCj_gFSuXDq3dJ_uV1nPv9cf/view",
@@ -1740,7 +1740,7 @@
   },
   "1378": {
    "nombre": "MANI JAPONES",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Maní de sabor tostado y textura crocante, práctico para colaciones y picadas. Aporta proteína vegetal, grasas mayormente insaturadas, fibra y minerales; sodio y aceites agregados dependen de la preparación.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1FDunmm6i6iGRFgxhkqK2B2qQIfSVnSZg/view",
@@ -1757,7 +1757,7 @@
   },
   "1379": {
    "nombre": "MANI SABORIZADO",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Maní de sabor tostado y textura crocante, práctico para colaciones y picadas. Aporta proteína vegetal, grasas mayormente insaturadas, fibra y minerales; sodio y aceites agregados dependen de la preparación.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1QI0JfVC4Lyj9OaS3TMhuDQEx1ywEHv8M/view",
@@ -1774,7 +1774,7 @@
   },
   "1380": {
    "nombre": "MANI TOSTADO SALADO",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Maní de sabor tostado y textura crocante, práctico para colaciones y picadas. Aporta proteína vegetal, grasas mayormente insaturadas, fibra y minerales; sodio y aceites agregados dependen de la preparación.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1aEl6_09KtMcXJIFFqzh82v3nytZX3UfZ/view",
@@ -1791,7 +1791,7 @@
   },
   "1381": {
    "nombre": "MANI TOSTADO SIN SAL",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Maní de sabor tostado y textura crocante, práctico para colaciones y picadas. Aporta proteína vegetal, grasas mayormente insaturadas, fibra y minerales; sodio y aceites agregados dependen de la preparación.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1WjRKtTo5EirWVe7gwDKwjb6O93qfG_J6/view",
@@ -1894,7 +1894,7 @@
   },
   "1416": {
    "nombre": "MIX CERVECERO",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "El mix cervecero es una combinación de snacks salados pensada para acompañar bebidas. Incluye maní salado, maíz frito y maní rebozado, logrando un equilibrio entre crocante y sabor intenso. Es ideal para picadas y momentos sociales.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1OCCwZkBFZdM5oEWywgt5TXQ1goqX7DwU/view",
@@ -1961,7 +1961,7 @@
   },
   "1426": {
    "nombre": "MIX PATAGONICO",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Intenso y equilibrado: Nuez, Almendras, Castañas, Pasas\nMorochas, Arándanos, Frutilla Glaseada y Coco En Escamas.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/15FkU9Z-6lQxlQEVG2LpSA6SAIQ6JsNjA/view",
@@ -1978,7 +1978,7 @@
   },
   "1429": {
    "nombre": "MIX TRADICIONAL",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Un clásico que nunca falla: Nueces, Almendras, Pasas\nRubias, Pasas Morochas y Maní.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1-roSiofiHxkMmDM-Bd_K_DBgWcXC8Ge0/view",
@@ -1995,7 +1995,7 @@
   },
   "1430": {
    "nombre": "MIX TROPICAL",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Para los que buscan un toque exótico: Nuez, Almendras, Maní Tostado,\nCastañas, Pasas Morochas y Rubias, Fruta Glaseada y Chips De Banana.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1GoCWwa9uCvBeTnZeY6KA0pYRGoSCytkb/view",
@@ -2054,7 +2054,7 @@
   },
   "1446": {
    "nombre": "NUEZ CON CASCARA",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Nueces de sabor suave y textura crocante, ideales para colaciones, ensaladas y repostería. Aportan grasas poliinsaturadas, incluido omega 3 vegetal, además de fibra, proteína y minerales.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1CyU_LATUzon6ngDDu-XQ0RTSmr-E_1nj/view",
@@ -2071,7 +2071,7 @@
   },
   "1450": {
    "nombre": "NUEZ MARIPOSA LIGHT",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Nueces de sabor suave y textura crocante, ideales para colaciones, ensaladas y repostería. Aportan grasas poliinsaturadas, incluido omega 3 vegetal, además de fibra, proteína y minerales.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1rjXARkriZMbrdSDNvJ7iOKfGBHxI-Pki/view",
@@ -2233,7 +2233,7 @@
   },
   "1488": {
    "nombre": "PERAS WILLIAMS",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Fruta deshidratada de sabor concentrado y textura agradable, práctica para colaciones, granolas y repostería. Aporta hidratos de carbono, fibra y minerales, además de un dulzor frutal muy versátil.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1G2SEtD_Q1ayam3utq_qterHqoY4_g2kP/view",
@@ -2418,7 +2418,7 @@
   },
   "1522": {
    "nombre": "PISTACHOS CON CASCARA",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "sabores": "",
    "desc": "Pistachos de sabor delicado y textura crocante, prácticos para colaciones, picadas y repostería. Aportan grasas insaturadas, proteína vegetal, fibra, potasio y vitamina B6.",
    "oferta": 0,
@@ -2827,7 +2827,7 @@
   },
   "1587": {
    "nombre": "SEMILLA DE ZAPALLO PELADO",
-   "cantidades": "100G/250G/1KG",
+   "cantidades": "50G/100G/250G/1KG",
    "desc": "Semillas de zapallo peladas, de textura crocante y sabor suave, ideales para colaciones, ensaladas y panes. Aportan grasas insaturadas, proteína vegetal, magnesio, zinc y hierro.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1U5Jqu_LvImJMk1FQxUZXFHfBOJTdhqU3/view",
@@ -3100,7 +3100,7 @@
   },
   "1660": {
    "nombre": "MIX SALADO",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Ideal para picadas: Maní, Pasas De Uva Rubia, Castañas De\nCajú, Almendras.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1eZQKbgdKDK9dmVT4r8IdA7CZyNIe_QLq/view",
@@ -3302,7 +3302,7 @@
   },
   "1716": {
    "nombre": "NUEZ MARIPOSA EXTRA LIGHT",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Nueces de sabor suave y textura crocante, ideales para colaciones, ensaladas y repostería. Aportan grasas poliinsaturadas, incluido omega 3 vegetal, además de fibra, proteína y minerales.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/167aPKGseonfAupfKO_SlZyXf4KgRZuGN/view",
@@ -3439,7 +3439,7 @@
   },
   "1842": {
    "nombre": "ALMENDRAS NONPAREIL",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Almendras de sabor suave y textura crocante, prácticas para colaciones, granolas, repostería y ensaladas. Aportan grasas insaturadas, proteína vegetal, fibra, vitamina E y minerales como el magnesio.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/16PznJURYBrA658AwGfRM2tXNLzkz196Y/view",
@@ -5121,7 +5121,7 @@
   },
   "2228": {
    "nombre": "MIX IMPERIAL",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Puro sabor, sin pasas: Nuez Mariposa Extra Light,\nAlmendras Nonpareil, Castañas y Maní Tostado.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1mxIbgm9P-xQtXref_PIV0oxiCeJH0WBC/view",
@@ -5899,7 +5899,7 @@
   },
   "2369": {
    "nombre": "PISTACHOS NATURALES SIN CASCARA",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Pistachos de sabor delicado y textura crocante, prácticos para colaciones, picadas y repostería. Aportan grasas insaturadas, proteína vegetal, fibra, potasio y vitamina B6.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1ao2TPp5bV6oht4e9lYmJGp2QLY5VMn9q/view",
@@ -7123,7 +7123,7 @@
   },
   "4453": {
    "nombre": "NUEZ DE BRASIL",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Nueces de Brasil de textura cremosa y sabor suave, ideales para colaciones y mezclas. Aportan grasas insaturadas, proteína vegetal, fibra y selenio.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/17a3w7qdy8D4B_Uqz2l__2mTjwdeG3his/view",
@@ -7538,7 +7538,7 @@
   },
   "5029": {
    "nombre": "NUEZ PECAN",
-   "cantidades": "250G/500G/1KG",
+   "cantidades": "100G/250G/500G/1KG",
    "desc": "Nuez pecán de sabor suave y textura crocante, fuente de grasas insaturadas, fibra y minerales. Ideal como snack, en ensaladas, granolas y repostería.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1dZUjWQHF6h5rsDysfV-ufxUtCWv5qXtz/view",
@@ -7723,7 +7723,7 @@
   },
   "5044": {
    "nombre": "MANZANILLA IMPORTADA",
-   "cantidades": "50G/250G/1KG",
+   "cantidades": "50G/100G/250G/1KG",
    "desc": "Manzanilla importada de flores aromáticas y sabor suave, ideal para preparar una infusión delicada. Tradicionalmente elegida para acompañar la digestión y los momentos de calma.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1L6DE-kS8DdyzVqNfsNGErBmOR4jwCai9/view",
@@ -7825,7 +7825,7 @@
   },
   "5052": {
    "nombre": "CREMA DE JARRILLA",
-   "cantidades": "",
+   "cantidades": "1 UNIDAD",
    "desc": "",
    "sabores": "",
    "oferta": 0,
@@ -7836,7 +7836,7 @@
   },
   "5053": {
    "nombre": "BALSAMO LABIAL",
-   "cantidades": "",
+   "cantidades": "1 UNIDAD",
    "desc": "",
    "sabores": "",
    "oferta": 0,

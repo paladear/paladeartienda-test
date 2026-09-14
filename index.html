@@ -4552,8 +4552,6 @@ function sendChat(){
 
 /* ── CARGA DESDE SHEETS ── */
 // URL pública de la hoja "Info" como CSV. Se completa cuando la publiques.
-// Va a ser algo tipo: https://docs.google.com/spreadsheets/d/e/XXXXXX/pub?gid=YYY&single=true&output=csv
-const INFO_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT2RlZaSdlV-aaVGUw7YI9MVE1MHjopNhbjTOfWBZwPNo_clhJUao2KNcNowEzsdBGpd2Bh5-2rt1aH/pub?gid=1603230501&single=true&output=csv';
 
 function _parseCSV(csv){
   const rows=[];
@@ -4611,17 +4609,6 @@ function _parseCantidades(str){
   return items.length?items:null;
 }
 
-// El panel puede conservar una ficha anterior de tres medidas aunque la tienda
-// oficial ya tenga cuatro. En ese caso se usa la lista más completa; si el panel
-// agregó más opciones que la hoja, su edición sigue teniendo prioridad.
-function _cantidadesMasCompletas(panelRaw,sheetVals){
-  const panelVals=_parseCantidades(panelRaw)||[];
-  const hojaVals=Array.isArray(sheetVals)?sheetVals:[];
-  if(!panelVals.length)return hojaVals.length?hojaVals:null;
-  if(hojaVals.length>panelVals.length)return hojaVals;
-  return panelVals;
-}
-
 // Dada una opción (ej "250g", "1 kg", "1 unidad") y precios base (precio por kg o por und),
 // calcula el precio final para esa opción
 function _calcPrecioOpc(opc,p1,p2,esKg){
@@ -4639,41 +4626,6 @@ function _calcPrecioOpc(opc,p1,p2,esKg){
   return [p1,p2];
 }
 
-// Carga hoja Info. Intenta primero el archivo estático del repo (cacheable por SW),
-// si no está disponible cae al CSV directo del Sheet.
-function _cargarInfo(){
-  return new Promise(resolve=>{
-    function _procesar(csv){
-      const filas=_parseCSV(csv);
-      const mapa={};
-      filas.forEach((cols,idx)=>{
-        if(idx===0||cols.length<1)return;
-        const nombre=(cols[0]||'').replace(/^"|"$/g,'').trim();
-        if(!nombre)return;
-        const id=(cols[6]||'').replace(/^"|"$/g,'').trim().replace(/\./g,'').replace(/,.*$/,'');
-        const k=id||_norm(nombre);
-        const entrada={
-          nombre:nombre,
-          cantidades:_parseCantidades((cols[1]||'').replace(/^"|"$/g,'').trim()),
-          info:(cols[2]||'').replace(/^"|"$/g,'').trim(),
-          sabores:_parseCantidades((cols[3]||'').replace(/^"|"$/g,'').trim()),
-          imagen:_driveToImg((cols[4]||'').replace(/^"|"$/g,'').trim()),
-          mix:/^si$/i.test((cols[5]||'').replace(/^"|"$/g,'').trim()),
-          oferta:parseInt((cols[7]||'').replace(/^"|"$/g,'').trim().replace('%',''))||0
-        };
-        mapa[k]=entrada;
-        if(id&&_norm(nombre)!==id)mapa[_norm(nombre)]=entrada;
-      });
-      console.log(`📘 Info: ${Object.keys(mapa).length} entradas cargadas`);
-      resolve(mapa);
-    }
-    // Cargar directamente desde Sheet (GID estable, el usuario nunca reemplaza esta hoja)
-    if(!INFO_CSV_URL||INFO_CSV_URL.indexOf('REEMPLAZAR')>=0){console.warn('ℹ️ Hoja Info no configurada aún');resolve({});return;}
-    fetch(INFO_CSV_URL+'&t='+Date.now(),{cache:'no-store'})
-      .then(r=>r.text()).then(csv=>_procesar(csv))
-      .catch(err=>{console.warn('⚠️ Error cargando Info:',err);resolve({});});
-  });
-}
 
 /* ── LO QUE SE EDITA EN EL PANEL ──────────────────────────────────────────────
    El panel (admin.html) guarda las fichas en catalogo-panel.json y las fotos como
@@ -4722,8 +4674,7 @@ function sincronizarDesdeSheets(){
       }
     }
   } catch(e) {}
-  Promise.all([_cargarInfo(), _cargarPanel()]).then(function(res){
-    const INFO = res[0];
+  _cargarPanel().then(function(){
 
     function _procesarCSV(csv){
       const filas=_parseCSV(csv);
@@ -4744,21 +4695,19 @@ function sincronizarDesdeSheets(){
         // Si desde el panel se sacó del catálogo, la tienda ni lo arma.
         const _fbOculto=FICHAS_FB[productId];
         if(_fbOculto&&_fbOculto.oculto===true)return;
-        const _infSheet=INFO[productId]||INFO[_norm(nombre)]||{};
-        // Lo editado en el panel manda sobre el Sheet, salvo los flags de los
-        // armadores: el panel historico guardo `false` por defecto al editar una
-        // foto y eso no debe borrar un "si" explicito de la hoja Info.
-        const _fb=FICHAS_FB[productId];
-        const inf=_fb?Object.assign({},_infSheet,{
-          nombre:_fb.nombre||_infSheet.nombre,
-          cantidades:_fb.cantidades?_cantidadesMasCompletas(_fb.cantidades,_infSheet.cantidades):_infSheet.cantidades,
-          sabores:_fb.sabores?_parseCantidades(_fb.sabores):_infSheet.sabores,
-          info:(_fb.desc!==undefined&&_fb.desc!=='')?_fb.desc:_infSheet.info,
-          oferta:(_fb.oferta!==undefined)?_fb.oferta:_infSheet.oferta,
-          mix:_fb.mix===true||_infSheet.mix===true,
-          granola:_fb.granola===true||_infSheet.granola===true,
-          imagen:_fb.fotoPropia?'panel':_infSheet.imagen
-        }):_infSheet;
+        // Toda la ficha sale del panel: nombre, medidas, sabores, descripción,
+        // oferta y los flags de los armadores. El Google Sheet ya no se consulta.
+        const _fb=FICHAS_FB[productId]||{};
+        const inf={
+          nombre:_fb.nombre||'',
+          cantidades:_parseCantidades(_fb.cantidades),
+          sabores:_parseCantidades(_fb.sabores),
+          info:_fb.desc||'',
+          oferta:_fb.oferta||0,
+          mix:_fb.mix===true,
+          granola:_fb.granola===true,
+          imagen:_fb.fotoPropia?'panel':(_fb.imagen||'')
+        };
         const nombreFinal=inf.nombre||nombre;
         const _infCants=inf.cantidades||[];
         const esKgInfo=_infCants.some(o=>/g$|kg$/i.test(o.replace(/\s+/g,'')));
