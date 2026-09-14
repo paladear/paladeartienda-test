@@ -326,12 +326,10 @@ button{cursor:pointer;border:none;font-family:inherit}
 /* Botón flotante del carrito */
 #cart-fab{position:fixed;bottom:94px;right:24px;z-index:10008;width:58px;height:58px;border-radius:50%;background:var(--azul);color:#fff;border:none;font-size:26px;cursor:pointer;box-shadow:0 4px 22px rgba(58,85,114,.55);transition:transform .2s,box-shadow .2s;display:flex;align-items:center;justify-content:center;padding:0;font-family:inherit;text-shadow:0 1px 4px rgba(0,0,0,.55);filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
 #cart-fab:hover{transform:scale(1.1)}
-#cart-fab-may{position:fixed;bottom:94px;right:24px;z-index:10008;width:58px;height:58px;border-radius:50%;background:var(--azul);color:#fff;border:none;font-size:26px;cursor:pointer;box-shadow:0 4px 22px rgba(58,85,114,.55);transition:transform .2s,box-shadow .2s;display:flex;align-items:center;justify-content:center;padding:0;font-family:inherit;text-shadow:0 1px 4px rgba(0,0,0,.55);filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
-#cart-fab-may:hover{transform:scale(1.1)}
 @media(max-width:767px){body.builder-open #cart-fab,body.builder-open #chat-fab{display:none!important}}
-#cart-fab .cart-count,#cart-fab-may .cart-count{position:absolute;top:-8px;right:-8px;background:var(--destructive);color:#fff;border-radius:50%;min-width:22px;height:22px;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700;padding:0 5px;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25);z-index:2}
+#cart-fab .cart-count{position:absolute;top:-8px;right:-8px;background:var(--destructive);color:#fff;border-radius:50%;min-width:22px;height:22px;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700;padding:0 5px;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25);z-index:2}
 .fab-icon{width:42px;height:42px;object-fit:contain;display:block;filter:drop-shadow(0 1.5px 2px rgba(0,0,0,.3))}
-#cart-fab,#cart-fab-may{padding:4px}
+#cart-fab{padding:4px}
 .head-icon{width:26px;height:26px;object-fit:contain;display:inline-block;vertical-align:middle;margin-right:6px;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.18))}
 .inline-icon{width:18px;height:18px;object-fit:contain;display:inline-block;vertical-align:middle;margin-right:6px;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.18))}
 .btn-ico-img{width:20px;height:20px;object-fit:contain;display:inline-block;vertical-align:middle;flex-shrink:0;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.18))}
@@ -661,7 +659,6 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 }
 .cats-sidebar{display:none}
 @media(min-width:768px){.cats-sidebar{display:block}}
-@media(max-width:767px){#mayDesktopProdsArea{display:none!important}}
 @media(max-width:767px){#desktopProdsArea{display:none!important}}
 .cat-list-btn{width:100%;border-radius:10px;padding:12px 16px;text-align:left;border:2.5px solid transparent;transition:all .2s;display:flex;align-items:center;gap:10px;margin-bottom:6px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
 .cat-list-btn:hover{filter:brightness(1.1);transform:translateX(3px);box-shadow:0 3px 12px rgba(0,0,0,.2)}
@@ -1840,7 +1837,6 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 #homeView{display:none}
 body.hv-home #homeView{display:block}
 body.hv-home #mainContainer{display:none!important}
-body.hv-home #mayoristaSection{display:none!important}
 .may-tab-emoji{font-size:30px;line-height:36px;height:36px;display:block;filter:drop-shadow(0 2px 2.5px rgba(0,0,0,.22))}
 #homeView{max-width:1100px;margin:0 auto;padding:6px 20px 18px}
 /* Un poco más de aire a los costados en pantallas grandes: los banners (hero,
@@ -1947,7 +1943,7 @@ body.hv-home #mayoristaSection{display:none!important}
 #ofertasView{display:none;max-width:1100px;margin:0 auto;padding:12px 20px 32px}
 body.hv-ofertas,body.hv-ofertas #ofertasView{background:var(--bg)!important}
 body.hv-ofertas #ofertasView{display:block}
-body.hv-ofertas #homeView,body.hv-ofertas #mainContainer,body.hv-ofertas #mayoristaSection{display:none!important}
+body.hv-ofertas #homeView,body.hv-ofertas #mainContainer{display:none!important}
 body.hv-ofertas #tabsPill{display:none}
 
 body.hv-ofertas .envios-banner,body.hv-ofertas .envios-msg,body.hv-ofertas .envios-discount{color:#fff!important;-webkit-text-fill-color:#fff!important;forced-color-adjust:none;-webkit-forced-color-adjust:none}
@@ -1974,7 +1970,7 @@ body.hv-ofertas .bnav a,.bnav button.active,body.hv-ofertas .bnav a,.bnav button
 #wishlistView{display:none;max-width:1100px;margin:0 auto;padding:14px 20px 32px}
 body.hv-favoritos,body.hv-favoritos #wishlistView{background:var(--bg)!important}
 body.hv-favoritos #wishlistView{display:block}
-body.hv-favoritos #homeView,body.hv-favoritos #ofertasView,body.hv-favoritos #mainContainer,body.hv-favoritos #mayoristaSection{display:none!important}
+body.hv-favoritos #homeView,body.hv-favoritos #ofertasView,body.hv-favoritos #mainContainer{display:none!important}
 body.hv-favoritos #tabsPill{display:none}
 body.hv-favoritos .envios-banner,body.hv-favoritos .envios-msg,body.hv-favoritos .envios-discount{color:#fff!important;-webkit-text-fill-color:#fff!important}
 body.hv-favoritos .bnav a,.bnav button:not(.active),body.hv-favoritos .bnav a,.bnav button:not(.active) span{color:#fff!important;-webkit-text-fill-color:#fff!important}
@@ -3083,22 +3079,12 @@ document.addEventListener('pointerdown',function(e){
   // Búsqueda del compacto: redirige al input correcto según la pestaña activa
   window.compactOnSearch=function(value){
     const tab=(typeof currentTab!=='undefined')?currentTab:'minorista';
-    if(tab==='mayorista'){
-      const inp=document.getElementById('searchInputMay');if(inp)inp.value=value;
-      if(typeof onSearchMay==='function')onSearchMay(value);
-    } else {
-      const inp=document.getElementById('searchInput');if(inp)inp.value=value;
-      if(typeof onSearch==='function')onSearch(value);
-    }
+    const inp=document.getElementById('searchInput');if(inp)inp.value=value;
+    if(typeof onSearch==='function')onSearch(value);
   };
   // Hamburguesa del compacto: abre el panel de categorías de la pestaña activa
   window.compactOpenCats=function(){
     const tab=(typeof currentTab!=='undefined')?currentTab:'minorista';
-    if(tab==='mayorista'){
-      if(typeof toggleMayCatsDropdown==='function')toggleMayCatsDropdown();
-      else window.scrollTo({top:0,behavior:'smooth'});
-      return;
-    }
     if(typeof toggleCatsDropdown==='function')toggleCatsDropdown();
     else window.scrollTo({top:0,behavior:'smooth'});
   };
@@ -4175,7 +4161,7 @@ function _updateSuggestions(value){
   const term=(value||'').trim();
   if(term.length<2){box.classList.remove('active');box.innerHTML='';return;}
   const tab=(typeof currentTab!=='undefined')?currentTab:'minorista';
-  const list=(tab==='mayorista'&&typeof PRODS_MAY!=='undefined')?PRODS_MAY:PRODS;
+  const list=PRODS;
   const qn=_norm(term);
 
   // Rubros que matchean el término (hasta 2), para saltar directo a la categoría.
@@ -4795,7 +4781,6 @@ function _palBuildPageState(extra){
   var tab=_palVisibleTab();
   var st={paladear:true,view:'tab',tab:tab,scrollY:Math.max(0,Math.round(window.scrollY||window.pageYOffset||0))};
   if(tab==='minorista'&&typeof activeCatId!=='undefined'&&activeCatId){st.view='cat';st.catId=activeCatId;}
-  if(tab==='mayorista'&&typeof activeCatIdMay!=='undefined'&&activeCatIdMay){st.view='catMay';st.catId=activeCatIdMay;}
   if(extra)Object.assign(st,extra);
   return st;
 }
@@ -4811,7 +4796,7 @@ function _palPushOverlay(view,extra){
   if(_palHistoryApplying)return;
   try{
     var cur=history.state||{};
-    if(cur.view==='tab'||cur.view==='cat'||cur.view==='catMay'||!cur.paladear)_palReplacePageState();
+    if(cur.view==='tab'||cur.view==='cat'||!cur.paladear)_palReplacePageState();
     history.pushState(Object.assign({paladear:true,view:view,tab:_palVisibleTab()},extra||{}),'');
   }catch(e){}
 }
@@ -4841,12 +4826,8 @@ function _palCloseTopLayer(){
   if(el&&!el.classList.contains('hidden')){closeBlend();return true;}
   el=document.getElementById('catsDropdownPanel');
   if(el&&el.style.display!=='none'){closeCatsDropdown();return true;}
-  el=document.getElementById('mayCatsDropdownPanel');
-  if(el&&el.style.display!=='none'){closeMayCatsDropdown();return true;}
   el=document.getElementById('cartPanel');
   if(el&&el.classList.contains('open')){closeCart();return true;}
-  el=document.getElementById('cartPanelMay');
-  if(el&&el.classList.contains('open')){closeCartMay();return true;}
   el=document.getElementById('cuentaPanel');
   if(el&&el.classList.contains('open')){closeCuenta();return true;}
   el=document.getElementById('infoModal');
@@ -4861,19 +4842,18 @@ function _palApplyHistoryState(st,done){
     else if(st.view==='wishlist')tab='favoritos';
     else if(st.view==='ofertasMes')tab='ofertas';
     else if(st.view==='cat')tab='minorista';
-    else if(st.view==='catMay')tab='mayorista';
   }
   if(!tab){done();return;}
   window.switchTab(tab);
-  var catId=(st.view==='cat'||st.view==='catMay')?st.catId:null;
+  var catId=st.view==='cat'?st.catId:null;
   if(catId){
     var tries=0;
     var wait=setInterval(function(){
       tries++;
-      var ready=tab==='mayorista'?(typeof PRODS_MAY!=='undefined'&&PRODS_MAY.length):(typeof PRODS!=='undefined'&&PRODS.length);
+      var ready=(typeof PRODS!=='undefined'&&PRODS.length);
       if(ready||tries>80){
         clearInterval(wait);
-        if(ready){if(tab==='mayorista')selectMayCat(catId,null,{history:false});else selectCat(catId,null,{history:false});}
+        if(ready)selectCat(catId,null,{history:false});
         _palRestoreScroll(st.scrollY);
         done();
       }
@@ -4903,7 +4883,6 @@ function _appStateSnapshot(){
   return {
     tab: tab,
     catMin: tab==='minorista'?(activeCatId||null):null,
-    catMay: tab==='mayorista'?(activeCatIdMay||null):null,
     ofertasMes: tab==='ofertas'&&(_activeOfertasMes||false),
     scrollY: Math.max(0,Math.round(window.scrollY||window.pageYOffset||0)),
     ts: Date.now()
@@ -4913,7 +4892,7 @@ function _writeAppState(syncHistory){
   try{sessionStorage.setItem('paladear_view_state',JSON.stringify(_appStateSnapshot()));}catch(e){}
   if(syncHistory&&!_palHistoryApplying){
     var st=history.state||{};
-    if(st.view==='tab'||st.view==='cat'||st.view==='catMay'||!st.paladear)_palReplacePageState();
+    if(st.view==='tab'||st.view==='cat'||!st.paladear)_palReplacePageState();
   }
 }
 function _saveAppState() {
@@ -4964,26 +4943,7 @@ function _restoreAppState() {
     }
   }
 
-  if (state.tab === 'mayorista') {
-    // Cambiar a mayorista, esperar productos, restaurar categoría
-    switchTab('mayorista');
-    let intentos = 0;
-    const waitMay = setInterval(function() {
-      intentos++;
-      if (PRODS_MAY && PRODS_MAY.length) {
-        clearInterval(waitMay);
-        if (state.catMay) {
-          selectMayCat(state.catMay,null,{history:false});
-        }
-        _restoreScroll();
-        _finishRestore();
-      } else if (intentos > 80) { // ~8s timeout
-        clearInterval(waitMay);
-        _restoreScroll();
-        _finishRestore();
-      }
-    }, 100);
-  } else {
+  {
     // Restaurar la pestaña (con Home como default del tester, hay que volver explícitamente)
     if (state.tab === 'home' || state.tab === 'minorista' || state.tab === 'ofertas' || state.tab === 'favoritos') window.switchTab(state.tab);
     // Minorista: esperar a que PRODS esté listo
@@ -6033,10 +5993,6 @@ function _triggerMayoristaConfetti(){
 // ── LISTA MAYORISTA ──
 // ▼▼▼ CONFIGURACIÓN: reemplazá estos GIDs con los de tu Google Sheet ▼▼▼
 // Para obtenerlos: abrí el Sheet → hacé clic en la pestaña de cada hoja → fijate el gid=XXXXXXX en la URL
-const MAY_PRECIOS_GID = '545595949'; // Hoja 3 — Precios Mayorista (precio por unidad)
-const MAY_INFO_GID    = '896338689'; // Hoja 4 — Info Mayorista (col C = bultos)
-const SHEET_BASE_URL  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT2RlZaSdlV-aaVGUw7YI9MVE1MHjopNhbjTOfWBZwPNo_clhJUao2KNcNowEzsdBGpd2Bh5-2rt1aH/pub';
-// ▲▲▲ FIN CONFIGURACIÓN ▲▲▲
 // Número WhatsApp mayorista
 const WA_MAYORISTA = '5492615983065';
 const WA_MINORISTA = '5492616512823';
@@ -6045,17 +6001,6 @@ const MAPA_MINORISTA = 'https://maps.app.goo.gl/5TtZMgtvq5XfycqG8';
 const MAPA_MAYORISTA = 'https://maps.app.goo.gl/MXySPy9mbBFm8oVaA';
 const MIN_COMPRA_MAYORISTA = 250000;
 
-let PRODS_MAY = [];
-let CATS_MAY = [];
-function _saveCartMay(){try{localStorage.setItem('paladear_cart_may_v2',JSON.stringify(cartMay));}catch(e){}}
-function _loadCartMay(){try{const s=localStorage.getItem('paladear_cart_may_v2');return s?JSON.parse(s):[];}catch(e){return [];}}
-let cartMay = _loadCartMay();
-if(cartMay.length)updateCartMayCount();
-let activeCatIdMay = null;
-let searchTermMay = '';
-let _searchTimerMay = null;
-// Mapa de bultos por artículo: {articuloId: {bulto, nombre, sabores, imagen}}
-let MAY_BULTO_MAP = {};
 
 // Pill deslizante
 let _pillX = null;
@@ -6118,41 +6063,15 @@ let currentTab = document.body.classList.contains('hv-home') ? 'home' : 'minoris
 function switchTab(tab) {
   currentTab = tab;
   const minSection = document.getElementById('mainContainer');
-  const maySection = document.getElementById('mayoristaSection');
   const tabMin = document.getElementById('tabMinorista');
-  const tabMay = document.getElementById('tabMayorista');
   const fabMin = document.getElementById('cart-fab');
-  const fabMay = document.getElementById('cart-fab-may');
-  // Reset
   if (tabMin) tabMin.classList.remove('active');
-  if (tabMay) tabMay.classList.remove('active');
   const bannerMin = document.getElementById('bannerRotativo');
-  const bannerMay = document.getElementById('bannerMayorista');
-  if (tab === 'mayorista') {
-    if (minSection) minSection.style.display = 'none';
-    if (maySection) maySection.classList.add('active');
-    if (tabMay) tabMay.classList.add('active');
-    if (fabMin) fabMin.style.display = 'none';
-    if (fabMay) fabMay.style.display = 'flex';
-    if (bannerMin) bannerMin.style.display = 'none';
-    if (bannerMay) bannerMay.style.display = '';
-    const waHeader = document.querySelector('.social-btn[title^="WhatsApp"]');
-    if (waHeader) { waHeader.href = 'https://wa.me/' + WA_MAYORISTA; waHeader.title = 'WhatsApp Mayorista'; }
-    const mapHeader = document.getElementById('headerMapBtn');
-    if (mapHeader) { mapHeader.href = MAPA_MAYORISTA; mapHeader.title = 'Cómo llegar (depósito mayorista)'; }
-    if (!PRODS_MAY.length && typeof cargarMayorista === 'function') {
-      cargarMayorista();
-    } else {
-      renderMayUI();
-    }
-  } else {
+  {
     if (minSection) minSection.style.display = '';
-    if (maySection) maySection.classList.remove('active');
     if (tabMin) tabMin.classList.add('active');
     if (fabMin) fabMin.style.display = 'flex';
-    if (fabMay) fabMay.style.display = 'none';
     if (bannerMin) bannerMin.style.display = '';
-    if (bannerMay) bannerMay.style.display = 'none';
     // Restaurar botón WA del header al número minorista
     const waHeader = document.querySelector('.social-btn[title^="WhatsApp"]');
     if (waHeader) { waHeader.href = 'https://wa.me/' + WA_MINORISTA; waHeader.title = 'WhatsApp Minorista'; }
@@ -6814,613 +6733,6 @@ function renderCarruseles(){
   },{passive:true});
 })();
 
-// Cargar datos mayorista desde Apps Script (referencia la hoja por nombre, no GID)
-function cargarMayorista() {
-  // ── PASO 1: mostrar caché local INMEDIATAMENTE si existe ──
-  let _mayYaRenderizado = false;
-  try {
-    const raw = localStorage.getItem('paladear_may_v1');
-    if (raw) {
-      const data = JSON.parse(raw);
-      if (data.cats && data.prods && data.prods.length) {
-        CATS_MAY = data.cats; PRODS_MAY = data.prods;
-        if (data.bultoMap) MAY_BULTO_MAP = data.bultoMap;
-        _mayYaRenderizado = true;
-        renderMayUI();
-        console.log('📦 Mayorista desde caché local — actualizando en background...');
-      }
-    }
-  } catch(e) {}
-
-  _cargarInfoMay().then(infoMay => {
-    function _procesarCSVMayorista(csv) {
-      const filas = _parseCSV(csv);
-      const prodsTemp = [];
-      let pid = 1000; // IDs mayoristas empiezan en 1000
-      filas.forEach((cols, idx) => {
-        if (idx === 0 || cols.length < 5) return;
-        const rubro  = (cols[2] || '').replace(/^"|"$/g, '').trim().toUpperCase();
-        const artId  = (cols[3] || '').replace(/^"|"$/g, '').trim();
-        const nombre = (cols[4] || '').replace(/^"|"$/g, '').trim();
-        const precio = _precio(cols[5] || '');
-        if (!nombre || !precio || !rubro) return;
-        const cat = RUBRO_MAP[rubro];
-        if (!cat) return;
-
-        const inf          = infoMay[artId] || infoMay[_norm(nombre)] || {};
-        const bulto        = inf.bulto  || 1;
-        const sabores      = inf.sabores || null;
-        const imgUrl       = inf.imagen ? _prodImg(artId,500) : '';
-        const nombreFinal  = inf.nombre  || nombre;
-        const precioTotal  = precio * bulto;
-
-        const opts = {};
-        opts[_bultoLabel(bulto, inf.bultoUnidad || 'unidad')] = [precioTotal, precioTotal];
-
-        prodsTemp.push([
-          pid++, cat.id, nombreFinal, rubro, 'und', false, imgUrl,
-          opts, '', sabores, false, false,
-          { bulto, bultoUnidad: inf.bultoUnidad || 'unidad', artId }
-        ]);
-
-        MAY_BULTO_MAP[artId] = { bulto, nombre: nombreFinal, sabores, imagen: imgUrl, precio };
-        if (_norm(nombreFinal) !== artId) MAY_BULTO_MAP[_norm(nombreFinal)] = MAY_BULTO_MAP[artId];
-      });
-
-      PRODS_MAY = prodsTemp;
-      const catIds = [...new Set(PRODS_MAY.map(p => p[1]))];
-      CATS_MAY = Object.values(RUBRO_MAP).filter(c => catIds.includes(c.id));
-      console.log('✅ Lista Mayorista: ' + PRODS_MAY.length + ' productos, ' + CATS_MAY.length + ' categorías');
-      // Guardar en localStorage para uso offline
-      try{localStorage.setItem('paladear_may_v1',JSON.stringify({cats:CATS_MAY,prods:PRODS_MAY,bultoMap:MAY_BULTO_MAP,ts:Date.now()}));}catch(e){}
-      renderMayUI();
-    }
-
-    function _mostrarErrorMayorista() {
-      if (_mayYaRenderizado) {
-        // Ya había caché visible: solo mostrar aviso offline
-        const t = document.createElement('div');
-        t.textContent = '📦 Sin conexión — mostrando últimos precios guardados';
-        t.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#547692;color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;z-index:9999;text-align:center;max-width:88vw;box-shadow:0 2px 8px rgba(0,0,0,.25)';
-        document.body.appendChild(t); setTimeout(() => t.remove(), 5000);
-        return;
-      }
-      const area = document.getElementById('mayDesktopProdsArea');
-      const mob  = document.getElementById('mayMobileProdsArea');
-      if (area) area.innerHTML = '<div style="padding:32px;text-align:center;color:var(--muted-fg)">No se pudo cargar la Lista Mayorista.<br>Por favor contactanos por WhatsApp.</div>';
-      if (mob)  mob.innerHTML  = '';
-    }
-
-    // Cargar por nombre de hoja (sin GID — "Mayorista" nunca cambia aunque cambies el Excel)
-    const mayUrl = 'https://docs.google.com/spreadsheets/d/1aANKgaQFoiAixKQvPlRpZ0_PBQhES-iBWqOG1bsuLyg/gviz/tq?tqx=out:csv&sheet=Mayorista&t=' + Date.now();
-    fetch(mayUrl, { cache: 'no-store' })
-      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-      .then(csv => _procesarCSVMayorista(csv))
-      .catch(err => {
-        console.warn('⚠️ Error cargando mayorista, reintentando en 3s...', err);
-        setTimeout(() => {
-          fetch(mayUrl, { cache: 'no-store' })
-            .then(r => r.text())
-            .then(csv => _procesarCSVMayorista(csv))
-            .catch(() => _mostrarErrorMayorista());
-        }, 3000);
-      });
-  });
-}
-
-function _cargarInfoMay() {
-  return new Promise(resolve => {
-    function _procesar(csv) {
-      const filas = _parseCSV(csv);
-      const mapa = {};
-      filas.forEach((cols, idx) => {
-        if (idx === 0 || cols.length < 3) return;
-        const artId = (cols[0] || '').replace(/^"|"$/g, '').trim();
-        const nombre = (cols[1] || '').replace(/^"|"$/g, '').trim();
-        const bultoRaw = (cols[2] || '').replace(/^"|"$/g, '').trim();
-        // Parsear como float, soportando coma decimal argentina (2,5 → 2.5)
-        const bulto = parseFloat(bultoRaw.replace(',', '.')) || 1;
-        const bultoUnidad = /kg|kgr|kilo/i.test(bultoRaw) ? 'kg' : 'unidad';
-        const saboresStr = (cols[3] || '').replace(/^"|"$/g, '').trim();
-        const imgRaw = (cols[4] || '').replace(/^"|"$/g, '').trim();
-        if (!artId) return;
-        const entry = {
-          nombre, bulto, bultoUnidad,
-          sabores: saboresStr ? saboresStr.split('/').map(s => s.trim()).filter(Boolean) : null,
-          imagen: _driveToImg(imgRaw)
-        };
-        mapa[artId] = entry;
-        if (_norm(nombre) !== artId) mapa[_norm(nombre)] = entry;
-      });
-      resolve(mapa);
-    }
-    // Cargar directamente desde Sheet (GID estable, el usuario nunca reemplaza esta hoja)
-    if (MAY_INFO_GID.includes('REEMPLAZAR')) { console.warn('ℹ️ MAY_INFO_GID no configurado.'); resolve({}); return; }
-    const infoUrl = SHEET_BASE_URL + '?gid=' + MAY_INFO_GID + '&single=true&output=csv';
-    fetch(infoUrl + '&t=' + Date.now(), { cache: 'no-store' })
-      .then(r => r.text()).then(csv => _procesar(csv))
-      .catch(() => resolve({}));
-  });
-}
-
-// Render UI mayorista
-function renderMayUI() {
-  renderMayCatsUI();
-  renderMayCarrusel();
-}
-
-function renderMayCatsUI() {
-  const isMobile = window.innerWidth < 768;
-  const sidebarList = document.getElementById('mayCatsSidebarList');
-  const dropdownGrid = document.getElementById('mayCatsDropdownGrid');
-  
-  if (!CATS_MAY.length) return;
-
-  const sortedCats = [...CATS_MAY].sort((a, b) => a.n.localeCompare(b.n, 'es'));
-  
-  if (sidebarList) {
-    sidebarList.innerHTML = sortedCats.map((cat, i) =>
-      `<button class="cat-list-btn${cat.id === activeCatIdMay ? ' active' : ''}" style="background:var(--cat${i%4})" onclick="selectMayCat('${cat.id}')"><div class="nm">${cat.n}</div></button>`
-    ).join('');
-  }
-  
-  if (dropdownGrid) {
-    dropdownGrid.innerHTML = sortedCats.map((cat, i) =>
-      `<button class="cat-list-btn${cat.id === activeCatIdMay ? ' active' : ''}" style="background:var(--cat${i%4})" onclick="selectMayCat('${cat.id}');closeMayCatsDropdown()"><div class="nm">${cat.n}</div></button>`
-    ).join('');
-  }
-}
-
-function renderMayCarrusel() {
-  const isMobile = window.innerWidth < 768;
-  const desktop = document.getElementById('mayDesktopProdsArea');
-  const mobile = document.getElementById('mayMobileProdsArea');
-  
-  if (!PRODS_MAY.length) {
-    const msg = '<div style="padding:48px;text-align:center;color:var(--muted-fg);font-size:15px">🔄 Cargando productos mayoristas...</div>';
-    if (desktop) desktop.innerHTML = msg;
-    if (mobile) { mobile.innerHTML = msg; mobile.classList.remove('hidden'); }
-    return;
-  }
-  
-  if (!activeCatIdMay) {
-    // Mostrar carrusel inicial con todos los rubros en orden alfabético
-    let h = '', hMobile = '';
-    const catIdsAll = [...new Set(PRODS_MAY.map(p => p[1]))];
-    const catsSorted = catIdsAll
-      .map(id => CATS_MAY.find(c => c.id === id))
-      .filter(Boolean)
-      .sort((a, b) => a.n.localeCompare(b.n, 'es'));
-    // Limpiar estado de rotación anterior
-    if (_carStateMay) {
-      for (const k in _carStateMay) delete _carStateMay[k];
-    } else {
-      _carStateMay = {};
-    }
-    catsSorted.forEach((cat, i) => {
-      const prods = PRODS_MAY.filter(p => p[1] === cat.id);
-      if (!prods.length) return;
-      const cid = 'carMay' + i;
-      const cidM = 'carMayM' + i;
-      // DESKTOP: 4 productos visibles con auto-rotación
-      const shuffled = [...prods].sort(() => Math.random() - .5);
-      _carStateMay[cid] = { prods: shuffled, cursor: 0 };
-      const visibles = shuffled.slice(0, 4);
-      h += `<div class="carousel-section">
-        <button class="carousel-title carousel-title-btn" onclick="selectMayCat('${cat.id}')">${cat.n} <span style="font-size:16px;opacity:.7">›</span></button>
-        <div class="carousel-wrap"><div class="carousel-track" id="${cid}">${visibles.map(_cardHTMLMay).join('')}</div></div>
-      </div>`;
-      // MOBILE: TODOS los productos en el track scrolleable
-      const prodsSorted = [...prods].sort((a, b) => a[2].localeCompare(b[2], 'es', { sensitivity: 'base' }));
-      hMobile += `<div class="carousel-section">
-        <button class="carousel-title carousel-title-btn" onclick="selectMayCat('${cat.id}')">${cat.n} <span style="font-size:16px;opacity:.7">›</span></button>
-        <div class="carousel-wrap"><div class="carousel-track" id="${cidM}">${prodsSorted.map(_cardHTMLMay).join('')}</div></div>
-      </div>`;
-    });
-    if (desktop) desktop.innerHTML = h;
-    if (mobile) { mobile.innerHTML = hMobile; mobile.classList.remove('hidden'); }
-    // Auto-rotación desktop cada 12s
-    if (_carRotationIntervalMay) clearInterval(_carRotationIntervalMay);
-    if (!isMobile) _carRotationIntervalMay = setInterval(rotarCarruselesMay, 12000);
-  } else {
-    selectMayCat(activeCatIdMay);
-  }
-}
-
-var _carStateMay = {};
-var _carRotationIntervalMay = null;
-function rotarCarruselesMay() {
-  for (const cid in _carStateMay) {
-    const track = document.getElementById(cid);
-    if (!track) continue;
-    const st = _carStateMay[cid];
-    if (st.prods.length <= 4) continue;
-    st.cursor = (st.cursor + 4) % st.prods.length;
-    const nuevos = [];
-    for (let k = 0; k < 4; k++) nuevos.push(st.prods[(st.cursor + k) % st.prods.length]);
-    track.style.transition = 'opacity .4s ease';
-    track.style.opacity = '0';
-    setTimeout(() => {
-      track.innerHTML = nuevos.map(_cardHTMLMay).join('');
-      track.style.opacity = '1';
-    }, 400);
-  }
-}
-
-function _cardHTMLMay(p) {
-  const opts = Object.keys(p[7]);
-  const precio = opts.length ? p[7][opts[0]][0] : 0;
-  const hasSrc = !!p[6];   // puede ser una URL de Cloudinary o una foto propia del sitio
-  const cat = CATS_MAY.find(c => c.id === p[1]);
-  const bulto = p[12] ? p[12].bulto : 1;
-  return `<div class="carousel-card" onclick="selectMayCat('${p[1]}', ${p[0]})">
-    <div class="carousel-card-img">${hasSrc ? `<img src="${p[6]}" alt="${p[2]}" onerror="this.parentNode.innerHTML='🌿'" loading="lazy">` : (cat ? cat.ic : '🌿')}</div>
-    <div class="carousel-card-body">
-      <div class="carousel-card-name">${_tc(p[2])}</div>
-      <div class="carousel-card-cat">${cat ? cat.n : ''}</div>
-      <span class="bulto-badge">📦 ${opts[0] || 'Bulto'}</span>
-      <div class="carousel-card-price">$${fmt(precio)}</div>
-    </div>
-  </div>`;
-}
-
-function selectMayCat(catId, productId, navOpts) {
-  navOpts=navOpts||{};
-  var trackHistory=navOpts.history!==false&&!_palHistoryApplying;
-  if(trackHistory&&!navOpts.preservePrevious)_palReplacePageState();
-  // Guardar scroll del home mayorista para restaurarlo al volver
-  if(!activeCatIdMay){try{sessionStorage.setItem('paladear_homemay_scrollY',String(window.scrollY));}catch(e){}}
-  activeCatIdMay = catId;
-  renderMayCatsUI();
-  // Push state para que el botón "atrás" del navegador vuelva al inicio del mayorista
-  if(trackHistory)_palPushPageState({view:'catMay',tab:'mayorista',catId:catId,productId:productId||null});
-  _saveAppState();
-
-  const prods = PRODS_MAY.filter(p => p[1] === catId).sort((a, b) => a[2].localeCompare(b[2], 'es', { sensitivity: 'base' }));
-  const cat   = CATS_MAY.find(c => c.id === catId);
-  const isMobile = window.innerWidth < 768;
-  const prefix   = isMobile ? 'm' : '';
-
-  const backBtn = `<button class="back-btn" onclick="volverMayInicio()">← Volver al inicio</button>`;
-
-  function _buildGrid(sfx) {
-    let h = backBtn + `<h2 style="font-size:22px;color:var(--azul-dark);margin:12px 0 16px;font-weight:700">${cat ? cat.n : catId}</h2>`;
-    if (!prods.length) {
-      h += '<div style="text-align:center;padding:48px;color:var(--muted-fg)">No hay productos en esta categoría</div>';
-    } else {
-      h += '<div class="prod-grid">';
-      prods.forEach(p => { h += renderCardMay(p, sfx); });
-      h += '</div>';
-    }
-    return h;
-  }
-
-  const desktop = document.getElementById('mayDesktopProdsArea');
-  const mobile  = document.getElementById('mayMobileProdsArea');
-
-  if (desktop) desktop.innerHTML = _buildGrid('');
-  if (mobile)  { mobile.innerHTML = _buildGrid('m'); mobile.classList.remove('hidden'); }
-
-  // Scroll: si viene productId, scrollear a esa card; si no, al área
-  const area = isMobile ? mobile : desktop;
-  if (area) {
-    if (productId != null) {
-      setTimeout(() => {
-        const sfx   = isMobile ? '_m' : '';
-        const card  = document.getElementById('may_' + productId + sfx);
-        if (card) {
-          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          card.classList.add('highlight-card');
-          setTimeout(() => card.classList.remove('highlight-card'), 2200);
-        } else {
-          area.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 80);
-    } else {
-      area.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-}
-window.selectMayCat = selectMayCat;
-
-function volverMayInicio() {
-  activeCatIdMay = null;
-  renderMayCatsUI();
-  renderMayCarrusel();
-  const sec = document.getElementById('mayoristaSection');
-  if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-window.volverMayInicio = volverMayInicio;
-
-function renderCardMay(p, suffix) {
-  const opts      = Object.keys(p[7]);
-  const precio    = opts.length ? p[7][opts[0]][0] : 0;
-  const hasSrc    = !!p[6];   // puede ser una URL de Cloudinary o una foto propia del sitio
-  const sabores   = p[9];
-  const bulto     = p[12] ? p[12].bulto : 1;
-  const bultoLabel = opts[0] || ('Bulto x' + bulto);
-  const id        = 'may_' + p[0] + (suffix ? '_' + suffix : '');
-  const cartItem  = cartMay.find(i => i.pid === p[0]);
-  const acumQty   = cartItem ? cartItem.c : 0;
-  const acumInfo  = acumQty > 0 ? `<span class="acum-badge">🛒 ${acumQty} ${acumQty === 1 ? 'bulto' : 'bultos'}</span>` : '';
-  const cat       = CATS_MAY.find(c => c.id === p[1]);
-
-  let h = `<div class="pcard" id="${id}">`;
-
-  // Imagen
-  h += `<div class="pcard-img" onclick="zoomImg(this)" data-src="${hasSrc ? p[6] : ''}">${hasSrc
-    ? `<img src="${p[6]}" alt="${p[2]}" onerror="this.parentNode.innerHTML='${cat ? cat.ic : '🌿'}'" loading="lazy">`
-    : (cat ? cat.ic : '🌿')}</div>`;
-
-  h += `<div class="pcard-body">`;
-
-  // Nombre
-  h += `<div class="pcard-head"><div class="pcard-name">${_tc(p[2])}</div></div>`;
-
-  // Rubro
-  const _mayBrand = cat ? cat.n : p[3];
-  if(_mayBrand && _mayBrand !== 'Varios' && _mayBrand !== 'Granel') h += `<div class="pcard-brand">${_mayBrand}</div>`;
-
-  // Badge bulto
-  h += `<div style="margin:6px 0 2px"><span class="bulto-badge">📦 ${bultoLabel}</span></div>`;
-
-  // Selector de sabor si aplica
-  if (sabores && sabores.length) {
-    h += `<div class="sabor-row" style="margin-top:6px"><label class="sabor-label" for="${id}_sab">Sabor:</label>
-      <select class="sabor-select" id="${id}_sab"><option value="">Seleccionar...</option>`;
-    sabores.forEach(s => { h += `<option value="${s.replace(/"/g, '&quot;')}">${s}</option>`; });
-    h += `</select></div>`;
-  }
-
-  // Precio
-  h += `<div class="prices"><div>
-    <span class="price-label">Precio Mayorista</span>
-    <div class="price-min" style="color:var(--azul-dark)">$${fmt(precio)}</div>
-  </div></div>`;
-
-  // Cantidad + agregar
-  h += `<div class="qty-row">
-    <button class="qty-btn" onclick="chgQtyMay('${id}',-1)">−</button>
-    <span class="qty-val" id="${id}_q">1</span>
-    <button class="qty-btn" onclick="chgQtyMay('${id}',1)">+</button>
-    ${acumInfo}
-  </div>`;
-  h += `<button class="add-btn" id="${id}_ab" onclick="addToCartMay(${p[0]},'${id}')">🛒 Agregar al pedido</button>`;
-
-  // Acciones si ya está en el carrito
-  if (cartItem) {
-    h += `<div class="card-cart-actions">
-      <button class="card-del-btn" onclick="delFromCartMay(${p[0]})" title="Quitar del carrito">${TRASH_SVG}</button>
-      <button class="card-edit-btn" onclick="openCartMay()">📋 Ver pedido</button>
-    </div>`;
-  }
-
-  h += `</div></div>`;
-  return h;
-}
-window.renderCardMay = renderCardMay;
-
-function chgQtyMay(id, d) {
-  const el = document.getElementById(id + '_q');
-  let v = parseInt(el.textContent) + d;
-  if (v < 1) v = 1;
-  el.textContent = v;
-}
-window.chgQtyMay = chgQtyMay;
-
-function addToCartMay(pid, elId) {
-  const p = PRODS_MAY.find(x => x[0] === pid);
-  if (!p) return;
-  _track('agrego_carrito_may');
-  const qty = parseInt(document.getElementById(elId + '_q').textContent) || 1;
-  const sabSelect = document.getElementById(elId + '_sab');
-  const sabor = sabSelect ? sabSelect.value : '';
-  const bulto = p[12] ? p[12].bulto : 1;
-  const opts = Object.keys(p[7]);
-  const precio = opts.length ? p[7][opts[0]][0] : 0;
-  const key = 'may_' + pid + (sabor ? '-' + sabor : '');
-  const nombreConSabor = sabor ? p[2] + ' (' + sabor + ')' : p[2];
-
-  // Guardar total previo para detectar hito $250k
-  const prevTotal = cartMay.reduce((a, i) => a + i.l1 * i.c, 0);
-
-  const ex = cartMay.find(i => i.key === key);
-  if (ex) {
-    ex.c += qty;
-  } else {
-    cartMay.push({ key, pid, n: nombreConSabor, c: qty, l1: precio, bulto, sabor, bultoLabel: opts[0] || 'Bulto x' + bulto });
-  }
-  _reRenderCardMay(pid);
-  updateCartMayCount();
-  // Flash del botón
-  const btn = document.getElementById(elId + '_ab');
-  if (btn) {
-    btn.classList.add('added');
-    btn.innerHTML = '✓ Agregado!';
-    setTimeout(() => { btn.classList.remove('added'); btn.innerHTML = '🛒 Agregar al pedido'; }, 1400);
-  }
-
-  // ── FLY-TO-CART ANIMATION (mayorista) ──
-  (function(){
-    const cardEl = document.getElementById(elId);
-    const fab = document.getElementById('cart-fab-may');
-    if (!cardEl || !fab) return;
-    const imgEl = cardEl.querySelector('.pcard-img img, .pcard-img');
-    if (!imgEl) return;
-    const srcRect = imgEl.getBoundingClientRect();
-    const destRect = fab.getBoundingClientRect();
-    const fly = document.createElement('div');
-    fly.className = 'fly-img';
-    if (imgEl.tagName === 'IMG' && imgEl.src) {
-      const inner = document.createElement('img');
-      inner.src = imgEl.src;
-      inner.style.cssText = 'width:100%;height:100%;object-fit:contain;border-radius:50%';
-      fly.appendChild(inner);
-    } else {
-      fly.textContent = '📦';
-      fly.style.fontSize = '28px';
-      fly.style.display = 'flex';
-      fly.style.alignItems = 'center';
-      fly.style.justifyContent = 'center';
-    }
-    const startX = srcRect.left + srcRect.width / 2 - 30;
-    const startY = srcRect.top + srcRect.height / 2 - 30;
-    const endX = destRect.left + destRect.width / 2 - 30;
-    const endY = destRect.top + destRect.height / 2 - 30;
-    fly.style.cssText += `;left:${startX}px;top:${startY}px;`;
-    document.body.appendChild(fly);
-    const dur = 650; const t0 = performance.now();
-    function step(now) {
-      const t = Math.min((now - t0) / dur, 1);
-      const ease = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-      const mx = (startX + endX) / 2;
-      const my = Math.min(startY, endY) - 80;
-      const x = (1-ease)*(1-ease)*startX + 2*(1-ease)*ease*mx + ease*ease*endX;
-      const y = (1-ease)*(1-ease)*startY + 2*(1-ease)*ease*my + ease*ease*endY;
-      fly.style.left = x + 'px';
-      fly.style.top = y + 'px';
-      fly.style.transform = `scale(${1 - ease * 0.75})`;
-      fly.style.opacity = t > 0.75 ? (1 - (t - 0.75) / 0.25) : 1;
-      if (t < 1) { requestAnimationFrame(step); }
-      else {
-        fly.remove();
-        fab.style.transform = 'scale(1.3)';
-        setTimeout(() => { fab.style.transform = ''; }, 200);
-      }
-    }
-    requestAnimationFrame(step);
-  })();
-
-  // ── HITO $250.000 ──
-  const newTotal = cartMay.reduce((a, i) => a + i.l1 * i.c, 0);
-  if (prevTotal < MIN_COMPRA_MAYORISTA && newTotal >= MIN_COMPRA_MAYORISTA) {
-    _triggerMayMinimoToast();
-  }
-}
-window.addToCartMay = addToCartMay;
-
-function _triggerMayMinimoToast() {
-  var toast = document.getElementById('mayMinimoToast');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'mayMinimoToast';
-    toast.className = 'may-toast';
-    toast.innerHTML =
-      '<div style="font-size:40px;margin-bottom:6px">🎉</div>' +
-      '<div class="may-toast-title" style="font-size:18px;letter-spacing:1px">¡MÍNIMO<br>ALCANZADO!</div>' +
-      '<div style="margin-top:10px;font-size:13px;color:var(--muted-fg);line-height:1.5">Superaste los <strong>$250.000</strong><br>Ya podés enviar tu pedido mayorista 📦</div>';
-    document.body.appendChild(toast);
-  }
-  toast.classList.remove('hide');
-  toast.classList.add('show');
-  setTimeout(function() {
-    toast.classList.add('hide');
-    setTimeout(function() { toast.classList.remove('show','hide'); }, 400);
-  }, 4000);
-
-  // Confetti desde el centro
-  if (!_confCanvas) {
-    _confCanvas = document.createElement('canvas');
-    _confCanvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9998';
-    document.body.appendChild(_confCanvas);
-  }
-  _confCanvas.width = window.innerWidth;
-  _confCanvas.height = window.innerHeight;
-  var ctx = _confCanvas.getContext('2d');
-  ctx.clearRect(0, 0, _confCanvas.width, _confCanvas.height);
-  setTimeout(function() {
-    var pieces = [];
-    var cx = window.innerWidth / 2;
-    var cy = window.innerHeight * 0.38;
-    for (var i = 0; i < 180; i++) {
-      var angle = (Math.random() * 300 - 240) * (Math.PI / 180);
-      var speed = 4 + Math.random() * 8;
-      pieces.push({
-        x: cx, y: cy,
-        vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
-        w: 6 + Math.random() * 9, h: 5 + Math.random() * 7,
-        rot: Math.random() * 360, drot: (Math.random() - 0.5) * 14,
-        color: _CONF_COLORS[Math.floor(Math.random() * _CONF_COLORS.length)],
-        alpha: 1, round: Math.random() > 0.4, delay: Math.floor(Math.random() * 10)
-      });
-    }
-    var frame = 0;
-    function tick() {
-      ctx.clearRect(0, 0, _confCanvas.width, _confCanvas.height);
-      var alive = false;
-      for (var i = 0; i < pieces.length; i++) {
-        var p = pieces[i];
-        if (frame < p.delay) continue;
-        p.x += p.vx; p.y += p.vy; p.vy += 0.14; p.vx *= 0.99; p.rot += p.drot;
-        if (frame > 55) p.alpha = Math.max(0, p.alpha - 0.016);
-        if (p.alpha <= 0) continue;
-        alive = true;
-        ctx.save(); ctx.globalAlpha = p.alpha;
-        ctx.translate(p.x, p.y); ctx.rotate(p.rot * Math.PI / 180);
-        ctx.fillStyle = p.color;
-        if (p.round) { ctx.beginPath(); ctx.ellipse(0,0,p.w/2,p.h/2,0,0,Math.PI*2); ctx.fill(); }
-        else { ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); }
-        ctx.restore();
-      }
-      frame++;
-      if (alive || frame < 25) requestAnimationFrame(tick);
-      else ctx.clearRect(0, 0, _confCanvas.width, _confCanvas.height);
-    }
-    requestAnimationFrame(tick);
-  }, 100);
-}
-
-function delFromCartMay(pid) {
-  cartMay = cartMay.filter(i => i.pid !== pid);
-  _reRenderCardMay(pid);
-  updateCartMayCount();
-}
-window.delFromCartMay = delFromCartMay;
-
-function _reRenderCardMay(pid) {
-  const p = PRODS_MAY.find(x => x[0] === pid);
-  if (!p) return;
-  // Desktop card (no suffix)
-  const cardEl = document.getElementById('may_' + pid);
-  if (cardEl) {
-    const tmp = document.createElement('div');
-    tmp.innerHTML = renderCardMay(p);
-    cardEl.parentNode.replaceChild(tmp.firstChild, cardEl);
-  }
-  // Mobile card (suffix 'm')
-  const cardElM = document.getElementById('may_' + pid + '_m');
-  if (cardElM) {
-    const tmp = document.createElement('div');
-    tmp.innerHTML = renderCardMay(p, 'm');
-    cardElM.parentNode.replaceChild(tmp.firstChild, cardElM);
-  }
-}
-
-function updateCartMayCount() {
-  const count = cartMay.reduce((a, i) => a + i.c, 0);
-  const el = document.getElementById('cartCountMay');
-  if (el) el.textContent = count;
-  const fab = document.getElementById('cart-fab-may');
-  if (fab) { fab.style.transform = 'scale(1.15)'; setTimeout(() => { fab.style.transform = ''; }, 250); }
-  _saveCartMay();
-}
-
-function openCartMay() {
-  _track('abrio_carrito_may');
-  document.getElementById('cartOverlayMay').classList.add('open');
-  document.getElementById('cartPanelMay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  renderCartMay();
-  _palPushOverlay('cartMay');
-}
-window.openCartMay = openCartMay;
-
-function closeCartMay() {
-  document.getElementById('cartOverlayMay').classList.remove('open');
-  document.getElementById('cartPanelMay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-window.closeCartMay = closeCartMay;
 
 // Mapa de productos minoristas por productId, construido bajo demanda.
 // (_MIN_BY_ID se declara al tope del IIFE para evitar TDZ en el init.)
@@ -7442,211 +6754,6 @@ function _getMinForArtId(artId) {
   return _MIN_BY_ID[artId] || null;
 }
 
-// Calcula el costo equivalente que tendría el item si se comprara a precio minorista.
-// Devuelve 0 si el producto mayorista no tiene equivalente minorista (por ID).
-function _itemMayMinoristaEquiv(it) {
-  const mayProd = PRODS_MAY.find(x => x[0] === it.pid);
-  if (!mayProd) return 0;
-  const artId = mayProd[12] && mayProd[12].artId;
-  if (!artId) return 0;
-  const minProd = _getMinForArtId(artId);
-  if (!minProd) return 0;
-
-  const opts = minProd[7];
-  const optKeys = Object.keys(opts);
-  if (!optKeys.length) return 0;
-
-  // Detectar la unidad natural del bulto desde el nombre mayorista (x kg, x 500g, etc.)
-  const nm = (mayProd[2] || '').toLowerCase();
-  let matchOpt = null;
-  const mWith = nm.match(/x\s*(\d+(?:[.,]\d+)?)\s*(kg|g|ml|l|und)\b/i);
-  const mNoQty = !mWith && nm.match(/x\s*(kg|g|ml|l|und)\b/i);
-  if (mWith) {
-    const qty = mWith[1].replace(',', '.');
-    const unit = mWith[2].toLowerCase();
-    const tries = [
-      qty + unit,
-      qty + ' ' + unit,
-      (unit === 'kg' && qty === '1') ? '1 kg' : null,
-      (unit === 'und' && qty === '1') ? '1 und' : null
-    ].filter(Boolean);
-    for (const t of tries) {
-      const found = optKeys.find(k => k.replace(/\s+/g,'').toLowerCase() === t.replace(/\s+/g,'').toLowerCase());
-      if (found) { matchOpt = found; break; }
-    }
-  } else if (mNoQty) {
-    const unit = mNoQty[1].toLowerCase();
-    matchOpt = optKeys.find(k => k.replace(/\s+/g,'').toLowerCase() === ('1' + unit)) ||
-               optKeys.find(k => k.replace(/\s+/g,'').toLowerCase() === ('1 ' + unit).replace(/\s+/g,''));
-  }
-  if (!matchOpt) matchOpt = optKeys.find(k => /^1\s*und$/i.test(k));
-  if (!matchOpt) matchOpt = optKeys.find(k => /^1\s*kg$/i.test(k));
-  if (!matchOpt) matchOpt = optKeys[0];
-
-  const minPricePerNatUnit = opts[matchOpt][0];
-  return Math.round(minPricePerNatUnit * (it.bulto || 1) * it.c);
-}
-
-function renderCartMay() {
-  const body   = document.getElementById('cartBodyMay');
-  const footer = document.getElementById('cartFooterMay');
-  if (!cartMay.length) {
-    body.innerHTML = '<div class="cart-empty"><span class="big">📦</span><div style="font-size:16px;font-weight:600;margin-bottom:6px">Tu pedido mayorista está vacío</div><div style="font-size:14px;color:var(--muted-fg)">Agregá productos para armar tu pedido</div></div>';
-    footer.classList.add('hidden');
-    return;
-  }
-  const total  = cartMay.reduce((a, i) => a + i.l1 * i.c, 0);
-  // Sin equivalente minorista: precio ficticio = mayorista / 0.65 → ahorro = 35% sobre minorista
-  const totalMinoristaEquiv = cartMay.reduce((a, i) => { const r=_itemMayMinoristaEquiv(i); return a+(r>0?r:Math.round(i.l1*i.c/0.65)); }, 0);
-  const ahorro = Math.max(0, totalMinoristaEquiv - total);
-  const ahorroPct = totalMinoristaEquiv > 0 ? Math.round((ahorro / totalMinoristaEquiv) * 100) : 0;
-  const cumple = total >= MIN_COMPRA_MAYORISTA;
-  const pct    = Math.min(100, Math.round(total / MIN_COMPRA_MAYORISTA * 100));
-  const progColor = cumple ? '#16a34a' : 'var(--azul)';
-  const progMsg   = cumple
-    ? '✅ Mínimo alcanzado — podés hacer tu pedido'
-    : `Faltan $${fmt(MIN_COMPRA_MAYORISTA - total)} para el mínimo`;
-
-  let h = '';
-  cartMay.forEach(it => {
-    const sub = it.l1 * it.c;
-    h += `<div class="cart-item">
-      <div style="flex:1">
-        <div class="cart-item-name">${it.n}</div>
-        <span class="cart-item-opt">${it.bultoLabel || 'Bulto'} × ${it.c} — $${fmt(it.l1)}/bulto</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:6px">
-        <div style="display:flex;align-items:center;gap:4px">
-          <button class="qty-btn" style="width:26px;height:26px;font-size:15px" onclick="cartQtyMay('${it.key}',-1)">−</button>
-          <span style="font-size:12px;font-weight:700;min-width:22px;text-align:center">${it.c}</span>
-          <button class="qty-btn" style="width:26px;height:26px;font-size:15px" onclick="cartQtyMay('${it.key}',1)">+</button>
-        </div>
-        <div class="cart-item-price">$${fmt(sub)}</div>
-        <button class="cart-item-del" onclick="cartDelMay('${it.key}')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
-        </button>
-      </div>
-    </div>`;
-  });
-  body.innerHTML = h;
-
-  // Bloque de ahorro vs lista minorista
-  const ahorroBlock = ahorro > 0
-    ? `<div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:12px;padding:12px 14px;margin-bottom:12px;text-align:center">
-         <div style="font-size:12px;font-weight:600;color:#16a34a;margin-bottom:2px">Ahorrás comprando mayorista</div>
-         <div style="font-size:24px;font-weight:800;color:#15803d;line-height:1.1">$${fmt(ahorro)}</div>
-         <div style="font-size:12px;color:#16a34a;margin-top:3px;opacity:.85">vs. precio minorista (${ahorroPct}% menos)</div>
-       </div>`
-    : '';
-
-  footer.classList.remove('hidden');
-  footer.innerHTML = `
-    ${ahorroBlock}
-    <div style="margin-bottom:10px">
-      <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:5px">
-        <span style="color:${progColor}">${progMsg}</span><span>${pct}%</span>
-      </div>
-      <div style="height:6px;background:var(--muted);border-radius:6px;overflow:hidden">
-        <div style="height:100%;width:${pct}%;background:${progColor};border-radius:6px;transition:width .4s"></div>
-      </div>
-    </div>
-    <div class="total-rows">
-      ${ahorro > 0 ? `<div class="total-row"><span style="color:var(--muted-fg)">Precio minorista equivalente</span><span style="color:var(--muted-fg);text-decoration:line-through">$${fmt(totalMinoristaEquiv)}</span></div>
-      <div class="total-row disc"><span>Ahorro mayorista</span><span style="color:#16a34a">−$${fmt(ahorro)}</span></div>` : ''}
-      <div class="total-row main"><span>Total Mayorista</span><span>$${fmt(total)}</span></div>
-    </div>
-    <button class="wa-btn" onclick="closeCartMay();pedirWAMayorista()" ${cumple ? '' : 'disabled style="opacity:.5;cursor:not-allowed"'}>💬 Pedir por WhatsApp</button>`;
-}
-window.renderCartMay = renderCartMay;
-
-function cartQtyMay(key, d) {
-  const it = cartMay.find(i => i.key === key);
-  if (!it) return;
-  it.c = Math.max(1, it.c + d);
-  _reRenderCardMay(it.pid);
-  updateCartMayCount();
-  renderCartMay();
-}
-window.cartQtyMay = cartQtyMay;
-
-function cartDelMay(key) {
-  const it = cartMay.find(i => i.key === key);
-  if (it) _reRenderCardMay(it.pid);
-  cartMay = cartMay.filter(i => i.key !== key);
-  updateCartMayCount();
-  renderCartMay();
-}
-window.cartDelMay = cartDelMay;
-
-function pedirWAMayorista() {
-  if (!cartMay.length) {
-    alert('Tu carrito mayorista está vacío. Agregá productos antes de pedir.');
-    return;
-  }
-  const total = cartMay.reduce((a, i) => a + i.l1 * i.c, 0);
-  if (total < MIN_COMPRA_MAYORISTA) {
-    alert(`⚠️ Debes alcanzar el mínimo de compra de $${fmt(MIN_COMPRA_MAYORISTA)} para continuar.\n\nTotal actual: $${fmt(total)}\nFaltan: $${fmt(MIN_COMPRA_MAYORISTA - total)}`);
-    return;
-  }
-  closeCartMay();
-  abrirCheckout('mayorista');
-}
-window.pedirWAMayorista = pedirWAMayorista;
-
-// Búsqueda en mayorista
-function onSearchMay(val) {
-  clearTimeout(_searchTimerMay);
-  _searchTimerMay = setTimeout(() => _doSearchMay(val), 300);
-}
-window.onSearchMay = onSearchMay;
-
-function _doSearchMay(val) {
-  searchTermMay = val.trim();
-  const sr = document.getElementById('maySearchResults');
-  if (!searchTermMay) {
-    if (sr) { sr.classList.remove('active'); sr.classList.add('hidden'); sr.innerHTML = ''; }
-    renderMayCarrusel();
-    return;
-  }
-  const scored = PRODS_MAY.map(p => ({ p, score: _matchScore(searchTermMay, p[2]) * 2 + _matchScore(searchTermMay, p[3]) }))
-    .filter(x => x.score > 0).sort((a, b) => b.score - a.score);
-  const results = scored.map(x => x.p);
-  
-  let h = `<h1 style="font-size:18px;color:var(--azul-dark);margin-bottom:12px;font-weight:700">Resultados para "${searchTermMay}"</h1>`;
-  if (!results.length) {
-    h += '<div style="text-align:center;padding:44px 0;color:var(--muted-fg);font-size:17px">No se encontraron productos 🔍</div>';
-  } else {
-    h += '<div class="search-results">';
-    results.forEach(p => {
-      const opts = Object.keys(p[7]);
-      const precio = opts.length ? p[7][opts[0]][0] : 0;
-      const hasSrc = !!p[6];   // puede ser una URL de Cloudinary o una foto propia del sitio
-      const cat = CATS_MAY.find(c => c.id === p[1]);
-      const bulto = p[12] ? p[12].bulto : 1;
-    h += `<div class="search-item" onclick="selectMayCat('${p[1]}', ${p[0]})">
-        <div class="search-item-img">${hasSrc ? `<img src="${p[6]}" alt="${p[2]}" onerror="this.parentNode.innerHTML='🌿'" loading="lazy">` : (cat ? cat.ic : '🌿')}</div>
-        <div class="search-item-body">
-          <div class="search-item-name">${_tc(p[2])}</div>
-          <div class="search-item-cat">${cat ? cat.n : ''}</div>
-          <span class="bulto-badge" style="font-size:11px">📦 ${opts[0] || 'Bulto x' + bulto}</span>
-          <div class="search-item-price">$${fmt(precio)}</div>
-        </div>
-        <div class="search-item-arrow">›</div>
-      </div>`;
-    });
-    h += '</div>';
-  }
-  
-  const isMobile = window.innerWidth < 768;
-  const desktop = document.getElementById('mayDesktopProdsArea');
-  const mobile  = document.getElementById('mayMobileProdsArea');
-  if (desktop) desktop.innerHTML = h;
-  if (mobile)  { mobile.innerHTML = h; mobile.classList.remove('hidden'); }
-  if (sr) sr.innerHTML = '';
-}
-
-// Inicializar mayorista al estar en esa tab
-// (se carga lazy cuando se clickea la tab)
 
 // ── Exponer funciones al scope global (llamadas desde HTML) ──
 window.selectCat=selectCat;
@@ -7713,31 +6820,6 @@ function closeCatsDropdown(){
 window.toggleCatsDropdown=toggleCatsDropdown;
 window.closeCatsDropdown=closeCatsDropdown;
 
-// ── CATS DROPDOWN MAYORISTA (mobile) ──
-let _mayCatsDropOpen=false;
-function toggleMayCatsDropdown(){
-  _mayCatsDropOpen=!_mayCatsDropOpen;
-  const overlay=document.getElementById('mayCatsDropdownOverlay');
-  const panel=document.getElementById('mayCatsDropdownPanel');
-  if(_mayCatsDropOpen){
-    overlay.classList.add('open');
-    panel.style.display='block';
-    panel.style.animation='slideUp .22s ease';
-    _palPushOverlay('catsMay');
-  } else {
-    overlay.classList.remove('open');
-    panel.style.display='none';
-  }
-}
-function closeMayCatsDropdown(){
-  _mayCatsDropOpen=false;
-  const overlay=document.getElementById('mayCatsDropdownOverlay');
-  const panel=document.getElementById('mayCatsDropdownPanel');
-  if(overlay)overlay.classList.remove('open');
-  if(panel)panel.style.display='none';
-}
-window.toggleMayCatsDropdown=toggleMayCatsDropdown;
-window.closeMayCatsDropdown=closeMayCatsDropdown;
 
 // ── HEADER DROPDOWNS ──
 function toggleHdrop(id){
@@ -7939,18 +7021,12 @@ function _coBack() {
 window._coBack = _coBack;
 
 function _coRenderSummary() {
-  var isMin = _coVenta === 'minorista';
   var total = 0;
-  var count = 0;
-  if (isMin) {
-    var totalMin = cart.reduce(function(a,i){return a+_itemMin(i);}, 0);
-    var esMay = totalMin >= 80000;
-    cart.forEach(function(i){ total += esMay ? _itemMay(i) : _itemMinConOferta(i); });
-    count = cart.length;
-  } else {
-    cartMay.forEach(function(i){ total += i.l1 * i.c; });
-    count = cartMay.length;
-  }
+  var totalMin = cart.reduce(function(a,i){return a+_itemMin(i);}, 0);
+  // A partir de $80.000 cada producto pasa al precio de lista 2.
+  var esMay = totalMin >= 80000;
+  cart.forEach(function(i){ total += esMay ? _itemMay(i) : _itemMinConOferta(i); });
+  var count = cart.length;
   document.getElementById('coSummary').innerHTML =
     '<span>' + count + ' producto' + (count !== 1 ? 's' : '') + '</span>' +
     '<span>Total: <b>$' + fmt(total) + '</b></span>';
@@ -8133,10 +7209,8 @@ function coEnviar() {
     deliveryMsg += '\n💳 Pago: Transferencia bancaria';
   }
 
-  var isMin = _coVenta === 'minorista';
   var msg, url;
-
-  if (isMin) {
+  {
     var totalMin = cart.reduce(function(a,i){ return a+_itemMin(i); }, 0);
     var esMay = totalMin >= 80000;
     var tot = 0;
@@ -8160,13 +7234,6 @@ function coEnviar() {
     lines += '\n*TOTAL: $' + fmt(tot) + '*' + (esMay?'\n_(Descuento por volumen aplicado)_':'') + (huboOferta?'\n_(Ofertas del mes aplicadas)_':'');
     msg = lines + deliveryMsg + '\n\n_Pedido realizado desde el catálogo online_';
     url = 'https://wa.me/' + WA_MINORISTA + '?text=' + encodeURIComponent(msg);
-  } else {
-    var tot2 = 0;
-    var lines2 = '📦 *Pedido Mayorista - Paladear Mercado de Sabores*\n\n';
-    cartMay.forEach(function(it){ var sub=it.l1*it.c; tot2+=sub; lines2+='• '+it.n+' ('+(it.bultoLabel||'Bulto')+' x'+it.c+') — $'+fmt(sub)+'\n'; });
-    lines2 += '\n*TOTAL: $' + fmt(tot2) + '*\n_(Lista Mayorista)_';
-    msg = lines2 + deliveryMsg + '\n\n_Pedido realizado desde el catálogo online_';
-    url = 'https://wa.me/' + WA_MAYORISTA + '?text=' + encodeURIComponent(msg);
   }
 
   // Guardar perfil para próximos pedidos
@@ -8187,17 +7254,16 @@ function coEnviar() {
   _coGuardarPerfil(_perfil);
 
   // Guardar el último pedido (minorista) para poder repetirlo después
-  if (isMin) _guardarUltimoPedido();
+  _guardarUltimoPedido();
   // Guardar el pedido en el historial de "Mi cuenta"
-  if (isMin) { try { _cuentaGuardarPedido(cart, (typeof esMay!=='undefined'&&esMay), (typeof tot!=='undefined'?tot:0), (typeof direccion!=='undefined'?direccion:'')); } catch(e){} }
+  { try { _cuentaGuardarPedido(cart, (typeof esMay!=='undefined'&&esMay), (typeof tot!=='undefined'?tot:0), (typeof direccion!=='undefined'?direccion:'')); } catch(e){} }
 
   // Limpiar el carrito (el pedido quedó guardado en "último pedido")
-  if (isMin) { cart=[]; updateCartCount(); try{localStorage.removeItem('paladear_cart_v2');}catch(e){} }
-  if (!isMin) { cartMay=[]; updateCartMayCount(); try{localStorage.removeItem('paladear_cart_may_v2');}catch(e){} }
+  cart=[]; updateCartCount(); try{localStorage.removeItem('paladear_cart_v2');}catch(e){}
 
   cerrarCheckout();
-  _track(isMin ? 'pedido_enviado' : 'pedido_enviado_may');
-  if (!navigator.onLine) { _guardarPedidoPendiente(url, isMin ? 'minorista' : 'mayorista'); return; }
+  _track('pedido_enviado');
+  if (!navigator.onLine) { _guardarPedidoPendiente(url, 'minorista'); return; }
   window.open(url, '_blank');
 }
 window.coEnviar = coEnviar;
@@ -8212,73 +7278,6 @@ function _coMarkRequired(id) {
 }
 
 // ═══════════════════════════════════════════
-// DESCARGA LISTA MAYORISTA
-function descargarListaMayorista() {
-  if (!PRODS_MAY.length) { alert('La lista mayorista aún se está cargando. Esperá un momento.'); return; }
-  function _generar() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-    const fecha = new Date().toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'});
-    // Header
-    doc.setFillColor(84, 118, 146);
-    doc.rect(0, 0, 210, 28, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(16); doc.setFont('helvetica', 'bold');
-    doc.text('Paladear Mercado de Sabores', 14, 11);
-    doc.setFontSize(10); doc.setFont('helvetica', 'normal');
-    doc.text('Lista Mayorista — ' + fecha, 14, 18);
-    doc.text('Compra mínima $250.000 · Solo por bulto cerrado', 14, 24);
-    // Tabla
-    const byCat = {};
-    PRODS_MAY.forEach(p => {
-      const cat = CATS_MAY.find(c => c.id === p[1]);
-      const cn = cat ? cat.n : 'Otros';
-      if (!byCat[cn]) byCat[cn] = [];
-      byCat[cn].push(p);
-    });
-    const body = [];
-    Object.keys(byCat).sort().forEach(cat => {
-      body.push([{ content: cat, colSpan: 3, styles: { fillColor: [232, 240, 246], textColor: [44, 74, 90], fontStyle: 'bold', fontSize: 10 } }]);
-      byCat[cat].forEach(p => {
-        const opts = Object.keys(p[7]);
-        const precio = opts.length ? p[7][opts[0]][0] : 0;
-        body.push([p[2], opts.join(' / '), '$' + fmt(precio)]);
-      });
-    });
-    doc.autoTable({
-      startY: 32,
-      head: [['Producto', 'Presentación', 'Precio']],
-      body: body,
-      headStyles: { fillColor: [84, 118, 146], textColor: 255, fontStyle: 'bold', fontSize: 10 },
-      styles: { fontSize: 9, cellPadding: 3 },
-      columnStyles: { 0: { cellWidth: 100 }, 1: { cellWidth: 50 }, 2: { cellWidth: 30, halign: 'right' } },
-      alternateRowStyles: { fillColor: [248, 251, 253] },
-      margin: { left: 14, right: 14 },
-      didDrawPage: function(data) {
-        // Footer en cada página
-        doc.setFontSize(8); doc.setTextColor(150);
-        doc.text('@palade.ar · Pueyrredón 588, Mendoza', 14, 290);
-        doc.text('Página ' + doc.getCurrentPageInfo().pageNumber, 196, 290, { align: 'right' });
-      }
-    });
-    doc.save('Paladear-Lista-Mayorista-' + fecha.replace(/\//g, '-') + '.pdf');
-  }
-  // Cargar jsPDF + autoTable si no están cargados
-  if (window.jspdf && window.jspdf.jsPDF) {
-    _generar();
-    return;
-  }
-  const s1 = document.createElement('script');
-  s1.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
-  s1.onload = function() {
-    const s2 = document.createElement('script');
-    s2.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js';
-    s2.onload = _generar;
-    document.head.appendChild(s2);
-  };
-  document.head.appendChild(s1);
-}
-window.descargarListaMayorista = descargarListaMayorista;
 
 
 })(); // fin IIFE
