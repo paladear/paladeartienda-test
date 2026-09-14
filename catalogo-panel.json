@@ -7830,9 +7830,16 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "PALADEAR HOME",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.796Z",
-   "por": "panel"
+   "origen": "panel",
+   "actualizado": "2026-09-14T03:07:32.491Z",
+   "por": "panel",
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "imagen": "",
+   "oculto": false,
+   "fotoPropia": true,
+   "fondo": "#fefefe"
   },
   "5053": {
    "nombre": "BALSAMO LABIAL",
@@ -9813,6 +9820,14 @@
    "peso": 154537,
    "ext": "webp",
    "v": 1789213751000
+  },
+  "5052": {
+   "fondo": "#fefefe",
+   "w": 700,
+   "h": 640,
+   "peso": 55220,
+   "ext": "jpg",
+   "v": 1789355254022
   },
   "5053": {
    "fondo": "#fefefe",
@@ -12694,5 +12709,5 @@
    0
   ]
  },
- "actualizado": "2026-09-14T03:07:06.691Z"
+ "actualizado": "2026-09-14T03:07:34.023Z"
 }
