@@ -2629,9 +2629,11 @@
    "sabores": "",
    "oferta": 15,
    "rubro": "LINEA GOURMET",
-   "origen": "sheet",
+   "origen": "panel",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "oculto": false,
+   "altaOk": true
   },
   "1573": {
    "nombre": "SALSA JALAPEÑO ROJA X180 CC - ALCARAZ GOURMET",
@@ -9891,6 +9893,7 @@
   "1561": 3260,
   "1562": 3250,
   "1566": 6910,
+  "1571": 5240,
   "1573": 7400,
   "1575": 11780,
   "1576": 3960,
@@ -10335,6 +10338,10 @@
    47030,
    0
   ],
+  "1571": [
+   5240,
+   0
+  ],
   "2096": [
    25380,
    0
@@ -10372,5 +10379,5 @@
    0
   ]
  },
- "actualizado": "2026-09-14T02:26:05.213Z"
+ "actualizado": "2026-09-14T02:26:09.998Z"
 }
