@@ -6222,7 +6222,7 @@ function hvRenderCats(force){
   }
   track.innerHTML=pages.map(function(page,pageIndex){
     return '<div class="hv-cat-page" data-hv-cat-page="'+pageIndex+'" role="group" aria-label="Página '+(pageIndex+1)+' de categorías">'+page.map(function(c){
-      return '<button type="button" class="hv-cat" data-cat="'+c.id+'" aria-label="'+c.n+'" onclick="hvGoCat(\''+c.id+'\')"><span class="bub"><img src="cat-v2-'+c.id+'.webp" width="640" height="640" alt="" loading="'+(pageIndex<2?'eager':'lazy')+'" decoding="async"'+(pageIndex===0?' fetchpriority="high"':'')+' onerror="this.style.visibility=\'hidden\'"></span>'+hvArco(c.id,c.n)+'</button>';
+      return '<button type="button" class="hv-cat" data-cat="'+c.id+'" aria-label="'+c.n+'" onclick="hvGoCat(\''+c.id+'\')"><span class="bub"><img src="cat-v2-'+c.id+'.webp" width="360" height="360" alt="" loading="'+(pageIndex<2?'eager':'lazy')+'" decoding="async"'+(pageIndex===0?' fetchpriority="high"':'')+' onerror="this.style.visibility=\'hidden\'"></span>'+hvArco(c.id,c.n)+'</button>';
     }).join('')+'</div>';
   }).join('');
   // Se llama varias veces a proposito: al renderizar el layout todavia puede medir 0,
@@ -6236,7 +6236,7 @@ function hvRenderCats(force){
   if(pagination)pagination.innerHTML=pages.map(function(page,index){return '<button type="button" onclick="hvGoCatPage('+index+')" aria-label="Ver categorías '+(index*pageSize+1)+' a '+(index*pageSize+page.length)+'"'+(index===0?' aria-current="true"':'')+'></button>';}).join('');
   track.onscroll=hvUpdateCatPagination;
   requestAnimationFrame(hvUpdateCatPagination);
-  var warm=function(){cats.forEach(function(c){var src='cat-v2-'+c.id+'.webp';if(_hvCatPreloads[src])return;var img=new Image();img.decoding='async';img.src=src;_hvCatPreloads[src]=img;});};
+  var warm=function(){cats.slice(0,pageSize*2).forEach(function(c){var src='cat-v2-'+c.id+'.webp';if(_hvCatPreloads[src])return;var img=new Image();img.decoding='async';img.src=src;_hvCatPreloads[src]=img;});};
   if('requestIdleCallback' in window)requestIdleCallback(warm,{timeout:700});else setTimeout(warm,180);
 }
 function hvGoCatPage(index){
