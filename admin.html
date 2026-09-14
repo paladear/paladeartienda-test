@@ -385,11 +385,6 @@ body.es-mayorista label[for=fileExcel]{display:none}
   .tienda-sel{display:flex;width:100%}
   .tienda-sel button{flex:1;min-height:44px;font-size:14px}
 }
-.chip-ok{margin-left:6px;padding:3px 11px;border:1px solid #cfa25c;border-radius:999px;
-  background:#fff;color:#8a5310;font:700 11px/1.5 inherit;cursor:pointer}
-.chip-ok:hover{background:#fdf3e4}
-.chip-ok:disabled{opacity:.6}
-@media(max-width:700px){.chip-ok{padding:5px 13px;font-size:12px}}
 .ayuda-filtro{margin:0 0 13px;padding:11px 14px;border-left:4px solid #7fa7c1;
   border-radius:0 11px 11px 0;background:#eff6fb;color:#2b5c80;font-size:13.5px;line-height:1.55}
 .ayuda-filtro b{color:#123f67}
@@ -435,16 +430,47 @@ body.es-mayorista label[for=fileExcel]{display:none}
   .cmp-acc #cmpResumen{width:100%;margin:4px 0 0;text-align:center}
   .cmp-item{padding:9px 10px}
 }
-.btn-catalogo{margin-top:9px;width:100%;min-height:42px;padding:0 14px;border:0;border-radius:10px;
-  background:#2e9e63;color:#fff;font:700 13.5px/1 inherit;cursor:pointer}
-.btn-catalogo:hover{background:#278553}
-.btn-catalogo:disabled{opacity:.6}
+/* ── BANDERILLAS ──────────────────────────────────────────────────────────────
+   Dos decisiones, dos gestos, sin abrir nada: la de catálogo va AFUERA de la
+   mini tarjeta (debajo de la foto) y dice si el producto se ve en la tienda; la
+   de precio va ADENTRO y da el OK a un precio nuevo. Alto de 40px para el dedo. */
+.prod-flanco{display:flex;flex-direction:column;align-items:center;gap:7px;flex:0 0 64px}
+.bander{display:inline-flex;align-items:center;gap:6px;box-sizing:border-box;
+  border-radius:999px;border:1px solid #d3dbe3;background:#fff;color:#63707e;
+  font:700 11px/1 inherit;cursor:pointer;padding:0 9px;min-height:28px;
+  transition:background .12s,border-color .12s,color .12s}
+.bander i{width:15px;height:15px;flex:0 0 15px;border-radius:50%;border:1px solid currentColor;
+  position:relative;opacity:.55}
+.bander.on i,.bander.lista i{opacity:1}
+.bander.on i::after,.bander.lista i::after{content:'';position:absolute;left:4px;top:1px;
+  width:4px;height:8px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(42deg)}
+
+/* Catálogo: verde cuando el producto se ve en la tienda, ámbar cuando no. */
+.bander-cat{width:64px;justify-content:center;padding:0 4px;min-height:40px;
+  flex-direction:column;gap:3px;font-size:9.5px;text-align:center;line-height:1.15}
+.bander-cat i{width:13px;height:13px;flex:0 0 13px}
+.bander-cat.on{background:#e9f7ef;border-color:#9cd4b4;color:#1d7a4a}
+.bander-cat:not(.on):not(.trabada){background:#fdf6e6;border-color:#e4cd95;color:#8a6b1c}
+.bander-cat.trabada{background:#f4f6f8;border-color:#dde3e9;color:#93a0ad;cursor:default}
+.bander-cat:disabled{cursor:default}
+
+/* Precio: mientras espera tu OK es un botón ámbar; una vez al día, queda gris. */
+.bander-precio{margin-top:8px;min-height:40px;padding:0 15px;font-size:12.5px}
+.bander-precio[data-ok]{background:#fdf3e4;border-color:#dcb677;color:#8a5310}
+.bander-precio[data-ok]:hover{background:#f9e8cd}
+.bander-precio.lista{background:transparent;border-color:transparent;color:#93a0ad;
+  padding-left:0;font-weight:600;cursor:default}
+.bander:disabled{opacity:.6}
+@media(max-width:700px){
+  .bander-cat{min-height:44px}
+  .bander-precio{min-height:44px;width:100%;justify-content:center}
+  .bander-precio.lista{justify-content:flex-start}
+}
 .aviso-cat{display:flex;flex-direction:column;gap:2px;margin:0 0 9px;padding:8px 11px;border-radius:9px;font-size:12.5px;line-height:1.4}
 .aviso-cat b{font-size:12.5px}
 .aviso-cat span{color:inherit;opacity:.85}
 .aviso-cat.espera{background:#eaf6ee;border:1px solid #bfe0cb;color:#1f6b42}
 .aviso-cat.traba{background:#f4f6f8;border:1px solid #dde3e9;color:#5c6b7a}
-.btn-catalogo{margin:0 0 9px}
 .sello-ver{display:inline-block;margin-right:10px;padding:3px 9px;border-radius:999px;
   background:#eef3f7;color:#6b8095;font-size:11px;font-weight:700;vertical-align:middle}
 /* La pantalla de compartir usa el mismo esquema que el editor: si no, queda
@@ -653,7 +679,7 @@ body.es-mayorista label[for=fileExcel]{display:none}
   </div>
   <div class="tarjetas" id="kpis"></div>
   <div class="barra acciones">
-    <button class="btn primario" id="btnVistos" onclick="marcarPreciosRevisados()" title="Da por vistos todos los cambios de precio de una vez" hidden>Dar por vistos todos los cambios</button>
+    <button class="btn primario" id="btnVistos" onclick="marcarPreciosRevisados()" title="Aprueba de una vez todos los precios que esperan tu OK" hidden>Dar el OK a todos los precios</button>
     <button class="btn primario" id="btnPublicar" title="Publica en la tienda los precios que tiene E-Pyme ahora">Publicar precios en la tienda</button>
     <label class="btn primario" for="fileExcel" title="Por si falla el pase automático: subí el mismo Excel que cargás al Sheet">Subir Excel de precios</label>
     <input type="file" id="fileExcel" class="foto-input" accept=".xlsx,.xls,.xlsm,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv">
@@ -697,6 +723,13 @@ var CSV_MAY_INFO = '', CSV_MAY_PRECIOS = '';
 var GUARDADO_MIN = null, GUARDADO_MAY = null;   // fichas/fotos/productos de cada una
 var FICHAS_MAY_LISTAS = false;
 var PRECIOS_VISTOS = {};        // {id: precio que ya revisaste}
+// Memoria permanente: la fecha del último cambio real de precio de cada producto.
+// Sin esto el orden "lo último que cambió" se pierde apenas revisás, y la lista
+// vuelve a salir alfabética.
+var CAMBIOS_FECHA = {};         // {id: {p: precio anterior, f: fecha ISO}}
+// El precio que vos aprobaste. La tienda usa ESTE, no el que llega de E-Pyme:
+// así un cambio de precio no llega solo a la web hasta que le das el OK.
+var PRECIOS_APROBADOS = {};     // {id: [p1, p2]}
 var ORDEN = 'cambios';          // como se ordena la lista
 var GUARDANDO_VISTOS = false;
 function repoActivo(){ return TIENDA === 'may' ? REPO_MAY : REPO; }
@@ -844,9 +877,12 @@ async function cargarFichasGuardadas(){
     FICHAS_FB = j.fichas || {};
     FOTOS_FB  = j.fotos  || {};
     PRECIOS_VISTOS = j.preciosVistos || {};   // para saber cuáles cambiaron desde la última revisión
+    CAMBIOS_FECHA  = j.cambiosPrecio || {};
+    PRECIOS_APROBADOS = j.preciosAprobados || {};
   } catch (e) {
     console.warn('[panel] todavía no hay fichas guardadas:', e && e.message);
     FICHAS_FB = {}; FOTOS_FB = {}; PRECIOS_VISTOS = {};
+    CAMBIOS_FECHA = {}; PRECIOS_APROBADOS = {};
   }
 }
 
@@ -915,6 +951,8 @@ async function guardarFichasEnRepo(mensaje){
   await guardarEnRepo(ARCHIVO_FICHAS,
     aB64(JSON.stringify({ fichas: FICHAS_FB, fotos: FOTOS_FB,
                           preciosVistos: PRECIOS_VISTOS,
+                          cambiosPrecio: CAMBIOS_FECHA,
+                          preciosAprobados: PRECIOS_APROBADOS,
                           actualizado: new Date().toISOString() }, null, 1)),
     mensaje, 0, repoActivo());
 }
@@ -1757,8 +1795,8 @@ function pintarKpis(){
   const malos   = PRODUCTOS.filter(p => p.malRubro).length;
 
   const kpis = [
-    ['precio',  cambios, cambios === 1 ? 'cambió de precio' : 'cambiaron de precio', 'k-precio'],
-    ['nuevos',  nuevos,  nuevos === 1 ? 'nuevo, espera tu OK' : 'nuevos, esperan tu OK', 'k-nuevo'],
+    ['precio',  cambios, cambios === 1 ? 'espera tu OK' : 'esperan tu OK', 'k-precio'],
+    ['nuevos',  nuevos,  nuevos === 1 ? 'nuevo' : 'nuevos', 'k-nuevo'],
     ['sinfoto', sinFoto, 'sin foto', 'k-foto'],
     ['fuera',   fuera,   'fuera del catálogo', 'k-fuera'],
     ['renom',   renoms,  renoms === 1 ? 'nombre cambiado' : 'nombres cambiados', 'k-renom'],
@@ -1768,7 +1806,7 @@ function pintarKpis(){
 
   try { avisarPublicar(); } catch(e) {}
   const bv = document.getElementById('btnVistos');
-  if (bv) { bv.hidden = !cambios; bv.textContent = 'Dar por vistos los ' + cambios + ' cambios'; }
+  if (bv) { bv.hidden = !cambios; bv.textContent = 'Dar el OK a los ' + cambios + ' precios'; }
   document.getElementById('kpis').innerHTML =
     '<button type="button" class="kpi k-todos' + (FILTRO === 'todos' ? ' on' : '') + '" data-f="todos">' +
       '<b>' + t + '</b><span>en total</span></button>' +
@@ -1842,25 +1880,31 @@ function pintar(){
     lista = lista.filter(p => p.nombre.toLowerCase().includes(q) || p.id.includes(q));
   }
   // El orden lo elige Juani; por defecto, lo que hay que mirar primero.
-  const prioridad = p => p.cambioPrecio ? 0 : p.nuevo ? 1 : p.malRubro ? 2 : hayRenombre(p) ? 3 : !p.foto ? 4 : 5;
   const alfa = (a,b) => String(a.nombre).localeCompare(String(b.nombre), 'es');
   if (ORDEN === 'alfa')        lista.sort(alfa);
   else if (ORDEN === 'caro')   lista.sort((a,b) => (b.p1||0) - (a.p1||0) || alfa(a,b));
   else if (ORDEN === 'barato') lista.sort((a,b) => (a.p1||0) - (b.p1||0) || alfa(a,b));
   else if (ORDEN === 'rubro')  lista.sort((a,b) => String(a.rubro).localeCompare(String(b.rubro),'es') || alfa(a,b));
   else lista.sort((a,b) => {
-    const pa = prioridad(a), pb = prioridad(b);
-    return pa !== pb ? pa - pb : alfa(a,b);
+    // Primero lo que espera tu OK, después el resto: dentro de cada grupo, lo
+    // que cambió de precio más recientemente. La fecha queda guardada para
+    // siempre, así que el orden no se pierde cuando das el visto.
+    const espera = p => p.cambioPrecio ? 0 : 1;
+    const ea = espera(a), eb = espera(b);
+    if (ea !== eb) return ea - eb;
+    const fa = a.fechaCambio || '', fb = b.fechaCambio || '';
+    if (fa !== fb) return fb.localeCompare(fa);   // más reciente primero
+    return alfa(a,b);
   });
 
   llenarRubros();
   // Una línea de ayuda según lo que se esté mirando: el panel tiene varios
   // flujos y no todos son evidentes.
   const ayudas = {
-    nuevos: 'Son productos que aparecieron en E-Pyme y todavía no están en la tienda. Tocá uno, completale la foto y la descripción, y al guardar queda listo para publicarse.',
-    precio: 'Cambiaron de precio desde tu última revisión. Aceptá los que estén bien con el tilde de cada uno, o usá el botón de arriba para aceptarlos todos (eso además publica los precios en la tienda).',
+    nuevos: 'Aparecieron en E-Pyme y todavía no están en la tienda. Prendé la banderilla verde de la izquierda y entran al catálogo con el precio que traen: no hace falta un segundo OK.',
+    precio: 'Cambiaron de precio y la tienda sigue mostrando el anterior. Tocá <b>OK al precio</b> en cada uno, o el botón de arriba para todos. Los que dicen NUEVO entran al catálogo con la banderilla verde.',
     sinfoto: 'Tocá un producto para subirle la foto. Dentro del editor, con la foto ya cargada, aparece el botón <b>Compartir con la distribuidora</b> para usar la misma imagen allá.',
-    fuera: 'Cada tarjeta te dice arriba qué le falta: los que sacaste vos vuelven con un botón, los nuevos salen al tocar <b>Publicar precios en la tienda</b>, y los que no tienen precio en E-Pyme hay que cargarlos allá.'
+    fuera: 'La banderilla de la izquierda los mete o los saca de la tienda. Los que dicen <b>No se puede</b> es porque les falta precio o tienen mal el rubro: eso se arregla en E-Pyme.'
   };
   const cajaAyuda = document.getElementById('ayudaFiltro');
   if (cajaAyuda) {
@@ -1880,16 +1924,16 @@ function pintar(){
     const clase = (p.cambioPrecio ? 'es-precio' : p.nuevo ? 'es-nuevo' : p.malRubro ? 'es-mal' : hayRenombre(p) ? 'es-renom' : !p.foto ? 'es-sinfoto' : '') +
                   (enCatalogo(p) ? ' en-catalogo' : ' fuera-catalogo');
     const chips = [];
-    if (p.cambioPrecio) chips.push('<span class="chip precio">' +
+    if (p.nuevo) chips.push('<span class="chip nuevo">NUEVO</span>');
+    if (p.cambioPrecio && !p.nuevo) chips.push('<span class="chip precio">' +
       (p.subio ? 'SUBIÓ' : 'BAJÓ') + ' — antes $' + (p.precioAntes || 0).toLocaleString('es-AR') +
-      '</span><button type="button" class="chip-ok" data-ok="' + esc(p.id) + '" aria-label="Aceptar este precio" title="Aceptar este precio">&#10003; Aceptar</button>');
+      '</span>');
     if (p.nuevo) {
       const falta = [];
       if (!p.foto) falta.push('foto');
       if (!p.desc) falta.push('descripción');
       if (!p.cantidades) falta.push('cantidades');
-      chips.push('<span class="chip nuevo">NUEVO — ' +
-        (falta.length ? 'falta ' + falta.join(' y ') : 'listo para publicar') + '</span>');
+      if (falta.length) chips.push('<span class="chip falta">falta ' + falta.join(' y ') + '</span>');
     }
     if (p.malRubro) chips.push('<span class="chip mal">Rubro inválido</span>');
     if (hayRenombre(p)) chips.push('<span class="chip renom">Nombre cambiado</span>');
@@ -1915,32 +1959,39 @@ function pintar(){
       ? '<div class="precio"><span class="p-uno">' + pesos(p.p1) + '</span>' +
         (p.p2 ? '<span class="p-dos"><i>+$80.000</i>' + pesos(p.p2) + '</span>' : '') + '</div>'
       : '';
-    // Arriba de todo: si está fuera del catálogo, qué se puede hacer o por qué no.
-    var avisoCat = '';
-    if (!enCatalogo(p)) {
-      if (p.oculto === true) {
-        avisoCat = '<button type="button" class="btn-catalogo" data-cat="' + esc(p.id) + '">Agregar al catálogo</button>';
-      } else if (p.nuevo) {
-        var f2 = [];
-        if (!p.foto) f2.push('la foto');
-        if (!p.desc) f2.push('la descripción');
-        avisoCat = '<div class="aviso-cat espera"><b>Falta darlo de alta</b>' +
-          (f2.length ? '<span>Completá ' + f2.join(' y ') + ', y después tocá <b>Publicar precios en la tienda</b>.</span>'
-                     : '<span>Ya tiene todo: tocá <b>Publicar precios en la tienda</b> y sale publicado.</span>') + '</div>';
-      } else if (p.sinPrecio) {
-        avisoCat = '<div class="aviso-cat traba"><b>No se puede publicar</b>' +
-          '<span>No tiene precio en E-Pyme. Cargáselo allá y aparece solo.</span></div>';
-      } else if (p.malRubro) {
-        avisoCat = '<div class="aviso-cat traba"><b>No se puede publicar</b>' +
-          '<span>Tiene un rubro que la tienda no reconoce. Corregilo en la planilla.</span></div>';
-      }
-    }
-    return '<div class="prod ' + clase + '" data-id="' + esc(p.id) + '" title="Clic para editar la ficha">' + foto +
-      '<div class="datos">' + avisoCat +
+    // ── BANDERILLA DE CATÁLOGO (fuera de la tarjeta) ──
+    // Un solo gesto para sacar o poner un producto en la tienda. Si no se puede
+    // publicar, la banderilla queda trabada y dice por qué.
+    var traba = '';
+    if (p.sinPrecio) traba = 'No tiene precio en E-Pyme. Cargáselo allá.';
+    else if (p.malRubro) traba = 'Tiene un rubro que la tienda no reconoce. Corregilo en la planilla.';
+    var enCat = enCatalogo(p);
+    var bandCat = traba
+      ? '<button type="button" class="bander bander-cat trabada" disabled title="' + esc(traba) + '">' +
+          '<i></i><span>No se puede</span></button>'
+      : '<button type="button" class="bander bander-cat' + (enCat ? ' on' : '') + '" data-cat="' + esc(p.id) + '"' +
+          ' aria-pressed="' + (enCat ? 'true' : 'false') + '"' +
+          ' title="' + (enCat ? 'Sacar de la tienda' : 'Poner en la tienda') + '">' +
+          '<i></i><span>' + (enCat ? 'En la tienda' : 'Fuera') + '</span></button>';
+
+    // ── BANDERILLA DE PRECIO (dentro de la mini tarjeta) ──
+    var bandPrecio = p.cambioPrecio
+      ? '<button type="button" class="bander bander-precio" data-ok="' + esc(p.id) + '"' +
+          ' title="Dar el OK a este precio"><i></i><span>' +
+          (p.nuevo ? 'OK al precio nuevo' : 'OK al precio') + '</span></button>'
+      : '<span class="bander bander-precio lista"><i></i><span>Precio al día</span></span>';
+
+    var aviso = '';
+    if (traba) aviso = '<div class="aviso-cat traba"><b>No se puede publicar</b><span>' + esc(traba) + '</span></div>';
+
+    return '<div class="prod ' + clase + '" data-id="' + esc(p.id) + '" title="Clic para editar la ficha">' +
+      '<div class="prod-flanco">' + foto + bandCat + '</div>' +
+      '<div class="datos">' + aviso +
         '<div class="nom">' + esc(p.nombre) + '</div>' +
         '<div class="meta">Art. ' + esc(p.id) + ' · ' + esc(p.rubro) +
           (p.cantidades ? ' · ' + esc(p.cantidades) : '') + '</div>' +
         precio +
+        bandPrecio +
         (chips.length ? '<div class="chips">' + chips.join('') + '</div>' : '') +
         ren +
       '</div></div>';
@@ -2358,6 +2409,7 @@ document.addEventListener('click', function(ev){
    ahora: los que difieren van primero y con el borde marcado. */
 function marcarCambiosDePrecio(lista){
   var primeraVez = !PRECIOS_VISTOS || !Object.keys(PRECIOS_VISTOS).length;
+  var hoy = new Date().toISOString();
   lista.forEach(function(p){
     var antes = PRECIOS_VISTOS ? PRECIOS_VISTOS[p.id] : undefined;
     p.precioAntes = antes;
@@ -2367,8 +2419,35 @@ function marcarCambiosDePrecio(lista){
     var dif = (antes === undefined) ? 0 : Math.abs(Number(antes) - Number(p.p1));
     p.cambioPrecio = (!primeraVez && antes !== undefined && p.p1 > 0 && dif >= 1);
     p.subio = p.cambioPrecio && Number(p.p1) > Number(antes);
+    // Un producto recién creado en E-Pyme con precio es, a los efectos de la
+    // revisión, un cambio de precio más: entra a la misma lista con su etiqueta.
+    if (p.nuevo && p.p1 > 0) { p.cambioPrecio = true; p.subio = false; }
+    // Queda anotado el día del cambio, y no se borra al revisarlo: es lo que
+    // permite que la lista siempre empiece por lo último que se movió.
+    if (p.cambioPrecio) {
+      var reg = CAMBIOS_FECHA[p.id];
+      if (!reg || Math.abs(Number(reg.p || 0) - Number(p.p1)) >= 1) {
+        CAMBIOS_FECHA[p.id] = { p: (antes === undefined ? null : antes), f: hoy, n: p.p1 };
+      }
+    }
+    var rg = CAMBIOS_FECHA[p.id];
+    p.fechaCambio = rg ? rg.f : '';
   });
   return lista;
+}
+
+/* El precio que hoy está publicado en la tienda para este producto: el aprobado
+   si ya lo revisaste alguna vez, o el de E-Pyme si todavía no. */
+function precioPublicado(p){
+  var a = PRECIOS_APROBADOS[p.id];
+  return a ? a[0] : p.p1;
+}
+
+/* Aprobar = dejar asentado que ESTE precio es el que puede ir a la tienda. */
+function aprobarPrecio(p){
+  PRECIOS_VISTOS[p.id] = p.p1;
+  if (p.p1 > 0) PRECIOS_APROBADOS[p.id] = [p.p1, p.p2 || 0];
+  p.cambioPrecio = false; p.precioAntes = p.p1;
 }
 
 function contarCambios(){ return PRODUCTOS.filter(function(p){ return p.cambioPrecio; }).length; }
@@ -2383,9 +2462,8 @@ async function marcarPreciosRevisados(){
   if (btn) { btn.disabled = true; btn.textContent = 'Guardando...'; }
   try {
     PRECIOS_VISTOS = {};
-    PRODUCTOS.forEach(function(p){ if (p.p1 > 0) PRECIOS_VISTOS[p.id] = p.p1; });
-    await guardarFichasEnRepo('Precios revisados' + (n ? ' (' + n + ' cambios)' : ''));
-    PRODUCTOS.forEach(function(p){ p.cambioPrecio = false; p.precioAntes = p.p1; });
+    PRODUCTOS.forEach(function(p){ if (p.p1 > 0) aprobarPrecio(p); });
+    await guardarFichasEnRepo('Precios aprobados' + (n ? ' (' + n + ' cambios)' : ''));
     pintarKpis(); pintar();
     // Aceptar todo implica que querés que eso llegue a la tienda: se publica solo.
     if (n && TIENDA === 'min' && typeof publicarPrecios === 'function') {
@@ -2395,7 +2473,7 @@ async function marcarPreciosRevisados(){
     alert('No pude guardar la revisión: ' + e.message);
   } finally {
     GUARDANDO_VISTOS = false;
-    if (btn) { btn.disabled = false; btn.textContent = 'Dar por vistos todos los cambios'; }
+    if (btn) { btn.disabled = false; btn.textContent = 'Dar el OK a todos los precios'; }
   }
 }
 window.marcarPreciosRevisados = marcarPreciosRevisados;
@@ -2407,22 +2485,21 @@ window.marcarPreciosRevisados = marcarPreciosRevisados;
 async function verPrecioVisto(id){
   var p = PRODUCTOS.find(function(x){ return x.id === id; });
   if (!p) return;
-  var btn = document.querySelector('.chip-ok[data-ok="' + id + '"]');
-  if (btn) { btn.disabled = true; btn.textContent = '...'; }
+  var btn = document.querySelector('.bander-precio[data-ok="' + id + '"]');
+  if (btn) { btn.disabled = true; btn.textContent = 'Guardando...'; }
   try {
-    PRECIOS_VISTOS[id] = p.p1;
-    await guardarFichasEnRepo('Precio revisado: ' + (p.nombre || id));
-    p.cambioPrecio = false; p.precioAntes = p.p1;
+    aprobarPrecio(p);
+    await guardarFichasEnRepo('Precio aprobado: ' + (p.nombre || id));
     pintarKpis(); pintar();
   } catch (e) {
     alert('No pude guardarlo: ' + e.message);
-    if (btn) { btn.disabled = false; btn.innerHTML = '&#10003; Aceptar'; }
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i></i><span>OK al precio</span>'; }
   }
 }
 // En fase de CAPTURA: el listener de la tarjeta ya estaba registrado y, en
 // burbuja, corría primero y abría el editor igual.
 document.addEventListener('click', function(ev){
-  var b = ev.target.closest && ev.target.closest('.chip-ok[data-ok]');
+  var b = ev.target.closest && ev.target.closest('.bander-precio[data-ok]');
   if (!b) return;
   ev.stopPropagation();
   ev.stopImmediatePropagation();
@@ -2450,8 +2527,8 @@ function avisarPublicar(){
   }
   barra.hidden = false;
   nota.textContent = n
-    ? 'Tenés ' + n + ' cambio' + (n === 1 ? '' : 's') + ' sin revisar'
-    : 'Sin esto, la tienda sigue con los precios viejos';
+    ? 'Tenés ' + n + ' precio' + (n === 1 ? '' : 's') + ' esperando tu OK: hasta entonces la tienda muestra el anterior'
+    : 'Todos los precios al día';
 }
 window.avisarPublicar = avisarPublicar;
 
@@ -2634,21 +2711,27 @@ async function volverAlCatalogo(id){
   var p = PRODUCTOS.find(function(x){ return x.id === id; });
   if (!p) return;
   if (!TOKEN) { alert('Entrá con la clave para poder guardar.'); return; }
-  var b = document.querySelector('.btn-catalogo[data-cat="' + id + '"]');
-  if (b) { b.disabled = true; b.textContent = 'Agregando...'; }
+  var b = document.querySelector('.bander-cat[data-cat="' + id + '"]');
+  if (b) { b.disabled = true; }
+  var estaba = { oculto: p.oculto, nuevo: p.nuevo };
+  var entra = !enCatalogo(p);      // si está afuera, esta banderilla lo mete
   try {
-    p.oculto = false;
-    FICHAS_FB[id] = Object.assign({}, FICHAS_FB[id] || {}, { oculto: false, origen: 'panel' });
-    await guardarFichasEnRepo('Vuelve al catálogo: ' + (p.nombre || id));
+    p.oculto = !entra;
+    var ficha = { oculto: p.oculto, origen: 'panel' };
+    // Un producto nuevo no necesita un segundo OK: meterlo al catálogo YA implica
+    // que el precio con el que entra está bien.
+    if (entra && p.nuevo) { aprobarPrecio(p); p.nuevo = false; }
+    FICHAS_FB[id] = Object.assign({}, FICHAS_FB[id] || {}, ficha);
+    await guardarFichasEnRepo((entra ? 'Entra al catálogo: ' : 'Sale del catálogo: ') + (p.nombre || id));
     pintarKpis(); pintar();
   } catch (e) {
-    p.oculto = true;
-    alert('No pude agregarlo: ' + e.message);
-    if (b) { b.disabled = false; b.textContent = 'Agregar al catálogo'; }
+    p.oculto = estaba.oculto; p.nuevo = estaba.nuevo;
+    alert('No pude guardarlo: ' + e.message);
+    pintar();
   }
 }
 document.addEventListener('click', function(ev){
-  var b = ev.target.closest && ev.target.closest('.btn-catalogo[data-cat]');
+  var b = ev.target.closest && ev.target.closest('.bander-cat[data-cat]');
   if (!b) return;
   ev.stopPropagation(); ev.stopImmediatePropagation(); ev.preventDefault();
   volverAlCatalogo(b.dataset.cat);
