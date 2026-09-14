@@ -7665,9 +7665,11 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-   "origen": "sheet",
+   "origen": "panel",
    "actualizado": "2026-09-13T12:51:39.796Z",
-   "por": "panel"
+   "por": "panel",
+   "oculto": false,
+   "altaOk": true
   },
   "5050": {
    "nombre": "PASTA DENTAL X50 GR - SRISRI",
@@ -10221,7 +10223,8 @@
   "5045": 8570,
   "5046": 29580,
   "5047": 38708.98,
-  "5048": 22500
+  "5048": 22500,
+  "5049": 6000
  },
  "cambiosPrecio": {
   "1051": {
@@ -10308,7 +10311,11 @@
   "2205": [
    25070,
    0
+  ],
+  "5049": [
+   6000,
+   0
   ]
  },
- "actualizado": "2026-09-14T02:24:44.110Z"
+ "actualizado": "2026-09-14T02:24:52.131Z"
 }
