@@ -6916,9 +6916,11 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "PRODUCTOS SIN TACC",
-   "origen": "sheet",
+   "origen": "panel",
    "actualizado": "2026-09-13T12:51:39.791Z",
-   "por": "panel"
+   "por": "panel",
+   "oculto": false,
+   "altaOk": true
   },
   "2512": {
    "nombre": "DULCE DE MEMBRILLO SIN AZUCAR X400 GR - ORIETA",
@@ -10173,6 +10175,7 @@
   "2505": 53530.02,
   "2506": 3520,
   "2509": 6830,
+  "2511": 4820,
   "2512": 6440,
   "2513": 1500,
   "2515": 7300,
@@ -10319,10 +10322,14 @@
    6830,
    0
   ],
+  "2511": [
+   4820,
+   0
+  ],
   "5049": [
    6000,
    0
   ]
  },
- "actualizado": "2026-09-14T02:24:57.095Z"
+ "actualizado": "2026-09-14T02:25:02.945Z"
 }
