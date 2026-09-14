@@ -4904,9 +4904,11 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "ESPECIAS",
-   "origen": "sheet",
+   "origen": "panel",
    "actualizado": "2026-09-13T12:51:39.788Z",
-   "por": "panel"
+   "por": "panel",
+   "oculto": false,
+   "altaOk": true
   },
   "2211": {
    "nombre": "POTASIO + MAGNESIO X30 CAPSULAS - EL NATURALISTA",
@@ -10039,6 +10041,7 @@
   "2187": 19880,
   "2188": 22120,
   "2189": 31210,
+  "2205": 25070,
   "2211": 10029.99,
   "2212": 14630,
   "2216": 8600,
@@ -10301,7 +10304,11 @@
   "1051": [
    7450,
    0
+  ],
+  "2205": [
+   25070,
+   0
   ]
  },
- "actualizado": "2026-09-14T02:24:32.129Z"
+ "actualizado": "2026-09-14T02:24:44.110Z"
 }
