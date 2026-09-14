@@ -1005,20 +1005,33 @@ function optimizarFoto(file){
     function trabajar(fuente, ancho, alto){
       try {
         const escala = Math.min(1, FOTO_LADO / Math.max(ancho, alto));
-        const w = Math.max(1, Math.round(ancho * escala));
-        const h = Math.max(1, Math.round(alto * escala));
-        const c = document.createElement('canvas');
+        let w = Math.max(1, Math.round(ancho * escala));
+        let h = Math.max(1, Math.round(alto * escala));
+        let c = document.createElement('canvas');
         c.width = w; c.height = h;
         const ctx = c.getContext('2d', { willReadFrequently: true });
         ctx.drawImage(fuente, 0, 0, w, h);
         const fondo = _colorDeFondo(ctx, w, h);
 
-        // WebP es lo mejor, pero los iPhone anteriores a iOS 16.4 no lo saben
-        // generar. En ese caso se guarda JPG: pesa un poco más y funciona igual.
+        // WebP es lo mejor, pero los iPhone anteriores a iOS 16.4 y los Safari
+        // viejos de Mac no lo saben generar. Ahí se cae a JPG.
         let datos = c.toDataURL('image/webp', FOTO_CALIDAD);
         let ext = 'webp';
         if (datos.indexOf('data:image/webp') !== 0) {
-          datos = c.toDataURL('image/jpeg', 0.78);   // el JPG pesa más que WebP: se ajusta
+          // El JPG del mismo tamaño pesa el doble que el WebP. Se redibuja más
+          // chico (560px sigue viéndose nítido en la tarjeta y en el zoom) para
+          // que una foto subida desde un navegador viejo no pese de más.
+          const LADO_JPG = 560;
+          if (Math.max(w, h) > LADO_JPG) {
+            const k = LADO_JPG / Math.max(w, h);
+            const c2 = document.createElement('canvas');
+            c2.width = Math.round(w * k); c2.height = Math.round(h * k);
+            const x2 = c2.getContext('2d');
+            x2.imageSmoothingQuality = 'high';
+            x2.drawImage(c, 0, 0, c2.width, c2.height);
+            c = c2; w = c2.width; h = c2.height;
+          }
+          datos = c.toDataURL('image/jpeg', 0.74);
           ext = 'jpg';
           if (datos.indexOf('data:image/jpeg') !== 0)
             return reject(new Error('Este navegador no pudo preparar la foto.'));
