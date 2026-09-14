@@ -55,7 +55,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/12QBbEObkcuELenw4Hw1i5M2bxaDm3aIy/view"
   },
   "1007": {
    "nombre": "ACEITE DE OLIVA X 5 L - RODRIGO DE VIVAR",
@@ -741,7 +742,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/17575rt-rqMMtAt_utc3qRj5ufJubO4OO/view"
   },
   "1154": {
    "nombre": "BOLDO",
@@ -1153,7 +1155,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1ggYi4CGKjZ9XCLcLwiXQoKgRtp-IhCP9/view"
   },
   "1244": {
    "nombre": "DULCE DE ALCAYOTA X500 GR - DON FRANCISCO",
@@ -1176,7 +1179,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1ioPvMfu-dbAw-qN9go0VGewIKoWuTAik/view"
   },
   "1253": {
    "nombre": "DULCE DE MEMBRILLO X500 GR - MUPAY",
@@ -1235,7 +1239,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1dal4VjBCSTX90h98Q8iopr2Znu-hTM9_/view"
   },
   "1269": {
    "nombre": "FECULA DE MANDIOCA",
@@ -1558,7 +1563,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1BlrA_NJ-JowO6ypUPqQ_LVOlAX210o7I/view"
   },
   "1319": {
    "nombre": "JENGIBRE GLASEADO",
@@ -1630,7 +1636,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/16mVUrrkYQ7WWD2YJW9mEQjNalKXaBiCD/view"
   },
   "1358": {
    "nombre": "LENTEJAS TURCAS",
@@ -1828,7 +1835,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
-   "mix": true
+   "mix": true,
+   "imagen": "https://drive.google.com/file/d/1QNLQBOe62lw2pV2iskuftZfquII0mtIf/view"
   },
   "1394": {
    "nombre": "MEDALLONES DE DURAZNO",
@@ -1996,7 +2004,7 @@
   "1430": {
    "nombre": "MIX TROPICAL",
    "cantidades": "100G/250G/500G/1KG",
-   "desc": "Para los que buscan un toque exótico: Nuez, Almendras, Maní Tostado,\nCastañas, Pasas Morochas y Rubias, Fruta Glaseada y Chips De Banana.",
+   "desc": "Para los que buscan un toque exótico: Nuez, Almendras, Maní Tostado, \nCastañas, Pasas Morochas y Rubias, Fruta Glaseada y Chips De Banana.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1GoCWwa9uCvBeTnZeY6KA0pYRGoSCytkb/view",
    "oferta": 0,
@@ -2032,7 +2040,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
-   "mix": true
+   "mix": true,
+   "imagen": "https://drive.google.com/file/d/14S3MSYxxh2QTPkE9oteOswe1cHG7X6Dl/view"
   },
   "1445": {
    "nombre": "NUEZ CUARTOS",
@@ -2444,7 +2453,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1w9damY3bRm1gvLHRwOXX9dDWA0HlenN0/view"
   },
   "1525": {
    "nombre": "POROTOS ALUBIA",
@@ -2527,7 +2537,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1WSc31MWHh-HRvIhrvNhmmhAfTnd15B7E/view"
   },
   "1533": {
    "nombre": "POROTOS PALLARES",
@@ -2686,7 +2697,8 @@
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/1PAn7aEWgCX6yH7pqg9NMjr3VaqWWthZM/view"
   },
   "1573": {
    "nombre": "SALSA JALAPEÑO ROJA X180 CC - ALCARAZ GOURMET",
@@ -2709,7 +2721,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1qQsHGWKKEjSAWNU7GUaTFoQHX5ykncDo/view"
   },
   "1575": {
    "nombre": "SALSA TERIYAKI X250 CC - HASHI",
@@ -3220,7 +3233,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1qzciXlfdSuYrO8XqsgqSz7qipQqapWjc/view"
   },
   "1706": {
    "nombre": "LAS PERDICES - SAUVIGNON BLANC X750 CC",
@@ -3243,7 +3257,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1lE1YjzQ1PvLSgq1Z2DWHq4didlHmJ9kA/view"
   },
   "1708": {
    "nombre": "LAS PERDICES - PARTRIDGE CHARDONNAY X750 CC",
@@ -3254,7 +3269,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1ih-YMa_RJ0Um24RGCWyVFfR15ODm_buj/view"
   },
   "1709": {
    "nombre": "LAS PERDICES - RESERVA MALBEC X750 CC",
@@ -3265,7 +3281,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1ME72qUpYIFSpK95o2iIVj_TDprTQHt-n/view"
   },
   "1710": {
    "nombre": "LAS PERDICES - RESERVA CHARDONNAY X750 CC",
@@ -3276,7 +3293,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1Jcg_KrV3r9okXxZ2ZiS7DUciNI6Vzk1c/view"
   },
   "1711": {
    "nombre": "LAS PERDICES - ALA COLORADA ANCELLOTA X750 CC",
@@ -3287,7 +3305,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1DxAt8IFnWfkA4Pci_qJ0TNndoaClQgaF/view"
   },
   "1712": {
    "nombre": "LAS PERDICES - EXTRA BRUT CORTO X750 CC",
@@ -3298,7 +3317,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1r76noGBx3eyq-qnZcZnh50zzeDF00yvA/view"
   },
   "1716": {
    "nombre": "NUEZ MARIPOSA EXTRA LIGHT",
@@ -3339,7 +3359,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1Sz9Gu4mWnwOdjQew6u_cKox5KCWncp2c/view"
   },
   "1789": {
    "nombre": "PETALOS DE ROSA",
@@ -3435,7 +3456,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1rx-t9NwtNgzUjHfOO-5-RZeN5GpPi6kQ/view"
   },
   "1842": {
    "nombre": "ALMENDRAS NONPAREIL",
@@ -3525,7 +3547,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1OKnlEIbNEdHqr-OyZSrkASU4v0KUHRco/view"
   },
   "1894": {
    "nombre": "ACEITE DE OLIVA X 900ML - VERDE OLIVA",
@@ -3572,7 +3595,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1u0-5x1L28ICM2U9tTulVhMn2vhU1MPJg/view"
   },
   "1900": {
    "nombre": "PROSTASANA X30 COMPRIMIDOS - EL NATURALISTA",
@@ -3789,7 +3813,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1BmbRO-PstyqdU8C4MgNANoGIWNgEzw5Q/view"
   },
   "2007": {
    "nombre": "CHIPS DE CHOCOLATE SEMIAMARGO",
@@ -3888,7 +3913,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.796Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1PFlV0NsG3YVxDPVF7HUEl1x34SU8eVSI/view"
   },
   "2027": {
    "nombre": "ALFAJORES DE MAICENA SIN GLUTEN X6 UNIDADES",
@@ -4455,7 +4481,8 @@
    "actualizado": "2026-09-13T12:51:39.793Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/170irm8-Z36RpbZkhy8M3Av8wK2G1DKkk/view"
   },
   "2098": {
    "nombre": "STEVIA X100 SOBRES SIN TACC - DULRI",
@@ -5009,7 +5036,8 @@
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/1nfDwEzADkkZ_M2syCT1_c39j6E6fHWj1/view"
   },
   "2211": {
    "nombre": "POTASIO + MAGNESIO X30 CAPSULAS - EL NATURALISTA",
@@ -5206,7 +5234,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.794Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1Kn9UEGqwFqVtJrciwDf0AHiM8hokko6D/view"
   },
   "2256": {
    "nombre": "SPIRULINA EN POLVO",
@@ -5399,7 +5428,8 @@
    "actualizado": "2026-09-13T12:51:39.794Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/1r83iEtXZ9D9Q_u13fgPxTgTVk245jy0H/view"
   },
   "2286": {
    "nombre": "MIEL X500 GR - TRES SOLES",
@@ -5550,7 +5580,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1mzh5QK15PYaKWabU9r8NaS9ab1UduMVn/view"
   },
   "2311": {
    "nombre": "VITAMINA C X60 COMPRIMIDOS - EL NATURALISTA",
@@ -5624,7 +5655,8 @@
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/1zoARS7yr2QEKuw66reNksJfVez2hGLzK/view"
   },
   "2323": {
    "nombre": "ALOE VERA BEBIBLE DIGESTIVO X250 ML - NATIER",
@@ -5671,7 +5703,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1HkJPoQjOkzdDEaWYkhpMSF-GwWVKQI60/view"
   },
   "2328": {
    "nombre": "BOMBITA DEFUMACION X4 UNIDADES - SAGRADA MADRE",
@@ -5788,7 +5821,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1yOXQb7t0d69ngQzo9QPaOE4WK8HJlkIs/view"
   },
   "2348": {
    "nombre": "POLVO PARA HORNEAR",
@@ -5859,7 +5893,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1ilWhhclEOGB0IAPMDb7ymqNlimn7BHCf/view"
   },
   "2364": {
    "nombre": "VINAGRE  DE SIDRA DE MANZANA X500 ML - VERDE VIDA",
@@ -6102,7 +6137,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1QUK8EEKByUJbLDEGGuhHYRGmVQhDwlGh/view"
   },
   "2386": {
    "nombre": "ACEITE DE LINO X 150 cc - NUTRA SEM",
@@ -6125,7 +6161,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.787Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1rLGrJu31pwNrrLTwElmBOGFvxJJyOHbV/view"
   },
   "2388": {
    "nombre": "ENVIO",
@@ -6282,7 +6319,8 @@
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/1u9qOS3GDbtdUIKydP8QlcVUcyd_8ah66/view"
   },
   "2415": {
    "nombre": "BLEND DE TE",
@@ -6330,7 +6368,8 @@
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/1AIhso6Z-IePh_Kmsd43ueWbMnAKpgKDG/view"
   },
   "2421": {
    "nombre": "PALO SANTO X30 GR",
@@ -6458,7 +6497,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1gt-1bLjb6gjjkeTJRfRfLVCLA6Rs_k5b/view"
   },
   "2442": {
    "nombre": "CAJA FUERZA DIVINA",
@@ -6563,7 +6603,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1I3sXrAbibz4MXrj8IPUAQRXKdqth-LIA/view"
   },
   "2463": {
    "nombre": "BISGLICINATO DE MAGNESIO X50 CAPSULAS - NATIER",
@@ -6728,7 +6769,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1q6skpqmawMY2kVSB97YQ38vtfBYGyLzy/view"
   },
   "2480": {
    "nombre": "RHODIOLA ROSEA EXTRACTO X60 CC - SOMOS SETAS",
@@ -6775,7 +6817,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1nXMBYKQO0h5oN3_D5PytHf4LYrQGF8iM/view"
   },
   "2485": {
    "nombre": "ELECTROLITOS X9 GR - SUMA",
@@ -6798,7 +6841,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1q6Qj1vfrxUKkbteBFAUyAX42s3ih5-28/view"
   },
   "2487": {
    "nombre": "CHIPS DE PAPAS - SIN TACC - BOUTIQUE CHIPS",
@@ -6809,7 +6853,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1oyLAu56tApYKgNFGm2h58eYfvP34Kujj/view"
   },
   "2488": {
    "nombre": "CHIPS DE BATATA - SIN TACC - BOUTIQUE CHIPS",
@@ -6820,7 +6865,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.790Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1fPcn3OGtjydPCFO2ROIav_VHPeR6bD0J/view"
   },
   "2489": {
    "nombre": "MANTECA CLARIFICADA GHEE X150 GR - COW'S PURE",
@@ -6831,7 +6877,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1kFLX7dHd_D-WXBze7oYh-3uuso6egfgs/view"
   },
   "2490": {
    "nombre": "PREMEZCLA SIN TACC UNIVERSAL PANADERIA REPOSTERIA Y PASTAS X500 GR - DELICEL",
@@ -6907,7 +6954,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1aLfrFpfrLtZr2OHYqMYXUB_JiCQEqg5L/view"
   },
   "2501": {
    "nombre": "ACEITERO SPRAY X 100 ML",
@@ -6918,7 +6966,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/14hUmwVfVltOyHhOTEDnkOnzCx3muWmZK/view"
   },
   "2502": {
    "nombre": "SALSA INGLESA X180 CC - ALCARAZ GOURMET",
@@ -7013,7 +7062,8 @@
    "actualizado": "2026-09-13T12:51:39.789Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/1VVBGz9tYtvkFt5YfsrR-NhdWsaAiHHIv/view"
   },
   "2510": {
    "nombre": "DULCE DE MEMBRILLO X454 GR - PIZARRO",
@@ -7024,7 +7074,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.792Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1WB9x4IEIWsAQbMrV0NyGvq16COsM_jG_/view"
   },
   "2511": {
    "nombre": "DULCE BATATA SIN AZUCAR X400 GR - ORIETA",
@@ -7037,7 +7088,8 @@
    "actualizado": "2026-09-13T12:51:39.791Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/1RbjjqLrmtLjhpbsYusDczai4yf-tlhRp/view"
   },
   "2512": {
    "nombre": "DULCE DE MEMBRILLO SIN AZUCAR X400 GR - ORIETA",
@@ -7095,7 +7147,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1dOVl95_PeEs-gJVdf28DGysIz4uxS7sq/view"
   },
   "2517": {
    "nombre": "CHIPA X480 GR - AFG",
@@ -7119,7 +7172,8 @@
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "mix": true
+   "mix": true,
+   "imagen": "https://drive.google.com/file/d/1haZ64ESOumYBedGUI0AvxzAmGItSUbYz/view"
   },
   "4453": {
    "nombre": "NUEZ DE BRASIL",
@@ -7223,7 +7277,8 @@
    "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/1i9lz84-8WMdnsX_9ddeyBvGMapvnfsxP/view"
   },
   "4465": {
    "nombre": "CORIANDRO ENTERO",
@@ -7258,7 +7313,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/19L10Xn1d1-HVnGsrzOPxfvrAl3iQp3GI/view"
   },
   "4801": {
    "nombre": "BOX 2",
@@ -7269,7 +7325,8 @@
    "rubro": "",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.789Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/13YAEf-xRatYypkXwerKhEz6_xm_j04ng/view"
   },
   "5000": {
    "nombre": "CRACKERS MEDITERRANEAS X100GR - SHIVA",
@@ -7659,7 +7716,8 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "INFUSIONES Y HIERBAS",
-   "origen": "sheet"
+   "origen": "sheet",
+   "imagen": "https://drive.google.com/file/d/1GG0R_EaLGru4Hrbv47kr2tRrg_aYlFFv/view"
   },
   "5039": {
    "nombre": "YERBA X500GR - TUCANGUA",
@@ -7797,7 +7855,8 @@
    "actualizado": "2026-09-13T12:51:39.796Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/1kPiROplBYq2PL4ynhyTQ1CtuGdH328tL/view"
   },
   "5050": {
    "nombre": "PASTA DENTAL X50 GR - SRISRI",
@@ -7810,7 +7869,8 @@
    "actualizado": "2026-09-13T12:51:39.796Z",
    "por": "panel",
    "oculto": false,
-   "altaOk": true
+   "altaOk": true,
+   "imagen": "https://drive.google.com/file/d/1ZKqdvS3QpLgV6GseSjnyF8EDmUsY8rpx/view"
   },
   "5051": {
    "nombre": "MACA NEGRA X 60 CAPSULAS - MACHU PICHU",
@@ -7821,7 +7881,8 @@
    "rubro": "SUPLEMENTOS",
    "origen": "sheet",
    "actualizado": "2026-09-13T12:51:39.796Z",
-   "por": "panel"
+   "por": "panel",
+   "imagen": "https://drive.google.com/file/d/1UR0WRbV93AorfWEq1QNNYAMKLI8xU9Qx/view"
   },
   "5052": {
    "nombre": "CREMA DE JARRILLA",
@@ -7845,7 +7906,7 @@
    "nombre": "BALSAMO LABIAL",
    "cantidades": "1 UNIDAD",
    "desc": "",
-   "sabores": "",
+   "sabores": "NATURAL/FRUTILLA/MENTA/UVA",
    "oferta": 0,
    "rubro": "PALADEAR HOME",
    "origen": "panel",
