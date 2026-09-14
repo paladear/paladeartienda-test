@@ -1824,17 +1824,41 @@ function pintarKpis(){
 document.addEventListener('click', function(ev){
   const k = ev.target.closest && ev.target.closest('.kpi[data-f]');
   if (!k) return;
-  FILTRO = k.dataset.f;
-  // Los filtros no se suman: tocar un recuadro deja de lado el rubro elegido.
-  RUBRO = '';
-  const selR = document.getElementById('filtroRubro');
-  if (selR) selR.value = '';
-  document.querySelectorAll('.filtro').forEach(b => b.classList.toggle('on', b.dataset.f === FILTRO));
-  pintarKpis();
-  pintar();
+  elegirFiltro('kpi', k.dataset.f);
   const cont = document.getElementById('salida');
   if (cont) cont.scrollIntoView({block:'start', behavior:'smooth'});
 });
+
+/* Los filtros NO se acumulan: elegir uno apaga los otros dos. Sin esto pasaba
+   que buscabas un artículo, tocabas "nuevos" y no aparecía ninguno de los 15,
+   porque seguía filtrando además por el texto escrito. */
+function elegirFiltro(cual, valor){
+  if (cual !== 'kpi')   { FILTRO = 'todos'; document.querySelectorAll('.filtro').forEach(b => b.classList.remove('on')); }
+  if (cual !== 'rubro') { RUBRO = ''; var sr = document.getElementById('filtroRubro'); if (sr) sr.value = ''; }
+  if (cual !== 'busca') { limpiarBusqueda(); }
+
+  if (cual === 'kpi')   FILTRO = valor;
+  if (cual === 'rubro') RUBRO = valor;
+  if (cual === 'busca') BUSCA = valor;
+
+  document.body.classList.toggle('por-rubro', !!RUBRO);
+  document.body.classList.toggle('buscando', !!BUSCA);
+  var caja = document.querySelector('.busca-fija');
+  if (caja) caja.classList.toggle('con-texto', !!BUSCA);
+  document.querySelectorAll('.filtro').forEach(b => b.classList.toggle('on', b.dataset.f === FILTRO));
+  pintarKpis();
+  pintar();
+}
+
+/* Vaciar la búsqueda de verdad: la variable y la caja que se ve en pantalla. */
+function limpiarBusqueda(){
+  BUSCA = '';
+  var fijo = document.getElementById('buscarFijo');
+  if (fijo && fijo.value) fijo.value = '';
+  document.body.classList.remove('buscando');
+  var caja = document.querySelector('.busca-fija');
+  if (caja) caja.classList.remove('con-texto');
+}
 
 function esc(s){ return String(s == null ? '' : s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -1858,9 +1882,7 @@ function llenarRubros(){
     (sinRubro ? '<option value="__sin__">Sin rubro (' + sinRubro + ')</option>' : '');
   sel.dataset.listo = '1';
   sel.addEventListener('change', function(){
-    RUBRO = this.value;
-    document.body.classList.toggle('por-rubro', !!RUBRO);
-    pintar();
+    elegirFiltro('rubro', this.value);
   });
 }
 
@@ -2043,17 +2065,12 @@ document.getElementById('salida').addEventListener('click', e => {
 });
 
 document.querySelectorAll('.filtro').forEach(b => b.addEventListener('click', () => {
-  document.querySelectorAll('.filtro').forEach(x => x.classList.remove('on'));
-  b.classList.add('on'); FILTRO = b.dataset.f; pintar();
+  elegirFiltro('kpi', b.dataset.f);
 }));
 /* Hay dos cajas de búsqueda: la fija de arriba (la que se usa desde el celular) y
    la de los filtros. Escriben la misma búsqueda y se copian el texto entre ellas. */
 function buscarAhora(txt){
-  BUSCA = (txt || '').trim();
-  const caja = document.querySelector('.busca-fija');
-  if (caja) caja.classList.toggle('con-texto', !!BUSCA);
-  document.body.classList.toggle('buscando', !!BUSCA);
-  pintar();
+  elegirFiltro('busca', (txt || '').trim());
 }
 
 (function(){
