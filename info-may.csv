@@ -67,7 +67,7 @@ Articulo,Nombre,Bulto,Sabores,Imagen,Estado,Rubro
 1115,ALMOHADITAS DE CHOCOLATE,2.5 kilos.,,https://drive.google.com/file/d/1WtjiyZpSTUeVK4OcYc1z6_cZs3ZOjiHQ/view,✅ en precios,CEREALES
 1117,ALMOHADITAS DE FRUTILLA,2.5 kilos,,https://drive.google.com/file/d/1yZdc6EAeBDlf895N0uizyQGemJi7ivZ-/view,✅ en precios,CEREALES
 1118,ALMOHADITAS DE LIMON,2.5 kilos.,,https://drive.google.com/file/d/1M76YRVivSWU1mROLRo7d1MfwQg3ypEI6/view,✅ en precios,CEREALES
-1114,ALMOHADITAS DOS SALVADOS,2.5 kilos.,,https://drive.google.com/file/d/1tWKPU9lnGg_x3xO5qKoe1Xe1Yoj0Qzby/view,✅ en precios,CEREALES
+1114,ALMOHADITAS DOS SALVADOS,1.5 kilos.,,https://drive.google.com/file/d/1tWKPU9lnGg_x3xO5qKoe1Xe1Yoj0Qzby/view,✅ en precios,CEREALES
 1121,ANILLOS DE AVENA Y MIEL,2.5 kilos.,,https://drive.google.com/file/d/1ypkgGfypNVXdAyhu3e_tctFL_pvRh2ih/view,✅ en precios,CEREALES
 1122,ANILLOS FRUTADOS,2.5 kilos.,,https://drive.google.com/file/d/1Ud1G3_GTKzOJlgQUuWIsDS8gW8W7uN1n/view,✅ en precios,CEREALES
 1123,ANIS EN GRANO,1 kg,,https://drive.google.com/file/d/10Rj5SFRP2MBT2ivj_t8FM0I3xKYEw_G7/view,✅ en precios,ESPECIAS
@@ -86,9 +86,9 @@ Articulo,Nombre,Bulto,Sabores,Imagen,Estado,Rubro
 1140,AZUCAR IMPALPABLE,1 kg,,https://drive.google.com/file/d/1A0qdFEmUs_jNrUES8ccOmdecshqTJqma/view,✅ en precios,"AZUCAR, CACAO Y REPOSTERIA"
 1141,AZUCAR MASCABO,1 kg,,https://drive.google.com/file/d/10WsWJ94Z3AzM3O5DXfjBiWYjoFBCgCk6/view,✅ en precios,"AZUCAR, CACAO Y REPOSTERIA"
 1142,AZUCAR NEGRA,1 kg,,https://drive.google.com/file/d/14zx8vpTVr0QajXK3Sfe-E-SEb5X-EwMD/view,✅ en precios,"AZUCAR, CACAO Y REPOSTERIA"
-2074,BARRA PROTEICA X40 GR - SIN TACC - CRUDDA,,,https://drive.google.com/file/d/1xV00r5HSo3zy6rGeo_d5Yj28DoWrdl2j/view,❌ no está en precios,
+2074,BARRA PROTEICA X40 GR - SIN TACC - CRUDDA,,,https://drive.google.com/file/d/1xV00r5HSo3zy6rGeo_d5Yj28DoWrdl2j/view,✅ en precios,SNACK
 1147,BASTONCITOS DE SALVADO DE TRIGO Y AVENA,"2,5 kg",,https://drive.google.com/file/d/19pulxRbH7xL56FagImtf_tiyKI4iPlvm/view,✅ en precios,CEREALES
-1150,BERENJENAS CONDIMENTADAS X200 GR - DURANG,6 unidades,,https://drive.google.com/file/d/1vivsZ1XVLxnKOoE4npMrRJpz-VKziFom/view,✅ en precios,ENCURTIDOS
+1150,BERENJENAS CONDIMENTADAS X200 GR - DURANG, 6 unidades,,https://drive.google.com/file/d/1vivsZ1XVLxnKOoE4npMrRJpz-VKziFom/view,✅ en precios,ENCURTIDOS
 2089,BICARBONATO  DE SODIO,1 kg,,https://drive.google.com/file/d/1gyE8yPEaayBGMFLEmP6B_ijIRyW9apiA/view,✅ en precios,ESPECIAS
 1151,BICARBONATO DE SODIO X50 GR - INDIAS,25 unidades,,https://drive.google.com/file/d/17575rt-rqMMtAt_utc3qRj5ufJubO4OO/view,✅ en precios,ESPECIAS
 1154,BOLDO,1 kg,,https://drive.google.com/file/d/1J9BdkXR2a7LzKz2xazGBpa8jwTd5hmcV/view,✅ en precios,INFUSIONES Y HIERBAS
@@ -134,7 +134,7 @@ Articulo,Nombre,Bulto,Sabores,Imagen,Estado,Rubro
 2072,DIENTE DE LEON,1 kg,,https://drive.google.com/file/d/18mTEIVJnA2Y3UI9ddfAnlKVnhfGDRRMa/view,✅ en precios,INFUSIONES Y HIERBAS
 2403,DULCE DE ALCAYOTA X1 KG - DON FRANCISCO,,,,❌ no está en precios,
 1244,DULCE DE ALCAYOTA X500 GR - DON FRANCISCO,12 unidades,,https://drive.google.com/file/d/1hAmK_w0nFlj5twyDbbKKPHfwotPTyCIb/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
-1254,DULCE DE MEMBRILLO X1 KG - DON FRANCISCO,1 unidad,,https://drive.google.com/file/d/1wGO4YqplgiTtHKaJMhkW5-eC8h6xoc-1/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
+1254,DULCE DE MEMBRILLO X1 KG - DON FRANCISCO,1 unidad ,,https://drive.google.com/file/d/1wGO4YqplgiTtHKaJMhkW5-eC8h6xoc-1/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
 1255,DULCE DE MEMBRILLO X5 KG - DON FRANCISCO,1 unidad,,https://drive.google.com/file/d/18drVT084LD8IWwBZBA1ckFJY3iiZpvka/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
 1253,DULCE DE MEMBRILLO X500 GR - MUPAY,20 unidades,,https://drive.google.com/file/d/1M2tosfDbag8ZAAwyKx1kbQfsiw7okEBi/view,✅ en precios,"DULCES, MIEL Y CHOCOLATES"
 1681,DURAZNOS EN MITADES X 800 GR - VALLE DE LAS REINAS,6 unidades,,https://drive.google.com/file/d/15ItDERYBQ3-MiDwBEA9t1HY2y7aoMh1X/view,✅ en precios,LINEA GOURMET
@@ -237,7 +237,7 @@ Articulo,Nombre,Bulto,Sabores,Imagen,Estado,Rubro
 1446,NUEZ CON CASCARA,10 kg,,https://drive.google.com/file/d/1CyU_LATUzon6ngDDu-XQ0RTSmr-E_1nj/view,✅ en precios,FRUTOS SECOS
 1441,NUEZ CUARTILLO,5 kg,,https://drive.google.com/file/d/14S3MSYxxh2QTPkE9oteOswe1cHG7X6Dl/view,✅ en precios,FRUTOS SECOS
 1444,NUEZ CUARTOS EXTRA LIGHT,5 kg,,https://drive.google.com/file/d/1MB1Am7Flj0zouPjSJu6ujxHxUNpim0Fe/view,✅ en precios,FRUTOS SECOS
-1445,NUEZ CUARTOS LIGHT,5 kg,,https://drive.google.com/file/d/1RyQfFCD3Rz7nBnh11Udnd-ziuNEtWWL-/view,✅ en precios,FRUTOS SECOS
+1445,NUEZ CUARTOS LIGHT,,,https://drive.google.com/file/d/1RyQfFCD3Rz7nBnh11Udnd-ziuNEtWWL-/view,❌ no está en precios,
 4453,NUEZ DE BRASIL,5 kg,,https://drive.google.com/file/d/17a3w7qdy8D4B_Uqz2l__2mTjwdeG3his/view,✅ en precios,FRUTOS SECOS
 1448,NUEZ MARIPOSA AMBAR,5 kg,,https://drive.google.com/file/d/1Im4LruDscpRkviLjvTdXNQ8hEC_BMGLa/view,✅ en precios,FRUTOS SECOS
 1716,NUEZ MARIPOSA EXTRA LIGHT,5 kg,,https://drive.google.com/file/d/167aPKGseonfAupfKO_SlZyXf4KgRZuGN/view,✅ en precios,FRUTOS SECOS
@@ -369,5 +369,5 @@ Articulo,Nombre,Bulto,Sabores,Imagen,Estado,Rubro
 5044,MANZANILLA IMPORTADA,X KG,,https://drive.google.com/file/d/1L6DE-kS8DdyzVqNfsNGErBmOR4jwCai9/view,✅ en precios,INFUSIONES Y HIERBAS
 1636,TUTUCAS SIN AZUCAR X KG,5 kg,,https://drive.google.com/file/d/1ssnRXWRHhOyxkgKCyeSYK4o-f34Shh0d/view,✅ en precios,CEREALES
 4466,HARINA DE NUEZ X 1 KG,KG,,https://drive.google.com/file/d/1dMoqH_gPk-qT1h1vYmTRTPKNfrEKpDE9/view,✅ en precios,HARINAS
-4467,HARINA DE NUEZ X 500 GR,1/2KG,,https://drive.google.com/file/d/1D84ZalDc_-PZuGZNTQx2QBjUWwfqVIpF/view,✅ en precios,HARINAS
+4467,HARINA DE NUEZ X 500 GR,,,https://drive.google.com/file/d/1D84ZalDc_-PZuGZNTQx2QBjUWwfqVIpF/view,❌ no está en precios,
 4465,CORIANDRO ENTERO X KG,KG,,https://drive.google.com/file/d/1Pg3wwOrxOD_xKjCQ_vZDSrEL-9NrBGoe/view,✅ en precios,SEMILLAS
