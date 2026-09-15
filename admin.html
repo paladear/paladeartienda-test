@@ -344,11 +344,34 @@ body.buscando .busca-fija{display:flex}
 .medidas-sep{width:1px;height:26px;background:#dde4ea;margin:0 3px}
 .medidas-otro{margin-top:8px;font-size:12.5px;color:#6b7885}
 .medidas-otro b{color:#1f2d3a}
-#edRubro{width:100%;font:inherit;font-size:15px;padding:11px 12px;border:1px solid #cfd8e0;
-  border-radius:10px;background:var(--papel);color:#1f2d3a;-webkit-appearance:none;appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235d6b7a' stroke-width='1.7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 12px center}
-#edRubro:focus{outline:none;border-color:#7aa2c4;box-shadow:0 0 0 3px rgba(122,162,196,.22)}
+/* ── ¿Envasado o a granel? Dos tarjetas grandes, se toca una ── */
+.venta{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.venta-op{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-height:60px;
+  padding:11px 13px;border:1.5px solid #cfd8e0;border-radius:12px;background:var(--papel);
+  color:#5d6b7a;font:inherit;text-align:left;cursor:pointer;
+  transition:border-color .14s,background .14s,color .14s}
+.venta-op b{font-size:15.5px;font-weight:800;color:#1f2d3a}
+.venta-op span{font-size:12.5px;line-height:1.25}
+.venta-op:hover{border-color:#9db6cc}
+.venta-op.on{border-color:#2c7a8c;background:#eaf5f7;color:#2c7a8c}
+.venta-op.on b{color:#215d6b}
+
+/* ── Sabores: se agregan de a uno, se apagan sin perderlos ── */
+.sab-lista{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px}
+.sab{display:inline-flex;align-items:center;gap:2px;padding:4px 4px 4px 6px;
+  border:1.5px solid #cfd8e0;border-radius:999px;background:var(--papel)}
+.sab-txt{font-size:14px;font-weight:600;color:#1f2d3a;padding:0 3px}
+.sab-ojo,.sab-x{display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;padding:0;border:0;border-radius:50%;background:transparent;
+  color:#6b7885;cursor:pointer;font-size:19px;line-height:1}
+.sab-ojo svg{width:17px;height:17px}
+.sab-ojo:hover,.sab-x:hover{background:var(--papel-2);color:#1f2d3a}
+.sab-off{background:var(--papel-2);border-color:#dde4ea;border-style:dashed}
+.sab-off .sab-txt{color:#93a0ac;text-decoration:line-through}
+.sab-nuevo{display:flex;gap:7px}
+.sab-nuevo input{flex:1;min-width:0}
+.sab-mas{flex:0 0 auto;width:46px;font-size:24px;font-weight:700;line-height:1;padding:0}
+.sin-dato{font-size:13.5px;color:#93a0ac}
 .tienda-sel{display:inline-flex;gap:0;margin:0 0 14px;padding:4px;border-radius:999px;
   background:var(--suave-bg,#eef2f6);border:1px solid var(--linea)}
 .tienda-sel button{padding:9px 18px;border:0;border-radius:999px;background:transparent;
@@ -928,22 +951,42 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
         </div>
       </div>
       <div class="campo">
-        <label for="edNombre">Nombre que ve el cliente</label>
-        <input id="edNombre" maxlength="120">
+        <label for="edNombre">Nombre del producto <span class="ayuda">— sin la marca ni el peso</span></label>
+        <input id="edNombre" maxlength="120" placeholder="Almendras tostadas">
       </div>
       <div class="campo">
-        <label for="edRubro">Rubro <span class="ayuda">— la categoría donde aparece en la tienda</span></label>
-        <select id="edRubro"></select>
+        <label for="edMarca">Marca <span class="ayuda">— opcional, dejalo vacío si es suelto</span></label>
+        <input id="edMarca" maxlength="60" placeholder="Dos Hermanos">
       </div>
       <div class="campo">
-        <label>Cantidades <span class="ayuda">— tocá las medidas que se venden</span></label>
+        <label>¿Cómo se vende?</label>
+        <div class="venta" id="edVenta">
+          <button type="button" class="venta-op" data-v="granel">
+            <b>A granel</b><span>Elegís los pesos</span>
+          </button>
+          <button type="button" class="venta-op" data-v="envasado">
+            <b>Envasado</b><span>Se vende por unidad</span>
+          </button>
+        </div>
+      </div>
+      <div class="campo" id="edCampoGranel">
+        <label>Pesos que se venden <span class="ayuda">— hasta 4</span></label>
         <div class="medidas" id="edMedidas"></div>
         <input id="edCant" maxlength="120" hidden>
         <div class="medidas-otro" id="edMedidasOtro"></div>
       </div>
+      <div class="campo" id="edCampoEnvase">
+        <label for="edEnvase">Contenido del envase <span class="ayuda">— lo que dice el paquete</span></label>
+        <input id="edEnvase" maxlength="40" placeholder="500 g">
+      </div>
       <div class="campo">
-        <label for="edSabores">Sabores <span class="ayuda">— opcional, separados por barra</span></label>
-        <input id="edSabores" maxlength="200">
+        <label>Sabores o variedades <span class="ayuda">— apagá el que no tengas en stock</span></label>
+        <div class="sab-lista" id="edSaboresLista"></div>
+        <div class="sab-nuevo">
+          <input id="edSaborNuevo" maxlength="40" placeholder="Frutilla" autocomplete="off">
+          <button type="button" class="btn gris sab-mas" id="edSaborMas" title="Agregar sabor">+</button>
+        </div>
+        <input id="edSabores" maxlength="400" hidden>
       </div>
       <div class="campo">
         <label for="edDesc">Descripción</label>
@@ -952,6 +995,10 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
       <div class="campo">
         <label for="edOferta">Oferta <span class="ayuda">— porcentaje de descuento. 0 = sin oferta</span></label>
         <input id="edOferta" type="number" min="0" max="90" step="1">
+      </div>
+      <div class="campo">
+        <label>Rubro <span class="ayuda">— viene de E-Pyme, no se edita acá</span></label>
+        <div class="solo-lectura" id="edRubro"></div>
       </div>
       <div class="campo">
         <label>Aparece en los armadores <span class="ayuda">— solo productos a granel</span></label>
@@ -1649,6 +1696,8 @@ async function arrancar(){
         ficha:!!(FICHAS_CSV[id] || FICHAS_FB[id]), desc:f.desc || '',
         foto:!!(f.imagen && String(f.imagen).trim()),
         cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
+        marca:f.marca || '', envase:f.envase || '', envasado:f.envasado,
+        saboresOcultos:f.saboresOcultos || [],
         mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
         nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:false, renombre:renom[id] || null,
         malRubro:!!malRubro[id], enLista:true,
@@ -1665,6 +1714,8 @@ async function arrancar(){
         ficha:!!(FICHAS_CSV[id] || FICHAS_FB[id]), desc:f.desc || '',
         foto:!!(f.imagen && String(f.imagen).trim()),
         cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
+        marca:f.marca || '', envase:f.envase || '', envasado:f.envasado,
+        saboresOcultos:f.saboresOcultos || [],
         mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
         nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:true, renombre:null, malRubro:false,
         altaOk: f.altaOk === true
@@ -1794,7 +1845,11 @@ function abrirEditor(id){
   pintarFotoEditor(p);
   $('edNombre').value = p.nombre || '';
   $('edCant').value = p.cantidades || '';
-  $('edSabores').value = p.sabores || '';
+  $('edMarca').value = p.marca || '';
+  $('edEnvase').value = p.envase || '';
+  var sn = $('edSaborNuevo'); if (sn) sn.value = '';
+  pintarVenta(p);
+  pintarSabores(p);
   $('edDesc').value = p.desc || '';
   $('edOferta').value = p.oferta || 0;
   ['edMix','edGranola','edBlend'].forEach((i, k) => {
@@ -1878,21 +1933,105 @@ function cerrarEditor(desdeAtras){
 
 let FOTO_NUEVA = null, FOTO_BORRAR = false, FOTO_PROCESANDO = false;
 
-/* Rubro: se elige entre los que ya existen, para no inventar nombres nuevos. */
+/* El rubro viene de E-Pyme. Si se cambiara acá se desarmaría la categoría en
+   la tienda, así que se muestra nada más. */
 function pintarRubroEditor(p){
-  const sel = $('edRubro');
-  if (!sel) return;
-  const rubros = {};
-  PRODUCTOS.forEach(x => { const r = (x.rubro || '').trim(); if (r) rubros[r] = 1; });
-  const lista = Object.keys(rubros).sort((a, b) => a.localeCompare(b, 'es'));
-  const actual = (p.rubro || '').trim();
-  sel.innerHTML = '<option value="">- sin rubro -</option>' +
-    lista.map(r => '<option value="' + esc(r) + '"' + (r === actual ? ' selected' : '') + '>' + esc(r) + '</option>').join('');
+  const c = $('edRubro');
+  if (!c) return;
+  const r = (p.rubro || '').trim();
+  c.innerHTML = r ? esc(r) : '<span class="sin-dato">sin rubro en la lista</span>';
 }
+
+/* ── ¿Envasado o a granel? ──
+   Envasado: se vende por unidad y lo que importa es el contenido del paquete.
+   Granel: se elige el peso, hasta cuatro. */
+let ES_ENVASADO = false;
+
+function pintarVenta(p){
+  var cant = String(p.cantidades || '');
+  ES_ENVASADO = p.envasado === true || (p.envasado === undefined && /unidad/i.test(cant));
+  dibujarVenta();
+}
+
+function dibujarVenta(){
+  var cont = $('edVenta');
+  if (!cont) return;
+  cont.querySelectorAll('.venta-op').forEach(function(b){
+    b.classList.toggle('on', (b.dataset.v === 'envasado') === ES_ENVASADO);
+  });
+  var g = $('edCampoGranel'), e = $('edCampoEnvase');
+  if (g) g.hidden = ES_ENVASADO;
+  if (e) e.hidden = !ES_ENVASADO;
+}
+
+function elegirVenta(cual){
+  var envasado = cual === 'envasado';
+  if (envasado === ES_ENVASADO) return;
+  ES_ENVASADO = envasado;
+  // Al pasar a granel se limpia la unidad, así los botones de peso arrancan libres.
+  if (!envasado) MEDIDAS_SEL = MEDIDAS_SEL.filter(function(x){ return x !== '1 UNIDAD'; });
+  dibujarVenta(); dibujarMedidas();
+}
+
+/* ── Sabores: se agregan de a uno y se apagan sin borrarlos ──
+   Lo que ve el cliente sigue siendo la lista separada por barra; los apagados
+   quedan guardados aparte para volver a prenderlos cuando haya stock. */
+let SABORES = [];   // [{txt, on}]
+
+function pintarSabores(p){
+  var vivos = String(p.sabores || '').split('/').map(function(x){ return x.trim(); }).filter(Boolean);
+  var off = (p.saboresOcultos || []).map(function(x){ return String(x).trim(); }).filter(Boolean);
+  SABORES = vivos.map(function(t){ return {txt:t, on:true}; })
+    .concat(off.map(function(t){ return {txt:t, on:false}; }));
+  dibujarSabores();
+}
+
+function dibujarSabores(){
+  var c = $('edSaboresLista');
+  if (!c) return;
+  c.innerHTML = SABORES.length
+    ? SABORES.map(function(s, i){
+        return '<span class="sab' + (s.on ? '' : ' sab-off') + '">' +
+          '<button type="button" class="sab-ojo" data-i="' + i + '" title="' +
+            (s.on ? 'Ocultarlo: no tengo stock' : 'Volver a mostrarlo') + '">' +
+            (s.on ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"></path><circle cx="12" cy="12" r="2.6"></circle></svg>'
+                    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4l16 16"></path><path d="M9.6 5.8A9.9 9.9 0 0 1 12 5.5c6.4 0 10 6.5 10 6.5a18 18 0 0 1-2.6 3.4M6.4 8.2A18 18 0 0 0 2 12s3.6 6.5 10 6.5c.9 0 1.7-.1 2.5-.3"></path></svg>') +
+          '</button>' +
+          '<span class="sab-txt">' + esc(s.txt) + '</span>' +
+          '<button type="button" class="sab-x" data-q="' + i + '" title="Borrarlo de la lista">&times;</button></span>';
+      }).join('')
+    : '<span class="sin-dato">Sin sabores. Este producto se vende uno solo.</span>';
+  c.querySelectorAll('.sab-ojo').forEach(function(b){
+    b.addEventListener('click', function(){
+      var s = SABORES[+this.dataset.i]; if (s) { s.on = !s.on; dibujarSabores(); }
+    });
+  });
+  c.querySelectorAll('.sab-x').forEach(function(b){
+    b.addEventListener('click', function(){ SABORES.splice(+this.dataset.q, 1); dibujarSabores(); });
+  });
+}
+
+function agregarSabor(){
+  var inp = $('edSaborNuevo');
+  if (!inp) return;
+  var t = inp.value.trim();
+  if (!t) { inp.focus(); return; }
+  // Nada de barras: cada sabor va por separado, y de paso no se rompe el formato.
+  t.split('/').map(function(x){ return x.trim(); }).filter(Boolean).forEach(function(x){
+    var ya = SABORES.some(function(s){ return s.txt.toLowerCase() === x.toLowerCase(); });
+    if (!ya) SABORES.push({txt:x, on:true});
+  });
+  inp.value = ''; inp.focus();
+  dibujarSabores();
+}
+
+function textoSabores(){ return SABORES.filter(function(s){ return s.on; }).map(function(s){ return s.txt; }).join('/'); }
+function saboresApagados(){ return SABORES.filter(function(s){ return !s.on; }).map(function(s){ return s.txt; }); }
 
 /* Cantidades con botones en vez de texto libre: así no se cuelan errores de
    tipeo (como el "1K" al que le faltaba la G). "1 unidad" es excluyente. */
 const MEDIDAS = ['50G', '100G', '250G', '500G', '1KG'];
+const TOPE_MEDIDAS = 4;   // la tienda muestra hasta cuatro botones de peso
 let MEDIDAS_SEL = [];
 
 function pintarMedidas(txt){
@@ -1906,26 +2045,29 @@ function dibujarMedidas(){
   const cont = $('edMedidas');
   if (!cont) return;
   const unidad = MEDIDAS_SEL.indexOf('1 UNIDAD') > -1;
-  cont.innerHTML =
-    '<button type="button" class="medida' + (unidad ? ' on' : '') + '" data-m="1 UNIDAD">1 unidad</button>' +
-    '<span class="medidas-sep"></span>' +
-    MEDIDAS.map(m => '<button type="button" class="medida' +
-      (!unidad && MEDIDAS_SEL.indexOf(m) > -1 ? ' on' : '') +
-      (unidad ? ' apagada' : '') + '" data-m="' + m + '">' + m.toLowerCase() + '</button>').join('');
+  const pesos = MEDIDAS_SEL.filter(m => m !== '1 UNIDAD');
+  const lleno = pesos.length >= TOPE_MEDIDAS;
+  cont.innerHTML = MEDIDAS.map(m => {
+    const on = !unidad && MEDIDAS_SEL.indexOf(m) > -1;
+    return '<button type="button" class="medida' + (on ? ' on' : '') +
+      (!on && lleno ? ' apagada' : '') + '" data-m="' + m + '"' +
+      (!on && lleno ? ' title="Ya elegiste ' + TOPE_MEDIDAS + '. Apagá uno para cambiarlo"' : '') +
+      '>' + m.toLowerCase() + '</button>';
+  }).join('');
   const raras = MEDIDAS_SEL.filter(m => m !== '1 UNIDAD' && MEDIDAS.indexOf(m) < 0);
   const otro = $('edMedidasOtro');
-  if (otro) otro.innerHTML = raras.length ? 'Además tiene: <b>' + raras.map(esc).join(' / ') + '</b>' : '';
+  if (otro) otro.innerHTML = raras.length
+    ? 'Además tiene: <b>' + raras.map(esc).join(' / ') + '</b>'
+    : (lleno ? 'Ya están los ' + TOPE_MEDIDAS + ' pesos. Apagá uno para poner otro.' : '');
   const inp = $('edCant');
   if (inp) inp.value = textoMedidas();
   cont.querySelectorAll('.medida').forEach(b => b.addEventListener('click', function(){
     const m = this.dataset.m;
-    if (m === '1 UNIDAD') {
-      MEDIDAS_SEL = unidad ? [] : ['1 UNIDAD'];
-    } else {
-      MEDIDAS_SEL = MEDIDAS_SEL.filter(x => x !== '1 UNIDAD');
-      const i = MEDIDAS_SEL.indexOf(m);
-      if (i > -1) MEDIDAS_SEL.splice(i, 1); else MEDIDAS_SEL.push(m);
-    }
+    MEDIDAS_SEL = MEDIDAS_SEL.filter(x => x !== '1 UNIDAD');
+    const i = MEDIDAS_SEL.indexOf(m);
+    if (i > -1) MEDIDAS_SEL.splice(i, 1);
+    else if (MEDIDAS_SEL.length < TOPE_MEDIDAS) MEDIDAS_SEL.push(m);
+    else { avisar('mal', 'Hasta ' + TOPE_MEDIDAS + ' pesos', 'Apagá uno de los que ya elegiste para poner este.'); return; }
     dibujarMedidas();
   }));
 }
@@ -2049,9 +2191,13 @@ async function guardarFicha(){
   const p = EDITANDO, b = $('edGuardar'), est = $('edEstado');
   const datos = {
     nombre: $('edNombre').value.trim(),
-    cantidades: textoMedidas(),
-    rubro: $('edRubro') ? $('edRubro').value : '',
-    sabores: $('edSabores').value.trim(),
+    marca: $('edMarca').value.trim(),
+    envasado: ES_ENVASADO,
+    envase: ES_ENVASADO ? $('edEnvase').value.trim() : '',
+    cantidades: ES_ENVASADO ? '1 UNIDAD' : textoMedidas(),
+    rubro: (p.rubro || '').trim(),
+    sabores: textoSabores(),
+    saboresOcultos: saboresApagados(),
     desc: $('edDesc').value.trim(),
     oferta: Math.max(0, Math.min(90, parseInt($('edOferta').value, 10) || 0)),
     mix: $('edMix').checked, granola: $('edGranola').checked, blend: $('edBlend').checked,
@@ -2315,6 +2461,15 @@ document.querySelectorAll('.bandera input').forEach(i =>
   i.addEventListener('change', () => i.closest('.bandera').classList.toggle('sel', i.checked)));
 
 $('edCerrar').addEventListener('click', cerrarEditor);
+$('edVenta').addEventListener('click', function(e){
+  var b = e.target.closest('.venta-op');
+  if (b) elegirVenta(b.dataset.v);
+});
+$('edSaborMas').addEventListener('click', agregarSabor);
+$('edSaborNuevo').addEventListener('keydown', function(e){
+  // Enter agrega y deja el cursor listo para el siguiente, sin mandar nada.
+  if (e.key === 'Enter') { e.preventDefault(); agregarSabor(); }
+});
 $('edCancelar').addEventListener('click', cerrarEditor);
 $('edGuardar').addEventListener('click', guardarFicha);
 // El <label for="edFotoFile"> ya abre el selector solo: no hay que dispararlo por
