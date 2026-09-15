@@ -3440,9 +3440,7 @@ async function darPorVistas(){
 function pintarBarraAltas(){
   var b=document.getElementById('barraAltas');
   if(!b)return;
-  var faltan=PRODUCTOS.filter(function(p){
-    return ((p.nuevo && !p.altaOk) || p.oculto === true) && !p.sinPrecio && !p.malRubro;
-  }).length;
+  var faltan=PRODUCTOS.filter(function(p){ return !resuelto(p); }).length;
   b.hidden = !(faltan && (FILTRO==='fuera' || FILTRO==='nuevos'));
   var c=document.getElementById('baCuenta');
   if(c)c.textContent = faltan;
