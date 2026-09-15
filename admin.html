@@ -621,7 +621,7 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
     <h1>Panel de catálogo</h1>
     <span class="env">TESTER</span>
     <span class="quien" id="quien"></span>
-    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 13/09 12:24</span><a class="btn-tienda" href="./" target="_blank" rel="noopener">Ver la tienda</a>
+    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 13/09 12:24</span><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver la tienda</a>
   </div>
 </header>
 
@@ -2800,6 +2800,13 @@ function pintarCartelTienda(){
   // Cuando el panel está sobre la página real hay que verlo de lejos: lo que se
   // guarde acá lo ve el cliente en minutos.
   if (v) v.textContent = ES_TESTER ? 'PRUEBAS' : 'EN VIVO';
+  // El botón de arriba lleva a la tienda que estás editando, no siempre a la minorista.
+  var bt = document.getElementById('btnVerTienda');
+  if (bt) {
+    bt.href = (TIENDA === 'may') ? SITIO_MAY : './';
+    bt.textContent = (TIENDA === 'may') ? 'Ver la distribuidora' : 'Ver la tienda';
+    bt.title = 'Abre ' + (TIENDA === 'may' ? SITIO_MAY : (ES_TESTER ? 'la tienda de pruebas' : 'la tienda oficial'));
+  }
   document.body.classList.toggle('es-vivo', !ES_TESTER);
   var env = document.querySelector('.env');
   if (env) env.textContent = ES_TESTER ? 'TESTER' : 'OFICIAL';
