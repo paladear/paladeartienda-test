@@ -4647,10 +4647,8 @@ function _calcPrecioOpc(opc,p1,p2,esKg){
    lo que viene del Sheet. Si el archivo no existe, la tienda anda igual que antes. */
 const ARCHIVO_PANEL = 'catalogo-panel.json';
 let FICHAS_FB = {}, FOTOS_FB = {};
-// Precios que el dueño ya aprobó desde el panel. Mandan sobre los de E-Pyme: un
-// cambio de precio no llega a la tienda hasta que le da el OK. Si un artículo no
-// figura acá (nunca se revisó), vale el de la lista, como siempre.
-let PRECIOS_OK = {};
+// Los precios salen directo de la lista que publica E-Pyme: un cambio allá se ve
+// acá sin pasos intermedios. El panel ya no los retiene; sólo avisa qué cambió.
 
 async function _cargarPanel(){
   try {
@@ -4659,7 +4657,6 @@ async function _cargarPanel(){
     const j = await r.json();
     FICHAS_FB = j.fichas || {};
     FOTOS_FB  = j.fotos  || {};
-    PRECIOS_OK = j.preciosAprobados || {};
     const nF = Object.keys(FICHAS_FB).length, nP = Object.keys(FOTOS_FB).length;
     if (nF || nP) console.log('📋 Panel: ' + nF + ' fichas, ' + nP + ' fotos propias');
   } catch(e) { console.warn('[panel] no se pudo leer:', e && e.message); }
@@ -4699,9 +4696,6 @@ function sincronizarDesdeSheets(){
         let p1=_precio(cols[3]),p2=_precio(cols[4]);
         const rubro=(cols[5]||'').replace(/^"|"$/g,'').trim().toUpperCase();
         const productId=(cols[6]||'').replace(/^"|"$/g,'').trim().replace(/\./g,'').replace(/,.*$/,'');
-        // El precio aprobado en el panel manda sobre el de la lista.
-        const _ok=PRECIOS_OK[productId];
-        if(_ok&&_ok[0]>0){p1=_ok[0];if(_ok[1]>0)p2=_ok[1];}
         const imgPrecios=_driveToImg((cols[7]||'').replace(/^"|"$/g,'').trim());
         if(!nombre||!p1||!p2||!rubro)return;
         const cat=RUBRO_MAP[rubro];if(!cat)return;

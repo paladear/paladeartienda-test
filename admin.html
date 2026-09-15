@@ -555,7 +555,7 @@ body.es-mayorista #btnPublicar{display:none}
 
 /* Catálogo: verde cuando el producto se ve en la tienda, ámbar cuando no. */
 
-/* Precio: mientras espera tu OK es un botón ámbar; una vez al día, queda gris. */
+/* Precio: mientras figura como cambio es un botón ámbar; después queda gris. */
 .bander-precio{margin-top:8px;min-height:40px;padding:0 15px;font-size:12.5px}
 .bander-precio[data-ok]{background:#fdf3e4;border-color:#dcb677;color:#8a5310}
 .bander-precio[data-ok]:hover{background:#f9e8cd}
@@ -673,12 +673,13 @@ body.es-vivo .cartel-tienda{color:#8d2620}
 .ap-texto{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
 .ap-texto b{font-size:16px;font-weight:800;line-height:1.25}
 .ap-texto span{font-size:13.5px;opacity:.9;line-height:1.45}
-.ap-cta{flex:0 0 auto;width:100%;margin-top:4px;text-align:center}
-.ap-pie{width:100%;text-align:center;font-size:12.5px;opacity:.8}
-.ap-pie:empty{display:none}
+.ap-desde{font-size:12px;opacity:.72;margin-top:2px}
+.ap-desde:empty{display:none}
+.ap-cta,.ap-visto{flex:0 0 auto;width:100%;margin-top:4px;text-align:center}
+.ap-visto{background:transparent;border:1px solid currentColor;color:inherit}
+.ap-visto:hover{background:rgba(29,84,128,.08)}
 @media(min-width:700px){
-  .ap-cta{width:auto;margin-top:0;align-self:center}
-  .ap-pie{width:100%;text-align:left;padding-left:55px}
+  .ap-cta,.ap-visto{width:auto;margin-top:0;align-self:center}
 }
 
 /* ── Título del listado ── */
@@ -1062,19 +1063,22 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
     </label>
   </div>
 
-  <!-- ── AVISO DE PENDIENTES: sale solo cuando hay algo que revisar ── -->
+  <!-- ── QUÉ CAMBIÓ DESDE LA ÚLTIMA VEZ ──
+       Sale sólo si el sistema de precios movió algo desde tu visita anterior.
+       Cuando lo das por visto, no vuelve a aparecer hasta el próximo cambio. -->
   <section class="aviso-pend" id="avisoPend" hidden>
     <div class="ap-icono" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-        <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 8-3 8h18s-3-1-3-8"></path><path d="M10.3 21a2 2 0 0 0 3.4 0"></path>
       </svg>
     </div>
     <div class="ap-texto">
       <b id="apTitulo"></b>
       <span id="apSub"></span>
+      <span class="ap-desde" id="apDesde"></span>
     </div>
-    <button type="button" class="btn primario ap-cta" id="apRevisar">Revisar cambios</button>
-    <span class="ap-pie" id="apPie"></span>
+    <button type="button" class="btn primario ap-cta" id="apRevisar">Ver qué cambió</button>
+    <button type="button" class="btn gris ap-visto" id="apVisto">Listo, ya los vi</button>
   </section>
 
   <div id="estadoPublicar"></div>
@@ -1099,7 +1103,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
   <!-- ── REVISAR VARIOS PRECIOS DE UNA ── -->
   <div class="barra-rev" id="barraRev" hidden>
     <label class="rev-todos"><input type="checkbox" id="revTodos"> <span id="revCuenta">Marcar todos</span></label>
-    <button type="button" class="btn primario rev-ok" id="revAprobar" disabled>Dar el OK a los marcados</button>
+    <button type="button" class="btn primario rev-ok" id="revAprobar" disabled>Dar por vistos los marcados</button>
   </div>
 
   <!-- ── TÍTULO DEL LISTADO ── -->
@@ -1120,7 +1124,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
       <div class="hoja-cuerpo">
         <div class="hoja-grupo" id="grupoPrecios">
           <span class="hoja-rotulo">Precios</span>
-          <button class="btn primario" id="btnVistos" onclick="marcarPreciosRevisados()" title="Aprueba de una vez todos los precios que esperan tu OK" hidden>Dar el OK a todos los precios</button>
+          <button class="btn primario" id="btnVistos" onclick="marcarPreciosRevisados()" title="Marca de una vez todos los cambios como vistos" hidden>Dar por vistos todos los cambios</button>
           <label class="btn gris" for="fileExcel" id="lblExcelHerr" title="Por si falla el pase automático: subí la lista de precios">Subir Excel de precios</label>
           <input type="file" id="fileExcel" class="foto-input">
           <button class="btn gris" id="btnPegar" title="Si copiaste el archivo o el texto de la lista, pegalo acá">Pegar lista</button>
@@ -1206,6 +1210,9 @@ var CAMBIOS_FECHA = {};         // {id: {p: precio anterior, f: fecha ISO}}
 // El precio que vos aprobaste. La tienda usa ESTE, no el que llega de E-Pyme:
 // así un cambio de precio no llega solo a la web hasta que le das el OK.
 var PRECIOS_APROBADOS = {};     // {id: [p1, p2]}
+// Cuándo fue la última vez que diste por vistas las novedades. Sirve para que el
+// cartel salga una sola vez y para decirte desde cuándo se juntaron los cambios.
+var MARCA_VISTO = '';
 var ORDEN = 'cambios';          // como se ordena la lista
 var GUARDANDO_VISTOS = false;
 function repoActivo(){ return TIENDA === 'may' ? REPO_MAY : REPO; }
@@ -1360,10 +1367,11 @@ async function cargarFichasGuardadas(){
     PRECIOS_VISTOS = j.preciosVistos || {};   // para saber cuáles cambiaron desde la última revisión
     CAMBIOS_FECHA  = j.cambiosPrecio || {};
     PRECIOS_APROBADOS = j.preciosAprobados || {};
+    MARCA_VISTO = j.novedadesVistas || '';
   } catch (e) {
     console.warn('[panel] todavía no hay fichas guardadas:', e && e.message);
     FICHAS_FB = {}; FOTOS_FB = {}; PRECIOS_VISTOS = {};
-    CAMBIOS_FECHA = {}; PRECIOS_APROBADOS = {};
+    CAMBIOS_FECHA = {}; PRECIOS_APROBADOS = {}; MARCA_VISTO = '';
   }
 }
 
@@ -1434,6 +1442,7 @@ async function guardarFichasEnRepo(mensaje){
                           preciosVistos: PRECIOS_VISTOS,
                           cambiosPrecio: CAMBIOS_FECHA,
                           preciosAprobados: PRECIOS_APROBADOS,
+                          novedadesVistas: MARCA_VISTO,
                           actualizado: new Date().toISOString() }, null, 1)),
     mensaje, 0, repoActivo());
 }
@@ -2301,7 +2310,7 @@ function pintarKpis(){
 
   const ofertas = PRODUCTOS.filter(p => p.oferta > 0).length;
   const kpis = [
-    ['precio',  cambios, 'Pendientes', 'k-precio'],
+    ['precio',  cambios, 'Cambiaron', 'k-precio'],
     ['nuevos',  nuevos,  'Nuevos', 'k-nuevo'],
     ['sinfoto', sinFoto, 'Sin foto', 'k-foto'],
     ['fuera',   fuera,   'Fuera', 'k-fuera'],
@@ -2313,7 +2322,7 @@ function pintarKpis(){
 
   try { avisarPublicar(); } catch(e) {}
   const bv = document.getElementById('btnVistos');
-  if (bv) { bv.hidden = !cambios; bv.textContent = 'Dar el OK a los ' + cambios + ' precios'; }
+  if (bv) { bv.hidden = !cambios; bv.textContent = 'Dar por vistos los ' + cambios + ' cambios'; }
   // Etiqueta arriba y número abajo, en chips que se corren de costado.
   document.getElementById('kpis').innerHTML =
     '<button type="button" class="kpi k-todos' + (FILTRO === 'todos' ? ' on' : '') + '" data-f="todos">' +
@@ -2428,7 +2437,7 @@ function pintar(){
   else if (ORDEN === 'barato') lista.sort((a,b) => (a.p1||0) - (b.p1||0) || alfa(a,b));
   else if (ORDEN === 'rubro')  lista.sort((a,b) => String(a.rubro).localeCompare(String(b.rubro),'es') || alfa(a,b));
   else lista.sort((a,b) => {
-    // Primero lo que espera tu OK, después el resto: dentro de cada grupo, lo
+    // Primero lo que cambió, después el resto: dentro de cada grupo, lo
     // que cambió de precio más recientemente. La fecha queda guardada para
     // siempre, así que el orden no se pierde cuando das el visto.
     const espera = p => p.cambioPrecio ? 0 : 1;
@@ -2444,7 +2453,7 @@ function pintar(){
   // flujos y no todos son evidentes.
   const ayudas = {
     nuevos: 'Aparecieron en E-Pyme y todavía no están en la tienda. Prendé la banderilla verde de la izquierda y entran al catálogo con el precio que traen: no hace falta un segundo OK.',
-    precio: 'Cambiaron de precio y la tienda sigue mostrando el anterior. Tocá <b>OK al precio</b> en cada uno, o el botón de arriba para todos. Los que dicen NUEVO entran al catálogo con la banderilla verde.',
+    precio: 'Cambiaron en el sistema desde tu última visita. <b>Los precios ya están en la tienda</b>: esto es para que veas qué se movió. Cuando termines, marcalos como vistos y dejan de figurar.',
     sinfoto: 'Tocá un producto para subirle la foto. Dentro del editor, con la foto ya cargada, aparece el botón <b>Compartir con la distribuidora</b> para usar la misma imagen allá.',
     fuera: 'La banderilla de la izquierda los mete o los saca de la tienda. Los que dicen <b>No se puede</b> es porque les falta precio o tienen mal el rubro: eso se arregla en E-Pyme.'
   };
@@ -2523,8 +2532,7 @@ function pintar(){
     // ── BANDERILLA DE PRECIO (dentro de la mini tarjeta) ──
     var bandPrecio = p.cambioPrecio
       ? '<button type="button" class="bander bander-precio" data-ok="' + esc(p.id) + '"' +
-          ' title="Dar el OK a este precio"><i></i><span>' +
-          (p.nuevo ? 'OK al precio nuevo' : 'OK al precio') + '</span></button>'
+          ' title="Darlo por visto: deja de figurar como cambio"><i></i><span>Ya lo vi</span></button>'
       : '<span class="bander bander-precio lista"><i></i><span>Precio al día</span></span>';
 
     var aviso = '';
@@ -2551,8 +2559,8 @@ function pintar(){
 
   var html = '';
   if (esperan.length) {
-    html += '<h2 class="grupo-tit espera">Esperan tu OK <span>' + esperan.length + '</span></h2>' +
-            '<p class="grupo-ayuda">Cambiaron de precio o son nuevos. Hasta que les des el OK, la tienda muestra el precio anterior.</p>' +
+    html += '<h2 class="grupo-tit espera">Cambió desde tu última visita <span>' + esperan.length + '</span></h2>' +
+            '<p class="grupo-ayuda">Cambiaron en el sistema desde tu última visita. Los precios ya están en la tienda.</p>' +
             '<div class="grupo">' + esperan.map(tarjeta).join('') + '</div>';
   }
   if (dentro.length) {
@@ -3263,7 +3271,7 @@ function pintarBarraRev(){
   var c=document.getElementById('revCuenta');
   if(c)c.textContent = n ? (n + ' de ' + pend.length + ' marcados') : ('Marcar los ' + pend.length);
   var b=document.getElementById('revAprobar');
-  if(b){ b.disabled = !n; b.textContent = n ? 'Dar el OK a ' + (n===1?'este precio':'los '+n) : 'Dar el OK a los marcados'; }
+  if(b){ b.disabled = !n; b.textContent = n ? 'Dar por visto' + (n===1?'':'s') + ' ' + (n===1?'este':'los '+n) : 'Dar por vistos los marcados'; }
 }
 
 async function aprobarMarcados(){
@@ -3281,8 +3289,8 @@ async function aprobarMarcados(){
     await guardarFichasEnRepo('Precios aprobados (' + hechos + ')');
     REV_MARCADOS.clear();
     pintarKpis(); pintar();
-    avisar('ok', hechos + (hechos===1?' precio aprobado':' precios aprobados'),
-           'Ya están en la tienda: el cliente los ve en unos minutos');
+    avisar('ok', hechos + (hechos===1?' cambio dado por visto':' cambios dados por vistos'),
+           'Dejan de figurar como novedad');
   }catch(e){
     avisar('mal','No pude guardar', e.message);
   }finally{
@@ -3312,26 +3320,79 @@ async function aprobarMarcados(){
   },true);
 })();
 
+/* ── QUÉ CAMBIÓ DESDE LA ÚLTIMA VEZ ───────────────────────────────────────────
+   Los precios ya no esperan tu OK: si cambian en el sistema, la tienda los toma
+   sola. Lo que hace el panel es avisarte qué se movió desde tu visita anterior,
+   una sola vez. Mientras no entrás, los cambios se van acumulando. */
+function contarNovedades(){
+  var precios = PRODUCTOS.filter(function(p){ return p.cambioPrecio && !p.nuevo; }).length;
+  var nuevos  = PRODUCTOS.filter(function(p){ return p.nuevo && !p.altaOk; }).length;
+  var nombres = PRODUCTOS.filter(function(p){ return hayRenombre(p); }).length;
+  return { precios: precios, nuevos: nuevos, nombres: nombres, total: precios + nuevos + nombres };
+}
+
 function pintarAvisoPend(){
   var caja=document.getElementById('avisoPend');
   if(!caja)return;
-  var n=PRODUCTOS.filter(function(p){ return p.cambioPrecio; }).length;
-  caja.hidden = !n;
-  if(!n)return;
+  var nv=contarNovedades();
+  caja.hidden = !nv.total;
+  if(!nv.total)return;
+  var partes=[];
+  if(nv.precios) partes.push(nv.precios + (nv.precios===1?' precio':' precios'));
+  if(nv.nuevos)  partes.push(nv.nuevos + (nv.nuevos===1?' producto nuevo':' productos nuevos'));
+  if(nv.nombres) partes.push(nv.nombres + (nv.nombres===1?' nombre':' nombres'));
+  var lista = partes.length>1
+    ? partes.slice(0,-1).join(', ') + ' y ' + partes[partes.length-1]
+    : partes[0];
   var t=document.getElementById('apTitulo'), sb=document.getElementById('apSub'),
-      pie=document.getElementById('apPie');
-  if(t)t.textContent = n + (n===1 ? ' cambio de precio pendiente' : ' cambios de precio pendientes');
-  if(sb)sb.textContent = 'La tienda sigue mostrando el precio anterior hasta que los revises.';
-  if(pie)pie.textContent = (TIENDA === 'may') ? '' : 'Luego podés publicarlos en la tienda';
+      de=document.getElementById('apDesde');
+  if(t)t.textContent = 'Cambió ' + lista;
+  if(sb)sb.textContent = nv.precios
+    ? 'Los precios ya están en la tienda. Esto es sólo para que sepas qué se movió.'
+    : 'Desde la última vez que entraste al panel.';
+  if(de){
+    var d = MARCA_VISTO ? new Date(MARCA_VISTO) : null;
+    var dd = function(x){ return String(x).padStart(2,'0'); };
+    de.textContent = d ? 'Se juntaron desde tu última visita: ' + dd(d.getDate()) + '/' + dd(d.getMonth()+1) +
+      ' a las ' + dd(d.getHours()) + ':' + dd(d.getMinutes()) : '';
+  }
 }
+
+/* Dar por vistas las novedades: se guarda el estado de ahora como "lo que ya vi",
+   así el cartel no vuelve hasta el próximo cambio de verdad. El orden por último
+   cambio NO se pierde: esa fecha queda guardada aparte. */
+async function darPorVistas(){
+  var b=document.getElementById('apVisto');
+  if(!TOKEN){ avisar('mal','Entrá con la clave','Sin la clave no puedo guardar que ya los viste'); return; }
+  if(b){ b.disabled=true; b.textContent='Guardando...'; }
+  try{
+    var nv=contarNovedades();
+    PRODUCTOS.forEach(function(p){
+      if(p.p1>0) PRECIOS_VISTOS[p.id]=p.p1;
+      p.cambioPrecio=false; p.precioAntes=p.p1;
+    });
+    MARCA_VISTO = new Date().toISOString();
+    await guardarFichasEnRepo('Novedades vistas (' + nv.total + ')');
+    pintarKpis(); pintar();
+    avisar('ok','Listo','La próxima vez sólo vas a ver lo que cambie de acá en adelante');
+  }catch(e){
+    avisar('mal','No pude guardarlo', e.message);
+  }finally{
+    if(b){ b.disabled=false; b.textContent='Listo, ya los vi'; }
+  }
+}
+
 (function(){
   var b=document.getElementById('apRevisar');
   if(b)b.addEventListener('click',function(){
-    // Lleva al filtro que ya existe y baja hasta el primero.
+    ORDEN='cambios';
+    var so=document.getElementById('selOrden'); if(so)so.value='cambios';
     elegirFiltro('kpi','precio');
     var c=document.getElementById('salida');
     if(c)c.scrollIntoView({block:'start',behavior:'smooth'});
   });
+  var v=document.getElementById('apVisto');
+  if(v)v.addEventListener('click',darPorVistas);
 })();
 
 /* El título del listado, con la cuenta de lo que se está viendo. */
@@ -3458,15 +3519,16 @@ async function marcarPreciosRevisados(){
   try {
     PRECIOS_VISTOS = {};
     PRODUCTOS.forEach(function(p){ if (p.p1 > 0) aprobarPrecio(p); });
+    MARCA_VISTO = new Date().toISOString();   // queda registrada la visita
     await guardarFichasEnRepo('Precios aprobados' + (n ? ' (' + n + ' cambios)' : ''));
-    avisar('ok', n + (n === 1 ? ' precio aprobado' : ' precios aprobados'),
-           'Ya están en la tienda: el cliente los ve en unos minutos');
+    avisar('ok', n + (n === 1 ? ' cambio dado por visto' : ' cambios dados por vistos'),
+           'Dejan de figurar. Siguen primeros en la lista por fecha de cambio.');
     pintarKpis(); pintar();
   } catch (e) {
     avisar('mal', 'No pude guardar la revisión', e.message);
   } finally {
     GUARDANDO_VISTOS = false;
-    if (btn) { btn.disabled = false; btn.textContent = 'Dar el OK a todos los precios'; }
+    if (btn) { btn.disabled = false; btn.textContent = 'Dar por vistos todos los cambios'; }
   }
 }
 window.marcarPreciosRevisados = marcarPreciosRevisados;
@@ -3484,11 +3546,11 @@ async function verPrecioVisto(id){
     aprobarPrecio(p);
     await guardarFichasEnRepo('Precio aprobado: ' + (p.nombre || id));
     pintarKpis(); pintar();
-    avisar('ok', 'Precio aprobado', (p.nombre || id) + ' — la tienda ya muestra $' +
+    avisar('ok', 'Dado por visto', (p.nombre || id) + ' — la tienda muestra $' +
       Math.round(p.p1).toLocaleString('es-AR'));
   } catch (e) {
     avisar('mal', 'No pude guardar el precio', e.message);
-    if (btn) { btn.disabled = false; btn.innerHTML = '<i></i><span>OK al precio</span>'; }
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i></i><span>Ya lo vi</span>'; }
   }
 }
 // En fase de CAPTURA: el listener de la tarjeta ya estaba registrado y, en
