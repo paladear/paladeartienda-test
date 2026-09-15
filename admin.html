@@ -1864,7 +1864,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { cerrarEdit
 function pintarKpis(){
   const t = PRODUCTOS.length;
   const cambios = PRODUCTOS.filter(p => p.cambioPrecio).length;
-  const nuevos  = PRODUCTOS.filter(p => p.nuevo).length;
+  // Un nuevo deja de contar como nuevo en cuanto lo metés al catálogo, aunque
+  // siga figurando en pendientes.json hasta la próxima pasada del sistema.
+  const nuevos  = PRODUCTOS.filter(p => p.nuevo && !p.altaOk).length;
   const fuera   = PRODUCTOS.filter(p => !resuelto(p)).length;
   const sinFoto = PRODUCTOS.filter(p => !p.foto).length;
   const renoms  = PRODUCTOS.filter(p => hayRenombre(p)).length;
@@ -1974,7 +1976,7 @@ function pintar(){
   let lista = PRODUCTOS.slice();
   if (FILTRO === 'pendientes') lista = lista.filter(p => p.nuevo || hayRenombre(p) || p.malRubro);
   if (FILTRO === 'precio')     lista = lista.filter(p => p.cambioPrecio);
-  if (FILTRO === 'nuevos')     lista = lista.filter(p => p.nuevo);
+  if (FILTRO === 'nuevos')     lista = lista.filter(p => p.nuevo && !p.altaOk);
   if (FILTRO === 'renom')      lista = lista.filter(p => hayRenombre(p));
   if (FILTRO === 'malrubro')   lista = lista.filter(p => p.malRubro);
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
@@ -2036,7 +2038,7 @@ function pintar(){
     const clase = (p.cambioPrecio ? 'es-precio' : p.nuevo ? 'es-nuevo' : p.malRubro ? 'es-mal' : hayRenombre(p) ? 'es-renom' : !p.foto ? 'es-sinfoto' : '') +
                   (resuelto(p) ? ' en-catalogo' : ' fuera-catalogo');
     const chips = [];
-    if (p.nuevo) chips.push('<span class="chip nuevo">NUEVO</span>');
+    if (p.nuevo && !p.altaOk) chips.push('<span class="chip nuevo">NUEVO</span>');
     if (p.cambioPrecio && !p.nuevo) chips.push('<span class="chip precio">' +
       (p.subio ? 'SUBIÓ' : 'BAJÓ') + ' — antes $' + (p.precioAntes || 0).toLocaleString('es-AR') +
       '</span>');
@@ -2665,9 +2667,11 @@ function marcarCambiosDePrecio(lista){
     var dif = (antes === undefined) ? 0 : Math.abs(Number(antes) - Number(p.p1));
     p.cambioPrecio = (!primeraVez && antes !== undefined && p.p1 > 0 && dif >= 1);
     p.subio = p.cambioPrecio && Number(p.p1) > Number(antes);
-    // Un producto recién creado en E-Pyme con precio es, a los efectos de la
-    // revisión, un cambio de precio más: entra a la misma lista con su etiqueta.
-    if (p.nuevo && p.p1 > 0) { p.cambioPrecio = true; p.subio = false; }
+    // Un producto recién creado en E-Pyme entra a la lista de revisión como un
+    // cambio de precio más, PERO una sola vez: en cuanto le diste el OK (o le
+    // pusiste la banderilla de catálogo, que vale como OK) deja de aparecer.
+    // Sin este "todavía no", volvían en cada carga por más veces que los aprobaras.
+    if (p.nuevo && p.p1 > 0 && antes === undefined) { p.cambioPrecio = true; p.subio = false; }
     // Queda anotado el día del cambio, y no se borra al revisarlo: es lo que
     // permite que la lista siempre empiece por lo último que se movió.
     if (p.cambioPrecio) {
