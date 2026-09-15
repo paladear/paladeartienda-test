@@ -242,7 +242,9 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
   header h1{font-size:15px}
   .hd .env,.hd .quien{display:none}
   main{padding:16px 14px}
-  .busca-fija{margin:0 -14px 12px;padding:8px 14px}
+  /* Sin sticky: con el orden nuevo hay poco scroll antes de los productos, y
+   pegado arriba se montaba sobre el encabezado. */
+.busca-fija{position:static!important;margin:0 -14px 12px;padding:8px 14px;z-index:auto!important}
   /* Botones cómodos para el dedo */
   .btn{min-height:44px;padding:11px 15px;font-size:14px}
   .foto-prev{width:88px;height:88px}
@@ -425,7 +427,7 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
 .ayuda-iphone summary b{display:inline}
 .ayuda-iphone summary::before{content:'▸ ';color:var(--marca)}
 .ayuda-iphone[open] summary::before{content:'▾ '}
-body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
+body.es-mayorista #btnPublicar{display:none}
 .excel-caja{margin-top:13px;padding:14px 16px;border:1px solid var(--linea);border-radius:13px;
   background:var(--papel);font-size:13.5px;line-height:1.6;color:var(--texto)}
 .excel-caja.ok{border-color:#bcd9c4;background:#f4faf6}
@@ -552,14 +554,6 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
   width:4px;height:8px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(42deg)}
 
 /* Catálogo: verde cuando el producto se ve en la tienda, ámbar cuando no. */
-.bander-cat{width:64px;justify-content:center;padding:0 4px;min-height:40px;height:40px;
-  border-radius:9px;flex-direction:column;gap:3px;font-size:9.5px;text-align:center;line-height:1.15}
-.bander-cat i{width:13px;height:13px;flex:0 0 13px}
-.bander-cat.on{background:#e9f7ef;border-color:#9cd4b4;color:#1d7a4a}
-.bander-cat.on.alta{background:#eaf1fb;border-color:#a8c2e6;color:#28578f}
-.bander-cat:not(.on):not(.trabada){background:#fdf6e6;border-color:#e4cd95;color:#8a6b1c}
-.bander-cat.trabada{background:var(--papel-2);border-color:#dde3e9;color:#93a0ad;cursor:default}
-.bander-cat:disabled{cursor:default}
 
 /* Precio: mientras espera tu OK es un botón ámbar; una vez al día, queda gris. */
 .bander-precio{margin-top:8px;min-height:40px;padding:0 15px;font-size:12.5px}
@@ -569,8 +563,7 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
   padding-left:0;font-weight:600;cursor:default}
 .bander:disabled{opacity:.6}
 @media(max-width:700px){
-  .bander-cat{min-height:44px;height:44px}
-  .bander-precio{min-height:44px;width:100%;justify-content:center}
+    .bander-precio{min-height:44px;width:100%;justify-content:center}
   .bander-precio.lista{justify-content:flex-start}
 }
 .aviso-cat{display:flex;flex-direction:column;gap:2px;margin:0 0 9px;padding:8px 11px;border-radius:9px;font-size:12.5px;line-height:1.4}
@@ -728,12 +721,37 @@ body.con-hoja{overflow:hidden}
 .prod .nom{font-size:14.5px;line-height:1.3;margin-bottom:2px;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .prod .meta{font-size:12px;margin-bottom:5px}
-.prod .precio{font-size:14px;gap:8px}
-.prod .precio .p-dos i{font-size:9px}
-.prod .chips{gap:5px;margin-top:5px}
-.prod .chip{font-size:11px;padding:2px 8px}
-.bander-cat{width:62px;height:34px!important;min-height:34px!important;font-size:8.5px;border-radius:8px}
-.bander-cat i{width:11px;height:11px;flex:0 0 11px}
+.prod .precio{font-size:14.5px;gap:9px;align-items:baseline;flex-wrap:wrap}
+.prod .precio .p-uno{font-weight:800}
+.prod .precio .p-dos{margin-left:0;font-size:13px;display:inline-flex;align-items:baseline;gap:4px}
+.prod .precio .p-dos i{display:inline;font-size:9.5px;letter-spacing:.04em;opacity:.8}
+.prod .chips{gap:6px;margin-top:6px}
+/* Etiqueta con puntito, del mismo color que el chip del filtro de arriba. */
+.prod .chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;
+  padding:3px 10px 3px 8px;border-radius:999px;border:1px solid transparent}
+.prod .chip i{width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:currentColor}
+.prod .chip.c-precio{background:#fdf4e6;border-color:#eed6ac;color:#8a5310}
+.prod .chip.c-nuevo{background:#eaf7ef;border-color:#b6ddc5;color:#1d6b47}
+.prod .chip.c-foto{background:#fdeeea;border-color:#efc3b6;color:#a2432a}
+.prod .chip.c-fuera{background:#f1f0f8;border-color:#cfcede;color:#544f72}
+.prod .chip.c-desc{background:#eef3f7;border-color:#ccd9e4;color:#456883}
+.prod .chip.c-renom{background:#f4eefb;border-color:#d8c6ea;color:#65418f}
+.prod .chip.c-oferta{background:#fdf1f4;border-color:#eec3ce;color:#993552}
+.prod .chip.c-mal{background:#fdecea;border-color:#efb7ae;color:#9c2d1c}
+/* ── Interruptor de catálogo: chico y se lee de un vistazo ── */
+.sw{display:inline-flex;align-items:center;flex:0 0 auto;width:46px;height:26px;padding:3px;
+  border-radius:999px;border:1px solid transparent;cursor:pointer;
+  background:#e4d5b6;transition:background .16s,border-color .16s}
+.sw i{width:18px;height:18px;border-radius:50%;background:#fff;
+  box-shadow:0 1px 3px rgba(20,45,70,.3);transition:transform .16s}
+.sw.sw-on{background:#2e9e63}
+.sw.sw-on i{transform:translateX(20px)}
+.sw.sw-alta{background:#2f6d99}
+.sw:not(.sw-on){background:#d8a72e}
+.sw:hover{border-color:rgba(20,45,70,.22)}
+.sw:focus-visible{outline:2px solid var(--marca);outline-offset:2px}
+.sw.sw-traba{width:26px;justify-content:center;background:#e6e9ed;color:#8a93a0;cursor:default;border-color:#d7dce2}
+.sw-traba svg{width:15px;height:15px}
 .bander-precio{min-height:36px!important;margin-top:6px;font-size:12px;padding:0 12px}
 /* "Precio al día" no aporta: se nota por la ausencia de aviso y ocupaba una línea. */
 .bander-precio.lista{display:none}
@@ -743,10 +761,53 @@ body.con-hoja{overflow:hidden}
   border-radius:9px;padding:7px 11px;font:700 12.5px/1 inherit;color:var(--marca);cursor:pointer}
 .prod-editar:hover{background:#eaf1f7;border-color:var(--marca)}
 .prod-editar svg{width:14px;height:14px}
-@media(max-width:430px){
+@media(max-width:560px){
   .prod{padding:10px 11px;gap:10px}
   .prod .nom{font-size:14px}
-  .prod-editar{padding:7px 9px;font-size:12px}
+  /* Solo el lápiz: el texto se comía el ancho que necesitan las etiquetas. */
+  .prod-editar{padding:8px;font-size:0;gap:0}
+  .prod-editar svg{width:17px;height:17px}
+}
+
+/* ── Revisar varios precios de una ── */
+.barra-rev{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:0 0 12px;
+  padding:11px 14px;border-radius:12px;background:#fdf4e6;border:1px solid #eed6ac;color:#8a5310}
+.rev-todos{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:700;
+  cursor:pointer;min-height:44px}
+.rev-todos input{width:20px;height:20px;accent-color:#b4731a;cursor:pointer}
+.rev-ok{margin-left:auto;background:#b4731a;border-color:#b4731a}
+.rev-ok:hover:not(:disabled){background:#9c6314}
+.rev-ok:disabled{opacity:.5;cursor:default}
+@media(max-width:430px){ .rev-ok{margin-left:0;width:100%;text-align:center} }
+/* el tilde de cada tarjeta */
+.rev-check{display:inline-flex;align-items:center;justify-content:center;
+  width:62px;min-height:34px;margin-top:5px;border-radius:8px;
+  background:#fdf4e6;border:1px solid #eed6ac;cursor:pointer}
+.rev-check input{width:19px;height:19px;accent-color:#b4731a;cursor:pointer}
+
+/* ── AVISOS DE CONFIRMACIÓN ── */
+#avisos{position:fixed;left:0;right:0;bottom:0;z-index:9500;display:flex;flex-direction:column;
+  align-items:center;gap:8px;padding:0 12px 92px;pointer-events:none}
+.aviso{pointer-events:auto;display:flex;align-items:flex-start;gap:11px;width:100%;max-width:440px;
+  padding:12px 14px;border-radius:13px;background:#123f67;color:#f1f6fa;
+  box-shadow:0 8px 28px rgba(18,63,103,.34);font-size:14px;line-height:1.4;
+  animation:avEntra .22s ease-out}
+@keyframes avEntra{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}
+.aviso.yendose{opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
+.av-tic{flex:0 0 22px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.18);font-size:13px;font-weight:800;margin-top:1px}
+.av-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.av-txt b{font-weight:750}
+.av-txt span{font-size:12.5px;opacity:.85}
+.av-x{flex:0 0 auto;border:0;background:none;color:inherit;opacity:.6;font-size:20px;
+  line-height:1;cursor:pointer;padding:0 2px}
+.av-x:hover{opacity:1}
+.aviso-ok .av-tic{background:#2e9e63;color:#fff}
+.aviso-mal{background:#8d2620}
+.aviso-mal .av-tic{background:#e05a4d;color:#fff}
+.aviso-espera .av-tic{background:#c98a1e;color:#fff}
+@media(min-width:700px){
+  #avisos{left:auto;right:0;align-items:flex-end;padding:0 22px 22px}
 }
 
 /* ── Barra de publicar: pegada abajo y sólo cuando hace falta ── */
@@ -1035,6 +1096,12 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
   </div>
   <div id="ayudaFiltro"></div>
 
+  <!-- ── REVISAR VARIOS PRECIOS DE UNA ── -->
+  <div class="barra-rev" id="barraRev" hidden>
+    <label class="rev-todos"><input type="checkbox" id="revTodos"> <span id="revCuenta">Marcar todos</span></label>
+    <button type="button" class="btn primario rev-ok" id="revAprobar" disabled>Dar el OK a los marcados</button>
+  </div>
+
   <!-- ── TÍTULO DEL LISTADO ── -->
   <div class="lista-cab">
     <h2 id="listaTitulo">Productos</h2>
@@ -1057,7 +1124,6 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
           <label class="btn gris" for="fileExcel" id="lblExcelHerr" title="Por si falla el pase automático: subí la lista de precios">Subir Excel de precios</label>
           <input type="file" id="fileExcel" class="foto-input">
           <button class="btn gris" id="btnPegar" title="Si copiaste el archivo o el texto de la lista, pegalo acá">Pegar lista</button>
-          <button class="btn gris" id="btnSync">Traer del Sheet</button>
           <button class="btn gris" id="btnDesc">Descuento por rubro</button>
         </div>
         <div class="hoja-grupo">
@@ -1066,8 +1132,8 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
           <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
         </div>
         <div class="hoja-grupo" id="grupoPublicar">
-          <span class="hoja-rotulo">Publicación</span>
-          <button class="btn gris" id="btnPublicar" title="Publica en la tienda los precios que tiene E-Pyme ahora">Publicar precios en la tienda</button>
+          <span class="hoja-rotulo">Traer de E-Pyme</span>
+          <button class="btn gris" id="btnPublicar" title="Le pide a la PC del negocio la lista más nueva de E-Pyme">Buscar cambios en E-Pyme</button>
         </div>
         <div class="hoja-grupo">
           <span class="hoja-rotulo">Este panel</span>
@@ -1088,7 +1154,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
 
   <!-- ── BARRA DE PUBLICAR, abajo y sólo si hace falta ── -->
   <div class="barra-fija" id="barraFija">
-    <button class="btn primario" id="btnPublicarFijo" onclick="publicarPrecios()" title="Le pide a la PC del negocio que mande los precios de E-Pyme a la tienda">Publicar en la tienda</button>
+    <button class="btn primario" id="btnPublicarFijo" onclick="publicarPrecios()" title="Le pide a la PC del negocio la lista más nueva de E-Pyme, con los precios y los productos que se hayan creado">Buscar cambios en E-Pyme</button>
     <span class="barra-fija-nota" id="notaPublicar"></span>
   </div>
 
@@ -1983,14 +2049,18 @@ async function guardarFicha(){
       oculto: datos.oculto,
       foto: datos.fotoPropia || p.foto
     });
+    var huboFoto = !!FOTO_NUEVA;
     FOTO_NUEVA = null; FOTO_BORRAR = false;
     est.textContent = 'Guardado'; est.className = 'ed-estado ok';
     pintarKpis(); pintar();
+    avisar('ok', huboFoto ? 'Ficha y foto guardadas' : 'Ficha guardada',
+           datos.nombre + ' — la tienda ya lo muestra así');
     setTimeout(cerrarEditor, 700);
   } catch (e) {
     b.disabled = false;
     est.textContent = 'No se pudo guardar: ' + (e.message || e);
     est.className = 'ed-estado mal';
+    avisar('mal', 'No se pudo guardar', e.message || String(e));
   }
 }
 
@@ -2096,7 +2166,11 @@ async function aplicarDescuento(){
 }
 
 $('btnDesc').addEventListener('click', abrirDescuentos);
-$('btnSync').addEventListener('click', traerDelSheet);
+// El botón "Traer del Sheet" se quitó a pedido de Juani: si el Sheet quedó
+// viejo, un toque pisaba todas las fichas con datos vencidos. La función sigue
+// acá por si alguna vez hace falta volver a usarla a mano.
+var _bs = document.getElementById('btnSync');
+if (_bs) _bs.addEventListener('click', traerDelSheet);
 
 // ── PUBLICAR PRECIOS EN LA TIENDA ─────────────────────────────────────────────
 // El panel no puede hablarle a la PC del negocio, asi que le deja el pedido en un
@@ -2248,6 +2322,7 @@ function pintarKpis(){
       '<button type="button" class="kpi ' + k[3] + (FILTRO === k[0] ? ' on' : '') + (k[1] ? '' : ' vacio') + '" data-f="' + k[0] + '">' +
       '<span>' + k[2] + '</span><b>' + k[1] + '</b></button>').join('');
   try { pintarAvisoPend(); } catch(e) {}
+  try { pintarBarraRev(); } catch(e) {}
   try { ajustarPorTienda(); } catch(e) {}
 }
 
@@ -2395,27 +2470,21 @@ function pintar(){
   const tarjeta = p => {
     const clase = (p.cambioPrecio ? 'es-precio' : p.nuevo ? 'es-nuevo' : p.malRubro ? 'es-mal' : hayRenombre(p) ? 'es-renom' : !p.foto ? 'es-sinfoto' : '') +
                   (resuelto(p) ? ' en-catalogo' : ' fuera-catalogo');
+    // Cada etiqueta lleva el puntito del color de su filtro: mirando la tarjeta
+    // se sabe en qué lista aparece, sin abrir nada.
     const chips = [];
-    if (p.nuevo && !p.altaOk) chips.push('<span class="chip nuevo">NUEVO</span>');
-    if (p.cambioPrecio && !p.nuevo) chips.push('<span class="chip precio">' +
-      (p.subio ? 'SUBIÓ' : 'BAJÓ') + ' — antes $' + (p.precioAntes || 0).toLocaleString('es-AR') +
-      '</span>');
-    if (p.nuevo) {
-      const falta = [];
-      if (!p.foto) falta.push('foto');
-      if (!p.desc) falta.push('descripción');
-      if (!p.cantidades) falta.push('cantidades');
-      if (falta.length) chips.push('<span class="chip falta">falta ' + falta.join(' y ') + '</span>');
-    }
-    if (p.malRubro) chips.push('<span class="chip mal">Rubro inválido</span>');
-    if (hayRenombre(p)) chips.push('<span class="chip renom">Nombre cambiado</span>');
-    if (!p.ficha)   chips.push('<span class="chip falta">Sin ficha</span>');
-    else if (!p.nuevo) {   // en los nuevos ya lo dice el chip de arriba
-      if (!p.foto) chips.push('<span class="chip falta">Sin foto</span>');
-      if (!p.desc) chips.push('<span class="chip falta">Sin descripción</span>');
-    }
-    if (p.oferta)   chips.push('<span class="chip renom">' + p.oferta + '% OFF</span>');
-    if (p.editada)  chips.push('<span class="chip editada">Editada acá</span>');
+    const eti = function(clase, texto){ return '<span class="chip ' + clase + '"><i></i>' + texto + '</span>'; };
+    if (p.nuevo && !p.altaOk)               chips.push(eti('c-nuevo', 'Nuevo'));
+    if (p.cambioPrecio)                     chips.push(eti('c-precio', p.nuevo ? 'Precio a revisar'
+                                              : (p.subio ? 'Subió' : 'Bajó') + ' — antes $' + (p.precioAntes || 0).toLocaleString('es-AR')));
+    if (!resuelto(p) && !p.sinPrecio && !p.malRubro) chips.push(eti('c-fuera', 'Fuera del catálogo'));
+    if (p.sinPrecio)                        chips.push(eti('c-mal', 'Sin precio en E-Pyme'));
+    if (p.malRubro)                         chips.push(eti('c-mal', 'Rubro inválido'));
+    if (!p.foto)                            chips.push(eti('c-foto', 'Sin foto'));
+    if (!p.ficha)                           chips.push(eti('c-desc', 'Sin ficha'));
+    else if (!p.desc)                       chips.push(eti('c-desc', 'Sin descripción'));
+    if (hayRenombre(p))                     chips.push(eti('c-renom', 'Nombre cambiado'));
+    if (p.oferta)                           chips.push(eti('c-oferta', p.oferta + '% de descuento'));
     const foto = p.foto
       ? '<img class="foto" loading="lazy" src="' + imgDe(p.id) + '" alt="" ' +
         'onerror="this.classList.add(\'rota\');this.removeAttribute(\'src\');' +
@@ -2440,13 +2509,16 @@ function pintar(){
     var enCat = enCatalogo(p);
     var esperaAlta = esperandoAlta(p);
     var puesta = enCat || esperaAlta;
+    // Un interruptor chico: verde = el cliente lo ve, ámbar = está fuera, azul =
+    // entra cuando E-Pyme mande la lista. El texto lo dice la etiqueta de abajo.
     var bandCat = traba
-      ? '<button type="button" class="bander bander-cat trabada" disabled title="' + esc(traba) + '">' +
-          '<i></i><span>No se puede</span></button>'
-      : '<button type="button" class="bander bander-cat' + (puesta ? ' on' : '') + (esperaAlta ? ' alta' : '') +
-          '" data-cat="' + esc(p.id) + '" aria-pressed="' + (puesta ? 'true' : 'false') + '"' +
-          ' title="' + (puesta ? 'Sacar de la tienda' : 'Poner en la tienda') + '">' +
-          '<i></i><span>' + (esperaAlta ? 'Al publicar' : puesta ? 'En la tienda' : 'Fuera') + '</span></button>';
+      ? '<span class="sw sw-traba" title="' + esc(traba) + '" aria-label="' + esc(traba) + '">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">' +
+          '<rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>'
+      : '<button type="button" class="sw' + (puesta ? ' sw-on' : '') + (esperaAlta ? ' sw-alta' : '') +
+          '" data-cat="' + esc(p.id) + '" role="switch" aria-checked="' + (puesta ? 'true' : 'false') + '"' +
+          ' title="' + (esperaAlta ? 'Aceptado: entra cuando E-Pyme mande la lista' : puesta ? 'Se ve en la tienda. Tocá para sacarlo' : 'No se ve en la tienda. Tocá para ponerlo') + '"' +
+          ' aria-label="' + (puesta ? 'Sacar de la tienda' : 'Poner en la tienda') + '"><i></i></button>';
 
     // ── BANDERILLA DE PRECIO (dentro de la mini tarjeta) ──
     var bandPrecio = p.cambioPrecio
@@ -2462,7 +2534,10 @@ function pintar(){
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
       '<path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>Editar</button>';
     return '<div class="prod ' + clase + '" data-id="' + esc(p.id) + '" title="Clic para editar la ficha">' +
-      '<div class="prod-flanco">' + foto + bandCat + '</div>' +
+      '<div class="prod-flanco">' + foto + bandCat +
+        (p.cambioPrecio ? '<label class="rev-check" title="Marcar para dar el OK junto con otros">' +
+          '<input type="checkbox" data-rev="' + esc(p.id) + '"' + (REV_MARCADOS.has(p.id) ? ' checked' : '') +
+          ' aria-label="Marcar ' + esc(p.nombre) + '"></label>' : '') + '</div>' +
       '<div class="datos">' + aviso +
         '<div class="nom">' + esc(p.nombre) + '</div>' +
         '<div class="meta">Art. ' + esc(p.id) + ' · ' + esc(p.rubro) +
@@ -2766,10 +2841,22 @@ async function excelPublicar(){
     caja.innerHTML = '<div class="excel-caja ok"><b>Listo.</b> Se publicaron ' + EXCEL_FILAS.length +
       ' precios en <b>' + esc(nombreTienda()) + '</b>. ' +
       'La tienda los toma en unos minutos.</div>';
+    avisar('ok', EXCEL_FILAS.length + ' precios actualizados',
+           'Se subieron a ' + nombreTienda() + '. Abajo salen primero los que cambiaron.');
+    // Tras subir la lista, lo primero que se ve es lo que cambió.
+    setTimeout(function(){
+      try {
+        ORDEN = 'cambios';
+        var so = document.getElementById('selOrden'); if (so) so.value = 'cambios';
+        elegirFiltro('kpi', 'precio');
+        var c = document.getElementById('salida'); if (c) c.scrollIntoView({block:'start', behavior:'smooth'});
+      } catch(e) {}
+    }, 400);
     EXCEL_FILAS = null;
     var i=$('fileExcel'); if(i) i.value='';
   } catch (err) {
     caja.innerHTML = '<div class="excel-caja mal">No pude publicar: ' + esc(err.message) + '</div>';
+    avisar('mal', 'No pude publicar la lista', err.message);
   }
 }
 
@@ -3135,13 +3222,80 @@ function ajustarPorTienda(){
   if(ay)ay.hidden=!esMay;                       // la ayuda del iPhone, sólo donde se sube el Excel
   var gp=document.getElementById('grupoPublicar');
   if(gp)gp.hidden=esMay;                        // publicar precios es sólo de la minorista
-  var sy=document.getElementById('btnSync');
-  if(sy)sy.hidden=esMay;
   var vt=document.getElementById('verTiendaHerr');
   if(vt){ vt.href = esMay ? SITIO_MAY : './'; vt.textContent = esMay ? 'Ver la distribuidora' : 'Ver la tienda'; }
 }
 
 /* El aviso de pendientes: sale sólo cuando hay algo que revisar de verdad. */
+/* ── DAR EL OK A VARIOS PRECIOS DE UNA ────────────────────────────────────────
+   Se marcan los que se quieran (o todos, y se destildan los que no) y se
+   aprueban juntos en un solo guardado. */
+var REV_MARCADOS = new Set();
+
+function pintarBarraRev(){
+  var barra=document.getElementById('barraRev');
+  if(!barra)return;
+  var pend=PRODUCTOS.filter(function(p){ return p.cambioPrecio; });
+  barra.hidden = !pend.length;
+  if(!pend.length){ REV_MARCADOS.clear(); return; }
+  // se descartan los marcados que ya no están pendientes
+  var vivos={}; pend.forEach(function(p){ vivos[p.id]=1; });
+  Array.from(REV_MARCADOS).forEach(function(id){ if(!vivos[id]) REV_MARCADOS.delete(id); });
+  var n=REV_MARCADOS.size;
+  var todos=document.getElementById('revTodos');
+  if(todos){ todos.checked = n>0 && n===pend.length; todos.indeterminate = n>0 && n<pend.length; }
+  var c=document.getElementById('revCuenta');
+  if(c)c.textContent = n ? (n + ' de ' + pend.length + ' marcados') : ('Marcar los ' + pend.length);
+  var b=document.getElementById('revAprobar');
+  if(b){ b.disabled = !n; b.textContent = n ? 'Dar el OK a ' + (n===1?'este precio':'los '+n) : 'Dar el OK a los marcados'; }
+}
+
+async function aprobarMarcados(){
+  var ids=Array.from(REV_MARCADOS);
+  if(!ids.length)return;
+  if(!TOKEN){ avisar('mal','Entrá con la clave','Sin la clave de GitHub no se puede guardar'); return; }
+  var b=document.getElementById('revAprobar');
+  if(b){ b.disabled=true; b.textContent='Guardando...'; }
+  try{
+    var hechos=0;
+    ids.forEach(function(id){
+      var p=PRODUCTOS.find(function(x){ return x.id===id; });
+      if(p){ aprobarPrecio(p); hechos++; }
+    });
+    await guardarFichasEnRepo('Precios aprobados (' + hechos + ')');
+    REV_MARCADOS.clear();
+    pintarKpis(); pintar();
+    avisar('ok', hechos + (hechos===1?' precio aprobado':' precios aprobados'),
+           'Ya están en la tienda: el cliente los ve en unos minutos');
+  }catch(e){
+    avisar('mal','No pude guardar', e.message);
+  }finally{
+    if(b)b.disabled=false;
+    pintarBarraRev();
+  }
+}
+
+(function(){
+  var t=document.getElementById('revTodos');
+  if(t)t.addEventListener('change',function(){
+    var pend=PRODUCTOS.filter(function(p){ return p.cambioPrecio; });
+    REV_MARCADOS.clear();
+    if(this.checked)pend.forEach(function(p){ REV_MARCADOS.add(p.id); });
+    pintar(); pintarBarraRev();
+  });
+  var b=document.getElementById('revAprobar');
+  if(b)b.addEventListener('click',aprobarMarcados);
+  // el tilde de cada tarjeta, en captura para que no se abra la ficha
+  document.addEventListener('click',function(ev){
+    var c=ev.target.closest && ev.target.closest('input[data-rev]');
+    if(!c)return;
+    ev.stopPropagation(); ev.stopImmediatePropagation();
+    var id=c.dataset.rev;
+    if(c.checked)REV_MARCADOS.add(id); else REV_MARCADOS.delete(id);
+    pintarBarraRev();
+  },true);
+})();
+
 function pintarAvisoPend(){
   var caja=document.getElementById('avisoPend');
   if(!caja)return;
@@ -3175,6 +3329,28 @@ function pintarTituloLista(n, total){
   var v=document.getElementById('listaTodos');
   if(v)v.addEventListener('click',function(){ elegirFiltro('kpi','todos'); });
 })();
+
+/* ── AVISOS: cada acción confirma que se hizo ─────────────────────────────────
+   Juani necesita quedarse tranquilo de que lo que tocó quedó guardado. Cada
+   guardado exitoso muestra un cartel abajo que dice qué pasó y, cuando
+   corresponde, que el cliente ya lo ve. */
+function avisar(tipo, titulo, detalle){
+  var z = document.getElementById('avisos');
+  if (!z) { z = document.createElement('div'); z.id = 'avisos'; document.body.appendChild(z); }
+  var a = document.createElement('div');
+  a.className = 'aviso aviso-' + (tipo || 'ok');
+  var tic = tipo === 'mal' ? '!' : tipo === 'espera' ? '\u2026' : '\u2713';
+  a.innerHTML = '<span class="av-tic" aria-hidden="true">' + tic + '</span>' +
+    '<span class="av-txt"><b>' + esc(titulo) + '</b>' +
+    (detalle ? '<span>' + esc(detalle) + '</span>' : '') + '</span>' +
+    '<button type="button" class="av-x" aria-label="Cerrar">&times;</button>';
+  a.querySelector('.av-x').addEventListener('click', function(){ a.remove(); });
+  z.appendChild(a);
+  // Los errores quedan hasta que los cierres; los avisos buenos se van solos.
+  if (tipo !== 'mal') setTimeout(function(){ a.classList.add('yendose');
+    setTimeout(function(){ a.remove(); }, 260); }, 4200);
+  return a;
+}
 
 function pintarCartelTienda(){
   var n = document.getElementById('ctNombre'), a = document.getElementById('ctArchivo'),
@@ -3267,13 +3443,11 @@ async function marcarPreciosRevisados(){
     PRECIOS_VISTOS = {};
     PRODUCTOS.forEach(function(p){ if (p.p1 > 0) aprobarPrecio(p); });
     await guardarFichasEnRepo('Precios aprobados' + (n ? ' (' + n + ' cambios)' : ''));
+    avisar('ok', n + (n === 1 ? ' precio aprobado' : ' precios aprobados'),
+           'Ya están en la tienda: el cliente los ve en unos minutos');
     pintarKpis(); pintar();
-    // Aceptar todo implica que querés que eso llegue a la tienda: se publica solo.
-    if (n && TIENDA === 'min' && typeof publicarPrecios === 'function') {
-      try { await publicarPrecios(); } catch(e) {}
-    }
   } catch (e) {
-    alert('No pude guardar la revisión: ' + e.message);
+    avisar('mal', 'No pude guardar la revisión', e.message);
   } finally {
     GUARDANDO_VISTOS = false;
     if (btn) { btn.disabled = false; btn.textContent = 'Dar el OK a todos los precios'; }
@@ -3294,8 +3468,10 @@ async function verPrecioVisto(id){
     aprobarPrecio(p);
     await guardarFichasEnRepo('Precio aprobado: ' + (p.nombre || id));
     pintarKpis(); pintar();
+    avisar('ok', 'Precio aprobado', (p.nombre || id) + ' — la tienda ya muestra $' +
+      Math.round(p.p1).toLocaleString('es-AR'));
   } catch (e) {
-    alert('No pude guardarlo: ' + e.message);
+    avisar('mal', 'No pude guardar el precio', e.message);
     if (btn) { btn.disabled = false; btn.innerHTML = '<i></i><span>OK al precio</span>'; }
   }
 }
@@ -3331,11 +3507,13 @@ function avisarPublicar(){
   }
   // La barra de abajo aparece sólo cuando hay algo para publicar de verdad.
   // El botón sigue estando siempre en Herramientas → Publicación.
-  barra.hidden = !(n || altas);
-  nota.textContent = n
-    ? 'Tenés ' + n + ' precio' + (n === 1 ? '' : 's') + ' esperando tu OK: hasta entonces la tienda muestra el anterior'
-    : (altas ? altas + ' producto' + (altas === 1 ? '' : 's') + ' nuevo' + (altas === 1 ? '' : 's') + ' listo' + (altas === 1 ? '' : 's') + ' para publicar'
-             : '');
+  // Este botón NO publica: los precios aprobados van solos a la tienda. Lo que
+  // hace es pedirle a E-Pyme la lista nueva, para ver si hay cambios o altas.
+  barra.hidden = !altas;
+  nota.textContent = altas
+    ? altas + ' producto' + (altas === 1 ? '' : 's') + ' nuevo' + (altas === 1 ? '' : 's') +
+      ' espera' + (altas === 1 ? '' : 'n') + ' que E-Pyme los mande a la lista'
+    : '';
 }
 window.avisarPublicar = avisarPublicar;
 
@@ -3518,7 +3696,7 @@ async function volverAlCatalogo(id){
   var p = PRODUCTOS.find(function(x){ return x.id === id; });
   if (!p) return;
   if (!TOKEN) { alert('Entrá con la clave para poder guardar.'); return; }
-  var b = document.querySelector('.bander-cat[data-cat="' + id + '"]');
+  var b = document.querySelector('.sw[data-cat="' + id + '"]');
   if (b) { b.disabled = true; }
   var estaba = { oculto: p.oculto, altaOk: p.altaOk };
   var entra = !(enCatalogo(p) || esperandoAlta(p));   // si está afuera, lo mete
@@ -3542,7 +3720,7 @@ async function volverAlCatalogo(id){
   }
 }
 document.addEventListener('click', function(ev){
-  var b = ev.target.closest && ev.target.closest('.bander-cat[data-cat]');
+  var b = ev.target.closest && ev.target.closest('.sw[data-cat]');
   if (!b) return;
   ev.stopPropagation(); ev.stopImmediatePropagation(); ev.preventDefault();
   volverAlCatalogo(b.dataset.cat);
@@ -3559,8 +3737,10 @@ var ALT_LISTA = [], ALT_MARCADOS = new Set(), ALT_FILTRO = '';
 function abrirAltas(){
   $('capaAltas').classList.add('abierto');
   document.body.style.overflow = 'hidden';
+  // Sólo los que todavía NO están en el catálogo. Antes los nuevos seguían
+  // apareciendo después de agregarlos y no se entendía si habían entrado.
   ALT_LISTA = PRODUCTOS.filter(function(p){
-    return (p.nuevo || p.oculto === true) && !p.sinPrecio && !p.malRubro;
+    return ((p.nuevo && !p.altaOk) || p.oculto === true) && !p.sinPrecio && !p.malRubro;
   }).sort(function(a,b){ return String(a.nombre).localeCompare(String(b.nombre),'es'); });
   ALT_MARCADOS = new Set();          // ninguno marcado al abrir
   ALT_FILTRO = '';
@@ -3633,17 +3813,26 @@ async function altAgregar(){
   var b = $('altEnviar');
   b.disabled = true; b.textContent = 'Agregando...';
   try {
-    // Los marcados quedan visibles; los que no, guardados como ocultos.
-    ALT_LISTA.forEach(function(p){
-      var quiere = ALT_MARCADOS.has(p.id);
-      p.oculto = !quiere;
-      FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, { oculto: !quiere, origen: 'panel' });
+    // Sólo se toca lo marcado: lo que no marcaste queda como estaba.
+    marcados.forEach(function(p){
+      p.oculto = false;
+      var ficha = { oculto: false, origen: 'panel' };
+      // Igual que la banderilla: meterlo al catálogo vale como OK de su precio.
+      if (p.nuevo) { p.altaOk = true; ficha.altaOk = true; aprobarPrecio(p); }
+      FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, ficha);
     });
     await guardarFichasEnRepo('Al catálogo: ' + marcados.length + ' producto' + (marcados.length === 1 ? '' : 's'));
-    var hayNuevos = marcados.some(function(p){ return p.nuevo; });
-    $('altEstado').innerHTML = '<span class="ok">' + marcados.length + ' agregados.</span>' +
-      (hayNuevos ? ' Falta tocar <b>Publicar precios en la tienda</b> para que salgan.' : '');
+    var nombres = marcados.slice(0,2).map(function(p){ return p.nombre; }).join(', ');
+    avisar('ok', marcados.length + (marcados.length === 1 ? ' producto agregado' : ' productos agregados') + ' al catálogo',
+           marcados.length <= 2 ? nombres : nombres + ' y ' + (marcados.length - 2) + ' más');
     pintarKpis(); pintar();
+    // Los agregados salen de esta lista: así se ve qué falta y qué ya entró.
+    ALT_LISTA = ALT_LISTA.filter(function(p){ return marcados.indexOf(p) < 0; });
+    ALT_MARCADOS = new Set();
+    altPintar();
+    $('altEstado').innerHTML = ALT_LISTA.length
+      ? '<span class="ok">' + marcados.length + ' agregados.</span> Quedan ' + ALT_LISTA.length + ' por revisar.'
+      : '<span class="ok">Listo: no queda ninguno fuera del catálogo.</span>';
   } catch (e) {
     $('altEstado').innerHTML = '<span class="malo">No pude guardar: ' + esc(e.message) + '</span>';
   } finally {
