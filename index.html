@@ -1498,6 +1498,9 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 .min-redesign .min-header-search .compact-search{height:48px;border-radius:999px;padding:0 50px;font-size:14px;background:#fff;color:#173d5f;box-shadow:none}
 .min-redesign .min-header-search .compact-search:focus{box-shadow:0 0 0 3px rgba(221,238,249,.36)}
 .min-redesign .min-header-search .search-suggestions{top:calc(100% + 9px);z-index:30}
+.compact-search-clear{display:none;position:absolute;right:14px;top:50%;transform:translateY(-50%);z-index:4;width:28px;height:28px;border:0;border-radius:999px;background:rgba(40,91,131,.10);color:#285b83;font-size:20px;line-height:1;font-weight:700;align-items:center;justify-content:center;cursor:pointer;font-family:Arial,sans-serif;padding:0}
+.compact-search-clear.visible{display:flex}
+.compact-search-clear:hover{background:rgba(40,91,131,.18)}
 .min-redesign .social-btns{gap:4px;order:initial}
 .min-redesign .social-btn{width:36px;height:36px;border:0;background:transparent;color:#fff}
 .min-redesign .social-btn:hover{background:rgba(255,255,255,.14)}
@@ -1739,6 +1742,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
     <input class="compact-search" id="compactSearchInput" type="search" placeholder="Buscar productos"
            oninput="compactOnSearch(this.value);_updateSuggestions(this.value)"
            onblur="_hideSuggestionsDelayed();compactSearchBlur()" aria-label="Buscar productos">
+    <button type="button" class="compact-search-clear" id="compactSearchClear" onclick="clearCompactSearch(event)" aria-label="Borrar búsqueda">×</button>
     <div class="search-suggestions" id="searchSuggestions"></div>
   </div>
   <div class="social-btns">
@@ -4147,6 +4151,7 @@ function cerrarBusqueda(){
   searchTerm='';
   clearTimeout(_searchTimer);
   _doSearch('');
+  _updateSearchClear('');
   const saved=_searchPreScrollY;
   _searchOverlayOpen=false;
   _searchPreScrollY=0;
@@ -4161,6 +4166,7 @@ function onSearch(val){
 // Sugerencias tipo Google mientras se escribe (nombres de productos que empiezan
 // con lo tipeado tienen prioridad sobre los que solo lo contienen en el medio).
 function _updateSuggestions(value){
+  _updateSearchClear(value);
   const box=document.getElementById('searchSuggestions');
   if(!box)return;
   const term=(value||'').trim();
@@ -4214,9 +4220,26 @@ function _pickSuggestion(nombre){
   if(box){box.classList.remove('active');box.innerHTML='';}
   const inp=document.getElementById('compactSearchInput');
   if(inp)inp.value=nombre;
+  _updateSearchClear(nombre);
   if(typeof window.compactOnSearch==='function')window.compactOnSearch(nombre);
 }
 window._pickSuggestion=_pickSuggestion;
+function _updateSearchClear(value){
+  const btn=document.getElementById('compactSearchClear');
+  if(btn)btn.classList.toggle('visible',!!String(value||'').trim());
+}
+function clearCompactSearch(ev){
+  if(ev){ev.preventDefault();ev.stopPropagation();}
+  const inp=document.getElementById('compactSearchInput');
+  const box=document.getElementById('searchSuggestions');
+  clearTimeout(_searchTimer);
+  if(inp){inp.value='';inp.focus({preventScroll:true});}
+  if(box){box.classList.remove('active');box.innerHTML='';}
+  _updateSearchClear('');
+  if(typeof window.compactOnSearch==='function')window.compactOnSearch('');
+}
+window.clearCompactSearch=clearCompactSearch;
+window._updateSearchClear=_updateSearchClear;
 
 // Click en una sugerencia de RUBRO: a diferencia de un producto, no busca —
 // cierra el buscador y va directo a la categoría (mismo cierre que irAProducto).
@@ -6267,7 +6290,9 @@ function hvRenderCats(force){
   track.onscroll=hvUpdateCatPagination;
   if(!track._hvSnapBound){
     track._hvSnapBound=true;
-    track.addEventListener('scroll',hvScheduleCatSnap,{passive:true});
+    track.addEventListener('scroll',hvUpdateCatPagination,{passive:true});
+    track.addEventListener('touchend',function(){setTimeout(hvSnapCatPage,80);},{passive:true});
+    track.addEventListener('pointerup',function(){setTimeout(hvSnapCatPage,80);},{passive:true});
     if('onscrollend' in window)track.addEventListener('scrollend',hvSnapCatPage,{passive:true});
   }
   requestAnimationFrame(hvUpdateCatPagination);
@@ -6287,8 +6312,8 @@ function hvGoCatPage(index){
 function hvUpdateCatPagination(){
   var track=document.getElementById('hvCatsScroller');if(!track)return;
   var pages=Array.prototype.slice.call(track.querySelectorAll('.hv-cat-page'));var dots=Array.prototype.slice.call(document.querySelectorAll('#hvCatsPagination button'));if(!pages.length||!dots.length)return;
-  var pageW=track.clientWidth||1;
-  var current=Math.max(0,Math.min(pages.length-1,Math.round(track.scrollLeft/pageW)));
+  var current=0;
+  pages.forEach(function(page,index){if(Math.abs(page.offsetLeft-track.scrollLeft)<Math.abs(pages[current].offsetLeft-track.scrollLeft))current=index;});
   dots.forEach(function(dot,index){if(index===current)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current');});
 }
 var _hvCatSnapTimer=0;
@@ -6296,17 +6321,17 @@ function hvScheduleCatSnap(){
   if(_hvCatScrollFrame)return;
   hvUpdateCatPagination();
   clearTimeout(_hvCatSnapTimer);
-  _hvCatSnapTimer=setTimeout(hvSnapCatPage,130);
+  _hvCatSnapTimer=setTimeout(hvSnapCatPage,260);
 }
 function hvSnapCatPage(){
   if(_hvCatScrollFrame)return;
   var track=document.getElementById('hvCatsScroller');if(!track)return;
   var pages=Array.prototype.slice.call(track.querySelectorAll('.hv-cat-page'));if(!pages.length)return;
-  var pageW=track.clientWidth||1;
-  var current=Math.max(0,Math.min(pages.length-1,Math.round(track.scrollLeft/pageW)));
+  var current=0;
+  pages.forEach(function(page,index){if(Math.abs(page.offsetLeft-track.scrollLeft)<Math.abs(pages[current].offsetLeft-track.scrollLeft))current=index;});
   var target=pages[current].offsetLeft;
   hvUpdateCatPagination();
-  if(Math.abs(track.scrollLeft-target)>3)track.scrollTo({left:target,behavior:'smooth'});
+  if(Math.abs(track.scrollLeft-target)>3)hvGoCatPage(current);
 }
 window.hvGoCatPage=hvGoCatPage;
 var _hvCatsBreakpoint=window.matchMedia('(max-width:767px)');
@@ -6323,25 +6348,26 @@ window.hvGoCat=hvGoCat;
 function minRenderFeatured(){
   var grid=document.getElementById('minFeaturedGrid');
   if(!grid||typeof PRODS==='undefined'||!PRODS.length)return;
-  var preferidas=['frutos','deshidratados','semillas','aceitunas','cereales','granos'];
-  var elegidas=[];
-  preferidas.forEach(function(cid){
-    var p=PRODS.find(function(x){return x[1]===cid&&x[6]&&x[7]&&Object.keys(x[7]).length;});
-    if(p)elegidas.push(p);
+  var maxCount=window.innerWidth<768?6:8;
+  var today=new Date();
+  var seed=today.getFullYear()*372+today.getMonth()*31+today.getDate();
+  var catOrder=(CATS||[]).map(function(c){return c.id;});
+  var grouped={};
+  PRODS.forEach(function(p){
+    if(!p[6]||!p[7]||!Object.keys(p[7]).length)return;
+    (grouped[p[1]]||(grouped[p[1]]=[])).push(p);
+    if(catOrder.indexOf(p[1])<0)catOrder.push(p[1]);
   });
-  if(elegidas.length<8){
-    PRODS.some(function(p){
-      if(p[6]&&p[7]&&Object.keys(p[7]).length&&!elegidas.some(function(x){return x[1]===p[1];}))elegidas.push(p);
-      return elegidas.length>=8;
-    });
+  var availableCats=catOrder.filter(function(cid){return grouped[cid]&&grouped[cid].length;});
+  if(availableCats.length){
+    var offset=seed%availableCats.length;
+    availableCats=availableCats.slice(offset).concat(availableCats.slice(0,offset));
   }
-  if(elegidas.length<8){
-    PRODS.some(function(p){
-      if(p[6]&&p[7]&&Object.keys(p[7]).length&&!elegidas.some(function(x){return x[0]===p[0];}))elegidas.push(p);
-      return elegidas.length>=8;
-    });
-  }
-  grid.innerHTML=elegidas.slice(0,8).map(function(p){
+  var elegidas=availableCats.slice(0,maxCount).map(function(cid,index){
+    var list=grouped[cid].slice().sort(function(a,b){return String(a[2]||'').localeCompare(String(b[2]||''),'es');});
+    return list[(seed+index)%list.length];
+  }).filter(Boolean);
+  grid.innerHTML=elegidas.map(function(p){
     var cat=CATS.find(function(c){return c.id===p[1];});
     var opts=_sortOpts(Object.keys(p[7]));
     var precio=opts.length?p[7][opts[0]][0]:0;
@@ -6351,6 +6377,16 @@ function minRenderFeatured(){
       +'<button type="button" class="min-feature-card-add" aria-label="Ver '+String(p[2]).replace(/"/g,'&quot;')+'">+</button></article>';
   }).join('');
 }
+let _minFeaturedWasMobile=window.innerWidth<768,_minFeaturedResizeTimer=null;
+window.addEventListener('resize',function(){
+  clearTimeout(_minFeaturedResizeTimer);
+  _minFeaturedResizeTimer=setTimeout(function(){
+    var isMobile=window.innerWidth<768;
+    if(isMobile===_minFeaturedWasMobile)return;
+    _minFeaturedWasMobile=isMobile;
+    try{minRenderFeatured();}catch(e){}
+  },140);
+},{passive:true});
 function minOpenFeatured(pid){
   var p=PRODS.find(function(x){return x[0]===pid;});
   if(!p)return;
@@ -8141,6 +8177,20 @@ window.copiarLinkParaNavegador = function() {
 @media(max-width:767px){
   .descb-banner{height:168px!important;min-height:168px!important}
   .descb-copy strong{letter-spacing:-.01em}
+}
+@media(min-width:768px){
+  .min-redesign .descb-banner{height:clamp(270px,21.5vw,330px)!important;min-height:270px!important}
+  .min-redesign .descb-art{object-fit:cover!important;object-position:center!important}
+  .min-redesign .descb-banner::before{
+    left:50%!important;top:50%!important;width:min(760px,57vw)!important;height:74%!important;aspect-ratio:auto!important;
+    border-radius:0!important;transform:translate(-50%,-50%)!important;background:#f4efe6!important
+  }
+  .min-redesign .descb-copy{
+    left:50%!important;right:auto!important;top:50%!important;width:min(680px,50vw)!important;
+    transform:translate(-50%,-50%)!important;gap:12px!important;text-align:center!important;align-items:center!important
+  }
+  .min-redesign .descb-copy strong{font-size:clamp(34px,2.85vw,46px)!important}
+  .min-redesign .descb-copy span{max-width:52ch!important;font-size:clamp(18px,1.35vw,22px)!important}
 }
 
 /* ── OFERTAS: seccion completa, no un banner con puntas ──────────── */
