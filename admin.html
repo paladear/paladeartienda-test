@@ -603,6 +603,24 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
 
 /* ── Selector de tienda: lo primero que se ve ── */
 .tienda-sel{margin-bottom:8px}
+
+/* ── EN QUÉ SECCIÓN ESTOY ─────────────────────────────────────────────────────
+   El selector es lo que dice de un vistazo sobre cuál de las dos tiendas se
+   está trabajando, así que va grande y centrado. */
+.tienda-sel{display:flex!important;width:100%;padding:5px;gap:5px;margin:0 0 10px}
+.tienda-sel button{flex:1;min-height:54px;padding:0 14px;font-size:16px!important;font-weight:800;
+  display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;
+  letter-spacing:-.01em;transition:background .14s,color .14s,box-shadow .14s}
+.tienda-sel button.on{background:#2f6d99;color:#fff;box-shadow:0 3px 12px rgba(47,109,153,.3)}
+body.es-mayorista .tienda-sel button.on{background:#b4731a;box-shadow:0 3px 12px rgba(180,115,26,.32)}
+.tienda-sel button:not(.on):hover{background:rgba(47,109,153,.08);color:var(--tinta)}
+@media(max-width:430px){
+  .tienda-sel button{min-height:52px;font-size:15px!important}
+}
+@media(min-width:700px){
+  .tienda-sel{max-width:520px;margin-left:auto;margin-right:auto}
+  .tienda-sel button{min-height:50px}
+}
 /* El nombre del repo, como texto chico: antes era una tarjeta que no aportaba. */
 .cartel-tienda{margin:0 0 12px;padding:0;background:none!important;border:0!important;
   font-size:12.5px;gap:7px;color:var(--suave)}
@@ -2981,7 +2999,9 @@ function armarProductosMay(){
       p1: b.p1 || 0, p2: 0,
       ficha: !!FICHAS_FB[id],
       desc: f.desc || '',
-      foto: !!(f.imagen && String(f.imagen).trim()),
+      // Una foto propia subida desde el panel cuenta igual que la de la ficha:
+      // si no, productos que sí tienen imagen salían marcados como "sin foto".
+      foto: !!(f.imagen && String(f.imagen).trim()) || !!FOTOS_FB[id],
       cantidades: f.cantidades || b.cantidades || '',
       sabores: f.sabores || b.sabores || '',
       oferta: f.oferta || 0,
