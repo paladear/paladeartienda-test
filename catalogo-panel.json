@@ -7902,7 +7902,8 @@
    "imagen": "",
    "oculto": false,
    "fotoPropia": true,
-   "fondo": "#fefefe"
+   "fondo": "#fefefe",
+   "altaOk": true
   },
   "5053": {
    "nombre": "BALSAMO LABIAL",
@@ -15426,5 +15427,5 @@
   ]
  },
  "novedadesVistas": "2026-09-15T15:13:31.182Z",
- "actualizado": "2026-09-15T15:14:48.248Z"
+ "actualizado": "2026-09-15T15:14:54.269Z"
 }
