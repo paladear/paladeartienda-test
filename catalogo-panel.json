@@ -19,7 +19,7 @@
    "oferta": 0,
    "rubro": "",
    "origen": "sheet",
-   "actualizado": "2026-09-15T14:24:32.339Z",
+   "actualizado": "2026-09-13T12:51:39.795Z",
    "por": "panel"
   },
   "1002": {
@@ -7087,7 +7087,7 @@
    "origen": "panel",
    "actualizado": "2026-09-13T12:51:39.791Z",
    "por": "panel",
-   "oculto": false,
+   "oculto": true,
    "altaOk": true,
    "imagen": "https://drive.google.com/file/d/1RbjjqLrmtLjhpbsYusDczai4yf-tlhRp/view"
   },
@@ -7854,7 +7854,7 @@
    "origen": "panel",
    "actualizado": "2026-09-13T12:51:39.796Z",
    "por": "panel",
-   "oculto": false,
+   "oculto": true,
    "altaOk": true,
    "imagen": "https://drive.google.com/file/d/1kPiROplBYq2PL4ynhyTQ1CtuGdH328tL/view"
   },
@@ -7879,10 +7879,11 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "SUPLEMENTOS",
-   "origen": "sheet",
+   "origen": "panel",
    "actualizado": "2026-09-13T12:51:39.796Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1UR0WRbV93AorfWEq1QNNYAMKLI8xU9Qx/view"
+   "imagen": "https://drive.google.com/file/d/1UR0WRbV93AorfWEq1QNNYAMKLI8xU9Qx/view",
+   "oculto": false
   },
   "5052": {
    "nombre": "CREMA DE JARRILLA",
@@ -15422,5 +15423,5 @@
    0
   ]
  },
- "actualizado": "2026-09-15T14:24:32.340Z"
+ "actualizado": "2026-09-15T14:26:53.402Z"
 }
