@@ -1437,6 +1437,28 @@ async function traerDelSheet(){
 }
 
 async function guardarFichasEnRepo(mensaje){
+  // Antes de escribir se mira lo que hay publicado: si desde otro dispositivo
+  // ya diste las novedades por vistas y esta pestaña quedó con datos de antes,
+  // se respeta lo más nuevo. Sin esto, guardar cualquier cosa desde una pestaña
+  // vieja hacía volver el cartel que ya habías cerrado en el celular.
+  try {
+    const url = (TIENDA === 'may' ? SITIO_MAY : '') + ARCHIVO_FICHAS + '?t=' + Date.now();
+    const rr = await fetch(url, {cache:'no-store'});
+    if (rr.ok) {
+      const remoto = await rr.json();
+      const suyo = remoto.novedadesVistas || '';
+      if (suyo && (!MARCA_VISTO || suyo > MARCA_VISTO)) {
+        MARCA_VISTO = suyo;
+        PRECIOS_VISTOS = remoto.preciosVistos || PRECIOS_VISTOS;
+        PRODUCTOS.forEach(function(p){
+          var a = PRECIOS_VISTOS[p.id];
+          if (a !== undefined && Math.abs(Number(a) - Number(p.p1)) < 1) {
+            p.cambioPrecio = false; p.precioAntes = p.p1;
+          }
+        });
+      }
+    }
+  } catch(e) {}
   await guardarEnRepo(ARCHIVO_FICHAS,
     aB64(JSON.stringify({ fichas: FICHAS_FB, fotos: FOTOS_FB,
                           preciosVistos: PRECIOS_VISTOS,
