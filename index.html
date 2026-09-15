@@ -2531,10 +2531,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 .min-redesign .descb-copy{
   z-index:2;left:18%;right:18%;top:50%;width:auto;gap:12px;align-items:center;transform:translateY(-50%);text-align:center
 }
-.min-redesign .descb-copy strong{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;font-size:clamp(28px,2.65vw,40px);line-height:1.05}
-.min-redesign .descb-copy strong::before{
-  content:"";width:1.5em;height:1.5em;flex:0 0 auto;border-radius:999px;background:rgba(209,231,245,.72) url('may-icon-offers-filled.png') center/62% no-repeat
-}
+.min-redesign .descb-copy strong{position:relative;display:block;width:100%;text-align:center;font-size:clamp(28px,2.65vw,40px);line-height:1.05}
 .min-redesign .descb-copy span{max-width:48ch;font-size:clamp(16px,1.45vw,21px);line-height:1.4}
 
 /* Los cuatro banners ganan altura y una escala tipográfica legible. */
@@ -2557,8 +2554,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
   .min-redesign .descb-art{object-fit:fill}
   .min-redesign .descb-banner::before{left:7%;width:25%}
   .min-redesign .descb-copy{left:10%;right:10%;gap:9px}
-  .min-redesign .descb-copy strong{gap:8px;font-size:22px}
-  .min-redesign .descb-copy strong::before{width:1.34em;height:1.34em}
+  .min-redesign .descb-copy strong{font-size:22px}
   .min-redesign .descb-copy span{font-size:13.5px;line-height:1.42}
   .min-redesign #homeView .min-image-banner{aspect-ratio:1.92/1}
   .min-banner-copy{left:5.5%;width:52%}
@@ -6244,6 +6240,11 @@ function hvRenderCats(force){
   var pagination=document.getElementById('hvCatsPagination');
   if(pagination)pagination.innerHTML=pages.map(function(page,index){return '<button type="button" onclick="hvGoCatPage('+index+')" aria-label="Ver categorías '+(index*pageSize+1)+' a '+(index*pageSize+page.length)+'"'+(index===0?' aria-current="true"':'')+'></button>';}).join('');
   track.onscroll=hvUpdateCatPagination;
+  if(!track._hvSnapBound){
+    track._hvSnapBound=true;
+    track.addEventListener('scroll',hvScheduleCatSnap,{passive:true});
+    if('onscrollend' in window)track.addEventListener('scrollend',hvSnapCatPage,{passive:true});
+  }
   requestAnimationFrame(hvUpdateCatPagination);
   var warm=function(){cats.slice(0,pageSize*2).forEach(function(c){var src='cat-v2-'+c.id+'.webp';if(_hvCatPreloads[src])return;var img=new Image();img.decoding='async';img.src=src;_hvCatPreloads[src]=img;});};
   if('requestIdleCallback' in window)requestIdleCallback(warm,{timeout:700});else setTimeout(warm,180);
@@ -6259,11 +6260,28 @@ function hvGoCatPage(index){
   _hvCatScrollFrame=requestAnimationFrame(step);
 }
 function hvUpdateCatPagination(){
-  if(_hvCatScrollFrame)return;
   var track=document.getElementById('hvCatsScroller');if(!track)return;
   var pages=Array.prototype.slice.call(track.querySelectorAll('.hv-cat-page'));var dots=Array.prototype.slice.call(document.querySelectorAll('#hvCatsPagination button'));if(!pages.length||!dots.length)return;
-  var current=0;pages.forEach(function(page,index){if(Math.abs(page.offsetLeft-track.scrollLeft)<Math.abs(pages[current].offsetLeft-track.scrollLeft))current=index;});
+  var pageW=track.clientWidth||1;
+  var current=Math.max(0,Math.min(pages.length-1,Math.round(track.scrollLeft/pageW)));
   dots.forEach(function(dot,index){if(index===current)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current');});
+}
+var _hvCatSnapTimer=0;
+function hvScheduleCatSnap(){
+  if(_hvCatScrollFrame)return;
+  hvUpdateCatPagination();
+  clearTimeout(_hvCatSnapTimer);
+  _hvCatSnapTimer=setTimeout(hvSnapCatPage,130);
+}
+function hvSnapCatPage(){
+  if(_hvCatScrollFrame)return;
+  var track=document.getElementById('hvCatsScroller');if(!track)return;
+  var pages=Array.prototype.slice.call(track.querySelectorAll('.hv-cat-page'));if(!pages.length)return;
+  var pageW=track.clientWidth||1;
+  var current=Math.max(0,Math.min(pages.length-1,Math.round(track.scrollLeft/pageW)));
+  var target=pages[current].offsetLeft;
+  hvUpdateCatPagination();
+  if(Math.abs(track.scrollLeft-target)>3)track.scrollTo({left:target,behavior:'smooth'});
 }
 window.hvGoCatPage=hvGoCatPage;
 var _hvCatsBreakpoint=window.matchMedia('(max-width:767px)');
