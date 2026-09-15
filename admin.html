@@ -34,10 +34,21 @@
        padding:3px 9px;font-size:12.5px;font-weight:700}
   main{max-width:1680px;margin:0 auto;padding:20px 26px 40px}
 
-  .tarjetas{display:grid;gap:13px;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));margin-bottom:22px}
-  .kpi{background:var(--papel);border:1px solid var(--linea);border-radius:12px;padding:17px 19px}
-  .kpi b{display:block;font-size:31px;line-height:1.1;font-weight:700}
-  .kpi span{font-size:14px;color:var(--suave)}
+  /* ── LOS FILTROS SON LAS ESTADÍSTICAS ──────────────────────────────────────
+     Antes eran tarjetas grandes que ocupaban dos pantallas antes de llegar a
+     los productos. Ahora son chips que se corren de costado. */
+  .tarjetas{display:flex;gap:8px;overflow-x:auto;margin:0 -14px 12px;padding:2px 14px 8px;
+            scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .tarjetas::-webkit-scrollbar{height:5px}
+  .tarjetas::-webkit-scrollbar-thumb{background:rgba(47,109,153,.22);border-radius:99px}
+  .kpi{flex:0 0 auto;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;
+       gap:1px;min-width:84px;min-height:58px;justify-content:center;
+       background:var(--papel);border:1px solid var(--linea);border-radius:13px;padding:9px 14px;
+       cursor:pointer;transition:background .13s,border-color .13s,box-shadow .13s}
+  .kpi span{font-size:12.5px;font-weight:650;color:var(--suave);white-space:nowrap;line-height:1.2}
+  .kpi b{font-size:19px;line-height:1.1;font-weight:800}
+  .kpi:hover{border-color:var(--marca)}
+  .kpi.vacio{opacity:.5}
   .kpi.avisa{background:var(--nuevo-suave);border-color:var(--nuevo-linea)}
   .kpi.k-todos{background:var(--papel-2)}
   .kpi.avisa b{color:var(--nuevo)}
@@ -90,10 +101,12 @@
   .chip.editada{background:#dcfce7;color:var(--ok);border-color:#86efac}
 
   /* aviso de importacion inicial */
-  .importar{background:var(--papel);border:1px solid var(--nuevo-linea);background:var(--nuevo-suave);
-            border-radius:10px;padding:14px 16px;margin-bottom:18px;display:flex;
-            gap:14px;align-items:center;flex-wrap:wrap}
-  .importar p{margin:0;flex:1;min-width:240px;font-size:13.5px;color:#1e3a5f}
+  .importar{background:var(--nuevo-suave);border:1px solid var(--nuevo-linea);
+            border-radius:10px;padding:9px 13px;margin-bottom:11px;display:flex;
+            gap:12px;align-items:center;flex-wrap:wrap}
+  .importar p{margin:0;flex:1;min-width:200px;font-size:12.5px;line-height:1.45;color:#1e3a5f}
+  .nota-fichas{margin:0 0 10px;font-size:12px;color:var(--suave)}
+  .nota-fichas b{color:var(--tinta)}
   .btn{border:0;border-radius:8px;padding:9px 16px;font-size:14px;font-weight:600;
        cursor:pointer;background:var(--marca);color:#fff}
   .btn:hover{background:var(--marca-osc)}
@@ -229,7 +242,7 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
   header h1{font-size:15px}
   .hd .env,.hd .quien{display:none}
   main{padding:16px 14px}
-  .busca-fija{margin:-16px -14px 12px;padding:10px 14px}
+  .busca-fija{margin:0 -14px 12px;padding:8px 14px}
   /* Botones cómodos para el dedo */
   .btn{min-height:44px;padding:11px 15px;font-size:14px}
   .foto-prev{width:88px;height:88px}
@@ -289,7 +302,8 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
   background-repeat:no-repeat;background-position:right 12px center}
 #filtroRubro:focus{outline:none;border-color:#7aa2c4;box-shadow:0 0 0 3px rgba(122,162,196,.22)}
 /* Si hay un rubro elegido, el selector queda marcado */
-body.por-rubro #filtroRubro{border-color:#7aa2c4;background-color:#f2f8fc;font-weight:650}
+body.por-rubro .sel-caja:has(#filtroRubro){border-color:#7aa2c4;background:#f2f8fc}
+.sel-caja #filtroRubro{font-weight:650}
 /* Al buscar se esconden los números, pero el filtro de rubro se queda */
 body.buscando .busca-fija{display:flex}
 
@@ -423,24 +437,33 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
    los filtros (se tocan), en dos columnas y con blanco suficiente para el dedo.
    El color de cada uno es el mismo que después lleva el borde de la tarjeta, así
    se sabe de un vistazo qué es cada cosa. */
-#kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin-bottom:14px}
+#kpis{display:flex;gap:8px;margin-bottom:12px}
 .kpi{display:flex;flex-direction:column;align-items:flex-start;gap:2px;
   min-height:62px;padding:11px 13px;border:1.5px solid var(--linea);border-left-width:5px;
   border-radius:13px;background:var(--papel);text-align:left;cursor:pointer;font:inherit;
   -webkit-tap-highlight-color:transparent;transition:border-color .15s,box-shadow .15s,transform .12s}
-.kpi b{font-size:22px;line-height:1.1;color:var(--texto)}
-.kpi span{font-size:12px;line-height:1.25;color:var(--suave)}
 .kpi:active{transform:scale(.985)}
-.kpi.on{box-shadow:0 0 0 3px rgba(47,109,153,.20);border-color:#2f6d99}
-.kpi.vacio{opacity:.5}
-.kpi.k-todos{border-left-color:#9fb4c4}
-.kpi.k-precio{border-left-color:#e08a1e}
-.kpi.k-nuevo{border-left-color:#2e9e63}
-.kpi.k-foto{border-left-color:#c2582f}
-.kpi.k-fuera{border-left-color:#8a93a0}
-.kpi.k-renom{border-left-color:#7b5bb5}
-.kpi.k-desc{border-left-color:#b9c3cd}
-.kpi.k-mal{border-left-color:#c8402c}
+/* Cada estado con su color, suave: el número y el texto identifican, el color acompaña. */
+.kpi.on{border-color:#2f6d99;background:#2f6d99;box-shadow:0 2px 10px rgba(47,109,153,.28)}
+.kpi.on span,.kpi.on b{color:#fff}
+.kpi.k-precio{background:#fdf4e6;border-color:#eed6ac}
+.kpi.k-precio span,.kpi.k-precio b{color:#8a5310}
+.kpi.k-nuevo{background:#eaf7ef;border-color:#b6ddc5}
+.kpi.k-nuevo span,.kpi.k-nuevo b{color:#1d6b47}
+.kpi.k-foto{background:#fdeeea;border-color:#efc3b6}
+.kpi.k-foto span,.kpi.k-foto b{color:#a2432a}
+.kpi.k-fuera{background:#f1f0f8;border-color:#cfcede}
+.kpi.k-fuera span,.kpi.k-fuera b{color:#544f72}
+.kpi.k-desc{background:#eef3f7;border-color:#ccd9e4}
+.kpi.k-desc span,.kpi.k-desc b{color:#456883}
+.kpi.k-renom{background:#f4eefb;border-color:#d8c6ea}
+.kpi.k-renom span,.kpi.k-renom b{color:#65418f}
+.kpi.k-oferta{background:#fdf1f4;border-color:#eec3ce}
+.kpi.k-oferta span,.kpi.k-oferta b{color:#993552}
+.kpi.k-mal{background:#fdecea;border-color:#efb7ae}
+.kpi.k-mal span,.kpi.k-mal b{color:#9c2d1c}
+/* el activo siempre gana, aunque tenga color propio */
+.kpi.on,.kpi.on span,.kpi.on b{border-color:#2f6d99}
 
 /* el borde de la tarjeta usa el mismo color que su recuadro */
 .es-precio{border-left:5px solid #e08a1e!important}
@@ -457,10 +480,10 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
 .filtro.oculto-btn{display:none}
 
 @media(max-width:700px){
-  #kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  .kpi{min-height:70px;padding:10px 12px}
-  .kpi b{font-size:20px}
-  .kpi span{font-size:11.5px}
+  #kpis{gap:7px}
+  .kpi{min-height:56px;padding:8px 12px;min-width:78px}
+  .kpi b{font-size:18px}
+  .kpi span{font-size:12px}
   /* en el celu los botones ocupan el ancho: se aciertan sin apuntar */
   .barra.acciones{flex-direction:column;align-items:stretch}
   .barra.acciones .btn,.barra.acciones label.btn{width:100%;min-height:48px;
@@ -557,6 +580,167 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
 .aviso-cat.traba{background:var(--papel-2);border:1px solid #dde3e9;color:#5c6b7a}
 .sello-ver{display:inline-block;margin-right:10px;padding:4px 10px;border-radius:999px;
   background:rgba(255,255,255,.13);color:#bcd3e6;font-size:12px;font-weight:700;vertical-align:middle}
+
+/* Un display: en una regla propia le gana al atributo hidden, así que hay que
+   decirlo explícitamente o los bloques ocultos aparecen igual. */
+[hidden]{display:none!important}
+
+/* ═══ PANEL REORGANIZADO ══════════════════════════════════════════════════════
+   La idea: entrar y llegar a los productos sin scrollear dos pantallas. Arriba
+   sólo lo que se usa siempre; el resto vive en Herramientas. */
+
+/* ── Encabezado ── */
+.hd-acc{margin-left:auto;display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.btn-herr{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.12);color:#f3ece0;border-radius:9px;padding:10px 14px;
+  font:700 14px/1 inherit;cursor:pointer;white-space:nowrap;transition:background .13s}
+.btn-herr:hover{background:rgba(255,255,255,.2)}
+.bh-puntos{letter-spacing:.09em;font-size:12px;opacity:.9}
+@media(max-width:700px){
+  .btn-herr{padding:9px 11px;font-size:13px}
+  .hd-acc{gap:6px}
+}
+
+/* ── Selector de tienda: lo primero que se ve ── */
+.tienda-sel{margin-bottom:8px}
+/* El nombre del repo, como texto chico: antes era una tarjeta que no aportaba. */
+.cartel-tienda{margin:0 0 12px;padding:0;background:none!important;border:0!important;
+  font-size:12.5px;gap:7px;color:var(--suave)}
+.cartel-tienda .ct-nombre-wrap{display:none}
+.cartel-tienda .ct-punto{width:8px;height:8px;flex:0 0 8px;box-shadow:none}
+.ct-archivo{margin-left:0;background:none!important;padding:0;font-weight:700;font-size:12.5px}
+.ct-vivo{font-size:10.5px;padding:2px 7px}
+body.es-vivo .cartel-tienda{color:#8d2620}
+@media(max-width:700px){ .ct-archivo{width:auto;text-align:left} }
+
+/* ── Distribuidora: subir la lista de precios ── */
+.bloque-excel{display:flex;align-items:center;gap:13px;flex-wrap:wrap;
+  margin:0 0 12px;padding:13px 15px;border-radius:13px;
+  background:#fdf3e3;border:1px solid #e2c48e;color:#7d5410}
+.be-icono{flex:0 0 40px;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+  background:rgba(125,84,16,.11);color:#7d5410}
+.be-icono svg{width:21px;height:21px}
+.be-texto{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
+.be-texto b{font-size:15px;font-weight:800}
+.be-texto span{font-size:12.5px;opacity:.9;line-height:1.35}
+.be-dato{font-weight:700;opacity:1!important}
+.be-cta{flex:0 0 auto;background:#b4731a;border-color:#b4731a}
+.be-cta:hover{background:#9c6314}
+@media(max-width:700px){ .be-cta{width:100%;text-align:center} }
+
+/* ── Rubro y orden, uno al lado del otro ── */
+.fila-selects{display:flex;gap:9px;margin:0 0 12px}
+.sel-caja{flex:1;min-width:0;display:flex;align-items:center;gap:8px;
+  background:var(--papel);border:1px solid var(--linea);border-radius:11px;padding:0 12px;min-height:46px}
+.sel-caja svg{width:18px;height:18px;flex:0 0 18px;color:var(--marca)}
+.sel-caja{position:relative}
+.sel-caja select{flex:1;min-width:0;border:0!important;background:none!important;font:inherit;
+  font-size:14.5px;color:var(--tinta);padding:0 18px 0 0!important;min-height:44px;cursor:pointer;
+  appearance:none!important;-webkit-appearance:none!important;
+  text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+/* La flecha la dibujamos nosotros: la nativa se encimaba con el texto largo. */
+.sel-caja::after{content:'';position:absolute;right:12px;top:50%;width:8px;height:8px;
+  border-right:2px solid var(--suave);border-bottom:2px solid var(--suave);
+  transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.sel-caja select:focus{outline:none}
+.sel-caja:focus-within{border-color:var(--marca);box-shadow:0 0 0 3px rgba(47,109,153,.14)}
+@media(max-width:359px){ .fila-selects{flex-direction:column} }
+@media(max-width:430px){
+  .sel-caja{padding:0 9px;gap:6px;min-height:44px}
+  .sel-caja select{font-size:13px;min-height:42px}
+  .sel-caja svg{width:16px;height:16px;flex:0 0 16px}
+}
+.orden-fila{display:none}   /* lo reemplaza .fila-selects */
+
+/* ── Aviso de pendientes ── */
+.aviso-pend{display:flex;align-items:flex-start;gap:13px;flex-wrap:wrap;
+  margin:0 0 14px;padding:15px 17px;border-radius:14px;
+  background:#e9f2f8;border:1px solid #b6d2e6;color:#1d5480}
+.ap-icono{flex:0 0 42px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(29,84,128,.12)}
+.ap-icono svg{width:22px;height:22px}
+.ap-texto{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.ap-texto b{font-size:16px;font-weight:800;line-height:1.25}
+.ap-texto span{font-size:13.5px;opacity:.9;line-height:1.45}
+.ap-cta{flex:0 0 auto;width:100%;margin-top:4px;text-align:center}
+.ap-pie{width:100%;text-align:center;font-size:12.5px;opacity:.8}
+.ap-pie:empty{display:none}
+@media(min-width:700px){
+  .ap-cta{width:auto;margin-top:0;align-self:center}
+  .ap-pie{width:100%;text-align:left;padding-left:55px}
+}
+
+/* ── Título del listado ── */
+.lista-cab{display:flex;align-items:baseline;gap:12px;margin:18px 0 11px}
+.lista-cab h2{margin:0;font-size:20px;font-weight:800;letter-spacing:-.01em}
+.lista-todos{margin-left:auto;border:0;background:none;color:var(--marca);
+  font:700 14px/1 inherit;cursor:pointer;padding:6px 2px}
+.lista-todos:hover{text-decoration:underline}
+
+/* ── Hoja de Herramientas: sube desde abajo en el teléfono ── */
+.hoja-fondo{position:fixed;inset:0;z-index:9300;background:rgba(18,63,103,.42)}
+.hoja{position:fixed;inset:0;z-index:9310;display:flex;align-items:flex-end;justify-content:center}
+.hoja-caja{width:100%;max-width:520px;max-height:86vh;display:flex;flex-direction:column;
+  background:var(--papel);border-radius:18px 18px 0 0;box-shadow:0 -10px 40px rgba(18,63,103,.28);
+  animation:hojaSube .2s ease-out}
+@keyframes hojaSube{from{transform:translateY(14px);opacity:.6}to{transform:none;opacity:1}}
+.hoja-top{display:flex;align-items:center;gap:10px;padding:15px 18px 11px;border-bottom:1px solid var(--linea)}
+.hoja-top h3{margin:0;font-size:17px;font-weight:800}
+.hoja-top .ed-cerrar{margin-left:auto}
+.hoja-cuerpo{overflow-y:auto;padding:14px 18px 22px;display:flex;flex-direction:column;gap:18px}
+.hoja-grupo{display:flex;flex-direction:column;gap:8px}
+.hoja-grupo[hidden]{display:none}
+.hoja-rotulo{font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--suave)}
+.hoja-grupo .btn{width:100%;text-align:center;min-height:46px;display:inline-flex;
+  align-items:center;justify-content:center;text-decoration:none}
+.hoja-info{font-size:12.5px;color:var(--suave)}
+body.con-hoja{overflow:hidden}
+@media(min-width:700px){
+  .hoja{align-items:flex-start;justify-content:flex-end;padding:76px 26px 0}
+  .hoja-caja{max-width:330px;border-radius:15px;animation:none}
+}
+
+/* los filtros viejos siguen en el DOM porque el JS los usa */
+.filtros-ocultos{display:none!important}
+
+/* ── Tarjeta de producto compacta ──────────────────────────────────────────── */
+.prod{padding:11px 12px;gap:11px;align-items:flex-start}
+.prod .foto{width:62px;height:62px;flex:0 0 62px;border-radius:10px}
+.prod-flanco{flex:0 0 62px;gap:5px}
+.prod .nom{font-size:14.5px;line-height:1.3;margin-bottom:2px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prod .meta{font-size:12px;margin-bottom:5px}
+.prod .precio{font-size:14px;gap:8px}
+.prod .precio .p-dos i{font-size:9px}
+.prod .chips{gap:5px;margin-top:5px}
+.prod .chip{font-size:11px;padding:2px 8px}
+.bander-cat{width:62px;height:34px!important;min-height:34px!important;font-size:8.5px;border-radius:8px}
+.bander-cat i{width:11px;height:11px;flex:0 0 11px}
+.bander-precio{min-height:36px!important;margin-top:6px;font-size:12px;padding:0 12px}
+/* "Precio al día" no aporta: se nota por la ausencia de aviso y ocupaba una línea. */
+.bander-precio.lista{display:none}
+/* el lápiz de editar, como en la maqueta */
+.prod-editar{margin-left:auto;flex:0 0 auto;align-self:flex-start;display:inline-flex;
+  align-items:center;gap:6px;background:var(--papel-2);border:1px solid var(--linea);
+  border-radius:9px;padding:7px 11px;font:700 12.5px/1 inherit;color:var(--marca);cursor:pointer}
+.prod-editar:hover{background:#eaf1f7;border-color:var(--marca)}
+.prod-editar svg{width:14px;height:14px}
+@media(max-width:430px){
+  .prod{padding:10px 11px;gap:10px}
+  .prod .nom{font-size:14px}
+  .prod-editar{padding:7px 9px;font-size:12px}
+}
+
+/* ── Barra de publicar: pegada abajo y sólo cuando hace falta ── */
+.barra-fija{position:fixed!important;top:auto!important;left:0!important;right:0!important;
+  bottom:0!important;height:auto!important;max-height:none;z-index:60;margin:0!important;
+  border-radius:0;border-left:0;border-right:0;border-bottom:0;
+  box-shadow:0 -6px 20px rgba(18,63,103,.13)}
+.barra-fija .btn{min-height:48px}
+/* para que el último producto no quede tapado */
+body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
+@supports not selector(:has(*)){ main{padding-bottom:104px} }
+
 /* La pantalla de compartir usa el mismo esquema que el editor: si no, queda
    dibujada al final de la página y parece que no pasó nada. */
 #capaCompartir{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
@@ -621,7 +805,7 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
     <h1>Panel de catálogo</h1>
     <span class="env">TESTER</span>
     <span class="quien" id="quien"></span>
-    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 13/09 12:24</span><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver la tienda</a>
+    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 13/09 12:24</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
   </div>
 </header>
 
@@ -733,65 +917,96 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
 </div>
 
 <main>
-<div class="busca-fija">
-  <div class="busca-linea">
-    <input id="buscarFijo" placeholder="Buscar producto o número de artículo" autocomplete="off" enterkeyhint="search">
-    <button type="button" class="busca-x" id="buscarX" aria-label="Borrar">&times;</button>
-  </div>
-  <select id="filtroRubro" aria-label="Filtrar por rubro">
-    <option value="">Todos los rubros</option>
-  </select>
-</div>
-  <div id="avisoImportar"></div>
-  <div class="barra-fija" id="barraFija">
-    <button class="btn primario" id="btnPublicarFijo" onclick="publicarPrecios()" title="Le pide a la PC del negocio que mande los precios de E-Pyme a la tienda">Publicar precios en la tienda</button>
-    <span class="barra-fija-nota" id="notaPublicar"></span>
-  </div>
-  <div class="orden-fila">
-    <label for="selOrden">Ordenar por</label>
-    <select id="selOrden">
-      <option value="cambios">Lo que cambió, primero</option>
-      <option value="alfa">Alfabético</option>
-      <option value="caro">Más caro primero</option>
-      <option value="barato">Más barato primero</option>
-      <option value="rubro">Por rubro</option>
-    </select>
-  </div>
+  <!-- ── EN QUÉ TIENDA ESTOY ── -->
   <div class="tienda-sel" role="group" aria-label="Elegí la tienda">
     <button type="button" data-t="min" class="on">Tienda minorista</button>
     <button type="button" data-t="may">Distribuidora</button>
   </div>
   <div class="cartel-tienda" id="cartelTienda" role="status">
     <span class="ct-punto"></span>
-    <span>Estás trabajando en <b id="ctNombre">la Tienda minorista</b></span>
+    <span class="ct-nombre-wrap">Estás trabajando en <b id="ctNombre">la Tienda minorista</b></span>
     <span class="ct-vivo" id="ctVivo"></span>
     <span class="ct-archivo" id="ctArchivo"></span>
   </div>
-  <div class="tarjetas" id="kpis"></div>
-  <div class="barra acciones">
-    <button class="btn primario" id="btnVistos" onclick="marcarPreciosRevisados()" title="Aprueba de una vez todos los precios que esperan tu OK" hidden>Dar el OK a todos los precios</button>
-    <button class="btn primario" id="btnPublicar" title="Publica en la tienda los precios que tiene E-Pyme ahora">Publicar precios en la tienda</button>
-    <label class="btn primario" for="fileExcel" title="Por si falla el pase automático: subí la lista de precios">Subir lista de precios</label>
-    <input type="file" id="fileExcel" class="foto-input">
-    <button class="btn gris" id="btnPegar" title="Si copiaste el archivo o el texto de la lista, pegalo acá">Pegar lista</button>
-    <button class="btn gris" id="btnSync">Traer del Sheet</button>
-    <button class="btn gris" id="btnDesc">Descuento por rubro</button>
-    <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
-    <button class="btn gris" id="btnAltas" onclick="abrirAltas()">Agregar productos al catálogo</button>
-    <button class="filtro oculto-btn" data-f="todos">Todos</button>
-    <button class="filtro oculto-btn" data-f="pendientes">Pendientes</button>
-    <button class="filtro oculto-btn" data-f="fuera">Fuera del catálogo</button>
-    <button class="filtro oculto-btn" data-f="oferta">Con oferta</button>
+
+  <!-- ── SOLO DISTRIBUIDORA: subir la lista de precios ──
+       Acá los precios no llegan solos, así que esta acción es la principal. -->
+  <section class="bloque-excel" id="bloqueExcel" hidden>
+    <div class="be-icono" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <path d="M14 2v6h6"></path><path d="M9 14h6M9 18h4"></path>
+      </svg>
+    </div>
+    <div class="be-texto">
+      <b>Actualizar precios</b>
+      <span>Subí la nueva lista de precios de la distribuidora.</span>
+      <span class="be-dato" id="beDato" hidden></span>
+    </div>
+    <label class="btn primario be-cta" for="fileExcel">Subir Excel de precios</label>
+  </section>
+
+  <!-- ── BUSCADOR + RUBRO ── -->
+  <div class="busca-fija">
+    <div class="busca-linea">
+      <input id="buscarFijo" placeholder="Buscar producto o número de artículo" autocomplete="off" enterkeyhint="search">
+      <button type="button" class="busca-x" id="buscarX" aria-label="Borrar">&times;</button>
+    </div>
   </div>
+
+  <div id="avisoImportar"></div>
+
+  <!-- ── FILTROS: las estadísticas SON los filtros ── -->
+  <div class="tarjetas" id="kpis"></div>
+
+  <!-- ── RUBRO Y ORDEN, uno al lado del otro ── -->
+  <div class="fila-selects">
+    <label class="sel-caja" for="filtroRubro">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20.6 13.4 12 22l-9-9 9-9 4.6 4.6"></path><circle cx="16.5" cy="7.5" r="1.2" fill="currentColor"></circle>
+      </svg>
+      <select id="filtroRubro" aria-label="Filtrar por rubro">
+        <option value="">Todos los rubros</option>
+      </select>
+    </label>
+    <label class="sel-caja" for="selOrden">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 7h16M6 12h12M9 17h6"></path>
+      </svg>
+      <select id="selOrden" aria-label="Ordenar la lista">
+        <option value="cambios">Cambios recientes</option>
+        <option value="alfa">Alfabético</option>
+        <option value="caro">Más caro primero</option>
+        <option value="barato">Más barato primero</option>
+        <option value="rubro">Por rubro</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- ── AVISO DE PENDIENTES: sale solo cuando hay algo que revisar ── -->
+  <section class="aviso-pend" id="avisoPend" hidden>
+    <div class="ap-icono" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+      </svg>
+    </div>
+    <div class="ap-texto">
+      <b id="apTitulo"></b>
+      <span id="apSub"></span>
+    </div>
+    <button type="button" class="btn primario ap-cta" id="apRevisar">Revisar cambios</button>
+    <span class="ap-pie" id="apPie"></span>
+  </section>
+
   <div id="estadoPublicar"></div>
   <div id="excelCaja"></div>
-  <details class="ayuda-iphone" id="ayudaSubir">
+  <details class="ayuda-iphone" id="ayudaSubir" hidden>
     <summary><b>¿No aparece el archivo en el iPhone?</b></summary>
     <ol>
       <li>En WhatsApp, abrí el archivo y tocá <em>Compartir</em> &rarr; <em>Guardar en Archivos</em>.
         Elegí siempre la <b>misma carpeta</b> (por ejemplo <em>iCloud Drive &rsaquo; Descargas</em>):
         el iPhone abre después en la última que usaste.</li>
-      <li>Acá tocá <em>Subir lista de precios</em> &rarr; <em>Explorar</em> (abajo a la derecha) y entrá
+      <li>Acá tocá <em>Subir Excel de precios</em> &rarr; <em>Explorar</em> (abajo a la derecha) y entrá
         a esa carpeta. En <em>Recientes</em> muchas veces no figura.</li>
       <li>Atajo: en Archivos mantené apretado el archivo &rarr; <em>Copiar</em>, volvé acá y tocá
         <em>Pegar lista</em>.</li>
@@ -801,7 +1016,65 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
     <b>Soltá acá la lista de precios</b><span>.xlsx, .xls o .csv</span>
   </div>
   <div id="ayudaFiltro"></div>
-  <div id="salida" class="cargando">Cargando catálogo...</div>
+
+  <!-- ── TÍTULO DEL LISTADO ── -->
+  <div class="lista-cab">
+    <h2 id="listaTitulo">Productos</h2>
+    <button type="button" class="lista-todos" id="listaTodos" hidden>Ver todos &rsaquo;</button>
+  </div>
+
+  <!-- ── HERRAMIENTAS: lo que se usa poco, fuera del camino ──
+       Los botones son los MISMOS de antes, sólo cambiaron de lugar. -->
+  <div class="hoja-fondo" id="hojaFondo" hidden></div>
+  <div class="hoja" id="hojaHerr" role="dialog" aria-modal="true" aria-labelledby="hojaTit" hidden>
+    <div class="hoja-caja">
+      <div class="hoja-top">
+        <h3 id="hojaTit">Herramientas</h3>
+        <button class="ed-cerrar" id="hojaCerrar" title="Cerrar">&times;</button>
+      </div>
+      <div class="hoja-cuerpo">
+        <div class="hoja-grupo" id="grupoPrecios">
+          <span class="hoja-rotulo">Precios</span>
+          <button class="btn primario" id="btnVistos" onclick="marcarPreciosRevisados()" title="Aprueba de una vez todos los precios que esperan tu OK" hidden>Dar el OK a todos los precios</button>
+          <label class="btn gris" for="fileExcel" id="lblExcelHerr" title="Por si falla el pase automático: subí la lista de precios">Subir Excel de precios</label>
+          <input type="file" id="fileExcel" class="foto-input">
+          <button class="btn gris" id="btnPegar" title="Si copiaste el archivo o el texto de la lista, pegalo acá">Pegar lista</button>
+          <button class="btn gris" id="btnSync">Traer del Sheet</button>
+          <button class="btn gris" id="btnDesc">Descuento por rubro</button>
+        </div>
+        <div class="hoja-grupo">
+          <span class="hoja-rotulo">Catálogo</span>
+          <button class="btn gris" id="btnAltas" onclick="abrirAltas()">Agregar productos al catálogo</button>
+          <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
+        </div>
+        <div class="hoja-grupo" id="grupoPublicar">
+          <span class="hoja-rotulo">Publicación</span>
+          <button class="btn gris" id="btnPublicar" title="Publica en la tienda los precios que tiene E-Pyme ahora">Publicar precios en la tienda</button>
+        </div>
+        <div class="hoja-grupo">
+          <span class="hoja-rotulo">Este panel</span>
+          <a class="btn gris" id="verTiendaHerr" href="./" target="_blank" rel="noopener">Ver la tienda</a>
+          <span class="hoja-info" id="hojaInfo"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- filtros viejos: los usa el JS, quedan ocultos -->
+  <div class="barra acciones filtros-ocultos">
+    <button class="filtro oculto-btn" data-f="todos">Todos</button>
+    <button class="filtro oculto-btn" data-f="pendientes">Pendientes</button>
+    <button class="filtro oculto-btn" data-f="fuera">Fuera del catálogo</button>
+    <button class="filtro oculto-btn" data-f="oferta">Con oferta</button>
+  </div>
+
+  <!-- ── BARRA DE PUBLICAR, abajo y sólo si hace falta ── -->
+  <div class="barra-fija" id="barraFija">
+    <button class="btn primario" id="btnPublicarFijo" onclick="publicarPrecios()" title="Le pide a la PC del negocio que mande los precios de E-Pyme a la tienda">Publicar en la tienda</button>
+    <span class="barra-fija-nota" id="notaPublicar"></span>
+  </div>
+
+<div id="salida" class="cargando">Cargando catálogo...</div>
   <div class="nota">
     Los <b>precios</b> vienen de E-Pyme y se actualizan solos cada 15 minutos: no se editan acá.
     Este panel es de <b>solo lectura</b> por ahora — la edición y la carga de fotos vienen después.
@@ -1320,8 +1593,7 @@ function avisoImportacion(){
   const faltan = PRODUCTOS.filter(p => p.ficha && !FICHAS_FB[p.id]).length;
   if (!faltan) {
     cont.innerHTML = enFb
-      ? '<div class="importar"><p><b>' + enFb + ' fichas</b> guardadas en el repo. ' +
-        'Los cambios que hagas acá se guardan ahí, no en el Google Sheet.</p></div>'
+      ? '<p class="nota-fichas"><b>' + enFb + ' fichas</b> guardadas en el repo</p>'
       : '';
     return;
   }
@@ -1935,25 +2207,30 @@ function pintarKpis(){
   const sinDesc = PRODUCTOS.filter(p => !p.desc).length;
   const malos   = PRODUCTOS.filter(p => p.malRubro).length;
 
+  const ofertas = PRODUCTOS.filter(p => p.oferta > 0).length;
   const kpis = [
-    ['precio',  cambios, cambios === 1 ? 'espera tu OK' : 'esperan tu OK', 'k-precio'],
-    ['nuevos',  nuevos,  nuevos === 1 ? 'nuevo' : 'nuevos', 'k-nuevo'],
-    ['sinfoto', sinFoto, 'sin foto', 'k-foto'],
-    ['fuera',   fuera,   'fuera del catálogo', 'k-fuera'],
-    ['renom',   renoms,  renoms === 1 ? 'nombre cambiado' : 'nombres cambiados', 'k-renom'],
-    ['sindesc', sinDesc, 'sin descripción', 'k-desc']
+    ['precio',  cambios, 'Pendientes', 'k-precio'],
+    ['nuevos',  nuevos,  'Nuevos', 'k-nuevo'],
+    ['sinfoto', sinFoto, 'Sin foto', 'k-foto'],
+    ['fuera',   fuera,   'Fuera', 'k-fuera'],
+    ['sindesc', sinDesc, 'Sin descripción', 'k-desc'],
+    ['renom',   renoms,  renoms === 1 ? 'Nombre cambiado' : 'Nombres cambiados', 'k-renom'],
+    ['oferta',  ofertas, 'Con oferta', 'k-oferta']
   ];
-  if (malos) kpis.push(['malrubro', malos, 'con rubro inválido', 'k-mal']);
+  if (malos) kpis.push(['malrubro', malos, 'Rubro inválido', 'k-mal']);
 
   try { avisarPublicar(); } catch(e) {}
   const bv = document.getElementById('btnVistos');
   if (bv) { bv.hidden = !cambios; bv.textContent = 'Dar el OK a los ' + cambios + ' precios'; }
+  // Etiqueta arriba y número abajo, en chips que se corren de costado.
   document.getElementById('kpis').innerHTML =
     '<button type="button" class="kpi k-todos' + (FILTRO === 'todos' ? ' on' : '') + '" data-f="todos">' +
-      '<b>' + t + '</b><span>en total</span></button>' +
+      '<span>Todos</span><b>' + t + '</b></button>' +
     kpis.map(k =>
       '<button type="button" class="kpi ' + k[3] + (FILTRO === k[0] ? ' on' : '') + (k[1] ? '' : ' vacio') + '" data-f="' + k[0] + '">' +
-      '<b>' + k[1] + '</b><span>' + k[2] + '</span></button>').join('');
+      '<span>' + k[2] + '</span><b>' + k[1] + '</b></button>').join('');
+  try { pintarAvisoPend(); } catch(e) {}
+  try { ajustarPorTienda(); } catch(e) {}
 }
 
 // tocar un recuadro = filtrar por eso
@@ -2083,6 +2360,7 @@ function pintar(){
     cajaAyuda.innerHTML = ayudas[FILTRO] ? '<div class="ayuda-filtro">' + ayudas[FILTRO] + '</div>' : '';
   }
   const cont = document.getElementById('salida');
+  try { pintarTituloLista(lista.length, PRODUCTOS.length); } catch(e) {}
   if (!lista.length) {
     cont.className = 'vacio';
     cont.textContent = 'No hay productos que coincidan.';
@@ -2162,6 +2440,9 @@ function pintar(){
     var aviso = '';
     if (traba) aviso = '<div class="aviso-cat traba"><b>No se puede publicar</b><span>' + esc(traba) + '</span></div>';
 
+    var editar = '<button type="button" class="prod-editar" data-editar="' + esc(p.id) + '" aria-label="Editar ' + esc(p.nombre) + '">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>Editar</button>';
     return '<div class="prod ' + clase + '" data-id="' + esc(p.id) + '" title="Clic para editar la ficha">' +
       '<div class="prod-flanco">' + foto + bandCat + '</div>' +
       '<div class="datos">' + aviso +
@@ -2172,7 +2453,7 @@ function pintar(){
         bandPrecio +
         (chips.length ? '<div class="chips">' + chips.join('') + '</div>' : '') +
         ren +
-      '</div></div>';
+      '</div>' + editar + '</div>';
   };
 
   var html = '';
@@ -2792,6 +3073,89 @@ function restaurarTienda(g){
 }
 
 /* El cartel de arriba dice siempre en cuál de las dos tiendas estás parado. */
+/* ── HERRAMIENTAS ─────────────────────────────────────────────────────────────
+   Las acciones que se usan poco viven en una hoja que sube desde abajo en el
+   teléfono. Los botones son los mismos de antes: sólo cambiaron de lugar. */
+function abrirHerr(si){
+  var h=document.getElementById('hojaHerr'), f=document.getElementById('hojaFondo'),
+      b=document.getElementById('btnHerr');
+  if(!h||!f)return;
+  h.hidden=!si; f.hidden=!si;
+  document.body.classList.toggle('con-hoja', !!si);
+  if(b)b.setAttribute('aria-expanded', si?'true':'false');
+  if(si){
+    var i=document.getElementById('hojaInfo');
+    if(i)i.textContent=(document.getElementById('selloVer')||{}).textContent||'';
+  }
+}
+(function(){
+  var b=document.getElementById('btnHerr');
+  if(b)b.addEventListener('click',function(){ abrirHerr(document.getElementById('hojaHerr').hidden); });
+  var c=document.getElementById('hojaCerrar');
+  if(c)c.addEventListener('click',function(){ abrirHerr(false); });
+  var f=document.getElementById('hojaFondo');
+  if(f)f.addEventListener('click',function(){ abrirHerr(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape')abrirHerr(false); });
+  // Tocar algo de la hoja la cierra: el resultado se ve en la pantalla de atrás.
+  var h=document.getElementById('hojaHerr');
+  if(h)h.addEventListener('click',function(e){
+    var t=e.target.closest&&e.target.closest('button,label,a');
+    if(t && t.id!=='hojaCerrar') setTimeout(function(){ abrirHerr(false); },80);
+  });
+})();
+
+/* Lo que sólo tiene sentido en una de las dos tiendas. */
+function ajustarPorTienda(){
+  var esMay = TIENDA === 'may';
+  var be=document.getElementById('bloqueExcel');
+  if(be)be.hidden=!esMay;                       // subir el Excel: la acción diaria de la distribuidora
+  var lbl=document.getElementById('lblExcelHerr');
+  if(lbl)lbl.hidden=esMay;                      // en la distribuidora ya está arriba, no se repite
+  var ay=document.getElementById('ayudaSubir');
+  if(ay)ay.hidden=!esMay;                       // la ayuda del iPhone, sólo donde se sube el Excel
+  var gp=document.getElementById('grupoPublicar');
+  if(gp)gp.hidden=esMay;                        // publicar precios es sólo de la minorista
+  var sy=document.getElementById('btnSync');
+  if(sy)sy.hidden=esMay;
+  var vt=document.getElementById('verTiendaHerr');
+  if(vt){ vt.href = esMay ? SITIO_MAY : './'; vt.textContent = esMay ? 'Ver la distribuidora' : 'Ver la tienda'; }
+}
+
+/* El aviso de pendientes: sale sólo cuando hay algo que revisar de verdad. */
+function pintarAvisoPend(){
+  var caja=document.getElementById('avisoPend');
+  if(!caja)return;
+  var n=PRODUCTOS.filter(function(p){ return p.cambioPrecio; }).length;
+  caja.hidden = !n;
+  if(!n)return;
+  var t=document.getElementById('apTitulo'), sb=document.getElementById('apSub'),
+      pie=document.getElementById('apPie');
+  if(t)t.textContent = n + (n===1 ? ' cambio de precio pendiente' : ' cambios de precio pendientes');
+  if(sb)sb.textContent = 'La tienda sigue mostrando el precio anterior hasta que los revises.';
+  if(pie)pie.textContent = (TIENDA === 'may') ? '' : 'Luego podés publicarlos en la tienda';
+}
+(function(){
+  var b=document.getElementById('apRevisar');
+  if(b)b.addEventListener('click',function(){
+    // Lleva al filtro que ya existe y baja hasta el primero.
+    elegirFiltro('kpi','precio');
+    var c=document.getElementById('salida');
+    if(c)c.scrollIntoView({block:'start',behavior:'smooth'});
+  });
+})();
+
+/* El título del listado, con la cuenta de lo que se está viendo. */
+function pintarTituloLista(n, total){
+  var t=document.getElementById('listaTitulo');
+  if(t)t.textContent = 'Productos (' + n + ')';
+  var v=document.getElementById('listaTodos');
+  if(v)v.hidden = (FILTRO==='todos' && !RUBRO && !BUSCA);
+}
+(function(){
+  var v=document.getElementById('listaTodos');
+  if(v)v.addEventListener('click',function(){ elegirFiltro('kpi','todos'); });
+})();
+
 function pintarCartelTienda(){
   var n = document.getElementById('ctNombre'), a = document.getElementById('ctArchivo'),
       v = document.getElementById('ctVivo');
@@ -2808,6 +3172,7 @@ function pintarCartelTienda(){
     bt.title = 'Abre ' + (TIENDA === 'may' ? SITIO_MAY : (ES_TESTER ? 'la tienda de pruebas' : 'la tienda oficial'));
   }
   document.body.classList.toggle('es-vivo', !ES_TESTER);
+  try { ajustarPorTienda(); } catch(e) {}
   var env = document.querySelector('.env');
   if (env) env.textContent = ES_TESTER ? 'TESTER' : 'OFICIAL';
 }
@@ -2939,14 +3304,18 @@ function avisarPublicar(){
   var barra = document.getElementById('barraFija');
   if (!nota || !barra) return;
   var n = PRODUCTOS.filter(function(p){ return p.cambioPrecio; }).length;
+  var altas = PRODUCTOS.filter(function(p){ return esperandoAlta(p); }).length;
   if (TIENDA === 'may') {
     barra.hidden = true;   // en la distribuidora los precios no se automatizan
     return;
   }
-  barra.hidden = false;
+  // La barra de abajo aparece sólo cuando hay algo para publicar de verdad.
+  // El botón sigue estando siempre en Herramientas → Publicación.
+  barra.hidden = !(n || altas);
   nota.textContent = n
     ? 'Tenés ' + n + ' precio' + (n === 1 ? '' : 's') + ' esperando tu OK: hasta entonces la tienda muestra el anterior'
-    : 'Todos los precios al día';
+    : (altas ? altas + ' producto' + (altas === 1 ? '' : 's') + ' nuevo' + (altas === 1 ? '' : 's') + ' listo' + (altas === 1 ? '' : 's') + ' para publicar'
+             : '');
 }
 window.avisarPublicar = avisarPublicar;
 
