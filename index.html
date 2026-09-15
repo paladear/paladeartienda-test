@@ -678,6 +678,18 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .pcard-img img{width:100%;height:100%;object-fit:contain;padding:10px}
 .pcard-body{padding:14px;flex:1;display:flex;flex-direction:column}
 .pcard-name{font-weight:700;font-size:15px;line-height:1.35;margin-bottom:4px}
+/* ── Nombre, contenido y marca ──
+   El nombre en negra, el contenido del envase en gris al lado y la marca en
+   mayúsculas finitas. Los productos a granel sólo muestran el nombre. */
+.nom-p{font-weight:800}
+.nom-c{font-weight:500;color:var(--muted-fg);margin-left:5px}
+.nom-m{display:block;margin-top:2px;font-style:normal;font-weight:700;font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--min-blue-mid)}
+.product-detail-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 10px}
+.product-detail-meta .nom-c{margin-left:0;font-size:15px}
+.product-detail-meta .nom-m{display:inline;margin-top:0;font-size:11.5px}
+.search-suggestion-item .nom-m{display:inline;margin:0 0 0 7px;font-size:10px}
+.min-feature-card-copy .nom-m{font-size:9.5px;letter-spacing:.07em}
 .pcard-head{display:flex;align-items:flex-start;gap:8px;margin-bottom:2px}
 .pcard-head .pcard-name{flex:1;margin-bottom:0}
 .info-btn{background:var(--azul-light);border:none;width:28px;height:28px;border-radius:50%;font-size:14px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;padding:0}
@@ -1490,7 +1502,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 /* Rediseño minorista — aislado para conservar la lógica existente del catálogo. */
 .min-redesign{--min-blue:#285b83;--min-blue-deep:#123f67;--min-blue-mid:#547f9f;--min-sky:#dceef8;--min-cream:#f7f3eb;--min-white:#fff;background:var(--min-cream);color:var(--min-blue-deep)}
 .min-redesign .header{height:86px;min-height:86px;background:#4c7592;box-shadow:none;animation:none;border-bottom:1px solid rgba(255,255,255,.2)}
-.min-redesign .header-inner{width:min(100%,1280px);max-width:1280px;min-height:86px;padding:10px 24px 10px 118px;gap:12px}
+.min-redesign .header-inner{width:min(100%,1500px);max-width:1500px;min-height:86px;padding:10px 24px 10px 118px;gap:12px}
 .min-redesign .header .logo-wrap{left:20px;top:12px;transform:none;z-index:4}
 .min-redesign .header .logo{content:url('android-chrome-512x512.png');width:88px;height:88px;padding:3px;border:2px solid #fff;box-shadow:0 7px 18px rgba(19,55,82,.28)}
 .min-header-search{position:relative;flex:1;min-width:220px;max-width:680px;margin-right:auto}
@@ -1587,7 +1599,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 .min-redesign .cats-dd-btn{background:#fff!important;color:#244f71!important;border:1px solid #e0e9ef}
 .min-redesign .cats-dd-thumb{background:#eee8de;border-radius:12px;overflow:hidden}
 .min-redesign .cats-dd-thumb img{content:var(--cat-img);width:100%;height:100%;object-fit:cover}
-.min-redesign #mainContainer{max-width:1280px!important}
+.min-redesign #mainContainer{max-width:1500px!important}
 .min-redesign .main-layout{grid-template-columns:220px minmax(0,1fr);gap:22px}
 .min-redesign .pcard,.min-redesign .ofview-card{border:1px solid #e0e9ef;box-shadow:0 6px 18px rgba(31,66,92,.08)}
 .product-image-placeholder{display:block;width:100%;height:100%;background:linear-gradient(145deg,#f8fafb,#edf3f6)}
@@ -3109,6 +3121,24 @@ function _norm(s){return(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').
 function _precio(s){const clean=(s||'').replace(/[^0-9,.]/g,'').replace(/\./g,'').replace(',','.');const n=parseFloat(clean);return isNaN(n)?0:Math.round(n)}
 function _bultoLabel(n,unidad){const s=String(n).replace('.',',');if(unidad==='kg')return s+' Kg';return n===1?'1 Unidad':s+' Unidades';}
 function _tc(s){return(s||'').toLowerCase().replace(/[^\s\-\/(]+/g,function(w){return w.charAt(0).toUpperCase()+w.slice(1);});}
+
+/* ── NOMBRE, CANTIDAD Y MARCA ─────────────────────────────────────────────────
+   Un envasado se nombra "Aceite de coco neutro 200 ml · ENTRENUTS": el nombre en
+   negra, el contenido en gris y la marca en mayúsculas finitas. Los productos a
+   granel no llevan nada de esto: el peso ya lo elige el cliente con los botones,
+   así que se muestra sólo el nombre, igual que siempre. */
+function _envaseDe(p){ return (p[12]&&p[12].envase)||''; }
+function _marcaDe(p){ return (p[12]&&p[12].marca)||''; }
+
+function _nomHTML(p,nombreYaPintado){
+  const base=nombreYaPintado||_tc(p[2]);
+  if(p[3]==='Granel')return `<b class="nom-p">${base}</b>`;
+  const env=_envaseDe(p),mar=_marcaDe(p);
+  if(!env&&!mar)return `<b class="nom-p">${base}</b>`;
+  return `<b class="nom-p">${base}</b>`
+    +(env?`<span class="nom-c">${env}</span>`:'')
+    +(mar?`<em class="nom-m">${mar}</em>`:'');
+}
 const _STOPWORDS=new Set(['DE','DEL','LA','EL','LOS','LAS','UN','UNA','Y','O','CON','EN','X','POR']);
 function _fuzzyMatch(q,t){const qn=_norm(q).split(' ').filter(w=>w.length>1&&!_STOPWORDS.has(w));const tn=_norm(t);if(!qn.length)return false;return qn.some(w=>tn.includes(w))}
 function _levenshtein(a,b){
@@ -3182,7 +3212,7 @@ function openProductDetail(pid){
     <button class="product-detail-close" type="button" onclick="closeProductDetail()" aria-label="Cerrar">×</button>
   </div><div class="product-detail-shell"><div class="product-detail-main">
     <div class="product-detail-image" style="background:${fondo}">${src?`<img src="${src}" alt="${p[2]}" decoding="async">`:'<span class="product-image-placeholder" aria-hidden="true"></span>'}</div>
-    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2><div class="product-detail-info">${info}</div>
+    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${(_envaseDe(p)||_marcaDe(p))&&p[3]!=='Granel'?`<div class="product-detail-meta">${_envaseDe(p)?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<em class="nom-m">${_marcaDe(p)}</em>`:''}</div>`:''}<div class="product-detail-info">${info}</div>
       <div class="product-detail-buy" id="productDetailCard" data-pid="${p[0]}" data-opt="${opt}">
         <h3>Elegí la presentación</h3><div class="product-detail-options opt-btns${opts.length>=4?' opt-btns-4':''}">${opciones}</div>${saboresHTML}
         <div class="prices"><div><span class="price-label">Precio${oferta>0?' (Oferta)':''}</span><div class="price-min">${_priceMinContent(p[7][opt][0],oferta)}</div></div><div><span class="price-label">+$80.000</span><div class="price-may">$${fmt(p[7][opt][1])}</div></div></div>
@@ -3456,7 +3486,7 @@ function renderCard(p,prefix,prioritizeImage){
   const imgLoading=prioritizeImage?'loading="eager" fetchpriority="high"':'loading="lazy"';
   h+=`<div class="pcard-img"${_fondo}>${hasSrc?`<img src="${p[6]}" alt="${p[2]}" onerror="this.style.display='none'" ${imgLoading} decoding="async">`:`<span class="product-image-placeholder" aria-hidden="true"></span>`}</div>`;
   h+=`<div class="pcard-body">`;
-  h+=`<div class="pcard-head"><div class="pcard-name">${_tc(p[2])}</div>`;
+  h+=`<div class="pcard-head"><div class="pcard-name">${_nomHTML(p)}</div>`;
   if(infoText)h+=`<button class="info-btn" onclick="openProductDetail(${p[0]})" title="Ver detalle" aria-label="Ver detalle"><span aria-hidden="true">i</span></button>`;
   h+=`</div>`;
   if(p[3]&&p[3]!=='Varios'&&p[3]!=='Granel')h+=`<div class="pcard-brand">${p[3]}</div>`;
@@ -4203,14 +4233,16 @@ function _updateSuggestions(value){
     const nombre=_tc(p[2]);
     if(seen.has(nombre))continue;
     seen.add(nombre);
-    top.push(nombre);
+    // En la sugerencia el envase y la marca ayudan a distinguir dos parecidos,
+    // pero lo que se escribe en el buscador al elegir sigue siendo el nombre solo.
+    top.push({txt:nombre,html:_nomHTML(p,nombre)});
     if(top.length>=6)break;
   }
   if(!top.length&&!catMatches.length){box.classList.remove('active');box.innerHTML='';return;}
   const catHTML=catMatches.map(c=>
     `<div class="search-suggestion-item sug-cat" onmousedown="_pickCategorySuggestion('${c.id}')"><span class="sug-icon">${c.ic}</span>${c.n}</div>`
   ).join('');
-  const prodHTML=top.map(n=>`<div class="search-suggestion-item" onmousedown="_pickSuggestion('${n.replace(/'/g,"\\'")}')"><span class="sug-icon">🔍</span>${n}</div>`).join('');
+  const prodHTML=top.map(n=>`<div class="search-suggestion-item" onmousedown="_pickSuggestion('${n.txt.replace(/'/g,"\\'")}')"><span class="sug-icon">🔍</span>${n.html}</div>`).join('');
   box.innerHTML=catHTML+prodHTML;
   box.classList.add('active');
 }
@@ -4712,6 +4744,9 @@ function sincronizarDesdeSheets(){
           sabores:_parseCantidades(_fb.sabores),
           info:_fb.desc||'',
           oferta:_fb.oferta||0,
+          marca:_fb.marca||'',
+          envase:_fb.envase||'',
+          envasado:_fb.envasado===true,
           mix:_fb.mix===true,
           granola:_fb.granola===true,
           imagen:_fb.fotoPropia?'panel':(_fb.imagen||'')
@@ -4741,7 +4776,7 @@ function sincronizarDesdeSheets(){
         }
         const esMix=inf.mix===true;const esGranola=inf.granola===true;
         const ofertaPct=inf.oferta||0;
-        prodsTemp.push([pid++,cat.id,nombreFinal,esKg?'Granel':'Varios',esKg?'kg':'und',false,imgUrl,opts,infoText,sabores,esMix,esGranola,{productId,oferta:ofertaPct,fondo:(_fotoPanel&&_fotoPanel.fondo)||(_fb&&_fb.fondo)||''}]);
+        prodsTemp.push([pid++,cat.id,nombreFinal,esKg?'Granel':'Varios',esKg?'kg':'und',false,imgUrl,opts,infoText,sabores,esMix,esGranola,{productId,oferta:ofertaPct,fondo:(_fotoPanel&&_fotoPanel.fondo)||(_fb&&_fb.fondo)||'',marca:inf.marca,envase:inf.envase}]);
       });
       CATS=Object.keys(RUBRO_MAP).filter(k=>catMap[RUBRO_MAP[k].id]).map(k=>RUBRO_MAP[k]);
       PRODS=prodsTemp;
@@ -6298,7 +6333,7 @@ function hvGoCatPage(index){
   var pages=Array.prototype.slice.call(track.querySelectorAll('.hv-cat-page'));if(!pages.length)return;
   var safe=Math.max(0,Math.min(pages.length-1,index));
   Array.prototype.slice.call(document.querySelectorAll('#hvCatsPagination button')).forEach(function(dot,dotIndex){if(dotIndex===safe)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current');});
-  var start=track.scrollLeft;var target=pages[safe].offsetLeft;var duration=360;var begun=performance.now();
+  var start=track.scrollLeft;var target=pages[safe].offsetLeft;var duration=440;var begun=performance.now();
   if(_hvCatScrollFrame)cancelAnimationFrame(_hvCatScrollFrame);
   function step(now){var t=Math.min(1,(now-begun)/duration);var eased=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;track.scrollLeft=start+(target-start)*eased;if(t<1)_hvCatScrollFrame=requestAnimationFrame(step);else{_hvCatScrollFrame=0;hvUpdateCatPagination();}}
   _hvCatScrollFrame=requestAnimationFrame(step);
@@ -6323,9 +6358,7 @@ function hvSnapCatPage(){
   var pages=Array.prototype.slice.call(track.querySelectorAll('.hv-cat-page'));if(!pages.length)return;
   var current=0;
   pages.forEach(function(page,index){if(Math.abs(page.offsetLeft-track.scrollLeft)<Math.abs(pages[current].offsetLeft-track.scrollLeft))current=index;});
-  var target=pages[current].offsetLeft;
   hvUpdateCatPagination();
-  if(Math.abs(track.scrollLeft-target)>3)hvGoCatPage(current);
 }
 window.hvGoCatPage=hvGoCatPage;
 var _hvCatsBreakpoint=window.matchMedia('(max-width:767px)');
@@ -6367,7 +6400,7 @@ function minRenderFeatured(){
     var precio=opts.length?p[7][opts[0]][0]:0;
     return '<article class="min-feature-card" onclick="minOpenFeatured('+p[0]+')">'
       +'<div class="min-feature-card-img"><img src="'+p[6]+'" alt="'+String(p[2]).replace(/"/g,'&quot;')+'" loading="eager" decoding="async"></div>'
-      +'<div class="min-feature-card-copy"><small>'+(cat?cat.n:'Paladear')+'</small><strong>'+_tc(p[2])+'</strong><b>$'+fmt(precio)+'</b></div>'
+      +'<div class="min-feature-card-copy"><small>'+(cat?cat.n:'Paladear')+'</small><strong>'+_nomHTML(p)+'</strong><b>$'+fmt(precio)+'</b></div>'
       +'<button type="button" class="min-feature-card-add" aria-label="Ver '+String(p[2]).replace(/"/g,'&quot;')+'">+</button></article>';
   }).join('');
 }
@@ -8257,6 +8290,22 @@ window.copiarLinkParaNavegador = function() {
   .hv-cat-flecha.der{right:6px}
 }
 @media(max-width:767px){ .hv-cat-flecha{display:none!important} }
+
+/* Mobile: mismo comportamiento del carrusel de categorías que la distribuidora.
+   El snap lo maneja el navegador; JS solo actualiza los puntos. */
+@media(max-width:767px){
+  .min-redesign .min-home-cats-carousel{overflow:hidden}
+  .min-redesign .hv-cats-scroller{
+    gap:14px!important;padding:0!important;scroll-behavior:auto!important;
+    scroll-snap-type:x mandatory!important;overscroll-behavior-inline:contain;
+    -webkit-overflow-scrolling:touch
+  }
+  .min-redesign .hv-cat-page{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:16px 12px!important;scroll-snap-align:start;scroll-snap-stop:always
+  }
+  .min-redesign .hv-cat{min-height:132px!important;gap:8px!important}
+}
 
 /* ── PANEL DE CATEGORIAS (hamburguesa) ──────────────────────────────
    Fondo alternado para no perder la fila que uno venia leyendo. */
