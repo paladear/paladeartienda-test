@@ -7884,7 +7884,8 @@
    "actualizado": "2026-09-13T12:51:39.796Z",
    "por": "panel",
    "imagen": "https://drive.google.com/file/d/1UR0WRbV93AorfWEq1QNNYAMKLI8xU9Qx/view",
-   "oculto": false
+   "oculto": false,
+   "altaOk": true
   },
   "5052": {
    "nombre": "CREMA DE JARRILLA",
@@ -15427,5 +15428,5 @@
   ]
  },
  "novedadesVistas": "2026-09-15T15:13:31.182Z",
- "actualizado": "2026-09-15T15:14:54.269Z"
+ "actualizado": "2026-09-15T15:14:58.528Z"
 }
