@@ -6029,9 +6029,10 @@
    "imagen": "https://drive.google.com/file/d/1jGh6JKevdvbZyEzGa5UspowL1qs-Gric/view",
    "oferta": 0,
    "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "actualizado": "2026-09-15T15:19:05.309Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "nombreEpyme": "SAL DIETETICA SIN SODIO - EL NATURALISTA"
   },
   "2377": {
    "nombre": "ACEITE PURO DE ALMENDRAS X 50 CC - EL NATURALISTA",
@@ -15428,5 +15429,5 @@
   ]
  },
  "novedadesVistas": "2026-09-15T15:13:31.182Z",
- "actualizado": "2026-09-15T15:14:58.528Z"
+ "actualizado": "2026-09-15T15:19:05.748Z"
 }
