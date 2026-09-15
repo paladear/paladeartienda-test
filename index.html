@@ -2524,11 +2524,18 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 /* Franja informativa amplia, sin precio ni medidor. */
 .min-redesign .descb-banner{height:clamp(240px,20.8vw,300px);min-height:240px;aspect-ratio:auto;background:#f4efe6}
 .min-redesign .descb-art{object-fit:cover;object-position:center}
-.min-redesign .descb-copy{
-  left:29%;right:29%;top:50%;width:auto;gap:10px;align-items:center;transform:translateY(-50%);text-align:center
+.min-redesign .descb-banner::before{
+  content:"";position:absolute;z-index:1;left:7.2%;top:50%;width:15.5%;aspect-ratio:1;border-radius:999px;
+  transform:translateY(-50%);background:#f4efe6
 }
-.min-redesign .descb-copy strong{font-size:clamp(24px,2.25vw,34px);line-height:1.08}
-.min-redesign .descb-copy span{max-width:44ch;font-size:clamp(14px,1.25vw,18px);line-height:1.45}
+.min-redesign .descb-copy{
+  z-index:2;left:18%;right:18%;top:50%;width:auto;gap:12px;align-items:center;transform:translateY(-50%);text-align:center
+}
+.min-redesign .descb-copy strong{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;font-size:clamp(28px,2.65vw,40px);line-height:1.05}
+.min-redesign .descb-copy strong::before{
+  content:"";width:1.5em;height:1.5em;flex:0 0 auto;border-radius:999px;background:rgba(209,231,245,.72) url('may-icon-offers-filled.png') center/62% no-repeat
+}
+.min-redesign .descb-copy span{max-width:48ch;font-size:clamp(16px,1.45vw,21px);line-height:1.4}
 
 /* Los cuatro banners ganan altura y una escala tipográfica legible. */
 .min-redesign #homeView .min-image-banner{aspect-ratio:2.08/1}
@@ -2548,9 +2555,11 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
   .min-home-hero-cta{min-height:44px;margin-top:16px;padding:0 20px;gap:10px;font-size:13px;box-shadow:0 7px 17px rgba(28,75,108,.18)}
   .min-redesign .descb-banner{height:180px;min-height:180px}
   .min-redesign .descb-art{object-fit:fill}
-  .min-redesign .descb-copy{left:24%;right:14%;gap:8px}
-  .min-redesign .descb-copy strong{font-size:20px}
-  .min-redesign .descb-copy span{font-size:12.5px;line-height:1.42}
+  .min-redesign .descb-banner::before{left:7%;width:25%}
+  .min-redesign .descb-copy{left:10%;right:10%;gap:9px}
+  .min-redesign .descb-copy strong{gap:8px;font-size:22px}
+  .min-redesign .descb-copy strong::before{width:1.34em;height:1.34em}
+  .min-redesign .descb-copy span{font-size:13.5px;line-height:1.42}
   .min-redesign #homeView .min-image-banner{aspect-ratio:1.92/1}
   .min-banner-copy{left:5.5%;width:52%}
   .min-banner-kicker{margin-bottom:6px;font-size:11px;letter-spacing:.13em}
@@ -6566,12 +6575,28 @@ function selectOfertasMes(productId){
 window.selectOfertasMes=selectOfertasMes;
 // Buscar desde el header compacto estando en Home u Ofertas → saltar a Productos
 (function(){
+  function keepCompactSearchFocus(){
+    var input=document.getElementById('compactSearchInput');
+    if(!input)return;
+    document.body.classList.add('compact-on');
+    requestAnimationFrame(function(){
+      try{input.focus({preventScroll:true});}catch(e){input.focus();}
+      var len=(input.value||'').length;
+      try{input.setSelectionRange(len,len);}catch(e){}
+    });
+    setTimeout(function(){
+      if(document.activeElement!==input){
+        try{input.focus({preventScroll:true});}catch(e){input.focus();}
+      }
+    },80);
+  }
   if(typeof window.compactOnSearch==='function'){
     var _o=window.compactOnSearch;
     window.compactOnSearch=function(v){
       if((document.body.classList.contains('hv-home')||document.body.classList.contains('hv-ofertas')||document.body.classList.contains('hv-favoritos')) && v && String(v).trim()){
         _catalogSkipNextAllRender=true;
         try{window.switchTab('minorista');}finally{_catalogSkipNextAllRender=false;}
+        keepCompactSearchFocus();
       }
       _o(v);
     };
