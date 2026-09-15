@@ -1988,6 +1988,11 @@ var ETIQUETAS = ['SIN TACC','SIN GLUTEN','APTO CELIACO','SIN AZUCAR','SIN AZÚCA
   'SIN AZUCAR AGREGADA','SIN SAL','VEGANO','VEGANA','ORGANICO','ORGÁNICO','ORGANICA',
   'LIGHT','DIET','CON STEVIA','SIN LACTOSA','KOSHER'];
 
+// Palabras que caen en el lugar de la marca pero son parte del producto, no la marca.
+var NUNCA_MARCA = ['JALEA','ORIGEN CHILE','GRANEL','SURTIDO','SURTIDA','SURTIDAS',
+  'MOLIDA','MOLIDO','ENTERA','ENTERO','TOSTADO','TOSTADA','CRUDO','CRUDA','EN HOJAS',
+  'EN POLVO','EN GRANO','PELADA','PELADO','NEGRO','NEGRA','BLANCO','BLANCA'];
+
 function _norm(t){ return String(t||'').replace(/\s+/g,' ').replace(/^[\s\-.,"']+|[\s\-.,"']+$/g,'').toUpperCase(); }
 
 function _esEtiqueta(t){ return ETIQUETAS.indexOf(_norm(t)) > -1; }
@@ -2005,6 +2010,7 @@ function _noEsMarca(t){
   var s = _norm(t);
   if (s.length < 3) return true;
   if (_esEtiqueta(s) || _esMedida(s)) return true;
+  if (NUNCA_MARCA.indexOf(s) > -1) return true;
   if (!/[A-ZÁÉÍÓÚÑ]{3}/.test(s)) return true;   // tiene que tener letras de verdad
   return false;
 }
@@ -2023,6 +2029,8 @@ function _envaseDe(txt){
   if (u === 'kg') u = 'kg';
   if (u === 'gr' || u === 'grs' || u === 'gramos') u = 'g';
   if (u === 'cápsulas' || u === 'capsulas' || u === 'caps') u = 'cápsulas';
+  // "500 PET" es una botella de plástico de 500 ml: PET es el material, no la medida.
+  if (u === 'pet' || u === 'vid') u = parseFloat(n.replace(',', '.')) >= 100 ? 'ml' : 'L';
   return n + ' ' + u;
 }
 
