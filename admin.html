@@ -344,6 +344,23 @@ body.buscando .busca-fija{display:flex}
 .medidas-sep{width:1px;height:26px;background:#dde4ea;margin:0 3px}
 .medidas-otro{margin-top:8px;font-size:12.5px;color:#6b7885}
 .medidas-otro b{color:#1f2d3a}
+/* ── Lo que el panel leyó del nombre de E-Pyme ── */
+.propuesta{margin:0 0 16px;padding:13px 15px;border-radius:13px;
+  background:#f1f0f8;border:1px solid #cfcede}
+.pro-cab{font-size:12.5px;font-weight:700;color:#544f72;margin-bottom:8px}
+.pro-como{font-weight:500;color:#7d78a0}
+.pro-crudo{font-size:12.5px;color:#7d78a0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  word-break:break-word;margin-bottom:10px}
+.pro-filas{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:11px}
+.pro-f{padding:6px 11px;border-radius:9px;background:var(--papel);border:1px solid #d7d5e4;
+  font-size:14px;color:#1f2d3a}
+.pro-f b{display:block;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:#8b86ab;margin-bottom:3px}
+.pro-ok{background:#5b5680;border-color:#5b5680}
+.pro-ok:hover{background:#4b4770}
+.pro-no{margin-left:7px}
+@media(max-width:430px){ .pro-ok,.pro-no{width:100%;margin:0 0 7px} }
+
 /* ── ¿Envasado o a granel? Dos tarjetas grandes, se toca una ── */
 .venta{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .venta-op{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-height:60px;
@@ -875,22 +892,30 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
   input,select,textarea,.campo input,.campo textarea,#buscar,.cmp-busca input{font-size:16px!important}
   .cmp-busca input{min-height:48px}
 }
-#capaAltas{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
-#capaAltas.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
-#capaAltas .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
+#capaAltas,#capaMarcas{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
+#capaAltas.abierto,#capaMarcas.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
+/* Las marcas que ya conoce, para tocarlas en vez de escribirlas. */
+.mca-sug{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
+.mca-chip{padding:6px 11px;border:1.5px solid #cfd8e0;border-radius:999px;background:var(--papel);
+  font:600 13px/1 inherit;color:#5d6b7a;cursor:pointer}
+.mca-chip:hover{border-color:#9db6cc;color:#1f2d3a}
+.mca-chip.on{background:#5b5680;border-color:#5b5680;color:#fff}
+.mca-antes{display:block;font-size:12px;color:#93a0ac;margin-top:2px}
+.mca-antes b{color:#1f7a4a;font-weight:700}
+#capaAltas .ed-caja,#capaMarcas .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
   box-shadow:0 22px 60px rgba(0,0,0,.3);display:flex;flex-direction:column;max-height:calc(100vh - 48px)}
-#capaAltas .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
+#capaAltas .ed-top,#capaMarcas .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding:14px 18px;border-bottom:1px solid var(--linea)}
-#capaAltas .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
-#capaAltas .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+#capaAltas .ed-cuerpo,#capaMarcas .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
+#capaAltas .ed-pie,#capaMarcas .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
   padding:13px 18px;border-top:1px solid var(--linea);background:var(--papel)}
 .alt-item.on{border-color:#2e9e63;background:#f3faf6}
 .alt-falta{color:#c2582f}
 @media(max-width:700px){
-  #capaAltas.abierto{padding:0;align-items:stretch}
-  #capaAltas .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
-  #capaAltas .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
-  #capaAltas .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
+  #capaAltas.abierto,#capaMarcas.abierto{padding:0;align-items:stretch}
+  #capaAltas .ed-caja,#capaMarcas .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
+  #capaAltas .ed-pie,#capaMarcas .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
+  #capaAltas .ed-pie .btn,#capaMarcas .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -950,6 +975,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
           </div>
         </div>
       </div>
+      <div class="propuesta" id="edPropuesta" hidden></div>
       <div class="campo">
         <label for="edNombre">Nombre del producto <span class="ayuda">— sin la marca ni el peso</span></label>
         <input id="edNombre" maxlength="120" placeholder="Almendras tostadas">
@@ -1194,6 +1220,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
         <div class="hoja-grupo">
           <span class="hoja-rotulo">Catálogo</span>
           <button class="btn gris" id="btnAltas" onclick="abrirAltas()">Agregar productos al catálogo</button>
+          <button class="btn gris" id="btnMarcas" onclick="abrirMarcas()" title="Asigná una marca a muchos productos de una vez">Marcas de los productos</button>
           <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
         </div>
         <div class="hoja-grupo" id="grupoPublicar">
@@ -1417,6 +1444,10 @@ let PRODUCTOS = [], FILTRO = 'todos', BUSCA = '', RUBRO = '';
 // edito desde el panel, esa version es la buena.
 let FICHAS_FB = {}, FICHAS_CSV = {};
 
+// Las marcas confirmadas a mano. Se acumulan: una vez que se dijo que "VERDE
+// OLIVA" es una marca, el panel la reconoce en todos los productos que la traigan.
+let MARCAS_FB = [];
+
 // Las fichas viven en un JSON del repo: se leen por HTTP, sin permisos.
 
 async function cargarFichasGuardadas(){
@@ -1429,10 +1460,11 @@ async function cargarFichasGuardadas(){
     CAMBIOS_FECHA  = j.cambiosPrecio || {};
     PRECIOS_APROBADOS = j.preciosAprobados || {};
     MARCA_VISTO = j.novedadesVistas || '';
+    MARCAS_FB = j.marcas || [];
   } catch (e) {
     console.warn('[panel] todavía no hay fichas guardadas:', e && e.message);
     FICHAS_FB = {}; FOTOS_FB = {}; PRECIOS_VISTOS = {};
-    CAMBIOS_FECHA = {}; PRECIOS_APROBADOS = {}; MARCA_VISTO = '';
+    CAMBIOS_FECHA = {}; PRECIOS_APROBADOS = {}; MARCA_VISTO = ''; MARCAS_FB = [];
   }
 }
 
@@ -1526,6 +1558,7 @@ async function guardarFichasEnRepo(mensaje){
                           cambiosPrecio: CAMBIOS_FECHA,
                           preciosAprobados: PRECIOS_APROBADOS,
                           novedadesVistas: MARCA_VISTO,
+                          marcas: MARCAS_FB,
                           actualizado: new Date().toISOString() }, null, 1)),
     mensaje, 0, repoActivo());
 }
@@ -1756,7 +1789,9 @@ async function arrancar(){
     avisoImportacion();
     // Queda guardado el estado de la tienda minorista para poder volver sin recargar.
     GUARDADO_MIN = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
-                     vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA };
+                     vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
+                     marcas: MARCAS_FB };
+    refrescarMarcas();
     pintarKpis(); pintar();
   } catch (e) {
     document.getElementById('salida').className = 'vacio';
@@ -1845,11 +1880,16 @@ function abrirEditor(id){
   pintarFotoEditor(p);
   $('edNombre').value = p.nombre || '';
   $('edCant').value = p.cantidades || '';
-  $('edMarca').value = p.marca || '';
-  $('edEnvase').value = p.envase || '';
+  // Si la ficha todavía no se editó, se propone lo que se puede leer del nombre
+  // de E-Pyme. Queda escrito en los campos pero NO se guarda hasta que toque Guardar.
+  var pr = (!p.editada && !p.marca) ? propuestaDe(p) : null;
+  PROPUESTA = pr;
+  $('edMarca').value = p.marca || (pr ? pr.marca : '');
+  $('edEnvase').value = p.envase || (pr ? pr.envase : '');
   var sn = $('edSaborNuevo'); if (sn) sn.value = '';
-  pintarVenta(p);
+  pintarVenta(pr && p.envasado === undefined ? {cantidades: pr.granel ? '' : '1 UNIDAD', envasado: !pr.granel} : p);
   pintarSabores(p);
+  pintarPropuesta(p, pr);
   $('edDesc').value = p.desc || '';
   $('edOferta').value = p.oferta || 0;
   ['edMix','edGranola','edBlend'].forEach((i, k) => {
@@ -1932,6 +1972,220 @@ function cerrarEditor(desdeAtras){
 }
 
 let FOTO_NUEVA = null, FOTO_BORRAR = false, FOTO_PROCESANDO = false;
+
+/* ── Partir el nombre que manda E-Pyme en nombre / marca / envase / etiquetas ──
+   Tres pistas, de la más confiable a la menos:
+     1. "... - MARCA"     al final, separado por guion
+     2. ... "MARCA" ...   entre comillas
+     3. una marca ya conocida que aparece en el nombre
+   Lo que no se puede afirmar queda vacío: es mejor un campo en blanco que una
+   marca inventada en 500 productos. */
+
+var UNID = 'G|GR|GRS|GRAMOS|KG|CC|ML|L|LT|LTS|UNI|UNID|UNIDAD|UNIDADES|CAP|CAPS|CÁPSULAS|CAPSULAS|COMP|SOBRE|SOBRES|PET|CM|MT|U';
+
+// Cosas que van en esas posiciones pero no son marca.
+var ETIQUETAS = ['SIN TACC','SIN GLUTEN','APTO CELIACO','SIN AZUCAR','SIN AZÚCAR',
+  'SIN AZUCAR AGREGADA','SIN SAL','VEGANO','VEGANA','ORGANICO','ORGÁNICO','ORGANICA',
+  'LIGHT','DIET','CON STEVIA','SIN LACTOSA','KOSHER'];
+
+function _norm(t){ return String(t||'').replace(/\s+/g,' ').replace(/^[\s\-.,"']+|[\s\-.,"']+$/g,'').toUpperCase(); }
+
+function _esEtiqueta(t){ return ETIQUETAS.indexOf(_norm(t)) > -1; }
+
+/* Un pedazo que en realidad es un peso o una cantidad, no una marca. */
+function _esMedida(t){
+  var s = _norm(t);
+  if (!s) return true;
+  if (new RegExp('^(?:X\\s*)?[\\d.,/]+\\s*(?:' + UNID + ')?\\.?$').test(s)) return true;
+  if (new RegExp('^(?:SOBRE|X)\\b').test(s)) return true;
+  return false;
+}
+
+function _noEsMarca(t){
+  var s = _norm(t);
+  if (s.length < 3) return true;
+  if (_esEtiqueta(s) || _esMedida(s)) return true;
+  if (!/[A-ZÁÉÍÓÚÑ]{3}/.test(s)) return true;   // tiene que tener letras de verdad
+  return false;
+}
+
+/* Saca del nombre el peso y las etiquetas, que van en sus propios campos. */
+function _envaseDe(txt){
+  // "X KG" sin número es granel, no un envase.
+  if (new RegExp('\\s[Xx]\\s*(KG|KILO|K)\\.?\\s*$', 'i').test(txt)) return '';
+  var m = txt.match(new RegExp('(?:^|\\s)[Xx]\\s*([\\d.,/]+)\\s*(' + UNID + ')\\b', 'i'))
+       || txt.match(new RegExp('(?:^|\\s)([\\d.,/]+)\\s*(' + UNID + ')\\b'));
+  // Un "x 200" al final sin unidad: se guarda el número igual, la unidad la pone él.
+  if (!m) { var sn = txt.match(/(?:^|\s)[Xx]\s*([\d.,/]+)\s*$/); if (sn) return sn[1]; }
+  if (!m) return '';
+  var n = m[1].replace(/[.,]$/,''), u = m[2].toLowerCase();
+  if (u === 'l' || u === 'lt' || u === 'lts') u = 'L';
+  if (u === 'kg') u = 'kg';
+  if (u === 'gr' || u === 'grs' || u === 'gramos') u = 'g';
+  if (u === 'cápsulas' || u === 'capsulas' || u === 'caps') u = 'cápsulas';
+  return n + ' ' + u;
+}
+
+/* Palabras que van en minúscula aunque estén en el medio del nombre. */
+var CHICAS = ['de','del','con','sin','y','o','en','a','al','la','el','los','las','para','por'];
+
+/* "ACEITE DE OLIVA" se lee peor que "Aceite de oliva". Se pasa a minúscula con la
+   primera en mayúscula. Sólo se respetan las siglas con puntos (R.V.) y las que no
+   tienen vocales (PVC): cualquier otra regla terminaba dejando "DE" y "COCO" en alta. */
+function _capitalizar(t){
+  return t.split(' ').map(function(p, i){
+    if (!p) return p;
+    if (/[A-ZÁÉÍÓÚÑ]\./.test(p)) return p;                          // R.V.
+    if (/^[A-ZÁÉÍÓÚÑ]{2,5}$/.test(p) && !/[AEIOUÁÉÍÓÚ]/.test(p)) return p;  // PVC, XL
+    if (/^\d/.test(p)) return p.toLowerCase();                      // 70%, 100
+    var b = p.toLowerCase();
+    if (i > 0 && CHICAS.indexOf(b) > -1) return b;
+    return b.charAt(0).toUpperCase() + b.slice(1);
+  }).join(' ');
+}
+
+/* Deja el nombre "de cliente": sin marca, sin peso, sin etiquetas, capitalizado. */
+function _limpiarNombre(txt, marca){
+  var t = ' ' + txt + ' ';
+  if (marca) t = t.replace(new RegExp('[\\s"\\-]*' + marca.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '[\\s"]*', 'i'), ' ');
+  ETIQUETAS.forEach(function(e){
+    t = t.replace(new RegExp('[\\s"]*' + e.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '[\\s"]*', 'i'), ' ');
+  });
+  // "X KG" al final es la forma de E-Pyme de decir "a granel": no es un envase.
+  t = t.replace(new RegExp('\\s[Xx]\\s*(KG|KILO|K)\\.?\\s*$', 'i'), ' ');
+  t = t.replace(new RegExp('(?:^|\\s)[Xx]?\\s*[\\d.,/]+\\s*(?:' + UNID + ')\\b\\.?', 'gi'), ' ');
+  // Un "x 200" suelto, sin unidad: tampoco va en el nombre.
+  t = t.replace(/(?:^|\s)[Xx]\s*[\d.,/]+\s*$/, ' ');
+  t = t.replace(/["]/g,' ').replace(/\s*-\s*$/,'').replace(/\s+/g,' ').trim();
+  return _capitalizar(t);
+}
+
+function etiquetasDe(txt){
+  var T = ' ' + _norm(txt) + ' ', out = [];
+  ETIQUETAS.forEach(function(e){ if (T.indexOf(' ' + e + ' ') > -1 || T.indexOf('"' + e) > -1) out.push(e); });
+  // "Sin TACC" y "Sin gluten" son lo mismo para el cliente
+  if (out.indexOf('SIN GLUTEN') > -1 && out.indexOf('SIN TACC') > -1) out.splice(out.indexOf('SIN GLUTEN'), 1);
+  return out;
+}
+
+function partirNombre(txt, marcasConocidas){
+  var t = String(txt || '').trim();
+  if (!t) return {nombre:'', marca:'', envase:'', etiquetas:[], motivo:''};
+  var marca = '', motivo = '';
+
+  // 1. "- MARCA" al final
+  var g = t.match(/\s-\s+([^-]{3,40})\s*$/);
+  if (g && !_noEsMarca(g[1])) { marca = _norm(g[1]); motivo = 'guion'; }
+
+  // 2. entre comillas
+  if (!marca) {
+    var cs = t.match(/"([^"]{3,40})"/g) || [];
+    for (var i = 0; i < cs.length; i++) {
+      var c = cs[i].slice(1, -1);
+      if (!_noEsMarca(c)) { marca = _norm(c); motivo = 'comillas'; break; }
+    }
+  }
+
+  // 3. una marca que ya conocemos de otros productos
+  if (!marca && marcasConocidas && marcasConocidas.length) {
+    var T = _norm(t);
+    for (var j = 0; j < marcasConocidas.length; j++) {
+      var m = _norm(marcasConocidas[j]);
+      if (m.length < 3) continue;
+      if (new RegExp('(?:^|[^A-ZÁÉÍÓÚÑ])' + m.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '(?![A-ZÁÉÍÓÚÑ])').test(T)) {
+        marca = m; motivo = 'conocida'; break;
+      }
+    }
+  }
+
+  return {
+    granel: new RegExp('\\s[Xx]\\s*(KG|KILO|K)\\.?\\s*$', 'i').test(t),
+    nombre: _limpiarNombre(t, marca),
+    marca: marca ? _capitalizar(_norm(marca)) : '',
+    envase: _envaseDe(t),
+    etiquetas: etiquetasDe(t),
+    motivo: motivo
+  };
+}
+
+
+/* Junta las marcas que se pueden afirmar, para despues buscarlas en los demas. */
+function cosecharMarcas(nombres){
+  var c = {};
+  nombres.forEach(function(n){
+    var r = partirNombre(n, null);
+    if (r.marca && (r.motivo === 'guion' || r.motivo === 'comillas')) {
+      var k = _norm(r.marca); c[k] = (c[k] || 0) + 1;
+    }
+  });
+  var lista = Object.keys(c);
+  // Si están "SOMOS SETA" y "SOMOS SETAS", queda la que más aparece.
+  lista = lista.filter(function(m){ return !(c[m + 'S'] && c[m + 'S'] >= c[m]); });
+  return lista.sort(function(a, b){ return b.length - a.length; });
+}
+
+/* Las marcas que ya se confirmaron, más las que se pueden leer del nombre. Se
+   guardan en el JSON para que no haya que volver a descubrirlas. */
+let MARCAS_SABIDAS = [];
+
+function refrescarMarcas(){
+  var propias = (MARCAS_FB || []).map(function(m){ return String(m).toUpperCase(); });
+  var delNombre = cosecharMarcas(PRODUCTOS.map(function(p){ return p.nombreCsv || p.nombre; }));
+  var vistas = {}, out = [];
+  propias.concat(delNombre).forEach(function(m){
+    if (m && !vistas[m]) { vistas[m] = 1; out.push(m); }
+  });
+  // De la más larga a la más corta: así "EL NATURALISTA" gana antes que "NATURALISTA".
+  MARCAS_SABIDAS = out.sort(function(a, b){ return b.length - a.length; });
+}
+
+/* Lo que el partidor deduce de un producto que todavía no tiene ficha propia. */
+let PROPUESTA = null;
+
+function propuestaDe(p){
+  return partirNombre(p.nombreCsv || p.nombre, MARCAS_SABIDAS);
+}
+
+/* Cartel con lo que se leyó del nombre de E-Pyme, para aceptarlo de un toque.
+   Nada de esto se guarda solo: el nombre lo cambia únicamente él. */
+function pintarPropuesta(p, pr){
+  var c = $('edPropuesta');
+  if (!c) return;
+  if (!pr || (!pr.marca && !pr.envase && pr.nombre === p.nombre)) { c.hidden = true; c.innerHTML = ''; return; }
+  var filas = [];
+  if (pr.nombre && pr.nombre !== p.nombre) filas.push(['Nombre', pr.nombre]);
+  if (pr.marca)  filas.push(['Marca', pr.marca]);
+  if (pr.envase) filas.push(['Envase', pr.envase]);
+  if (pr.etiquetas.length) filas.push(['Etiqueta', pr.etiquetas.join(', ')]);
+  c.hidden = false;
+  c.innerHTML =
+    '<div class="pro-cab">Leído del nombre de E-Pyme' +
+      (pr.motivo ? ' <span class="pro-como">por el ' + esc(pr.motivo === 'conocida' ? 'nombre de la marca' : pr.motivo) + '</span>' : '') +
+    '</div>' +
+    '<div class="pro-crudo">' + esc(p.nombreCsv || p.nombre) + '</div>' +
+    '<div class="pro-filas">' + filas.map(function(f){
+      return '<span class="pro-f"><b>' + f[0] + '</b>' + esc(f[1]) + '</span>';
+    }).join('') + '</div>' +
+    '<button type="button" class="btn pro-ok" id="edProOk">Usar esto</button>' +
+    '<button type="button" class="btn gris pro-no" id="edProNo">Dejar como está</button>';
+  $('edProOk').addEventListener('click', function(){
+    if (pr.nombre) $('edNombre').value = pr.nombre;
+    if (pr.marca)  $('edMarca').value  = pr.marca;
+    if (pr.envase) $('edEnvase').value = pr.envase;
+    elegirVenta(pr.granel ? 'granel' : 'envasado');
+    // La marca confirmada se suma al diccionario: aparece sola en los demás productos.
+    if (pr.marca && MARCAS_FB.indexOf(pr.marca.toUpperCase()) < 0) {
+      MARCAS_FB.push(pr.marca.toUpperCase()); refrescarMarcas();
+    }
+    c.hidden = true;
+    avisar('ok', 'Listo', 'Revisá que esté bien y tocá Guardar.');
+  });
+  $('edProNo').addEventListener('click', function(){
+    $('edMarca').value = p.marca || '';
+    $('edEnvase').value = p.envase || '';
+    c.hidden = true;
+  });
+}
 
 /* El rubro viene de E-Pyme. Si se cambiara acá se desarmaría la categoría en
    la tienda, así que se muestra nada más. */
@@ -3346,10 +3600,10 @@ async function cargarFichasMay(){
     // contra el minorista y sale todo marcado como cambio.
     return { fichas: j.fichas || {}, fotos: fotos,
              vistos: j.preciosVistos || {}, aprobados: j.preciosAprobados || {},
-             fechas: j.cambiosPrecio || {} };
+             fechas: j.cambiosPrecio || {}, marcas: j.marcas || [] };
   } catch (e) {
     console.warn('[panel] la distribuidora todavía no tiene fichas guardadas:', e && e.message);
-    return { fichas: {}, fotos: {}, vistos: {}, aprobados: {}, fechas: {} };
+    return { fichas: {}, fotos: {}, vistos: {}, aprobados: {}, fechas: {}, marcas: [] };
   }
 }
 
@@ -3370,9 +3624,11 @@ async function cambiarTienda(cual){
       var d = await cargarFichasMay();
       FICHAS_FB = d.fichas; FOTOS_FB = d.fotos;
       PRECIOS_VISTOS = d.vistos; PRECIOS_APROBADOS = d.aprobados; CAMBIOS_FECHA = d.fechas;
+      MARCAS_FB = d.marcas || [];
       PRODUCTOS = marcarCambiosDePrecio(armarProductosMay());
       GUARDADO_MAY = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
-                       vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA };
+                       vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
+                       marcas: MARCAS_FB };
     } else {
       restaurarTienda(GUARDADO_MAY);
     }
@@ -3386,6 +3642,7 @@ async function cambiarTienda(cual){
   document.body.classList.toggle('es-mayorista', TIENDA === 'may');
   pintarCartelTienda();
   try { llenarRubros(); } catch(e) {}
+  try { refrescarMarcas(); } catch(e) {}
   try { pintarKpis(); } catch(e) {}
   pintar();
 }
@@ -3396,6 +3653,7 @@ window.cambiarTienda = cambiarTienda;
 function restaurarTienda(g){
   FICHAS_FB = g.fichas; FOTOS_FB = g.fotos; PRODUCTOS = g.productos;
   PRECIOS_VISTOS = g.vistos || {}; PRECIOS_APROBADOS = g.aprobados || {}; CAMBIOS_FECHA = g.fechas || {};
+  MARCAS_FB = g.marcas || [];
 }
 
 /* El cartel de arriba dice siempre en cuál de las dos tiendas estás parado. */
@@ -4178,9 +4436,200 @@ async function altAgregar(){
 }
 window.altAgregar = altAgregar;
 
+/* ── MARCAS EN MASA ───────────────────────────────────────────────────────────
+   Escribís la marca una vez y se la pone a todos los productos que la tengan en
+   el nombre, sacándola del nombre de paso. Con veinte marcas se cubren cientos
+   de productos: ficha por ficha no se termina nunca. */
+let MCA_TXT = '', MCA_LISTA = [], MCA_MARCADOS = new Set();
+
+function abrirMarcas(){
+  $('capaMarcas').classList.add('abierto');
+  document.body.style.overflow = 'hidden';
+  MCA_TXT = ''; MCA_LISTA = []; MCA_MARCADOS = new Set();
+  var i = $('mcaBuscar'); if (i) { i.value = ''; }
+  $('mcaEstado').textContent = '';
+  mcaSugerir(); mcaPintar();
+  if (i) setTimeout(function(){ i.focus(); }, 120);
+}
+
+function cerrarMarcas(){
+  $('capaMarcas').classList.remove('abierto');
+  document.body.style.overflow = '';
+}
+window.abrirMarcas = abrirMarcas; window.cerrarMarcas = cerrarMarcas;
+
+/* Las marcas que ya se conocen, con cuántos productos les faltan todavía. */
+function mcaSugerir(){
+  var c = $('mcaSug');
+  if (!c) return;
+  var conteo = MARCAS_SABIDAS.map(function(m){
+    return {m: m, n: PRODUCTOS.filter(function(p){ return !p.marca && mcaCoincide(p, m); }).length};
+  }).filter(function(x){ return x.n > 0; }).sort(function(a, b){ return b.n - a.n; }).slice(0, 14);
+  c.innerHTML = conteo.length
+    ? conteo.map(function(x){
+        return '<button type="button" class="mca-chip' + (_norm(x.m) === _norm(MCA_TXT) ? ' on' : '') +
+          '" data-mca="' + esc(x.m) + '">' + esc(_capitalizar(x.m)) + ' <b>' + x.n + '</b></button>';
+      }).join('')
+    : '<span class="sin-dato">No quedan marcas conocidas sin asignar.</span>';
+  c.querySelectorAll('.mca-chip').forEach(function(b){
+    b.addEventListener('click', function(){
+      $('mcaBuscar').value = _capitalizar(this.dataset.mca);
+      MCA_TXT = this.dataset.mca;
+      mcaBuscarYa();
+    });
+  });
+}
+
+/* ¿Este producto trae la marca en el nombre? Se pide palabra entera para que
+   "LAUR" no salte dentro de otra palabra. */
+function mcaCoincide(p, marca){
+  var m = _norm(marca);
+  if (m.length < 3) return false;
+  var N = _norm(p.nombreCsv || p.nombre);
+  return new RegExp('(?:^|[^A-ZÁÉÍÓÚÑ])' + m.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![A-ZÁÉÍÓÚÑ])').test(N);
+}
+
+function mcaBuscarYa(){
+  var m = _norm(MCA_TXT);
+  MCA_LISTA = m.length >= 3
+    ? PRODUCTOS.filter(function(p){ return mcaCoincide(p, m); })
+        .sort(function(a, b){ return String(a.nombre).localeCompare(String(b.nombre), 'es'); })
+    : [];
+  // Vienen marcados: si buscaste la marca, es porque se la querés poner a todos.
+  MCA_MARCADOS = new Set(MCA_LISTA.filter(function(p){ return !p.marca; }).map(function(p){ return p.id; }));
+  mcaSugerir(); mcaPintar();
+}
+
+function mcaPintar(){
+  var l = $('mcaLista'), r = $('mcaResumen'), b = $('mcaEnviar');
+  if (!l) return;
+  var m = _norm(MCA_TXT);
+  r.textContent = MCA_LISTA.length ? MCA_MARCADOS.size + ' de ' + MCA_LISTA.length + ' marcados' : '';
+  b.disabled = !MCA_MARCADOS.size;
+  b.textContent = MCA_MARCADOS.size
+    ? 'Ponerles la marca a ' + MCA_MARCADOS.size
+    : 'Ponerles la marca';
+  if (m.length < 3) {
+    l.innerHTML = '<div class="vacio">Escribí una marca de al menos 3 letras, o tocá una de las de arriba.</div>';
+    return;
+  }
+  if (!MCA_LISTA.length) {
+    l.innerHTML = '<div class="vacio">Ningún producto tiene &laquo;' + esc(_capitalizar(m)) + '&raquo; en el nombre.</div>';
+    return;
+  }
+  l.innerHTML = MCA_LISTA.map(function(p){
+    var pr = partirNombre(p.nombreCsv || p.nombre, [m]);
+    var ya = p.marca ? ' · <b style="color:#b8860b">ya tiene: ' + esc(p.marca) + '</b>' : '';
+    return '<label class="cmp-item mca-item' + (MCA_MARCADOS.has(p.id) ? ' on' : ' off') + '" data-mca-id="' + esc(p.id) + '">' +
+      '<input type="checkbox" ' + (MCA_MARCADOS.has(p.id) ? 'checked' : '') + '>' +
+      '<span class="cmp-n"><b>' + esc(p.nombre) + '</b>' +
+        '<i>Art. ' + esc(p.id) + ya + '</i>' +
+        '<span class="mca-antes">queda: <b>' + esc(pr.nombre || p.nombre) + '</b>' +
+          (pr.envase ? ' · ' + esc(pr.envase) : '') + '</span>' +
+      '</span></label>';
+  }).join('');
+}
+
+function mcaTodos(si){
+  MCA_LISTA.forEach(function(p){ if (si) MCA_MARCADOS.add(p.id); else MCA_MARCADOS.delete(p.id); });
+  mcaPintar();
+}
+window.mcaTodos = mcaTodos;
+
+var _mcaTimer = 0;
+document.addEventListener('input', function(ev){
+  if (!ev.target || ev.target.id !== 'mcaBuscar') return;
+  MCA_TXT = ev.target.value || '';
+  clearTimeout(_mcaTimer);
+  _mcaTimer = setTimeout(mcaBuscarYa, 220);
+});
+document.addEventListener('change', function(ev){
+  var it = ev.target.closest && ev.target.closest('.mca-item[data-mca-id]');
+  if (!it) return;
+  var id = it.dataset.mcaId;
+  if (ev.target.checked) MCA_MARCADOS.add(id); else MCA_MARCADOS.delete(id);
+  it.classList.toggle('on', ev.target.checked);
+  it.classList.toggle('off', !ev.target.checked);
+  mcaPintar();
+});
+
+async function mcaAsignar(){
+  var marca = _capitalizar(_norm(MCA_TXT));
+  var marcados = MCA_LISTA.filter(function(p){ return MCA_MARCADOS.has(p.id); });
+  if (!marca || marca.length < 3) { $('mcaEstado').textContent = 'Escribí la marca primero.'; return; }
+  if (!marcados.length) { $('mcaEstado').textContent = 'No marcaste ninguno.'; return; }
+  if (!TOKEN) { $('mcaEstado').textContent = 'Entrá con la clave para poder guardar.'; return; }
+  var b = $('mcaEnviar'), antes = b.textContent;
+  b.disabled = true; b.textContent = 'Guardando...';
+  try {
+    marcados.forEach(function(p){
+      var pr = partirNombre(p.nombreCsv || p.nombre, [_norm(marca)]);
+      p.marca = marca;
+      // El nombre sólo se acorta si nunca se editó a mano: lo que él escribió no se toca.
+      if (!p.editada && pr.nombre) p.nombre = pr.nombre;
+      if (!p.envase && pr.envase) p.envase = pr.envase;
+      if (p.envasado === undefined) p.envasado = !pr.granel;
+      var f = Object.assign({}, FICHAS_FB[p.id] || {});
+      f.marca = marca;
+      f.nombre = p.nombre;
+      if (p.envase) f.envase = p.envase;
+      f.envasado = p.envasado;
+      if (!f.cantidades) f.cantidades = p.envasado ? '1 UNIDAD' : (p.cantidades || '');
+      f.origen = 'panel'; f.actualizado = new Date().toISOString();
+      FICHAS_FB[p.id] = f;
+      p.editada = true;
+    });
+    if (MARCAS_FB.indexOf(_norm(marca)) < 0) MARCAS_FB.push(_norm(marca));
+    refrescarMarcas();
+    await guardarFichasEnRepo('Marca ' + marca + ': ' + marcados.length + ' producto' + (marcados.length === 1 ? '' : 's'));
+    avisar('ok', marca + ' puesta en ' + marcados.length + (marcados.length === 1 ? ' producto' : ' productos'),
+           'Ya queda guardada: la va a reconocer sola en los que vengan.');
+    pintar();
+    mcaBuscarYa();
+    $('mcaEstado').innerHTML = '<span class="ok">' + marcados.length + ' listos.</span> Escribí otra marca para seguir.';
+  } catch (e) {
+    $('mcaEstado').innerHTML = '<span class="malo">No pude guardar: ' + esc(e.message) + '</span>';
+  } finally {
+    b.disabled = false; b.textContent = antes;
+  }
+}
+window.mcaAsignar = mcaAsignar;
+
 </script>
 <!-- Compartir fotos con la distribuidora, de a muchas -->
 <!-- Elegir qué productos entran al catálogo -->
+<!-- ── MARCAS: asignar una marca a muchos productos de una vez ──
+     Poner la marca ficha por ficha en 544 productos no es viable. Acá se escribe
+     la marca una vez, el panel muestra todos los productos cuyo nombre la trae y
+     se asignan todos juntos. -->
+<div id="capaMarcas">
+  <div class="ed-caja">
+    <div class="ed-top">
+      <b>Marcas de los productos</b>
+      <button type="button" class="btn gris" onclick="cerrarMarcas()">Cerrar</button>
+    </div>
+    <div class="ed-cuerpo">
+      <p class="cmp-intro">Escribí una marca y el panel busca todos los productos que la
+        tengan en el nombre. Los marcás y les pone la marca a todos juntos, sacándola del
+        nombre. La marca queda guardada: de ahí en más la reconoce sola en los productos nuevos.</p>
+      <div class="cmp-busca">
+        <input id="mcaBuscar" type="search" placeholder="Verde Oliva, Pannocchia, Natier..." autocomplete="off">
+      </div>
+      <div class="mca-sug" id="mcaSug"></div>
+      <div class="cmp-acc">
+        <button type="button" class="btn gris" onclick="mcaTodos(true)">Marcar todos</button>
+        <button type="button" class="btn gris" onclick="mcaTodos(false)">Desmarcar todos</button>
+        <span id="mcaResumen"></span>
+      </div>
+      <div id="mcaLista" class="cmp-lista"></div>
+    </div>
+    <div class="ed-pie">
+      <button type="button" class="btn primario" id="mcaEnviar" onclick="mcaAsignar()">Ponerles la marca</button>
+      <span id="mcaEstado"></span>
+    </div>
+  </div>
+</div>
+
 <div id="capaAltas">
   <div class="ed-caja">
     <div class="ed-top">
