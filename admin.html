@@ -2838,11 +2838,27 @@ async function excelPublicar(){
     await guardarEnRepo(archivoPrecios(), aB64(csv),
       'Precios de ' + nombreTienda() + ' actualizados desde el Excel (' + EXCEL_FILAS.length + ' productos)',
       0, repoActivo());
+    // Los precios de una lista que subiste vos quedan aprobados solos: ya los
+    // decidiste al subirla. El OK de a uno es para los cambios que llegan
+    // automáticos de E-Pyme, que no elegiste.
+    var aprobados = 0;
+    EXCEL_FILAS.forEach(function(f){
+      var id = limpiaId(f.id);
+      if (!id) return;
+      var monto = excelAPesos(f.p1);
+      if (!monto) return;
+      PRECIOS_VISTOS[id] = monto;
+      PRECIOS_APROBADOS[id] = [monto, excelAPesos(f.p2) || 0];
+      var p = PRODUCTOS.find(function(x){ return x.id === id; });
+      if (p) { p.cambioPrecio = false; p.precioAntes = monto; }
+      aprobados++;
+    });
+    if (aprobados) { try { await guardarFichasEnRepo('Precios de la lista, aprobados (' + aprobados + ')'); } catch(e) {} }
     caja.innerHTML = '<div class="excel-caja ok"><b>Listo.</b> Se publicaron ' + EXCEL_FILAS.length +
       ' precios en <b>' + esc(nombreTienda()) + '</b>. ' +
       'La tienda los toma en unos minutos.</div>';
-    avisar('ok', EXCEL_FILAS.length + ' precios actualizados',
-           'Se subieron a ' + nombreTienda() + '. Abajo salen primero los que cambiaron.');
+    avisar('ok', EXCEL_FILAS.length + ' precios actualizados y publicados',
+           'Ya están en ' + nombreTienda() + '. No hace falta darles el OK: los subiste vos.');
     // Tras subir la lista, lo primero que se ve es lo que cambió.
     setTimeout(function(){
       try {
