@@ -739,20 +739,19 @@ body.con-hoja{overflow:hidden}
 .prod .chip.c-renom{background:#f4eefb;border-color:#d8c6ea;color:#65418f}
 .prod .chip.c-oferta{background:#fdf1f4;border-color:#eec3ce;color:#993552}
 .prod .chip.c-mal{background:#fdecea;border-color:#efb7ae;color:#9c2d1c}
-/* ── Interruptor de catálogo: chico y se lee de un vistazo ── */
-.sw{display:inline-flex;align-items:center;flex:0 0 auto;width:46px;height:26px;padding:3px;
-  border-radius:999px;border:1px solid transparent;cursor:pointer;
-  background:#e4d5b6;transition:background .16s,border-color .16s}
-.sw i{width:18px;height:18px;border-radius:50%;background:#fff;
-  box-shadow:0 1px 3px rgba(20,45,70,.3);transition:transform .16s}
-.sw.sw-on{background:#2e9e63}
-.sw.sw-on i{transform:translateX(20px)}
-.sw.sw-alta{background:#2f6d99}
-.sw:not(.sw-on){background:#d8a72e}
-.sw:hover{border-color:rgba(20,45,70,.22)}
+/* ── ¿Lo ve el cliente? Tilde verde o X roja, nada más ── */
+.sw{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
+  width:34px;height:34px;border-radius:10px;border:1.5px solid transparent;cursor:pointer;
+  transition:background .14s,border-color .14s,transform .1s}
+.sw svg{width:19px;height:19px}
+.sw.sw-si{background:#e7f7ee;border-color:#8fd0ac;color:#1d7a4a}
+.sw.sw-si:hover{background:#d5f0e2}
+.sw.sw-no{background:#fdeae7;border-color:#eaa79a;color:#b43a25}
+.sw.sw-no:hover{background:#fbdad4}
+.sw:active{transform:scale(.94)}
 .sw:focus-visible{outline:2px solid var(--marca);outline-offset:2px}
-.sw.sw-traba{width:26px;justify-content:center;background:#e6e9ed;color:#8a93a0;cursor:default;border-color:#d7dce2}
-.sw-traba svg{width:15px;height:15px}
+.sw.sw-traba{background:var(--papel-2);color:#96a0ab;cursor:default;border-color:#d7dce2}
+.sw.sw-traba svg{width:15px;height:15px}
 .bander-precio{min-height:36px!important;margin-top:6px;font-size:12px;padding:0 12px}
 /* "Precio al día" no aporta: se nota por la ausencia de aviso y ocupaba una línea. */
 .bander-precio.lista{display:none}
@@ -769,6 +768,15 @@ body.con-hoja{overflow:hidden}
   .prod-editar{padding:8px;font-size:0;gap:0}
   .prod-editar svg{width:17px;height:17px}
 }
+
+/* ── Agregar varios al catálogo de una ── */
+.barra-altas{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:0 0 12px;
+  padding:11px 14px;border-radius:12px;background:#f1f0f8;border:1px solid #cfcede;color:#544f72}
+.ba-txt{font-size:14px}
+.ba-txt b{font-size:16px;font-weight:800}
+.ba-cta{margin-left:auto;background:#5b5680;border-color:#5b5680}
+.ba-cta:hover{background:#4b4770}
+@media(max-width:430px){ .ba-cta{margin-left:0;width:100%;text-align:center} }
 
 /* ── Revisar varios precios de una ── */
 .barra-rev{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:0 0 12px;
@@ -1104,6 +1112,12 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
   <div class="barra-rev" id="barraRev" hidden>
     <label class="rev-todos"><input type="checkbox" id="revTodos"> <span id="revCuenta">Marcar todos</span></label>
     <button type="button" class="btn primario rev-ok" id="revAprobar" disabled>Dar por vistos los marcados</button>
+  </div>
+
+  <!-- ── AGREGAR VARIOS DE UNA, cuando estás viendo los que faltan ── -->
+  <div class="barra-altas" id="barraAltas" hidden>
+    <span class="ba-txt"><b id="baCuenta"></b> fuera del catálogo</span>
+    <button type="button" class="btn primario ba-cta" onclick="abrirAltas()">Elegir varios y agregarlos</button>
   </div>
 
   <!-- ── TÍTULO DEL LISTADO ── -->
@@ -1637,7 +1651,7 @@ async function arrancar(){
         cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
         mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
         nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:false, renombre:renom[id] || null,
-        malRubro:!!malRubro[id],
+        malRubro:!!malRubro[id], enLista:true,
         oculto:f.oculto === true
       });
     });
@@ -2354,6 +2368,7 @@ function pintarKpis(){
       '<span>' + k[2] + '</span><b>' + k[1] + '</b></button>').join('');
   try { pintarAvisoPend(); } catch(e) {}
   try { pintarBarraRev(); } catch(e) {}
+  try { pintarBarraAltas(); } catch(e) {}
   try { ajustarPorTienda(); } catch(e) {}
 }
 
@@ -2542,14 +2557,17 @@ function pintar(){
     var puesta = enCat || esperaAlta;
     // Un interruptor chico: verde = el cliente lo ve, ámbar = está fuera, azul =
     // entra cuando E-Pyme mande la lista. El texto lo dice la etiqueta de abajo.
+    // Un tilde verde si el cliente lo ve, una X roja si no. Nada más.
+    var tic = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.5 5.5L20 6.5"></path></svg>';
+    var cruz = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>';
+    var candado = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>';
     var bandCat = traba
-      ? '<span class="sw sw-traba" title="' + esc(traba) + '" aria-label="' + esc(traba) + '">' +
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">' +
-          '<rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>'
-      : '<button type="button" class="sw' + (puesta ? ' sw-on' : '') + (esperaAlta ? ' sw-alta' : '') +
+      ? '<span class="sw sw-traba" title="' + esc(traba) + '" aria-label="' + esc(traba) + '">' + candado + '</span>'
+      : '<button type="button" class="sw' + (puesta ? ' sw-si' : ' sw-no') +
           '" data-cat="' + esc(p.id) + '" role="switch" aria-checked="' + (puesta ? 'true' : 'false') + '"' +
-          ' title="' + (esperaAlta ? 'Aceptado: entra cuando E-Pyme mande la lista' : puesta ? 'Se ve en la tienda. Tocá para sacarlo' : 'No se ve en la tienda. Tocá para ponerlo') + '"' +
-          ' aria-label="' + (puesta ? 'Sacar de la tienda' : 'Poner en la tienda') + '"><i></i></button>';
+          ' title="' + (puesta ? 'Se ve en la tienda. Tocá para sacarlo' : 'No se ve en la tienda. Tocá para ponerlo') + '"' +
+          ' aria-label="' + (puesta ? 'Sacar de la tienda' : 'Poner en la tienda') + '">' +
+          (puesta ? tic : cruz) + '</button>';
 
     // ── BANDERILLA DE PRECIO (dentro de la mini tarjeta) ──
     var bandPrecio = p.cambioPrecio
@@ -3418,6 +3436,18 @@ async function darPorVistas(){
 })();
 
 /* El título del listado, con la cuenta de lo que se está viendo. */
+/* La barra de altas sale cuando estás mirando los que faltan agregar. */
+function pintarBarraAltas(){
+  var b=document.getElementById('barraAltas');
+  if(!b)return;
+  var faltan=PRODUCTOS.filter(function(p){
+    return ((p.nuevo && !p.altaOk) || p.oculto === true) && !p.sinPrecio && !p.malRubro;
+  }).length;
+  b.hidden = !(faltan && (FILTRO==='fuera' || FILTRO==='nuevos'));
+  var c=document.getElementById('baCuenta');
+  if(c)c.textContent = faltan;
+}
+
 function pintarTituloLista(n, total){
   var t=document.getElementById('listaTitulo');
   if(t)t.textContent = 'Productos (' + n + ')';
@@ -3792,6 +3822,52 @@ async function anotarFotoPropia(id, ext){
 
 
 /* Volver a poner un producto en el catálogo desde la misma tarjeta. */
+/* ── PUBLICAR DE VERDAD UN PRODUCTO NUEVO ─────────────────────────────────────
+   Un artículo recién creado en E-Pyme tiene precio en pendientes.json pero
+   todavía no está en precios-min.csv, que es la lista que lee la tienda. Por eso
+   "agregarlo al catálogo" no alcanzaba: seguía sin aparecer y volvía a la lista
+   de Fuera del catálogo. Acá se escribe en la lista, con su precio y su rubro. */
+async function meterEnLaLista(prods){
+  var faltan = prods.filter(function(p){ return p.nuevo && !p.enLista && p.p1 > 0 && p.rubro; });
+  if (!faltan.length) return 0;
+  var csv = await bajar(archivoPrecios());
+  var filas = leerCsv(csv);
+  if (!filas.length) throw new Error('no pude leer la lista de precios');
+  var cab = filas[0];
+  var iN = colDe(cab, ['nombre']), i1 = colDe(cab, ['bt.lista 1','lista 1']),
+      i2 = colDe(cab, ['bt.lista 2','lista 2']), iR = colDe(cab, ['rubro']),
+      iA = colDe(cab, ['articulo']);
+  if (iN < 0 || i1 < 0 || iA < 0) throw new Error('la lista no tiene las columnas esperadas');
+  var yaEstan = {};
+  filas.slice(1).forEach(function(c){ var k = limpiaId(c[iA]); if (k) yaEstan[k] = true; });
+  var sumadas = 0;
+  faltan.forEach(function(p){
+    if (yaEstan[p.id]) { p.enLista = true; return; }
+    var fila = new Array(cab.length).fill('');
+    fila[iN] = p.nombreCsv || p.nombre;
+    fila[i1] = p.p1;
+    // Sin precio de +$80.000 propio se usa el mismo: no se inventa un descuento.
+    if (i2 >= 0) fila[i2] = p.p2 || p.p1;
+    if (iR >= 0) fila[iR] = p.rubro;
+    fila[iA] = p.id;
+    filas.push(fila);
+    sumadas++;
+    p.enLista = true; p.sinPrecio = false;
+  });
+  if (!sumadas) return 0;
+  // Se reescribe con el mismo formato que genera E-Pyme.
+  var texto = filas.map(function(f){
+    return f.map(function(c){
+      var t = String(c == null ? '' : c);
+      return /[",\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t;
+    }).join(',');
+  }).join('\n') + '\n';
+  await guardarEnRepo(archivoPrecios(), aB64(texto),
+    'Al catálogo desde el panel (' + sumadas + ' producto' + (sumadas === 1 ? '' : 's') + ')',
+    0, repoActivo());
+  return sumadas;
+}
+
 async function volverAlCatalogo(id){
   var p = PRODUCTOS.find(function(x){ return x.id === id; });
   if (!p) return;
@@ -3811,8 +3887,14 @@ async function volverAlCatalogo(id){
       if (entra) aprobarPrecio(p);
     }
     FICHAS_FB[id] = Object.assign({}, FICHAS_FB[id] || {}, ficha);
+    // Si es nuevo y entra, primero va a la lista de precios: sin eso la tienda
+    // no lo puede mostrar y volvía a salir en Fuera del catálogo.
+    var enLista = 0;
+    if (entra) { try { enLista = await meterEnLaLista([p]); } catch(e) { avisar('mal','No pude ponerlo en la lista de precios', e.message); } }
     await guardarFichasEnRepo((entra ? 'Entra al catálogo: ' : 'Sale del catálogo: ') + (p.nombre || id));
     pintarKpis(); pintar();
+    avisar('ok', entra ? 'Ya está en la tienda' : 'Sacado de la tienda',
+      (p.nombre || id) + (enLista ? ' — se agregó a la lista de precios' : ''));
   } catch (e) {
     p.oculto = estaba.oculto; p.altaOk = estaba.altaOk;
     alert('No pude guardarlo: ' + e.message);
@@ -3921,6 +4003,8 @@ async function altAgregar(){
       if (p.nuevo) { p.altaOk = true; ficha.altaOk = true; aprobarPrecio(p); }
       FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, ficha);
     });
+    var enLista = 0;
+    try { enLista = await meterEnLaLista(marcados); } catch(e) { avisar('mal','No pude ponerlos en la lista de precios', e.message); }
     await guardarFichasEnRepo('Al catálogo: ' + marcados.length + ' producto' + (marcados.length === 1 ? '' : 's'));
     var nombres = marcados.slice(0,2).map(function(p){ return p.nombre; }).join(', ');
     avisar('ok', marcados.length + (marcados.length === 1 ? ' producto agregado' : ' productos agregados') + ' al catálogo',
