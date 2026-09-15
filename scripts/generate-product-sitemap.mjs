@@ -1,9 +1,9 @@
 import { readFile, writeFile } from 'node:fs/promises';
 
-const BASE_URL = 'https://paladear.github.io/paladeartienda/';
-const CALLBACK = 'recibirPrecios';
-const PRICES_URL = 'https://script.google.com/macros/s/AKfycbwpRm16QpdpCNTtRwtmoZsNPesqA3Vfli2LEubvunNiV0lFTH-rKPLNaIpsm531F3c9/exec?callback=' + CALLBACK;
-const INFO_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT2RlZaSdlV-aaVGUw7YI9MVE1MHjopNhbjTOfWBZwPNo_clhJUao2KNcNowEzsdBGpd2Bh5-2rt1aH/pub?gid=1603230501&single=true&output=csv';
+const BASE_URL = 'https://paladear.github.io/paladeartienda-test/';
+// Los datos ya no se bajan de Google: salen de los archivos del propio repo,
+// que son los que publica el panel. Este script SOLO regenera los sitemaps;
+// no toca precios-min.csv ni info-min.csv.
 
 const VALID_RUBROS = new Set([
   'FRUTOS SECOS', 'DESHIDRATADOS', 'SEMILLAS', 'ESPECIAS',
@@ -80,49 +80,14 @@ function unescapeXml(value) {
     .replace(/&quot;/g, '"').replace(/&apos;/g, "'");
 }
 
-async function fetchWithRetry(url, attempts = 3) {
-  let lastError;
-  for (let attempt = 1; attempt <= attempts; attempt++) {
-    try {
-      const response = await fetch(url, {
-        redirect: 'follow',
-        headers: { 'User-Agent': 'PaladearSitemap/1.0' },
-        signal: AbortSignal.timeout(30000)
-      });
-      if (!response.ok) throw new Error('HTTP ' + response.status);
-      return await response.text();
-    } catch (error) {
-      lastError = error;
-      if (attempt < attempts) await new Promise(resolve => setTimeout(resolve, attempt * 2000));
-    }
-  }
-  throw new Error('No se pudo descargar el catálogo: ' + lastError.message);
-}
-
-function unwrapJsonp(payload) {
-  const start = payload.indexOf(CALLBACK + '(');
-  const end = payload.lastIndexOf(')');
-  if (start < 0 || end <= start) throw new Error('La respuesta del catálogo no tiene el formato JSONP esperado');
-  const csv = JSON.parse(payload.slice(start + CALLBACK.length + 1, end));
-  if (typeof csv !== 'string' || !csv.includes('Nombre') || !csv.includes('Artículo')) {
-    throw new Error('El catálogo descargado no contiene las columnas esperadas');
-  }
-  return csv;
-}
-
-function buildProducts(pricesCsv, infoCsv) {
-  const infoRows = parseCsv(infoCsv);
-  if (!infoRows.length || normalize(infoRows[0][0]) !== 'NOMBRE') {
-    throw new Error('info-min.csv no tiene un encabezado válido');
-  }
-
+function buildProducts(pricesCsv, fichas) {
+  // Los nombres publicados salen de las fichas del panel.
   const infoById = new Map();
   const infoByName = new Map();
-  for (const cols of infoRows.slice(1)) {
-    const name = String(cols[0] || '').trim();
-    const id = cleanId(cols[6]);
+  for (const [id, ficha] of Object.entries(fichas || {})) {
+    const name = String((ficha && ficha.nombre) || '').trim();
     if (!name) continue;
-    if (id) infoById.set(id, name);
+    if (id) infoById.set(cleanId(id), name);
     infoByName.set(normalize(name), name);
   }
 
@@ -168,19 +133,16 @@ function locFromEntry(entry) {
   return match ? unescapeXml(match[1].trim()) : '';
 }
 
-// TESTER: los precios salen de E-Pyme. La PC del negocio genera precios-min.csv
-// y lo commitea a este repo, asi que aca se lee del disco en vez de pedirlo al
-// Apps Script. La info (descripciones, imagenes, cantidades) sigue viniendo del Sheet,
-// porque esos datos no existen en E-Pyme.
-const [pricesLocal, infoResponse, currentSitemap] = await Promise.all([
+const [pricesRaw, panelRaw, currentSitemap] = await Promise.all([
   readFile('precios-min.csv', 'utf8'),
-  fetchWithRetry(INFO_URL + '&t=' + Date.now()),
+  readFile('catalogo-panel.json', 'utf8'),
   readFile('sitemap.xml', 'utf8')
 ]);
 
-const pricesCsv = pricesLocal.replace(/\r\n?/g, '\n');
-const infoCsv = infoResponse.replace(/\r\n?/g, '\n').replace(/[ \t]+$/gm, '');
-const { products, skippedWithoutId } = buildProducts(pricesCsv, infoCsv);
+const pricesCsv = pricesRaw.replace(/\r\n?/g, '\n');
+const fichas = (JSON.parse(panelRaw) || {}).fichas || {};
+if (!Object.keys(fichas).length) throw new Error('catalogo-panel.json no trae fichas');
+const { products, skippedWithoutId } = buildProducts(pricesCsv, fichas);
 const staticEntries = currentStaticEntries(currentSitemap);
 const productEntries = products.map(product =>
   '  <url>\n    <loc>' + escapeXml(product.url) + '</loc>\n  </url>'
@@ -200,9 +162,8 @@ const textUrls = [
   ...products.map(product => product.url)
 ];
 
+// Solo los sitemaps: los precios y las fichas los maneja el panel.
 await Promise.all([
-  // precios-min.csv NO se reescribe: es la entrada que manda E-Pyme.
-  writeFile('info-min.csv', infoCsv.endsWith('\n') ? infoCsv : infoCsv + '\n'),
   writeFile('sitemap.xml', sitemap),
   writeFile('sitemap.txt', textUrls.join('\n') + '\n')
 ]);

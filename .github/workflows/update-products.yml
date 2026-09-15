@@ -1,4 +1,6 @@
-name: Actualizar snapshot de productos
+# Solo regenera los sitemaps para Google, leyendo los archivos del propio repo.
+# Los precios y las fichas los maneja el panel: este workflow NO los toca.
+name: Actualizar sitemap de productos
 
 on:
   schedule:
@@ -20,30 +22,17 @@ jobs:
         with:
           node-version: 20
 
-      - name: Descargar CSVs mayoristas del Google Sheet
-        run: |
-          BASE="https://docs.google.com/spreadsheets/d/e/2PACX-1vT2RlZaSdlV-aaVGUw7YI9MVE1MHjopNhbjTOfWBZwPNo_clhJUao2KNcNowEzsdBGpd2Bh5-2rt1aH/pub"
-
-          echo "📥 Descargando precios mayorista..."
-          curl -fsSL --retry 3 --retry-delay 2 "${BASE}?gid=545595949&single=true&output=csv" -o precios-may.csv
-
-          echo "📥 Descargando info mayorista..."
-          curl -fsSL --retry 3 --retry-delay 2 "${BASE}?gid=896338689&single=true&output=csv" -o info-may.csv
-
-          echo "✅ CSVs descargados:"
-          wc -l precios-may.csv info-may.csv
-
-      - name: Actualizar precios minoristas y sitemap de productos
+      - name: Regenerar el sitemap de productos
         run: node scripts/generate-product-sitemap.mjs
 
       - name: Commit si hubo cambios
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add precios-min.csv info-min.csv precios-may.csv info-may.csv sitemap.xml sitemap.txt
+          git add sitemap.xml sitemap.txt
           if git diff --staged --quiet; then
-            echo "Sin cambios en los datos, nada que commitear."
+            echo "El sitemap ya estaba al día, nada que commitear."
           else
-            git commit -m "📦 Catálogo y sitemap de productos actualizados"
+            git commit -m "🗺️ Sitemap de productos actualizado"
             git push
           fi
