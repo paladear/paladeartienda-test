@@ -2345,11 +2345,8 @@ function excelLeer(file){
       var destino = nombreTienda(), archivo = archivoPrecios();
       // La tienda mayorista todavía saca sus precios del Google Sheet, no de este
       // archivo. Decirlo acá evita creer que el sitio ya quedó actualizado.
-      var nota = (TIENDA === 'may')
-        ? '<span>Se reescribe ' + esc(archivo) + ', que es lo que ves <b>en este panel</b>. ' +
-          'La web de la distribuidora sigue tomando sus precios del Google Sheet: para que los vea el cliente, ' +
-          'subí el Excel al Sheet como siempre.</span>'
-        : '<span>Se reescribe ' + esc(archivo) + ', que es de donde la tienda saca los precios.</span>';
+      var nota = '<span>Se reescribe ' + esc(archivo) + ' en <b>' + esc(repoActivo().split('/').pop()) +
+                 '</b>, que es de donde esa tienda saca los precios.</span>';
       var rev = excelRevisar(datos);
       var resumen = '<div class="excel-cuentas">' +
         '<span><b>' + rev.total + '</b> en el Excel</span>' +
@@ -2462,12 +2459,14 @@ async function excelPublicar(){
       });
     }
     csv = lineas.join('\n') + '\n';
+    // Cada tienda lee su lista desde su propio repo: la mayorista en el de la
+    // distribuidora, la minorista en el suyo.
     await guardarEnRepo(archivoPrecios(), aB64(csv),
-      'Precios de ' + nombreTienda() + ' actualizados desde el Excel (' + EXCEL_FILAS.length + ' productos)');
+      'Precios de ' + nombreTienda() + ' actualizados desde el Excel (' + EXCEL_FILAS.length + ' productos)',
+      0, repoActivo());
     caja.innerHTML = '<div class="excel-caja ok"><b>Listo.</b> Se publicaron ' + EXCEL_FILAS.length +
       ' precios en <b>' + esc(nombreTienda()) + '</b>. ' +
-      (esMay ? 'Ya los ves acá en el panel; la web de la distribuidora sigue leyendo el Google Sheet.'
-             : 'La tienda los toma en unos minutos.') + '</div>';
+      'La tienda los toma en unos minutos.</div>';
     EXCEL_FILAS = null;
     var i=$('fileExcel'); if(i) i.value='';
   } catch (err) {
@@ -2645,7 +2644,13 @@ function colDe(cab, nombres){
 
 function armarProductosMay(){
   var porId = {};
-  // Info Mayorista: Articulo, Nombre, Bulto, Sabores, Imagen, Estado, Rubro
+  // Las fichas guardadas mandan: son las que muestra la tienda.
+  Object.keys(FICHAS_FB || {}).forEach(function(id){
+    var f = FICHAS_FB[id];
+    porId[id] = { id: id, nombreCsv: f.nombre || '', cantidades: f.bulto || '',
+                  sabores: f.sabores || '', rubro: f.rubro || '', p1: 0 };
+  });
+  // Y si todavía quedara el CSV viejo, completa lo que falte.
   if (CSV_MAY_INFO) {
     var fi = leerCsv(CSV_MAY_INFO);
     if (fi.length > 1) {
@@ -2656,14 +2661,12 @@ function armarProductosMay(){
       fi.slice(1).forEach(function(c){
         if (iA < 0) return;
         var id = limpiaId(c[iA]); if (!id) return;
-        porId[id] = {
-          id: id,
-          nombreCsv: iN >= 0 ? String(c[iN] || '').trim() : '',
-          cantidades: iB >= 0 ? String(c[iB] || '').trim() : '',
-          sabores: iS >= 0 ? String(c[iS] || '').trim() : '',
-          rubro: iR >= 0 ? String(c[iR] || '').trim() : '',
-          p1: 0
-        };
+        var b = porId[id] || { id: id, nombreCsv: '', cantidades: '', sabores: '', rubro: '', p1: 0 };
+        if (!b.nombreCsv && iN >= 0) b.nombreCsv = String(c[iN] || '').trim();
+        if (!b.cantidades && iB >= 0) b.cantidades = String(c[iB] || '').trim();
+        if (!b.sabores && iS >= 0) b.sabores = String(c[iS] || '').trim();
+        if (!b.rubro && iR >= 0) b.rubro = String(c[iR] || '').trim();
+        porId[id] = b;
       });
     }
   }
@@ -2712,6 +2715,12 @@ function armarProductosMay(){
 async function cargarFichasMay(){
   try {
     var base = SITIO_MAY;
+    // Los precios de la distribuidora viven en su propio repo, que es de donde
+    // los lee su tienda. Así el panel muestra exactamente lo mismo que el cliente.
+    try {
+      var rp = await fetch(base + 'precios-may.csv?t=' + Date.now(), {cache:'no-store'});
+      if (rp.ok) CSV_MAY_PRECIOS = await rp.text();
+    } catch(e) {}
     var r = await fetch(base + 'catalogo-panel.json?t=' + Date.now(), {cache:'no-store'});
     var j = r.ok ? await r.json() : {};
     var fotos = j.fotos || {};
