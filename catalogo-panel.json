@@ -6040,10 +6040,11 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1x5L-ScWPsjQ9KhPUz4s9l1E7DE5KzFlL/view",
    "oferta": 0,
-   "origen": "sheet",
+   "origen": "panel",
    "actualizado": "2026-09-13T12:51:39.788Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "oculto": true
   },
   "2378": {
    "nombre": "ACEITE DE SESAMO X 250 ML - NATRUSEM",
@@ -15424,5 +15425,5 @@
   ]
  },
  "novedadesVistas": "2026-09-15T15:13:31.182Z",
- "actualizado": "2026-09-15T15:13:31.242Z"
+ "actualizado": "2026-09-15T15:13:53.734Z"
 }
