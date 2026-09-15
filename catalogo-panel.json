@@ -7920,7 +7920,8 @@
    "imagen": "",
    "oculto": false,
    "fotoPropia": true,
-   "fondo": "#fefefe"
+   "fondo": "#fefefe",
+   "altaOk": true
   }
  },
  "fotos": {
@@ -15425,5 +15426,5 @@
   ]
  },
  "novedadesVistas": "2026-09-15T15:13:31.182Z",
- "actualizado": "2026-09-15T15:13:53.734Z"
+ "actualizado": "2026-09-15T15:14:48.248Z"
 }
