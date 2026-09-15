@@ -7902,10 +7902,10 @@
    "granola": false,
    "blend": false,
    "imagen": "",
-   "oculto": false,
+   "oculto": true,
    "fotoPropia": true,
    "fondo": "#fefefe",
-   "altaOk": true
+   "altaOk": false
   },
   "5053": {
    "nombre": "BALSAMO LABIAL",
@@ -15429,5 +15429,6 @@
   ]
  },
  "novedadesVistas": "2026-09-15T15:13:31.182Z",
- "actualizado": "2026-09-15T15:19:08.415Z"
+ "marcas": [],
+ "actualizado": "2026-09-15T16:07:46.559Z"
 }
