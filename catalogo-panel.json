@@ -5287,16 +5287,26 @@
    "mix": true
   },
   "2265": {
-   "nombre": "ACEITE DE COCO NEUTRO X 200GR - ENTRENUTS",
+   "nombre": "ACEITE DE COCO NEUTRO",
    "cantidades": "1 UNIDAD",
    "desc": "Aceite de coco de sabor y aroma suaves, práctico para cocinar, hornear o preparar recetas en las que no se busca gusto a coco. Su perfil neutro y su textura lo vuelven muy versátil tanto en recetas dulces como saladas.",
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1DT-EJI0FphtfZMGLOEMrSeYMNeaS2Dbp/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.787Z",
+   "origen": "panel",
+   "actualizado": "2026-09-15T16:10:19.090Z",
    "por": "panel",
-   "rubro": "ACEITES Y VINAGRES"
+   "rubro": "ACEITES Y VINAGRES",
+   "marca": "ENTRENUTS",
+   "envasado": true,
+   "envase": "200GR",
+   "saboresOcultos": [],
+   "mix": false,
+   "granola": false,
+   "blend": false,
+   "oculto": false,
+   "fotoPropia": true,
+   "fondo": "#ffffff"
   },
   "2266": {
    "nombre": "ACEITE DE COCO VIRGEN X 360GR - ENTRENUTS",
@@ -15430,5 +15440,5 @@
  },
  "novedadesVistas": "2026-09-15T15:13:31.182Z",
  "marcas": [],
- "actualizado": "2026-09-15T16:07:46.559Z"
+ "actualizado": "2026-09-15T16:10:19.429Z"
 }
