@@ -351,6 +351,16 @@ body.es-mayorista .tienda-sel button.on{background:#2f6d99;color:#fff}
   box-shadow:0 0 0 3px rgba(47,109,153,.18)}
 .ct-archivo{margin-left:auto;font-size:12px;font-weight:700;letter-spacing:.02em;
   padding:3px 9px;border-radius:999px;background:rgba(29,84,128,.10)}
+.ct-vivo{font-size:11px;font-weight:800;letter-spacing:.09em;padding:3px 9px;border-radius:999px;
+  background:rgba(29,84,128,.12)}
+/* En la página real el cartel es rojo: lo que se guarda acá lo ve el cliente. */
+body.es-vivo .cartel-tienda{background:#fdeceb;border-color:#e3a49f;color:#8d2620}
+body.es-vivo .ct-punto{background:#c0392b;box-shadow:0 0 0 3px rgba(192,57,43,.20)}
+body.es-vivo .ct-vivo{background:#c0392b;color:#fff}
+body.es-vivo .ct-archivo{background:rgba(141,38,32,.12)}
+body.es-vivo.es-mayorista .cartel-tienda{background:#fdeee0;border-color:#dba765;color:#8a4a10}
+body.es-vivo.es-mayorista .ct-punto{background:#c0392b;box-shadow:0 0 0 3px rgba(192,57,43,.18)}
+body.es-vivo .env{background:#c0392b;border-color:#a32f22;color:#fff}
 body.es-mayorista .cartel-tienda{background:#fdf3e3;border-color:#e2c48e;color:#7d5410}
 body.es-mayorista .ct-punto{background:#c98a1e;box-shadow:0 0 0 3px rgba(201,138,30,.20)}
 body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
@@ -380,6 +390,27 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
 .btn.peligro{background:#b4392f;border-color:#b4392f}
 .btn.peligro:hover{background:#9c3028}
 .excel-caja.ojo{border-color:#e6b98a;background:#fffaf3}
+
+/* Arrastrar el archivo sobre la ventana (en la compu) y soltarlo acá. */
+.zona-suelta{position:fixed;inset:14px;z-index:9000;border-radius:18px;
+  border:3px dashed var(--marca);background:color-mix(in srgb,var(--papel) 94%,transparent);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  font-size:20px;font-weight:700;color:var(--marca);pointer-events:none;backdrop-filter:blur(2px)}
+.zona-suelta span{font-size:14px;font-weight:600;opacity:.75}
+
+/* La ayuda para subir desde el teléfono. */
+.ayuda-iphone{margin:12px 0 0;padding:12px 15px;border-radius:11px;background:var(--papel-2);
+  border:1px solid var(--linea);font-size:13.5px;line-height:1.6;color:var(--tinta)}
+.ayuda-iphone b{display:block;margin-bottom:5px}
+.ayuda-iphone ol{margin:4px 0 0;padding-left:20px}
+.ayuda-iphone li{margin:3px 0}
+.ayuda-iphone em{font-style:normal;font-weight:700;background:rgba(47,109,153,.12);
+  padding:1px 6px;border-radius:5px}
+.ayuda-iphone summary{cursor:pointer;list-style:none;font-weight:700}
+.ayuda-iphone summary::-webkit-details-marker{display:none}
+.ayuda-iphone summary b{display:inline}
+.ayuda-iphone summary::before{content:'▸ ';color:var(--marca)}
+.ayuda-iphone[open] summary::before{content:'▾ '}
 body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
 .excel-caja{margin-top:13px;padding:14px 16px;border:1px solid var(--linea);border-radius:13px;
   background:var(--papel);font-size:13.5px;line-height:1.6;color:var(--texto)}
@@ -733,14 +764,16 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
   <div class="cartel-tienda" id="cartelTienda" role="status">
     <span class="ct-punto"></span>
     <span>Estás trabajando en <b id="ctNombre">la Tienda minorista</b></span>
-    <span class="ct-archivo" id="ctArchivo">paladeartienda-test</span>
+    <span class="ct-vivo" id="ctVivo"></span>
+    <span class="ct-archivo" id="ctArchivo"></span>
   </div>
   <div class="tarjetas" id="kpis"></div>
   <div class="barra acciones">
     <button class="btn primario" id="btnVistos" onclick="marcarPreciosRevisados()" title="Aprueba de una vez todos los precios que esperan tu OK" hidden>Dar el OK a todos los precios</button>
     <button class="btn primario" id="btnPublicar" title="Publica en la tienda los precios que tiene E-Pyme ahora">Publicar precios en la tienda</button>
-    <label class="btn primario" for="fileExcel" title="Por si falla el pase automático: subí el mismo Excel que cargás al Sheet">Subir Excel de precios</label>
+    <label class="btn primario" for="fileExcel" title="Por si falla el pase automático: subí la lista de precios">Subir lista de precios</label>
     <input type="file" id="fileExcel" class="foto-input">
+    <button class="btn gris" id="btnPegar" title="Si copiaste el archivo o el texto de la lista, pegalo acá">Pegar lista</button>
     <button class="btn gris" id="btnSync">Traer del Sheet</button>
     <button class="btn gris" id="btnDesc">Descuento por rubro</button>
     <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
@@ -752,6 +785,21 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
   </div>
   <div id="estadoPublicar"></div>
   <div id="excelCaja"></div>
+  <details class="ayuda-iphone" id="ayudaSubir">
+    <summary><b>¿No aparece el archivo en el iPhone?</b></summary>
+    <ol>
+      <li>En WhatsApp, abrí el archivo y tocá <em>Compartir</em> &rarr; <em>Guardar en Archivos</em>.
+        Elegí siempre la <b>misma carpeta</b> (por ejemplo <em>iCloud Drive &rsaquo; Descargas</em>):
+        el iPhone abre después en la última que usaste.</li>
+      <li>Acá tocá <em>Subir lista de precios</em> &rarr; <em>Explorar</em> (abajo a la derecha) y entrá
+        a esa carpeta. En <em>Recientes</em> muchas veces no figura.</li>
+      <li>Atajo: en Archivos mantené apretado el archivo &rarr; <em>Copiar</em>, volvé acá y tocá
+        <em>Pegar lista</em>.</li>
+    </ol>
+  </details>
+  <div class="zona-suelta" id="zonaSuelta" hidden>
+    <b>Soltá acá la lista de precios</b><span>.xlsx, .xls o .csv</span>
+  </div>
   <div id="ayudaFiltro"></div>
   <div id="salida" class="cargando">Cargando catálogo...</div>
   <div class="nota">
@@ -765,17 +813,27 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
 
 <script>
 // ── ACCESO ────────────────────────────────────────────────────────────────────
-// Todo vive en el repo de la tester: las fotos como archivos y las fichas en un JSON.
+// Las fotos viven como archivos en el repo y las fichas en un JSON.
 // La llave para guardar es una clave de GitHub, guardada sólo en este navegador.
-const REPO = 'paladear/paladeartienda-test';
+
+/* ── CONTRA QUÉ SITIO TRABAJA ESTE PANEL ──────────────────────────────────────
+   El panel vive adentro del sitio que administra. Si la dirección tiene "-test"
+   trabaja contra los testers; si no, contra las páginas oficiales. Se detecta
+   solo a propósito: antes estaba escrito a mano y, al copiar el archivo del
+   tester a la oficial, quedó guardando en el tester sin que se notara. */
+const ES_TESTER = /-test(\/|$)/.test(location.pathname) ||
+                  location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+const _SUF = ES_TESTER ? '-test' : '';
+const REPO = 'paladear/paladeartienda' + _SUF;
 const ARCHIVO_FICHAS = 'catalogo-panel.json';
 const CARPETA_FOTOS = 'fotos';
 
 /* ── LAS DOS TIENDAS ──────────────────────────────────────────────────────────
    El panel maneja la tienda minorista y la distribuidora. Cada una tiene su
    propio repo, sus fichas y sus fotos; acá se guarda cuál está activa.
-   OJO: la distribuidora apunta a la TESTER, no a la oficial. */
-const REPO_MAY = 'paladear/paladeardistribuidora-test';
+   Las dos siguen el mismo criterio: tester con tester, oficial con oficial. */
+const REPO_MAY = 'paladear/paladeardistribuidora' + _SUF;
+const SITIO_MAY = 'https://paladear.github.io/paladeardistribuidora' + _SUF + '/';
 var TIENDA = 'min';
 var CSV_MAY_INFO = '', CSV_MAY_PRECIOS = '';
 var GUARDADO_MIN = null, GUARDADO_MAY = null;   // fichas/fotos/productos de cada una
@@ -884,7 +942,7 @@ let FOTOS_FB = {};   // { id: {fondo,w,h,peso,v} } — la imagen es fotos/<id>.w
    minuto). Mientras tanto se muestra la copia que quedó en memoria, así no se ve
    rota. */
 const FOTOS_RECIEN = {};
-const baseSitio = () => (TIENDA === 'may' ? 'https://paladear.github.io/paladeardistribuidora-test/' : '');
+const baseSitio = () => (TIENDA === 'may' ? SITIO_MAY : '');
 const urlFoto = id => FOTOS_RECIEN[id] ||
   (baseSitio() + CARPETA_FOTOS + '/' + id + '.' + ((FOTOS_FB[id] && FOTOS_FB[id].ext) || 'webp')
    + '?v=' + ((FOTOS_FB[id] && FOTOS_FB[id].v) || 1));
@@ -1241,7 +1299,8 @@ async function arrancar(){
     marcarCambiosDePrecio(PRODUCTOS);
     avisoImportacion();
     // Queda guardado el estado de la tienda minorista para poder volver sin recargar.
-    GUARDADO_MIN = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS };
+    GUARDADO_MIN = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
+                     vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA };
     pintarKpis(); pintar();
   } catch (e) {
     document.getElementById('salida').className = 'vacio';
@@ -2419,13 +2478,81 @@ document.addEventListener('change', function(ev){
   }
 });
 
+/* ── OTRAS FORMAS DE TRAER LA LISTA ───────────────────────────────────────────
+   En el iPhone, el archivo que guardaste desde WhatsApp no siempre aparece en
+   "Recientes" y hay que ir a buscarlo a la carpeta. Estas dos alternativas
+   evitan ese paseo: pegar (funciona con el archivo copiado o con el texto de
+   la lista) y, en la compu, arrastrar y soltar. */
+function excelDesdeTexto(txt, nombre){
+  var f = new File([txt], nombre || 'lista-pegada.csv', {type:'text/csv'});
+  excelLeer(f);
+}
+
+async function excelPegar(){
+  var caja = $('excelCaja');
+  // 1) ¿Copiaste el archivo? El portapapeles lo entrega como item.
+  try {
+    if (navigator.clipboard && navigator.clipboard.read) {
+      var items = await navigator.clipboard.read();
+      for (var i = 0; i < items.length; i++) {
+        var tipos = items[i].types || [];
+        for (var j = 0; j < tipos.length; j++) {
+          if (/sheet|excel|csv|octet-stream/i.test(tipos[j])) {
+            var blob = await items[i].getType(tipos[j]);
+            var ext = /csv/i.test(tipos[j]) ? 'csv' : 'xlsx';
+            return excelLeer(new File([blob], 'lista-pegada.' + ext, {type:tipos[j]}));
+          }
+        }
+      }
+    }
+  } catch(e) {}
+  // 2) Si no, el texto: sirve pegar las filas de la lista tal cual.
+  try {
+    if (navigator.clipboard && navigator.clipboard.readText) {
+      var t = await navigator.clipboard.readText();
+      if (t && t.split('\n').length > 2) return excelDesdeTexto(t);
+    }
+  } catch(e) {}
+  if (caja) caja.innerHTML = '<div class="excel-caja mal">No encontré nada para pegar. ' +
+    'Copiá el archivo (o el texto de la lista) y volvé a tocar <b>Pegar lista</b>.</div>';
+}
+var _bp = document.getElementById('btnPegar');
+if (_bp) _bp.addEventListener('click', excelPegar);
+
+// Pegar con el teclado, sin pasar por el botón.
+document.addEventListener('paste', function(ev){
+  var d = ev.clipboardData; if (!d) return;
+  if (d.files && d.files.length) { ev.preventDefault(); return excelLeer(d.files[0]); }
+  var t = d.getData('text/plain');
+  if (t && t.split('\n').length > 2 && /articulo|artículo|precio/i.test(t.split('\n')[0])) {
+    ev.preventDefault(); excelDesdeTexto(t);
+  }
+});
+
+// Arrastrar y soltar el archivo (en la computadora).
+(function(){
+  var z = document.getElementById('zonaSuelta'), n = 0;
+  if (!z) return;
+  document.addEventListener('dragenter', function(e){
+    if (!e.dataTransfer || (e.dataTransfer.types || []).indexOf('Files') < 0) return;
+    n++; z.hidden = false;
+  });
+  document.addEventListener('dragover', function(e){ if (!z.hidden) e.preventDefault(); });
+  document.addEventListener('dragleave', function(){ if (--n <= 0) { n = 0; z.hidden = true; } });
+  document.addEventListener('drop', function(e){
+    if (!e.dataTransfer || !e.dataTransfer.files || !e.dataTransfer.files.length) return;
+    e.preventDefault(); n = 0; z.hidden = true;
+    excelLeer(e.dataTransfer.files[0]);
+  });
+})();
+
 
 /* ── COMPARTIR LA FOTO CON LA DISTRIBUIDORA ───────────────────────────────────
    Casi todos los productos usan el mismo número de artículo en las dos tiendas,
    así que la misma foto sirve. Este botón copia la foto del producto abierto al
    repo de la distribuidora, con el mismo nombre de archivo.
    OJO: apunta a la TESTER de la distribuidora, no a la oficial. */
-const REPO_MAY_FOTOS = 'paladear/paladeardistribuidora-test';
+const REPO_MAY_FOTOS = REPO_MAY;
 
 /* Un JPG de la tienda pesa ~120 KB; en WebP baja a ~40 KB. Convertimos antes de
    copiarlo para que la distribuidora no arrastre ese peso. */
@@ -2581,7 +2708,7 @@ function armarProductosMay(){
 
 async function cargarFichasMay(){
   try {
-    var base = 'https://paladear.github.io/paladeardistribuidora-test/';
+    var base = SITIO_MAY;
     var r = await fetch(base + 'catalogo-panel.json?t=' + Date.now(), {cache:'no-store'});
     var j = r.ok ? await r.json() : {};
     var fotos = j.fotos || {};
@@ -2595,10 +2722,15 @@ async function cargarFichasMay(){
         });
       }
     } catch(e) {}
-    return { fichas: j.fichas || {}, fotos: fotos };
+    // Cada tienda lleva su propia cuenta de precios revisados: los artículos se
+    // numeran igual en las dos y, si se mezclan, se compara el precio mayorista
+    // contra el minorista y sale todo marcado como cambio.
+    return { fichas: j.fichas || {}, fotos: fotos,
+             vistos: j.preciosVistos || {}, aprobados: j.preciosAprobados || {},
+             fechas: j.cambiosPrecio || {} };
   } catch (e) {
     console.warn('[panel] la distribuidora todavía no tiene fichas guardadas:', e && e.message);
-    return { fichas: {}, fotos: {} };
+    return { fichas: {}, fotos: {}, vistos: {}, aprobados: {}, fechas: {} };
   }
 }
 
@@ -2606,7 +2738,8 @@ async function cambiarTienda(cual){
   if (cual === TIENDA) return;
   var caja = $('excelCaja'); if (caja) caja.innerHTML = '';
   // guardar lo de la tienda que se deja
-  var estado = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS };
+  var estado = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
+                 vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA };
   if (TIENDA === 'min') GUARDADO_MIN = estado; else GUARDADO_MAY = estado;
 
   TIENDA = cual;
@@ -2617,13 +2750,15 @@ async function cambiarTienda(cual){
     if (!GUARDADO_MAY) {
       var d = await cargarFichasMay();
       FICHAS_FB = d.fichas; FOTOS_FB = d.fotos;
+      PRECIOS_VISTOS = d.vistos; PRECIOS_APROBADOS = d.aprobados; CAMBIOS_FECHA = d.fechas;
       PRODUCTOS = marcarCambiosDePrecio(armarProductosMay());
-      GUARDADO_MAY = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS };
+      GUARDADO_MAY = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
+                       vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA };
     } else {
-      FICHAS_FB = GUARDADO_MAY.fichas; FOTOS_FB = GUARDADO_MAY.fotos; PRODUCTOS = GUARDADO_MAY.productos;
+      restaurarTienda(GUARDADO_MAY);
     }
   } else {
-    FICHAS_FB = GUARDADO_MIN.fichas; FOTOS_FB = GUARDADO_MIN.fotos; PRODUCTOS = GUARDADO_MIN.productos;
+    restaurarTienda(GUARDADO_MIN);
   }
 
   document.querySelectorAll('.tienda-sel button').forEach(function(b){
@@ -2637,11 +2772,25 @@ async function cambiarTienda(cual){
 }
 window.cambiarTienda = cambiarTienda;
 
+/* Devuelve al panel TODO lo de una tienda, no solo las fichas: si los precios
+   revisados quedaran cruzados, al guardar se pisarían los de la otra. */
+function restaurarTienda(g){
+  FICHAS_FB = g.fichas; FOTOS_FB = g.fotos; PRODUCTOS = g.productos;
+  PRECIOS_VISTOS = g.vistos || {}; PRECIOS_APROBADOS = g.aprobados || {}; CAMBIOS_FECHA = g.fechas || {};
+}
+
 /* El cartel de arriba dice siempre en cuál de las dos tiendas estás parado. */
 function pintarCartelTienda(){
-  var n = document.getElementById('ctNombre'), a = document.getElementById('ctArchivo');
+  var n = document.getElementById('ctNombre'), a = document.getElementById('ctArchivo'),
+      v = document.getElementById('ctVivo');
   if (n) n.textContent = nombreTienda();
   if (a) a.textContent = repoActivo().split('/').pop();
+  // Cuando el panel está sobre la página real hay que verlo de lejos: lo que se
+  // guarde acá lo ve el cliente en minutos.
+  if (v) v.textContent = ES_TESTER ? 'PRUEBAS' : 'EN VIVO';
+  document.body.classList.toggle('es-vivo', !ES_TESTER);
+  var env = document.querySelector('.env');
+  if (env) env.textContent = ES_TESTER ? 'TESTER' : 'OFICIAL';
 }
 pintarCartelTienda();
 
