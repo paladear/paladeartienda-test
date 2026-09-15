@@ -821,8 +821,11 @@ body.es-mayorista #btnSync,body.es-mayorista #btnPublicar{display:none}
    trabaja contra los testers; si no, contra las páginas oficiales. Se detecta
    solo a propósito: antes estaba escrito a mano y, al copiar el archivo del
    tester a la oficial, quedó guardando en el tester sin que se notara. */
-const ES_TESTER = /-test(\/|$)/.test(location.pathname) ||
-                  location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+// Sólo se considera "oficial" si está servido desde el sitio real y fuera de una
+// carpeta -test. Cualquier otra cosa (local, una copia, file://) cuenta como
+// pruebas: ante la duda, que no escriba en producción.
+const ES_OFICIAL = location.hostname === 'paladear.github.io' && !/-test(\/|$)/.test(location.pathname);
+const ES_TESTER = !ES_OFICIAL;
 const _SUF = ES_TESTER ? '-test' : '';
 const REPO = 'paladear/paladeartienda' + _SUF;
 const ARCHIVO_FICHAS = 'catalogo-panel.json';
