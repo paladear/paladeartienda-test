@@ -6435,10 +6435,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1amltRyv8PKnASe_So-8mp4Y_W4l2A_V0/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.787Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:14.274Z",
    "por": "panel",
-   "rubro": "ACEITES Y VINAGRES"
+   "rubro": "ACEITES Y VINAGRES",
+   "marca": "Nutra Sem",
+   "envase": "150 cc",
+   "envasado": true
   },
   "2387": {
    "nombre": "ACEITE DE LINO X 250 cc - NUTRA SEM",
@@ -6447,10 +6450,13 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.787Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:14.274Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1rLGrJu31pwNrrLTwElmBOGFvxJJyOHbV/view"
+   "imagen": "https://drive.google.com/file/d/1rLGrJu31pwNrrLTwElmBOGFvxJJyOHbV/view",
+   "marca": "Nutra Sem",
+   "envase": "250 cc",
+   "envasado": true
   },
   "2388": {
    "nombre": "ENVIO",
@@ -15854,7 +15860,8 @@
   "TIERRA SANTA",
   "GOTAS DE ORO",
   "PARTY BECK",
-  "VERDE VIDA"
+  "VERDE VIDA",
+  "NUTRA SEM"
  ],
- "actualizado": "2026-09-16T01:34:09.641Z"
+ "actualizado": "2026-09-16T01:34:14.342Z"
 }
