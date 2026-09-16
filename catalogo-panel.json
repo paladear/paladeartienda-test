@@ -3777,9 +3777,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
-   "por": "panel"
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:57.752Z",
+   "por": "panel",
+   "marca": "Supply",
+   "envase": "30 ml",
+   "envasado": true
   },
   "2001": {
    "nombre": "ALMENDRAS CON CHOCOLATE",
@@ -5571,9 +5574,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.788Z",
-   "por": "panel"
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:57.751Z",
+   "por": "panel",
+   "marca": "Supply",
+   "envase": "30 ml",
+   "envasado": true
   },
   "2285": {
    "nombre": "MIEL CREMOGENADA  X500 GR - TRES SOLES",
@@ -5643,9 +5649,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.788Z",
-   "por": "panel"
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:57.752Z",
+   "por": "panel",
+   "marca": "Supply",
+   "envase": "30 ml",
+   "envasado": true
   },
   "2295": {
    "nombre": "RELAX BLEND X50 CAPSULAS - NATIER",
@@ -5965,9 +5974,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
-   "por": "panel"
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:57.752Z",
+   "por": "panel",
+   "marca": "Supply",
+   "envase": "60 ml",
+   "envasado": true
   },
   "2339": {
    "nombre": "SCHISANDRA X60 ML - SUPPLY",
@@ -5976,9 +5988,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:57.752Z",
+   "por": "panel",
+   "marca": "Supply",
+   "envase": "60 ml",
+   "envasado": true
   },
   "2346": {
    "nombre": "ACIDO ASCORBICO",
@@ -15714,7 +15729,8 @@
   "ENTRENUTS",
   "AGROIANNI",
   "COLONIAL",
-  "DELICEL"
+  "DELICEL",
+  "SUPPLY"
  ],
- "actualizado": "2026-09-16T01:32:53.651Z"
+ "actualizado": "2026-09-16T01:32:57.820Z"
 }
