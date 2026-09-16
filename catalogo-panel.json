@@ -5610,11 +5610,14 @@
    "oferta": 0,
    "rubro": "DULCES, MIEL Y CHOCOLATES",
    "origen": "panel",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "actualizado": "2026-09-16T01:33:25.676Z",
    "por": "panel",
    "oculto": false,
    "altaOk": true,
-   "imagen": "https://drive.google.com/file/d/1r83iEtXZ9D9Q_u13fgPxTgTVk245jy0H/view"
+   "imagen": "https://drive.google.com/file/d/1r83iEtXZ9D9Q_u13fgPxTgTVk245jy0H/view",
+   "marca": "Tres Soles",
+   "envase": "500 g",
+   "envasado": true
   },
   "2286": {
    "nombre": "MIEL X500 GR - TRES SOLES",
@@ -5623,10 +5626,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/11fQGPxc6AIN8faN3Lpv7e5lWpk6E77fw/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:25.677Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Tres Soles",
+   "envase": "500 g",
+   "envasado": true
   },
   "2287": {
    "nombre": "MIEL X250 GR - TRES SOLES",
@@ -5635,10 +5641,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1Um1nwc9gElNvLqgzIm889jCCBnZXQgow/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:25.677Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Tres Soles",
+   "envase": "250 g",
+   "envasado": true
   },
   "2290": {
    "nombre": "CERA DE MIEL",
@@ -15781,7 +15790,8 @@
   "LAS DOÑAS",
   "DICOMERE",
   "LA CASITA DE LA ABUELI",
-  "MONTE NATURAL"
+  "MONTE NATURAL",
+  "TRES SOLES"
  ],
- "actualizado": "2026-09-16T01:33:21.499Z"
+ "actualizado": "2026-09-16T01:33:25.755Z"
 }
