@@ -7595,10 +7595,12 @@
    "sabores": "CUIDADO TOTAL (VERDE)/ULTRA BLANQUEADOR (NARANJA)/ENCIAS SANAS (VIOLETA)",
    "imagen": "https://drive.google.com/file/d/1G-VYtQOioWEmhV_4J9XhfHU2ifbGLGfK/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:47.187Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "Srisri",
+   "envasado": true
   },
   "4458": {
    "nombre": "CEPILLO DENTAL SRISRI",
@@ -7607,10 +7609,12 @@
    "sabores": "ADULTO CERDAS SUAVE / NIÑOS",
    "imagen": "https://drive.google.com/file/d/1lZd0NB7FBnG-iK6Jt0oga_aILiGa8ix4/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:47.187Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "Srisri",
+   "envasado": true
   },
   "4463": {
    "nombre": "AJO NEGRO",
@@ -15880,7 +15884,8 @@
   "NUTRA SEM",
   "HOMEMADE",
   "INTEGRA",
-  "PIZARRO"
+  "PIZARRO",
+  "SRISRI"
  ],
- "actualizado": "2026-09-16T01:34:42.664Z"
+ "actualizado": "2026-09-16T01:34:47.264Z"
 }
