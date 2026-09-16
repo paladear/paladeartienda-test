@@ -5728,10 +5728,13 @@
    "sabores": "MALBEC/ROBLE/LUPULO",
    "imagen": "https://drive.google.com/file/d/1HEvXvfonRGikiwzr2JtetfXpMwbaAGTp/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:55.238Z",
    "por": "panel",
-   "rubro": "VINOS"
+   "rubro": "VINOS",
+   "marca": "Tierra Santa",
+   "envase": "500 cc",
+   "envasado": true
   },
   "2304": {
    "nombre": "GIN DE AUTOR LODON DRY X 750 CC - TIERRA SANTA",
@@ -5740,10 +5743,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1JHW90_Vk_7-MPME9iP4-JDj8a-1PFCwX/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:55.238Z",
    "por": "panel",
-   "rubro": "VINOS"
+   "rubro": "VINOS",
+   "marca": "Tierra Santa",
+   "envase": "750 cc",
+   "envasado": true
   },
   "2305": {
    "nombre": "TARRITOS PARA MATE",
@@ -15827,7 +15833,8 @@
   "YOGURLAC",
   "INDIAS",
   "BOUTIQUE CHIPS",
-  "SAGRADA MADRE"
+  "SAGRADA MADRE",
+  "TIERRA SANTA"
  ],
- "actualizado": "2026-09-16T01:33:51.039Z"
+ "actualizado": "2026-09-16T01:33:55.325Z"
 }
