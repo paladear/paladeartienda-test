@@ -3380,10 +3380,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:53.582Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1Sz9Gu4mWnwOdjQew6u_cKox5KCWncp2c/view"
+   "imagen": "https://drive.google.com/file/d/1Sz9Gu4mWnwOdjQew6u_cKox5KCWncp2c/view",
+   "marca": "Delicel",
+   "envasado": true
   },
   "1789": {
    "nombre": "PETALOS DE ROSA",
@@ -4943,10 +4945,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1qQiCAYWwDLlhu6e7NQZgiJUOOdK-eoi2/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:53.581Z",
    "por": "panel",
-   "rubro": "PRODUCTOS SIN TACC"
+   "rubro": "PRODUCTOS SIN TACC",
+   "marca": "Delicel",
+   "envase": "500 g",
+   "envasado": true
   },
   "2168": {
    "nombre": "REDUCTOR  X10 COMPRIMIDOS - EL NATURALISTA",
@@ -5903,10 +5908,13 @@
    "sabores": "VAINILLA/CHOCOLATE",
    "imagen": "https://drive.google.com/file/d/1CTgbPFS__p_SOmHGkwAJBum-OEYJfhVo/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:53.581Z",
    "por": "panel",
-   "rubro": "PRODUCTOS SIN TACC"
+   "rubro": "PRODUCTOS SIN TACC",
+   "marca": "Delicel",
+   "envase": "500 g",
+   "envasado": true
   },
   "2333": {
    "nombre": "NAD X60 GR - EL NATURALISTA",
@@ -6058,10 +6066,13 @@
    "sabores": "PEPAS/CHIPS DE CHOCOLATE/NARANJA/CHOCOLATE/LIMON/COCO/BIZCOCHOS SALADOS",
    "imagen": "https://drive.google.com/file/d/1RNYHWlRD2WlV38DPdqyNn6kZfaWJ5HNH/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:53.581Z",
    "por": "panel",
-   "rubro": "PRODUCTOS SIN TACC"
+   "rubro": "PRODUCTOS SIN TACC",
+   "marca": "Delicel",
+   "envase": "150 g",
+   "envasado": true
   },
   "2355": {
    "nombre": "AVENA INSTANTANEA SIN GLUTEN X400 GR - RESPONSABLE",
@@ -7103,10 +7114,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1FyEjdpCkc_12y4q9K25VfLFcf66lyqbH/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:53.581Z",
    "por": "panel",
-   "rubro": "PRODUCTOS SIN TACC"
+   "rubro": "PRODUCTOS SIN TACC",
+   "marca": "Delicel",
+   "envase": "500 g",
+   "envasado": true
   },
   "2493": {
    "nombre": "ACEITE PURO DE ARNICA X50CC - EL NATURALISTA",
@@ -15699,7 +15713,8 @@
   "NATIER",
   "ENTRENUTS",
   "AGROIANNI",
-  "COLONIAL"
+  "COLONIAL",
+  "DELICEL"
  ],
- "actualizado": "2026-09-16T01:32:49.155Z"
+ "actualizado": "2026-09-16T01:32:53.651Z"
 }
