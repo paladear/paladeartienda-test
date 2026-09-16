@@ -7893,10 +7893,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/15x8rdZOYfvqKQJMcNlDdW9bOD4f_jBae/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:33.501Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "marca": "Homemade",
+   "envase": "1 kg",
+   "envasado": true
   },
   "5023": {
    "nombre": "GRANOLA FIT-CRUNCH X 1KG - HOMEMADE",
@@ -7905,10 +7908,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1-_nZtU2aMf7sp1FQ_ei7BgvPusFySnmu/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:33.501Z",
    "por": "panel",
-   "rubro": "CEREALES"
+   "rubro": "CEREALES",
+   "marca": "Homemade",
+   "envase": "1 kg",
+   "envasado": true
   },
   "5024": {
    "nombre": "ROOIBOS",
@@ -15861,7 +15867,8 @@
   "GOTAS DE ORO",
   "PARTY BECK",
   "VERDE VIDA",
-  "NUTRA SEM"
+  "NUTRA SEM",
+  "HOMEMADE"
  ],
- "actualizado": "2026-09-16T01:34:14.342Z"
+ "actualizado": "2026-09-16T01:34:33.590Z"
 }
