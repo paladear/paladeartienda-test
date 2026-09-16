@@ -3314,59 +3314,9 @@ function _cardHTML(p, xopts){
   </div>`;
 }
 
-function renderCarruseles(){
-  // limpiar rotación previa si había
-  if(_carRotationInterval){clearInterval(_carRotationInterval);_carRotationInterval=null;}
-  for(const k in _carState)delete _carState[k];
-
-  if(!PRODS.length){
-    document.getElementById('desktopProdsArea').innerHTML='';
-    document.getElementById('mobileProdsArea').innerHTML='';
-    return;
-  }
-  const isMobile=window.innerWidth<768;
-  let htmlDesktop='',htmlMobile='';
-
-  // Orden alfabético puro
-  const catsCarousel=[...CATS].sort((a,b)=>a.n.localeCompare(b.n,'es'));
-
-  // Encabezado solo mobile (en desktop ya hay sidebar "Categorías")
-  if(catsCarousel.length) htmlMobile+=`<h2 class="cats-mobile-heading">Explorá por categoría</h2>`;
-
-  catsCarousel.forEach((cat,i)=>{
-    const prods=PRODS.filter(p=>p[1]===cat.id);
-    if(!prods.length)return;
-    const cid='car'+i;
-
-    // DESKTOP: guardar todos, mostrar solo 4 (barajados)
-    const shuffled=[...prods].sort(()=>Math.random()-.5);
-    _carState[cid]={prods:shuffled,cursor:0};
-    const visibles=shuffled.slice(0,4);
-    htmlDesktop+=`<div class="carousel-section">
-      <button class="carousel-title carousel-title-btn" onclick="selectCat('${cat.id}')">${cat.n} <span style="font-size:16px;opacity:.7">›</span></button>
-      <div class="carousel-wrap">
-        <div class="carousel-track" id="${cid}">${visibles.map(_cardHTML).join('')}</div>
-      </div>
-    </div>`;
-
-    // MOBILE: todos los productos del rubro en el track scrolleable
-    const cidM='carM'+i;
-    htmlMobile+=`<div class="carousel-section">
-      <button class="carousel-title carousel-title-btn" onclick="selectCat('${cat.id}')">${cat.n} <span style="font-size:16px;opacity:.7">›</span></button>
-      <div class="carousel-wrap">
-        <div class="carousel-track" id="${cidM}">${prods.map(_cardHTML).join('')}</div>
-      </div>
-    </div>`;
-  });
-
-  document.getElementById('desktopProdsArea').innerHTML=htmlDesktop||'<div></div>';
-  document.getElementById('mobileProdsArea').innerHTML=htmlMobile||'<div></div>';
-  document.getElementById('mobileProdsArea').classList.remove('hidden');
-
-  // Auto-rotación en desktop cada 12s
-  if(!isMobile){_carRotationInterval=setInterval(rotarCarruseles,12000);}
-}
-
+/* La primera versión de renderCarruseles() vivía acá y quedó pisada por la del
+   rediseño, más abajo: en JavaScript gana la última declaración. Se borró porque
+   nunca llegaba a ejecutarse y confundía al leer el archivo. */
 function rotarCarruseles(){
   // si el usuario navegó a una categoría, los carruseles ya no están
   for(const cid in _carState){
@@ -6002,7 +5952,11 @@ window.blendAgregarAlCarrito=blendAgregarAlCarrito;
 
 
 /* ── MAYORISTA CONFETTI ── */
-const _CONF_COLORS=['#f28e78','#f7b2a2','#75a8d6','#a9c9e8','#6fb6aa','#a6d2c2','#f4c7ae','#b4c3d8'];
+/* Sólo los colores de la casa: azules, cremas y blanco. Los azules van primero y
+   repetidos porque el papelito cae sobre fondo crema y son los únicos que se ven
+   de lejos; los cremas y el blanco entran como destello. */
+const _CONF_COLORS=['#123f67','#285b83','#547f9f','#6d90aa','#9eccd8','#cfdce8',
+                    '#dceef8','#123f67','#285b83','#547f9f','#f7f3eb','#ffffff','#efe6d2'];
 let _confCanvas=null;
 
 function _buildConeHTML(id,flipX){

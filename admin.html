@@ -3511,7 +3511,15 @@ async function excelPublicar(){
       if (p) { p.cambioPrecio = false; p.precioAntes = monto; }
       aprobados++;
     });
-    if (aprobados) { try { await guardarFichasEnRepo('Precios de la lista, aprobados (' + aprobados + ')'); } catch(e) {} }
+    if (aprobados) {
+      try {
+        await guardarFichasEnRepo('Precios de la lista, aprobados (' + aprobados + ')');
+      } catch(e) {
+        // Antes esto se tragaba en silencio y abajo salía "Listo" igual.
+        avisar('mal', 'Los precios se publicaron, pero no pude guardar el panel',
+               'Volvé a entrar y fijate si los cambios figuran como revisados. ' + (e.message || e));
+      }
+    }
     caja.innerHTML = '<div class="excel-caja ok"><b>Listo.</b> Se publicaron ' + EXCEL_FILAS.length +
       ' precios en <b>' + esc(nombreTienda()) + '</b>. ' +
       'La tienda los toma en unos minutos.</div>';
@@ -3641,8 +3649,10 @@ function aWebpB64(b64, ext){
 
 async function compartirFotoConMayorista(){
   var info = $('edFotoInfo');
-  function avisar(html){ if (info) info.innerHTML = html; }
-  if (!EDITANDO) { avisar('<span class="malo">Abrí primero un producto.</span>'); return; }
+  // Escribe en el recuadro de esta ventana. No se llama avisar() a propósito: ese
+  // nombre es el de los carteles flotantes y taparlo acá fue un problema.
+  function mostrarInfo(html){ if (info) info.innerHTML = html; }
+  if (!EDITANDO) { mostrarInfo('<span class="malo">Abrí primero un producto.</span>'); return; }
   var id = EDITANDO.id;
   var b = $('edFotoMay');
   if (b) { b.disabled = true; b.textContent = 'Compartiendo...'; }
@@ -3663,7 +3673,7 @@ async function compartirFotoConMayorista(){
           break;
         } catch (err) { if (err.status !== 404) throw err; }
       }
-      if (!hallada) { avisar('<span class="malo">Este producto todavía no tiene foto guardada.</span>'); return; }
+      if (!hallada) { mostrarInfo('<span class="malo">Este producto todavía no tiene foto guardada.</span>'); return; }
       b64 = hallada.b64; ext = hallada.ext;
     }
     var liviana = await aWebpB64(b64, ext);
@@ -3671,9 +3681,9 @@ async function compartirFotoConMayorista(){
     await guardarEnRepo(CARPETA_FOTOS + '/' + id + '.' + ext, b64,
       'Foto del artículo ' + id + ' compartida desde la tienda minorista', 0, REPO_MAY_FOTOS);
     await anotarFotoPropia(id, ext);
-    avisar('<span class="ok">Listo: la distribuidora ya tiene esta foto (artículo ' + esc(id) + ').</span>');
+    mostrarInfo('<span class="ok">Listo: la distribuidora ya tiene esta foto (artículo ' + esc(id) + ').</span>');
   } catch (err) {
-    avisar('<span class="malo">No pude compartirla: ' + esc(err.message) + '</span>');
+    mostrarInfo('<span class="malo">No pude compartirla: ' + esc(err.message) + '</span>');
   } finally {
     if (b) { b.disabled = false; b.textContent = 'Compartir con la distribuidora'; }
   }
@@ -4452,7 +4462,11 @@ async function anotarFotoPropia(id, ext){
     Object.keys(nuevas).forEach(function(k){ indice[k] = nuevas[k]; });
     await guardarEnRepo('fotos-propias.json', aB64(JSON.stringify(indice, null, 1)),
       'Índice de fotos propias (' + Object.keys(indice).length + ')', 0, REPO_MAY);
-  } catch(e) {}
+  } catch(e) {
+    // Las fotos ya están subidas; lo que falló es el índice que las lista.
+    avisar('mal', 'Las fotos se subieron, pero no pude actualizar su índice',
+           'Puede que la distribuidora tarde en mostrarlas. ' + (e.message || e));
+  }
 }
 
 
