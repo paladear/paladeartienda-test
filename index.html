@@ -706,23 +706,31 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 }
 
 /* ── Sellos sobre la foto ──
-   Arriba a la derecha, la esquina que queda libre porque el descuento va en la
-   izquierda. A este tamaño no se lee el texto de adentro, pero el símbolo y el
-   color alcanzan para reconocerlos; el nombre completo está en la ficha. */
-.sellos-foto{position:absolute;top:7px;right:7px;z-index:2;display:flex;flex-direction:column;
-  align-items:flex-end;gap:4px;pointer-events:none}
+   Abajo a la izquierda: arriba a la izquierda va el descuento y arriba a la
+   derecha el corazón de favoritos, así que es la única esquina libre. Van en
+   vertical, dos como máximo. A este tamaño no se lee el texto de adentro, pero
+   el símbolo y el color alcanzan; el nombre completo está en la ficha. */
+/* La foto es el ancla. Sin esto los sellos se cuelgan de la tarjeta entera y
+   terminan abajo de todo, debajo del botón de agregar. */
+.pcard-img{position:relative}
+.sellos-foto{position:absolute;bottom:8px;left:8px;z-index:2;display:flex;flex-direction:column;
+  align-items:flex-start;gap:4px;pointer-events:none}
 /* El selector lleva el padre a propósito: `.pcard-img img` le pone width:100% a
    toda imagen de la foto y le ganaba a `.sello-f`, así que el sello colapsaba. */
 .pcard-img .sellos-foto img.sello-f{width:42px;height:42px;display:block;padding:0;
   object-fit:contain;filter:drop-shadow(0 1px 4px rgba(20,45,70,.22))}
 @media(max-width:767px){
-  .sellos-foto{top:5px;right:5px;gap:3px}
+  .sellos-foto{bottom:6px;left:6px;gap:3px}
   .pcard-img .sellos-foto img.sello-f{width:34px;height:34px}
 }
-/* En la ficha abierta van grandes, con el texto legible. */
-.product-detail-sellos{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 11px}
-.product-detail-sellos img.sello-d{width:62px;height:62px;display:block;padding:0;
-  object-fit:contain}
+/* En la ficha abierta van debajo de la cantidad y la marca, con el nombre escrito
+   al lado del sello: acá hay lugar y es donde el cliente decide. */
+.product-detail-sellos{display:flex;flex-wrap:wrap;gap:8px 16px;margin:11px 0 4px}
+.sello-item{display:inline-flex;align-items:center;gap:8px}
+.sello-item b{font:800 12.5px/1.2 var(--tienda,'Montserrat',sans-serif);letter-spacing:.06em;
+  text-transform:uppercase;color:var(--azul-dark)}
+.product-detail-sellos img.sello-d{width:46px;height:46px;display:block;padding:0;
+  object-fit:contain;flex:0 0 auto}
 
 /* ── Productos relacionados, al final de la card abierta ── */
 :root{--pd-aire:18px}   /* el mismo aire lateral que usa la ficha en el celular */
@@ -3350,7 +3358,7 @@ function openProductDetail(pid){
     <button class="product-detail-close" type="button" onclick="closeProductDetail()" aria-label="Cerrar">×</button>
   </div><div class="product-detail-shell"><div class="product-detail-main">
     <div class="product-detail-image" style="background:${fondo}">${src?`<img src="${src}" alt="${p[2]}" decoding="async">`:'<span class="product-image-placeholder" aria-hidden="true"></span>'}</div>
-    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${_sellosDe(p).length?`<div class="product-detail-sellos">${_sellosDe(p).map(x=>'<img class="sello-d" src="'+_selloImg(x.id)+'" alt="'+x.chip+'" title="'+x.chip+'" decoding="async">').join('')}</div>`:''}${(_envaseDe(p)||_marcaDe(p))&&p[3]!=='Granel'?`<div class="product-detail-meta">${_envaseDe(p)?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}',${p[0]})" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}<div class="product-detail-info">${info}</div>
+    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${(_envaseDe(p)||_marcaDe(p))&&p[3]!=='Granel'?`<div class="product-detail-meta">${_envaseDe(p)?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}',${p[0]})" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}${_sellosDe(p).length?`<div class="product-detail-sellos">${_sellosDe(p).map(x=>'<span class="sello-item"><img class="sello-d" src="'+_selloImg(x.id)+'" alt="" decoding="async"><b>'+x.chip+'</b></span>').join('')}</div>`:''}<div class="product-detail-info">${info}</div>
       <div class="product-detail-buy" id="productDetailCard" data-pid="${p[0]}" data-opt="${opt}">
         ${opts.length>1?`<h3>Elegí la presentación</h3><div class="product-detail-options opt-btns${opts.length>=4?' opt-btns-4':''}">${opciones}</div>`:''}${saboresHTML}
         <div class="prices"><div><span class="price-label">Precio${oferta>0?' (Oferta)':''}</span><div class="price-min">${_priceMinContent(p[7][opt][0],oferta)}</div></div><div><span class="price-label">+$80.000</span><div class="price-may">$${fmt(p[7][opt][1])}</div></div></div>
