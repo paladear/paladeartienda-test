@@ -371,6 +371,13 @@ body.buscando .busca-fija{display:flex}
 body.es-vivo #franjaPruebas{display:none}
 @media(max-width:560px){ #franjaPruebas{gap:5px;padding:8px 12px} #franjaPruebas span{font-size:12.5px} }
 
+/* La marca al lado del nombre, y el contenido del envase en la línea de datos. */
+.nom-marca{margin-left:7px;padding-left:8px;border-left:1px solid var(--linea);
+  font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:#6d90aa;white-space:nowrap}
+.meta-env{color:#1f2d3a;font-weight:700}
+.meta-falta{color:#b8360f}
+
 /* ── Lo que el panel leyó del nombre de E-Pyme ── */
 .propuesta{margin:0 0 16px;padding:13px 15px;border-radius:13px;
   background:#f1f0f8;border:1px solid #cfcede}
@@ -2145,7 +2152,9 @@ function _noEsMarca(t){
   if (s.length < 3) return true;
   if (_esEtiqueta(s) || _esMedida(s)) return true;
   if (NUNCA_MARCA.indexOf(s) > -1 || TAMANOS.indexOf(s) > -1 || VARIETALES.indexOf(s) > -1) return true;
-  if (!/[A-ZÁÉÍÓÚÑ]{3}/.test(s)) return true;   // tiene que tener letras de verdad
+  // Con \p{L} entran las letras con diéresis y demás: "KÖS" quedaba afuera y es
+  // una marca real de tres productos.
+  if (!/\p{L}{3}/u.test(s)) return true;   // tiene que tener letras de verdad
   return false;
 }
 
@@ -2154,7 +2163,8 @@ function _envaseDe(txt){
   // "X KG" sin número es granel, no un envase.
   if (new RegExp('\\s[Xx]\\s*(KG|KILO|K)\\.?\\s*$', 'i').test(txt)) return '';
   var m = txt.match(new RegExp('(?:^|\\s)[Xx]\\s*([\\d.,/]+)\\s*(' + UNID + ')\\b', 'i'))
-       || txt.match(new RegExp('(?:^|\\s)([\\d.,/]+)\\s*(' + UNID + ')\\b'));
+       // el flag 'i' faltaba: "800ml" y "30 ml" en minúscula no se detectaban nunca
+       || txt.match(new RegExp('(?:^|\\s)([\\d.,/]+)\\s*(' + UNID + ')\\b', 'i'));
   // Un "x 200" al final sin unidad: se guarda el número igual, la unidad la pone él.
   if (!m) { var sn = txt.match(/(?:^|\s)[Xx]\s*([\d.,/]+)\s*$/); if (sn) return sn[1]; }
   if (!m) return '';
@@ -2174,6 +2184,25 @@ var CHICAS = ['de','del','con','sin','y','o','en','a','al','la','el','los','las'
 /* "ACEITE DE OLIVA" se lee peor que "Aceite de oliva". Se pasa a minúscula con la
    primera en mayúscula. Sólo se respetan las siglas con puntos (R.V.) y las que no
    tienen vocales (PVC): cualquier otra regla terminaba dejando "DE" y "COCO" en alta. */
+/* Cómo se escribe cada etiqueta cuando queda dentro del nombre. Sin esto el
+   capitalizador devuelve "sin Tacc" y "sin Azucar". */
+var COMO_VA = {
+  'SIN TACC':'sin TACC', 'SIN GLUTEN':'sin gluten', 'SIN AZUCAR':'sin azúcar',
+  'SIN AZÚCAR':'sin azúcar', 'SIN AZUCAR AGREGADA':'sin azúcar agregada',
+  'CON AZUCAR':'con azúcar', 'CON STEVIA':'con stevia', 'SIN SAL':'sin sal',
+  'SIN LACTOSA':'sin lactosa', 'APTO CELIACO':'apto celíaco', 'VEGANO':'vegano',
+  'VEGANA':'vegana', 'ORGANICO':'orgánico', 'ORGANICA':'orgánica',
+  'ORGÁNICO':'orgánico', 'LIGHT':'light', 'DIET':'diet', 'KOSHER':'kosher'
+};
+
+function _arreglarEtiquetas(t){
+  Object.keys(COMO_VA).forEach(function(e){
+    var re = new RegExp('(^|\\s)' + e.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '(?=\\s|$)', 'i');
+    t = t.replace(re, function(_, ini){ return ini + COMO_VA[e]; });
+  });
+  return t;
+}
+
 function _capitalizar(t){
   return t.split(' ').map(function(p, i){
     if (!p) return p;
@@ -2190,9 +2219,10 @@ function _capitalizar(t){
 function _limpiarNombre(txt, marca){
   var t = ' ' + txt + ' ';
   if (marca) t = t.replace(new RegExp('[\\s"\\-]*' + marca.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '[\\s"]*', 'i'), ' ');
-  ETIQUETAS.forEach(function(e){
-    t = t.replace(new RegExp('[\\s"]*' + e.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '[\\s"]*', 'i'), ' ');
-  });
+  // Las etiquetas NO se sacan del nombre. "Tutucas sin azúcar" sin el "sin azúcar"
+  // es otro producto, y en una dietética esa parte es justamente la que decide la
+  // compra. La lista ETIQUETAS sólo sirve para que no se confundan con la marca.
+  // (Se sacaban para mostrarlas como chip aparte, que nunca se implementó.)
   // "X KG" al final es la forma de E-Pyme de decir "a granel": no es un envase.
   t = t.replace(new RegExp('\\s[Xx]\\s*(KG|KILO|K)\\.?\\s*$', 'i'), ' ');
   t = t.replace(new RegExp('(?:^|\\s)[Xx]?\\s*[\\d.,/]+\\s*(?:' + UNID + ')\\b\\.?', 'gi'), ' ');
@@ -2201,7 +2231,9 @@ function _limpiarNombre(txt, marca){
   t = t.replace(/["]/g,' ').replace(/\s+/g,' ').trim();
   // Sacar la marca puede dejar el guion colgando de un lado: "- Malbec".
   t = t.replace(/^\s*[-–]\s*/,'').replace(/\s*[-–]\s*$/,'').replace(/\s+/g,' ').trim();
-  return _capitalizar(t);
+  // Sacar la marca del medio puede dejar un guion suelto: "Barras - sin TACC".
+  t = t.replace(/\s+[-–]\s+/g,' ').replace(/\s+/g,' ').trim();
+  return _arreglarEtiquetas(_capitalizar(t));
 }
 
 function etiquetasDe(txt){
@@ -2247,7 +2279,7 @@ function partirNombre(txt, marcasConocidas){
     for (var j = 0; j < marcasConocidas.length; j++) {
       var m = _norm(marcasConocidas[j]);
       if (m.length < 3) continue;
-      if (new RegExp('(?:^|[^A-ZÁÉÍÓÚÑ])' + m.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '(?![A-ZÁÉÍÓÚÑ])').test(T)) {
+      if (new RegExp('(?:^|[^\\p{L}])' + m.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '(?![\\p{L}])', 'u').test(T)) {
         marca = m; motivo = 'conocida'; break;
       }
     }
@@ -3220,9 +3252,16 @@ function pintar(){
           '<input type="checkbox" data-rev="' + esc(p.id) + '"' + (REV_MARCADOS.has(p.id) ? ' checked' : '') +
           ' aria-label="Marcar ' + esc(p.nombre) + '"></label>' : '') + '</div>' +
       '<div class="datos">' + aviso +
-        '<div class="nom">' + esc(p.nombre) + '</div>' +
+        '<div class="nom">' + esc(p.nombre) +
+          (p.marca ? '<span class="nom-marca">' + esc(p.marca) + '</span>' : '') + '</div>' +
+        // El contenido del envase se ve acá, no sólo dentro de la ficha: es el dato
+        // que más se busca y sin él dos presentaciones del mismo producto se leen
+        // exactamente igual.
         '<div class="meta">Art. ' + esc(p.id) + ' · ' + esc(p.rubro) +
-          (p.cantidades ? ' · ' + esc(p.cantidades) : '') + '</div>' +
+          (p.envase ? ' · <b class="meta-env">' + esc(p.envase) + '</b>' : '') +
+          (p.cantidades && p.cantidades !== '1 UNIDAD' ? ' · ' + esc(p.cantidades) : '') +
+          (!p.envase && p.cantidades === '1 UNIDAD' ? ' · <span class="meta-falta">sin contenido cargado</span>' : '') +
+          '</div>' +
         precio +
         bandPrecio +
         (chips.length ? '<div class="chips">' + chips.join('') + '</div>' : '') +
