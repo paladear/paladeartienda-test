@@ -7906,16 +7906,20 @@
    "oferta": 0,
    "rubro": "PALADEAR HOME",
    "origen": "panel",
-   "actualizado": "2026-09-14T03:07:32.491Z",
+   "actualizado": "2026-09-16T01:06:32.429Z",
    "por": "panel",
    "mix": false,
    "granola": false,
    "blend": false,
    "imagen": "",
-   "oculto": true,
+   "oculto": false,
    "fotoPropia": true,
    "fondo": "#fefefe",
-   "altaOk": false
+   "altaOk": false,
+   "marca": "El Amauta",
+   "envasado": true,
+   "envase": "",
+   "saboresOcultos": []
   },
   "5053": {
    "nombre": "BALSAMO LABIAL",
@@ -12432,11 +12436,11 @@
   },
   "5052": {
    "fondo": "#fefefe",
-   "w": 700,
-   "h": 640,
-   "peso": 16678,
-   "ext": "webp",
-   "v": 1789355254022
+   "w": 560,
+   "h": 512,
+   "peso": 33860,
+   "ext": "jpg",
+   "v": 1789520794126
   },
   "5053": {
    "fondo": "#fefefe",
@@ -15449,5 +15453,5 @@
  },
  "novedadesVistas": "2026-09-15T22:07:33.345Z",
  "marcas": [],
- "actualizado": "2026-09-16T01:05:43.759Z"
+ "actualizado": "2026-09-16T01:06:34.547Z"
 }
