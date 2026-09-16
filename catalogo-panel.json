@@ -1974,10 +1974,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1zyQZPREc2SPSOIiZ2MfzoAFZ6nrrUxma/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:49.077Z",
    "por": "panel",
-   "rubro": "AZUCAR, CACAO Y REPOSTERIA"
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "marca": "Colonial",
+   "envasado": true
   },
   "1426": {
    "nombre": "MIX PATAGONICO",
@@ -3810,10 +3812,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1tEMqFtY5CHTTVi0kPVkqUuZftUgBWaM1/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:49.077Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Colonial",
+   "envase": "100 g",
+   "envasado": true
   },
   "2004": {
    "nombre": "BARRA DE CHOCOLATE 55% SIN AZUCAR x 100 g - COLONIAL",
@@ -3822,10 +3827,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1guwxJ8Acdq3a9vv-mUm5nW_JUIDcTcID/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:49.077Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Colonial",
+   "envase": "100 g",
+   "envasado": true
   },
   "2006": {
    "nombre": "ACEITERO SPRAY X 200 ML",
@@ -4909,10 +4917,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1pRzT_PG0qDeuoegFcfWK0_YyO5TV9Z6I/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:49.077Z",
    "por": "panel",
-   "rubro": "AZUCAR, CACAO Y REPOSTERIA"
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "marca": "Colonial",
+   "envasado": true
   },
   "2162": {
    "nombre": "MELENA DE LEON + REISHI X60 CC - SOMOS SETA",
@@ -5451,10 +5461,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/14RCfMfiamjxbBTREICeDFap3Pxvxx4w5/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:49.077Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Colonial",
+   "envase": "100 g",
+   "envasado": true
   },
   "2269": {
    "nombre": "MANTECA CLARIFICADA GHEE X370 GR - ENTRENUTS",
@@ -15685,7 +15698,8 @@
   "EL AMAUTA",
   "NATIER",
   "ENTRENUTS",
-  "AGROIANNI"
+  "AGROIANNI",
+  "COLONIAL"
  ],
- "actualizado": "2026-09-16T01:32:44.157Z"
+ "actualizado": "2026-09-16T01:32:49.155Z"
 }
