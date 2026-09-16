@@ -2439,7 +2439,7 @@ function dibujarMedidas(){
     const i = MEDIDAS_SEL.indexOf(m);
     if (i > -1) MEDIDAS_SEL.splice(i, 1);
     else if (MEDIDAS_SEL.length < TOPE_MEDIDAS) MEDIDAS_SEL.push(m);
-    else { avisar('mal', 'Hasta ' + TOPE_MEDIDAS + ' pesos', 'Apagá uno de los que ya elegiste para poner este.'); return; }
+    else { avisar('espera', 'Hasta ' + TOPE_MEDIDAS + ' pesos', 'Apagá uno de los que ya elegiste para poner este.'); return; }
     dibujarMedidas();
   }));
 }
@@ -4036,9 +4036,13 @@ function avisar(tipo, titulo, detalle){
     '<button type="button" class="av-x" aria-label="Cerrar">&times;</button>';
   a.querySelector('.av-x').addEventListener('click', function(){ a.remove(); });
   z.appendChild(a);
-  // Los errores quedan hasta que los cierres; los avisos buenos se van solos.
-  if (tipo !== 'mal') setTimeout(function(){ a.classList.add('yendose');
-    setTimeout(function(){ a.remove(); }, 260); }, 4200);
+  // Nunca más de cuatro apilados: si no, en una tanda tapan media pantalla.
+  while (z.children.length > 4) z.removeChild(z.firstChild);
+  // Los avisos buenos se van rápido; los errores duran más para poder leerlos,
+  // pero también se van: uno pegado para siempre en la pantalla molesta.
+  var dura = tipo === 'mal' ? 9000 : 4200;
+  setTimeout(function(){ a.classList.add('yendose');
+    setTimeout(function(){ a.remove(); }, 260); }, dura);
   return a;
 }
 

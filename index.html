@@ -682,7 +682,7 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
    El nombre en negra, el contenido del envase en gris al lado y la marca en
    mayúsculas finitas. Los productos a granel sólo muestran el nombre. */
 .nom-p{font-weight:800}
-.nom-c{font-weight:500;color:var(--muted-fg);margin-left:5px}
+.nom-c{font-weight:500;color:var(--muted-fg);margin-left:5px;white-space:nowrap}
 .nom-m{display:block;margin-top:2px;font-style:normal;font-weight:700;font-size:10.5px;
   letter-spacing:.09em;text-transform:uppercase;color:var(--min-blue-mid)}
 .product-detail-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 10px}
@@ -799,9 +799,19 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 }
 
 body.mayorista-activo #cart-fab{box-shadow:0 4px 22px rgba(58,85,114,.55),0 0 0 3px rgba(158,204,216,.85)}
-body.mayorista-activo .price-may{background:var(--azul);color:#fff;box-shadow:0 2px 8px rgba(58,85,114,.3)}
+
+/* ── Al pasar los $80.000 el precio que manda es el de la derecha ──
+   Estas reglas vivían dentro de @media(min-width:768px), así que en el celular
+   —que es donde más se compra— el descuento nunca se notaba. Van sueltas para
+   que valgan en las dos pantallas. */
 body.mayorista-activo .prices>div:last-child .price-label{color:var(--azul-dark);font-weight:800}
-body.mayorista-activo .prices>div:first-child .price-min{color:var(--muted-fg);opacity:.75}
+body.mayorista-activo .price-may{background:var(--azul);color:#fff;
+  box-shadow:0 2px 8px rgba(58,85,114,.3)}
+/* El precio que ya no se cobra queda en gris, tachado con una raya fina. */
+body.mayorista-activo .prices>div:first-child .price-min{color:var(--muted-fg);opacity:.75;
+  text-decoration:line-through;text-decoration-thickness:1px;
+  text-decoration-color:rgba(84,103,125,.65)}
+
 
 html,body{touch-action:manipulation}
 button,.opt-btn,.qty-btn,.add-btn,.cats-dd-btn,.card-edit-btn,.card-del-btn,.catalog-filter-btn,.bnav button,#cart-fab{touch-action:manipulation}
@@ -1241,20 +1251,10 @@ body.cart-open #cart-fab,body.cart-open #chat-fab{display:none!important}
 
 
 /* ── MAYORISTA CONFETTI ── */
-.may-toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);z-index:9999;background:#fff;border-radius:20px;padding:28px 20px 24px;text-align:center;box-shadow:0 12px 48px rgba(0,0,0,.3);transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0;pointer-events:none;width:300px;max-width:90vw}
-.may-toast.may-toast-img{padding:0;background:transparent;box-shadow:none;width:600px;max-width:106vw;filter:drop-shadow(0 16px 26px rgba(32,61,82,.25))}
-.may-toast-imgsrc{display:block;width:100%;max-width:none;height:auto;box-shadow:none;clip-path:inset(7.36% 7.04% 7.36% 7.04% round 6.75% / 9.1%);-webkit-clip-path:inset(7.36% 7.04% 7.36% 7.04% round 6.75% / 9.1%)}
-.may-toast.show{transform:translate(-50%,-50%) scale(1);opacity:1}
-.may-toast.hide{transform:translate(-50%,-50%) scale(.85);opacity:0}
 /* El aviso de descuento entra sin escalar: evita la sensación de zoom al superar $80.000. */
-.may-toast.may-toast-img{transform:translate(-50%,calc(-50% + 10px));transition:transform .18s ease-out,opacity .18s ease-out}
-.may-toast.may-toast-img.show{transform:translate(-50%,-50%);opacity:1}
-.may-toast.may-toast-img.hide{transform:translate(-50%,calc(-50% - 8px));opacity:0}
 
 .may-cone{width:54px;height:54px;flex-shrink:0;overflow:visible;position:relative;z-index:1}
 .may-cone svg{overflow:visible;width:54px;height:54px}
-.may-toast-title{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:700;color:var(--azul-dark);line-height:1.2;text-transform:uppercase;letter-spacing:1.5px;flex:1;padding:0 4px;text-align:center;position:relative;z-index:2}
-.may-toast-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .may-cone-left{margin-left:-8px}
 .may-cone-right{margin-right:-8px}
 .may-cone-left svg{transform:rotate(-28deg);transform-origin:center bottom}
@@ -6012,18 +6012,11 @@ function _buildConeHTML(id,flipX){
   '</div>';
 }
 
+/* Al pasar los $80.000 sólo cae el confeti. El cartel con la imagen que tapaba
+   toda la pantalla se sacó el 07/09 y volvió sin querer al copiar el tester
+   encima de la oficial: el aviso ahora es permanente y vive en el carrito y en
+   las tarjetas, que se leen sin interrumpir la compra. */
 function _triggerMayoristaConfetti(){
-  var toast=document.getElementById('mayToast');
-  if(!toast){
-    toast=document.createElement('div');
-    toast.id='mayToast';
-    toast.className='may-toast may-toast-img';
-    toast.innerHTML='<img src="mensajedescuentonuevo.webp" width="1040" height="780" alt="\u00a1Desbloqueaste tu descuento! Tu compra ahora tiene 20% OFF" class="may-toast-imgsrc">';
-    document.body.appendChild(toast);
-  }
-  toast.classList.remove('hide');
-  toast.classList.add('show');
-  setTimeout(function(){toast.classList.add('hide');setTimeout(function(){toast.classList.remove('show','hide');},400);},3400);
 
   if(!_confCanvas){
     _confCanvas=document.createElement('canvas');
