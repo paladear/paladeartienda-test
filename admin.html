@@ -789,6 +789,10 @@ body.con-hoja{overflow:hidden}
 .sw.sw-no{background:#fdeae7;border-color:#eaa79a;color:#b43a25}
 .sw.sw-no:hover{background:#fbdad4}
 .sw:active{transform:scale(.94)}
+/* Mientras se está guardando: el tilde ya cambió pero late hasta confirmarse. */
+.sw-yendo{animation:swLate .9s ease-in-out infinite;cursor:progress}
+@keyframes swLate{0%,100%{opacity:1}50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){ .sw-yendo{animation:none;opacity:.6} }
 .sw:focus-visible{outline:2px solid var(--marca);outline-offset:2px}
 .sw.sw-traba{background:var(--papel-2);color:#96a0ab;cursor:default;border-color:#d7dce2}
 .sw.sw-traba svg{width:15px;height:15px}
@@ -1340,18 +1344,34 @@ async function claveSirve(){
 
 /* Guarda un archivo en el repo. Si otro proceso lo cambió mientras tanto (el robot
    de precios corre cada 2 horas), se reintenta con el sha nuevo. */
+/* Para pisar un archivo GitHub pide el sha de la versión que hay. Pedirlo con un
+   GET descarga el archivo entero: el catálogo son 640 KB en base64 y eso se bajaba
+   ENTERO en cada guardado, sólo para leer una línea. Como el PUT devuelve el sha
+   nuevo, se guarda y se reusa; el GET queda sólo para la primera vez de la sesión
+   o si el sha quedó viejo porque escribió alguien más. */
+const SHA_CACHE = {};
+
 async function guardarEnRepo(ruta, contenidoB64, mensaje, intento, repo){
   intento = intento || 0;
-  let sha = null;
-  try { sha = (await gh('/contents/' + encodeURI(ruta) + '?ref=main', null, repo)).sha; }
-  catch(e) { if (e.status !== 404) throw e; }
+  const clave = (repo || '') + ':' + ruta;
+  let sha = SHA_CACHE[clave] || null;
+  if (!sha) {
+    try { sha = (await gh('/contents/' + encodeURI(ruta) + '?ref=main', null, repo)).sha; }
+    catch(e) { if (e.status !== 404) throw e; }
+  }
   const cuerpo = { message: mensaje, content: contenidoB64, branch: 'main' };
   if (sha) cuerpo.sha = sha;
   try {
-    return await gh('/contents/' + encodeURI(ruta), { method:'PUT', body: JSON.stringify(cuerpo) }, repo);
+    const r = await gh('/contents/' + encodeURI(ruta), { method:'PUT', body: JSON.stringify(cuerpo) }, repo);
+    if (r && r.content && r.content.sha) SHA_CACHE[clave] = r.content.sha;
+    return r;
   } catch(e) {
-    if ((e.status === 409 || e.status === 422) && intento < 2)
+    // 409/422 = el sha no era el último. Se olvida el guardado y se reintenta
+    // pidiéndolo de nuevo, que es el camino lento pero seguro.
+    if ((e.status === 409 || e.status === 422) && intento < 2) {
+      delete SHA_CACHE[clave];
       return guardarEnRepo(ruta, contenidoB64, mensaje, intento + 1, repo);
+    }
     throw e;
   }
 }
@@ -1559,7 +1579,7 @@ async function guardarFichasEnRepo(mensaje){
                           preciosAprobados: PRECIOS_APROBADOS,
                           novedadesVistas: MARCA_VISTO,
                           marcas: MARCAS_FB,
-                          actualizado: new Date().toISOString() }, null, 1)),
+                          actualizado: new Date().toISOString() })),   // sin sangría: son 77 KB menos por guardado
     mensaje, 0, repoActivo());
 }
 
@@ -4364,83 +4384,38 @@ async function anotarFotoPropia(id, ext){
 
 
 /* Volver a poner un producto en el catálogo desde la misma tarjeta. */
-/* ── PUBLICAR DE VERDAD UN PRODUCTO NUEVO ─────────────────────────────────────
-   Un artículo recién creado en E-Pyme tiene precio en pendientes.json pero
-   todavía no está en precios-min.csv, que es la lista que lee la tienda. Por eso
-   "agregarlo al catálogo" no alcanzaba: seguía sin aparecer y volvía a la lista
-   de Fuera del catálogo. Acá se escribe en la lista, con su precio y su rubro. */
-async function meterEnLaLista(prods){
-  var faltan = prods.filter(function(p){ return p.nuevo && !p.enLista && p.p1 > 0 && p.rubro; });
-  if (!faltan.length) return 0;
-  var csv = await bajar(archivoPrecios());
-  var filas = leerCsv(csv);
-  if (!filas.length) throw new Error('no pude leer la lista de precios');
-  var cab = filas[0];
-  var iN = colDe(cab, ['nombre']), i1 = colDe(cab, ['bt.lista 1','lista 1']),
-      i2 = colDe(cab, ['bt.lista 2','lista 2']), iR = colDe(cab, ['rubro']),
-      iA = colDe(cab, ['articulo']);
-  if (iN < 0 || i1 < 0 || iA < 0) throw new Error('la lista no tiene las columnas esperadas');
-  var yaEstan = {};
-  filas.slice(1).forEach(function(c){ var k = limpiaId(c[iA]); if (k) yaEstan[k] = true; });
-  var sumadas = 0;
-  faltan.forEach(function(p){
-    if (yaEstan[p.id]) { p.enLista = true; return; }
-    var fila = new Array(cab.length).fill('');
-    fila[iN] = p.nombreCsv || p.nombre;
-    fila[i1] = p.p1;
-    // Sin precio de +$80.000 propio se usa el mismo: no se inventa un descuento.
-    if (i2 >= 0) fila[i2] = p.p2 || p.p1;
-    if (iR >= 0) fila[iR] = p.rubro;
-    fila[iA] = p.id;
-    filas.push(fila);
-    sumadas++;
-    p.enLista = true; p.sinPrecio = false;
-  });
-  if (!sumadas) return 0;
-  // Se reescribe con el mismo formato que genera E-Pyme.
-  var texto = filas.map(function(f){
-    return f.map(function(c){
-      var t = String(c == null ? '' : c);
-      return /[",\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t;
-    }).join(',');
-  }).join('\n') + '\n';
-  await guardarEnRepo(archivoPrecios(), aB64(texto),
-    'Al catálogo desde el panel (' + sumadas + ' producto' + (sumadas === 1 ? '' : 's') + ')',
-    0, repoActivo());
-  return sumadas;
-}
-
 async function volverAlCatalogo(id){
   var p = PRODUCTOS.find(function(x){ return x.id === id; });
   if (!p) return;
-  if (!TOKEN) { alert('Entrá con la clave para poder guardar.'); return; }
+  if (!TOKEN) { avisar('mal', 'Falta la clave', 'Entrá con la clave para poder guardar.'); return; }
   var b = document.querySelector('.sw[data-cat="' + id + '"]');
-  if (b) { b.disabled = true; }
   var estaba = { oculto: p.oculto, altaOk: p.altaOk };
   var entra = !(enCatalogo(p) || esperandoAlta(p));   // si está afuera, lo mete
+
+  // El tilde cambia YA, sin esperar a la red: guardar tarda unos segundos y hasta
+  // ahora el botón se quedaba igual y parecía que no había pasado nada.
+  p.oculto = !entra;
+  if (p.nuevo) p.altaOk = entra;
+  if (b) { b.classList.toggle('sw-si', entra); b.classList.toggle('sw-no', !entra);
+           b.classList.add('sw-yendo'); b.disabled = true; }
+
   try {
-    p.oculto = !entra;
     var ficha = { oculto: p.oculto, origen: 'panel' };
-    // Un producto nuevo no necesita un segundo OK: ponerle la banderilla YA vale
-    // como aprobación del precio con el que entra.
-    if (p.nuevo) {
-      p.altaOk = entra;
-      ficha.altaOk = entra;
-      if (entra) aprobarPrecio(p);
-    }
+    // Un producto nuevo no necesita un segundo OK: ponerle el tilde YA vale como
+    // aprobación del precio con el que entra.
+    if (p.nuevo) { ficha.altaOk = entra; if (entra) aprobarPrecio(p); }
     FICHAS_FB[id] = Object.assign({}, FICHAS_FB[id] || {}, ficha);
-    // Si es nuevo y entra, primero va a la lista de precios: sin eso la tienda
-    // no lo puede mostrar y volvía a salir en Fuera del catálogo.
-    var enLista = 0;
-    if (entra) { try { enLista = await meterEnLaLista([p]); } catch(e) { avisar('mal','No pude ponerlo en la lista de precios', e.message); } }
     await guardarFichasEnRepo((entra ? 'Entra al catálogo: ' : 'Sale del catálogo: ') + (p.nombre || id));
     pintarKpis(); pintar();
     avisar('ok', entra ? 'Ya está en la tienda' : 'Sacado de la tienda',
-      (p.nombre || id) + (enLista ? ' — se agregó a la lista de precios' : ''));
+      (p.nombre || id) + (entra ? ' — se ve en unos minutos' : ''));
   } catch (e) {
+    // Si falló, el tilde vuelve a como estaba: nunca puede quedar mintiendo.
     p.oculto = estaba.oculto; p.altaOk = estaba.altaOk;
-    alert('No pude guardarlo: ' + e.message);
+    avisar('mal', 'No se pudo guardar', (p.nombre || id) + ': ' + (e.message || e));
     pintar();
+  } finally {
+    if (b) { b.classList.remove('sw-yendo'); b.disabled = false; }
   }
 }
 document.addEventListener('click', function(ev){
@@ -4545,9 +4520,8 @@ async function altAgregar(){
       if (p.nuevo) { p.altaOk = true; ficha.altaOk = true; aprobarPrecio(p); }
       FICHAS_FB[p.id] = Object.assign({}, FICHAS_FB[p.id] || {}, ficha);
     });
-    var enLista = 0;
-    try { enLista = await meterEnLaLista(marcados); } catch(e) { avisar('mal','No pude ponerlos en la lista de precios', e.message); }
     await guardarFichasEnRepo('Al catálogo: ' + marcados.length + ' producto' + (marcados.length === 1 ? '' : 's'));
+    var enLista = 0;
     var nombres = marcados.slice(0,2).map(function(p){ return p.nombre; }).join(', ');
     avisar('ok', marcados.length + (marcados.length === 1 ? ' producto agregado' : ' productos agregados') + ' al catálogo',
            marcados.length <= 2 ? nombres : nombres + ' y ' + (marcados.length - 2) + ' más');
