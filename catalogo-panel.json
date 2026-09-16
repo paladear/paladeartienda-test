@@ -743,10 +743,13 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:38.290Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/17575rt-rqMMtAt_utc3qRj5ufJubO4OO/view"
+   "imagen": "https://drive.google.com/file/d/17575rt-rqMMtAt_utc3qRj5ufJubO4OO/view",
+   "marca": "Indias",
+   "envase": "50 g",
+   "envasado": true
   },
   "1154": {
    "nombre": "BOLDO",
@@ -1234,10 +1237,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/19bIyRbLXWdeAbAWXd48C-5h7_3Batcai/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:38.290Z",
    "por": "panel",
-   "rubro": "AZUCAR, CACAO Y REPOSTERIA"
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "marca": "Indias",
+   "envase": "100 cc",
+   "envasado": true
   },
   "1265": {
    "nombre": "MASTROENI - ESPUMANTE DULCE NATURAL X750 CC",
@@ -2480,10 +2486,13 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:38.290Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1w9damY3bRm1gvLHRwOXX9dDWA0HlenN0/view"
+   "imagen": "https://drive.google.com/file/d/1w9damY3bRm1gvLHRwOXX9dDWA0HlenN0/view",
+   "marca": "Indias",
+   "envase": "50 g",
+   "envasado": true
   },
   "1525": {
    "nombre": "POROTOS ALUBIA",
@@ -15806,7 +15815,8 @@
   "MONTE NATURAL",
   "TRES SOLES",
   "AROMANZA",
-  "YOGURLAC"
+  "YOGURLAC",
+  "INDIAS"
  ],
- "actualizado": "2026-09-16T01:33:34.645Z"
+ "actualizado": "2026-09-16T01:33:38.720Z"
 }
