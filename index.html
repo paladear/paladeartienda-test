@@ -730,6 +730,9 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .opt-btns{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:5px;margin-bottom:8px}
 .opt-btns-4{gap:4px}
 .opt-btns-1{grid-auto-columns:max-content;justify-content:start}
+/* Reemplaza al botón "1 unidad" en los envasados a los que todavía no se les
+   cargó el contenido del envase. */
+.opt-unica{font-size:11.5px;font-weight:600;color:var(--muted-fg);margin:2px 0 4px}
 .chat-quick-faqs{padding:8px 4px;display:flex;flex-direction:column;gap:6px}
 .chat-faq-title{font-size:12px;font-weight:700;color:var(--azul-dark);margin-bottom:2px;opacity:.8}
 .chat-faq-btn{background:var(--azul-light);border:1.5px solid var(--azul-mid);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--azul-dark);cursor:pointer;text-align:left;transition:all .2s;font-family:inherit}
@@ -3493,9 +3496,16 @@ function renderCard(p,prefix,prioritizeImage){
   // En pantalla: menor a mayor. La medida activa sigue siendo opts[0],
   // que es la referencia de precio usada por el resto de la tienda.
   const optsVis=opts.slice().reverse();
-  h+=`<div class="opt-btns${opts.length>=4?' opt-btns-4':''}${opts.length===1?' opt-btns-1':''}">`;
-  optsVis.forEach(o=>{h+=`<button class="opt-btn${o===opts[0]?' active':''}" data-opt="${o.replace(/"/g,'&quot;')}" onclick="selOpt('${id}','${o.replace(/'/g,"\\'")}',${p[7][o][0]},${p[7][o][1]})">${_medidaCorta(o)}</button>`});
-  h+='</div>';
+  // Un solo botón no es una elección: ocupa una fila entera para no decir nada, y
+  // el contenido del envase ya va al lado del nombre. Si al producto todavía no
+  // se le cargó el envase, en vez del botón queda un "por unidad" chiquito.
+  if(opts.length===1){
+    if(!_envaseDe(p)) h+=`<div class="opt-unica">por unidad</div>`;
+  } else {
+    h+=`<div class="opt-btns${opts.length>=4?' opt-btns-4':''}">`;
+    optsVis.forEach(o=>{h+=`<button class="opt-btn${o===opts[0]?' active':''}" data-opt="${o.replace(/"/g,'&quot;')}" onclick="selOpt('${id}','${o.replace(/'/g,"\\'")}',${p[7][o][0]},${p[7][o][1]})">${_medidaCorta(o)}</button>`});
+    h+='</div>';
+  }
   if(sabores&&sabores.length){
     h+=`<div class="sabor-row"><label class="sabor-label" for="${id}_sab">Sabor:</label><select class="sabor-select" id="${id}_sab" onchange="selSabor('${id}',this.value)">`;
     sabores.forEach(s=>{h+=`<option value="${s.replace(/"/g,'&quot;')}">${s}</option>`});
