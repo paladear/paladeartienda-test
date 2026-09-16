@@ -5357,10 +5357,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/14phf-_VuRbjq5lGSGY6etaD_lllAKnDk/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:42.597Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Pizarro",
+   "envase": "30 g",
+   "envasado": true
   },
   "2233": {
    "nombre": "KEFIR DE AGUA SABORIZADO X950 ML - KE.LIVE",
@@ -7424,10 +7427,13 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.792Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:42.596Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1WB9x4IEIWsAQbMrV0NyGvq16COsM_jG_/view"
+   "imagen": "https://drive.google.com/file/d/1WB9x4IEIWsAQbMrV0NyGvq16COsM_jG_/view",
+   "marca": "Pizarro",
+   "envase": "454 g",
+   "envasado": true
   },
   "2511": {
    "nombre": "DULCE BATATA SIN AZUCAR X400 GR - ORIETA",
@@ -15873,7 +15879,8 @@
   "VERDE VIDA",
   "NUTRA SEM",
   "HOMEMADE",
-  "INTEGRA"
+  "INTEGRA",
+  "PIZARRO"
  ],
- "actualizado": "2026-09-16T01:34:38.045Z"
+ "actualizado": "2026-09-16T01:34:42.664Z"
 }
