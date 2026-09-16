@@ -7757,10 +7757,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1YzjSZ-7SRayly5I9RyJF16izEQYrZD5a/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:15.969Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "La Casita de la Abueli",
+   "envase": "450 g",
+   "envasado": true
   },
   "5019": {
    "nombre": "MERMELADA DE DURAZNO X450 GR - LA CASITA DE LA ABUELI",
@@ -7769,10 +7772,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1f28qxUcBPwGJgi7Rc3oMnJ-eDPWf3xvK/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:15.969Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "La Casita de la Abueli",
+   "envase": "450 g",
+   "envasado": true
   },
   "5020": {
    "nombre": "MERMELADA DE FRUTOS DEL BOSQUE X450 GR - LA CASITA DE LA ABUELI",
@@ -7781,10 +7787,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1Sv5PveyVfyNnTFlT8O1F-T8utY550NVx/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:15.969Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "La Casita de la Abueli",
+   "envase": "450 g",
+   "envasado": true
   },
   "5021": {
    "nombre": "MANTECA CLARIFICADA X150 GR - ENTRENUTS",
@@ -15761,7 +15770,8 @@
   "SUPPLY",
   "DOÑA MAGDALENA",
   "LAS DOÑAS",
-  "DICOMERE"
+  "DICOMERE",
+  "LA CASITA DE LA ABUELI"
  ],
- "actualizado": "2026-09-16T01:33:12.431Z"
+ "actualizado": "2026-09-16T01:33:16.047Z"
 }
