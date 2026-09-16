@@ -1516,9 +1516,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:35:11.904Z",
+   "por": "panel",
+   "marca": "Mupay",
+   "envase": "3,8 kg",
+   "envasado": true
   },
   "1309": {
    "nombre": "HIGOS EN ALMIBAR X450 GR - MUPAY",
@@ -3136,9 +3139,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.796Z",
-   "por": "panel"
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:35:11.904Z",
+   "por": "panel",
+   "marca": "Mupay",
+   "envase": "3.8 kg",
+   "envasado": true
   },
   "1656": {
    "nombre": "ZAPALLO EN ALMIBAR X360 GR - MUPAY",
@@ -15885,7 +15891,8 @@
   "HOMEMADE",
   "INTEGRA",
   "PIZARRO",
-  "SRISRI"
+  "SRISRI",
+  "MUPAY"
  ],
- "actualizado": "2026-09-16T01:34:47.264Z"
+ "actualizado": "2026-09-16T01:35:11.970Z"
 }
