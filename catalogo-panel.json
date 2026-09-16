@@ -6181,10 +6181,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1C8DQ2Rvo1MoX-LcxaE7eb-0HwVt3r4qg/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:09.287Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Verde Vida",
+   "envase": "500 ml",
+   "envasado": true
   },
   "2367": {
    "nombre": "TRIGO SARRACENO PELADO",
@@ -6479,10 +6482,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1F0yBVzAq8L8rgbDntdUWvsq2KeXmJUtk/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:09.287Z",
    "por": "panel",
-   "rubro": "LINEA GOURMET"
+   "rubro": "LINEA GOURMET",
+   "marca": "Verde Vida",
+   "envasado": true
   },
   "2397": {
    "nombre": "PEPERINA",
@@ -15848,7 +15853,8 @@
   "SAGRADA MADRE",
   "TIERRA SANTA",
   "GOTAS DE ORO",
-  "PARTY BECK"
+  "PARTY BECK",
+  "VERDE VIDA"
  ],
- "actualizado": "2026-09-16T01:34:04.575Z"
+ "actualizado": "2026-09-16T01:34:09.641Z"
 }
