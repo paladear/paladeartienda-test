@@ -1870,10 +1870,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1JKsD3XI9xhwpUuvuZRI5zMUyEeqBqd7X/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:20.389Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Monte Natural",
+   "envase": "1 kg",
+   "envasado": true
   },
   "1408": {
    "nombre": "MIEL DE ABEJA X250 GR - MONTE NATURAL",
@@ -1882,10 +1885,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1vcqMzMskV0cok-aTNgkYaP_za2vdYYga/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:20.389Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Monte Natural",
+   "envase": "250 g",
+   "envasado": true
   },
   "1410": {
    "nombre": "MIEL DE ABEJA X500 GR - MONTE NATURAL",
@@ -1894,10 +1900,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1InBwP0KdXp-jGKcN5fnd9K5wvxGwvqUJ/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:20.389Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Monte Natural",
+   "envase": "500 g",
+   "envasado": true
   },
   "1415": {
    "nombre": "MIX 7 SEMILLAS SALUDABLES",
@@ -15771,7 +15780,8 @@
   "DOÑA MAGDALENA",
   "LAS DOÑAS",
   "DICOMERE",
-  "LA CASITA DE LA ABUELI"
+  "LA CASITA DE LA ABUELI",
+  "MONTE NATURAL"
  ],
- "actualizado": "2026-09-16T01:33:16.047Z"
+ "actualizado": "2026-09-16T01:33:21.499Z"
 }
