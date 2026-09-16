@@ -7472,10 +7472,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1rprbHGL6Ltlrs5d8QBDiDxYJrSuNxuuU/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:25.153Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "El Amauta",
+   "envase": "300 cc",
+   "envasado": true
   },
   "5006": {
    "nombre": "ACONDICIONADOR DE ROMERO Y ALOE VERA X300 CC - EL AMAUTA",
@@ -7484,10 +7487,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1XdSD5CeEunJ6fWqkyQyqFcORF4qwBhV8/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.788Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:25.153Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "El Amauta",
+   "envase": "300 cc",
+   "envasado": true
   },
   "5007": {
    "nombre": "JABON LIQUIDO DE ROSA MOSQUETA - EL AMAUTA",
@@ -7496,10 +7502,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1JoSnbx5YWD_s2u1fhkF641m7GwYjWM-c/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:25.153Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "El Amauta",
+   "envasado": true
   },
   "5008": {
    "nombre": "JABON DE JARILLA Y GLICERINA - EL AMAUTA",
@@ -7508,10 +7516,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1LvCRjMEohdckGHCArWRV1W0wFWnIF7yf/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:25.153Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "El Amauta",
+   "envasado": true
   },
   "5009": {
    "nombre": "DESODORANTE NATURAL - EL AMAUTA",
@@ -7520,10 +7530,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1zPOVL2bYGytFTcAWGypf8AV3GOzLWyrf/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.791Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:25.153Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "El Amauta",
+   "envasado": true
   },
   "5010": {
    "nombre": "PIPAS TOSTADAS CON SAL DEL HIMALAYA  X50 GR",
@@ -15568,7 +15580,8 @@
  "novedadesVistas": "2026-09-16T01:08:54.786Z",
  "marcas": [
   "EL NATURALISTA",
-  "SOMOS SETAS"
+  "SOMOS SETAS",
+  "EL AMAUTA"
  ],
- "actualizado": "2026-09-16T01:32:13.821Z"
+ "actualizado": "2026-09-16T01:32:26.432Z"
 }
