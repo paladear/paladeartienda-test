@@ -371,6 +371,22 @@ body.buscando .busca-fija{display:flex}
 body.es-vivo #franjaPruebas{display:none}
 @media(max-width:560px){ #franjaPruebas{gap:5px;padding:8px 12px} #franjaPruebas span{font-size:12.5px} }
 
+/* ── Sellos del producto ── */
+.sellos{display:flex;flex-wrap:wrap;gap:7px}
+.sello{padding:9px 14px;border:1.5px solid #cfd8e0;border-radius:999px;background:var(--papel);
+  font:600 14px/1 inherit;color:#5d6b7a;cursor:pointer;min-height:40px;
+  transition:background .14s,border-color .14s,color .14s}
+.sello:hover{border-color:#9db6cc}
+.sello.on{background:#1d7a4a;border-color:#1d7a4a;color:#fff}
+.sello.on::before{content:'✓ ';font-weight:800}
+.sellos-nota{margin:8px 0 0;font-size:12.5px;line-height:1.4;color:#6b7885}
+
+/* Los sellos del producto en la card del listado. */
+.nom-sellos{display:inline-flex;gap:5px;margin-left:7px;vertical-align:1px}
+.nom-sello{padding:2px 7px;border-radius:999px;background:#e7f7ee;border:1px solid #8fd0ac;
+  font:700 9.5px/1.4 inherit;letter-spacing:.04em;text-transform:uppercase;color:#1d7a4a;
+  white-space:nowrap}
+
 /* La marca al lado del nombre, y el contenido del envase en la línea de datos. */
 .nom-marca{margin-left:7px;padding-left:8px;border-left:1px solid var(--linea);
   font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
@@ -535,6 +551,8 @@ body.es-mayorista #btnPublicar{display:none}
 .kpi.k-renom{background:#f4eefb;border-color:#d8c6ea}
 .kpi.k-renom span,.kpi.k-renom b{color:#65418f}
 .kpi.k-oferta{background:#fdf1f4;border-color:#eec3ce}
+.k-sellos{background:#eef8f2;border-color:#bfe3cf}
+.k-sellos span,.kpi.k-sellos b{color:#1d7a4a}
 .kpi.k-oferta span,.kpi.k-oferta b{color:#993552}
 .kpi.k-mal{background:#fdecea;border-color:#efb7ae}
 .kpi.k-mal span,.kpi.k-mal b{color:#9c2d1c}
@@ -1071,6 +1089,12 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
       <div class="campo">
         <label>Rubro <span class="ayuda">— viene de E-Pyme, no se edita acá</span></label>
         <div class="solo-lectura" id="edRubro"></div>
+      </div>
+      <div class="campo">
+        <label>Sellos <span class="ayuda">— con esto el cliente puede filtrar en la tienda</span></label>
+        <div class="sellos" id="edSellos"></div>
+        <p class="sellos-nota">Marcá todos los que correspondan, incluso si no lo dice el
+          nombre: los frutos secos y las semillas son sin TACC igual.</p>
       </div>
       <div class="campo">
         <label>Aparece en los armadores <span class="ayuda">— solo productos a granel</span></label>
@@ -1836,7 +1860,7 @@ async function arrancar(){
         foto:!!(f.imagen && String(f.imagen).trim()),
         cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
         marca:f.marca || '', envase:f.envase || '', envasado:f.envasado,
-        saboresOcultos:f.saboresOcultos || [],
+        saboresOcultos:f.saboresOcultos || [], sellos:f.sellos || null,
         mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
         nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:false, renombre:renom[id] || null,
         malRubro:!!malRubro[id], enLista:true,
@@ -1854,7 +1878,7 @@ async function arrancar(){
         foto:!!(f.imagen && String(f.imagen).trim()),
         cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
         marca:f.marca || '', envase:f.envase || '', envasado:f.envasado,
-        saboresOcultos:f.saboresOcultos || [],
+        saboresOcultos:f.saboresOcultos || [], sellos:f.sellos || null,
         mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
         nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:true, renombre:null, malRubro:false,
         altaOk: f.altaOk === true
@@ -1994,6 +2018,7 @@ function abrirEditor(id){
   $('edEnvase').value = p.envase || (pr ? pr.envase : '');
   var sn = $('edSaborNuevo'); if (sn) sn.value = '';
   pintarVenta(pr && p.envasado === undefined ? {cantidades: pr.granel ? '' : '1 UNIDAD', envasado: !pr.granel} : p);
+  pintarSellos(p);
   pintarSabores(p);
   pintarPropuesta(p, pr);
   $('edDesc').value = p.desc || '';
@@ -2425,6 +2450,52 @@ function pintarRubroEditor(p){
   c.innerHTML = r ? esc(r) : '<span class="sin-dato">sin rubro en la lista</span>';
 }
 
+/* ── SELLOS DEL PRODUCTO ──────────────────────────────────────────────────────
+   Son los que el cliente usa para filtrar en la tienda. NO se deducen del nombre:
+   casi todos los frutos secos son sin TACC y no lo dicen. Se marcan a mano; lo
+   que sí se hace es proponer los que el nombre nombra. */
+const SELLOS = [
+  {id:'sintacc',  txt:'Sin TACC',   pista:/SIN TACC|SIN GLUTEN|LIBRE DE GLUTEN|APTO CELIAC/},
+  {id:'sinazucar',txt:'Sin azúcar', pista:/SIN AZ[UÚ]CAR|CON STEVIA|SIN AZUCARES/},
+  {id:'vegano',   txt:'Vegano',     pista:/VEGANO|VEGANA|\bVEGAN\b/},
+  {id:'organico', txt:'Orgánico',   pista:/ORG[AÁ]NIC/}
+];
+let SELLOS_SEL = {};
+
+function pintarSellos(p){
+  SELLOS_SEL = {};
+  var guardados = p.sellos || {};
+  var texto = ((p.nombreCsv || '') + ' ' + (p.nombre || '')).toUpperCase();
+  SELLOS.forEach(function(s){
+    // Si la ficha nunca se tocó, se prende el que el nombre ya dice.
+    SELLOS_SEL[s.id] = guardados[s.id] !== undefined ? !!guardados[s.id] : s.pista.test(texto);
+  });
+  dibujarSellos();
+}
+
+function dibujarSellos(){
+  var c = $('edSellos');
+  if (!c) return;
+  c.innerHTML = SELLOS.map(function(s){
+    return '<button type="button" class="sello' + (SELLOS_SEL[s.id] ? ' on' : '') +
+      '" data-sello="' + s.id + '" aria-pressed="' + (SELLOS_SEL[s.id] ? 'true' : 'false') + '">' +
+      s.txt + '</button>';
+  }).join('');
+  c.querySelectorAll('.sello').forEach(function(b){
+    b.addEventListener('click', function(){
+      SELLOS_SEL[this.dataset.sello] = !SELLOS_SEL[this.dataset.sello];
+      dibujarSellos();
+    });
+  });
+}
+
+/* Sólo se guardan los que están prendidos: así el JSON no engorda con falsos. */
+function sellosDe(){
+  var o = {};
+  SELLOS.forEach(function(s){ if (SELLOS_SEL[s.id]) o[s.id] = true; });
+  return o;
+}
+
 /* ── ¿Envasado o a granel? ──
    Envasado: se vende por unidad y lo que importa es el contenido del paquete.
    Granel: se elige el peso, hasta cuatro. */
@@ -2681,6 +2752,7 @@ async function guardarFicha(){
     rubro: (p.rubro || '').trim(),
     sabores: textoSabores(),
     saboresOcultos: saboresApagados(),
+    sellos: sellosDe(),
     desc: $('edDesc').value.trim(),
     oferta: Math.max(0, Math.min(90, parseInt($('edOferta').value, 10) || 0)),
     mix: $('edMix').checked, granola: $('edGranola').checked, blend: $('edBlend').checked,
@@ -2718,7 +2790,7 @@ async function guardarFicha(){
     Object.assign(p, {
       nombre: datos.nombre, cantidades: datos.cantidades, sabores: datos.sabores,
       marca: datos.marca, envase: datos.envase, envasado: datos.envasado,
-      saboresOcultos: datos.saboresOcultos,
+      saboresOcultos: datos.saboresOcultos, sellos: datos.sellos,
       rubro: datos.rubro || p.rubro,
       desc: datos.desc, oferta: datos.oferta, mix: datos.mix, granola: datos.granola,
       blend: datos.blend, editada: true,
@@ -3001,7 +3073,10 @@ function pintarKpis(){
     ['fuera',   fuera,   'Fuera', 'k-fuera'],
     ['sindesc', sinDesc, 'Sin descripción', 'k-desc'],
     ['renom',   renoms,  renoms === 1 ? 'Nombre cambiado' : 'Nombres cambiados', 'k-renom'],
-    ['oferta',  ofertas, 'Con oferta', 'k-oferta']
+    ['oferta',  ofertas, 'Con oferta', 'k-oferta'],
+    // Para ir marcando los sellos de a poco sin perder de vista cuántos faltan.
+    ['sinsellos', PRODUCTOS.filter(p => !p.sellos || !Object.keys(p.sellos).length).length,
+     'Sin sellos', 'k-sellos']
   ];
   if (malos) kpis.push(['malrubro', malos, 'Rubro inválido', 'k-mal']);
 
@@ -3111,8 +3186,20 @@ function enFiltroActual(p){
     case 'fuera':      return !resuelto(p);
     case 'sinfoto':    return !p.foto;
     case 'oferta':     return (p.oferta || 0) > 0;
+    case 'sinsellos':  return !p.sellos || !Object.keys(p.sellos).length;
     default:           return true;
   }
+}
+
+/* Los sellos ya puestos, para verlos en el listado sin abrir la ficha. */
+function selloChips(p){
+  var s = p.sellos;
+  if (!s) return '';
+  var puestos = SELLOS.filter(function(x){ return s[x.id]; });
+  if (!puestos.length) return '';
+  return '<span class="nom-sellos">' + puestos.map(function(x){
+    return '<span class="nom-sello">' + x.txt + '</span>';
+  }).join('') + '</span>';
 }
 
 function pintar(){
@@ -3124,6 +3211,7 @@ function pintar(){
   if (FILTRO === 'malrubro')   lista = lista.filter(p => p.malRubro);
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
   if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
+  if (FILTRO === 'sinsellos')  lista = lista.filter(p => !p.sellos || !Object.keys(p.sellos).length);
   if (FILTRO === 'oferta')     lista = lista.filter(p => p.oferta > 0);
   if (RUBRO === '__sin__')     lista = lista.filter(p => !(p.rubro || '').trim());
   else if (RUBRO)              lista = lista.filter(p => (p.rubro || '').trim() === RUBRO);
@@ -3157,7 +3245,8 @@ function pintar(){
     nuevos: 'Aparecieron en E-Pyme. Tocá el tilde de la izquierda y entran a la tienda.',
     precio: 'Los precios ya están en la tienda. Esto es sólo para que veas qué se movió.',
     sinfoto: 'Tocá un producto para subirle la foto.',
-    fuera: 'El tilde de la izquierda los mete o los saca de la tienda. Los que dicen <b>No se puede</b> es porque les falta el precio o el rubro en E-Pyme.'
+    fuera: 'El tilde de la izquierda los mete o los saca de la tienda. Los que dicen <b>No se puede</b> es porque les falta el precio o el rubro en E-Pyme.',
+    sinsellos: 'Abrilos y marcá los sellos que correspondan. Acordate que las aceitunas, los frutos secos y las semillas son sin TACC aunque el nombre no lo diga.'
   };
   const cajaAyuda = document.getElementById('ayudaFiltro');
   if (cajaAyuda) {
@@ -3253,7 +3342,8 @@ function pintar(){
           ' aria-label="Marcar ' + esc(p.nombre) + '"></label>' : '') + '</div>' +
       '<div class="datos">' + aviso +
         '<div class="nom">' + esc(p.nombre) +
-          (p.marca ? '<span class="nom-marca">' + esc(p.marca) + '</span>' : '') + '</div>' +
+          (p.marca ? '<span class="nom-marca">' + esc(p.marca) + '</span>' : '') +
+          selloChips(p) + '</div>' +
         // El contenido del envase se ve acá, no sólo dentro de la ficha: es el dato
         // que más se busca y sin él dos presentaciones del mismo producto se leen
         // exactamente igual.
