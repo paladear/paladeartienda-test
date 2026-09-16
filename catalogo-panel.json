@@ -3416,10 +3416,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1uWGXEjmV0Kc7ZMyJpNNRiE5KqGo1asEf/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.796Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:33.567Z",
    "por": "panel",
-   "rubro": "PRODUCTOS DE FRIO"
+   "rubro": "PRODUCTOS DE FRIO",
+   "marca": "Yogurlac",
+   "envase": "1 L",
+   "envasado": true
   },
   "1803": {
    "nombre": "SALSA CESAR 250 GR - CASA DE LA TORRE",
@@ -3956,10 +3959,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.796Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:33.566Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1PFlV0NsG3YVxDPVF7HUEl1x34SU8eVSI/view"
+   "imagen": "https://drive.google.com/file/d/1PFlV0NsG3YVxDPVF7HUEl1x34SU8eVSI/view",
+   "marca": "Yogurlac",
+   "envasado": true
   },
   "2027": {
    "nombre": "ALFAJORES DE MAICENA SIN GLUTEN X6 UNIDADES",
@@ -8030,10 +8035,12 @@
    "sabores": "FRUTILLA/VAINILLA",
    "imagen": "https://drive.google.com/file/d/1ur8_AAZXuzLfyGzDjf5Le_-3TBr-lh12/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.796Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:33.567Z",
    "por": "panel",
-   "rubro": "PRODUCTOS DE FRIO"
+   "rubro": "PRODUCTOS DE FRIO",
+   "marca": "Yogurlac",
+   "envasado": true
   },
   "5037": {
    "nombre": "PAPRIKA",
@@ -15798,7 +15805,8 @@
   "LA CASITA DE LA ABUELI",
   "MONTE NATURAL",
   "TRES SOLES",
-  "AROMANZA"
+  "AROMANZA",
+  "YOGURLAC"
  ],
- "actualizado": "2026-09-16T01:33:29.818Z"
+ "actualizado": "2026-09-16T01:33:34.645Z"
 }
