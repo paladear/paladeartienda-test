@@ -5049,10 +5049,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1jmjOu4jDU47SmP5kMbAMLHhyH588qGS_/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:59.695Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Gotas de Oro",
+   "envase": "500 g",
+   "envasado": true
   },
   "2175": {
    "nombre": "VALERIANA X10 COMPRIMIDOS - EL NATURALISTA",
@@ -5540,10 +5543,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1LRarzkBLFD7TXqF2TWpCG31lCSLXufct/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:59.695Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Gotas de Oro",
+   "envase": "250 g",
+   "envasado": true
   },
   "2276": {
    "nombre": "MORINGA X60 CC - EL NATURALISTA",
@@ -15834,7 +15840,8 @@
   "INDIAS",
   "BOUTIQUE CHIPS",
   "SAGRADA MADRE",
-  "TIERRA SANTA"
+  "TIERRA SANTA",
+  "GOTAS DE ORO"
  ],
- "actualizado": "2026-09-16T01:33:55.325Z"
+ "actualizado": "2026-09-16T01:33:59.781Z"
 }
