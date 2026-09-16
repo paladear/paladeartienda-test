@@ -6906,10 +6906,12 @@
    "sabores": "Arándanos y semillas/cajú y arándanos/banana y nuez",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:37.977Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1I3sXrAbibz4MXrj8IPUAQRXKdqth-LIA/view"
+   "imagen": "https://drive.google.com/file/d/1I3sXrAbibz4MXrj8IPUAQRXKdqth-LIA/view",
+   "marca": "Integra",
+   "envasado": true
   },
   "2463": {
    "nombre": "BISGLICINATO DE MAGNESIO X50 CAPSULAS - NATIER",
@@ -7369,10 +7371,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1tP4pZBdg95hruo1GIxj4cVEr_M4561AN/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:37.977Z",
    "por": "panel",
-   "rubro": "SNACK"
+   "rubro": "SNACK",
+   "marca": "Integra",
+   "envasado": true
   },
   "2507": {
    "nombre": "SHITAKE X60 CAPSULAS - SOMOS SETAS",
@@ -15868,7 +15872,8 @@
   "PARTY BECK",
   "VERDE VIDA",
   "NUTRA SEM",
-  "HOMEMADE"
+  "HOMEMADE",
+  "INTEGRA"
  ],
- "actualizado": "2026-09-16T01:34:33.590Z"
+ "actualizado": "2026-09-16T01:34:38.045Z"
 }
