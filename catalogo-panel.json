@@ -4814,10 +4814,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1WHw5mkEvjgT-mPw4uZx2H0aYiH9lYZe6/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.792Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:02.156Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Doña Magdalena",
+   "envasado": true
   },
   "2141": {
    "nombre": "ACEITE DE COCO NEUTRO X 360GR - ENTRENUTS",
@@ -4868,10 +4870,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1RNgjG2UBtMOR-lWl6enYwwRNtC3AhQOi/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.792Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:02.157Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Doña Magdalena",
+   "envasado": true
   },
   "2153": {
    "nombre": "MERMELADA CON STEVIA SIN TACC - DOÑA MAGDALENA",
@@ -4880,10 +4884,12 @@
    "sabores": "FRUTILLA/DURAZNO",
    "imagen": "https://drive.google.com/file/d/1Q7z-fTvZodCM-Bj1Kcj3MTHVWYLoIohT/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:02.157Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Doña Magdalena",
+   "envasado": true
   },
   "2154": {
    "nombre": "CALDO DE VERDURA SIN SAL X10 SOBRES - EL NATURALISTA",
@@ -6662,10 +6668,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1v9_BFPVBlDHxweYXtHg-WfAeoMmSBHdC/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:02.157Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Doña Magdalena",
+   "envasado": true
   },
   "2437": {
    "nombre": "TAZA VIDRIO",
@@ -15730,7 +15738,8 @@
   "AGROIANNI",
   "COLONIAL",
   "DELICEL",
-  "SUPPLY"
+  "SUPPLY",
+  "DOÑA MAGDALENA"
  ],
- "actualizado": "2026-09-16T01:32:57.820Z"
+ "actualizado": "2026-09-16T01:33:02.224Z"
 }
