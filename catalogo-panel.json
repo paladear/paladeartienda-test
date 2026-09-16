@@ -4280,10 +4280,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1rHWYRHmjrRZe7nrMGDC7PCBOKSfGhGpa/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:50.967Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "Sagrada Madre",
+   "envasado": true
   },
   "2065": {
    "nombre": "SAHUMERIO MOMENTOS X5 - AROMANZA",
@@ -5941,10 +5943,13 @@
    "sabores": "7 ELEMENTOS PUROS/ABRE CAMINOS/ARMONIZACION/ATRAE DINERO/LIBERACION/PALO SANT",
    "imagen": "https://drive.google.com/file/d/1Gcm4-suIzUpWttZ1G2w5nWgLppeLzbhp/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:50.967Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "Sagrada Madre",
+   "envase": "4 uni",
+   "envasado": true
   },
   "2329": {
    "nombre": "SAHUMERIOS CON PORTASAHUMERIO - AROMANZA",
@@ -15821,7 +15826,8 @@
   "AROMANZA",
   "YOGURLAC",
   "INDIAS",
-  "BOUTIQUE CHIPS"
+  "BOUTIQUE CHIPS",
+  "SAGRADA MADRE"
  ],
- "actualizado": "2026-09-16T01:33:46.233Z"
+ "actualizado": "2026-09-16T01:33:51.039Z"
 }
