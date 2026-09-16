@@ -694,8 +694,10 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
   transition:border-color .16s ease,box-shadow .16s ease}
 .pdrel-card:hover{border-color:var(--azul-mid);box-shadow:0 3px 12px rgba(20,45,70,.1)}
 .pdrel-img{display:grid;place-items:center;aspect-ratio:1;border-radius:8px;
-  background:var(--min-cream);overflow:hidden}
-.pdrel-img img{width:100%;height:100%;object-fit:contain}
+  background:#fff;overflow:hidden}
+/* El mismo respiro que en las tarjetas grandes: sin él la foto toca los bordes y
+   parece recortada. */
+.pdrel-img img{width:100%;height:100%;object-fit:contain;padding:7px}
 .pdrel-nom{font-size:12.5px;line-height:1.25;color:var(--fg)}
 .pdrel-nom .nom-m{font-size:9px}
 .pdrel-precio{font-weight:800;font-size:14.5px;color:var(--min-blue-deep);
@@ -3338,8 +3340,11 @@ function _pintarRelacionados(p){
       const precio = opts.length ? q[7][opts[0]][0] : 0;
       const img = q[6] ? '<img src="' + q[6] + '" alt="" loading="lazy" decoding="async">'
                        : '<span class="product-image-placeholder" aria-hidden="true"></span>';
+      // El mismo fondo que usa la tarjeta grande: el color propio de cada foto. Con
+      // un crema fijo para todas, las que traen su fondo quedaban con un marco raro.
+      const fondo = (q[12] && q[12].fondo) ? ' style="background:' + q[12].fondo + '"' : '';
       return '<button type="button" class="pdrel-card" onclick="openProductDetail(' + q[0] + ')">' +
-        '<span class="pdrel-img">' + img + '</span>' +
+        '<span class="pdrel-img"' + fondo + '>' + img + '</span>' +
         '<span class="pdrel-nom">' + _nomHTML(q) + '</span>' +
         '<span class="pdrel-precio">$' + fmt(precio) + '</span></button>';
     }).join('') + '</div>';
@@ -3350,10 +3355,19 @@ function _pintarRelacionados(p){
    el botón de arriba te devuelve al producto del que viniste, por si tocaste la
    marca sin querer. */
 let _marcaVolverA = null;
+// Lo que había en pantalla antes de meterse en la marca: la lista, el rubro abierto
+// y hasta dónde estabas scrolleando. Sin esto, al cerrar la ficha te quedabas en el
+// listado de la marca en vez de volver adonde venías.
+let _marcaEstadoPrevio = null;
 
 function verMarca(marca, desdeProducto){
   if (!marca) return;
   _marcaVolverA = desdeProducto || null;
+  var _areaPrev = document.getElementById(window.innerWidth < 768 ? 'mobileProdsArea' : 'desktopProdsArea');
+  if (_areaPrev && !_marcaEstadoPrevio) {
+    _marcaEstadoPrevio = { id: _areaPrev.id, html: _areaPrev.innerHTML,
+                           cat: activeCatId, scrollY: window.scrollY };
+  }
   try { closeProductDetail(); } catch(e) {}
   _cerrarSugerencias();
 
@@ -3377,7 +3391,7 @@ function verMarca(marca, desdeProducto){
   h += '<div class="catalog-intro catalog-intro--marca">' +
        '<div><span class="marca-eyebrow">Marca</span><h1>' + _tc(marca) + '</h1>' +
        '<p class="marca-sub">' + prods.length + (prods.length === 1 ? ' producto' : ' productos') + '</p></div>' +
-       '<button class="catalog-filter-btn" onclick="volverInicio()">Ver todo el catálogo</button>' +
+       '<button class="catalog-filter-btn" onclick="_marcaEstadoPrevio=null;volverInicio()">Ver todo el catálogo</button>' +
        '</div>';
   if (!prods.length) {
     h += '<div style="text-align:center;padding:48px 0;color:var(--muted-fg);font-size:17px">Todavía no hay productos de esta marca</div>';
@@ -3396,12 +3410,25 @@ function verMarca(marca, desdeProducto){
 }
 window.verMarca = verMarca;
 
-/* Vuelve a la ficha del producto del que se salió. */
+/* Vuelve a la ficha del producto del que se salió, y deja detrás la pantalla que
+   había antes: así al cerrar la ficha estás donde estabas, con el mismo scroll. */
 function volverAlProducto(){
   const id = _marcaVolverA;
-  _marcaVolverA = null;
+  const prev = _marcaEstadoPrevio;
+  _marcaVolverA = null; _marcaEstadoPrevio = null;
+  if (prev) {
+    const area = document.getElementById(prev.id);
+    if (area) { area.innerHTML = prev.html; area.classList.remove('hidden'); }
+    activeCatId = prev.cat;
+    try { renderCatsUI(); } catch(e) {}
+    const carr = document.getElementById('carruselesArea') || document.querySelector('.carruseles');
+    if (carr && !prev.cat) carr.style.display = '';
+    const banners = document.querySelector('.banners-wrap');
+    if (banners) banners.style.display = '';
+    window.scrollTo({top: prev.scrollY, behavior: 'instant'});
+  }
   if (id != null) openProductDetail(id);
-  else volverInicio();
+  else if (!prev) volverInicio();
 }
 window.volverAlProducto = volverAlProducto;
 window.closeProductDetail=closeProductDetail;
