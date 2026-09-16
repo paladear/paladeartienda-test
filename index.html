@@ -1085,9 +1085,10 @@ body.cart-open #cart-fab,body.cart-open #chat-fab{display:none!important}
 #imgZoom img{max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5);object-fit:contain}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .product-detail{position:fixed;inset:0;z-index:9300;background:#f8f5ef;overflow-y:auto;animation:fadeIn .18s ease}
-.product-detail-bar{position:sticky;top:0;z-index:3;min-height:68px;padding:10px 18px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:10px;background:#285b83;color:#fff;box-shadow:0 4px 16px rgba(19,57,86,.14)}
+.product-detail-bar{position:sticky;top:0;z-index:3;min-height:68px;padding:10px 18px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:10px;background:rgba(207,229,242,.97);color:var(--min-blue-deep);
+  box-shadow:0 5px 16px rgba(20,58,87,.08)}
 .product-detail-bar strong{text-align:center;font-size:15px;font-weight:800;letter-spacing:.02em}
-.product-detail-back,.product-detail-close{width:42px;height:42px;border:1px solid rgba(255,255,255,.34);border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;font-family:inherit}
+.product-detail-back,.product-detail-close{width:42px;height:42px;border:1px solid rgba(20,58,87,.16);border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--min-blue-deep);cursor:pointer;font-family:inherit;box-shadow:0 2px 7px rgba(20,58,87,.1)}
 .product-detail-close{font-size:24px;line-height:1}
 .product-detail-shell{width:min(1100px,calc(100% - 40px));margin:0 auto;padding:34px 0 52px}
 .product-detail-main{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(360px,.98fr);gap:42px;align-items:start}
@@ -3364,10 +3365,11 @@ let _marcaEstadoPrevio = null;
 function verMarca(marca, desdeProducto){
   if (!marca) return;
   _marcaVolverA = desdeProducto || null;
-  var _areaPrev = document.getElementById(window.innerWidth < 768 ? 'mobileProdsArea' : 'desktopProdsArea');
-  if (_areaPrev && !_marcaEstadoPrevio) {
-    _marcaEstadoPrevio = { id: _areaPrev.id, html: _areaPrev.innerHTML,
-                           cat: activeCatId, scrollY: window.scrollY };
+  // Sólo se guarda QUÉ vista era y dónde estabas, no su HTML: "Todos los productos"
+  // se arma por lotes mientras scrolleás, así que el HTML de ese momento tenía nada
+  // más que el primer lote — por eso al volver salían sólo los aceites.
+  if (!_marcaEstadoPrevio) {
+    _marcaEstadoPrevio = { cat: activeCatId, scrollY: window.scrollY };
   }
   try { closeProductDetail(); } catch(e) {}
   _cerrarSugerencias();
@@ -3418,15 +3420,17 @@ function volverAlProducto(){
   const prev = _marcaEstadoPrevio;
   _marcaVolverA = null; _marcaEstadoPrevio = null;
   if (prev) {
-    const area = document.getElementById(prev.id);
-    if (area) { area.innerHTML = prev.html; area.classList.remove('hidden'); }
-    activeCatId = prev.cat;
-    try { renderCatsUI(); } catch(e) {}
-    const carr = document.getElementById('carruselesArea') || document.querySelector('.carruseles');
-    if (carr && !prev.cat) carr.style.display = '';
     const banners = document.querySelector('.banners-wrap');
     if (banners) banners.style.display = '';
-    window.scrollTo({top: prev.scrollY, behavior: 'instant'});
+    const carr = document.getElementById('carruselesArea') || document.querySelector('.carruseles');
+    if (carr) carr.style.display = '';
+    // Se vuelve a armar la vista de cero. Hay un caché que evita reconstruir si
+    // cree que ya está pintada, y con el listado de la marca en pantalla se lo
+    // creía: por eso hay que invalidarlo antes.
+    try { _catalogRenderMode = null; _catalogRenderedProds = null; _catalogRenderedCats = null; } catch(e) {}
+    if (prev.cat) { activeCatId = null; selectCat(prev.cat, null, {history:false}); }
+    else volverInicio();
+    setTimeout(function(){ window.scrollTo({top: prev.scrollY, behavior:'instant'}); }, 60);
   }
   if (id != null) openProductDetail(id);
   else if (!prev) volverInicio();
