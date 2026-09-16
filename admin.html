@@ -1549,29 +1549,45 @@ async function traerDelSheet(){
   }
 }
 
-async function guardarFichasEnRepo(mensaje){
-  // Antes de escribir se mira lo que hay publicado: si desde otro dispositivo
-  // ya diste las novedades por vistas y esta pestaña quedó con datos de antes,
-  // se respeta lo más nuevo. Sin esto, guardar cualquier cosa desde una pestaña
-  // vieja hacía volver el cartel que ya habías cerrado en el celular.
+/* El catálogo publicado pesa medio mega y se bajaba ENTERO antes de cada guardado,
+   sólo para mirar dos campos. Guardar cuatro fichas seguidas eran cuatro descargas.
+   Ahora se baja una sola vez por minuto y el resto de los guardados reusa eso. */
+let _REMOTO = null, _REMOTO_HORA = 0, _REMOTO_TIENDA = '';
+const REMOTO_VALE_MS = 60000;
+
+async function mirarLoPublicado(){
+  var ahora = Date.now();
+  if (_REMOTO && _REMOTO_TIENDA === TIENDA && (ahora - _REMOTO_HORA) < REMOTO_VALE_MS) return _REMOTO;
   try {
-    const url = (TIENDA === 'may' ? SITIO_MAY : '') + ARCHIVO_FICHAS + '?t=' + Date.now();
+    const url = (TIENDA === 'may' ? SITIO_MAY : '') + ARCHIVO_FICHAS + '?t=' + ahora;
     const rr = await fetch(url, {cache:'no-store'});
-    if (rr.ok) {
-      const remoto = await rr.json();
-      const suyo = remoto.novedadesVistas || '';
-      if (suyo && (!MARCA_VISTO || suyo > MARCA_VISTO)) {
-        MARCA_VISTO = suyo;
-        PRECIOS_VISTOS = remoto.preciosVistos || PRECIOS_VISTOS;
-        PRODUCTOS.forEach(function(p){
-          var a = PRECIOS_VISTOS[p.id];
-          if (a !== undefined && Math.abs(Number(a) - Number(p.p1)) < 1) {
-            p.cambioPrecio = false; p.precioAntes = p.p1;
-          }
-        });
-      }
+    if (!rr.ok) return null;
+    _REMOTO = await rr.json(); _REMOTO_HORA = ahora; _REMOTO_TIENDA = TIENDA;
+    return _REMOTO;
+  } catch(e) { return null; }
+}
+
+async function guardarFichasEnRepo(mensaje){
+  // Si desde otro dispositivo ya diste las novedades por vistas y esta pestaña
+  // quedó con datos de antes, se respeta lo más nuevo. Sin esto, guardar
+  // cualquier cosa desde una pestaña vieja hacía volver el cartel que ya habías
+  // cerrado en el celular.
+  var remoto = await mirarLoPublicado();
+  if (remoto) {
+    var suyo = remoto.novedadesVistas || '';
+    if (suyo && (!MARCA_VISTO || suyo > MARCA_VISTO)) {
+      MARCA_VISTO = suyo;
+      PRECIOS_VISTOS = remoto.preciosVistos || PRECIOS_VISTOS;
+      PRODUCTOS.forEach(function(p){
+        var a = PRECIOS_VISTOS[p.id];
+        if (a !== undefined && Math.abs(Number(a) - Number(p.p1)) < 1) {
+          p.cambioPrecio = false; p.precioAntes = p.p1;
+        }
+      });
     }
-  } catch(e) {}
+    // Guardar no puede ser nunca la forma de perder las marcas.
+    if (!MARCAS_FB.length && remoto.marcas && remoto.marcas.length) MARCAS_FB = remoto.marcas;
+  }
   await guardarEnRepo(ARCHIVO_FICHAS,
     aB64(JSON.stringify({ fichas: FICHAS_FB, fotos: FOTOS_FB,
                           preciosVistos: PRECIOS_VISTOS,
@@ -1581,6 +1597,11 @@ async function guardarFichasEnRepo(mensaje){
                           marcas: MARCAS_FB,
                           actualizado: new Date().toISOString() })),   // sin sangría: son 77 KB menos por guardado
     mensaje, 0, repoActivo());
+  // Lo que se acaba de escribir ES lo último publicado: no hay por qué volver a bajarlo.
+  _REMOTO = { fichas: FICHAS_FB, fotos: FOTOS_FB, preciosVistos: PRECIOS_VISTOS,
+              cambiosPrecio: CAMBIOS_FECHA, preciosAprobados: PRECIOS_APROBADOS,
+              novedadesVistas: MARCA_VISTO, marcas: MARCAS_FB };
+  _REMOTO_HORA = Date.now(); _REMOTO_TIENDA = TIENDA;
 }
 
 /* ── FOTOS ────────────────────────────────────────────────────────────────────
@@ -3751,7 +3772,8 @@ async function cambiarTienda(cual){
   var caja = $('excelCaja'); if (caja) caja.innerHTML = '';
   // guardar lo de la tienda que se deja
   var estado = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
-                 vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA };
+                 vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
+                 marcas: MARCAS_FB };   // sin esto, ir y volver de la distribuidora las perdía
   if (TIENDA === 'min') GUARDADO_MIN = estado; else GUARDADO_MAY = estado;
 
   TIENDA = cual;
@@ -4613,11 +4635,16 @@ function mcaPintar(){
   var l = $('mcaLista'), r = $('mcaResumen'), b = $('mcaEnviar');
   if (!l) return;
   var m = _norm(MCA_TXT);
-  r.textContent = MCA_LISTA.length ? MCA_MARCADOS.size + ' de ' + MCA_LISTA.length + ' marcados' : '';
+  r.textContent = MCA_LISTA.length
+    ? (MCA_LISTA.every(function(p){ return p.marca; }) && !MCA_MARCADOS.size
+        ? 'Los ' + MCA_LISTA.length + ' ya tienen esta marca'
+        : MCA_MARCADOS.size + ' de ' + MCA_LISTA.length + ' marcados')
+    : '';
   b.disabled = !MCA_MARCADOS.size;
+  var yaTodos = MCA_LISTA.length && !MCA_MARCADOS.size && MCA_LISTA.every(function(p){ return p.marca; });
   b.textContent = MCA_MARCADOS.size
     ? 'Ponerles la marca a ' + MCA_MARCADOS.size
-    : 'Ponerles la marca';
+    : yaTodos ? 'Ya la tienen todos' : 'Ponerles la marca';
   if (m.length < 3) {
     l.innerHTML = '<div class="vacio">Escribí una marca de al menos 3 letras, o tocá una de las de arriba.</div>';
     return;
