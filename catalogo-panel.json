@@ -1823,10 +1823,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1qZh_OzE6KEBPY-1IeONmJnUF5PksSrSg/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:39.549Z",
    "por": "panel",
-   "rubro": "MANTECAS Y PASTAS"
+   "rubro": "MANTECAS Y PASTAS",
+   "marca": "Entrenuts",
+   "envase": "370 g",
+   "envasado": true
   },
   "1384": {
    "nombre": "MANZANILLA FLOR",
@@ -4798,10 +4801,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/152trCrtVnqrqBpTZmgkdRxJtLgjKj0VW/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.787Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:39.548Z",
    "por": "panel",
-   "rubro": "ACEITES Y VINAGRES"
+   "rubro": "ACEITES Y VINAGRES",
+   "marca": "Entrenuts",
+   "envase": "360 g",
+   "envasado": true
   },
   "2142": {
    "nombre": "ACEITE DE COCO VIRGEN X 200GR - ENTRENUTS",
@@ -4810,10 +4816,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1bIaTu-IwSu3LSvSHplMMRH646c_O-vfl/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.787Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:39.548Z",
    "por": "panel",
-   "rubro": "ACEITES Y VINAGRES"
+   "rubro": "ACEITES Y VINAGRES",
+   "marca": "Entrenuts",
+   "envase": "200 g",
+   "envasado": true
   },
   "2144": {
    "nombre": "SALSA TAHINE - ALCARAZ GOURMET",
@@ -5415,10 +5424,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/10RUG87XYxr6t9RrYo6_F7kMzVyukmkJU/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.787Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:39.548Z",
    "por": "panel",
-   "rubro": "ACEITES Y VINAGRES"
+   "rubro": "ACEITES Y VINAGRES",
+   "marca": "Entrenuts",
+   "envase": "360 g",
+   "envasado": true
   },
   "2268": {
    "nombre": "BARRA DE CHOCOLATE 80% ORGANICO X 100 GR - COLONIAL",
@@ -5439,10 +5451,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1Z8F8Q8Aft9HCPjnD_sSqR3D0nIrKXuN9/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:39.549Z",
    "por": "panel",
-   "rubro": "MANTECAS Y PASTAS"
+   "rubro": "MANTECAS Y PASTAS",
+   "marca": "Entrenuts",
+   "envase": "370",
+   "envasado": true
   },
   "2271": {
    "nombre": "MIEL BATIDA X250 GR - GOTAS DE ORO",
@@ -7615,10 +7630,13 @@
    "sabores": "COOKIE AND CREAM/SALTED CARAMEL",
    "imagen": "https://drive.google.com/file/d/16hkt3PrjxI_ptuIy9o8XXnKJZdeYn_bc/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:39.549Z",
    "por": "panel",
-   "rubro": "MANTECAS Y PASTAS"
+   "rubro": "MANTECAS Y PASTAS",
+   "marca": "Entrenuts",
+   "envase": "370 g",
+   "envasado": true
   },
   "5013": {
    "nombre": "CHIPS SALADOS X80 GR - NUESTROS SABORES",
@@ -7699,10 +7717,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1w8hR54csNhPAI36VqPAfezkZlZUI6VUH/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:39.549Z",
    "por": "panel",
-   "rubro": "MANTECAS Y PASTAS"
+   "rubro": "MANTECAS Y PASTAS",
+   "marca": "Entrenuts",
+   "envase": "150 g",
+   "envasado": true
   },
   "5022": {
    "nombre": "GRANOLA CRUNCH X 1 KG - HOMEMADE",
@@ -7813,10 +7834,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1EfYDiJiBCm3uQBb2hrkaoIBuD084jqcO/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:39.549Z",
    "por": "panel",
-   "rubro": "MANTECAS Y PASTAS"
+   "rubro": "MANTECAS Y PASTAS",
+   "marca": "Entrenuts",
+   "envase": "370 cc",
+   "envasado": true
   },
   "5031": {
    "nombre": "BARRAS PROTEICAS X45 GR - ENTRENUTS",
@@ -7825,10 +7849,13 @@
    "sabores": "CHOCO MANÍ/NARANJA CHOCO/LEMON PIE/FRUTILLA DELI",
    "imagen": "https://drive.google.com/file/d/1LAlaVq3tSgn8rirfTRBi4_OgGT382cHK/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:39.549Z",
    "por": "panel",
-   "rubro": "SNACK"
+   "rubro": "SNACK",
+   "marca": "Entrenuts",
+   "envase": "45 g",
+   "envasado": true
   },
   "5032": {
    "nombre": "AVENA GRUESA INTEGRAL SIN TACC X350GR - DICOMERE",
@@ -15641,7 +15668,8 @@
   "EL NATURALISTA",
   "SOMOS SETAS",
   "EL AMAUTA",
-  "NATIER"
+  "NATIER",
+  "ENTRENUTS"
  ],
- "actualizado": "2026-09-16T01:32:33.809Z"
+ "actualizado": "2026-09-16T01:32:39.614Z"
 }
