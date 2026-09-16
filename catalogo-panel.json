@@ -369,7 +369,7 @@
    "por": "panel",
    "rubro": "ACEITES Y VINAGRES",
    "nombreEpyme": "ACETO BALSAMICO 500CC - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "500 cc",
    "envasado": true
   },
@@ -385,7 +385,7 @@
    "por": "panel",
    "rubro": "ACEITES Y VINAGRES",
    "nombreEpyme": "ACETO REDUCCION X 500CC - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "500 cc",
    "envasado": true
   },
@@ -498,7 +498,7 @@
    "por": "panel",
    "rubro": "ENCURTIDOS",
    "nombreEpyme": "ALCAPARRAS X 100GR - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "100 g",
    "envasado": true
   },
@@ -1114,7 +1114,7 @@
    "por": "panel",
    "rubro": "ENCURTIDOS",
    "nombreEpyme": "CHUCRUT X600 GR - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "600 g",
    "envasado": true
   },
@@ -2534,7 +2534,7 @@
    "por": "panel",
    "rubro": "LINEA GOURMET",
    "nombreEpyme": "PASTA DE AJI PICANTE X90 GR - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "90 g",
    "envasado": true
   },
@@ -3114,7 +3114,7 @@
    "altaOk": true,
    "imagen": "https://drive.google.com/file/d/1PAn7aEWgCX6yH7pqg9NMjr3VaqWWthZM/view",
    "nombreEpyme": "SALSA DE SOJA X180 CC - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "180 cc",
    "envasado": true
   },
@@ -3130,7 +3130,7 @@
    "por": "panel",
    "rubro": "LINEA GOURMET",
    "nombreEpyme": "SALSA JALAPEÑO ROJA X180 CC - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "180 cc",
    "envasado": true
   },
@@ -3639,7 +3639,7 @@
    "por": "panel",
    "rubro": "LINEA GOURMET",
    "nombreEpyme": "SALSA JALAPEÑO VERDE X180 CC - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "180 cc",
    "envasado": true
   },
@@ -3671,7 +3671,7 @@
    "por": "panel",
    "rubro": "LINEA GOURMET",
    "nombreEpyme": "SALSA AJI PICANTE X180 CC - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "180 cc",
    "envasado": true
   },
@@ -4596,8 +4596,7 @@
    "actualizado": "2026-09-13T12:51:39.790Z",
    "por": "panel",
    "rubro": "SUPLEMENTOS",
-   "nombreEpyme": "COLAGENO HIDROLIZADO - PEPTAN B 2000 LD",
-   "marca": "Peptan B 2000 LD"
+   "nombreEpyme": "COLAGENO HIDROLIZADO - PEPTAN B 2000 LD"
   },
   "2032": {
    "nombre": "Eucalipto en Hojas",
@@ -5605,7 +5604,7 @@
    "por": "panel",
    "rubro": "LINEA GOURMET",
    "nombreEpyme": "SALSA TAHINE - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet"
+   "marca": "Alcaraz"
   },
   "2145": {
    "nombre": "Dulce de Leche de Coco",
@@ -8050,7 +8049,7 @@
    "por": "panel",
    "rubro": "LINEA GOURMET",
    "nombreEpyme": "MOSTAZA CON MIEL ORGANICA X190 GR - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "190 g",
    "envasado": true
   },
@@ -8066,7 +8065,7 @@
    "por": "panel",
    "rubro": "LINEA GOURMET",
    "nombreEpyme": "MOSTAZA DIJON X170 GR - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "170 g",
    "envasado": true
   },
@@ -8355,7 +8354,7 @@
    "por": "panel",
    "rubro": "LINEA GOURMET",
    "nombreEpyme": "SALSA INGLESA X180 CC - ALCARAZ GOURMET",
-   "marca": "Alcaraz Gourmet",
+   "marca": "Alcaraz",
    "envase": "180 cc",
    "envasado": true
   },
@@ -17020,7 +17019,6 @@
   "AFG",
   "AGROIANNI",
   "ALCARAZ",
-  "ALCARAZ GOURMET",
   "ALMADRE",
   "AQUI Y AHORA",
   "AROMANZA",
@@ -17086,7 +17084,6 @@
   "ORIETA",
   "PANNOCCHIA",
   "PARTY BECK",
-  "PEPTAN B 2000 LD",
   "PERGOLA",
   "PERRO CALLEJERO",
   "PIZARRO",
@@ -17112,5 +17109,5 @@
   "VITAWELLNESS",
   "YOGURLAC"
  ],
- "actualizado": "2026-09-16T01:47:38.948Z"
+ "actualizado": "2026-09-16T02:07:18.390825Z"
 }
