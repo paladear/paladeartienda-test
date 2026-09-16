@@ -2747,8 +2747,14 @@ async function aplicarDescuento(){
     est.className = 'ed-estado ok';
     b.disabled = false;
     dcPintarLista(false); pintarKpis(); pintar();
+    // Antes guardaba en silencio y la ventana quedaba abierta: no se sabía si
+    // había terminado ni si había hecho algo.
+    avisar('ok', pct > 0 ? pct + '% de descuento aplicado' : 'Descuento sacado',
+           lista.length + (lista.length === 1 ? ' producto' : ' productos') + ' — la tienda los muestra así en unos minutos');
+    setTimeout(function(){ try { cerrarDescuentos(); } catch(e) {} }, 900);
   } catch (e) {
     b.disabled = false;
+    avisar('mal', 'No se pudo aplicar el descuento', e.message || String(e));
     est.textContent = 'No se pudo aplicar: ' + (e.message || e);
     est.className = 'ed-estado mal';
   }
