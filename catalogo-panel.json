@@ -4278,10 +4278,12 @@
    "sabores": "ABUNDANCIA/BIENESTAR/DULZURA/FELICIDAD/MEDITACION/PASION/PAZ Y AMOR",
    "imagen": "https://drive.google.com/file/d/1PXoT88M5RRU9xj_Kf2-gYBecsfPw7DyY/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:29.715Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "Aromanza",
+   "envasado": true
   },
   "2066": {
    "nombre": "SAHUMERIO TIBETANO X8 - AROMANZA",
@@ -4290,10 +4292,12 @@
    "sabores": "BERRY KISS/CANELA MISTICA/FRUTOS ROJOS/MANZANA CANELA/NARANJA PIMIENTA/VIOLETAS DE PERSIA/WANAMA COCO",
    "imagen": "https://drive.google.com/file/d/1EpFFWpbrBv_qfhYT3RdVFCgpjOq_EVMa/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:29.715Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "Aromanza",
+   "envasado": true
   },
   "2070": {
    "nombre": "SAHUMEADOR GRANDE COLOR",
@@ -5935,10 +5939,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1lGK7JxIK2gLYlBqHMPo5lx-PeNZQvHN8/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:29.715Z",
    "por": "panel",
-   "rubro": "PALADEAR HOME"
+   "rubro": "PALADEAR HOME",
+   "marca": "Aromanza",
+   "envasado": true
   },
   "2332": {
    "nombre": "PREMEZCLA BIZCOCHUELO X500 GR SIN TACC - DELICEL",
@@ -15791,7 +15797,8 @@
   "DICOMERE",
   "LA CASITA DE LA ABUELI",
   "MONTE NATURAL",
-  "TRES SOLES"
+  "TRES SOLES",
+  "AROMANZA"
  ],
- "actualizado": "2026-09-16T01:33:25.755Z"
+ "actualizado": "2026-09-16T01:33:29.818Z"
 }
