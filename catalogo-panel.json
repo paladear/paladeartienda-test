@@ -7912,7 +7912,7 @@
    "granola": false,
    "blend": false,
    "imagen": "",
-   "oculto": true,
+   "oculto": false,
    "fotoPropia": true,
    "fondo": "#fefefe",
    "altaOk": false
@@ -15445,5 +15445,5 @@
  },
  "novedadesVistas": "2026-09-16T01:08:54.786Z",
  "marcas": [],
- "actualizado": "2026-09-16T01:08:54.857Z"
+ "actualizado": "2026-09-16T01:29:59.798Z"
 }
