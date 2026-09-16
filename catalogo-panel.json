@@ -7906,7 +7906,7 @@
    "oferta": 0,
    "rubro": "PALADEAR HOME",
    "origen": "panel",
-   "actualizado": "2026-09-16T01:06:32.429Z",
+   "actualizado": "2026-09-16T01:07:02.314Z",
    "por": "panel",
    "mix": false,
    "granola": false,
@@ -7916,7 +7916,7 @@
    "fotoPropia": true,
    "fondo": "#fefefe",
    "altaOk": false,
-   "marca": "El Amauta",
+   "marca": "",
    "envasado": true,
    "envase": "",
    "saboresOcultos": []
@@ -15453,5 +15453,5 @@
  },
  "novedadesVistas": "2026-09-15T22:07:33.345Z",
  "marcas": [],
- "actualizado": "2026-09-16T01:06:34.547Z"
+ "actualizado": "2026-09-16T01:07:02.358Z"
 }
