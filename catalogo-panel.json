@@ -896,10 +896,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/11j2OvzMbXf8HlUc_LepoKfIJ2zhgrqpZ/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:44.087Z",
    "por": "panel",
-   "rubro": "LINEA GOURMET"
+   "rubro": "LINEA GOURMET",
+   "marca": "Agroianni",
+   "envase": "170 g",
+   "envasado": true
   },
   "1193": {
    "nombre": "CEREZAS AL MARRASCHINO X330 GR - AGROIANNI",
@@ -908,10 +911,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1n-AmN8O6FFR4JPZ7DXpiOGF0SKi6uoZD/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:44.087Z",
    "por": "panel",
-   "rubro": "LINEA GOURMET"
+   "rubro": "LINEA GOURMET",
+   "marca": "Agroianni",
+   "envase": "330 g",
+   "envasado": true
   },
   "1201": {
    "nombre": "CHIMICHURRI",
@@ -2181,10 +2187,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1buCE3EFB7RkTuMG-ASjK3Nxg3q75DiIM/view",
    "oferta": 15,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:44.087Z",
    "por": "panel",
-   "rubro": "LINEA GOURMET"
+   "rubro": "LINEA GOURMET",
+   "marca": "Agroianni",
+   "envase": "200 g",
+   "envasado": true
   },
   "1464": {
    "nombre": "PASTA ACEITUNAS VERDES X200 GR - AGROIANNI",
@@ -2193,10 +2202,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1rBrhMaOTZQDoRZ-mg8FcN1UNx6rqOFb2/view",
    "oferta": 15,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:44.087Z",
    "por": "panel",
-   "rubro": "LINEA GOURMET"
+   "rubro": "LINEA GOURMET",
+   "marca": "Agroianni",
+   "envase": "200 g",
+   "envasado": true
   },
   "1465": {
    "nombre": "PASTA DE AJI PICANTE X90 GR - ALCARAZ GOURMET",
@@ -7473,11 +7485,14 @@
    "oferta": 0,
    "rubro": "LINEA GOURMET",
    "origen": "panel",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "actualizado": "2026-09-16T01:32:44.087Z",
    "por": "panel",
    "oculto": false,
    "altaOk": true,
-   "imagen": "https://drive.google.com/file/d/1i9lz84-8WMdnsX_9ddeyBvGMapvnfsxP/view"
+   "imagen": "https://drive.google.com/file/d/1i9lz84-8WMdnsX_9ddeyBvGMapvnfsxP/view",
+   "marca": "Agroianni",
+   "envase": "360 g",
+   "envasado": true
   },
   "4465": {
    "nombre": "CORIANDRO ENTERO",
@@ -15669,7 +15684,8 @@
   "SOMOS SETAS",
   "EL AMAUTA",
   "NATIER",
-  "ENTRENUTS"
+  "ENTRENUTS",
+  "AGROIANNI"
  ],
- "actualizado": "2026-09-16T01:32:39.614Z"
+ "actualizado": "2026-09-16T01:32:44.157Z"
 }
