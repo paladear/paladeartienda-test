@@ -1,5 +1,9 @@
 # Contexto para la IA de la PC del negocio (E-Pyme)
 
+> **ESTADO AL 15/09/2026, 22:30 — el cambio principal YA SE HIZO.** La PC publica los
+> precios en los dos repos (último commit doble: 22:08Z, 544 productos). Lo que queda
+> por confirmar está al final, en "Pendiente de verificar".
+
 Este archivo lo escribió Claude desde la Mac de Juani el 15/09/2026. Está acá porque
 la memoria de Claude **no** viaja entre dispositivos: el repo sí. Si sos una IA
 trabajando en la PC del negocio, esto es todo lo que necesitás saber.
@@ -98,3 +102,22 @@ actualiza y **la tienda oficial se queda con precios viejos**.
 - Juani habla español (Mendoza, Argentina) y publica desde el editor web de GitHub.
   Prefiere cambios chicos y dirigidos, no reescrituras. Mostrale el diff antes de
   commitear.
+
+---
+
+## Pendiente de verificar (15/09/2026, 22:30)
+
+1. **Un pedido del tester quedó sin respuesta.** En
+   `paladeartienda-test/comando-precios.json` hay un `{"estado":"pendiente"}` solicitado
+   a las `2026-09-16T01:07:28Z` (22:07 hora Argentina). La última respuesta de la PC en
+   ese repo fue a las `22:08:28Z` — tres horas antes. Puede ser simplemente que la PC
+   estuviera apagada a esa hora. Con la PC prendida, tocá "Buscar cambios en E-Pyme"
+   desde el panel del tester (https://paladear.github.io/paladeartienda-test/admin.html)
+   y confirmá que el `estado` pasa a `"hecho"`. Si no pasa, el script dejó de mirar los
+   pedidos del tester y hay que hacer que mire los dos.
+
+2. **`pendientes.json` en el repo oficial.** Todavía no lo escribió la PC ahí: el último
+   cambio es del 15/09 01:14 y lo hizo una copia manual. Es normal si los 17 productos
+   nuevos no cambiaron (el script no commitea si el archivo queda igual), pero conviene
+   confirmar que lo sube al oficial la próxima vez que se cree un producto en E-Pyme.
+   Sin ese archivo actualizado, el panel no ve los productos nuevos.
