@@ -6722,10 +6722,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1NhMbjCKNh-vrfUNZ25Gfn4uYWJcsq0bt/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.729Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Somos Setas",
+   "envasado": true
   },
   "2465": {
    "nombre": "TREMELLA EXTRACTO 60 CC - SOMOS SETAS",
@@ -6734,10 +6736,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/11PrUf3m4C-R7n5SsBXkS14PpzYsEWo9i/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.729Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Somos Setas",
+   "envasado": true
   },
   "2466": {
    "nombre": "HIBISCUS EXTRACTO X60 CC - SOMOS SETAS",
@@ -6746,10 +6750,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1ZLHJNh59r89OipEuk51UyPxGfYGHZV2H/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.728Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Somos Setas",
+   "envasado": true
   },
   "2467": {
    "nombre": "ACEITE DE HIBISCUS 30 ml - SOMOS SETAS",
@@ -6758,10 +6764,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1QqmV8SVB8Y-2JWnYv3MAMISntptyKs-3/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.787Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.728Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Somos Setas",
+   "envasado": true
   },
   "2468": {
    "nombre": "MELENA DE LEON EN POLVO 30 GR - SOMOS SETAS",
@@ -6770,10 +6778,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1RrcSsIYVaIGrEn7wKF7tzRtpZttQELT5/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.729Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Somos Setas",
+   "envasado": true
   },
   "2469": {
    "nombre": "COLA DE PAVO EXTRACTO X60 CC - SOMOS SETAS",
@@ -6782,10 +6792,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1GMllD3PXfeRi-_WC9AxuzhWZ7-zN54iC/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.728Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Somos Setas",
+   "envasado": true
   },
   "2470": {
    "nombre": "FRAMBUESAS CONGELADAS X1 KG",
@@ -6806,10 +6818,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1VRYrNbPujP71yreO704KY7H06GaKnO-8/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.729Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Somos Setas",
+   "envasado": true
   },
   "2475": {
    "nombre": "CAJA CHOCOLATE",
@@ -6853,9 +6867,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
-   "por": "panel"
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.729Z",
+   "por": "panel",
+   "marca": "Somos Setas",
+   "envase": "60 cápsulas",
+   "envasado": true
   },
   "2479": {
    "nombre": "RHODIOLA X60 CAPSULAS - SOMOS SETAS",
@@ -6864,10 +6881,13 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.729Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1q6skpqmawMY2kVSB97YQ38vtfBYGyLzy/view"
+   "imagen": "https://drive.google.com/file/d/1q6skpqmawMY2kVSB97YQ38vtfBYGyLzy/view",
+   "marca": "Somos Setas",
+   "envase": "60 cápsulas",
+   "envasado": true
   },
   "2480": {
    "nombre": "RHODIOLA ROSEA EXTRACTO X60 CC - SOMOS SETAS",
@@ -6876,10 +6896,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1sBFPCX1B_a44uPQaiR_mhA1e17j3jVg9/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.729Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Somos Setas",
+   "envase": "60 cc",
+   "envasado": true
   },
   "2481": {
    "nombre": "VITAMINA K2 + D3 X50 CAPSULAS - NATIER",
@@ -7013,10 +7036,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1k2fflgGXTI322ehhgVhyOHrFvZHafkPJ/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.729Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Somos Setas",
+   "envasado": true
   },
   "2495": {
    "nombre": "PRENSA FRANCESA 350ml",
@@ -7133,9 +7158,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
-   "por": "panel"
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:13.729Z",
+   "por": "panel",
+   "marca": "Somos Setas",
+   "envase": "60 cápsulas",
+   "envasado": true
   },
   "2508": {
    "nombre": "COLA DE PAVO X60 CAPSULAS - SOMOS SETA",
@@ -15539,7 +15567,8 @@
  },
  "novedadesVistas": "2026-09-16T01:08:54.786Z",
  "marcas": [
-  "EL NATURALISTA"
+  "EL NATURALISTA",
+  "SOMOS SETAS"
  ],
- "actualizado": "2026-09-16T01:31:53.040Z"
+ "actualizado": "2026-09-16T01:32:13.821Z"
 }
