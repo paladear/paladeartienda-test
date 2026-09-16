@@ -3200,10 +3200,13 @@
    "sabores": "ESPINACA/MORRON",
    "imagen": "https://drive.google.com/file/d/1ukQJs18e4MG4SOfYFg47ZnaZS_uyWJ4C/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:04.510Z",
    "por": "panel",
-   "rubro": "PRODUCTOS SIN TACC"
+   "rubro": "PRODUCTOS SIN TACC",
+   "marca": "Party Beck",
+   "envase": "280 g",
+   "envasado": true
   },
   "1687": {
    "nombre": "SALSA AJI PICANTE X180 CC - ALCARAZ GOURMET",
@@ -3542,10 +3545,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/19-Ec5zwxEjtfD53J7YQmvKZcpj2LP4D_/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:34:04.510Z",
    "por": "panel",
-   "rubro": "PRODUCTOS SIN TACC"
+   "rubro": "PRODUCTOS SIN TACC",
+   "marca": "Party Beck",
+   "envase": "280 g",
+   "envasado": true
   },
   "1866": {
    "nombre": "PROTEINA AISALDA DE SUERO",
@@ -15841,7 +15847,8 @@
   "BOUTIQUE CHIPS",
   "SAGRADA MADRE",
   "TIERRA SANTA",
-  "GOTAS DE ORO"
+  "GOTAS DE ORO",
+  "PARTY BECK"
  ],
- "actualizado": "2026-09-16T01:33:59.781Z"
+ "actualizado": "2026-09-16T01:34:04.575Z"
 }
