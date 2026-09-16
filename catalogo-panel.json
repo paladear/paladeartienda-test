@@ -6507,10 +6507,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1QtN7qh3sN21jW-imHz_bxDFbRiCGzMfD/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:12.364Z",
    "por": "panel",
-   "rubro": "PRODUCTOS SIN TACC"
+   "rubro": "PRODUCTOS SIN TACC",
+   "marca": "Dicomere",
+   "envase": "250 g",
+   "envasado": true
   },
   "2411": {
    "nombre": "ASHWAGANDHA X60 CC - SOMOS SETA",
@@ -7937,10 +7940,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1lJsTL2P3xwjGceDEkoMfSIjSc69q0cGy/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:12.363Z",
    "por": "panel",
-   "rubro": "PRODUCTOS SIN TACC"
+   "rubro": "PRODUCTOS SIN TACC",
+   "marca": "Dicomere",
+   "envase": "350 g",
+   "envasado": true
   },
   "5033": {
    "nombre": "AVENA INSTANTANEA INTEGRAN SIN TACC X350GR - DICOMERE",
@@ -7949,10 +7955,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1qUmzL9jRzsOOxryYbyMQsKrMtJ50Qs_V/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:12.364Z",
    "por": "panel",
-   "rubro": "PRODUCTOS SIN TACC"
+   "rubro": "PRODUCTOS SIN TACC",
+   "marca": "Dicomere",
+   "envase": "350 g",
+   "envasado": true
   },
   "5034": {
    "nombre": "HARINA DE AVENA INTEGRAL SIN TACC X350GR - DICOMERE",
@@ -7961,10 +7970,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1_1_AU-K-M6nSJrMTi-X_p5Y1wS1gn8Bb/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:12.364Z",
    "por": "panel",
-   "rubro": "PRODUCTOS SIN TACC"
+   "rubro": "PRODUCTOS SIN TACC",
+   "marca": "Dicomere",
+   "envase": "350 g",
+   "envasado": true
   },
   "5035": {
    "nombre": "DIFUSOR AUTO 12ML - AROMANZA",
@@ -15748,7 +15760,8 @@
   "DELICEL",
   "SUPPLY",
   "DOÑA MAGDALENA",
-  "LAS DOÑAS"
+  "LAS DOÑAS",
+  "DICOMERE"
  ],
- "actualizado": "2026-09-16T01:33:07.938Z"
+ "actualizado": "2026-09-16T01:33:12.431Z"
 }
