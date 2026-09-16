@@ -939,7 +939,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
   <div class="hd">
     <span class="marca">Paladear</span>
     <h1>Panel de catálogo</h1>
-    <span class="env">TESTER</span>
+    <span class="env"></span>
     <span class="quien" id="quien"></span>
     <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 13/09 12:24</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
   </div>
@@ -3420,7 +3420,7 @@ document.addEventListener('paste', function(ev){
    Casi todos los productos usan el mismo número de artículo en las dos tiendas,
    así que la misma foto sirve. Este botón copia la foto del producto abierto al
    repo de la distribuidora, con el mismo nombre de archivo.
-   OJO: apunta a la TESTER de la distribuidora, no a la oficial. */
+   Va a la tester o a la oficial según desde dónde se abra el panel (ver ES_OFICIAL). */
 const REPO_MAY_FOTOS = REPO_MAY;
 
 /* Un JPG de la tienda pesa ~120 KB; en WebP baja a ~40 KB. Convertimos antes de
