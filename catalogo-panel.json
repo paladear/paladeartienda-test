@@ -7150,10 +7150,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:46.160Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1oyLAu56tApYKgNFGm2h58eYfvP34Kujj/view"
+   "imagen": "https://drive.google.com/file/d/1oyLAu56tApYKgNFGm2h58eYfvP34Kujj/view",
+   "marca": "Boutique Chips",
+   "envasado": true
   },
   "2488": {
    "nombre": "CHIPS DE BATATA - SIN TACC - BOUTIQUE CHIPS",
@@ -7162,10 +7164,12 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:46.160Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1fPcn3OGtjydPCFO2ROIav_VHPeR6bD0J/view"
+   "imagen": "https://drive.google.com/file/d/1fPcn3OGtjydPCFO2ROIav_VHPeR6bD0J/view",
+   "marca": "Boutique Chips",
+   "envasado": true
   },
   "2489": {
    "nombre": "MANTECA CLARIFICADA GHEE X150 GR - COW'S PURE",
@@ -15816,7 +15820,8 @@
   "TRES SOLES",
   "AROMANZA",
   "YOGURLAC",
-  "INDIAS"
+  "INDIAS",
+  "BOUTIQUE CHIPS"
  ],
- "actualizado": "2026-09-16T01:33:38.720Z"
+ "actualizado": "2026-09-16T01:33:46.233Z"
 }
