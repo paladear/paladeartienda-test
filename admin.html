@@ -1503,6 +1503,11 @@ let FICHAS_FB = {}, FICHAS_CSV = {};
 // OLIVA" es una marca, el panel la reconoce en todos los productos que la traigan.
 let MARCAS_FB = [];
 
+// Se prende si no se pudo leer el catálogo guardado. Sirve para no confundir
+// "está vacío" con "no lo pude leer", que es la diferencia entre guardar bien y
+// borrar todo.
+let LECTURA_FALLO = false;
+
 // Las fichas viven en un JSON del repo: se leen por HTTP, sin permisos.
 
 async function cargarFichasGuardadas(){
@@ -1520,6 +1525,9 @@ async function cargarFichasGuardadas(){
     console.warn('[panel] todavía no hay fichas guardadas:', e && e.message);
     FICHAS_FB = {}; FOTOS_FB = {}; PRECIOS_VISTOS = {};
     CAMBIOS_FECHA = {}; PRECIOS_APROBADOS = {}; MARCA_VISTO = ''; MARCAS_FB = [];
+    // La primera vez esto es normal (todavía no se guardó nada). Después no: es
+    // que no se pudo leer, y conviene saberlo antes de ponerse a editar.
+    LECTURA_FALLO = true;
   }
 }
 
@@ -1622,6 +1630,21 @@ async function guardarFichasEnRepo(mensaje){
     }
     // Guardar no puede ser nunca la forma de perder las marcas.
     if (!MARCAS_FB.length && remoto.marcas && remoto.marcas.length) MARCAS_FB = remoto.marcas;
+
+    // ── FRENO DE MANO ──────────────────────────────────────────────────────
+    // Si al arrancar falló la lectura del catálogo, FICHAS_FB queda vacío; con
+    // eso, el primer guardado borraría los nombres, marcas, fotos y descripciones
+    // de los 639 productos de un saque. Antes de escribir se compara con lo que
+    // hay publicado: si se van a guardar muchas menos fichas de las que había,
+    // no se guarda nada y se avisa.
+    var hayAhora  = Object.keys(FICHAS_FB || {}).length;
+    var habiaAntes = Object.keys((remoto.fichas) || {}).length;
+    if (habiaAntes > 20 && hayAhora < habiaAntes * 0.6) {
+      avisar('mal', 'Frené el guardado para no borrar el catálogo',
+             'Iba a guardar ' + hayAhora + ' fichas cuando hay ' + habiaAntes +
+             ' publicadas. Recargá el panel y volvé a intentar.');
+      throw new Error('Guardado cancelado: ' + hayAhora + ' fichas contra ' + habiaAntes + ' publicadas');
+    }
   }
   await guardarEnRepo(ARCHIVO_FICHAS,
     aB64(JSON.stringify({ fichas: FICHAS_FB, fotos: FOTOS_FB,
