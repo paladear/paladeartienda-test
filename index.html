@@ -4679,6 +4679,28 @@ function _calcPrecioOpc(opc,p1,p2,esKg){
    lo que viene del Sheet. Si el archivo no existe, la tienda anda igual que antes. */
 const ARCHIVO_PANEL = 'catalogo-panel.json';
 let FICHAS_FB = {}, FOTOS_FB = {};
+
+/* Los productos recién creados en E-Pyme todavía no entraron a precios-min.csv:
+   viven en pendientes.json hasta que E-Pyme los pasa a la lista, y eso puede
+   tardar días. Si desde el panel se les dio el OK (altaOk), la tienda los muestra
+   igual con el precio que ya trae ese archivo. Cuando E-Pyme finalmente los mande
+   en el CSV, la fila del CSV manda y esto deja de usarse solo. */
+const ARCHIVO_NUEVOS = 'pendientes.json';
+let NUEVOS_OK = [];
+
+async function _cargarNuevos(){
+  try {
+    const r = await fetch(ARCHIVO_NUEVOS + '?t=' + Date.now(), {cache:'no-store'});
+    if (!r.ok) return;
+    const j = await r.json();
+    NUEVOS_OK = (j.nuevos || []).filter(function(n){
+      const id = String(n.numero || '').replace(/\./g,'').replace(/,.*$/,'').trim();
+      const f = FICHAS_FB[id];
+      return id && f && f.altaOk === true && f.oculto !== true && (n.precio > 0);
+    });
+    if (NUEVOS_OK.length) console.log('🆕 ' + NUEVOS_OK.length + ' producto(s) aprobados que todavía no están en la lista de precios');
+  } catch(e) { console.warn('[nuevos] no se pudo leer:', e && e.message); }
+}
 // Los precios salen directo de la lista que publica E-Pyme: un cambio allá se ve
 // acá sin pasos intermedios. El panel ya no los retiene; sólo avisa qué cambió.
 
@@ -4717,10 +4739,21 @@ function sincronizarDesdeSheets(){
       }
     }
   } catch(e) {}
-  _cargarPanel().then(function(){
+  _cargarPanel().then(_cargarNuevos).then(function(){
 
     function _procesarCSV(csv){
       const filas=_parseCSV(csv);
+      // Los aprobados en el panel que E-Pyme todavía no pasó a la lista entran acá
+      // con el mismo formato de fila, así siguen exactamente el mismo camino que
+      // el resto (ficha, foto, medidas, armadores). Si E-Pyme ya los mandó, la
+      // fila del CSV manda y esta se descarta.
+      const _limpiaId=v=>String(v||'').replace(/\./g,'').replace(/,.*$/,'').trim();
+      const _yaEsta=new Set(filas.slice(1).map(c=>c.length>6?_limpiaId(c[6]):''));
+      (typeof NUEVOS_OK!=='undefined'?NUEVOS_OK:[]).forEach(function(n){
+        const id=_limpiaId(n.numero);
+        if(!id||_yaEsta.has(id))return;
+        filas.push(['','',n.nombre||'',String(n.precio),String(n.precio),n.rubro||'',id,'']);
+      });
       const catMap={},prodsTemp=[];let pid=1;
       filas.forEach((cols,idx)=>{
         if(idx===0||cols.length<6)return;
@@ -7535,6 +7568,23 @@ window.addEventListener('online', function() {
 
 
 
+</script>
+
+<!-- ══════════ CARTEL DE PRUEBAS ══════════
+     Las dos tiendas se ven idénticas. Este cartel sale sólo en la de pruebas para
+     no confundirla nunca con la que ven los clientes. -->
+<style>
+#cartelPruebas{position:sticky;top:0;z-index:99999;display:none;
+  background:#b8360f;color:#fff;text-align:center;
+  font:800 12.5px/1 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;
+  text-transform:uppercase;padding:7px 10px}
+body.es-pruebas #cartelPruebas{display:block}
+</style>
+<div id="cartelPruebas">Tienda de pruebas — no es la que ven los clientes</div>
+<script>
+(function(){
+  if (/-test(\/|$)/.test(location.pathname)) document.body.classList.add('es-pruebas');
+})();
 </script>
 
 <!-- ══════════ SERVICE WORKER (PWA) ══════════ -->

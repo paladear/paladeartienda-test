@@ -1989,9 +1989,32 @@ var ETIQUETAS = ['SIN TACC','SIN GLUTEN','APTO CELIACO','SIN AZUCAR','SIN AZÚCA
   'LIGHT','DIET','CON STEVIA','SIN LACTOSA','KOSHER'];
 
 // Palabras que caen en el lugar de la marca pero son parte del producto, no la marca.
+// Lo que puede caer en el lugar de la marca sin serlo. Van en tres listas porque
+// cada una se resuelve distinto.
+
+// 1. Descripciones del producto: no son marca y el nombre se queda con ellas.
 var NUNCA_MARCA = ['JALEA','ORIGEN CHILE','GRANEL','SURTIDO','SURTIDA','SURTIDAS',
   'MOLIDA','MOLIDO','ENTERA','ENTERO','TOSTADO','TOSTADA','CRUDO','CRUDA','EN HOJAS',
-  'EN POLVO','EN GRANO','PELADA','PELADO','NEGRO','NEGRA','BLANCO','BLANCA'];
+  'EN POLVO','EN GRANO','PELADA','PELADO','NEGRO','NEGRA','BLANCO','BLANCA',
+  'PREMIUM','ESPECIAL','COMUN','FINO','FINA','GRUESO','GRUESA','CLASICO','CLASICA',
+  'SALADO','SALADA','DULCE','AGRIDULCE','PICANTE','NATURAL','DIETETICO',
+  'PIMENTERO','SALERO','SYRUP','COMBO','PACK','UNIDAD','UNIDADES','REPUESTO'];
+
+// 2. Tamaños: "FRASCO BLEND DE TE - GRANDE". No hay marca en ningún lado; el
+//    tamaño es parte del nombre porque distingue dos productos distintos.
+var TAMANOS = ['GRANDE','CHICO','CHICA','MEDIANO','MEDIANA','PEQUEÑO','PEQUEÑA',
+  'XL','XXL','LARGO','CORTO'];
+
+// 3. Varietales de vino: "LAS PERDICES - MALBEC". Acá el guion separa bodega de
+//    varietal, así que la marca es lo de ADELANTE y el varietal queda en el nombre.
+var VARIETALES = ['MALBEC','CABERNET','CABERNET SAUVIGNON','CABERNET FRANC','CHARDONNAY',
+  'SAUVIGNON BLANC','SYRAH','MERLOT','BONARDA','TORRONTES','PINOT NOIR','TANNAT',
+  'ANCELLOTA','ALA COLORADA ANCELLOTA','BRUT','EXTRA BRUT','EXTRA BRUT CORTO',
+  'BRUT ROSE','BRUT NATURE','ESPUMANTE','ESPUMANTE DULCE NATURAL','LIGHT',
+  'ESPUMANTE EXTRA BRUT','CHAMPAÑA','ROSE','TINTO','RESERVA','GRAN RESERVA',
+  'RESERVA MALBEC','RESERVA CHARDONNAY','PARTRIDGE MALBEC','PARTRIDGE CHARDONNAY',
+  'HUELGA DE AMORES','VERMUT'];
+
 
 function _norm(t){ return String(t||'').replace(/\s+/g,' ').replace(/^[\s\-.,"']+|[\s\-.,"']+$/g,'').toUpperCase(); }
 
@@ -2006,11 +2029,23 @@ function _esMedida(t){
   return false;
 }
 
+/* En "ACEITE DE OLIVA - PANNOCCHIA X 1L" la marca va en el medio y le sigue el
+   peso. Hay que sacárselo o la marca queda "Pannocchia X 1l". */
+function _soloMarca(t){
+  var s = String(t || '');
+  s = s.replace(new RegExp('(?:^|\\s)[Xx]?\\s*[\\d.,/]+\\s*(?:' + UNID + ')\\b\\.?', 'gi'), ' ');
+  s = s.replace(/(?:^|\s)[Xx]\s*[\d.,/]+\s*$/, ' ');
+  return _norm(s);
+}
+
+function _esTamano(t){ return TAMANOS.indexOf(_norm(t)) > -1; }
+function _esVarietal(t){ return VARIETALES.indexOf(_norm(t)) > -1; }
+
 function _noEsMarca(t){
   var s = _norm(t);
   if (s.length < 3) return true;
   if (_esEtiqueta(s) || _esMedida(s)) return true;
-  if (NUNCA_MARCA.indexOf(s) > -1) return true;
+  if (NUNCA_MARCA.indexOf(s) > -1 || TAMANOS.indexOf(s) > -1 || VARIETALES.indexOf(s) > -1) return true;
   if (!/[A-ZÁÉÍÓÚÑ]{3}/.test(s)) return true;   // tiene que tener letras de verdad
   return false;
 }
@@ -2064,7 +2099,9 @@ function _limpiarNombre(txt, marca){
   t = t.replace(new RegExp('(?:^|\\s)[Xx]?\\s*[\\d.,/]+\\s*(?:' + UNID + ')\\b\\.?', 'gi'), ' ');
   // Un "x 200" suelto, sin unidad: tampoco va en el nombre.
   t = t.replace(/(?:^|\s)[Xx]\s*[\d.,/]+\s*$/, ' ');
-  t = t.replace(/["]/g,' ').replace(/\s*-\s*$/,'').replace(/\s+/g,' ').trim();
+  t = t.replace(/["]/g,' ').replace(/\s+/g,' ').trim();
+  // Sacar la marca puede dejar el guion colgando de un lado: "- Malbec".
+  t = t.replace(/^\s*[-–]\s*/,'').replace(/\s*[-–]\s*$/,'').replace(/\s+/g,' ').trim();
   return _capitalizar(t);
 }
 
@@ -2081,9 +2118,20 @@ function partirNombre(txt, marcasConocidas){
   if (!t) return {nombre:'', marca:'', envase:'', etiquetas:[], motivo:''};
   var marca = '', motivo = '';
 
+  // 0. Vinos: "LAS PERDICES - MALBEC X750 CC". Si lo de después del guion es un
+  //    varietal, el guion separa bodega de varietal y la marca es la de adelante.
+  var vin = t.match(/^([^-]{3,40}?)\s-\s(.+)$/);
+  if (vin && _esVarietal(_soloMarca(vin[2]))) {
+    var pm = _soloMarca(vin[1]);
+    if (pm && !_noEsMarca(pm)) { marca = pm; motivo = 'bodega'; }
+  }
+
   // 1. "- MARCA" al final
-  var g = t.match(/\s-\s+([^-]{3,40})\s*$/);
-  if (g && !_noEsMarca(g[1])) { marca = _norm(g[1]); motivo = 'guion'; }
+  var g = marca ? null : t.match(/\s-\s+([^-]{3,60})\s*$/);
+  if (g) {
+    var cand = _soloMarca(g[1]);
+    if (cand && !_noEsMarca(cand)) { marca = cand; motivo = 'guion'; }
+  }
 
   // 2. entre comillas
   if (!marca) {
@@ -2117,6 +2165,43 @@ function partirNombre(txt, marcasConocidas){
 }
 
 
+/* "SOMOS SETA" y "SOMOS SETAS" son la misma marca escrita de dos formas, y
+   "DON FRANSISCO" es "DON FRANCISCO" con una letra cambiada. Se unifican solas:
+   si dos marcas coinciden sin espacios, sin plural, o se diferencian en una sola
+   letra, queda la que más productos tiene. */
+function _clave(m){ return _norm(m).replace(/\s+/g,'').replace(/S$/,''); }
+
+function _aUnaLetra(a, b){
+  if (Math.abs(a.length - b.length) > 1) return false;
+  var i = 0, j = 0, fallas = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++fallas > 1) return false;
+    if (a.length > b.length) i++;
+    else if (b.length > a.length) j++;
+    else { i++; j++; }
+  }
+  return fallas + (a.length - i) + (b.length - j) <= 1;
+}
+
+/* La forma buena de una marca, según cuántos productos tiene cada variante. */
+function unificarMarca(m, cuenta){
+  var k = _clave(m), mejor = _norm(m), mejorN = cuenta[_norm(m)] || 0;
+  Object.keys(cuenta).forEach(function(o){
+    if (_norm(o) === _norm(m)) return;
+    if (!(_clave(o) === k || _aUnaLetra(_clave(o), k))) return;
+    var O = _norm(o);
+    // Gana la que más productos tiene. Si empatan, la más larga ("SOMOS SETAS"
+    // sobre "SOMOS SETA"); si además miden igual, la primera alfabéticamente
+    // ("DON FRANCISCO" sobre "DON FRANSISCO").
+    var gana = cuenta[o] > mejorN
+      || (cuenta[o] === mejorN && O.length > mejor.length)
+      || (cuenta[o] === mejorN && O.length === mejor.length && O < mejor);
+    if (gana) { mejor = O; mejorN = cuenta[o]; }
+  });
+  return _capitalizar(mejor);
+}
+
 /* Junta las marcas que se pueden afirmar, para despues buscarlas en los demas. */
 function cosecharMarcas(nombres){
   var c = {};
@@ -2129,6 +2214,11 @@ function cosecharMarcas(nombres){
   var lista = Object.keys(c);
   // Si están "SOMOS SETA" y "SOMOS SETAS", queda la que más aparece.
   lista = lista.filter(function(m){ return !(c[m + 'S'] && c[m + 'S'] >= c[m]); });
+  // Y si una es el arranque de otra ("ALCARAZ" dentro de "ALCARAZ GOURMET"),
+  // queda la larga siempre que sea la que más aparece.
+  lista = lista.filter(function(m){
+    return !lista.some(function(o){ return o !== m && o.indexOf(m + ' ') === 0 && c[o] >= c[m]; });
+  });
   return lista.sort(function(a, b){ return b.length - a.length; });
 }
 
@@ -2496,18 +2586,23 @@ async function guardarFicha(){
     await guardarFichasEnRepo('Panel: ' + datos.nombre + ' (art. ' + p.id + ')');
     Object.assign(p, {
       nombre: datos.nombre, cantidades: datos.cantidades, sabores: datos.sabores,
+      marca: datos.marca, envase: datos.envase, envasado: datos.envasado,
+      saboresOcultos: datos.saboresOcultos,
       rubro: datos.rubro || p.rubro,
       desc: datos.desc, oferta: datos.oferta, mix: datos.mix, granola: datos.granola,
       blend: datos.blend, editada: true,
       oculto: datos.oculto,
       foto: datos.fotoPropia || p.foto
     });
+    // Si con este cambio el producto ya no entra en el filtro que estás mirando,
+    // desaparece de la lista. Sin avisar parece que se perdió.
+    var seVa = !enFiltroActual(p);
     var huboFoto = !!FOTO_NUEVA;
     FOTO_NUEVA = null; FOTO_BORRAR = false;
     est.textContent = 'Guardado'; est.className = 'ed-estado ok';
     pintarKpis(); pintar();
     avisar('ok', huboFoto ? 'Ficha y foto guardadas' : 'Ficha guardada',
-           datos.nombre + ' — la tienda ya lo muestra así');
+           datos.nombre + (seVa ? ' — listo, sale de esta lista' : ' — la tienda ya lo muestra así'));
     setTimeout(cerrarEditor, 700);
   } catch (e) {
     b.disabled = false;
@@ -2867,6 +2962,22 @@ function esperandoAlta(p){ return !!(p.nuevo && p.altaOk && !p.sinPrecio && !p.m
    sólo falta que la PC genere la lista. */
 function resuelto(p){ return enCatalogo(p) || esperandoAlta(p); }
 
+/* ¿Este producto sigue entrando en el filtro que está puesto? Se usa para avisar
+   cuando algo desaparece de la lista después de editarlo. */
+function enFiltroActual(p){
+  switch (FILTRO) {
+    case 'pendientes': return !!(p.nuevo || hayRenombre(p) || p.malRubro);
+    case 'precio':     return !!p.cambioPrecio;
+    case 'nuevos':     return !!(p.nuevo && !p.altaOk);
+    case 'renom':      return hayRenombre(p);
+    case 'malrubro':   return !!p.malRubro;
+    case 'fuera':      return !resuelto(p);
+    case 'sinfoto':    return !p.foto;
+    case 'oferta':     return (p.oferta || 0) > 0;
+    default:           return true;
+  }
+}
+
 function pintar(){
   let lista = PRODUCTOS.slice();
   if (FILTRO === 'pendientes') lista = lista.filter(p => p.nuevo || hayRenombre(p) || p.malRubro);
@@ -2906,10 +3017,10 @@ function pintar(){
   // Una línea de ayuda según lo que se esté mirando: el panel tiene varios
   // flujos y no todos son evidentes.
   const ayudas = {
-    nuevos: 'Aparecieron en E-Pyme y todavía no están en la tienda. Prendé la banderilla verde de la izquierda y entran al catálogo con el precio que traen: no hace falta un segundo OK.',
-    precio: 'Cambiaron en el sistema desde tu última visita. <b>Los precios ya están en la tienda</b>: esto es para que veas qué se movió. Cuando termines, marcalos como vistos y dejan de figurar.',
-    sinfoto: 'Tocá un producto para subirle la foto. Dentro del editor, con la foto ya cargada, aparece el botón <b>Compartir con la distribuidora</b> para usar la misma imagen allá.',
-    fuera: 'La banderilla de la izquierda los mete o los saca de la tienda. Los que dicen <b>No se puede</b> es porque les falta precio o tienen mal el rubro: eso se arregla en E-Pyme.'
+    nuevos: 'Aparecieron en E-Pyme. Tocá el tilde de la izquierda y entran a la tienda.',
+    precio: 'Los precios ya están en la tienda. Esto es sólo para que veas qué se movió.',
+    sinfoto: 'Tocá un producto para subirle la foto.',
+    fuera: 'El tilde de la izquierda los mete o los saca de la tienda. Los que dicen <b>No se puede</b> es porque les falta el precio o el rubro en E-Pyme.'
   };
   const cajaAyuda = document.getElementById('ayudaFiltro');
   if (cajaAyuda) {
@@ -3017,7 +3128,7 @@ function pintar(){
   var html = '';
   if (esperan.length) {
     html += '<h2 class="grupo-tit espera">Cambió desde tu última visita <span>' + esperan.length + '</span></h2>' +
-            '<p class="grupo-ayuda">Cambiaron en el sistema desde tu última visita. Los precios ya están en la tienda.</p>' +
+
             '<div class="grupo">' + esperan.map(tarjeta).join('') + '</div>';
   }
   if (dentro.length) {
@@ -3708,7 +3819,8 @@ function ajustarPorTienda(){
   var gp=document.getElementById('grupoPublicar');
   if(gp)gp.hidden=esMay;                        // publicar precios es sólo de la minorista
   var vt=document.getElementById('verTiendaHerr');
-  if(vt){ vt.href = esMay ? SITIO_MAY : './'; vt.textContent = esMay ? 'Ver la distribuidora' : 'Ver la tienda'; }
+  if(vt){ vt.href = esMay ? SITIO_MAY : './';
+          vt.textContent = (esMay ? 'Ver la distribuidora' : 'Ver la tienda') + (ES_TESTER ? ' de pruebas' : ''); }
 }
 
 /* El aviso de pendientes: sale sólo cuando hay algo que revisar de verdad. */
@@ -3785,6 +3897,13 @@ async function aprobarMarcados(){
    Los precios ya no esperan tu OK: si cambian en el sistema, la tienda los toma
    sola. Lo que hace el panel es avisarte qué se movió desde tu visita anterior,
    una sola vez. Mientras no entrás, los cambios se van acumulando. */
+/* El cartel contaba una cosa y el filtro mostraba otra: decía "cambió 1 producto"
+   y al tocar "Ver qué cambió" aparecía la lista vacía. Ahora los dos usan esta
+   misma lista, así que nunca más pueden discrepar. */
+function productosConNovedad(){
+  return PRODUCTOS.filter(function(p){ return p.cambioPrecio || (p.nuevo && !p.altaOk); });
+}
+
 function contarNovedades(){
   var precios = PRODUCTOS.filter(function(p){ return p.cambioPrecio && !p.nuevo; }).length;
   var nuevos  = PRODUCTOS.filter(function(p){ return p.nuevo && !p.altaOk; }).length;
@@ -3848,7 +3967,10 @@ async function darPorVistas(){
   if(b)b.addEventListener('click',function(){
     ORDEN='cambios';
     var so=document.getElementById('selOrden'); if(so)so.value='cambios';
-    elegirFiltro('kpi','precio');
+    // Al filtro de lo que cambió DE VERDAD. Antes iba siempre al de precios, así
+    // que si lo que había cambiado era un producto nuevo la lista salía vacía.
+    var nv=contarNovedades();
+    elegirFiltro('kpi', nv.precios ? 'precio' : nv.nuevos ? 'nuevos' : 'renom');
     var c=document.getElementById('salida');
     if(c)c.scrollIntoView({block:'start',behavior:'smooth'});
   });
@@ -3912,7 +4034,8 @@ function pintarCartelTienda(){
   var bt = document.getElementById('btnVerTienda');
   if (bt) {
     bt.href = (TIENDA === 'may') ? SITIO_MAY : './';
-    bt.textContent = (TIENDA === 'may') ? 'Ver la distribuidora' : 'Ver la tienda';
+    bt.textContent = ((TIENDA === 'may') ? 'Ver la distribuidora' : 'Ver la tienda') +
+                     (ES_TESTER ? ' de pruebas' : '');
     bt.title = 'Abre ' + (TIENDA === 'may' ? SITIO_MAY : (ES_TESTER ? 'la tienda de pruebas' : 'la tienda oficial'));
   }
   document.body.classList.toggle('es-vivo', !ES_TESTER);
@@ -4573,8 +4696,10 @@ async function mcaAsignar(){
     marcados.forEach(function(p){
       var pr = partirNombre(p.nombreCsv || p.nombre, [_norm(marca)]);
       p.marca = marca;
-      // El nombre sólo se acorta si nunca se editó a mano: lo que él escribió no se toca.
-      if (!p.editada && pr.nombre) p.nombre = pr.nombre;
+      // Se acorta siempre: si estás asignando la marca es porque querés sacarla
+      // del nombre. Antes esto pedía que la ficha no estuviera editada, y como
+      // todas vienen del Sheet, el nombre no se limpiaba nunca.
+      if (pr.nombre) p.nombre = pr.nombre;
       if (!p.envase && pr.envase) p.envase = pr.envase;
       if (p.envasado === undefined) p.envasado = !pr.granel;
       var f = Object.assign({}, FICHAS_FB[p.id] || {});
