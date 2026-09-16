@@ -4084,10 +4084,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1djdM2QMCC1ghHYZa4xXQgrIgv5DuRgQm/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.788Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.741Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "250 ml",
+   "envasado": true
   },
   "2048": {
    "nombre": "TE VERDE",
@@ -4109,10 +4112,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1RaGyJOUcT0ugKOs1LCmQPpnDeanEyvoM/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.741Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 cápsulas",
+   "envasado": true
   },
   "2050": {
    "nombre": "RESVERATROL X50 CAPSULAS - NATIER",
@@ -4121,10 +4127,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1zOyF2osjym_PGHoC2JGD_8vjVVbUQoZC/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 cápsulas",
+   "envasado": true
   },
   "2051": {
    "nombre": "CURCUMA+PIMIENTA X 50 CÁPSULAS \"NATIER\"",
@@ -4133,10 +4142,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1OSTrlXYcn0jV-ex6IiqNv0AnfXN6sIUR/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.741Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 cápsulas",
+   "envasado": true
   },
   "2052": {
    "nombre": "VINAGRE DE SIDRA DE MANZANA X50 CAPSULAS - NATIER",
@@ -4145,10 +4157,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1P8uKj2mBYeGiYeJ7R7WdMvRNZtfeDFQQ/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 cápsulas",
+   "envasado": true
   },
   "2053": {
    "nombre": "VITAMINA C  X50 CAPSULAS - NATIER",
@@ -4157,10 +4172,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1Zu0SFlMbLTO_xFS_9YAP0ifEki2vjNUk/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 cápsulas",
+   "envasado": true
   },
   "2054": {
    "nombre": "AJO NEGRO X 50 CAPSULAS - NATIER",
@@ -4169,10 +4187,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/13I2J9wGyFJUiPGB8lTaXS6tB2cyHTJHz/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.788Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.741Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 cápsulas",
+   "envasado": true
   },
   "2056": {
    "nombre": "CITRATO DE MAGNESIO X 50 CAPSULAS - NATIER",
@@ -4181,10 +4202,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1VdZUxVjslvgdwC3uH0wSSbWX7GotFakJ/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.741Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 cápsulas",
+   "envasado": true
   },
   "2057": {
    "nombre": "MEDALLONES VEGETARIANOS - KISLEV",
@@ -4556,10 +4580,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1cwb3oXXfCWB6HC2y_Bqd1YraaXUODEcJ/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 unidades",
+   "envasado": true
   },
   "2103": {
    "nombre": "BARRA DE ARROZ - CROWIE",
@@ -5043,10 +5070,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1NW1lGzNcovSdQcQHZxLxEivOtBvvj2IH/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.741Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envasado": true
   },
   "2188": {
    "nombre": "VITAMINA B12 X50 - NATIER",
@@ -5055,10 +5084,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1AJiPwHntqg-chyU1DmdNRhlm5DNWhbbY/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envasado": true
   },
   "2189": {
    "nombre": "OMEGA 3 X60 CAPSULAS - SYNERGY",
@@ -5205,10 +5236,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1D8ScxsPL1mEF5hPltmmjj-Mm9k3mX3Yi/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "250 ml",
+   "envasado": true
   },
   "2228": {
    "nombre": "MIX IMPERIAL",
@@ -5331,10 +5365,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1ZVb23RFIe9sGhhlcvyfY6mC0KBi1cTbk/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "500 ml",
+   "envasado": true
   },
   "2264": {
    "nombre": "PIMIENTA JAMAICA",
@@ -5572,10 +5609,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1vWejTruqiZOx8b4iYLRZJtVm5cL5HN6i/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 cap",
+   "envasado": true
   },
   "2301": {
    "nombre": "GIN DE AUTOR SABORIZADO  X500 CC - TIERRA SANTA",
@@ -5717,10 +5757,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/150TvOfr-J3nWA_BIUdRUuIBNX1xNd4UD/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 cap",
+   "envasado": true
   },
   "2322": {
    "nombre": "SEN HOJAS",
@@ -5743,10 +5786,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/12z7Y2tsdinNfYhl4u0P34WV0GB18OGN6/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.788Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.741Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envasado": true
   },
   "2325": {
    "nombre": "ALOE VERA BEBIBLE DEFENSAS X500 ML - NATIER",
@@ -5755,10 +5800,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1UX-XypHShsdeOYeYOj2X0YkZygc18hhP/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.788Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.741Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "500 ml",
+   "envasado": true
   },
   "2326": {
    "nombre": "BLEND DE TE X30 GR",
@@ -5927,10 +5975,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/17_C6BUu1oM3ExNZ_7XjJ7Cwe-a7a4WsG/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 cápsulas",
+   "envasado": true
   },
   "2351": {
    "nombre": "CARQUEJA X60 CC - EL NATURALISTA",
@@ -6710,10 +6761,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1lSEP7X1rgHtsuuCl8HO8rXmmttEWA6t_/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.741Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envasado": true
   },
   "2464": {
    "nombre": "TREMELLA EN POLVO 30 GR - SOMOS SETAS",
@@ -6911,10 +6964,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1uts6jUlHklXa2PuiPi-6-lIUVamCKK-q/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.796Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "50 cápsulas",
+   "envasado": true
   },
   "2483": {
    "nombre": "CITRATO DE MAGNESIO",
@@ -7122,10 +7178,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1UVqUAki56Zy2sYGNDTVHaEcVxv1-53BB/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:32:33.742Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "Natier",
+   "envase": "150 g",
+   "envasado": true
   },
   "2505": {
    "nombre": "NMN - NICOTINAMIDA MONONUCLEOTIDO - LABS NUTRITION",
@@ -15581,7 +15640,8 @@
  "marcas": [
   "EL NATURALISTA",
   "SOMOS SETAS",
-  "EL AMAUTA"
+  "EL AMAUTA",
+  "NATIER"
  ],
- "actualizado": "2026-09-16T01:32:26.432Z"
+ "actualizado": "2026-09-16T01:32:33.809Z"
 }
