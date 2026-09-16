@@ -678,7 +678,13 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .pcard-img img{width:100%;height:100%;object-fit:contain;padding:10px}
 .pcard-body{padding:14px;flex:1;display:flex;flex-direction:column}
 .pcard-name{font-weight:700;font-size:15px;line-height:1.35;margin-bottom:4px}
+/* ── Cabecera de la sección de una marca ── */
+.catalog-intro--marca .marca-eyebrow{display:block;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--azul-mid);margin-bottom:3px}
+.catalog-intro--marca .marca-sub{margin:4px 0 0;font-size:14.5px;color:var(--muted-fg)}
+
 /* ── Productos relacionados, al final de la card abierta ── */
+:root{--pd-aire:18px}   /* el mismo aire lateral que usa la ficha en el celular */
 .product-detail-rel{grid-column:1/-1;margin:26px 0 4px;padding-top:20px;
   border-top:1px solid var(--border)}
 .pdrel-tit{margin:0 0 13px;font-size:16px;font-weight:800;color:var(--fg)}
@@ -694,7 +700,23 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .pdrel-nom .nom-m{font-size:9px}
 .pdrel-precio{font-weight:800;font-size:14.5px;color:var(--min-blue-deep);
   font-variant-numeric:tabular-nums}
-@media(max-width:600px){ .pdrel-fila{grid-template-columns:repeat(2,1fr)} }
+/* En el celular van de costado: seis tarjetas apiladas hacían una columna larguísima
+   al final de la ficha. El carrusel se desliza y llega hasta el borde de la pantalla,
+   que es lo que invita a arrastrar, pero la primera y la última quedan con aire. */
+@media(max-width:767px){
+  /* El contenedor ya llega al borde en el celular: acá sólo se separan el título
+     y las tarjetas, para que el carrusel pueda sangrar hasta el filo. */
+  .product-detail-rel{margin-left:0;margin-right:0;padding-left:0;padding-right:0}
+  .pdrel-tit{padding:0 var(--pd-aire)}
+  .pdrel-fila{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;
+    padding:2px var(--pd-aire) 6px;margin:0;
+    /* sin esto el snap se come el margen y la primera tarjeta queda pegada al filo,
+       desalineada del título */
+    scroll-padding-left:var(--pd-aire);
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .pdrel-fila::-webkit-scrollbar{display:none}
+  .pdrel-card{flex:0 0 43vw;max-width:170px;scroll-snap-align:start}
+}
 
 /* La marca de la card abierta se toca para ver todo lo de esa marca. */
 .nom-m-link{border:0;background:none;padding:0;font:inherit;cursor:pointer;
@@ -3255,7 +3277,7 @@ function openProductDetail(pid){
     <button class="product-detail-close" type="button" onclick="closeProductDetail()" aria-label="Cerrar">×</button>
   </div><div class="product-detail-shell"><div class="product-detail-main">
     <div class="product-detail-image" style="background:${fondo}">${src?`<img src="${src}" alt="${p[2]}" decoding="async">`:'<span class="product-image-placeholder" aria-hidden="true"></span>'}</div>
-    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${(_envaseDe(p)||_marcaDe(p))&&p[3]!=='Granel'?`<div class="product-detail-meta">${_envaseDe(p)?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}')" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}<div class="product-detail-info">${info}</div>
+    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${(_envaseDe(p)||_marcaDe(p))&&p[3]!=='Granel'?`<div class="product-detail-meta">${_envaseDe(p)?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}',${p[0]})" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}<div class="product-detail-info">${info}</div>
       <div class="product-detail-buy" id="productDetailCard" data-pid="${p[0]}" data-opt="${opt}">
         ${opts.length>1?`<h3>Elegí la presentación</h3><div class="product-detail-options opt-btns${opts.length>=4?' opt-btns-4':''}">${opciones}</div>`:''}${saboresHTML}
         <div class="prices"><div><span class="price-label">Precio${oferta>0?' (Oferta)':''}</span><div class="price-min">${_priceMinContent(p[7][opt][0],oferta)}</div></div><div><span class="price-label">+$80.000</span><div class="price-may">$${fmt(p[7][opt][1])}</div></div></div>
@@ -3323,19 +3345,65 @@ function _pintarRelacionados(p){
     }).join('') + '</div>';
 }
 
-/* Tocar la marca muestra todo lo de esa marca, usando el buscador que ya existe. */
-function verMarca(marca){
+/* ── SECCIÓN DE UNA MARCA ─────────────────────────────────────────────────────
+   Es una vista propia, no una búsqueda: borrar el buscador no te echa de acá, y
+   el botón de arriba te devuelve al producto del que viniste, por si tocaste la
+   marca sin querer. */
+let _marcaVolverA = null;
+
+function verMarca(marca, desdeProducto){
   if (!marca) return;
+  _marcaVolverA = desdeProducto || null;
   try { closeProductDetail(); } catch(e) {}
-  const inp = document.getElementById('compactSearchInput');
-  if (inp) {
-    inp.value = marca;
-    inp.dispatchEvent(new Event('input', {bubbles:true}));
-    if (typeof compactOnSearch === 'function') compactOnSearch(marca);
+  _cerrarSugerencias();
+
+  const clave = _norm(marca);
+  const prods = PRODS.filter(q => _norm(_marcaDe(q) || '') === clave);
+  const isMobile = window.innerWidth < 768;
+  const area = document.getElementById(isMobile ? 'mobileProdsArea' : 'desktopProdsArea');
+  if (!area) return;
+
+  // Se sale de la categoría que estuviera abierta, igual que al entrar a un rubro.
+  activeCatId = null;
+  try { renderCatsUI(); } catch(e) {}
+  const carr = document.getElementById('carruselesArea') || document.querySelector('.carruseles');
+  if (carr) carr.style.display = 'none';
+  const banners = document.querySelector('.banners-wrap');
+  if (banners) banners.style.display = 'none';
+
+  let h = '<button class="back-btn" onclick="' +
+    (_marcaVolverA ? 'volverAlProducto()' : 'volverInicio()') + '">← ' +
+    (_marcaVolverA ? 'Volver al producto' : 'Volver a todos los productos') + '</button>';
+  h += '<div class="catalog-intro catalog-intro--marca">' +
+       '<div><span class="marca-eyebrow">Marca</span><h1>' + _tc(marca) + '</h1>' +
+       '<p class="marca-sub">' + prods.length + (prods.length === 1 ? ' producto' : ' productos') + '</p></div>' +
+       '<button class="catalog-filter-btn" onclick="volverInicio()">Ver todo el catálogo</button>' +
+       '</div>';
+  if (!prods.length) {
+    h += '<div style="text-align:center;padding:48px 0;color:var(--muted-fg);font-size:17px">Todavía no hay productos de esta marca</div>';
+  } else {
+    h += '<div class="prod-grid">';
+    prods.forEach((p, i) => { h += renderCard(p, isMobile ? 'mb' : 'dt', i < 4); });
+    h += '</div>';
   }
-  setTimeout(function(){ window.scrollTo({top:0, behavior:'smooth'}); }, 80);
+  area.classList.remove('hidden');
+  area.innerHTML = h;
+  if (isMobile) {
+    const otra = document.getElementById('desktopProdsArea');
+    if (otra) otra.innerHTML = '';
+  }
+  window.scrollTo({top:0, behavior:'instant'});
 }
 window.verMarca = verMarca;
+
+/* Vuelve a la ficha del producto del que se salió. */
+function volverAlProducto(){
+  const id = _marcaVolverA;
+  _marcaVolverA = null;
+  if (id != null) openProductDetail(id);
+  else volverInicio();
+}
+window.volverAlProducto = volverAlProducto;
 window.closeProductDetail=closeProductDetail;
 window.productDetailAdd=productDetailAdd;
 
@@ -4362,13 +4430,63 @@ function _pickCategorySuggestion(catId){
   selectCat(catId);
 }
 window._pickCategorySuggestion=_pickCategorySuggestion;
+/* ── CERRAR LAS SUGERENCIAS ───────────────────────────────────────────────────
+   Antes sólo se cerraban eligiendo una: tapaban los productos y tocar al costado
+   no hacía nada. Ahora se van con todo lo que uno haría naturalmente para
+   descartarlas: tocar afuera, scrollear, Escape, Enter o soltar el teclado. */
+function _cerrarSugerencias(){
+  const box=document.getElementById('searchSuggestions');
+  if(box){ box.classList.remove('active'); box.innerHTML=''; }
+}
+window._cerrarSugerencias=_cerrarSugerencias;
+
 function _hideSuggestionsDelayed(){
-  setTimeout(()=>{
-    const box=document.getElementById('searchSuggestions');
-    if(box)box.classList.remove('active');
-  },150);
+  // El retardo deja que el mousedown de una sugerencia llegue antes que el blur.
+  setTimeout(_cerrarSugerencias,150);
 }
 window._hideSuggestionsDelayed=_hideSuggestionsDelayed;
+
+(function(){
+  var caja = function(){ return document.getElementById('searchSuggestions'); };
+  var abierta = function(){ var b=caja(); return b && b.classList.contains('active'); };
+
+  // Tocar en cualquier lado que no sea el buscador ni la lista.
+  ['pointerdown','touchstart'].forEach(function(ev){
+    document.addEventListener(ev, function(e){
+      if(!abierta()) return;
+      if(e.target.closest('#searchSuggestions')) return;
+      if(e.target.closest('#compactSearchInput,.hd-buscador,.compact-search')) return;
+      _cerrarSugerencias();
+    }, {passive:true, capture:true});
+  });
+
+  // Scrollear es la forma más común de decir "quiero ver los productos". Se mide
+  // desde donde estaba la página cuando se abrió la lista: comparar contra el
+  // evento anterior no servía, porque scrolleando despacio cada paso es chico.
+  var yAlAbrir=null;
+  window.addEventListener('scroll', function(){
+    if(!abierta()){ yAlAbrir=null; return; }
+    if(yAlAbrir===null){ yAlAbrir=window.scrollY; return; }
+    if(Math.abs(window.scrollY-yAlAbrir)>60){
+      _cerrarSugerencias();
+      var i=document.getElementById('compactSearchInput');
+      if(i && document.activeElement===i) i.blur();   // y baja el teclado
+    }
+  }, {passive:true});
+
+  // Escape y Enter.
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'&&abierta()){ _cerrarSugerencias(); var i=document.getElementById('compactSearchInput'); if(i)i.blur(); }
+    if(e.key==='Enter'&&abierta()) _cerrarSugerencias();
+  });
+
+  // En el celular, soltar el teclado cierra la lista.
+  var alto=window.innerHeight;
+  window.addEventListener('resize', function(){
+    if(window.innerHeight-alto>100 && abierta()) _cerrarSugerencias();   // el teclado se guardó
+    alto=window.innerHeight;
+  });
+})();
 
 function _onSearchFocus(){
   if(window.innerWidth>=768)return;
