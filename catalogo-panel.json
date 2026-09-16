@@ -434,10 +434,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1NLCzmbDkrR-9RS4-qFfUG4PPeIlWtOyR/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.584Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "60 cc",
+   "envasado": true
   },
   "1113": {
    "nombre": "ALMIDON DE MAIZ",
@@ -2719,10 +2722,13 @@
    "sabores": "",
    "oferta": 15,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1qQsHGWKKEjSAWNU7GUaTFoQHX5ykncDo/view"
+   "imagen": "https://drive.google.com/file/d/1qQsHGWKKEjSAWNU7GUaTFoQHX5ykncDo/view",
+   "marca": "El Naturalista",
+   "envase": "1 L",
+   "envasado": true
   },
   "1575": {
    "nombre": "SALSA TERIYAKI X250 CC - HASHI",
@@ -3605,10 +3611,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1yvTbexEzUXR8OAPSM1_WnSCQzVB8GxYj/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "1901": {
    "nombre": "MERMELADA X310 GR - MQA",
@@ -4294,10 +4302,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1mRf1BFbOxI8NihwSkBQUNzjwF9W-ulYC/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2077": {
    "nombre": "CITRATO DE POTASIO X30 COMPRIMIDOS - EL NATURALISTA",
@@ -4306,10 +4316,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/11T6jTwiWh8vqbm2ReafK6EzW3UrdfWZr/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2078": {
    "nombre": "GLICINATO DE MAGNESIO X 30 COMPRIMIDOS - EL NATURALISTA",
@@ -4330,10 +4342,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1aeTTL6PsbNFHvzZWpXgTZ6Y4mb8Hap9C/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.796Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.587Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2080": {
    "nombre": "CARDOMARIANO X30 CAPSULAS - EL NATURALISTA",
@@ -4342,10 +4356,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1ZW2LgeqdKgWWlI5Tn3W0-P4xDIy3L9HN/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "30 cápsulas",
+   "envasado": true
   },
   "2081": {
    "nombre": "SPIRULINA X 10 COMPRIMIDOS - EL NATURALISTA",
@@ -4354,10 +4371,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1a1ogboUDOY8K2zaNgBU73NlxZKObywMv/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "10 comp",
+   "envasado": true
   },
   "2082": {
    "nombre": "GINKGO BILOBA FORTE X10 COMPRIMIDOS - EL NATURALISTA",
@@ -4366,10 +4386,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1LDrJVsyrk7Y2XrmBCItUR2JiJskYgnrR/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "10 comp",
+   "envasado": true
   },
   "2083": {
    "nombre": "VITAMINA E X10 COMPRIMIDOS - EL NATURALISTA",
@@ -4378,10 +4401,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1weRPLU43kGxL6auIAANb-XtdqE7F17Je/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.587Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "10 comp",
+   "envasado": true
   },
   "2084": {
    "nombre": "GINSENG + MAGNESIO X10 COMPRIMIDOS - EL NATURALISTA",
@@ -4390,10 +4416,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/10X_F9ijvOFbFbwm-NndKxepX3KVexTBT/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "10 comp",
+   "envasado": true
   },
   "2086": {
    "nombre": "LEVADURA DE CERVEZA SABOR QUESO X200 GR- NUTILEVA",
@@ -4802,10 +4831,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1fe-jcgCY2l67EOuLVo7R9c0KHwPzqzNV/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.584Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "marca": "El Naturalista",
+   "envase": "10 sobres",
+   "envasado": true
   },
   "2155": {
    "nombre": "CALDO DE VERDURAS CON SAL X 10 SOBRES - EL NATURALISTA",
@@ -4814,10 +4846,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1QxuNARdPyT1S79YHx2z5FhnfhY3KC5qG/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.584Z",
    "por": "panel",
-   "rubro": "ESPECIAS"
+   "rubro": "ESPECIAS",
+   "marca": "El Naturalista",
+   "envase": "10 sobres",
+   "envasado": true
   },
   "2159": {
    "nombre": "CHOCOLATE 100%  COBERTURA SEMIAMARGO - COLONIAL",
@@ -4862,10 +4897,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/12YoRropKuis3u99GklU7H7xDfeiXtbfr/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "10 comp",
+   "envasado": true
   },
   "2169": {
    "nombre": "CURCUMA + PIMIENTA X30 COMPRIMIDOS - EL NATURALISTA",
@@ -4874,10 +4912,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1_bjSV4yAeIyGT7WRMi-36m3vw2Z1eUGJ/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "30 comp",
+   "envasado": true
   },
   "2170": {
    "nombre": "CASCARA SAGRADA X 60 CC - EL NATURALISTA",
@@ -4886,10 +4927,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1UtKGvw0H8D3qO66sEwLmx9GFioDZGXFT/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "60 cc",
+   "envasado": true
   },
   "2171": {
    "nombre": "MIEL BATIDA X500 GR - GOTAS DE ORO",
@@ -4910,10 +4954,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/115lp6NWTavctF6OVKOnt9x3yK3IiiUFF/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "10 comp",
+   "envasado": true
   },
   "2176": {
    "nombre": "MIX FRUTOS ROJOS CONGELADOS X 1 KG",
@@ -5046,10 +5093,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1Iv5tdvKwOpKO6Rzz6TxKc_DMQcNaZe5y/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2212": {
    "nombre": "RESVERATROL X30 COMPRIMIDOS - EL NATURALISTA",
@@ -5058,10 +5107,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1mj8CgaMA7ha8Jb3qESVj3K5loT7Uw2qJ/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2216": {
    "nombre": "CAFE VERDE X30 COMPRIMIDOS - EL NATURALISTA",
@@ -5070,10 +5121,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1s_HQee3Ct7AVUZNXKhc64AwL58l6b-XF/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.584Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2217": {
    "nombre": "FLEBOTONICO X30 COMPRIMIDOS - EL NATURALISTA",
@@ -5082,10 +5135,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1F1_9MVWjAbpyX4QiKIyFh1Foh4qXMUqQ/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2218": {
    "nombre": "CAROTENO X10 CAPSULAS - EL NATURALISTA",
@@ -5094,10 +5149,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1iFdEtBZgmu1ZI6I7Ed_HxhNyYRIDqWrP/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "10 cápsulas",
+   "envasado": true
   },
   "2221": {
    "nombre": "PROPOLEO LIQUIDO X100 ML - EL NATURALISTA",
@@ -5106,10 +5164,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1_Y9tRfuTxV0SH6V-mCLQc_H47GIzLcIf/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "100 ml",
+   "envasado": true
   },
   "2222": {
    "nombre": "COLAGENO X10 COMPRIMIDOS - EL NATURALISTA",
@@ -5118,10 +5179,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1PMZLayzG6mqCWiG46kGKvGzdxB0XyfJe/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.790Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2226": {
    "nombre": "CURCUMA, JENGIBRE Y PIMIENTA X30 COMPRIMIDOS - VITAWELLNESS",
@@ -5363,10 +5426,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1l-JYUR09DCmVHlbvTXTJgsyewZYUXT_K/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "60 cc",
+   "envasado": true
   },
   "2277": {
    "nombre": "ACEITE PURO DE ARGAN X 50CC - EL NATURALISTA",
@@ -5600,10 +5666,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1NrBm8NMhPYTr-Hb6q8Ve-oEMxPBUb5dr/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2315": {
    "nombre": "HARINA DE ALMENDRAS CON PIEL",
@@ -5759,10 +5827,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/17rL0VSWYYhwXzYV2OfEEuVaWt0xdnW14/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "60 cápsulas",
+   "envasado": true
   },
   "2334": {
    "nombre": "NAD + RESVERATROL X60 CAPSULAS - EL NATURALISTA",
@@ -5771,10 +5842,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1lwP-ZXKmUUXnbJqQ_lTAI1757sIFVRcU/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "60 cápsulas",
+   "envasado": true
   },
   "2335": {
    "nombre": "GARBANZOS",
@@ -5865,10 +5939,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1-lo402d647WKiJtdRF1NhX6rb3mp8Oeu/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2352": {
    "nombre": "ACEITE PURO DE RICINO X50CC - EL NATURALISTA",
@@ -5877,10 +5953,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1BQ24XKilgq5IpawRut_5YcLzpBzqlHkB/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.788Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.583Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2354": {
    "nombre": "GALLETAS SIN TACC  X150 GR - DELICEL",
@@ -6147,10 +6225,13 @@
    "sabores": "",
    "oferta": 0,
    "rubro": "",
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.584Z",
    "por": "panel",
-   "imagen": "https://drive.google.com/file/d/1QUK8EEKByUJbLDEGGuhHYRGmVQhDwlGh/view"
+   "imagen": "https://drive.google.com/file/d/1QUK8EEKByUJbLDEGGuhHYRGmVQhDwlGh/view",
+   "marca": "El Naturalista",
+   "envase": "60 unidades",
+   "envasado": true
   },
   "2386": {
    "nombre": "ACEITE DE LINO X 150 cc - NUTRA SEM",
@@ -6243,10 +6324,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1MOwgKWz36p59SWw4cMqX6YL_eCASi5VT/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.795Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.586Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2402": {
    "nombre": "EQUINACEA  60 CC - EL NATURALISTA",
@@ -6255,10 +6338,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1lBPousVp1ZkmV1_yqdTCelyaH7LZd7xu/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.793Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envasado": true
   },
   "2405": {
    "nombre": "VELON BURBUJA",
@@ -7762,10 +7847,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1_lcDinD3qAYcWqKJgwaixqck1x2gixIR/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.585Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "60 cc",
+   "envasado": true
   },
   "5042": {
    "nombre": "BERBERINA X60CC - EL NATURALISTA",
@@ -7774,10 +7862,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1XX7SbyLkg-0oqP4lSlest11sBP57_GuF/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.789Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.584Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "60 cc",
+   "envasado": true
   },
   "5043": {
    "nombre": "ACEITE PURO DE ROSA MOSQUETA X50CC - EL NATURALISTA",
@@ -7786,10 +7877,13 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1k4r8t-LcHi9dcfiNYKKQSaaKDB-e0V9e/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.788Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:31:52.584Z",
    "por": "panel",
-   "rubro": "SUPLEMENTOS"
+   "rubro": "SUPLEMENTOS",
+   "marca": "El Naturalista",
+   "envase": "50 cc",
+   "envasado": true
   },
   "5044": {
    "nombre": "MANZANILLA IMPORTADA",
@@ -15444,6 +15538,8 @@
   ]
  },
  "novedadesVistas": "2026-09-16T01:08:54.786Z",
- "marcas": [],
- "actualizado": "2026-09-16T01:29:59.798Z"
+ "marcas": [
+  "EL NATURALISTA"
+ ],
+ "actualizado": "2026-09-16T01:31:53.040Z"
 }
