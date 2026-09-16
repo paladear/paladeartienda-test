@@ -683,6 +683,44 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
   letter-spacing:.16em;text-transform:uppercase;color:var(--azul-mid);margin-bottom:3px}
 .catalog-intro--marca .marca-sub{margin:4px 0 0;font-size:14.5px;color:var(--muted-fg)}
 
+/* ── Fila de filtros por sello ──
+   Debajo del título de la categoría, porque no son categorías: se combinan con la
+   que ya tenés puesta. */
+.fila-sellos{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.chip-sello{padding:9px 15px;border:1.5px solid var(--border);border-radius:999px;
+  background:var(--card);color:var(--muted-fg);font:600 13.5px/1 inherit;cursor:pointer;
+  min-height:40px;transition:background .15s,border-color .15s,color .15s}
+.chip-sello b{font-weight:800;opacity:.6;margin-left:3px}
+.chip-sello:hover{border-color:#8fd0ac;color:#1d7a4a}
+.chip-sello.on{background:#1d7a4a;border-color:#1d7a4a;color:#fff}
+.chip-sello.on b{opacity:.75}
+.chip-limpiar{border-style:dashed;color:var(--muted-fg)}
+.chip-limpiar:hover{border-color:var(--destructive);color:var(--destructive)}
+@media(max-width:767px){
+  .fila-sellos{gap:6px;margin-bottom:14px;overflow-x:auto;flex-wrap:nowrap;
+    padding-bottom:4px;scrollbar-width:none}
+  .fila-sellos::-webkit-scrollbar{display:none}
+  .chip-sello{flex:0 0 auto;font-size:13px;padding:8px 13px}
+}
+
+/* ── Sellos sobre la foto ──
+   Arriba a la derecha, chicos y translúcidos: se leen al escanear la grilla pero
+   no compiten con el nombre ni con el descuento, que va en la otra esquina. */
+.sellos-foto{position:absolute;top:8px;right:8px;z-index:2;display:flex;flex-direction:column;
+  align-items:flex-end;gap:4px;pointer-events:none}
+.sello-f{padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.93);
+  border:1px solid rgba(29,122,74,.32);color:#1d7a4a;
+  font:800 8.5px/1.35 'Montserrat',system-ui,sans-serif;letter-spacing:.07em;
+  box-shadow:0 1px 5px rgba(20,45,70,.13);white-space:nowrap}
+@media(max-width:767px){
+  .sellos-foto{top:6px;right:6px;gap:3px}
+  .sello-f{padding:2px 6px;font-size:7.5px}
+}
+/* En la ficha abierta van como chips, arriba del nombre. */
+.product-detail-sellos{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.sello-d{padding:4px 11px;border-radius:999px;background:#e7f7ee;border:1px solid #8fd0ac;
+  color:#1d7a4a;font:800 10.5px/1.4 inherit;letter-spacing:.07em}
+
 /* ── Productos relacionados, al final de la card abierta ── */
 :root{--pd-aire:18px}   /* el mismo aire lateral que usa la ficha en el celular */
 .product-detail-rel{grid-column:1/-1;margin:26px 0 4px;padding-top:20px;
@@ -3189,6 +3227,29 @@ function _precio(s){const clean=(s||'').replace(/[^0-9,.]/g,'').replace(/\./g,''
 function _bultoLabel(n,unidad){const s=String(n).replace('.',',');if(unidad==='kg')return s+' Kg';return n===1?'1 Unidad':s+' Unidades';}
 function _tc(s){return(s||'').toLowerCase().replace(/[^\s\-\/(]+/g,function(w){return w.charAt(0).toUpperCase()+w.slice(1);});}
 
+/* ── SELLOS ───────────────────────────────────────────────────────────────────
+   Van sobre la foto, arriba a la derecha: la esquina de la izquierda la ocupa el
+   descuento, y así no le roban ni un renglón al texto de la tarjeta. */
+const SELLOS_TIENDA=[
+  // txt: el sello sobre la foto (en mayúsculas). chip: el filtro, escrito como se
+  // lee normalmente — "Sin TACC" y no "Sin tacc", que es una sigla.
+  {id:'sintacc',  txt:'SIN TACC',   chip:'Sin TACC'},
+  {id:'sinazucar',txt:'SIN AZÚCAR', chip:'Sin azúcar'},
+  {id:'vegano',   txt:'VEGANO',     chip:'Vegano'},
+  {id:'organico', txt:'ORGÁNICO',   chip:'Orgánico'}
+];
+function _sellosDe(p){
+  const s=p[12]&&p[12].sellos;
+  if(!s)return[];
+  return SELLOS_TIENDA.filter(x=>s[x.id]);
+}
+function _sellosHTML(p){
+  const l=_sellosDe(p);
+  if(!l.length)return'';
+  // Dos como máximo en la tarjeta: con tres ya tapan la foto.
+  return '<div class="sellos-foto">'+l.slice(0,2).map(x=>'<span class="sello-f">'+x.txt+'</span>').join('')+'</div>';
+}
+
 /* ── NOMBRE, CANTIDAD Y MARCA ─────────────────────────────────────────────────
    Un envasado se nombra "Aceite de coco neutro 200 ml · ENTRENUTS": el nombre en
    negra, el contenido en gris y la marca en mayúsculas finitas. Los productos a
@@ -3281,7 +3342,7 @@ function openProductDetail(pid){
     <button class="product-detail-close" type="button" onclick="closeProductDetail()" aria-label="Cerrar">×</button>
   </div><div class="product-detail-shell"><div class="product-detail-main">
     <div class="product-detail-image" style="background:${fondo}">${src?`<img src="${src}" alt="${p[2]}" decoding="async">`:'<span class="product-image-placeholder" aria-hidden="true"></span>'}</div>
-    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${(_envaseDe(p)||_marcaDe(p))&&p[3]!=='Granel'?`<div class="product-detail-meta">${_envaseDe(p)?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}',${p[0]})" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}<div class="product-detail-info">${info}</div>
+    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${_sellosDe(p).length?`<div class="product-detail-sellos">${_sellosDe(p).map(x=>'<span class="sello-d">'+x.txt+'</span>').join('')}</div>`:''}${(_envaseDe(p)||_marcaDe(p))&&p[3]!=='Granel'?`<div class="product-detail-meta">${_envaseDe(p)?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}',${p[0]})" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}<div class="product-detail-info">${info}</div>
       <div class="product-detail-buy" id="productDetailCard" data-pid="${p[0]}" data-opt="${opt}">
         ${opts.length>1?`<h3>Elegí la presentación</h3><div class="product-detail-options opt-btns${opts.length>=4?' opt-btns-4':''}">${opciones}</div>`:''}${saboresHTML}
         <div class="prices"><div><span class="price-label">Precio${oferta>0?' (Oferta)':''}</span><div class="price-min">${_priceMinContent(p[7][opt][0],oferta)}</div></div><div><span class="price-label">+$80.000</span><div class="price-may">$${fmt(p[7][opt][1])}</div></div></div>
@@ -3587,15 +3648,43 @@ function volverInicio(){
   if(typeof _bnavSet==='function')_bnavSet('minorista');
 }
 
+/* El sello activo. Es transversal: se cruza con la categoría que esté abierta, así
+   se puede pedir "aceites y además sin TACC". */
+let SELLO_ACTIVO=null;
+
+function _filaSellos(prods){
+  // Sólo se ofrecen los sellos que de verdad tienen productos acá: un filtro que
+  // deja la pantalla vacía es peor que no estar.
+  const cuenta={};
+  prods.forEach(p=>_sellosDe(p).forEach(x=>{cuenta[x.id]=(cuenta[x.id]||0)+1}));
+  const hay=SELLOS_TIENDA.filter(x=>cuenta[x.id]);
+  if(!hay.length)return'';
+  return '<div class="fila-sellos" role="group" aria-label="Filtrar por sello">'+
+    hay.map(x=>'<button type="button" class="chip-sello'+(SELLO_ACTIVO===x.id?' on':'')+
+      '" onclick="filtrarSello(\''+x.id+'\')">'+x.chip+
+      ' <b>'+cuenta[x.id]+'</b></button>').join('')+
+    (SELLO_ACTIVO?'<button type="button" class="chip-sello chip-limpiar" onclick="filtrarSello(null)">Quitar filtro</button>':'')+
+    '</div>';
+}
+
+function filtrarSello(id){
+  SELLO_ACTIVO = (SELLO_ACTIVO===id) ? null : id;
+  if(activeCatId) selectCat(activeCatId,null,{history:false});
+  else { try{ _catalogRenderMode=null; _catalogRenderedProds=null; _catalogRenderedCats=null; }catch(e){} volverInicio(); }
+}
+window.filtrarSello=filtrarSello;
+
 function renderProdsHTML(cat,prods,prefix,priorityProductId){
   let h='<button class="back-btn" onclick="volverInicio()">← Volver a todos los productos</button>';
   h+=`<div class="catalog-intro catalog-intro--rubro">
       <div><h1>${cat.n}</h1></div>
       <button class="catalog-filter-btn" onclick="toggleCatsDropdown()"><span aria-hidden="true">☰</span> Categorías</button>
     </div>`;
-  if(!prods.length)return h+'<div style="text-align:center;padding:48px 0;color:var(--muted-fg);font-size:17px">No se encontraron productos 🔍</div>';
+  h+=_filaSellos(prods);
+  const visibles = SELLO_ACTIVO ? prods.filter(p=>_sellosDe(p).some(x=>x.id===SELLO_ACTIVO)) : prods;
+  if(!visibles.length)return h+'<div style="text-align:center;padding:48px 0;color:var(--muted-fg);font-size:17px">No hay productos con ese sello en esta categoría</div>';
   h+='<div class="prod-grid">';
-  prods.forEach((p,i)=>{h+=renderCard(p,prefix,i<4||p[0]===priorityProductId)});
+  visibles.forEach((p,i)=>{h+=renderCard(p,prefix,i<4||p[0]===priorityProductId)});
   h+='</div>';
   return h;
 }
@@ -3635,7 +3724,7 @@ function renderCard(p,prefix,prioritizeImage){
   // la imagen se funde con la tarjeta aunque el fondo no sea blanco puro.
   const _fondo=(p[12]&&p[12].fondo)?` style="background:${p[12].fondo}"`:'';
   const imgLoading=prioritizeImage?'loading="eager" fetchpriority="high"':'loading="lazy"';
-  h+=`<div class="pcard-img"${_fondo}>${hasSrc?`<img src="${p[6]}" alt="${p[2]}" onerror="this.style.display='none'" ${imgLoading} decoding="async">`:`<span class="product-image-placeholder" aria-hidden="true"></span>`}</div>`;
+  h+=`<div class="pcard-img"${_fondo}>${hasSrc?`<img src="${p[6]}" alt="${p[2]}" onerror="this.style.display='none'" ${imgLoading} decoding="async">`:`<span class="product-image-placeholder" aria-hidden="true"></span>`}${_sellosHTML(p)}</div>`;
   h+=`<div class="pcard-body">`;
   h+=`<div class="pcard-head"><div class="pcard-name">${_nomHTML(p)}</div>`;
   if(infoText)h+=`<button class="info-btn" onclick="openProductDetail(${p[0]})" title="Ver detalle" aria-label="Ver detalle"><span aria-hidden="true">i</span></button>`;
@@ -4999,6 +5088,7 @@ function sincronizarDesdeSheets(){
           oferta:_fb.oferta||0,
           marca:_fb.marca||'',
           envase:_fb.envase||'',
+          sellos:_fb.sellos||null,
           envasado:_fb.envasado===true,
           mix:_fb.mix===true,
           granola:_fb.granola===true,
@@ -5029,7 +5119,7 @@ function sincronizarDesdeSheets(){
         }
         const esMix=inf.mix===true;const esGranola=inf.granola===true;
         const ofertaPct=inf.oferta||0;
-        prodsTemp.push([pid++,cat.id,nombreFinal,esKg?'Granel':'Varios',esKg?'kg':'und',false,imgUrl,opts,infoText,sabores,esMix,esGranola,{productId,oferta:ofertaPct,fondo:(_fotoPanel&&_fotoPanel.fondo)||(_fb&&_fb.fondo)||'',marca:inf.marca,envase:inf.envase}]);
+        prodsTemp.push([pid++,cat.id,nombreFinal,esKg?'Granel':'Varios',esKg?'kg':'und',false,imgUrl,opts,infoText,sabores,esMix,esGranola,{productId,oferta:ofertaPct,fondo:(_fotoPanel&&_fotoPanel.fondo)||(_fb&&_fb.fondo)||'',marca:inf.marca,envase:inf.envase,sellos:inf.sellos}]);
       });
       CATS=Object.keys(RUBRO_MAP).filter(k=>catMap[RUBRO_MAP[k].id]).map(k=>RUBRO_MAP[k]);
       PRODS=prodsTemp;
