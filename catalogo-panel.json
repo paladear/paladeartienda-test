@@ -4743,10 +4743,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1Ib512u7c5_rHUpjA-lqENWOY32hdF1OO/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:06.859Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Las Doñas",
+   "envasado": true
   },
   "2123": {
    "nombre": "MERMELADA DE CITRICOS - LAS DOÑAS",
@@ -4755,10 +4757,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1d4-j6FzUDHjNkzft5X9qTD-_W6chuCXG/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:06.858Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Las Doñas",
+   "envasado": true
   },
   "2124": {
    "nombre": "MERMELADA DE PERAS Y JENGIBRE - LAS DOÑAS",
@@ -4767,10 +4771,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1LoJImNZoFZaBVsjye0hFtBLEbltc1Y6N/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:06.859Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Las Doñas",
+   "envasado": true
   },
   "2125": {
    "nombre": "COLADOR COMUN ROSE",
@@ -6138,10 +6144,12 @@
    "sabores": "",
    "imagen": "https://drive.google.com/file/d/1VDSIzTaJWq0C-jE2lxZNHiZWWOXEqbAX/view",
    "oferta": 0,
-   "origen": "sheet",
-   "actualizado": "2026-09-13T12:51:39.794Z",
+   "origen": "panel",
+   "actualizado": "2026-09-16T01:33:06.859Z",
    "por": "panel",
-   "rubro": "DULCES, MIEL Y CHOCOLATES"
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "marca": "Las Doñas",
+   "envasado": true
   },
   "2369": {
    "nombre": "PISTACHOS NATURALES SIN CASCARA",
@@ -15739,7 +15747,8 @@
   "COLONIAL",
   "DELICEL",
   "SUPPLY",
-  "DOÑA MAGDALENA"
+  "DOÑA MAGDALENA",
+  "LAS DOÑAS"
  ],
- "actualizado": "2026-09-16T01:33:02.224Z"
+ "actualizado": "2026-09-16T01:33:07.938Z"
 }
