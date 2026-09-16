@@ -7915,7 +7915,7 @@
    "oculto": false,
    "fotoPropia": true,
    "fondo": "#fefefe",
-   "altaOk": false,
+   "altaOk": true,
    "marca": "",
    "envasado": true,
    "envase": "",
@@ -15453,5 +15453,5 @@
  },
  "novedadesVistas": "2026-09-15T22:07:33.345Z",
  "marcas": [],
- "actualizado": "2026-09-16T01:07:02.358Z"
+ "actualizado": "2026-09-16T01:07:25.477Z"
 }
