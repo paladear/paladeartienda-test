@@ -7906,20 +7906,16 @@
    "oferta": 0,
    "rubro": "PALADEAR HOME",
    "origen": "panel",
-   "actualizado": "2026-09-16T01:07:31.104Z",
+   "actualizado": "2026-09-14T03:07:32.491Z",
    "por": "panel",
    "mix": false,
    "granola": false,
    "blend": false,
    "imagen": "",
-   "oculto": false,
+   "oculto": true,
    "fotoPropia": true,
    "fondo": "#fefefe",
-   "altaOk": true,
-   "marca": "",
-   "envasado": true,
-   "envase": "",
-   "saboresOcultos": []
+   "altaOk": false
   },
   "5053": {
    "nombre": "BALSAMO LABIAL",
@@ -7929,7 +7925,7 @@
    "oferta": 0,
    "rubro": "PALADEAR HOME",
    "origen": "panel",
-   "actualizado": "2026-09-16T01:05:41.184Z",
+   "actualizado": "2026-09-14T03:07:04.655Z",
    "por": "panel",
    "mix": false,
    "granola": false,
@@ -7938,11 +7934,7 @@
    "oculto": false,
    "fotoPropia": true,
    "fondo": "#fefefe",
-   "altaOk": true,
-   "marca": "El Amauta",
-   "envasado": true,
-   "envase": "",
-   "saboresOcultos": []
+   "altaOk": true
   }
  },
  "fotos": {
@@ -12436,19 +12428,19 @@
   },
   "5052": {
    "fondo": "#fefefe",
-   "w": 560,
-   "h": 512,
-   "peso": 33860,
-   "ext": "jpg",
-   "v": 1789520794126
+   "w": 700,
+   "h": 640,
+   "peso": 16678,
+   "ext": "webp",
+   "v": 1789355254022
   },
   "5053": {
    "fondo": "#fefefe",
-   "w": 560,
-   "h": 512,
-   "peso": 54329,
-   "ext": "jpg",
-   "v": 1789520743132
+   "w": 700,
+   "h": 640,
+   "peso": 33634,
+   "ext": "webp",
+   "v": 1789355226691
   }
  },
  "preciosVistos": {
@@ -15451,7 +15443,7 @@
    0
   ]
  },
- "novedadesVistas": "2026-09-15T22:07:33.345Z",
+ "novedadesVistas": "2026-09-16T01:08:54.786Z",
  "marcas": [],
- "actualizado": "2026-09-16T01:07:31.157Z"
+ "actualizado": "2026-09-16T01:08:54.857Z"
 }
