@@ -1,11 +1,18 @@
 {
   "resumen": {
-    "nuevos": 21,
+    "nuevos": 22,
     "renombrados": 4,
     "quitados": 0,
     "rubro_invalido": 0
   },
   "nuevos": [
+    {
+      "numero": "2006",
+      "nombre": "ACEITERO SPRAY",
+      "rubro": "PALADEAR HOME",
+      "precio": 8000,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
     {
       "numero": "1051",
       "nombre": "ACEITUNAS VERDES X 1/2 KG Nº0",
