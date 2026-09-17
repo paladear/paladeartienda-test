@@ -200,6 +200,7 @@ https://paladear.github.io/paladeartienda-test/?producto=curcuma-jengibre-y-pimi
 https://paladear.github.io/paladeartienda-test/?producto=curcuma-pimienta-2051
 https://paladear.github.io/paladeartienda-test/?producto=curry-1239
 https://paladear.github.io/paladeartienda-test/?producto=cuscus-1240
+https://paladear.github.io/paladeartienda-test/?producto=datiles-dorados-de-egipto-5028
 https://paladear.github.io/paladeartienda-test/?producto=delantal-jean-2126
 https://paladear.github.io/paladeartienda-test/?producto=delantal-lino-1003
 https://paladear.github.io/paladeartienda-test/?producto=desodorante-natural-5009
