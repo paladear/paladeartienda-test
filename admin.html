@@ -883,6 +883,18 @@ body.con-hoja{overflow:hidden}
   .prod-editar svg{width:17px;height:17px}
 }
 
+/* ── Volver atrás el último cambio grande ── */
+.barra-deshacer{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:0 0 12px;
+  padding:11px 14px;border-radius:12px;background:#fdf3e3;border:1px solid #e2c48e;color:#7d5410}
+.des-txt{font-size:14px;flex:1;min-width:180px}
+.des-txt b{font-weight:800}
+.des-btn{margin-left:auto;background:var(--papel);border-color:#d9b877;color:#7d5410}
+.des-btn:hover{background:#fff8ec}
+.des-x{width:30px;height:30px;flex:0 0 auto;border:0;border-radius:50%;background:transparent;
+  color:#a8802f;font-size:20px;line-height:1;cursor:pointer}
+.des-x:hover{background:rgba(168,128,47,.14)}
+@media(max-width:430px){ .des-btn{margin-left:0;width:100%} }
+
 /* ── Agregar varios al catálogo de una ── */
 .barra-altas{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:0 0 12px;
   padding:11px 14px;border-radius:12px;background:#f1f0f8;border:1px solid #cfcede;color:#544f72}
@@ -1274,6 +1286,9 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
     <label class="rev-todos"><input type="checkbox" id="revTodos"> <span id="revCuenta">Marcar todos</span></label>
     <button type="button" class="btn primario rev-ok" id="revAprobar" disabled>Dar por vistos los marcados</button>
   </div>
+
+  <!-- ── VOLVER ATRÁS EL ÚLTIMO CAMBIO GRANDE ── -->
+  <div class="barra-deshacer" id="barraDeshacer" hidden></div>
 
   <!-- ── AGREGAR VARIOS DE UNA, cuando estás viendo los que faltan ── -->
   <div class="barra-altas" id="barraAltas" hidden>
@@ -1875,7 +1890,10 @@ async function arrancar(){
         id, nombre: f.nombre || c[2], nombreCsv:c[2], rubro:c[5],
         p1:aNum(c[3]), p2:aNum(c[4]),
         ficha:!!(FICHAS_CSV[id] || FICHAS_FB[id]), desc:f.desc || '',
-        foto:!!(f.imagen && String(f.imagen).trim()),
+        // La foto puede venir del Sheet (f.imagen) o haberse subido desde acá
+        // (f.fotoPropia + el archivo en fotos/). Mirando sólo f.imagen, las que
+        // subías vos seguían figurando como "sin foto" aunque ya estuvieran en la tienda.
+        foto:!!(f.fotoPropia || FOTOS_FB[id] || (f.imagen && String(f.imagen).trim())),
         cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
         marca:f.marca || '', envase:f.envase || '', envasado:f.envasado,
         saboresOcultos:f.saboresOcultos || [], sellos:f.sellos || null,
@@ -1893,7 +1911,10 @@ async function arrancar(){
         id, nombre: f.nombre || n.nombre, nombreCsv:n.nombre, rubro:n.rubro,
         p1:n.precio || 0, p2:0,
         ficha:!!(FICHAS_CSV[id] || FICHAS_FB[id]), desc:f.desc || '',
-        foto:!!(f.imagen && String(f.imagen).trim()),
+        // La foto puede venir del Sheet (f.imagen) o haberse subido desde acá
+        // (f.fotoPropia + el archivo en fotos/). Mirando sólo f.imagen, las que
+        // subías vos seguían figurando como "sin foto" aunque ya estuvieran en la tienda.
+        foto:!!(f.fotoPropia || FOTOS_FB[id] || (f.imagen && String(f.imagen).trim())),
         cantidades:f.cantidades || '', sabores:f.sabores || '', oferta:f.oferta || 0,
         marca:f.marca || '', envase:f.envase || '', envasado:f.envasado,
         saboresOcultos:f.saboresOcultos || [], sellos:f.sellos || null,
@@ -1940,6 +1961,7 @@ async function arrancar(){
                      vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
                      marcas: MARCAS_FB };
     refrescarMarcas();
+    cargarDeshacer();
     pintarKpis(); pintar();
   } catch (e) {
     document.getElementById('salida').className = 'vacio';
@@ -2482,13 +2504,12 @@ const SELLOS = [
 let SELLOS_SEL = {};
 
 function pintarSellos(p){
+  // Ningún sello se prende solo. Antes se proponían los que el nombre nombraba y
+  // eso podía dejar marcado algo que no correspondía sin que te dieras cuenta al
+  // guardar. Los sellos se ponen a mano, siempre.
   SELLOS_SEL = {};
   var guardados = p.sellos || {};
-  var texto = ((p.nombreCsv || '') + ' ' + (p.nombre || '')).toUpperCase();
-  SELLOS.forEach(function(s){
-    // Si la ficha nunca se tocó, se prende el que el nombre ya dice.
-    SELLOS_SEL[s.id] = guardados[s.id] !== undefined ? !!guardados[s.id] : s.pista.test(texto);
-  });
+  SELLOS.forEach(function(s){ SELLOS_SEL[s.id] = !!guardados[s.id]; });
   dibujarSellos();
 }
 
@@ -3114,6 +3135,7 @@ function pintarKpis(){
   try { pintarAvisoPend(); } catch(e) {}
   try { pintarBarraRev(); } catch(e) {}
   try { pintarBarraAltas(); } catch(e) {}
+  try { pintarDeshacer(); } catch(e) {}
   try { ajustarPorTienda(); } catch(e) {}
 }
 
@@ -3689,10 +3711,94 @@ function excelRevisar(datos){
 
 function excelCancelar(){ EXCEL_FILAS = null; $('excelCaja').innerHTML = ''; var i=$('fileExcel'); if(i) i.value=''; }
 
+/* ── DESHACER ─────────────────────────────────────────────────────────────────
+   Antes de una operación grande se guarda cómo estaba todo: la lista de precios
+   tal cual y las fichas. Si el Excel vino mal, con un botón se vuelve al momento
+   anterior. Queda guardado en el navegador, así que sobrevive a recargar la
+   página; se pierde recién al cerrar la sesión o al hacer otra operación grande. */
+const LS_DESHACER = 'paladear_deshacer';
+let DESHACER = null;
+
+function cargarDeshacer(){
+  try { DESHACER = JSON.parse(localStorage.getItem(LS_DESHACER) || 'null'); }
+  catch(e) { DESHACER = null; }
+  pintarDeshacer();
+}
+
+async function guardarPuntoDeVuelta(queSeHizo){
+  try {
+    var csv = '';
+    try { csv = await bajar(archivoPrecios()); } catch(e) {}
+    DESHACER = {
+      que: queSeHizo,
+      cuando: new Date().toISOString(),
+      tienda: TIENDA,
+      repo: repoActivo(),
+      archivo: archivoPrecios(),
+      csv: csv,
+      fichas: JSON.stringify(FICHAS_FB),
+      aprobados: JSON.stringify(PRECIOS_APROBADOS),
+      vistos: JSON.stringify(PRECIOS_VISTOS)
+    };
+    try { localStorage.setItem(LS_DESHACER, JSON.stringify(DESHACER)); }
+    catch(e) { /* si no entra en el navegador, queda sólo en memoria */ }
+    pintarDeshacer();
+  } catch(e) { console.warn('[deshacer] no pude guardar el punto de vuelta', e); }
+}
+
+function pintarDeshacer(){
+  var c = document.getElementById('barraDeshacer');
+  if (!c) return;
+  if (!DESHACER || DESHACER.tienda !== TIENDA) { c.hidden = true; return; }
+  var d = new Date(DESHACER.cuando);
+  var hora = ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+  c.hidden = false;
+  c.innerHTML = '<span class="des-txt">Último cambio grande: <b>' + esc(DESHACER.que) +
+    '</b>, hoy a las ' + hora + '</span>' +
+    '<button type="button" class="btn gris des-btn" onclick="deshacerUltimo()">Deshacer</button>' +
+    '<button type="button" class="des-x" onclick="olvidarDeshacer()" title="Ya está, no lo voy a deshacer">&times;</button>';
+}
+
+function olvidarDeshacer(){
+  DESHACER = null;
+  try { localStorage.removeItem(LS_DESHACER); } catch(e) {}
+  pintarDeshacer();
+}
+window.olvidarDeshacer = olvidarDeshacer;
+
+async function deshacerUltimo(){
+  if (!DESHACER) return;
+  if (!TOKEN) { avisar('mal','Falta la clave','Entrá con la clave para poder deshacer.'); return; }
+  var d = DESHACER;
+  if (!confirm('Volver a como estaba antes de «' + d.que + '»?\n\n' +
+               'Se restauran los precios y las fichas de ' + nombreTienda() + '.')) return;
+  var b = document.querySelector('.des-btn');
+  if (b) { b.disabled = true; b.textContent = 'Volviendo atrás...'; }
+  try {
+    if (d.csv) {
+      await guardarEnRepo(d.archivo, aB64(d.csv),
+        'Deshacer: vuelven los precios de antes de ' + d.que, 0, d.repo);
+    }
+    FICHAS_FB = JSON.parse(d.fichas);
+    PRECIOS_APROBADOS = JSON.parse(d.aprobados);
+    PRECIOS_VISTOS = JSON.parse(d.vistos);
+    await guardarFichasEnRepo('Deshacer: vuelven las fichas de antes de ' + d.que);
+    olvidarDeshacer();
+    avisar('ok', 'Listo, volvió todo atrás', 'Se recarga el panel para mostrarte cómo quedó.');
+    setTimeout(function(){ location.reload(); }, 1400);
+  } catch(e) {
+    avisar('mal', 'No pude deshacer', e.message || String(e));
+    if (b) { b.disabled = false; b.textContent = 'Deshacer'; }
+  }
+}
+window.deshacerUltimo = deshacerUltimo;
+
 async function excelPublicar(){
   if (!EXCEL_FILAS || !EXCEL_FILAS.length) return;
   var caja = $('excelCaja');
   caja.innerHTML = '<div class="excel-caja">Publicando...</div>';
+  // Foto de cómo estaba todo, por si el Excel vino mal.
+  await guardarPuntoDeVuelta('subir el Excel de ' + EXCEL_FILAS.length + ' precios');
   var esMay = TIENDA === 'may';
   try {
     // Se arma el mismo CSV que genera el pase automático, con sus dos columnas
@@ -3719,7 +3825,7 @@ async function excelPublicar(){
     // cambiaron QUEDAN MARCADOS para que puedas verlos. Antes se marcaban como
     // vistos acá mismo y después el panel no mostraba nada: parecía que subir el
     // Excel no había hecho nada.
-    var aprobados = 0, cambiaron = 0, ahoraMismo = new Date().toISOString();
+    var aprobados = 0, cambiaron = 0, bultos = 0, ahoraMismo = new Date().toISOString();
     EXCEL_FILAS.forEach(function(f){
       var id = limpiaId(f.id);
       if (!id) return;
@@ -3728,6 +3834,19 @@ async function excelPublicar(){
       var p = PRODUCTOS.find(function(x){ return x.id === id; });
       var antes = p ? p.p1 : 0;
       PRECIOS_APROBADOS[id] = [monto, excelAPesos(f.p2) || 0];
+      // En la distribuidora, la columna Patente es el bulto cerrado ("6 unid.",
+      // "1 kg"). La tienda multiplica el precio por ese número, así que si no se
+      // guarda acá, el bulto queda viejo y el precio que ve el cliente sale mal.
+      if (esMay && f.patente) {
+        var bultoTxt = String(f.patente).trim();
+        var ficha = Object.assign({}, FICHAS_FB[id] || {});
+        if (String(ficha.bulto || '').trim() !== bultoTxt) {
+          ficha.bulto = bultoTxt;
+          ficha.bultoUnidad = /kg|kilo/i.test(bultoTxt) ? 'kg' : 'unidad';
+          FICHAS_FB[id] = ficha;
+          bultos++;
+        }
+      }
       if (p) {
         p.p1 = monto;
         var p2 = excelAPesos(f.p2);
@@ -3755,6 +3874,8 @@ async function excelPublicar(){
                'Volvé a entrar y fijate si los cambios figuran como revisados. ' + (e.message || e));
       }
     }
+    if (bultos) avisar('ok', bultos + (bultos === 1 ? ' bulto actualizado' : ' bultos actualizados'),
+                       'Salieron de la columna Patente del Excel.');
     if (cambiaron) {
       // Y se deja el panel mostrando justamente eso.
       ORDEN = 'cambios';
