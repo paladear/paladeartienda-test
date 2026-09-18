@@ -486,6 +486,20 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
   border:1px solid var(--linea);font-size:13px}
 .excel-cuentas span b{font-size:15px;margin-right:4px}
 .excel-cuentas span.ojo{background:#fdeee0;border-color:#e6b98a;color:#8a4a10}
+.excel-cuentas span.sube b{color:#b4392f}
+.excel-cuentas span.baja b{color:#1d7a4a}
+.excel-cuentas span.nuevo{background:#eef8f2;border-color:#bfe3cf;color:#1d7a4a}
+.excel-cuentas span.renom{background:#f1f0f8;border-color:#cfcede;color:#544f72}
+/* El detalle de nuevos y renombres, plegado para no tapar el resto. */
+.excel-det{margin:9px 0 0;border:1px solid var(--linea);border-radius:9px;background:var(--papel)}
+.excel-det summary{padding:9px 12px;cursor:pointer;font-size:13.5px;list-style:none}
+.excel-det summary::-webkit-details-marker{display:none}
+.excel-det summary::before{content:'▸ ';color:var(--suave)}
+.excel-det[open] summary::before{content:'▾ '}
+.excel-det-lista{display:flex;flex-direction:column;gap:4px;padding:0 12px 11px;
+  max-height:240px;overflow-y:auto;font-size:12.5px;color:#4a5a68}
+.excel-det-lista i{font-style:normal;color:var(--suave);margin:0 4px}
+.excel-det-mas{color:var(--suave);font-style:italic}
 .excel-alarma{margin:12px 0 0;padding:12px 14px;border-radius:10px;
   background:#fdecec;border:1px solid #e8a8a8;color:#8a1f1f;font-size:13.5px;line-height:1.5}
 .excel-alarma ul{margin:6px 0 0;padding-left:20px}
@@ -553,6 +567,10 @@ body.es-mayorista #btnPublicar{display:none}
 .kpi.k-oferta{background:#fdf1f4;border-color:#eec3ce}
 .k-sellos{background:#eef8f2;border-color:#bfe3cf}
 .k-sellos span,.kpi.k-sellos b{color:#1d7a4a}
+.k-consellos{background:#eaf3fa;border-color:#b9d4e8}
+.k-consellos span,.kpi.k-consellos b{color:#2f6d99}
+.k-consellos.on{background:#2f6d99;border-color:#2f6d99}
+.k-consellos.on span,.k-consellos.on b{color:#fff}
 .kpi.k-oferta span,.kpi.k-oferta b{color:#993552}
 .kpi.k-mal{background:#fdecea;border-color:#efb7ae}
 .kpi.k-mal span,.kpi.k-mal b{color:#9c2d1c}
@@ -3075,9 +3093,11 @@ function pintarKpis(){
     ['sindesc', sinDesc, 'Sin descripción', 'k-desc'],
     ['renom',   renoms,  renoms === 1 ? 'Nombre cambiado' : 'Nombres cambiados', 'k-renom'],
     ['oferta',  ofertas, 'Con oferta', 'k-oferta'],
-    // Para ir marcando los sellos de a poco sin perder de vista cuántos faltan.
+    // Uno para ir marcando de a poco y otro para repasar lo ya marcado y corregirlo.
     ['sinsellos', PRODUCTOS.filter(p => !p.sellos || !Object.keys(p.sellos).length).length,
-     'Sin sellos', 'k-sellos']
+     'Sin sellos', 'k-sellos'],
+    ['consellos', PRODUCTOS.filter(p => p.sellos && Object.keys(p.sellos).length).length,
+     'Con sellos', 'k-consellos']
   ];
   if (malos) kpis.push(['malrubro', malos, 'Rubro inválido', 'k-mal']);
 
@@ -3188,6 +3208,7 @@ function enFiltroActual(p){
     case 'sinfoto':    return !p.foto;
     case 'oferta':     return (p.oferta || 0) > 0;
     case 'sinsellos':  return !p.sellos || !Object.keys(p.sellos).length;
+    case 'consellos':  return !!(p.sellos && Object.keys(p.sellos).length);
     default:           return true;
   }
 }
@@ -3213,6 +3234,7 @@ function pintar(){
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
   if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
   if (FILTRO === 'sinsellos')  lista = lista.filter(p => !p.sellos || !Object.keys(p.sellos).length);
+  if (FILTRO === 'consellos')  lista = lista.filter(p => p.sellos && Object.keys(p.sellos).length);
   if (FILTRO === 'oferta')     lista = lista.filter(p => p.oferta > 0);
   if (RUBRO === '__sin__')     lista = lista.filter(p => !(p.rubro || '').trim());
   else if (RUBRO)              lista = lista.filter(p => (p.rubro || '').trim() === RUBRO);
@@ -3247,7 +3269,8 @@ function pintar(){
     precio: 'Los precios ya están en la tienda. Esto es sólo para que veas qué se movió.',
     sinfoto: 'Tocá un producto para subirle la foto.',
     fuera: 'El tilde de la izquierda los mete o los saca de la tienda. Los que dicen <b>No se puede</b> es porque les falta el precio o el rubro en E-Pyme.',
-    sinsellos: 'Abrilos y marcá los sellos que correspondan. Acordate que las aceitunas, los frutos secos y las semillas son sin TACC aunque el nombre no lo diga.'
+    sinsellos: 'Abrilos y marcá los sellos que correspondan. Acordate que las aceitunas, los frutos secos y las semillas son sin TACC aunque el nombre no lo diga.',
+    consellos: 'Los que ya tienen sello. Abrilos para sacarles alguno o agregarles otro; el sello se apaga tocándolo de nuevo.'
   };
   const cajaAyuda = document.getElementById('ayudaFiltro');
   if (cajaAyuda) {
@@ -3535,10 +3558,13 @@ function excelLeer(file){
       var rev = excelRevisar(datos);
       var resumen = '<div class="excel-cuentas">' +
         '<span><b>' + rev.total + '</b> en el Excel</span>' +
-        '<span><b>' + rev.cruzan + '</b> ya estaban</span>' +
-        '<span><b>' + rev.nuevos + '</b> nuevos</span>' +
+        '<span class="sube"><b>' + rev.suben + '</b> suben</span>' +
+        '<span class="baja"><b>' + rev.bajan + '</b> bajan</span>' +
+        '<span><b>' + rev.iguales + '</b> igual</span>' +
+        '<span class="' + (rev.nuevos ? 'nuevo' : '') + '"><b>' + rev.nuevos + '</b> nuevos</span>' +
+        '<span class="' + (rev.renombres.length ? 'renom' : '') + '"><b>' + rev.renombres.length + '</b> cambian de nombre</span>' +
         '<span class="' + (rev.faltan ? 'ojo' : '') + '"><b>' + rev.faltan + '</b> no vienen</span>' +
-        '</div>';
+        '</div>' + excelDetalle(rev);
       var aviso = '';
       if (rev.alarmas.length) {
         aviso = '<div class="excel-alarma"><b>Pará un momento, esto no cierra:</b><ul>' +
@@ -3586,23 +3612,63 @@ function excelAPesos(txt){
   return isNaN(n) ? 0 : n;
 }
 
+/* El detalle de lo que trae el Excel: qué productos son nuevos y cuáles cambian de
+   nombre. Antes esto no se mostraba en ningún lado y la subida parecía no hacer
+   nada. Se puede desplegar para no ocupar media pantalla de entrada. */
+function excelDetalle(rev){
+  var h = '';
+  if (rev.listaNuevos.length) {
+    h += '<details class="excel-det"><summary><b>' + rev.nuevos + '</b> producto' +
+      (rev.nuevos === 1 ? '' : 's') + ' que hoy no está' + (rev.nuevos === 1 ? '' : 'n') +
+      ' en la tienda</summary><div class="excel-det-lista">' +
+      rev.listaNuevos.map(function(x){
+        return '<span><b>' + esc(String(x.nombre).slice(0,42)) + '</b> · art. ' + esc(x.id) +
+          (x.p1 ? ' · ' + pesos(x.p1) : '') + '</span>';
+      }).join('') +
+      (rev.nuevos > rev.listaNuevos.length ? '<span class="excel-det-mas">y ' + (rev.nuevos - rev.listaNuevos.length) + ' más</span>' : '') +
+      '</div></details>';
+  }
+  if (rev.renombres.length) {
+    h += '<details class="excel-det"><summary><b>' + rev.renombres.length + '</b> cambia' +
+      (rev.renombres.length === 1 ? '' : 'n') + ' de nombre</summary><div class="excel-det-lista">' +
+      rev.renombres.map(function(x){
+        return '<span>' + esc(String(x.antes).slice(0,34)) + ' <i>&rarr;</i> <b>' +
+          esc(String(x.ahora).slice(0,34)) + '</b></span>';
+      }).join('') + '</div></details>';
+  }
+  return h;
+}
+
 function excelRevisar(datos){
   var actuales = {};
   PRODUCTOS.forEach(function(p){ if (p.p1 > 0) actuales[p.id] = p.p1; });
+  var nombres = {};
+  PRODUCTOS.forEach(function(p){ nombres[p.id] = p.nombreCsv || p.nombre; });
   var r = { total: datos.length, hoy: Object.keys(actuales).length, sinId: 0,
-            cruzan: 0, nuevos: 0, faltan: 0, saltos: [], iguales: 0 };
+            cruzan: 0, nuevos: 0, faltan: 0, saltos: [], iguales: 0,
+            suben: 0, bajan: 0, renombres: [], listaNuevos: [] };
   var vistos = {};
   datos.forEach(function(d){
     var id = limpiaId(d.id);
     if (!id) { r.sinId++; return; }
     vistos[id] = true;
     var antes = actuales[id];
-    if (antes === undefined) { r.nuevos++; return; }
+    if (antes === undefined) {
+      r.nuevos++;
+      if (r.listaNuevos.length < 40) r.listaNuevos.push({id:id, nombre:d.nombre, p1:excelAPesos(d.p1)});
+      return;
+    }
     r.cruzan++;
+    // Un nombre distinto en el Excel es un dato: puede ser una corrección o un
+    // error de la lista, y en cualquier caso conviene verlo antes de publicar.
+    var nomViejo = (nombres[id] || '').trim(), nomNuevo = (d.nombre || '').trim();
+    if (nomViejo && nomNuevo && _norm(nomViejo) !== _norm(nomNuevo) && r.renombres.length < 40)
+      r.renombres.push({id:id, antes:nomViejo, ahora:nomNuevo});
     var ahora = excelAPesos(d.p1);
     if (!ahora || !antes) return;
     var veces = ahora / antes;
     if (Math.abs(ahora - antes) < 1) { r.iguales++; return; }
+    if (ahora > antes) r.suben++; else r.bajan++;
     // Un precio que se multiplica o se divide por más de 3 casi siempre es un
     // error de formato, no un cambio de precio real.
     if (veces >= 3 || veces <= 0.34) r.saltos.push({ id: id, nombre: d.nombre, antes: antes, ahora: ahora, veces: veces });
@@ -3649,19 +3715,35 @@ async function excelPublicar(){
     await guardarEnRepo(archivoPrecios(), aB64(csv),
       'Precios de ' + nombreTienda() + ' actualizados desde el Excel (' + EXCEL_FILAS.length + ' productos)',
       0, repoActivo());
-    // Los precios de una lista que subiste vos quedan aprobados solos: ya los
-    // decidiste al subirla. El OK de a uno es para los cambios que llegan
-    // automáticos de E-Pyme, que no elegiste.
-    var aprobados = 0;
+    // Los precios entran solos —ya los decidiste al subir la lista— pero los que
+    // cambiaron QUEDAN MARCADOS para que puedas verlos. Antes se marcaban como
+    // vistos acá mismo y después el panel no mostraba nada: parecía que subir el
+    // Excel no había hecho nada.
+    var aprobados = 0, cambiaron = 0, ahoraMismo = new Date().toISOString();
     EXCEL_FILAS.forEach(function(f){
       var id = limpiaId(f.id);
       if (!id) return;
       var monto = excelAPesos(f.p1);
       if (!monto) return;
-      PRECIOS_VISTOS[id] = monto;
-      PRECIOS_APROBADOS[id] = [monto, excelAPesos(f.p2) || 0];
       var p = PRODUCTOS.find(function(x){ return x.id === id; });
-      if (p) { p.cambioPrecio = false; p.precioAntes = monto; }
+      var antes = p ? p.p1 : 0;
+      PRECIOS_APROBADOS[id] = [monto, excelAPesos(f.p2) || 0];
+      if (p) {
+        p.p1 = monto;
+        var p2 = excelAPesos(f.p2);
+        if (p2) p.p2 = p2;
+        if (antes && Math.abs(monto - antes) >= 1) {
+          // Cambió: se deja visible en "Cambiaron" con su precio anterior.
+          p.cambioPrecio = true; p.precioAntes = antes; p.subio = monto > antes;
+          CAMBIOS_FECHA[id] = ahoraMismo;
+          cambiaron++;
+        } else {
+          p.cambioPrecio = false; p.precioAntes = monto;
+          PRECIOS_VISTOS[id] = monto;
+        }
+      } else {
+        PRECIOS_VISTOS[id] = monto;
+      }
       aprobados++;
     });
     if (aprobados) {
@@ -3672,6 +3754,14 @@ async function excelPublicar(){
         avisar('mal', 'Los precios se publicaron, pero no pude guardar el panel',
                'Volvé a entrar y fijate si los cambios figuran como revisados. ' + (e.message || e));
       }
+    }
+    if (cambiaron) {
+      // Y se deja el panel mostrando justamente eso.
+      ORDEN = 'cambios';
+      var so = document.getElementById('selOrden'); if (so) so.value = 'cambios';
+      elegirFiltro('kpi','precio');
+      avisar('ok', cambiaron + (cambiaron === 1 ? ' precio cambió' : ' precios cambiaron'),
+             'Los tenés abajo, en la lista. Ya están publicados en la tienda.');
     }
     caja.innerHTML = '<div class="excel-caja ok"><b>Listo.</b> Se publicaron ' + EXCEL_FILAS.length +
       ' precios en <b>' + esc(nombreTienda()) + '</b>. ' +
