@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 22,
+    "nuevos": 24,
     "renombrados": 4,
     "quitados": 0,
     "rubro_invalido": 0
@@ -53,6 +53,20 @@
       "nombre": "CHUCRUT X300GR",
       "rubro": "ENCURTIDOS",
       "precio": 7221,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5058",
+      "nombre": "CREATINA VCORE X150gr",
+      "rubro": "SUPLEMENTOS",
+      "precio": 17300,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5059",
+      "nombre": "CREATINA VCORE X300gr",
+      "rubro": "SUPLEMENTOS",
+      "precio": 26500,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
