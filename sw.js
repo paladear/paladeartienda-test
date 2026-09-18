@@ -22,53 +22,40 @@
 //      en segundo plano. Casi nunca cambian.
 // ════════════════════════════════════════════════════════
 
-const CACHE_VERSION = 'paladear-v26';   // subir esto en cada publicación de la tester
+const CACHE_VERSION = 'paladear-v27';   // subir esto en cada publicación
+
+// La carpeta sale de dónde está parado este mismo archivo. Escrita a mano decía
+// siempre "paladeartienda-test", así que la tienda oficial guardaba los archivos
+// de la de pruebas y su propia página nunca entraba por la regla de red primero.
+const BASE = new URL('./', self.location).pathname;
 
 const SHELL_FILES = [
-  '/paladeartienda-test/android-chrome-192x192.png',
-  '/paladeartienda-test/android-chrome-512x512.png',
-  '/paladeartienda-test/apple-touch-icon.png',
-  '/paladeartienda-test/favicon-32x32.png',
-  '/paladeartienda-test/og-image.jpg',
-  '/paladeartienda-test/home-hero-minorista-mobile-v5.jpg',
-  '/paladeartienda-test/paladear-wordmark.png',
-  '/paladeartienda-test/home-discount-strip-v2.png',
-  '/paladeartienda-test/home-banner-v2-mix.jpg',
-  '/paladeartienda-test/home-banner-v2-granola.jpg',
-  '/paladeartienda-test/home-banner-v2-blend.jpg',
-  '/paladeartienda-test/home-banner-v2-lista.jpg',
-  '/paladeartienda-test/cat-v2-frutos.jpg',
-  '/paladeartienda-test/cat-v2-deshidratados.jpg',
-  '/paladeartienda-test/cat-v2-semillas.jpg',
-  '/paladeartienda-test/cat-v2-especias.jpg',
-  '/paladeartienda-test/cat-v2-infusiones.jpg',
-  '/paladeartienda-test/cat-v2-cereales.jpg',
-  '/paladeartienda-test/cat-v2-granos.jpg',
-  '/paladeartienda-test/cat-v2-harinas.jpg',
-  '/paladeartienda-test/cat-v2-sintacc.jpg',
-  '/paladeartienda-test/cat-v2-dulces.jpg',
-  '/paladeartienda-test/cat-v2-reposteria.jpg',
-  '/paladeartienda-test/cat-v2-mantecas.jpg',
-  '/paladeartienda-test/cat-v2-aceites.jpg',
-  '/paladeartienda-test/cat-v2-aceitunas.jpg',
-  '/paladeartienda-test/cat-v2-encurtidos.jpg',
-  '/paladeartienda-test/cat-v2-tomate.jpg',
-  '/paladeartienda-test/cat-v2-snack.jpg',
-  '/paladeartienda-test/cat-v2-suplementos.jpg',
-  '/paladeartienda-test/cat-v2-gourmet.jpg',
-  '/paladeartienda-test/cat-v2-bebidas.jpg',
-  '/paladeartienda-test/cat-v2-vinos.jpg',
-  '/paladeartienda-test/cat-v2-frio.jpg',
-  '/paladeartienda-test/cat-v2-congelados.jpg',
-  '/paladeartienda-test/cat-v2-home.jpg',
-  '/paladeartienda-test/may-icon-home-filled.png',
-  '/paladeartienda-test/may-icon-products-bag.png',
-  '/paladeartienda-test/may-icon-catalog-filled.png',
-  '/paladeartienda-test/may-icon-offers-filled.png',
-  '/paladeartienda-test/may-icon-account-outline.png',
-  '/paladeartienda-test/may-icon-cart-outline.png',
-  '/paladeartienda-test/may-icon-favorites-filled.svg',
-];
+  'android-chrome-192x192.png',
+  'android-chrome-512x512.png',
+  'apple-touch-icon.png',
+  'favicon-32x32.png',
+  'og-image.jpg',
+  'paladear-wordmark.png',
+  'home-hero-minorista-mobile-v10.webp',
+  'home-hero-minorista-desktop-v4.webp',
+  'home-discount-strip-v2.webp',
+  'home-banner-v2-mix.webp',
+  'home-banner-v2-granola.webp',
+  'home-banner-v2-blend.webp',
+  'home-banner-v2-lista.webp',
+  'may-icon-home-filled.png',
+  'may-icon-products-bag.png',
+  'may-icon-catalog-filled.png',
+  'may-icon-offers-filled.png',
+  'may-icon-account-outline.png',
+  'may-icon-cart-outline.png',
+  'may-icon-favorites-filled.svg',
+].concat([
+  'aceites','aceitunas','bebidas','cereales','congelados','deshidratados','dulces',
+  'encurtidos','especias','frio','frutos','gourmet','granos','harinas','home',
+  'infusiones','mantecas','reposteria','semillas','sintacc','snack','suplementos',
+  'tomate','vinos'
+].map(function(c){ return 'cat-v2-' + c + '.webp'; })).map(function(f){ return BASE + f; });
 
 // ── INSTALL ─────────────────────────────────────────────
 self.addEventListener('install', event => {
@@ -77,12 +64,14 @@ self.addEventListener('install', event => {
       .then(async cache => {
         // El HTML se descarga ignorando cualquier copia HTTP anterior. Así una
         // instalación/actualización nunca vuelve a sembrar una interfaz vieja.
-        const page = await fetch('/paladeartienda-test/index.html', { cache: 'reload' });
+        const page = await fetch(BASE + 'index.html', { cache: 'reload' });
         if (!page || !page.ok) throw new Error('No se pudo actualizar index.html');
         await Promise.all([
-          cache.put('/paladeartienda-test/', page.clone()),
-          cache.put('/paladeartienda-test/index.html', page.clone()),
-          cache.addAll(SHELL_FILES)
+          cache.put(BASE, page.clone()),
+          cache.put(BASE + 'index.html', page.clone()),
+          Promise.all(SHELL_FILES.map(function(f){
+            return cache.add(f).catch(function(){ console.warn('[SW] no pude guardar', f); });
+          }))
         ]);
       })
       .catch(err => {
@@ -122,9 +111,9 @@ self.addEventListener('fetch', event => {
   // primera visita (sin tener que borrar el historial). Si no hay red,
   // caemos al cache para que la página siga abriendo offline.
   const _path = url.pathname;
-  const _esPagina = _path === '/paladeartienda-test/' ||
-                    _path === '/paladeartienda-test/index.html' ||
-                    _path === '/paladeartienda-test/admin.html';
+  const _esPagina = _path === BASE ||
+                    _path === BASE + 'index.html' ||
+                    _path === BASE + 'admin.html';
 
   // DATOS DE PRECIOS Y STOCK: tambien NETWORK-FIRST.
   // Antes los precios venian del Apps Script de Google (otro origen), asi que
@@ -133,7 +122,7 @@ self.addEventListener('fetch', event => {
   // caerian en stale-while-revalidate y un visitante que vuelve veria los
   // precios de la carga anterior. Con la red primero, siempre ve los de hoy;
   // el cache queda solo como respaldo para cuando no hay conexion.
-  const _esDato = /\/(precios-min|info-min|precios-may|info-may|stock)\.csv$|\/(catalog-min|pendientes)\.json$/.test(_path);
+  const _esDato = /\/(precios-min|info-min|precios-may|info-may|stock)\.csv$|\/(catalog-min|pendientes|catalogo-panel)\.json$/.test(_path);
 
   if (_esPagina || _esDato) {
     event.respondWith(
@@ -152,7 +141,7 @@ self.addEventListener('fetch', event => {
             // Un CSV/JSON no puede caer al index.html: devolveria HTML donde se
             // espera datos. Mejor fallar y que la pagina haga su reintento.
             return _esDato ? Response.error()
-                           : caches.match('/paladeartienda-test/index.html');
+                           : caches.match(BASE + 'index.html');
           })
         )
     );
@@ -172,7 +161,7 @@ self.addEventListener('fetch', event => {
             }
             return response;
           })
-          .catch(() => cached || caches.match('/paladeartienda-test/index.html'));
+          .catch(() => cached || caches.match(BASE + 'index.html'));
         // Servimos el cache al instante si existe; si no, esperamos la red.
         return cached || network;
       })
@@ -187,7 +176,7 @@ self.addEventListener('push', event => {
 
 self.addEventListener('notificationclick', event => {
   event.notification.close();
-  event.waitUntil(clients.openWindow('/paladeartienda-test/'));
+  event.waitUntil(clients.openWindow(BASE));
 });
 
 // ── El botón "Actualizar" de la tienda ─────────────────

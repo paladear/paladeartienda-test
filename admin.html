@@ -978,30 +978,45 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
   input,select,textarea,.campo input,.campo textarea,#buscar,.cmp-busca input{font-size:16px!important}
   .cmp-busca input{min-height:48px}
 }
-#capaAltas,#capaMarcas{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
-#capaAltas.abierto,#capaMarcas.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
+#capaAltas,#capaMarcas,#capaSellos{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
+#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
 /* Las marcas que ya conoce, para tocarlas en vez de escribirlas. */
 .mca-sug{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
+/* ── Sellos en masa ── */
+.sel-elegir{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 14px}
+.sel-elegir .sello{font-size:14px}
+.sel-filtros{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 4px}
+.sel-filtros select{min-height:44px;padding:0 10px;border:1px solid var(--linea);
+  border-radius:10px;background:var(--papel);color:inherit;font:inherit;max-width:100%}
+.sel-filtros input[type=search]{flex:1 1 200px;min-height:44px;padding:0 13px;
+  border:1px solid var(--linea);border-radius:10px;background:var(--papel);font:inherit}
+.sel-cuenta{margin-left:auto;font-size:13px;color:var(--suave);font-weight:700}
+.sel-ya{color:#2f6d99;font-weight:700}
+.sel-tope{margin:9px 0 0;font-size:12.5px;color:var(--suave);text-align:center}
+@media(max-width:560px){
+  .sel-cuenta{width:100%;margin:2px 0 0;text-align:center}
+  .sel-filtros select,.sel-filtros input[type=search]{flex:1 1 100%}
+}
 .mca-chip{padding:6px 11px;border:1.5px solid #cfd8e0;border-radius:999px;background:var(--papel);
   font:600 13px/1 inherit;color:#5d6b7a;cursor:pointer}
 .mca-chip:hover{border-color:#9db6cc;color:#1f2d3a}
 .mca-chip.on{background:#5b5680;border-color:#5b5680;color:#fff}
 .mca-antes{display:block;font-size:12px;color:#93a0ac;margin-top:2px}
 .mca-antes b{color:#1f7a4a;font-weight:700}
-#capaAltas .ed-caja,#capaMarcas .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
+#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
   box-shadow:0 22px 60px rgba(0,0,0,.3);display:flex;flex-direction:column;max-height:calc(100vh - 48px)}
-#capaAltas .ed-top,#capaMarcas .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
+#capaAltas .ed-top,#capaMarcas .ed-top,#capaSellos .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding:14px 18px;border-bottom:1px solid var(--linea)}
-#capaAltas .ed-cuerpo,#capaMarcas .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
-#capaAltas .ed-pie,#capaMarcas .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+#capaAltas .ed-cuerpo,#capaMarcas .ed-cuerpo,#capaSellos .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
+#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
   padding:13px 18px;border-top:1px solid var(--linea);background:var(--papel)}
 .alt-item.on{border-color:#2e9e63;background:#f3faf6}
 .alt-falta{color:#c2582f}
 @media(max-width:700px){
-  #capaAltas.abierto,#capaMarcas.abierto{padding:0;align-items:stretch}
-  #capaAltas .ed-caja,#capaMarcas .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
-  #capaAltas .ed-pie,#capaMarcas .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
-  #capaAltas .ed-pie .btn,#capaMarcas .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
+#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto{padding:0;align-items:stretch}
+#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
+#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
+#capaAltas .ed-pie .btn,#capaMarcas .ed-pie .btn,#capaSellos .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -1324,6 +1339,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
           <span class="hoja-rotulo">Catálogo</span>
           <button class="btn gris" id="btnAltas" onclick="abrirAltas()">Agregar productos al catálogo</button>
           <button class="btn gris" id="btnMarcas" onclick="abrirMarcas()" title="Asigná una marca a muchos productos de una vez">Marcas de los productos</button>
+          <button class="btn gris" id="btnSellos" onclick="abrirSellos()" title="Poné un sello (sin TACC, vegano...) a muchos productos de una vez">Sellos de los productos</button>
           <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
         </div>
         <div class="hoja-grupo" id="grupoPublicar">
@@ -5168,6 +5184,219 @@ async function mcaAsignar(){
 }
 window.mcaAsignar = mcaAsignar;
 
+/* ── SELLOS EN MASA ───────────────────────────────────────────────────────────
+   Elegís el sello arriba y marcás de una todos los productos que lo llevan. Ficha
+   por ficha son seiscientas aperturas; acá un rubro entero se resuelve en dos
+   toques. Los que ya lo tienen vienen marcados, así que destildar también sirve
+   para sacárselo. */
+let SEL_ID = '', SEL_BUSCA = '', SEL_RUBRO = '', SEL_MARCADOS = new Set();
+const SEL_TOPE = 400;   // más filas que esto no se leen ni se cargan rápido
+
+function abrirSellos(){
+  $('capaSellos').classList.add('abierto');
+  document.body.style.overflow = 'hidden';
+  SEL_ID = ''; SEL_BUSCA = ''; SEL_RUBRO = ''; SEL_MARCADOS = new Set();
+  var b = $('selBuscar'); if (b) b.value = '';
+  $('selEstado').textContent = '';
+  $('selCuerpo').hidden = true;
+  selDibujarElegir();
+  selLlenarRubros();
+  selPintar();
+}
+
+function cerrarSellos(){
+  $('capaSellos').classList.remove('abierto');
+  document.body.style.overflow = '';
+}
+window.abrirSellos = abrirSellos; window.cerrarSellos = cerrarSellos;
+
+/* Cada sello con cuántos productos lo tienen ya puesto. */
+function selDibujarElegir(){
+  var c = $('selElegir');
+  if (!c) return;
+  c.innerHTML = SELLOS.map(function(s){
+    var n = PRODUCTOS.filter(function(p){ return p.sellos && p.sellos[s.id]; }).length;
+    return '<button type="button" class="sello' + (SEL_ID === s.id ? ' on' : '') +
+      '" data-sel="' + s.id + '" aria-pressed="' + (SEL_ID === s.id ? 'true' : 'false') + '">' +
+      s.txt + (n ? ' <span class="sel-ya">' + n + '</span>' : '') + '</button>';
+  }).join('');
+}
+
+function selElegirSello(id){
+  SEL_ID = id;
+  // Arranca marcado lo que ya lo tiene: desde ahí sumás o restás.
+  SEL_MARCADOS = new Set(PRODUCTOS.filter(function(p){
+    return p.sellos && p.sellos[id];
+  }).map(function(p){ return p.id; }));
+  $('selCuerpo').hidden = false;
+  $('selEstado').textContent = '';
+  var s = SELLOS.find(function(x){ return x.id === id; });
+  $('selPista').textContent = 'Marcar los que dicen «' + (s ? s.txt : '') + '» en el nombre';
+  selDibujarElegir();
+  selPintar();
+}
+
+function selLlenarRubros(){
+  var sel = $('selRubro');
+  if (!sel) return;
+  var rubros = {};
+  PRODUCTOS.forEach(function(p){ if (p.rubro) rubros[p.rubro] = (rubros[p.rubro] || 0) + 1; });
+  var lista = Object.keys(rubros).sort(function(a,b){ return a.localeCompare(b, 'es'); });
+  sel.innerHTML = '<option value="">Todos los rubros</option>' +
+    lista.map(function(r){
+      return '<option value="' + esc(r) + '">' + esc(_capitalizar(r)) + ' (' + rubros[r] + ')</option>';
+    }).join('');
+}
+
+/* Los productos que se están mirando ahora, con los filtros puestos. */
+function selVisibles(){
+  var q = _norm(SEL_BUSCA);
+  return PRODUCTOS.filter(function(p){
+    if (p.oculto) return false;                       // fuera del catálogo: no lleva sellos
+    if (SEL_RUBRO && p.rubro !== SEL_RUBRO) return false;
+    if (q && _norm(p.nombre || '').indexOf(q) < 0 && String(p.id).indexOf(q) < 0) return false;
+    return true;
+  });
+}
+
+function selPintar(){
+  var l = $('selLista'), b = $('selEnviar');
+  if (!l) return;
+  if (!SEL_ID) {
+    b.disabled = true;
+    b.textContent = 'Guardar los sellos';
+    return;
+  }
+  var vis = selVisibles();
+  var cortada = vis.length > SEL_TOPE;
+  var mostrar = cortada ? vis.slice(0, SEL_TOPE) : vis;
+  var tope = $('selTope');
+  tope.hidden = !cortada;
+  if (cortada) tope.textContent = 'Se muestran ' + SEL_TOPE + ' de ' + vis.length +
+    '. Filtrá por rubro o buscá para ver el resto; lo que marcaste no se pierde.';
+
+  selCuentas();
+
+  l.innerHTML = mostrar.map(function(p){
+    var m = SEL_MARCADOS.has(p.id);
+    var tiene = !!(p.sellos && p.sellos[SEL_ID]);
+    var otros = Object.keys(p.sellos || {}).filter(function(k){ return k !== SEL_ID; })
+      .map(function(k){ var s = SELLOS.find(function(x){ return x.id === k; }); return s ? s.txt : k; });
+    return '<label class="cmp-item sel-item' + (m ? ' on' : ' off') + '" data-sel-id="' + esc(p.id) + '">' +
+      '<input type="checkbox" ' + (m ? 'checked' : '') + '>' +
+      '<span class="cmp-n"><b>' + esc(p.nombre) + '</b>' +
+        '<i>Art. ' + esc(p.id) + (p.rubro ? ' · ' + esc(_capitalizar(p.rubro)) : '') +
+        (tiene ? ' · <span class="sel-ya">ya lo tiene</span>' : '') +
+        (otros.length ? ' · ' + esc(otros.join(', ')) : '') + '</i></span>' +
+    '</label>';
+  }).join('') || '<div class="vacio">Ningún producto coincide con la búsqueda.</div>';
+}
+
+/* El resumen y el botón: se recalculan a cada tilde, la lista no. */
+function selCuentas(){
+  var b = $('selEnviar');
+  if (!b) return;
+  var puestos = 0, sacados = 0;
+  PRODUCTOS.forEach(function(p){
+    var tiene = !!(p.sellos && p.sellos[SEL_ID]), quiere = SEL_MARCADOS.has(p.id);
+    if (quiere && !tiene) puestos++;
+    if (!quiere && tiene) sacados++;
+  });
+  $('selCuenta').textContent = SEL_MARCADOS.size + ' marcados en total';
+  b.disabled = !(puestos || sacados);
+  b.textContent = (puestos || sacados)
+    ? 'Guardar' + (puestos ? ': ponerle a ' + puestos : '') + (sacados ? (puestos ? ' y sacarle a ' : ': sacarle a ') + sacados : '')
+    : 'No hay nada que cambiar';
+}
+
+function selTodos(si){
+  selVisibles().forEach(function(p){ if (si) SEL_MARCADOS.add(p.id); else SEL_MARCADOS.delete(p.id); });
+  selPintar();
+}
+window.selTodos = selTodos;
+
+/* Atajo: marca los que nombran el sello en el nombre de E-Pyme, que son la mayoría. */
+function selPorNombre(){
+  var s = SELLOS.find(function(x){ return x.id === SEL_ID; });
+  if (!s || !s.pista) return;
+  var n = 0;
+  selVisibles().forEach(function(p){
+    var txt = (p.nombreCsv || '') + ' ' + (p.nombre || '');
+    if (s.pista.test(txt.toUpperCase()) && !SEL_MARCADOS.has(p.id)) { SEL_MARCADOS.add(p.id); n++; }
+  });
+  $('selEstado').textContent = n ? n + ' marcados por el nombre.' : 'Ninguno lo dice en el nombre.';
+  selPintar();
+}
+window.selPorNombre = selPorNombre;
+
+document.addEventListener('click', function(ev){
+  var b = ev.target.closest && ev.target.closest('#selElegir .sello[data-sel]');
+  if (b) { selElegirSello(b.dataset.sel); return; }
+});
+document.addEventListener('change', function(ev){
+  var it = ev.target.closest && ev.target.closest('.sel-item[data-sel-id]');
+  if (!it) return;
+  var id = it.dataset.selId;
+  if (ev.target.checked) SEL_MARCADOS.add(id); else SEL_MARCADOS.delete(id);
+  it.classList.toggle('on', ev.target.checked);
+  it.classList.toggle('off', !ev.target.checked);
+  selCuentas();
+});
+let _selTimer = null;
+document.addEventListener('input', function(ev){
+  if (!ev.target) return;
+  if (ev.target.id === 'selBuscar') {
+    SEL_BUSCA = ev.target.value || '';
+    clearTimeout(_selTimer);
+    _selTimer = setTimeout(selPintar, 200);
+  }
+});
+document.addEventListener('change', function(ev){
+  if (ev.target && ev.target.id === 'selRubro') { SEL_RUBRO = ev.target.value || ''; selPintar(); }
+});
+
+async function selAplicar(){
+  if (!SEL_ID) { $('selEstado').textContent = 'Elegí un sello primero.'; return; }
+  if (!TOKEN) { $('selEstado').textContent = 'Entrá con la clave para poder guardar.'; return; }
+  var poner = [], sacar = [];
+  PRODUCTOS.forEach(function(p){
+    var tiene = !!(p.sellos && p.sellos[SEL_ID]), quiere = SEL_MARCADOS.has(p.id);
+    if (quiere && !tiene) poner.push(p);
+    if (!quiere && tiene) sacar.push(p);
+  });
+  if (!poner.length && !sacar.length) { $('selEstado').textContent = 'No hay ningún cambio.'; return; }
+  var s = SELLOS.find(function(x){ return x.id === SEL_ID; });
+  var nombreSello = s ? s.txt : SEL_ID;
+  var b = $('selEnviar'), antes = b.textContent;
+  b.disabled = true; b.textContent = 'Guardando...';
+  try {
+    // Son muchos de una: si algo sale mal, se puede volver al estado anterior.
+    await guardarPuntoDeVuelta('poner el sello ' + nombreSello + ' en ' + (poner.length + sacar.length) + ' productos');
+    poner.concat(sacar).forEach(function(p){
+      var quiere = SEL_MARCADOS.has(p.id);
+      p.sellos = Object.assign({}, p.sellos || {});
+      if (quiere) p.sellos[SEL_ID] = true; else delete p.sellos[SEL_ID];
+      var f = Object.assign({}, FICHAS_FB[p.id] || {});
+      f.sellos = Object.assign({}, p.sellos);
+      f.origen = 'panel'; f.actualizado = new Date().toISOString();
+      FICHAS_FB[p.id] = f;
+      p.editada = true;
+    });
+    await guardarFichasEnRepo('Sello ' + nombreSello + ': ' + poner.length + ' puestos, ' + sacar.length + ' sacados');
+    avisar('ok', nombreSello + ' guardado en ' + poner.length + (poner.length === 1 ? ' producto' : ' productos'),
+           sacar.length ? 'Y se lo saqué a ' + sacar.length + '.' : 'Ya se ve en la tienda.');
+    pintarKpis(); pintar();
+    selDibujarElegir();
+    selPintar();
+    $('selEstado').innerHTML = '<span class="ok">Listo.</span> Podés elegir otro sello y seguir.';
+  } catch (e) {
+    $('selEstado').innerHTML = '<span class="malo">No pude guardar: ' + esc(e.message) + '</span>';
+  } finally {
+    b.disabled = false; b.textContent = antes;
+  }
+}
+window.selAplicar = selAplicar;
+
 </script>
 <!-- Compartir fotos con la distribuidora, de a muchas -->
 <!-- Elegir qué productos entran al catálogo -->
@@ -5199,6 +5428,39 @@ window.mcaAsignar = mcaAsignar;
     <div class="ed-pie">
       <button type="button" class="btn primario" id="mcaEnviar" onclick="mcaAsignar()">Ponerles la marca</button>
       <span id="mcaEstado"></span>
+    </div>
+  </div>
+</div>
+
+<div id="capaSellos">
+  <div class="ed-caja">
+    <div class="ed-top">
+      <b>Sellos de los productos</b>
+      <button type="button" class="btn gris" onclick="cerrarSellos()">Cerrar</button>
+    </div>
+    <div class="ed-cuerpo">
+      <p class="cmp-intro">Elegí un sello y marcá todos los productos que lo llevan. Se guardan
+        todos juntos. Los que ya lo tienen vienen marcados: si a alguno le sacás el tilde, el
+        sello se le saca al guardar.</p>
+      <div class="sel-elegir" id="selElegir"></div>
+      <div id="selCuerpo" hidden>
+        <div class="sel-filtros">
+          <input id="selBuscar" type="search" placeholder="Buscar por nombre..." autocomplete="off">
+          <select id="selRubro"></select>
+          <span class="sel-cuenta" id="selCuenta"></span>
+        </div>
+        <div class="cmp-acc">
+          <button type="button" class="btn gris" onclick="selTodos(true)">Marcar todos</button>
+          <button type="button" class="btn gris" onclick="selTodos(false)">Desmarcar todos</button>
+          <button type="button" class="btn gris" id="selPista" onclick="selPorNombre()">Marcar los que lo dicen en el nombre</button>
+        </div>
+        <div id="selLista" class="cmp-lista"></div>
+        <p class="sel-tope" id="selTope" hidden></p>
+      </div>
+    </div>
+    <div class="ed-pie">
+      <button type="button" class="btn primario" id="selEnviar" onclick="selAplicar()" disabled>Guardar los sellos</button>
+      <span id="selEstado"></span>
     </div>
   </div>
 </div>
