@@ -1853,6 +1853,14 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 </div>
 
 <script>
+/* La tienda de pruebas vive en el mismo dominio que la de verdad (paladear.github.io),
+   así que comparten el guardado del navegador: abrir la tester le pisaba a la tienda real
+   el catálogo guardado, los favoritos y hasta el carrito. Sólo la tester lleva sufijo; las
+   claves de la tienda de verdad quedan igual que siempre para no vaciarle el carrito ni los
+   favoritos a nadie. */
+var _ES_PRUEBA = /-test(\/|$)/.test(location.pathname);
+function _LS(k){ return _ES_PRUEBA ? k + '__test' : k; }
+
 /* Watchdog anti-cuelgue: si la pantalla de carga sigue visible tras 12s,
    algo quedó trabado (SW o cache corrupto). Auto-recuperamos UNA sola vez:
    desregistramos el Service Worker, limpiamos los caches y recargamos.
@@ -1863,7 +1871,7 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
     var ov=document.getElementById('loadingOverlay');
     var visible=ov && !ov.classList.contains('hidden') && ov.parentNode;
     if(!visible)return;
-    try{ if(sessionStorage.getItem('paladear_autoheal'))return; sessionStorage.setItem('paladear_autoheal','1'); }catch(e){}
+    try{ if(sessionStorage.getItem(_LS('paladear_autoheal')))return; sessionStorage.setItem(_LS('paladear_autoheal'),'1'); }catch(e){}
     var reload=function(){ try{location.reload();}catch(e){} };
     var jobs=[];
     if('serviceWorker' in navigator){
@@ -3123,12 +3131,12 @@ let CATS=[],PRODS=[],searchTerm='',activeCatId=null,miniCartTimer=null;
 let _MIN_BY_ID = null;
 
 /* ── CARRITO: se guarda en localStorage para sobrevivir recargas ── */
-function _saveCart(){try{localStorage.setItem('paladear_cart_v2',JSON.stringify(cart));}catch(e){}}
+function _saveCart(){try{localStorage.setItem(_LS('paladear_cart_v2'),JSON.stringify(cart));}catch(e){}}
 function _loadCart(){
-  try{const s=localStorage.getItem('paladear_cart_v2');return s?JSON.parse(s):[];}catch(e){return [];}
+  try{const s=localStorage.getItem(_LS('paladear_cart_v2'));return s?JSON.parse(s):[];}catch(e){return [];}
 }
-function _guardarUltimoPedido(){try{if(cart && cart.length)localStorage.setItem('paladear_ultimo_pedido',JSON.stringify(cart));}catch(e){}}
-function _cargarUltimoPedido(){try{const s=localStorage.getItem('paladear_ultimo_pedido');return s?JSON.parse(s):null;}catch(e){return null;}}
+function _guardarUltimoPedido(){try{if(cart && cart.length)localStorage.setItem(_LS('paladear_ultimo_pedido'),JSON.stringify(cart));}catch(e){}}
+function _cargarUltimoPedido(){try{const s=localStorage.getItem(_LS('paladear_ultimo_pedido'));return s?JSON.parse(s):null;}catch(e){return null;}}
 window._repetirUltimoPedido=function(){
   const u=_cargarUltimoPedido();
   if(!u||!u.length){return;}
@@ -3138,7 +3146,7 @@ window._repetirUltimoPedido=function(){
 };
 let cart=_loadCart();
 /* ── FAVORITOS: guardados localmente con el ID estable de cada producto ── */
-const _FAVORITOS_KEY='paladear_favoritos_v1';
+const _FAVORITOS_KEY=_LS('paladear_favoritos_v1');
 function _loadFavorites(){
   try{
     const a=JSON.parse(localStorage.getItem(_FAVORITOS_KEY)||'[]');
@@ -3644,7 +3652,7 @@ function selectCat(catId,productId,navOpts){
   var trackHistory=navOpts.history!==false&&!_palHistoryApplying;
   if(trackHistory&&!navOpts.preservePrevious)_palReplacePageState();
   // Guardar scroll del home para restaurarlo al volver
-  if(!activeCatId){try{sessionStorage.setItem('paladear_home_scrollY',String(window.scrollY));}catch(e){}}
+  if(!activeCatId){try{sessionStorage.setItem(_LS('paladear_home_scrollY'),String(window.scrollY));}catch(e){}}
   if(_carRotationInterval){clearInterval(_carRotationInterval);_carRotationInterval=null;}
   activeCatId=catId;
   renderCatsUI();
@@ -4131,7 +4139,7 @@ function closeCart(){
 }
 
 /* ═══════════ MI CUENTA (perfil + direcciones + historial de pedidos, todo local) ═══════════ */
-var _PALADEAR_PEDIDOS_KEY='paladear_pedidos_v1';
+var _PALADEAR_PEDIDOS_KEY=_LS('paladear_pedidos_v1');
 function _ctaEsc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function _cuentaCargarPedidos(){try{var a=JSON.parse(localStorage.getItem(_PALADEAR_PEDIDOS_KEY)||'[]');return Array.isArray(a)?a:[];}catch(e){return [];}}
 function _cuentaGuardarPedidos(a){try{localStorage.setItem(_PALADEAR_PEDIDOS_KEY,JSON.stringify(a));}catch(e){}}
@@ -4155,8 +4163,8 @@ function _cuentaGuardarPedido(cartArr,esMay,total,direccion){
     var snap=(cartArr||[]).map(function(it){var o=JSON.parse(JSON.stringify(it));o._sub=esMay?_itemMay(it):_itemMinConOferta(it);return o;});
     if(!snap.length)return;
     var hist=_cuentaCargarPedidos();
-    var n=(parseInt(localStorage.getItem('paladear_pedido_n')||'0',10)||0)+1;
-    localStorage.setItem('paladear_pedido_n',String(n));
+    var n=(parseInt(localStorage.getItem(_LS('paladear_pedido_n'))||'0',10)||0)+1;
+    localStorage.setItem(_LS('paladear_pedido_n'),String(n));
     var d=new Date();
     var fecha=('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear();
     hist.unshift({n:n,fecha:fecha,total:total,count:snap.length,direccion:direccion||'',cart:snap});
@@ -5103,7 +5111,7 @@ const _urlFotoPanel = id => 'fotos/' + id + '.' + ((FOTOS_FB[id] && FOTOS_FB[id]
 function sincronizarDesdeSheets(){
   // Stale-while-revalidate: hidratar UI desde cache local para render instantáneo
   try {
-    const raw = localStorage.getItem('paladear_min_v3');
+    const raw = localStorage.getItem(_LS('paladear_min_v3'));
     if (raw) {
       const data = JSON.parse(raw);
       if (data && data.prods && data.prods.length && data.cats && data.cats.length) {
@@ -5194,7 +5202,7 @@ function sincronizarDesdeSheets(){
       PRODS=prodsTemp;
       _MIN_BY_ID=null;
       // Guardar en localStorage para hidratación instantánea en próxima visita
-      try{localStorage.setItem('paladear_min_v3',JSON.stringify({cats:CATS,prods:PRODS,ts:Date.now()}));}catch(e){}
+      try{localStorage.setItem(_LS('paladear_min_v3'),JSON.stringify({cats:CATS,prods:PRODS,ts:Date.now()}));}catch(e){}
       console.log(`✅ Paladear: ${PRODS.length} productos, ${CATS.length} categorías`);
       renderCatsUI();
       renderCarruseles();
@@ -5358,7 +5366,7 @@ function _appStateSnapshot(){
   };
 }
 function _writeAppState(syncHistory){
-  try{sessionStorage.setItem('paladear_view_state',JSON.stringify(_appStateSnapshot()));}catch(e){}
+  try{sessionStorage.setItem(_LS('paladear_view_state'),JSON.stringify(_appStateSnapshot()));}catch(e){}
   if(syncHistory&&!_palHistoryApplying){
     var st=history.state||{};
     if(st.view==='tab'||st.view==='cat'||!st.paladear)_palReplacePageState();
@@ -5386,12 +5394,12 @@ function _restoreAppState() {
   _palHistoryApplying=true;
   let state;
   try {
-    const raw = sessionStorage.getItem('paladear_view_state');
+    const raw = sessionStorage.getItem(_LS('paladear_view_state'));
     if (!raw) {_palHistoryApplying=false;_palReplacePageState();return;}
     state = JSON.parse(raw);
     // Solo restaurar si el estado es reciente (menos de 30 minutos)
     if (!state || Date.now() - state.ts > 30 * 60 * 1000) {
-      sessionStorage.removeItem('paladear_view_state');
+      sessionStorage.removeItem(_LS('paladear_view_state'));
       _palHistoryApplying=false;_palReplacePageState();return;
     }
   } catch(e) {_palHistoryApplying=false;return;}
@@ -7426,7 +7434,7 @@ var _coEntrega = null;
 var _coMap = null, _coMarker = null, _leafletReady = false;
 
 // ═══ PERFIL LOCAL (localStorage) — recuerda datos del cliente entre pedidos ═══
-var _PALADEAR_PERFIL_KEY = 'paladear_perfil_v1';
+var _PALADEAR_PERFIL_KEY = _LS('paladear_perfil_v1');
 function _coCargarPerfil() {
   try { return JSON.parse(localStorage.getItem(_PALADEAR_PERFIL_KEY) || '{}') || {}; }
   catch(e) { return {}; }
@@ -7825,7 +7833,7 @@ function coEnviar() {
   { try { _cuentaGuardarPedido(cart, (typeof esMay!=='undefined'&&esMay), (typeof tot!=='undefined'?tot:0), (typeof direccion!=='undefined'?direccion:'')); } catch(e){} }
 
   // Limpiar el carrito (el pedido quedó guardado en "último pedido")
-  cart=[]; updateCartCount(); try{localStorage.removeItem('paladear_cart_v2');}catch(e){}
+  cart=[]; updateCartCount(); try{localStorage.removeItem(_LS('paladear_cart_v2'));}catch(e){}
 
   cerrarCheckout();
   _track('pedido_enviado');
@@ -7854,7 +7862,7 @@ function _coMarkRequired(id) {
 
 function _guardarPedidoPendiente(url, tipo) {
   try {
-    localStorage.setItem('paladear_pedido_pendiente', JSON.stringify({url, tipo, ts: Date.now()}));
+    localStorage.setItem(_LS('paladear_pedido_pendiente'), JSON.stringify({url, tipo, ts: Date.now()}));
   } catch(e) {}
   // Mostrar aviso
   _quitarBannerPedido();
@@ -7881,7 +7889,7 @@ function _quitarBannerPedido() {
 
 function _enviarPedidoPendiente() {
   try {
-    const raw = localStorage.getItem('paladear_pedido_pendiente');
+    const raw = localStorage.getItem(_LS('paladear_pedido_pendiente'));
     if (!raw) return;
     const data = JSON.parse(raw);
     if (!navigator.onLine) {
@@ -7891,14 +7899,14 @@ function _enviarPedidoPendiente() {
       return;
     }
     window.open(data.url, '_blank');
-    localStorage.removeItem('paladear_pedido_pendiente');
+    localStorage.removeItem(_LS('paladear_pedido_pendiente'));
     _quitarBannerPedido();
   } catch(e) {}
 }
 window._enviarPedidoPendiente = _enviarPedidoPendiente;
 
 function _cancelarPedidoPendiente() {
-  localStorage.removeItem('paladear_pedido_pendiente');
+  localStorage.removeItem(_LS('paladear_pedido_pendiente'));
   _quitarBannerPedido();
 }
 window._cancelarPedidoPendiente = _cancelarPedidoPendiente;
@@ -7906,7 +7914,7 @@ window._cancelarPedidoPendiente = _cancelarPedidoPendiente;
 // Al recuperar internet: mostrar el banner si hay pedido pendiente
 window.addEventListener('online', function() {
   try {
-    const raw = localStorage.getItem('paladear_pedido_pendiente');
+    const raw = localStorage.getItem(_LS('paladear_pedido_pendiente'));
     if (!raw) return;
     _quitarBannerPedido();
     const data = JSON.parse(raw);
@@ -7930,11 +7938,11 @@ window.addEventListener('online', function() {
 // Al abrir la app: si hay pedido pendiente y hay internet, mostrar el banner
 (function() {
   try {
-    const raw = localStorage.getItem('paladear_pedido_pendiente');
+    const raw = localStorage.getItem(_LS('paladear_pedido_pendiente'));
     if (!raw) return;
     const data = JSON.parse(raw);
     // Solo mostrar si el pedido tiene menos de 24 horas
-    if (Date.now() - data.ts > 86400000) { localStorage.removeItem('paladear_pedido_pendiente'); return; }
+    if (Date.now() - data.ts > 86400000) { localStorage.removeItem(_LS('paladear_pedido_pendiente')); return; }
     if (navigator.onLine) {
       // Hay internet y pedido pendiente: mostrar banner verde de reenvío
       window.addEventListener('load', function() {
@@ -8150,13 +8158,13 @@ window.matchMedia('(display-mode: standalone)').addEventListener('change', funct
 window.dismissIOSHelper = function() {
   var el = document.getElementById('iosSafariHelper');
   if (el) el.classList.add('hidden');
-  try { localStorage.setItem('paladear_ios_helper_dismissed', Date.now()); } catch(e){}
+  try { localStorage.setItem(_LS('paladear_ios_helper_dismissed'), Date.now()); } catch(e){}
 };
 
 window.dismissIAB = function() {
   var el = document.getElementById('iabWarning');
   if (el) el.classList.add('hidden');
-  try { localStorage.setItem('paladear_iab_dismissed', Date.now()); } catch(e){}
+  try { localStorage.setItem(_LS('paladear_iab_dismissed'), Date.now()); } catch(e){}
 };
 
 window.copiarLinkParaNavegador = function() {
@@ -8197,7 +8205,7 @@ window.copiarLinkParaNavegador = function() {
   // Caso 1: usuario en navegador in-app (Instagram, WhatsApp, etc.)
   if (_isInAppBrowser()) {
     var dismissedIAB = 0;
-    try { dismissedIAB = parseInt(localStorage.getItem('paladear_iab_dismissed') || '0', 10); } catch(e){}
+    try { dismissedIAB = parseInt(localStorage.getItem(_LS('paladear_iab_dismissed')) || '0', 10); } catch(e){}
     // Re-mostrar si pasaron más de 24h del dismiss
     if (Date.now() - dismissedIAB > 86400000) {
       setTimeout(function() {
@@ -8574,7 +8582,7 @@ window.copiarLinkParaNavegador = function() {
 </div>
 <script>
 (function(){
-  var FLAG='pld_tutorial_last';   // guarda el momento (timestamp) de la última vez que se mostró
+  var FLAG=_LS('pld_tutorial_last');   // guarda el momento (timestamp) de la última vez que se mostró
   var INTERVALO_MIN=30;           // recién vuelve a aparecer después de estos minutos (un refresh NO lo reabre)
   function animMeter(cntId,fillId,rwId,target,dur){
     var cnt=document.getElementById(cntId),fill=document.getElementById(fillId),rw=document.getElementById(rwId),start=null,crossed=false;

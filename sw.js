@@ -22,12 +22,16 @@
 //      en segundo plano. Casi nunca cambian.
 // ════════════════════════════════════════════════════════
 
-const CACHE_VERSION = 'paladear-v27';   // subir esto en cada publicación
-
+// Cada carpeta su propio cajón: las cuatro tiendas viven en paladear.github.io y
+// comparten el guardado del navegador. Antes todas usaban el mismo nombre y, peor,
+// al activarse esta borraba TODOS los cajones del dominio: entrar a la minorista
+// dejaba a la distribuidora sin su copia offline, y la tester sin la de la real.
 // La carpeta sale de dónde está parado este mismo archivo. Escrita a mano decía
 // siempre "paladeartienda-test", así que la tienda oficial guardaba los archivos
 // de la de pruebas y su propia página nunca entraba por la regla de red primero.
 const BASE = new URL('./', self.location).pathname;
+const CACHE_PREFIX = 'paladear-min-';
+const CACHE_VERSION = CACHE_PREFIX + BASE.replace(/\//g, '') + '-v28';
 
 const SHELL_FILES = [
   'android-chrome-192x192.png',
@@ -87,7 +91,10 @@ self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
       .then(keys => Promise.all(
-        keys.filter(k => k !== CACHE_VERSION).map(k => caches.delete(k))
+        // Sólo los cajones propios, más los de nombre viejo. Los de la
+        // distribuidora (paladear-distri-*) no se tocan.
+        keys.filter(k => (k.startsWith(CACHE_PREFIX) || /^paladear-v\d+$/.test(k)) &&
+                         k !== CACHE_VERSION).map(k => caches.delete(k))
       ))
       .then(() => self.clients.claim())
   );
