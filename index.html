@@ -683,6 +683,38 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
   letter-spacing:.16em;text-transform:uppercase;color:var(--azul-mid);margin-bottom:3px}
 .catalog-intro--marca .marca-sub{margin:4px 0 0;font-size:14.5px;color:var(--muted-fg)}
 
+/* ── Los sellos, al final del menú de categorías ── */
+.cats-dd-sellos{padding:4px 16px 18px}
+.cats-dd-sellos:empty{display:none}
+.cdds-tit{margin:14px 0 10px;padding-top:14px;border-top:1px solid var(--border);
+  font:800 11.5px/1 'Montserrat',sans-serif;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted-fg)}
+.cdds-fila{display:flex;flex-wrap:wrap;gap:8px}
+.cdds-chip{display:inline-flex;align-items:center;gap:7px;padding:8px 13px 8px 9px;
+  border:1.5px solid var(--border);border-radius:999px;background:var(--card);
+  color:var(--fg);font:600 13.5px/1 'Montserrat',sans-serif;cursor:pointer;min-height:42px;
+  transition:background .15s,border-color .15s,color .15s}
+.cdds-chip img{width:21px;height:21px;flex:0 0 auto;object-fit:contain}
+.cdds-chip b{font-weight:800;opacity:.45;font-size:12.5px}
+.cdds-chip:hover{border-color:var(--azul-mid)}
+.cdds-chip.on{background:var(--azul);border-color:var(--azul);color:#fff}
+.cdds-chip.on b{opacity:.8}
+.cdds-limpiar{border-style:dashed;color:var(--muted-fg)}
+.cdds-limpiar:hover{border-color:var(--destructive);color:var(--destructive)}
+
+/* ── El aviso de que hay un sello puesto, arriba del listado ── */
+.aviso-sello{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 16px;
+  padding:9px 14px;border-radius:12px;background:var(--min-sky);border:1px solid var(--azul-light);
+  color:var(--min-blue-deep)}
+.aviso-sello img{width:26px;height:26px;flex:0 0 auto;object-fit:contain}
+.aviso-sello span{font-size:14.5px}
+.aviso-sello b{font-weight:800}
+.aviso-sello button{margin-left:auto;padding:7px 14px;border:1.5px solid var(--azul-mid);
+  border-radius:999px;background:var(--card);color:var(--azul-dark);
+  font:700 13px/1 'Montserrat',sans-serif;cursor:pointer;min-height:38px}
+.aviso-sello button:hover{background:var(--azul);border-color:var(--azul);color:#fff}
+@media(max-width:480px){ .aviso-sello button{margin-left:0;width:100%} }
+
 /* ── Fila de filtros por sello ──
    Debajo del título de la categoría, porque no son categorías: se combinan con la
    que ya tenés puesta. */
@@ -691,7 +723,7 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
   border:1.5px solid var(--border);border-radius:999px;
   background:var(--card);color:var(--muted-fg);font:600 13.5px/1 inherit;cursor:pointer;
   min-height:44px;transition:background .15s,border-color .15s,color .15s}
-.chip-sello img{width:30px;height:30px;flex:0 0 auto}
+.chip-sello img{width:22px;height:22px;flex:0 0 auto}
 .chip-sello b{font-weight:800;opacity:.6;margin-left:1px}
 .chip-sello:hover{border-color:var(--azul-mid);color:var(--azul-dark)}
 .chip-sello.on{background:var(--azul);border-color:var(--azul);color:#fff}
@@ -706,31 +738,25 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 }
 
 /* ── Sellos sobre la foto ──
-   Abajo a la izquierda: arriba a la izquierda va el descuento y arriba a la
-   derecha el corazón de favoritos, así que es la única esquina libre. Van en
-   vertical, dos como máximo. A este tamaño no se lee el texto de adentro, pero
-   el símbolo y el color alcanzan; el nombre completo está en la ficha. */
-/* La foto es el ancla. Sin esto los sellos se cuelgan de la tarjeta entera y
-   terminan abajo de todo, debajo del botón de agregar. */
+   Abajo a la izquierda: arriba a la izquierda va el descuento y arriba a la derecha
+   el corazón, así que es la única esquina libre. Los dos símbolos comparten una
+   misma pastilla para leerse como un conjunto. Acá va el símbolo solo: cualquier
+   palabra a este tamaño es ilegible. */
 .pcard-img{position:relative}
-.sellos-foto{position:absolute;bottom:8px;left:8px;z-index:2;display:flex;flex-direction:column;
-  align-items:flex-start;gap:4px;pointer-events:none}
-/* El selector lleva el padre a propósito: `.pcard-img img` le pone width:100% a
-   toda imagen de la foto y le ganaba a `.sello-f`, así que el sello colapsaba. */
-.pcard-img .sellos-foto img.sello-f{width:42px;height:42px;display:block;padding:0;
-  object-fit:contain;filter:drop-shadow(0 1px 4px rgba(20,45,70,.22))}
+.sellos-foto{position:absolute;bottom:8px;left:8px;z-index:2;display:inline-flex;
+  align-items:center;gap:6px;padding:5px 10px;border-radius:999px;
+  background:rgba(255,255,255,.95);border:1px solid rgba(45,84,128,.18);
+  box-shadow:0 1px 6px rgba(20,45,70,.16);pointer-events:none}
+.pcard-img .sellos-foto img.sello-f{width:19px;height:19px;display:block;padding:0;
+  object-fit:contain}
 @media(max-width:767px){
-  .sellos-foto{bottom:6px;left:6px;gap:3px}
-  .pcard-img .sellos-foto img.sello-f{width:34px;height:34px}
+  .sellos-foto{bottom:6px;left:6px;gap:5px;padding:4px 9px}
+  .pcard-img .sellos-foto img.sello-f{width:17px;height:17px}
 }
-/* En la ficha abierta van debajo de la cantidad y la marca, con el nombre escrito
-   al lado del sello: acá hay lugar y es donde el cliente decide. */
-.product-detail-sellos{display:flex;flex-wrap:wrap;gap:8px 16px;margin:11px 0 4px}
-.sello-item{display:inline-flex;align-items:center;gap:8px}
-.sello-item b{font:800 12.5px/1.2 var(--tienda,'Montserrat',sans-serif);letter-spacing:.06em;
-  text-transform:uppercase;color:var(--azul-dark)}
-.product-detail-sellos img.sello-d{width:46px;height:46px;display:block;padding:0;
-  object-fit:contain;flex:0 0 auto}
+/* En la ficha abierta va el sello con la palabra, que ahí sí entra. */
+.product-detail-sellos{display:flex;flex-wrap:wrap;gap:14px;margin:12px 0 4px}
+.product-detail-sellos img.sello-d{width:74px;height:74px;display:block;padding:0;
+  object-fit:contain}
 
 /* ── Productos relacionados, al final de la card abierta ── */
 :root{--pd-aire:18px}   /* el mismo aire lateral que usa la ficha en el celular */
@@ -2838,6 +2864,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
     <button class="cats-dropdown-close" type="button" onclick="toggleCatsDropdown()" aria-label="Cerrar categorías">×</button>
   </div>
   <div class="cats-dropdown-list" id="catsDropdownGrid"></div>
+  <div class="cats-dd-sellos" id="catsDropdownSellos"></div>
 </div>
 
 <div style="max-width:1100px;margin:0 auto;padding:18px 20px" id="mainContainer" data-hv="1">
@@ -3251,6 +3278,10 @@ const SELLOS_TIENDA=[
   {id:'organico', chip:'Orgánico'},
   {id:'proteico', chip:'Proteico'}
 ];
+/* Dos juegos, cada uno para su lugar:
+   ico-*  → sólo el símbolo, para la tarjeta, donde no entra ninguna palabra.
+   sello-*→ el símbolo con la palabra debajo, para la ficha y los filtros. */
+const _selloIco=(id)=>'ico-'+id+'.webp';
 const _selloImg=(id,chico)=>'sello-'+id+(chico?'-ch':'')+'.webp';
 function _sellosDe(p){
   const s=p[12]&&p[12].sellos;
@@ -3261,9 +3292,11 @@ function _sellosHTML(p){
   const l=_sellosDe(p);
   if(!l.length)return'';
   // Dos como máximo en la tarjeta: con tres ya tapan la foto.
-  return '<div class="sellos-foto">'+l.slice(0,2).map(x=>
-    '<img class="sello-f" src="'+_selloImg(x.id,true)+'" alt="'+x.chip+'" title="'+x.chip+'" loading="lazy" decoding="async">'
-  ).join('')+'</div>';
+  // Los dos juntos en una pastilla: sueltos se leían como dos cosas distintas y
+  // ocupaban el doble de alto.
+  return '<div class="sellos-foto" title="'+l.slice(0,2).map(x=>x.chip).join(' · ')+'">'+
+    l.slice(0,2).map(x=>'<img class="sello-f" src="'+_selloIco(x.id)+'" alt="'+x.chip+'" loading="lazy" decoding="async">').join('')+
+    '</div>';
 }
 
 /* ── NOMBRE, CANTIDAD Y MARCA ─────────────────────────────────────────────────
@@ -3358,7 +3391,7 @@ function openProductDetail(pid){
     <button class="product-detail-close" type="button" onclick="closeProductDetail()" aria-label="Cerrar">×</button>
   </div><div class="product-detail-shell"><div class="product-detail-main">
     <div class="product-detail-image" style="background:${fondo}">${src?`<img src="${src}" alt="${p[2]}" decoding="async">`:'<span class="product-image-placeholder" aria-hidden="true"></span>'}</div>
-    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${(_envaseDe(p)||_marcaDe(p))&&p[3]!=='Granel'?`<div class="product-detail-meta">${_envaseDe(p)?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}',${p[0]})" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}${_sellosDe(p).length?`<div class="product-detail-sellos">${_sellosDe(p).map(x=>'<span class="sello-item"><img class="sello-d" src="'+_selloImg(x.id)+'" alt="" decoding="async"><b>'+x.chip+'</b></span>').join('')}</div>`:''}<div class="product-detail-info">${info}</div>
+    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${(_envaseDe(p)||_marcaDe(p))&&p[3]!=='Granel'?`<div class="product-detail-meta">${_envaseDe(p)?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}',${p[0]})" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}${_sellosDe(p).length?`<div class="product-detail-sellos">${_sellosDe(p).map(x=>'<img class="sello-d" src="'+_selloImg(x.id)+'" alt="'+x.chip+'" title="'+x.chip+'" decoding="async">').join('')}</div>`:''}<div class="product-detail-info">${info}</div>
       <div class="product-detail-buy" id="productDetailCard" data-pid="${p[0]}" data-opt="${opt}">
         ${opts.length>1?`<h3>Elegí la presentación</h3><div class="product-detail-options opt-btns${opts.length>=4?' opt-btns-4':''}">${opciones}</div>`:''}${saboresHTML}
         <div class="prices"><div><span class="price-label">Precio${oferta>0?' (Oferta)':''}</span><div class="price-min">${_priceMinContent(p[7][opt][0],oferta)}</div></div><div><span class="price-label">+$80.000</span><div class="price-may">$${fmt(p[7][opt][1])}</div></div></div>
@@ -3668,6 +3701,18 @@ function volverInicio(){
    se puede pedir "aceites y además sin TACC". */
 let SELLO_ACTIVO=null;
 
+/* Cuando hay un sello puesto se avisa arriba del listado, con el botón para
+   sacarlo. Sin esto, el filtro se aplica desde un menú que se cerró y no queda
+   rastro de por qué faltan productos. */
+function _avisoSello(){
+  if(!SELLO_ACTIVO)return'';
+  const s=SELLOS_TIENDA.find(x=>x.id===SELLO_ACTIVO);
+  if(!s)return'';
+  return '<div class="aviso-sello"><img src="'+_selloIco(s.id)+'" alt="">'+
+    '<span>Mostrando sólo <b>'+s.chip+'</b></span>'+
+    '<button type="button" onclick="filtrarSello(null)">Quitar</button></div>';
+}
+
 function _filaSellos(prods){
   // Sólo se ofrecen los sellos que de verdad tienen productos acá: un filtro que
   // deja la pantalla vacía es peor que no estar.
@@ -3678,7 +3723,7 @@ function _filaSellos(prods){
   return '<div class="fila-sellos" role="group" aria-label="Filtrar por sello">'+
     hay.map(x=>'<button type="button" class="chip-sello'+(SELLO_ACTIVO===x.id?' on':'')+
       '" onclick="filtrarSello(\''+x.id+'\')">'+
-      '<img src="'+_selloImg(x.id)+'" alt="" loading="lazy" decoding="async">'+
+      '<img src="'+_selloIco(x.id)+'" alt="" loading="lazy" decoding="async">'+
       '<span>'+x.chip+'</span> <b>'+cuenta[x.id]+'</b></button>').join('')+
     (SELLO_ACTIVO?'<button type="button" class="chip-sello chip-limpiar" onclick="filtrarSello(null)">Quitar filtro</button>':'')+
     '</div>';
@@ -3697,7 +3742,10 @@ function renderProdsHTML(cat,prods,prefix,priorityProductId){
       <div><h1>${cat.n}</h1></div>
       <button class="catalog-filter-btn" onclick="toggleCatsDropdown()"><span aria-hidden="true">☰</span> Categorías</button>
     </div>`;
-  h+=_filaSellos(prods);
+  // Los filtros de sello ya no van acá arriba: viven en el menú de Categorías,
+  // que es donde se va a acotar la búsqueda. Lo que sí queda es el aviso de que
+  // hay uno puesto, para poder sacarlo sin abrir el menú.
+  h+=_avisoSello();
   const visibles = SELLO_ACTIVO ? prods.filter(p=>_sellosDe(p).some(x=>x.id===SELLO_ACTIVO)) : prods;
   if(!visibles.length)return h+'<div style="text-align:center;padding:48px 0;color:var(--muted-fg);font-size:17px">No hay productos con ese sello en esta categoría</div>';
   h+='<div class="prod-grid">';
@@ -7121,7 +7169,7 @@ function renderCarruseles(){
       <img class="catalog-intro-ic" src="may-icon-products-bag.png" alt="" aria-hidden="true" loading="eager" decoding="async">
       <button class="catalog-filter-btn" onclick="toggleCatsDropdown()"><span aria-hidden="true">☰</span> Categorías</button>
     </div>
-    ${_filaSellos(PRODS)}
+    ${_avisoSello()}
     <div class="catalog-progressive-sections"></div>
     <div class="catalog-load-sentinel" aria-hidden="true" style="height:1px"></div>`;
     activeArea.setAttribute('aria-busy','true');
@@ -7290,8 +7338,29 @@ window.zoomImg=zoomImg;
 
 // ── CATS DROPDOWN (mobile) ──
 let _catsDropOpen=false;
+/* Los sellos van al final del menú de categorías: no son categorías, pero se usan
+   en el mismo momento —cuando querés acotar lo que ves— y así no ocupan lugar en
+   la pantalla principal. */
+function pintarSellosDelMenu(){
+  const c=document.getElementById('catsDropdownSellos');
+  if(!c)return;
+  const cuenta={};
+  (PRODS||[]).forEach(p=>_sellosDe(p).forEach(x=>{cuenta[x.id]=(cuenta[x.id]||0)+1}));
+  const hay=SELLOS_TIENDA.filter(x=>cuenta[x.id]);
+  if(!hay.length){ c.innerHTML=''; return; }
+  c.innerHTML='<div class="cdds-tit">Filtrar por</div><div class="cdds-fila">'+
+    hay.map(x=>'<button type="button" class="cdds-chip'+(SELLO_ACTIVO===x.id?' on':'')+
+      '" onclick="filtrarSello(\''+x.id+'\');closeCatsDropdown()">'+
+      '<img src="'+_selloIco(x.id)+'" alt="" loading="lazy" decoding="async">'+
+      '<span>'+x.chip+'</span><b>'+cuenta[x.id]+'</b></button>').join('')+
+    (SELLO_ACTIVO?'<button type="button" class="cdds-chip cdds-limpiar" onclick="filtrarSello(null);closeCatsDropdown()">Quitar el filtro</button>':'')+
+    '</div>';
+}
+window.pintarSellosDelMenu=pintarSellosDelMenu;
+
 function toggleCatsDropdown(){
   _catsDropOpen=!_catsDropOpen;
+  if(_catsDropOpen){ try{ pintarSellosDelMenu(); }catch(e){} }   // se está abriendo
   const overlay=document.getElementById('catsDropdownOverlay');
   const panel=document.getElementById('catsDropdownPanel');
   if(_catsDropOpen){
