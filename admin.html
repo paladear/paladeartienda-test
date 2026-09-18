@@ -491,6 +491,24 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
 .excel-cuentas span.nuevo{background:#eef8f2;border-color:#bfe3cf;color:#1d7a4a}
 .excel-cuentas span.renom{background:#f1f0f8;border-color:#cfcede;color:#544f72}
 .excel-cuentas span.cambiazo{background:#fdeaea;border-color:#e9b4b4;color:#a52020;font-weight:700}
+/* ── Rubros de la distribuidora ── */
+.rub-lista{display:flex;flex-direction:column;gap:7px}
+.rub-item{display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid var(--linea);
+  border-radius:10px;background:var(--papel)}
+.rub-item.off{background:#f6f8fa;opacity:.72}
+.rub-n{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.rub-n b{font-size:14px;line-height:1.25}
+.rub-n i{font-style:normal;font-size:12px;color:var(--suave)}
+.rub-item.off .rub-n i{color:#a52020;font-weight:700}
+.rub-sw{flex:0 0 auto;width:52px;height:30px;border-radius:999px;border:0;cursor:pointer;
+  background:#2d9a5f;position:relative;transition:background .15s}
+.rub-sw[aria-checked="false"]{background:#c4ccd4}
+.rub-sw::after{content:'';position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;
+  background:#fff;transition:transform .15s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+/* Prendido = la perilla a la derecha, como en el teléfono. */
+.rub-sw[aria-checked="true"]::after{transform:translateX(22px)}
+.rub-sw:focus-visible{outline:2px solid var(--tinta);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){ .rub-sw,.rub-sw::after{transition:none} }
 .kpi.k-revfoto{background:#fdeaea;border-color:#e9b4b4}
 .kpi.k-revfoto span,.kpi.k-revfoto b{color:#a52020}
 .kpi.k-revfoto.on{background:#a52020;border-color:#a52020}
@@ -994,8 +1012,8 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
   input,select,textarea,.campo input,.campo textarea,#buscar,.cmp-busca input{font-size:16px!important}
   .cmp-busca input{min-height:48px}
 }
-#capaAltas,#capaMarcas,#capaSellos{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
-#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
+#capaAltas,#capaMarcas,#capaSellos,#capaRubros{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
+#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
 /* Las marcas que ya conoce, para tocarlas en vez de escribirlas. */
 .mca-sug{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
 /* ── Sellos en masa ── */
@@ -1019,20 +1037,20 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
 .mca-chip.on{background:#5b5680;border-color:#5b5680;color:#fff}
 .mca-antes{display:block;font-size:12px;color:#93a0ac;margin-top:2px}
 .mca-antes b{color:#1f7a4a;font-weight:700}
-#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
+#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
   box-shadow:0 22px 60px rgba(0,0,0,.3);display:flex;flex-direction:column;max-height:calc(100vh - 48px)}
-#capaAltas .ed-top,#capaMarcas .ed-top,#capaSellos .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
+#capaAltas .ed-top,#capaMarcas .ed-top,#capaSellos .ed-top,#capaRubros .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding:14px 18px;border-bottom:1px solid var(--linea)}
-#capaAltas .ed-cuerpo,#capaMarcas .ed-cuerpo,#capaSellos .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
-#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+#capaAltas .ed-cuerpo,#capaMarcas .ed-cuerpo,#capaSellos .ed-cuerpo,#capaRubros .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
+#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
   padding:13px 18px;border-top:1px solid var(--linea);background:var(--papel)}
 .alt-item.on{border-color:#2e9e63;background:#f3faf6}
 .alt-falta{color:#c2582f}
 @media(max-width:700px){
-#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto{padding:0;align-items:stretch}
-#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
-#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
-#capaAltas .ed-pie .btn,#capaMarcas .ed-pie .btn,#capaSellos .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
+#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto{padding:0;align-items:stretch}
+#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
+#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
+#capaAltas .ed-pie .btn,#capaMarcas .ed-pie .btn,#capaSellos .ed-pie .btn,#capaRubros .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -1058,7 +1076,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
     <h1>Panel de catálogo</h1>
     <span class="env"></span>
     <span class="quien" id="quien"></span>
-    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 18/09 10:35</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
+    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 18/09 11:10</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
   </div>
 </header>
 
@@ -1356,6 +1374,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
           <button class="btn gris" id="btnAltas" onclick="abrirAltas()">Agregar productos al catálogo</button>
           <button class="btn gris" id="btnMarcas" onclick="abrirMarcas()" title="Asigná una marca a muchos productos de una vez">Marcas de los productos</button>
           <button class="btn gris" id="btnSellos" onclick="abrirSellos()" title="Poné un sello (sin TACC, vegano...) a muchos productos de una vez">Sellos de los productos</button>
+          <button class="btn gris" id="btnRubros" onclick="abrirRubros()" title="Apagá un rubro entero: deja de verse en la tienda mayorista">Rubros de la distribuidora</button>
           <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
         </div>
         <div class="hoja-grupo" id="grupoPublicar">
@@ -1424,6 +1443,14 @@ const SITIO_MAY = 'https://paladear.github.io/paladeardistribuidora' + _SUF + '/
 var TIENDA = 'min';
 var CSV_MAY_INFO = '', CSV_MAY_PRECIOS = '';
 var GUARDADO_MIN = null, GUARDADO_MAY = null;   // fichas/fotos/productos de cada una
+/* Rubros que la distribuidora no vende: se apagan enteros desde Herramientas y la
+   tienda mayorista los saltea, incluidos los productos que entren después. */
+let RUBROS_OCULTOS = [];
+function rubroApagado(r){
+  if (!r) return false;
+  var x = String(r).trim().toUpperCase();
+  return RUBROS_OCULTOS.some(function(y){ return String(y).trim().toUpperCase() === x; });
+}
 var FICHAS_MAY_LISTAS = false;
 var PRECIOS_VISTOS = {};        // {id: precio que ya revisaste}
 // Memoria permanente: la fecha del último cambio real de precio de cada producto.
@@ -1617,6 +1644,7 @@ async function cargarFichasGuardadas(){
     PRECIOS_APROBADOS = j.preciosAprobados || {};
     MARCA_VISTO = j.novedadesVistas || '';
     MARCAS_FB = j.marcas || [];
+    RUBROS_OCULTOS = j.rubrosOcultos || [];
   } catch (e) {
     console.warn('[panel] todavía no hay fichas guardadas:', e && e.message);
     FICHAS_FB = {}; FOTOS_FB = {}; PRECIOS_VISTOS = {};
@@ -1726,6 +1754,8 @@ async function guardarFichasEnRepo(mensaje){
     }
     // Guardar no puede ser nunca la forma de perder las marcas.
     if (!MARCAS_FB.length && remoto.marcas && remoto.marcas.length) MARCAS_FB = remoto.marcas;
+    if (!RUBROS_OCULTOS.length && remoto.rubrosOcultos && remoto.rubrosOcultos.length)
+      RUBROS_OCULTOS = remoto.rubrosOcultos;
 
     // ── FRENO DE MANO ──────────────────────────────────────────────────────
     // Si al arrancar falló la lectura del catálogo, FICHAS_FB queda vacío; con
@@ -1749,6 +1779,7 @@ async function guardarFichasEnRepo(mensaje){
                           preciosAprobados: PRECIOS_APROBADOS,
                           novedadesVistas: MARCA_VISTO,
                           marcas: MARCAS_FB,
+                          rubrosOcultos: RUBROS_OCULTOS,
                           actualizado: new Date().toISOString() })),   // sin sangría: son 77 KB menos por guardado
     mensaje, 0, repoActivo());
   // Lo que se acaba de escribir ES lo último publicado: no hay por qué volver a bajarlo.
@@ -4322,7 +4353,8 @@ function armarProductosMay(){
       nombreEpyme: f.nombreEpyme || '', editada: !!FICHAS_FB[id], nuevo: false, renombre: null,
       revisarFoto: f.revisarFoto || null,
       malRubro: false,
-      oculto: f.oculto === true || !b.enPrecios
+      oculto: f.oculto === true || !b.enPrecios || rubroApagado(b.rubro),
+      rubroOculto: rubroApagado(b.rubro)
     };
   }).sort(function(a,b){ return String(a.nombre).localeCompare(String(b.nombre), 'es'); });
 }
@@ -4354,10 +4386,11 @@ async function cargarFichasMay(){
     // contra el minorista y sale todo marcado como cambio.
     return { fichas: j.fichas || {}, fotos: fotos,
              vistos: j.preciosVistos || {}, aprobados: j.preciosAprobados || {},
-             fechas: j.cambiosPrecio || {}, marcas: j.marcas || [] };
+             fechas: j.cambiosPrecio || {}, marcas: j.marcas || [],
+             rubrosOcultos: j.rubrosOcultos || [] };
   } catch (e) {
     console.warn('[panel] la distribuidora todavía no tiene fichas guardadas:', e && e.message);
-    return { fichas: {}, fotos: {}, vistos: {}, aprobados: {}, fechas: {}, marcas: [] };
+    return { fichas: {}, fotos: {}, vistos: {}, aprobados: {}, fechas: {}, marcas: [], rubrosOcultos: [] };
   }
 }
 
@@ -4367,7 +4400,7 @@ async function cambiarTienda(cual){
   // guardar lo de la tienda que se deja
   var estado = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
                  vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
-                 marcas: MARCAS_FB };   // sin esto, ir y volver de la distribuidora las perdía
+                 marcas: MARCAS_FB, rubrosOcultos: RUBROS_OCULTOS };   // sin esto, ir y volver de la distribuidora las perdía
   if (TIENDA === 'min') GUARDADO_MIN = estado; else GUARDADO_MAY = estado;
 
   TIENDA = cual;
@@ -4380,10 +4413,11 @@ async function cambiarTienda(cual){
       FICHAS_FB = d.fichas; FOTOS_FB = d.fotos;
       PRECIOS_VISTOS = d.vistos; PRECIOS_APROBADOS = d.aprobados; CAMBIOS_FECHA = d.fechas;
       MARCAS_FB = d.marcas || [];
+      RUBROS_OCULTOS = d.rubrosOcultos || [];
       PRODUCTOS = marcarCambiosDePrecio(armarProductosMay());
       GUARDADO_MAY = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
                        vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
-                       marcas: MARCAS_FB };
+                       marcas: MARCAS_FB, rubrosOcultos: RUBROS_OCULTOS };
     } else {
       restaurarTienda(GUARDADO_MAY);
     }
@@ -4409,6 +4443,7 @@ function restaurarTienda(g){
   FICHAS_FB = g.fichas; FOTOS_FB = g.fotos; PRODUCTOS = g.productos;
   PRECIOS_VISTOS = g.vistos || {}; PRECIOS_APROBADOS = g.aprobados || {}; CAMBIOS_FECHA = g.fechas || {};
   MARCAS_FB = g.marcas || [];
+  RUBROS_OCULTOS = g.rubrosOcultos || [];
 }
 
 /* El cartel de arriba dice siempre en cuál de las dos tiendas estás parado. */
@@ -4448,6 +4483,8 @@ function ajustarPorTienda(){
   var esMay = TIENDA === 'may';
   var be=document.getElementById('bloqueExcel');
   if(be)be.hidden=!esMay;                       // subir el Excel: la acción diaria de la distribuidora
+  var br=document.getElementById('btnRubros');
+  if(br)br.hidden=!esMay;                       // apagar rubros es cosa de la distribuidora
   var lbl=document.getElementById('lblExcelHerr');
   if(lbl)lbl.hidden=esMay;                      // en la distribuidora ya está arriba, no se repite
   var ay=document.getElementById('ayudaSubir');
@@ -5560,6 +5597,104 @@ async function selAplicar(){
 }
 window.selAplicar = selAplicar;
 
+/* ── RUBROS APAGADOS ──────────────────────────────────────────────────────────
+   Hay rubros que la distribuidora lista pero que no se venden por mayor. Apagarlos
+   de a un producto no alcanza: la lista de E-Pyme trae productos nuevos ahí adentro
+   cada tanto y se publicaban solos. Esto apaga el rubro, no los productos. */
+let RUB_SEL = [];
+
+function abrirRubros(){
+  RUB_SEL = RUBROS_OCULTOS.slice();
+  $('capaRubros').classList.add('abierto');
+  document.body.style.overflow = 'hidden';
+  $('rubEstado').textContent = '';
+  rubPintar();
+}
+function cerrarRubros(){
+  $('capaRubros').classList.remove('abierto');
+  document.body.style.overflow = '';
+}
+window.abrirRubros = abrirRubros; window.cerrarRubros = cerrarRubros;
+
+function rubApagado(r){
+  var x = String(r).trim().toUpperCase();
+  return RUB_SEL.some(function(y){ return String(y).trim().toUpperCase() === x; });
+}
+
+function rubPintar(){
+  var c = $('rubLista');
+  if (!c) return;
+  // Se cuentan los que de verdad tienen precio: es lo que el cliente ve.
+  var cuenta = {};
+  PRODUCTOS.forEach(function(p){
+    if (!p.rubro || !(p.p1 > 0)) return;
+    cuenta[p.rubro] = (cuenta[p.rubro] || 0) + 1;
+  });
+  var rubros = Object.keys(cuenta).sort(function(a,b){ return a.localeCompare(b, 'es'); });
+  if (!rubros.length) { c.innerHTML = '<div class="vacio">Todavía no hay productos con precio.</div>'; return; }
+  c.innerHTML = rubros.map(function(r){
+    var off = rubApagado(r);
+    return '<div class="rub-item' + (off ? ' off' : '') + '">' +
+      '<span class="rub-n"><b>' + esc(_capitalizar(r)) + '</b>' +
+        '<i>' + cuenta[r] + ' producto' + (cuenta[r] === 1 ? '' : 's') +
+        (off ? ' · apagado, no se ven' : '') + '</i></span>' +
+      '<button type="button" class="rub-sw" role="switch" aria-checked="' + (off ? 'false' : 'true') + '"' +
+        ' data-rubro="' + esc(r) + '"' +
+        ' title="' + (off ? 'Apagado. Tocá para que se vea' : 'Se ve en la tienda. Tocá para apagarlo') + '"' +
+        ' aria-label="' + (off ? 'Prender ' : 'Apagar ') + esc(_capitalizar(r)) + '"></button>' +
+    '</div>';
+  }).join('');
+  // El botón sólo se prende si hay algo distinto de lo que ya está guardado.
+  var igual = RUB_SEL.length === RUBROS_OCULTOS.length &&
+              RUB_SEL.every(function(r){ return rubroApagado(r); });
+  var b = $('rubEnviar');
+  b.disabled = igual;
+  b.textContent = igual ? 'Sin cambios'
+    : (RUB_SEL.length ? 'Guardar: ' + RUB_SEL.length + ' rubro' + (RUB_SEL.length === 1 ? '' : 's') + ' apagado' + (RUB_SEL.length === 1 ? '' : 's')
+                      : 'Guardar: ninguno apagado');
+}
+
+document.addEventListener('click', function(ev){
+  var b = ev.target.closest && ev.target.closest('.rub-sw[data-rubro]');
+  if (!b) return;
+  var r = b.dataset.rubro;
+  if (rubApagado(r)) RUB_SEL = RUB_SEL.filter(function(y){
+    return String(y).trim().toUpperCase() !== String(r).trim().toUpperCase();
+  });
+  else RUB_SEL.push(r);
+  rubPintar();
+});
+
+async function rubGuardar(){
+  if (!TOKEN) { $('rubEstado').textContent = 'Entrá con la clave para poder guardar.'; return; }
+  var b = $('rubEnviar'), antes = b.textContent, guardadoAntes = RUBROS_OCULTOS.slice();
+  b.disabled = true; b.textContent = 'Guardando...';
+  try {
+    RUBROS_OCULTOS = RUB_SEL.slice();
+    await guardarFichasEnRepo(RUBROS_OCULTOS.length
+      ? 'Rubros apagados en la distribuidora: ' + RUBROS_OCULTOS.join(', ')
+      : 'Ningun rubro apagado en la distribuidora');
+    // Los productos de un rubro apagado pasan a verse con la X roja en el listado.
+    PRODUCTOS.forEach(function(p){
+      p.rubroOculto = rubroApagado(p.rubro);
+      if (p.rubroOculto) p.oculto = true;
+      else if (p.oculto && !(FICHAS_FB[p.id] || {}).oculto) p.oculto = !(p.p1 > 0);
+    });
+    avisar('ok', RUBROS_OCULTOS.length
+      ? RUBROS_OCULTOS.length + (RUBROS_OCULTOS.length === 1 ? ' rubro apagado' : ' rubros apagados')
+      : 'Todos los rubros vuelven a verse',
+      'La tienda mayorista lo toma en unos minutos.');
+    pintarKpis(); pintar();
+    rubPintar();
+    $('rubEstado').innerHTML = '<span class="ok">Guardado.</span>';
+  } catch (e) {
+    RUBROS_OCULTOS = guardadoAntes;          // vuelve como estaba: no queda a medias
+    $('rubEstado').innerHTML = '<span class="malo">No pude guardar: ' + esc(e.message) + '</span>';
+    b.disabled = false; b.textContent = antes;
+  }
+}
+window.rubGuardar = rubGuardar;
+
 </script>
 <!-- Compartir fotos con la distribuidora, de a muchas -->
 <!-- Elegir qué productos entran al catálogo -->
@@ -5624,6 +5759,25 @@ window.selAplicar = selAplicar;
     <div class="ed-pie">
       <button type="button" class="btn primario" id="selEnviar" onclick="selAplicar()" disabled>Guardar los sellos</button>
       <span id="selEstado"></span>
+    </div>
+  </div>
+</div>
+
+<div id="capaRubros">
+  <div class="ed-caja">
+    <div class="ed-top">
+      <b>Rubros de la distribuidora</b>
+      <button type="button" class="btn gris" onclick="cerrarRubros()">Cerrar</button>
+    </div>
+    <div class="ed-cuerpo">
+      <p class="cmp-intro">Apagá un rubro y deja de verse entero en la tienda mayorista, con todos
+        sus productos. Queda apagado: si la distribuidora agrega algo nuevo en ese rubro, tampoco
+        se va a ver. Los precios y las fichas no se tocan; volvés a prenderlo y vuelve como estaba.</p>
+      <div id="rubLista" class="rub-lista"></div>
+    </div>
+    <div class="ed-pie">
+      <button type="button" class="btn primario" id="rubEnviar" onclick="rubGuardar()" disabled>Guardar</button>
+      <span id="rubEstado"></span>
     </div>
   </div>
 </div>
