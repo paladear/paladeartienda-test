@@ -490,6 +490,22 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
 .excel-cuentas span.baja b{color:#1d7a4a}
 .excel-cuentas span.nuevo{background:#eef8f2;border-color:#bfe3cf;color:#1d7a4a}
 .excel-cuentas span.renom{background:#f1f0f8;border-color:#cfcede;color:#544f72}
+.excel-cuentas span.cambiazo{background:#fdeaea;border-color:#e9b4b4;color:#a52020;font-weight:700}
+.kpi.k-revfoto{background:#fdeaea;border-color:#e9b4b4}
+.kpi.k-revfoto span,.kpi.k-revfoto b{color:#a52020}
+.kpi.k-revfoto.on{background:#a52020;border-color:#a52020}
+.kpi.k-revfoto.on span,.kpi.k-revfoto.on b{color:#fff}
+.aviso-cat.revfoto{background:#fdeaea;border-color:#e9b4b4;color:#a52020}
+.aviso-cat.revfoto b{color:#a52020}
+.aviso-cat-btn{margin-top:7px;padding:6px 12px;font-size:12.5px;min-height:36px}
+/* El bloque de los que cambiaron de producto va abierto y en rojo: es el único
+   que deja una foto equivocada publicada si pasa de largo. */
+.excel-det-grave{border-color:#e9b4b4;background:#fffafa}
+.excel-det-grave > summary{color:#a52020}
+.excel-det-nota{margin:0;padding:0 12px 8px;font-size:12.5px;line-height:1.45;color:var(--suave)}
+.excel-cambiazo{padding:7px 9px;border-radius:8px;background:var(--papel);border:1px solid #efdada}
+.excel-cambiazo em{font-style:normal;font-size:11.5px;color:var(--suave)}
+.excel-cambiazo em.excel-confoto{color:#a52020;font-weight:700}
 /* El detalle de nuevos y renombres, plegado para no tapar el resto. */
 .excel-det{margin:9px 0 0;border:1px solid var(--linea);border-radius:9px;background:var(--papel)}
 .excel-det summary{padding:9px 12px;cursor:pointer;font-size:13.5px;list-style:none}
@@ -1042,7 +1058,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
     <h1>Panel de catálogo</h1>
     <span class="env"></span>
     <span class="quien" id="quien"></span>
-    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 18/09 09:55</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
+    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 18/09 10:35</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
   </div>
 </header>
 
@@ -1914,7 +1930,7 @@ async function arrancar(){
         marca:f.marca || '', envase:f.envase || '', envasado:f.envasado,
         saboresOcultos:f.saboresOcultos || [], sellos:f.sellos || null,
         mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
-        nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:false, renombre:renom[id] || null,
+        nombreEpyme:f.nombreEpyme || '', revisarFoto:f.revisarFoto || null, editada:!!f._fb, nuevo:false, renombre:renom[id] || null,
         malRubro:!!malRubro[id], enLista:true,
         oculto:f.oculto === true
       });
@@ -1935,7 +1951,7 @@ async function arrancar(){
         marca:f.marca || '', envase:f.envase || '', envasado:f.envasado,
         saboresOcultos:f.saboresOcultos || [], sellos:f.sellos || null,
         mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
-        nombreEpyme:f.nombreEpyme || '', editada:!!f._fb, nuevo:true, renombre:null, malRubro:false,
+        nombreEpyme:f.nombreEpyme || '', revisarFoto:f.revisarFoto || null, editada:!!f._fb, nuevo:true, renombre:null, malRubro:false,
         altaOk: f.altaOk === true
       });
     });
@@ -3129,6 +3145,7 @@ function pintarKpis(){
     ['fuera',   fuera,   'Fuera', 'k-fuera'],
     ['sindesc', sinDesc, 'Sin descripción', 'k-desc'],
     ['renom',   renoms,  renoms === 1 ? 'Nombre cambiado' : 'Nombres cambiados', 'k-renom'],
+    ['revisarfoto', PRODUCTOS.filter(p => p.revisarFoto).length, 'Revisar foto', 'k-revfoto'],
     ['oferta',  ofertas, 'Con oferta', 'k-oferta'],
     // Uno para ir marcando de a poco y otro para repasar lo ya marcado y corregirlo.
     ['sinsellos', PRODUCTOS.filter(p => !p.sellos || !Object.keys(p.sellos).length).length,
@@ -3247,9 +3264,36 @@ function enFiltroActual(p){
     case 'oferta':     return (p.oferta || 0) > 0;
     case 'sinsellos':  return !p.sellos || !Object.keys(p.sellos).length;
     case 'consellos':  return !!(p.sellos && Object.keys(p.sellos).length);
+    case 'revisarfoto':return !!p.revisarFoto;
     default:           return true;
   }
 }
+
+/* "Ya cambié la foto": saca la marca y la guarda, para que no siga apareciendo. */
+document.addEventListener('click', async function(ev){
+  var b = ev.target.closest && ev.target.closest('[data-revfoto]');
+  if (!b) return;
+  ev.stopPropagation();                      // si no, se abre el editor de la ficha
+  var id = b.dataset.revfoto;
+  var p = PRODUCTOS.find(function(x){ return x.id === id; });
+  if (!p) return;
+  if (!TOKEN) { avisar('mal', 'Entrá con la clave para poder guardar'); return; }
+  b.disabled = true; b.textContent = 'Guardando...';
+  var antes = p.revisarFoto;
+  try {
+    p.revisarFoto = null;
+    var f = Object.assign({}, FICHAS_FB[id] || {});
+    delete f.revisarFoto;
+    f.actualizado = new Date().toISOString();
+    FICHAS_FB[id] = f;
+    await guardarFichasEnRepo('Foto revisada: ' + p.nombre);
+    pintarKpis(); pintar();
+  } catch (e) {
+    p.revisarFoto = antes;                   // vuelve como estaba: nada se perdió
+    avisar('mal', 'No pude guardar', e.message || e);
+    b.disabled = false; b.textContent = 'Ya cambié la foto';
+  }
+});
 
 /* Los sellos ya puestos, para verlos en el listado sin abrir la ficha. */
 function selloChips(p){
@@ -3271,6 +3315,7 @@ function pintar(){
   if (FILTRO === 'malrubro')   lista = lista.filter(p => p.malRubro);
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
   if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
+  if (FILTRO === 'revisarfoto') lista = lista.filter(p => p.revisarFoto);
   if (FILTRO === 'sinsellos')  lista = lista.filter(p => !p.sellos || !Object.keys(p.sellos).length);
   if (FILTRO === 'consellos')  lista = lista.filter(p => p.sellos && Object.keys(p.sellos).length);
   if (FILTRO === 'oferta')     lista = lista.filter(p => p.oferta > 0);
@@ -3393,6 +3438,15 @@ function pintar(){
 
     var aviso = '';
     if (traba) aviso = '<div class="aviso-cat traba"><b>No se puede publicar</b><span>' + esc(traba) + '</span></div>';
+    // El número de artículo quedó igual pero adentro hay otro producto: la foto
+    // publicada es la del anterior.
+    if (p.revisarFoto) {
+      aviso += '<div class="aviso-cat revfoto"><b>Este artículo ahora es otro producto</b>' +
+        '<span>Antes: ' + esc(String(p.revisarFoto.antes).slice(0,60)) + '</span>' +
+        '<span>Ahora: <b>' + esc(String(p.revisarFoto.ahora).slice(0,60)) + '</b></span>' +
+        '<button type="button" class="btn gris aviso-cat-btn" data-revfoto="' + esc(p.id) + '">Ya cambié la foto</button>' +
+        '</div>';
+    }
 
     var editar = '<button type="button" class="prod-editar" data-editar="' + esc(p.id) + '" aria-label="Editar ' + esc(p.nombre) + '">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
@@ -3442,6 +3496,8 @@ function pintar(){
 
 // Clic en cualquier tarjeta abre el editor de esa ficha.
 document.getElementById('salida').addEventListener('click', e => {
+  // Salvo el de "ya cambié la foto", que se resuelve solo y no necesita abrir nada.
+  if (e.target.closest('[data-revfoto]')) return;
   const t = e.target.closest('.prod');
   if (t && t.dataset.id) abrirEditor(t.dataset.id);
 });
@@ -3601,6 +3657,7 @@ function excelLeer(file){
         '<span><b>' + rev.iguales + '</b> igual</span>' +
         '<span class="' + (rev.nuevos ? 'nuevo' : '') + '"><b>' + rev.nuevos + '</b> nuevos</span>' +
         '<span class="' + (rev.renombres.length ? 'renom' : '') + '"><b>' + rev.renombres.length + '</b> cambian de nombre</span>' +
+        '<span class="' + (rev.otroProducto.length ? 'cambiazo' : '') + '"><b>' + rev.otroProducto.length + '</b> son otro producto</span>' +
         '<span class="' + (rev.faltan ? 'ojo' : '') + '"><b>' + rev.faltan + '</b> no vienen</span>' +
         '</div>' + excelDetalle(rev);
       var aviso = '';
@@ -3655,6 +3712,19 @@ function excelAPesos(txt){
    nada. Se puede desplegar para no ocupar media pantalla de entrada. */
 function excelDetalle(rev){
   var h = '';
+  // Primero lo único que puede dejar una foto equivocada publicada.
+  if (rev.otroProducto.length) {
+    h += '<details class="excel-det excel-det-grave" open><summary><b>' + rev.otroProducto.length +
+      '</b> número' + (rev.otroProducto.length === 1 ? '' : 's') + ' de artículo que ahora ' +
+      (rev.otroProducto.length === 1 ? 'es' : 'son') + ' otro producto</summary>' +
+      '<p class="excel-det-nota">El número quedó igual pero el nombre cambió por completo. Si tenía ' +
+      'foto, es la del producto viejo: hay que cambiarla.</p><div class="excel-det-lista">' +
+      rev.otroProducto.map(function(x){
+        return '<span class="excel-cambiazo">art. <b>' + esc(x.id) + '</b>' +
+          (x.foto ? ' <em class="excel-confoto">tiene foto</em>' : ' <em>sin foto</em>') + '<br>' +
+          esc(String(x.antes).slice(0,40)) + ' <i>&rarr;</i> <b>' + esc(String(x.ahora).slice(0,40)) + '</b></span>';
+      }).join('') + '</div></details>';
+  }
   if (rev.listaNuevos.length) {
     h += '<details class="excel-det"><summary><b>' + rev.nuevos + '</b> producto' +
       (rev.nuevos === 1 ? '' : 's') + ' que hoy no está' + (rev.nuevos === 1 ? '' : 'n') +
@@ -3674,17 +3744,56 @@ function excelDetalle(rev){
           esc(String(x.ahora).slice(0,34)) + '</b></span>';
       }).join('') + '</div></details>';
   }
+  if (rev.listaFaltan.length) {
+    h += '<details class="excel-det"><summary><b>' + rev.faltan + '</b> que hoy están y no vienen en el Excel</summary>' +
+      '<p class="excel-det-nota">Se quedan sin precio y salen del catálogo hasta que vuelvan.</p>' +
+      '<div class="excel-det-lista">' +
+      rev.listaFaltan.map(function(x){
+        return '<span>' + esc(String(x.nombre).slice(0,42)) + ' · art. ' + esc(x.id) + '</span>';
+      }).join('') +
+      (rev.faltan > rev.listaFaltan.length ? '<span class="excel-det-mas">y ' + (rev.faltan - rev.listaFaltan.length) + ' más</span>' : '') +
+      '</div></details>';
+  }
   return h;
+}
+
+/* ¿Los dos nombres hablan del mismo producto? Se comparan las palabras con peso
+   (fuera los números, las unidades y las palabras de una o dos letras): si comparten
+   la mitad o más, es el mismo producto escrito distinto. */
+var _RUIDO_NOM = {DE:1,LA:1,EL:1,LOS:1,LAS:1,CON:1,SIN:1,POR:1,CC:1,ML:1,LT:1,LTS:1,
+                  KG:1,GR:1,GRS:1,MG:1,UNID:1,UNIDAD:1,UNIDADES:1,PACK:1,APROX:1};
+function _palabrasNom(t){
+  var o = {};
+  _norm(t).toUpperCase().split(/[^A-Z0-9]+/).forEach(function(w){
+    if (w.length < 3 || _RUIDO_NOM[w] || /^\d+$/.test(w)) return;
+    // Singular y plural cuentan igual: POROTOS y POROTO son lo mismo.
+    o[w.replace(/(ES|S)$/, '')] = 1;
+  });
+  return Object.keys(o);
+}
+function _mismoProducto(a, b){
+  var pa = _palabrasNom(a), pb = _palabrasNom(b);
+  if (!pa.length || !pb.length) return true;      // sin datos, no se acusa
+  var en = {}; pb.forEach(function(w){ en[w] = 1; });
+  var comunes = pa.filter(function(w){ return en[w]; }).length;
+  return comunes / Math.min(pa.length, pb.length) >= 0.5;
 }
 
 function excelRevisar(datos){
   var actuales = {};
   PRODUCTOS.forEach(function(p){ if (p.p1 > 0) actuales[p.id] = p.p1; });
-  var nombres = {};
-  PRODUCTOS.forEach(function(p){ nombres[p.id] = p.nombreCsv || p.nombre; });
+  // Se compara contra el nombre que mandó E-Pyme la vez anterior, no contra el
+  // nombre editado: el editado nunca coincide (le sacamos la marca, le arreglamos
+  // el gramaje) y entonces TODA la lista salía como renombrada.
+  var nombres = {}, conFoto = {};
+  PRODUCTOS.forEach(function(p){
+    nombres[p.id] = p.nombreEpyme || p.nombreCsv || p.nombre;
+    conFoto[p.id] = !!p.foto;
+  });
   var r = { total: datos.length, hoy: Object.keys(actuales).length, sinId: 0,
             cruzan: 0, nuevos: 0, faltan: 0, saltos: [], iguales: 0,
-            suben: 0, bajan: 0, renombres: [], listaNuevos: [] };
+            suben: 0, bajan: 0, renombres: [], listaNuevos: [], otroProducto: [],
+            listaFaltan: [] };
   var vistos = {};
   datos.forEach(function(d){
     var id = limpiaId(d.id);
@@ -3700,8 +3809,15 @@ function excelRevisar(datos){
     // Un nombre distinto en el Excel es un dato: puede ser una corrección o un
     // error de la lista, y en cualquier caso conviene verlo antes de publicar.
     var nomViejo = (nombres[id] || '').trim(), nomNuevo = (d.nombre || '').trim();
-    if (nomViejo && nomNuevo && _norm(nomViejo) !== _norm(nomNuevo) && r.renombres.length < 40)
-      r.renombres.push({id:id, antes:nomViejo, ahora:nomNuevo});
+    if (nomViejo && nomNuevo && _norm(nomViejo) !== _norm(nomNuevo)) {
+      // Dos cosas muy distintas. Que le saquen un acento o lo escriban en singular
+      // no importa; que el número 1100 pase de ALCARAZ GOURMET a CRISTO DE LOS
+      // CERROS sí: es otro producto con la foto del anterior.
+      if (!_mismoProducto(nomViejo, nomNuevo))
+        r.otroProducto.push({id:id, antes:nomViejo, ahora:nomNuevo, foto:!!conFoto[id]});
+      else if (r.renombres.length < 40)
+        r.renombres.push({id:id, antes:nomViejo, ahora:nomNuevo});
+    }
     var ahora = excelAPesos(d.p1);
     if (!ahora || !antes) return;
     var veces = ahora / antes;
@@ -3711,13 +3827,27 @@ function excelRevisar(datos){
     // error de formato, no un cambio de precio real.
     if (veces >= 3 || veces <= 0.34) r.saltos.push({ id: id, nombre: d.nombre, antes: antes, ahora: ahora, veces: veces });
   });
-  Object.keys(actuales).forEach(function(id){ if (!vistos[id]) r.faltan++; });
+  Object.keys(actuales).forEach(function(id){
+    if (vistos[id]) return;
+    r.faltan++;
+    if (r.listaFaltan.length < 60) {
+      var pf = PRODUCTOS.find(function(x){ return x.id === id; });
+      r.listaFaltan.push({id:id, nombre: pf ? pf.nombre : id});
+    }
+  });
   r.alarmas = [];
   if (r.sinId === datos.length && datos.length)
     r.alarmas.push('Ninguna fila trae número de artículo. Revisá que el Excel tenga la columna <b>Artículo</b>.');
   if (r.saltos.length)
     r.alarmas.push('<b>' + r.saltos.length + ' precio' + (r.saltos.length===1?'':'s') + '</b> cambia' +
       (r.saltos.length===1?'':'n') + ' más de 3 veces su valor. Suele ser el punto decimal mal puesto.');
+  if (r.otroProducto.length) {
+    var conF = r.otroProducto.filter(function(x){ return x.foto; }).length;
+    r.alarmas.push('<b>' + r.otroProducto.length + ' número' + (r.otroProducto.length===1?'':'s') +
+      ' de artículo pasó a ser otro producto</b>' +
+      (conF ? ', y ' + (conF===1?'uno tiene':conF+' tienen') + ' foto cargada: revisá que la foto siga siendo la correcta.'
+            : '.'));
+  }
   if (r.hoy && r.faltan > r.hoy * 0.2)
     r.alarmas.push('Faltan <b>' + r.faltan + '</b> productos que hoy sí están. El Excel podría estar incompleto.');
   if (r.hoy && r.cruzan < r.hoy * 0.5 && r.total)
@@ -3841,7 +3971,7 @@ async function excelPublicar(){
     // cambiaron QUEDAN MARCADOS para que puedas verlos. Antes se marcaban como
     // vistos acá mismo y después el panel no mostraba nada: parecía que subir el
     // Excel no había hecho nada.
-    var aprobados = 0, cambiaron = 0, bultos = 0, ahoraMismo = new Date().toISOString();
+    var aprobados = 0, cambiaron = 0, bultos = 0, paraRevisar = 0, ahoraMismo = new Date().toISOString();
     EXCEL_FILAS.forEach(function(f){
       var id = limpiaId(f.id);
       if (!id) return;
@@ -3853,6 +3983,29 @@ async function excelPublicar(){
       // En la distribuidora, la columna Patente es el bulto cerrado ("6 unid.",
       // "1 kg"). La tienda multiplica el precio por ese número, así que si no se
       // guarda acá, el bulto queda viejo y el precio que ve el cliente sale mal.
+      // El nombre con el que vino de E-Pyme queda guardado en la ficha. Es la única
+      // memoria de qué producto era ese número: la lista de precios se pisa entera
+      // en cada publicación y ahí el nombre anterior se perdía para siempre. Sin
+      // esto no hay forma de darse cuenta de que un artículo pasó a ser otra cosa
+      // y quedó con la foto del anterior.
+      var nomEpyme = String(f.nombre || '').trim();
+      if (nomEpyme) {
+        var fe = Object.assign({}, FICHAS_FB[id] || {});
+        var nomAntes = String(fe.nombreEpyme || (p ? p.nombreCsv : '') || '').trim();
+        if (nomAntes !== nomEpyme) {
+          // Si el número pasó a ser otro producto, la ficha queda marcada. El aviso
+          // de antes de publicar se va con la pantalla; esto no: la foto vieja sigue
+          // publicada hasta que alguien la cambie, y hay que poder encontrarla después.
+          if (nomAntes && !_mismoProducto(nomAntes, nomEpyme)) {
+            fe.revisarFoto = { antes: nomAntes, ahora: nomEpyme, cuando: ahoraMismo };
+            if (p) p.revisarFoto = fe.revisarFoto;
+            paraRevisar++;
+          }
+          fe.nombreEpyme = nomEpyme;
+          FICHAS_FB[id] = fe;
+        }
+        if (p) p.nombreEpyme = nomEpyme;
+      }
       if (esMay && f.patente) {
         var bultoTxt = String(f.patente).trim();
         var ficha = Object.assign({}, FICHAS_FB[id] || {});
@@ -3900,17 +4053,26 @@ async function excelPublicar(){
       avisar('ok', cambiaron + (cambiaron === 1 ? ' precio cambió' : ' precios cambiaron'),
              'Los tenés abajo, en la lista. Ya están publicados en la tienda.');
     }
+    if (paraRevisar) {
+      // Esto manda sobre cualquier otro aviso: es lo único que deja una foto
+      // equivocada publicada de cara al cliente.
+      avisar('mal', paraRevisar + (paraRevisar === 1 ? ' artículo pasó a ser otro producto' : ' artículos pasaron a ser otro producto'),
+             'Quedaron en el filtro «Revisar foto». La foto que tienen es la del producto anterior.');
+    }
     caja.innerHTML = '<div class="excel-caja ok"><b>Listo.</b> Se publicaron ' + EXCEL_FILAS.length +
       ' precios en <b>' + esc(nombreTienda()) + '</b>. ' +
       'La tienda los toma en unos minutos.</div>';
     avisar('ok', EXCEL_FILAS.length + ' precios actualizados y publicados',
            'Ya están en ' + nombreTienda() + '. No hace falta darles el OK: los subiste vos.');
-    // Tras subir la lista, lo primero que se ve es lo que cambió.
+    // Tras subir la lista, lo primero que se ve es lo que cambió. Salvo que haya
+    // artículos que pasaron a ser otro producto: eso va primero, porque un precio
+    // se corrige solo con la lista siguiente y una foto equivocada no.
     setTimeout(function(){
       try {
-        ORDEN = 'cambios';
-        var so = document.getElementById('selOrden'); if (so) so.value = 'cambios';
-        elegirFiltro('kpi', 'precio');
+        var alFoto = paraRevisar > 0;
+        ORDEN = alFoto ? 'alfa' : 'cambios';
+        var so = document.getElementById('selOrden'); if (so) so.value = ORDEN;
+        elegirFiltro('kpi', alFoto ? 'revisarfoto' : 'precio');
         var c = document.getElementById('salida'); if (c) c.scrollIntoView({block:'start', behavior:'smooth'});
       } catch(e) {}
     }, 400);
@@ -4157,7 +4319,8 @@ function armarProductosMay(){
       sabores: f.sabores || b.sabores || '',
       oferta: f.oferta || 0,
       mix: false, granola: false, blend: false,
-      nombreEpyme: '', editada: !!FICHAS_FB[id], nuevo: false, renombre: null,
+      nombreEpyme: f.nombreEpyme || '', editada: !!FICHAS_FB[id], nuevo: false, renombre: null,
+      revisarFoto: f.revisarFoto || null,
       malRubro: false,
       oculto: f.oculto === true || !b.enPrecios
     };
