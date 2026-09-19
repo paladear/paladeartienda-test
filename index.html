@@ -686,6 +686,10 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 /* ── Los sellos, al final del menú de categorías ── */
 .cats-dd-sellos{padding:4px 16px 18px}
 .cats-dd-sellos:empty{display:none}
+/* Las marcas son muchas más que los sellos: se muestran las que más productos
+   tienen y el resto queda detrás de un chip, para no llenar el menú en el celular. */
+.cats-dd-marcas{padding-top:0}
+.cdds-chip.cdds-mas{border-style:dashed;color:var(--muted-fg)}
 .cdds-tit{margin:14px 0 10px;padding-top:14px;border-top:1px solid var(--border);
   font:800 11.5px/1 'Montserrat',sans-serif;letter-spacing:.12em;text-transform:uppercase;
   color:var(--muted-fg)}
@@ -2869,6 +2873,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
   </div>
   <div class="cats-dropdown-list" id="catsDropdownGrid"></div>
   <div class="cats-dd-sellos" id="catsDropdownSellos"></div>
+  <div class="cats-dd-sellos cats-dd-marcas" id="catsDropdownMarcas"></div>
 </div>
 
 <div style="max-width:1100px;margin:0 auto;padding:18px 20px" id="mainContainer" data-hv="1">
@@ -7369,9 +7374,48 @@ function pintarSellosDelMenu(){
 }
 window.pintarSellosDelMenu=pintarSellosDelMenu;
 
+/* Las marcas, en el mismo lugar y con la misma pinta que los sellos. Antes la única
+   forma de ver todo de una marca era tocarla dentro de un producto: había que saber
+   de antemano en cuál estaba. */
+let _MARCAS_MENU_TODAS = false;
+const _MARCAS_MENU_TOPE = 12;
+
+function pintarMarcasDelMenu(){
+  const c=document.getElementById('catsDropdownMarcas');
+  if(!c)return;
+  const cuenta={};
+  (PRODS||[]).forEach(p=>{
+    const m=(_marcaDe(p)||'').trim();
+    if(m) cuenta[m]=(cuenta[m]||0)+1;
+  });
+  let lista=Object.keys(cuenta).sort((a,b)=>cuenta[b]-cuenta[a]||a.localeCompare(b,'es'));
+  if(!lista.length){ c.innerHTML=''; return; }
+  const sobran=Math.max(0,lista.length-_MARCAS_MENU_TOPE);
+  // Al desplegarlas todas se ordenan alfabéticamente: con cuarenta chips, buscar
+  // una por tamaño no sirve de nada.
+  const ver=_MARCAS_MENU_TODAS ? lista.slice().sort((a,b)=>a.localeCompare(b,'es'))
+                               : lista.slice(0,_MARCAS_MENU_TOPE);
+  c.innerHTML='<div class="cdds-tit">Marcas</div><div class="cdds-fila">'+
+    ver.map(m=>'<button type="button" class="cdds-chip" onclick="verMarca(\''+
+      m.replace(/'/g,"\\'")+'\');closeCatsDropdown()"><span>'+m+'</span><b>'+cuenta[m]+'</b></button>').join('')+
+    (sobran && !_MARCAS_MENU_TODAS
+      ? '<button type="button" class="cdds-chip cdds-mas" onclick="_verTodasLasMarcas()">Ver las '+sobran+' que faltan</button>'
+      : '')+
+    (_MARCAS_MENU_TODAS && sobran
+      ? '<button type="button" class="cdds-chip cdds-mas" onclick="_verTodasLasMarcas(false)">Mostrar menos</button>'
+      : '')+
+    '</div>';
+}
+function _verTodasLasMarcas(si){ _MARCAS_MENU_TODAS = si !== false; pintarMarcasDelMenu(); }
+window.pintarMarcasDelMenu=pintarMarcasDelMenu;
+window._verTodasLasMarcas=_verTodasLasMarcas;
+
 function toggleCatsDropdown(){
   _catsDropOpen=!_catsDropOpen;
-  if(_catsDropOpen){ try{ pintarSellosDelMenu(); }catch(e){} }   // se está abriendo
+  if(_catsDropOpen){                                             // se está abriendo
+    try{ pintarSellosDelMenu(); }catch(e){}
+    try{ pintarMarcasDelMenu(); }catch(e){}
+  }
   const overlay=document.getElementById('catsDropdownOverlay');
   const panel=document.getElementById('catsDropdownPanel');
   if(_catsDropOpen){
