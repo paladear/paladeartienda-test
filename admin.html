@@ -496,6 +496,13 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
 .bulto-caja i{font-style:normal;font-size:12.5px;color:var(--suave);line-height:1.4}
 .bulto-caja .bulto-nuevo{margin-left:auto;flex:0 0 auto;padding:4px 10px;border-radius:999px;
   background:#fdf2e3;border:1px solid #e8c48d;color:#8a5a10;font:700 12px/1.6 'Montserrat',sans-serif}
+.kpi.k-revmarca{background:#f3ecfa;border-color:#cdb8e4}
+.kpi.k-revmarca span,.kpi.k-revmarca b{color:#6b3fa0}
+.kpi.k-revmarca.on{background:#6b3fa0;border-color:#6b3fa0}
+.kpi.k-revmarca.on span,.kpi.k-revmarca.on b{color:#fff}
+.aviso-cat.revmarca{background:#f3ecfa;border-color:#cdb8e4;color:#6b3fa0}
+.aviso-cat.revmarca b{color:#6b3fa0}
+.aviso-cat .acc-dos{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .kpi.k-bulto{background:#fdf2e3;border-color:#e8c48d}
 .kpi.k-bulto span,.kpi.k-bulto b{color:#8a5a10}
 .kpi.k-bulto.on{background:#8a5a10;border-color:#8a5a10}
@@ -1126,7 +1133,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
     <h1>Panel de catálogo</h1>
     <span class="env"></span>
     <span class="quien" id="quien"></span>
-    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 19/09 12:40</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
+    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 19/09 13:20</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
   </div>
 </header>
 
@@ -2067,7 +2074,7 @@ async function arrancar(){
         marca:f.marca || '', envase:f.envase || '', envasado:f.envasado,
         saboresOcultos:f.saboresOcultos || [], sellos:f.sellos || null,
         mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
-        nombreEpyme:f.nombreEpyme || '', revisarFoto:f.revisarFoto || null, editada:!!f._fb, nuevo:false, renombre:renom[id] || null,
+        nombreEpyme:f.nombreEpyme || '', revisarFoto:f.revisarFoto || null, revisarMarca:f.revisarMarca || null, editada:!!f._fb, nuevo:false, renombre:renom[id] || null,
         malRubro:!!malRubro[id], enLista:true,
         oculto:f.oculto === true
       });
@@ -2088,7 +2095,7 @@ async function arrancar(){
         marca:f.marca || '', envase:f.envase || '', envasado:f.envasado,
         saboresOcultos:f.saboresOcultos || [], sellos:f.sellos || null,
         mix:!!f.mix, granola:!!f.granola, blend:!!f.blend,
-        nombreEpyme:f.nombreEpyme || '', revisarFoto:f.revisarFoto || null, editada:!!f._fb, nuevo:true, renombre:null, malRubro:false,
+        nombreEpyme:f.nombreEpyme || '', revisarFoto:f.revisarFoto || null, revisarMarca:f.revisarMarca || null, editada:!!f._fb, nuevo:true, renombre:null, malRubro:false,
         altaOk: f.altaOk === true
       });
     });
@@ -2568,6 +2575,19 @@ function unificarMarca(m, cuenta){
 }
 
 /* Junta las marcas que se pueden afirmar, para despues buscarlas en los demas. */
+/* ¿De qué nombre se saca la marca?
+   En la minorista, del que manda E-Pyme: el nombre editado ya viene SIN marca,
+   porque justamente se la sacamos al asignarla.
+   En la distribuidora es al revés. E-Pyme manda cosas como "ACEITE DE OLIVA EV R.V
+   500 CC" —la marca abreviada y metida en el medio— y el nombre bueno es el de la
+   ficha, que ya está escrito como "Producto x 500 cc - MARCA". Buscando en el de
+   E-Pyme no se encontraba ninguna marca y, peor, al asignarla se partía ese nombre
+   y el nombre lindo se perdía. */
+function nombreParaMarcas(p){
+  return TIENDA === 'may' ? (p.nombre || p.nombreCsv || '')
+                          : (p.nombreCsv || p.nombre || '');
+}
+
 function cosecharMarcas(nombres){
   var c = {};
   nombres.forEach(function(n){
@@ -2593,7 +2613,7 @@ let MARCAS_SABIDAS = [];
 
 function refrescarMarcas(){
   var propias = (MARCAS_FB || []).map(function(m){ return String(m).toUpperCase(); });
-  var delNombre = cosecharMarcas(PRODUCTOS.map(function(p){ return p.nombreCsv || p.nombre; }));
+  var delNombre = cosecharMarcas(PRODUCTOS.map(nombreParaMarcas));
   var vistas = {}, out = [];
   propias.concat(delNombre).forEach(function(m){
     if (m && !vistas[m]) { vistas[m] = 1; out.push(m); }
@@ -2606,7 +2626,7 @@ function refrescarMarcas(){
 let PROPUESTA = null;
 
 function propuestaDe(p){
-  return partirNombre(p.nombreCsv || p.nombre, MARCAS_SABIDAS);
+  return partirNombre(nombreParaMarcas(p), MARCAS_SABIDAS);
 }
 
 /* Cartel con lo que se leyó del nombre de E-Pyme, para aceptarlo de un toque.
@@ -3318,6 +3338,7 @@ function pintarKpis(){
     ['sindesc', sinDesc, 'Sin descripción', 'k-desc'],
     ['renom',   renoms,  renoms === 1 ? 'Nombre cambiado' : 'Nombres cambiados', 'k-renom'],
     ['revisarfoto', PRODUCTOS.filter(p => p.revisarFoto).length, 'Revisar foto', 'k-revfoto'],
+    ['revisarmarca', PRODUCTOS.filter(p => p.revisarMarca).length, 'Revisar marca', 'k-revmarca'],
     ...(TIENDA === 'may'
       ? [['bulto', PRODUCTOS.filter(p => p.bultoCambio).length, 'Cambió el bulto', 'k-bulto']]
       : []),
@@ -3446,12 +3467,48 @@ function enFiltroActual(p){
     case 'sinsellos':  return !p.sellos || !Object.keys(p.sellos).length;
     case 'consellos':  return !!(p.sellos && Object.keys(p.sellos).length);
     case 'revisarfoto':return !!p.revisarFoto;
+    case 'revisarmarca':return !!p.revisarMarca;
     case 'bulto':      return !!p.bultoCambio;
     case 'sinficha':   return p.p1 > 0 && !tieneFichaPropia(p) && (FICHAS_FB[p.id] || {}).oculto !== true;
     case 'nosev':     return p.p1 > 0 && !!porQueNoSeVe(p);
     default:           return true;
   }
 }
+
+/* Los dos botones de la marca dudosa: o se queda la del Excel, o la tuya. En los dos
+   casos el aviso se va; lo que no pasa nunca es que se cambie sola. */
+document.addEventListener('click', async function(ev){
+  var b = ev.target.closest && ev.target.closest('[data-marcaexcel],[data-marcaficha]');
+  if (!b) return;
+  ev.stopPropagation();
+  var tomarExcel = b.hasAttribute('data-marcaexcel');
+  var id = tomarExcel ? b.dataset.marcaexcel : b.dataset.marcaficha;
+  var p = PRODUCTOS.find(function(x){ return x.id === id; });
+  if (!p || !p.revisarMarca) return;
+  if (!TOKEN) { avisar('mal', 'Entrá con la clave para poder guardar'); return; }
+  var antes = p.revisarMarca, marcaAntes = p.marca;
+  b.disabled = true; b.textContent = 'Guardando...';
+  try {
+    var f = Object.assign({}, FICHAS_FB[id] || {});
+    if (tomarExcel) {
+      p.marca = antes.enExcel;
+      f.marca = antes.enExcel;
+      if (MARCAS_FB.indexOf(_norm(antes.enExcel)) < 0) MARCAS_FB.push(_norm(antes.enExcel));
+    }
+    delete f.revisarMarca;
+    f.actualizado = new Date().toISOString();
+    FICHAS_FB[id] = f;
+    p.revisarMarca = null;
+    await guardarFichasEnRepo((tomarExcel ? 'Marca del Excel: ' : 'Marca confirmada: ') + p.nombre);
+    try { refrescarMarcas(); } catch(e) {}
+    avisar('ok', tomarExcel ? 'Le puse ' + antes.enExcel : 'Queda ' + antes.enFicha, p.nombre);
+    pintarKpis(); pintar();
+  } catch (e) {
+    p.revisarMarca = antes; p.marca = marcaAntes;
+    avisar('mal', 'No pude guardar', e.message || e);
+    b.disabled = false; b.textContent = tomarExcel ? 'Poner la del Excel' : 'Dejar la mía';
+  }
+});
 
 /* "Ya lo vi" del bulto: saca la marca para que deje de figurar como cambio. */
 document.addEventListener('click', async function(ev){
@@ -3532,6 +3589,7 @@ const TITULOS_COPIA = {
   renom:       'CAMBIARON DE NOMBRE EN E-PYME',
   revisarfoto: 'HAY QUE CAMBIARLES LA FOTO (ahora son otro producto)',
   bulto:       'LES CAMBIÓ EL BULTO CERRADO',
+  revisarmarca:'LA MARCA DEL EXCEL NO COINCIDE CON LA FICHA',
   sinficha:    'SE PUBLICAN SIN FICHA (nombre crudo, sin foto)',
   nosev:       'TIENEN PRECIO Y NO SE VEN EN LA TIENDA',
   sinsellos:   'SIN SELLOS PUESTOS',
@@ -3570,6 +3628,9 @@ function _copiaRenglon(p){
       return base + '\n     era: ' + p.revisarFoto.antes + '\n     ahora es: ' + p.revisarFoto.ahora;
     case 'bulto':
       return base + ': bulto ' + p.bultoCambio.antes + ' → ' + p.bultoCambio.ahora;
+    case 'revisarmarca':
+      return base + '\n     en la ficha: ' + p.revisarMarca.enFicha +
+             '\n     en el Excel: ' + p.revisarMarca.enExcel;
     case 'fuera':
       var m = p.sinPrecio ? 'sin precio en E-Pyme'
             : p.malRubro  ? 'rubro que la tienda no reconoce: ' + p.rubro
@@ -3663,6 +3724,7 @@ function pintar(){
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
   if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
   if (FILTRO === 'revisarfoto') lista = lista.filter(p => p.revisarFoto);
+  if (FILTRO === 'revisarmarca') lista = lista.filter(p => p.revisarMarca);
   if (FILTRO === 'bulto')      lista = lista.filter(p => p.bultoCambio);
   if (FILTRO === 'sinficha')   lista = lista.filter(p => p.p1 > 0 && !tieneFichaPropia(p) && (FICHAS_FB[p.id] || {}).oculto !== true);
   if (FILTRO === 'nosev')     lista = lista.filter(p => p.p1 > 0 && porQueNoSeVe(p));
@@ -3805,6 +3867,16 @@ function pintar(){
       aviso += '<div class="aviso-cat sinficha"><b>Se publica con el nombre de E-Pyme</b>' +
         '<span>Sin ficha propia: sin foto, sin descripción y con el nombre tal cual viene.</span></div>';
     }
+    if (p.revisarMarca) {
+      aviso += '<div class="aviso-cat revmarca"><b>El Excel dice otra marca</b>' +
+        '<span>En la ficha: <b>' + esc(p.revisarMarca.enFicha) + '</b></span>' +
+        '<span>En el Excel: <b>' + esc(p.revisarMarca.enExcel) + '</b></span>' +
+        '<span>No cambié nada. Decidís vos.</span>' +
+        '<span class="acc-dos">' +
+          '<button type="button" class="btn gris aviso-cat-btn" data-marcaexcel="' + esc(p.id) + '">Poner la del Excel</button>' +
+          '<button type="button" class="btn gris aviso-cat-btn" data-marcaficha="' + esc(p.id) + '">Dejar la mía</button>' +
+        '</span></div>';
+    }
     if (p.bultoCambio) {
       aviso += '<div class="aviso-cat bulto"><b>Le cambió el bulto cerrado</b>' +
         '<span>Antes: ' + esc(p.bultoCambio.antes) + ' · Ahora: <b>' + esc(p.bultoCambio.ahora) + '</b></span>' +
@@ -3874,7 +3946,8 @@ function pintar(){
 // Clic en cualquier tarjeta abre el editor de esa ficha.
 document.getElementById('salida').addEventListener('click', e => {
   // Salvo el de "ya cambié la foto", que se resuelve solo y no necesita abrir nada.
-  if (e.target.closest('[data-revfoto]') || e.target.closest('[data-bultovisto]')) return;
+  if (e.target.closest('[data-revfoto]') || e.target.closest('[data-bultovisto]') ||
+      e.target.closest('[data-marcaexcel]') || e.target.closest('[data-marcaficha]')) return;
   const t = e.target.closest('.prod');
   if (t && t.dataset.id) abrirEditor(t.dataset.id);
 });
@@ -4134,6 +4207,11 @@ function excelDetalle(rev){
   return h;
 }
 
+/* El nombre con el que vino de E-Pyme la vez anterior. */
+function nomAntesDe(fe, p){
+  return String((fe && fe.nombreEpyme) || (p ? p.nombreCsv : '') || '').trim();
+}
+
 /* ¿Los dos nombres hablan del mismo producto? Se comparan las palabras con peso
    (fuera los números, las unidades y las palabras de una o dos letras): si comparten
    la mitad o más, es el mismo producto escrito distinto. */
@@ -4348,7 +4426,8 @@ async function excelPublicar(){
     // cambiaron QUEDAN MARCADOS para que puedas verlos. Antes se marcaban como
     // vistos acá mismo y después el panel no mostraba nada: parecía que subir el
     // Excel no había hecho nada.
-    var aprobados = 0, cambiaron = 0, bultos = 0, paraRevisar = 0, ahoraMismo = new Date().toISOString();
+    var aprobados = 0, cambiaron = 0, bultos = 0, paraRevisar = 0, marcasDudosas = 0,
+        ahoraMismo = new Date().toISOString();
     EXCEL_FILAS.forEach(function(f){
       var id = limpiaId(f.id);
       if (!id) return;
@@ -4367,20 +4446,42 @@ async function excelPublicar(){
       // y quedó con la foto del anterior.
       var nomEpyme = String(f.nombre || '').trim();
       if (nomEpyme) {
-        var fe = Object.assign({}, FICHAS_FB[id] || {});
-        var nomAntes = String(fe.nombreEpyme || (p ? p.nombreCsv : '') || '').trim();
-        if (nomAntes !== nomEpyme) {
+        var fe = Object.assign({}, FICHAS_FB[id] || {}), tocada = false;
+
+        // La marca que trae el nombre del Excel contra la que tiene puesta la ficha.
+        // NO se cambia nada solo: en la lista aparecen productos con la marca de otro
+        // proveedor, y pisar el nombre a ciegas deja la ficha mintiendo. Queda anotado
+        // para que lo mires y decidas vos.
+        var marcaFicha = String(fe.marca || '').trim();
+        if (marcaFicha) {
+          var marcaExcel = '';
+          try { marcaExcel = String((partirNombre(nomEpyme, MARCAS_SABIDAS) || {}).marca || '').trim(); } catch(e) {}
+          if (marcaExcel && _norm(marcaExcel) !== _norm(marcaFicha)) {
+            if (!fe.revisarMarca || _norm(fe.revisarMarca.enExcel || '') !== _norm(marcaExcel)) {
+              fe.revisarMarca = { enFicha: marcaFicha, enExcel: marcaExcel, cuando: ahoraMismo };
+              tocada = true;
+              marcasDudosas++;
+            }
+          } else if (fe.revisarMarca) {
+            delete fe.revisarMarca;         // volvió a coincidir: ya no hay nada que mirar
+            tocada = true;
+          }
+          if (p) p.revisarMarca = fe.revisarMarca || null;
+        }
+        if (nomAntesDe(fe, p) !== nomEpyme) {
           // Si el número pasó a ser otro producto, la ficha queda marcada. El aviso
           // de antes de publicar se va con la pantalla; esto no: la foto vieja sigue
           // publicada hasta que alguien la cambie, y hay que poder encontrarla después.
+          var nomAntes = nomAntesDe(fe, p);
           if (nomAntes && !_mismoProducto(nomAntes, nomEpyme)) {
             fe.revisarFoto = { antes: nomAntes, ahora: nomEpyme, cuando: ahoraMismo };
             if (p) p.revisarFoto = fe.revisarFoto;
             paraRevisar++;
           }
           fe.nombreEpyme = nomEpyme;
-          FICHAS_FB[id] = fe;
+          tocada = true;
         }
+        if (tocada) FICHAS_FB[id] = fe;
         if (p) p.nombreEpyme = nomEpyme;
       }
       if (esMay && f.patente) {
@@ -4435,6 +4536,10 @@ async function excelPublicar(){
       elegirFiltro('kpi','precio');
       avisar('ok', cambiaron + (cambiaron === 1 ? ' precio cambió' : ' precios cambiaron'),
              'Los tenés abajo, en la lista. Ya están publicados en la tienda.');
+    }
+    if (marcasDudosas) {
+      avisar('ojo', marcasDudosas + (marcasDudosas === 1 ? ' marca no coincide' : ' marcas no coinciden'),
+             'El Excel dice otra marca que la ficha. No cambié nada: están en «Revisar marca».');
     }
     if (paraRevisar) {
       // Esto manda sobre cualquier otro aviso: es lo único que deja una foto
@@ -4706,7 +4811,7 @@ function armarProductosMay(){
       oferta: f.oferta || 0,
       mix: false, granola: false, blend: false,
       marca: f.marca || '', envase: f.envase || '',
-      bultoCambio: f.bultoCambio || null,
+      bultoCambio: f.bultoCambio || null, revisarMarca: f.revisarMarca || null,
       nombreEpyme: f.nombreEpyme || '', editada: !!FICHAS_FB[id], nuevo: false, renombre: null,
       revisarFoto: f.revisarFoto || null,
       malRubro: false,
@@ -5627,7 +5732,7 @@ function mcaSugerir(){
 function mcaCoincide(p, marca){
   var m = _norm(marca);
   if (m.length < 3) return false;
-  var N = _norm(p.nombreCsv || p.nombre);
+  var N = _norm(nombreParaMarcas(p));
   return new RegExp('(?:^|[^A-ZÁÉÍÓÚÑ])' + m.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![A-ZÁÉÍÓÚÑ])').test(N);
 }
 
@@ -5665,7 +5770,7 @@ function mcaPintar(){
     return;
   }
   l.innerHTML = MCA_LISTA.map(function(p){
-    var pr = partirNombre(p.nombreCsv || p.nombre, [m]);
+    var pr = partirNombre(nombreParaMarcas(p), [m]);
     var ya = p.marca ? ' · <b style="color:#b8860b">ya tiene: ' + esc(p.marca) + '</b>' : '';
     return '<label class="cmp-item mca-item' + (MCA_MARCADOS.has(p.id) ? ' on' : ' off') + '" data-mca-id="' + esc(p.id) + '">' +
       '<input type="checkbox" ' + (MCA_MARCADOS.has(p.id) ? 'checked' : '') + '>' +
@@ -5710,20 +5815,25 @@ async function mcaAsignar(){
   b.disabled = true; b.textContent = 'Guardando...';
   try {
     marcados.forEach(function(p){
-      var pr = partirNombre(p.nombreCsv || p.nombre, [_norm(marca)]);
+      var pr = partirNombre(nombreParaMarcas(p), [_norm(marca)]);
       p.marca = marca;
       // Se acorta siempre: si estás asignando la marca es porque querés sacarla
       // del nombre. Antes esto pedía que la ficha no estuviera editada, y como
       // todas vienen del Sheet, el nombre no se limpiaba nunca.
       if (pr.nombre) p.nombre = pr.nombre;
       if (!p.envase && pr.envase) p.envase = pr.envase;
-      if (p.envasado === undefined) p.envasado = !pr.granel;
       var f = Object.assign({}, FICHAS_FB[p.id] || {});
       f.marca = marca;
       f.nombre = p.nombre;
       if (p.envase) f.envase = p.envase;
-      f.envasado = p.envasado;
-      if (!f.cantidades) f.cantidades = p.envasado ? '1 UNIDAD' : (p.cantidades || '');
+      // En la distribuidora no hay granel ni "1 UNIDAD": lo que va en cantidades es
+      // el bulto cerrado que trajo el Excel. Escribirlo acá lo borraba y la tarjeta
+      // pasaba a decir "1 UNIDAD" en lugar de "Bulto: 12 unid.".
+      if (TIENDA !== 'may') {
+        if (p.envasado === undefined) p.envasado = !pr.granel;
+        f.envasado = p.envasado;
+        if (!f.cantidades) f.cantidades = p.envasado ? '1 UNIDAD' : (p.cantidades || '');
+      }
       f.origen = 'panel'; f.actualizado = new Date().toISOString();
       FICHAS_FB[p.id] = f;
       p.editada = true;
