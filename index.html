@@ -7383,10 +7383,22 @@ const _MARCAS_MENU_TOPE = 12;
 function pintarMarcasDelMenu(){
   const c=document.getElementById('catsDropdownMarcas');
   if(!c)return;
-  const cuenta={};
+  // Se agrupan sin mirar mayúsculas ni acentos: "Alcaraz Gourmet" y "ALCARAZ GOURMET"
+  // son la misma marca y salían como dos chips distintos. Se muestra la forma más
+  // usada, que suele ser la bien escrita.
+  const grupos={};
   (PRODS||[]).forEach(p=>{
     const m=(_marcaDe(p)||'').trim();
-    if(m) cuenta[m]=(cuenta[m]||0)+1;
+    if(!m)return;
+    const k=_norm(m);
+    const g=grupos[k]||(grupos[k]={n:0,formas:{}});
+    g.n++; g.formas[m]=(g.formas[m]||0)+1;
+  });
+  const cuenta={};
+  Object.keys(grupos).forEach(k=>{
+    const g=grupos[k];
+    const mejor=Object.keys(g.formas).sort((a,b)=>g.formas[b]-g.formas[a]||a.localeCompare(b,'es'))[0];
+    cuenta[mejor]=g.n;
   });
   let lista=Object.keys(cuenta).sort((a,b)=>cuenta[b]-cuenta[a]||a.localeCompare(b,'es'));
   if(!lista.length){ c.innerHTML=''; return; }
