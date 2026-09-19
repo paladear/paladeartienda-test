@@ -490,6 +490,18 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
 .excel-cuentas span.baja b{color:#1d7a4a}
 .excel-cuentas span.nuevo{background:#eef8f2;border-color:#bfe3cf;color:#1d7a4a}
 .excel-cuentas span.renom{background:#f1f0f8;border-color:#cfcede;color:#544f72}
+.bulto-caja{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1px solid var(--linea);
+  border-radius:10px;background:var(--papel-2)}
+.bulto-caja b{font:800 17px/1 'Montserrat',sans-serif}
+.bulto-caja i{font-style:normal;font-size:12.5px;color:var(--suave);line-height:1.4}
+.bulto-caja .bulto-nuevo{margin-left:auto;flex:0 0 auto;padding:4px 10px;border-radius:999px;
+  background:#fdf2e3;border:1px solid #e8c48d;color:#8a5a10;font:700 12px/1.6 'Montserrat',sans-serif}
+.kpi.k-bulto{background:#fdf2e3;border-color:#e8c48d}
+.kpi.k-bulto span,.kpi.k-bulto b{color:#8a5a10}
+.kpi.k-bulto.on{background:#8a5a10;border-color:#8a5a10}
+.kpi.k-bulto.on span,.kpi.k-bulto.on b{color:#fff}
+.aviso-cat.bulto{background:#fdf2e3;border-color:#e8c48d;color:#8a5a10}
+.aviso-cat.bulto b{color:#8a5a10}
 .fila-copiar{display:flex;align-items:center;gap:10px;margin:0 0 12px;flex-wrap:wrap}
 .fila-copiar .btn{display:inline-flex;align-items:center;gap:8px;min-height:42px}
 .fila-copiar .btn svg{width:17px;height:17px;flex:0 0 auto}
@@ -1114,7 +1126,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
     <h1>Panel de catálogo</h1>
     <span class="env"></span>
     <span class="quien" id="quien"></span>
-    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 19/09 11:55</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
+    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 19/09 12:40</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
   </div>
 </header>
 
@@ -1165,7 +1177,13 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
         <label for="edMarca">Marca <span class="ayuda">— opcional, dejalo vacío si es suelto</span></label>
         <input id="edMarca" maxlength="60" placeholder="Dos Hermanos">
       </div>
-      <div class="campo">
+      <!-- La distribuidora vende sólo bulto cerrado: acá no se elige nada, se
+           muestra lo que vino en la columna Patente del último Excel. -->
+      <div class="campo" id="edCampoBulto" hidden>
+        <label>Bulto cerrado <span class="ayuda">— sale de la columna Patente del Excel</span></label>
+        <div class="bulto-caja" id="edBulto"></div>
+      </div>
+      <div class="campo" id="edCampoVenta">
         <label>¿Cómo se vende?</label>
         <div class="venta" id="edVenta">
           <button type="button" class="venta-op" data-v="granel">
@@ -2693,9 +2711,40 @@ function sellosDe(){
 let ES_ENVASADO = false;
 
 function pintarVenta(p){
+  var esMay = TIENDA === 'may';
+  // En la distribuidora no hay nada que elegir: todo se vende por bulto cerrado.
+  // Mostrar los botones de granel invitaba a pisar el bulto sin querer.
+  var cv = $('edCampoVenta'), cb = $('edCampoBulto');
+  if (cv) cv.hidden = esMay;
+  if (cb) cb.hidden = !esMay;
+  if (esMay) {
+    pintarBulto(p);
+    var g = $('edCampoGranel'), e = $('edCampoEnvase');
+    if (g) g.hidden = true;
+    if (e) e.hidden = true;
+    return;
+  }
   var cant = String(p.cantidades || '');
   ES_ENVASADO = p.envasado === true || (p.envasado === undefined && /unidad/i.test(cant));
   dibujarVenta();
+}
+
+/* El bulto cerrado, tal como vino del Excel, y si cambió en la última lista. */
+function pintarBulto(p){
+  var c = $('edBulto');
+  if (!c) return;
+  var f = FICHAS_FB[p.id] || {};
+  var b = String(f.bulto || '').trim();
+  if (!b) {
+    c.innerHTML = '<i>Todavía no tiene bulto cargado. Se completa solo cuando subas ' +
+      'un Excel con la columna Patente.</i>';
+    return;
+  }
+  var cambio = f.bultoCambio;
+  c.innerHTML = '<b>' + esc(b) + '</b>' +
+    '<i>El precio del cliente es el del bulto entero.' +
+    (cambio && cambio.antes ? '<br>Antes era <b>' + esc(String(cambio.antes).replace(/\.$/, '')) + '</b>.' : '') + '</i>' +
+    (cambio ? '<span class="bulto-nuevo">cambió</span>' : '');
 }
 
 function dibujarVenta(){
@@ -2937,9 +2986,13 @@ async function guardarFicha(){
   const datos = {
     nombre: $('edNombre').value.trim(),
     marca: $('edMarca').value.trim(),
-    envasado: ES_ENVASADO,
-    envase: ES_ENVASADO ? $('edEnvase').value.trim() : '',
-    cantidades: ES_ENVASADO ? '1 UNIDAD' : textoMedidas(),
+    // En la distribuidora estos tres no se tocan: no hay granel, y el bulto vive
+    // en su propio campo. Guardarlos desde acá le pisaba el contenido a la ficha.
+    envasado: TIENDA === 'may' ? (FICHAS_FB[p.id] || {}).envasado : ES_ENVASADO,
+    envase: TIENDA === 'may' ? ((FICHAS_FB[p.id] || {}).envase || '')
+                             : (ES_ENVASADO ? $('edEnvase').value.trim() : ''),
+    cantidades: TIENDA === 'may' ? ((FICHAS_FB[p.id] || {}).cantidades || '')
+                                 : (ES_ENVASADO ? '1 UNIDAD' : textoMedidas()),
     rubro: (p.rubro || '').trim(),
     sabores: textoSabores(),
     saboresOcultos: saboresApagados(),
@@ -3265,6 +3318,9 @@ function pintarKpis(){
     ['sindesc', sinDesc, 'Sin descripción', 'k-desc'],
     ['renom',   renoms,  renoms === 1 ? 'Nombre cambiado' : 'Nombres cambiados', 'k-renom'],
     ['revisarfoto', PRODUCTOS.filter(p => p.revisarFoto).length, 'Revisar foto', 'k-revfoto'],
+    ...(TIENDA === 'may'
+      ? [['bulto', PRODUCTOS.filter(p => p.bultoCambio).length, 'Cambió el bulto', 'k-bulto']]
+      : []),
     // Los dos que faltaban: lo que se publica sin ficha y lo que no se ve aunque
     // tenga precio. En la minorista dan 0 porque ahí nada entra sin pasar por vos.
     ['sinficha', PRODUCTOS.filter(p => p.p1 > 0 && !tieneFichaPropia(p) &&
@@ -3390,11 +3446,38 @@ function enFiltroActual(p){
     case 'sinsellos':  return !p.sellos || !Object.keys(p.sellos).length;
     case 'consellos':  return !!(p.sellos && Object.keys(p.sellos).length);
     case 'revisarfoto':return !!p.revisarFoto;
+    case 'bulto':      return !!p.bultoCambio;
     case 'sinficha':   return p.p1 > 0 && !tieneFichaPropia(p) && (FICHAS_FB[p.id] || {}).oculto !== true;
     case 'nosev':     return p.p1 > 0 && !!porQueNoSeVe(p);
     default:           return true;
   }
 }
+
+/* "Ya lo vi" del bulto: saca la marca para que deje de figurar como cambio. */
+document.addEventListener('click', async function(ev){
+  var b = ev.target.closest && ev.target.closest('[data-bultovisto]');
+  if (!b) return;
+  ev.stopPropagation();
+  var id = b.dataset.bultovisto;
+  var p = PRODUCTOS.find(function(x){ return x.id === id; });
+  if (!p) return;
+  if (!TOKEN) { avisar('mal', 'Entrá con la clave para poder guardar'); return; }
+  b.disabled = true; b.textContent = 'Guardando...';
+  var antes = p.bultoCambio;
+  try {
+    p.bultoCambio = null;
+    var f = Object.assign({}, FICHAS_FB[id] || {});
+    delete f.bultoCambio;
+    f.actualizado = new Date().toISOString();
+    FICHAS_FB[id] = f;
+    await guardarFichasEnRepo('Bulto revisado: ' + p.nombre);
+    pintarKpis(); pintar();
+  } catch (e) {
+    p.bultoCambio = antes;
+    avisar('mal', 'No pude guardar', e.message || e);
+    b.disabled = false; b.textContent = 'Ya lo vi';
+  }
+});
 
 /* "Ya cambié la foto": saca la marca y la guarda, para que no siga apareciendo. */
 document.addEventListener('click', async function(ev){
@@ -3448,6 +3531,7 @@ const TITULOS_COPIA = {
   fuera:       'FUERA DEL CATÁLOGO (el cliente no los ve)',
   renom:       'CAMBIARON DE NOMBRE EN E-PYME',
   revisarfoto: 'HAY QUE CAMBIARLES LA FOTO (ahora son otro producto)',
+  bulto:       'LES CAMBIÓ EL BULTO CERRADO',
   sinficha:    'SE PUBLICAN SIN FICHA (nombre crudo, sin foto)',
   nosev:       'TIENEN PRECIO Y NO SE VEN EN LA TIENDA',
   sinsellos:   'SIN SELLOS PUESTOS',
@@ -3484,6 +3568,8 @@ function _copiaRenglon(p){
       return base + (r ? '\n     antes: ' + r.nombre_publicado + '\n     ahora: ' + r.nombre_nuevo : '');
     case 'revisarfoto':
       return base + '\n     era: ' + p.revisarFoto.antes + '\n     ahora es: ' + p.revisarFoto.ahora;
+    case 'bulto':
+      return base + ': bulto ' + p.bultoCambio.antes + ' → ' + p.bultoCambio.ahora;
     case 'fuera':
       var m = p.sinPrecio ? 'sin precio en E-Pyme'
             : p.malRubro  ? 'rubro que la tienda no reconoce: ' + p.rubro
@@ -3577,6 +3663,7 @@ function pintar(){
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
   if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
   if (FILTRO === 'revisarfoto') lista = lista.filter(p => p.revisarFoto);
+  if (FILTRO === 'bulto')      lista = lista.filter(p => p.bultoCambio);
   if (FILTRO === 'sinficha')   lista = lista.filter(p => p.p1 > 0 && !tieneFichaPropia(p) && (FICHAS_FB[p.id] || {}).oculto !== true);
   if (FILTRO === 'nosev')     lista = lista.filter(p => p.p1 > 0 && porQueNoSeVe(p));
   if (FILTRO === 'sinsellos')  lista = lista.filter(p => !p.sellos || !Object.keys(p.sellos).length);
@@ -3718,6 +3805,13 @@ function pintar(){
       aviso += '<div class="aviso-cat sinficha"><b>Se publica con el nombre de E-Pyme</b>' +
         '<span>Sin ficha propia: sin foto, sin descripción y con el nombre tal cual viene.</span></div>';
     }
+    if (p.bultoCambio) {
+      aviso += '<div class="aviso-cat bulto"><b>Le cambió el bulto cerrado</b>' +
+        '<span>Antes: ' + esc(p.bultoCambio.antes) + ' · Ahora: <b>' + esc(p.bultoCambio.ahora) + '</b></span>' +
+        '<span>El cliente paga precio × bulto, así que el total le cambia.</span>' +
+        '<button type="button" class="btn gris aviso-cat-btn" data-bultovisto="' + esc(p.id) + '">Ya lo vi</button>' +
+        '</div>';
+    }
     if (p.revisarFoto) {
       aviso += '<div class="aviso-cat revfoto"><b>Este artículo ahora es otro producto</b>' +
         '<span>Antes: ' + esc(String(p.revisarFoto.antes).slice(0,60)) + '</span>' +
@@ -3743,8 +3837,13 @@ function pintar(){
         // exactamente igual.
         '<div class="meta">Art. ' + esc(p.id) + ' · ' + esc(p.rubro) +
           (p.envase ? ' · <b class="meta-env">' + esc(p.envase) + '</b>' : '') +
-          (p.cantidades && p.cantidades !== '1 UNIDAD' ? ' · ' + esc(p.cantidades) : '') +
-          (!p.envase && p.cantidades === '1 UNIDAD' ? ' · <span class="meta-falta">sin contenido cargado</span>' : '') +
+          // En la distribuidora ese dato es el bulto cerrado y sin la palabra no se
+          // entendía qué era ese "6 unid." suelto al final del renglón.
+          (TIENDA === 'may'
+            ? (p.cantidades ? ' · Bulto: <b class="meta-env">' + esc(p.cantidades) + '</b>'
+                            : ' · <span class="meta-falta">sin bulto cargado</span>')
+            : (p.cantidades && p.cantidades !== '1 UNIDAD' ? ' · ' + esc(p.cantidades) : '') +
+              (!p.envase && p.cantidades === '1 UNIDAD' ? ' · <span class="meta-falta">sin contenido cargado</span>' : '')) +
           '</div>' +
         precio +
         bandPrecio +
@@ -3775,7 +3874,7 @@ function pintar(){
 // Clic en cualquier tarjeta abre el editor de esa ficha.
 document.getElementById('salida').addEventListener('click', e => {
   // Salvo el de "ya cambié la foto", que se resuelve solo y no necesita abrir nada.
-  if (e.target.closest('[data-revfoto]')) return;
+  if (e.target.closest('[data-revfoto]') || e.target.closest('[data-bultovisto]')) return;
   const t = e.target.closest('.prod');
   if (t && t.dataset.id) abrirEditor(t.dataset.id);
 });
@@ -4287,11 +4386,17 @@ async function excelPublicar(){
       if (esMay && f.patente) {
         var bultoTxt = String(f.patente).trim();
         var ficha = Object.assign({}, FICHAS_FB[id] || {});
-        if (String(ficha.bulto || '').trim() !== bultoTxt) {
+        var bultoAntes = String(ficha.bulto || '').trim();
+        if (bultoAntes !== bultoTxt) {
+          // Queda anotado: el precio que ve el cliente es precio × bulto, así que un
+          // bulto que cambia de 6 a 12 le duplica el total sin que nadie lo note.
+          // Sólo si ya había uno antes: la primera carga no es un cambio.
+          if (bultoAntes) ficha.bultoCambio = { antes: bultoAntes, ahora: bultoTxt, cuando: ahoraMismo };
           ficha.bulto = bultoTxt;
           ficha.bultoUnidad = /kg|kilo/i.test(bultoTxt) ? 'kg' : 'unidad';
           FICHAS_FB[id] = ficha;
-          bultos++;
+          if (p) { p.cantidades = bultoTxt; p.bultoCambio = ficha.bultoCambio || null; }
+          if (bultoAntes) bultos++;
         }
       }
       if (p) {
@@ -4321,8 +4426,8 @@ async function excelPublicar(){
                'Volvé a entrar y fijate si los cambios figuran como revisados. ' + (e.message || e));
       }
     }
-    if (bultos) avisar('ok', bultos + (bultos === 1 ? ' bulto actualizado' : ' bultos actualizados'),
-                       'Salieron de la columna Patente del Excel.');
+    if (bultos) avisar('ojo', bultos + (bultos === 1 ? ' bulto cambió' : ' bultos cambiaron'),
+                       'Están en el filtro «Cambió el bulto». El precio del cliente es precio × bulto.');
     if (cambiaron) {
       // Y se deja el panel mostrando justamente eso.
       ORDEN = 'cambios';
@@ -4601,6 +4706,7 @@ function armarProductosMay(){
       oferta: f.oferta || 0,
       mix: false, granola: false, blend: false,
       marca: f.marca || '', envase: f.envase || '',
+      bultoCambio: f.bultoCambio || null,
       nombreEpyme: f.nombreEpyme || '', editada: !!FICHAS_FB[id], nuevo: false, renombre: null,
       revisarFoto: f.revisarFoto || null,
       malRubro: false,
