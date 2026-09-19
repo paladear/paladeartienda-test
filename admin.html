@@ -490,6 +490,15 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
 .excel-cuentas span.baja b{color:#1d7a4a}
 .excel-cuentas span.nuevo{background:#eef8f2;border-color:#bfe3cf;color:#1d7a4a}
 .excel-cuentas span.renom{background:#f1f0f8;border-color:#cfcede;color:#544f72}
+.fila-copiar{display:flex;align-items:center;gap:10px;margin:0 0 12px;flex-wrap:wrap}
+.fila-copiar .btn{display:inline-flex;align-items:center;gap:8px;min-height:42px}
+.fila-copiar .btn svg{width:17px;height:17px;flex:0 0 auto}
+.fila-copiar .btn.copiado{background:#eef8f2;border-color:#bfe3cf;color:#1d7a4a}
+.copiar-info{font-size:12.5px;color:var(--suave);line-height:1.35}
+@media(max-width:560px){
+  .fila-copiar .btn{flex:1;justify-content:center}
+  .copiar-info{width:100%;text-align:center}
+}
 .excel-cuentas span.cambiazo{background:#fdeaea;border-color:#e9b4b4;color:#a52020;font-weight:700}
 /* ── Rubros de la distribuidora ── */
 .rub-lista{display:flex;flex-direction:column;gap:7px}
@@ -1105,7 +1114,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
     <h1>Panel de catálogo</h1>
     <span class="env"></span>
     <span class="quien" id="quien"></span>
-    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 18/09 12:05</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
+    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 19/09 11:55</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
   </div>
 </header>
 
@@ -1320,6 +1329,19 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
         <option value="rubro">Por rubro</option>
       </select>
     </label>
+  </div>
+
+  <!-- ── COPIAR LA LISTA QUE SE ESTÁ VIENDO ──
+       Para pasarle a la distribuidora o a quien sea lo que falta, sin ir
+       anotando a mano producto por producto. -->
+  <div class="fila-copiar">
+    <button type="button" class="btn gris" id="btnCopiar" onclick="copiarLista()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+        <path d="M5 15V5a2 2 0 0 1 2-2h10"></path>
+      </svg><span id="btnCopiarTxt">Copiar la lista</span>
+    </button>
+    <span class="copiar-info" id="copiarInfo"></span>
   </div>
 
   <!-- ── QUÉ CAMBIÓ DESDE LA ÚLTIMA VEZ ──
@@ -3411,6 +3433,140 @@ function selloChips(p){
   }).join('') + '</span>';
 }
 
+/* ── COPIAR LA LISTA ──────────────────────────────────────────────────────────
+   Cada filtro es una lista de trabajo: los que no tienen foto, los que cambiaron
+   de precio, los que quedaron afuera. Copiarla entera y pegarla en WhatsApp evita
+   ir anotando producto por producto para pasarle el dato a la distribuidora. */
+let LISTA_VISIBLE = [];
+
+const TITULOS_COPIA = {
+  todos:       'TODOS LOS PRODUCTOS',
+  precio:      'PRECIOS QUE CAMBIARON',
+  nuevos:      'PRODUCTOS NUEVOS, TODAVÍA SIN CARGAR',
+  sinfoto:     'SIN IMAGEN EN LA PÁGINA',
+  sindesc:     'SIN DESCRIPCIÓN',
+  fuera:       'FUERA DEL CATÁLOGO (el cliente no los ve)',
+  renom:       'CAMBIARON DE NOMBRE EN E-PYME',
+  revisarfoto: 'HAY QUE CAMBIARLES LA FOTO (ahora son otro producto)',
+  sinficha:    'SE PUBLICAN SIN FICHA (nombre crudo, sin foto)',
+  nosev:       'TIENEN PRECIO Y NO SE VEN EN LA TIENDA',
+  sinsellos:   'SIN SELLOS PUESTOS',
+  consellos:   'CON SELLOS PUESTOS',
+  oferta:      'CON OFERTA',
+  malrubro:    'CON UN RUBRO QUE LA TIENDA NO RECONOCE',
+  pendientes:  'PENDIENTES DE REVISAR'
+};
+const TOPE_COPIA = 400;   // más que esto no entra en un mensaje y no se lee
+
+/* El nombre con lo que lo hace reconocible: sin esto, tres renglones dicen lo mismo. */
+function _copiaNombre(p){
+  var extra = [];
+  if (p.envase) extra.push(p.envase);
+  if (p.marca) extra.push(p.marca);
+  return p.nombre + (extra.length ? ' (' + extra.join(' · ') + ')' : '');
+}
+
+function _copiaRenglon(p){
+  var base = p.id + ' — ' + _copiaNombre(p);
+  switch (FILTRO) {
+    case 'precio':
+      if (p.precioAntes && p.precioAntes !== p.p1) {
+        var pct = Math.round((p.p1 / p.precioAntes - 1) * 100);
+        return base + ': ' + pesos(p.precioAntes) + ' → ' + pesos(p.p1) +
+               ' (' + (pct >= 0 ? '+' : '') + pct + '%)';
+      }
+      return base + ': ' + pesos(p.p1);
+    case 'oferta':
+      return base + ': ' + p.oferta + '% off — queda ' +
+             pesos(Math.round(p.p1 * (1 - p.oferta / 100)));
+    case 'renom':
+      var r = hayRenombre(p);
+      return base + (r ? '\n     antes: ' + r.nombre_publicado + '\n     ahora: ' + r.nombre_nuevo : '');
+    case 'revisarfoto':
+      return base + '\n     era: ' + p.revisarFoto.antes + '\n     ahora es: ' + p.revisarFoto.ahora;
+    case 'fuera':
+      var m = p.sinPrecio ? 'sin precio en E-Pyme'
+            : p.malRubro  ? 'rubro que la tienda no reconoce: ' + p.rubro
+            : p.nuevo     ? 'nuevo, todavía sin aprobar'
+            : 'lo sacaste vos';
+      return base + ' — ' + m;
+    case 'nosev':
+      return base + ' — ' + porQueNoSeVe(p);
+    case 'sinsellos':
+    case 'consellos':
+      var puestos = SELLOS.filter(function(x){ return p.sellos && p.sellos[x.id]; })
+        .map(function(x){ return x.txt; });
+      return base + (puestos.length ? ' — ' + puestos.join(', ') : '');
+    case 'nuevos':
+      return base + (p.p1 ? ' — ' + pesos(p.p1) : '');
+    default:
+      return base + (p.p1 ? ' — ' + pesos(p.p1) : '');
+  }
+}
+
+function textoDeLaLista(){
+  var l = LISTA_VISIBLE || [];
+  var d = new Date();
+  var fecha = ('0'+d.getDate()).slice(-2) + '/' + ('0'+(d.getMonth()+1)).slice(-2) + '/' + d.getFullYear();
+  var cab = (TITULOS_COPIA[FILTRO] || 'PRODUCTOS') + ' — ' + nombreCorto() + '\n' +
+            l.length + (l.length === 1 ? ' producto' : ' productos') + ' · ' + fecha;
+  if (RUBRO) cab += '\nRubro: ' + (RUBRO === '__sin__' ? 'sin rubro' : _capitalizar(RUBRO));
+  if (BUSCA) cab += '\nBúsqueda: "' + BUSCA + '"';
+  var cortada = l.length > TOPE_COPIA;
+  var cuerpo = (cortada ? l.slice(0, TOPE_COPIA) : l).map(_copiaRenglon).join('\n');
+  if (cortada) cuerpo += '\n… y ' + (l.length - TOPE_COPIA) + ' más (filtrá por rubro para verlos)';
+  return cab + '\n\n' + cuerpo + '\n';
+}
+
+function pintarBotonCopiar(){
+  var b = document.getElementById('btnCopiar');
+  var i = document.getElementById('copiarInfo');
+  if (!b || !i) return;
+  var n = (LISTA_VISIBLE || []).length;
+  b.disabled = !n;
+  b.classList.remove('copiado');
+  var t = document.getElementById('btnCopiarTxt');
+  if (t) t.textContent = 'Copiar la lista';
+  i.textContent = n
+    ? 'Copia ' + n + (n === 1 ? ' producto' : ' productos') + ': ' +
+      (TITULOS_COPIA[FILTRO] || 'productos').toLowerCase()
+    : 'No hay nada en este filtro.';
+}
+
+async function copiarLista(){
+  var texto = textoDeLaLista();
+  var b = document.getElementById('btnCopiar');
+  var t = document.getElementById('btnCopiarTxt');
+  var ok = false;
+  try {
+    await navigator.clipboard.writeText(texto);
+    ok = true;
+  } catch (e) {
+    // En el iPhone y en páginas viejas el portapapeles moderno no siempre está:
+    // se cae a un cuadro de texto invisible, que funciona en todos lados.
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = texto;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+      document.body.appendChild(ta);
+      ta.select(); ta.setSelectionRange(0, texto.length);
+      ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+    } catch (e2) { ok = false; }
+  }
+  if (ok) {
+    if (b) b.classList.add('copiado');
+    if (t) t.textContent = '¡Copiado!';
+    avisar('ok', (LISTA_VISIBLE || []).length + ' productos copiados',
+           'Pegalo donde quieras: WhatsApp, un mail, una nota.');
+    setTimeout(pintarBotonCopiar, 2500);
+  } else {
+    avisar('mal', 'No pude copiar', 'Tu navegador no lo permitió. Probá de nuevo tocando el botón.');
+  }
+}
+window.copiarLista = copiarLista;
+
 function pintar(){
   let lista = PRODUCTOS.slice();
   if (FILTRO === 'pendientes') lista = lista.filter(p => p.nuevo || hayRenombre(p) || p.malRubro);
@@ -3450,6 +3606,11 @@ function pintar(){
     if (fa !== fb) return fb.localeCompare(fa);   // más reciente primero
     return alfa(a,b);
   });
+
+  // El botón de copiar usa exactamente esto: lo que estás viendo, con el filtro,
+  // el rubro y la búsqueda que tengas puestos.
+  LISTA_VISIBLE = lista;
+  try { pintarBotonCopiar(); } catch(e) {}
 
   llenarRubros();
   // Una línea de ayuda según lo que se esté mirando: el panel tiene varios
@@ -4423,9 +4584,12 @@ function armarProductosMay(){
     var f = FICHAS_FB[id] || {};
     return {
       id: id,
-      nombre: f.nombre || b.nombreCsv,
-      nombreCsv: b.nombreCsv,
-      rubro: b.rubro,
+      // Si salió de la lista de precios se queda sin nombre por todos lados: no está
+      // en el CSV y la ficha nunca tuvo uno propio. El nombre con el que vino de
+      // E-Pyme es lo único que queda, y es mejor que un renglón vacío.
+      nombre: f.nombre || b.nombreCsv || f.nombreEpyme || '(sin nombre · art. ' + id + ')',
+      nombreCsv: b.nombreCsv || f.nombreEpyme || '',
+      rubro: b.rubro || f.rubro || '',
       p1: b.p1 || 0, p2: 0,
       ficha: !!FICHAS_FB[id],
       desc: f.desc || '',
@@ -4436,6 +4600,7 @@ function armarProductosMay(){
       sabores: f.sabores || b.sabores || '',
       oferta: f.oferta || 0,
       mix: false, granola: false, blend: false,
+      marca: f.marca || '', envase: f.envase || '',
       nombreEpyme: f.nombreEpyme || '', editada: !!FICHAS_FB[id], nuevo: false, renombre: null,
       revisarFoto: f.revisarFoto || null,
       malRubro: false,
@@ -4518,6 +4683,9 @@ async function cambiarTienda(cual){
   pintarCartelTienda();
   try { llenarRubros(); } catch(e) {}
   try { refrescarMarcas(); } catch(e) {}
+  // Sin esto el cartel de arriba seguía diciendo las fichas de la otra tienda.
+  try { avisoImportacion(); } catch(e) {}
+  try { cargarDeshacer(); } catch(e) {}
   try { pintarKpis(); } catch(e) {}
   pintar();
 }
