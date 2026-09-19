@@ -509,6 +509,35 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
 .rub-sw[aria-checked="true"]::after{transform:translateX(22px)}
 .rub-sw:focus-visible{outline:2px solid var(--tinta);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){ .rub-sw,.rub-sw::after{transition:none} }
+/* Los dos controles nuevos: uno naranja (falta trabajo) y uno rojo (no se ve). */
+.kpi.k-sinficha{background:#fdf2e3;border-color:#e8c48d}
+.kpi.k-sinficha span,.kpi.k-sinficha b{color:#8a5a10}
+.kpi.k-sinficha.on{background:#8a5a10;border-color:#8a5a10}
+.kpi.k-sinficha.on span,.kpi.k-sinficha.on b{color:#fff}
+.kpi.k-nosev{background:#fdeaea;border-color:#e9b4b4}
+.kpi.k-nosev span,.kpi.k-nosev b{color:#a52020}
+.kpi.k-nosev.on{background:#a52020;border-color:#a52020}
+.kpi.k-nosev.on span,.kpi.k-nosev.on b{color:#fff}
+.aviso-cat.nosev{background:#fdeaea;border-color:#e9b4b4;color:#a52020}
+.aviso-cat.nosev b{color:#a52020}
+.aviso-cat.sinficha{background:#fdf2e3;border-color:#e8c48d;color:#8a5a10}
+.aviso-cat.sinficha b{color:#8a5a10}
+/* ── Control de la tienda ── */
+.ctrl-fila{display:flex;align-items:center;gap:12px;padding:11px 13px;border:1px solid var(--linea);
+  border-radius:10px;background:var(--papel);margin:0 0 8px}
+.ctrl-fila.mal{background:#fdeaea;border-color:#e9b4b4}
+.ctrl-fila.ojo{background:#fdf2e3;border-color:#e8c48d}
+.ctrl-fila.bien{background:#eef8f2;border-color:#bfe3cf}
+.ctrl-n{font:800 22px/1 'Montserrat',sans-serif;min-width:52px;text-align:center}
+.ctrl-fila.mal .ctrl-n{color:#a52020}
+.ctrl-fila.ojo .ctrl-n{color:#8a5a10}
+.ctrl-fila.bien .ctrl-n{color:#1d7a4a}
+.ctrl-t{flex:1;min-width:0}
+.ctrl-t b{display:block;font-size:14px;line-height:1.3}
+.ctrl-t i{font-style:normal;font-size:12.5px;color:var(--suave);line-height:1.4}
+.ctrl-ver{flex:0 0 auto;padding:7px 13px;font-size:13px;min-height:38px}
+.ctrl-det{margin:0 0 14px;font-size:12.5px;line-height:1.5;color:var(--suave)}
+.ctrl-det span{display:block;padding:3px 0;border-bottom:1px dotted var(--linea)}
 .kpi.k-revfoto{background:#fdeaea;border-color:#e9b4b4}
 .kpi.k-revfoto span,.kpi.k-revfoto b{color:#a52020}
 .kpi.k-revfoto.on{background:#a52020;border-color:#a52020}
@@ -1012,8 +1041,8 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
   input,select,textarea,.campo input,.campo textarea,#buscar,.cmp-busca input{font-size:16px!important}
   .cmp-busca input{min-height:48px}
 }
-#capaAltas,#capaMarcas,#capaSellos,#capaRubros{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
-#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
+#capaAltas,#capaMarcas,#capaSellos,#capaRubros,#capaControl{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
+#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto,#capaControl.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
 /* Las marcas que ya conoce, para tocarlas en vez de escribirlas. */
 .mca-sug{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
 /* ── Sellos en masa ── */
@@ -1037,20 +1066,20 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
 .mca-chip.on{background:#5b5680;border-color:#5b5680;color:#fff}
 .mca-antes{display:block;font-size:12px;color:#93a0ac;margin-top:2px}
 .mca-antes b{color:#1f7a4a;font-weight:700}
-#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
+#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja,#capaControl .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
   box-shadow:0 22px 60px rgba(0,0,0,.3);display:flex;flex-direction:column;max-height:calc(100vh - 48px)}
-#capaAltas .ed-top,#capaMarcas .ed-top,#capaSellos .ed-top,#capaRubros .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
+#capaAltas .ed-top,#capaMarcas .ed-top,#capaSellos .ed-top,#capaRubros .ed-top,#capaControl .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding:14px 18px;border-bottom:1px solid var(--linea)}
-#capaAltas .ed-cuerpo,#capaMarcas .ed-cuerpo,#capaSellos .ed-cuerpo,#capaRubros .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
-#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+#capaAltas .ed-cuerpo,#capaMarcas .ed-cuerpo,#capaSellos .ed-cuerpo,#capaRubros .ed-cuerpo,#capaControl .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
+#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie,#capaControl .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
   padding:13px 18px;border-top:1px solid var(--linea);background:var(--papel)}
 .alt-item.on{border-color:#2e9e63;background:#f3faf6}
 .alt-falta{color:#c2582f}
 @media(max-width:700px){
-#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto{padding:0;align-items:stretch}
-#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
-#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
-#capaAltas .ed-pie .btn,#capaMarcas .ed-pie .btn,#capaSellos .ed-pie .btn,#capaRubros .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
+#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto,#capaControl.abierto{padding:0;align-items:stretch}
+#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja,#capaControl .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
+#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie,#capaControl .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
+#capaAltas .ed-pie .btn,#capaMarcas .ed-pie .btn,#capaSellos .ed-pie .btn,#capaRubros .ed-pie .btn,#capaControl .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -1076,7 +1105,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
     <h1>Panel de catálogo</h1>
     <span class="env"></span>
     <span class="quien" id="quien"></span>
-    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 18/09 11:10</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
+    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 18/09 12:05</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
   </div>
 </header>
 
@@ -1375,6 +1404,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
           <button class="btn gris" id="btnMarcas" onclick="abrirMarcas()" title="Asigná una marca a muchos productos de una vez">Marcas de los productos</button>
           <button class="btn gris" id="btnSellos" onclick="abrirSellos()" title="Poné un sello (sin TACC, vegano...) a muchos productos de una vez">Sellos de los productos</button>
           <button class="btn gris" id="btnRubros" onclick="abrirRubros()" title="Apagá un rubro entero: deja de verse en la tienda mayorista">Rubros de la distribuidora</button>
+          <button class="btn gris" id="btnControl" onclick="abrirControl()" title="Comparar lo que hay en el panel con lo que el cliente ve de verdad">Control de la tienda</button>
           <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
         </div>
         <div class="hoja-grupo" id="grupoPublicar">
@@ -1446,6 +1476,42 @@ var GUARDADO_MIN = null, GUARDADO_MAY = null;   // fichas/fotos/productos de cad
 /* Rubros que la distribuidora no vende: se apagan enteros desde Herramientas y la
    tienda mayorista los saltea, incluidos los productos que entren después. */
 let RUBROS_OCULTOS = [];
+
+/* ── LO QUE EL CLIENTE VE DE VERDAD ───────────────────────────────────────────
+   El panel mostraba sus propios datos y nunca los comparaba con la tienda. Así se
+   colaban productos con precio que la tienda descarta en silencio y nadie se
+   enteraba: dos caramelos que no se veían hacía meses y un registro interno que
+   figuraba publicado sin estarlo.
+
+   Estos son los rubros que las dos tiendas saben dibujar (tienen ícono y nombre).
+   Un producto con un rubro que no esté acá NO SE VE, sin ningún aviso.
+   Si agregás un rubro nuevo a las tiendas, agregalo también acá. */
+const RUBROS_TIENDA = ['ACEITES Y VINAGRES','ACEITUNAS','AZUCAR, CACAO Y REPOSTERIA',
+  'BEBIDAS','CEREALES','DESHIDRATADOS','DULCES, MIEL Y CHOCOLATES','ENCURTIDOS',
+  'ESPECIAS','FRUTOS SECOS','GRANOS Y LEGUMBRES','HARINAS','INFUSIONES Y HIERBAS',
+  'LINEA GOURMET','MANTECAS Y PASTAS','PALADEAR HOME','PRODUCTOS CONGELADOS',
+  'PRODUCTOS DE FRIO','PRODUCTOS SIN TACC','SEMILLAS','SNACK','SUPLEMENTOS',
+  'TOMATE TRITURADO','VINOS'];
+
+/* ¿Tiene ficha hecha por vos, o se publica con el nombre crudo de E-Pyme? */
+function tieneFichaPropia(p){
+  return !!String((FICHAS_FB[p.id] || {}).nombre || '').trim();
+}
+
+/* Por qué este producto NO lo ve el cliente, aunque el panel lo muestre normal.
+   Devuelve '' si se ve, o si lo escondiste a propósito: eso ya lo sabés y el
+   interruptor de la tarjeta lo dice. Acá sólo lo que se cuela sin querer. */
+function porQueNoSeVe(p){
+  // A propósito: la X roja o el rubro apagado desde Herramientas. No es un problema.
+  if ((FICHAS_FB[p.id] || {}).oculto === true) return '';
+  if (TIENDA === 'may' && rubroApagado(p.rubro)) return '';
+
+  if (!(p.p1 > 0)) return 'viene con precio 0 desde E-Pyme';
+  var r = String(p.rubro || '').trim().toUpperCase();
+  if (!r) return 'no trae rubro';
+  if (RUBROS_TIENDA.indexOf(r) < 0) return 'la tienda no sabe dibujar el rubro «' + _capitalizar(r) + '»';
+  return '';
+}
 function rubroApagado(r){
   if (!r) return false;
   var x = String(r).trim().toUpperCase();
@@ -3177,6 +3243,12 @@ function pintarKpis(){
     ['sindesc', sinDesc, 'Sin descripción', 'k-desc'],
     ['renom',   renoms,  renoms === 1 ? 'Nombre cambiado' : 'Nombres cambiados', 'k-renom'],
     ['revisarfoto', PRODUCTOS.filter(p => p.revisarFoto).length, 'Revisar foto', 'k-revfoto'],
+    // Los dos que faltaban: lo que se publica sin ficha y lo que no se ve aunque
+    // tenga precio. En la minorista dan 0 porque ahí nada entra sin pasar por vos.
+    ['sinficha', PRODUCTOS.filter(p => p.p1 > 0 && !tieneFichaPropia(p) &&
+       (FICHAS_FB[p.id] || {}).oculto !== true).length, 'Sin ficha', 'k-sinficha'],
+    ['nosev', PRODUCTOS.filter(p => p.p1 > 0 && porQueNoSeVe(p)).length,
+     'No se ve', 'k-nosev'],
     ['oferta',  ofertas, 'Con oferta', 'k-oferta'],
     // Uno para ir marcando de a poco y otro para repasar lo ya marcado y corregirlo.
     ['sinsellos', PRODUCTOS.filter(p => !p.sellos || !Object.keys(p.sellos).length).length,
@@ -3296,6 +3368,8 @@ function enFiltroActual(p){
     case 'sinsellos':  return !p.sellos || !Object.keys(p.sellos).length;
     case 'consellos':  return !!(p.sellos && Object.keys(p.sellos).length);
     case 'revisarfoto':return !!p.revisarFoto;
+    case 'sinficha':   return p.p1 > 0 && !tieneFichaPropia(p) && (FICHAS_FB[p.id] || {}).oculto !== true;
+    case 'nosev':     return p.p1 > 0 && !!porQueNoSeVe(p);
     default:           return true;
   }
 }
@@ -3347,6 +3421,8 @@ function pintar(){
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
   if (FILTRO === 'sindesc')    lista = lista.filter(p => !p.desc);
   if (FILTRO === 'revisarfoto') lista = lista.filter(p => p.revisarFoto);
+  if (FILTRO === 'sinficha')   lista = lista.filter(p => p.p1 > 0 && !tieneFichaPropia(p) && (FICHAS_FB[p.id] || {}).oculto !== true);
+  if (FILTRO === 'nosev')     lista = lista.filter(p => p.p1 > 0 && porQueNoSeVe(p));
   if (FILTRO === 'sinsellos')  lista = lista.filter(p => !p.sellos || !Object.keys(p.sellos).length);
   if (FILTRO === 'consellos')  lista = lista.filter(p => p.sellos && Object.keys(p.sellos).length);
   if (FILTRO === 'oferta')     lista = lista.filter(p => p.oferta > 0);
@@ -3471,6 +3547,16 @@ function pintar(){
     if (traba) aviso = '<div class="aviso-cat traba"><b>No se puede publicar</b><span>' + esc(traba) + '</span></div>';
     // El número de artículo quedó igual pero adentro hay otro producto: la foto
     // publicada es la del anterior.
+    // Tiene precio, el panel lo muestra normal, y el cliente no lo ve.
+    var porque = p.p1 > 0 ? porQueNoSeVe(p) : '';
+    if (porque) {
+      aviso += '<div class="aviso-cat nosev"><b>El cliente no lo ve</b>' +
+        '<span>' + esc(porque) + '</span></div>';
+    }
+    if (!tieneFichaPropia(p) && p.p1 > 0 && (FICHAS_FB[p.id] || {}).oculto !== true) {
+      aviso += '<div class="aviso-cat sinficha"><b>Se publica con el nombre de E-Pyme</b>' +
+        '<span>Sin ficha propia: sin foto, sin descripción y con el nombre tal cual viene.</span></div>';
+    }
     if (p.revisarFoto) {
       aviso += '<div class="aviso-cat revfoto"><b>Este artículo ahora es otro producto</b>' +
         '<span>Antes: ' + esc(String(p.revisarFoto.antes).slice(0,60)) + '</span>' +
@@ -5695,6 +5781,80 @@ async function rubGuardar(){
 }
 window.rubGuardar = rubGuardar;
 
+/* ── CONTROL DE LA TIENDA ─────────────────────────────────────────────────────
+   Una sola pantalla que contesta "¿se me está pasando algo?". Aplica las reglas
+   de la tienda sobre los datos del panel y cuenta las diferencias. */
+function abrirControl(){
+  $('capaControl').classList.add('abierto');
+  document.body.style.overflow = 'hidden';
+  $('ctrlEstado').textContent = '';
+  ctrlPintar();
+}
+function cerrarControl(){
+  $('capaControl').classList.remove('abierto');
+  document.body.style.overflow = '';
+}
+window.abrirControl = abrirControl; window.cerrarControl = cerrarControl;
+
+function ctrlPintar(){
+  var c = $('ctrlCuerpo');
+  if (!c) return;
+  var conPrecio = PRODUCTOS.filter(function(p){ return p.p1 > 0; });
+  var noSeVen   = conPrecio.filter(function(p){ return porQueNoSeVe(p); });
+  var aPosta    = PRODUCTOS.filter(function(p){ return (FICHAS_FB[p.id] || {}).oculto === true; });
+  var sinFicha  = conPrecio.filter(function(p){
+    return !tieneFichaPropia(p) && (FICHAS_FB[p.id] || {}).oculto !== true;
+  });
+  var sinFoto   = conPrecio.filter(function(p){ return !p.foto && !porQueNoSeVe(p); });
+  var sinDesc   = conPrecio.filter(function(p){ return !p.desc && !porQueNoSeVe(p); });
+  var revFoto   = PRODUCTOS.filter(function(p){ return p.revisarFoto; });
+  var enTienda  = conPrecio.length - noSeVen.length;
+
+  function fila(n, tono, titulo, detalle, filtro){
+    return '<div class="ctrl-fila ' + (n ? tono : 'bien') + '">' +
+      '<span class="ctrl-n">' + n + '</span>' +
+      '<span class="ctrl-t"><b>' + titulo + '</b><i>' + detalle + '</i></span>' +
+      (n && filtro ? '<button type="button" class="btn gris ctrl-ver" data-ctrl="' + filtro + '">Ver</button>' : '') +
+    '</div>';
+  }
+  // Los motivos, agrupados: si son 20 por la misma razón, es un problema, no veinte.
+  var motivos = {};
+  noSeVen.forEach(function(p){ var m = porQueNoSeVe(p); motivos[m] = (motivos[m] || 0) + 1; });
+  var detMotivos = Object.keys(motivos).sort(function(a,b){ return motivos[b] - motivos[a]; })
+    .map(function(m){ return '<span><b>' + motivos[m] + '</b> · ' + esc(m) + '</span>'; }).join('');
+
+  c.innerHTML =
+    fila(enTienda, 'bien', 'Los ve el cliente',
+         'De los ' + conPrecio.length + ' que tienen precio en ' + nombreTienda() + '.', '') +
+    fila(noSeVen.length, 'mal', 'Tienen precio y NO se ven',
+         'Están en la lista, el panel los muestra, y el cliente no los encuentra.', 'nosev') +
+    (detMotivos ? '<div class="ctrl-det">' + detMotivos + '</div>' : '') +
+    fila(sinFicha.length, 'ojo', 'Publicados sin ficha',
+         'Salen con el nombre crudo de E-Pyme, sin foto ni descripción.', 'sinficha') +
+    fila(revFoto.length, 'mal', 'Con la foto del producto anterior',
+         'El número de artículo pasó a ser otra cosa después de un Excel.', 'revisarfoto') +
+    fila(sinFoto.length, 'ojo', 'Publicados sin foto',
+         'Se ven, pero con el recuadro vacío.', 'sinfoto') +
+    fila(sinDesc.length, 'ojo', 'Publicados sin descripción',
+         'Se ven, pero no dicen qué son.', 'sindesc') +
+    '<div class="ctrl-det"><span>' + aPosta.length + ' producto' + (aPosta.length === 1 ? '' : 's') +
+      ' escondido' + (aPosta.length === 1 ? '' : 's') + ' por vos con la X roja' +
+      (RUBROS_OCULTOS.length ? ', y ' + RUBROS_OCULTOS.length + ' rubro' +
+        (RUBROS_OCULTOS.length === 1 ? '' : 's') + ' apagado' + (RUBROS_OCULTOS.length === 1 ? '' : 's') +
+        ' (' + esc(RUBROS_OCULTOS.map(_capitalizar).join(', ')) + ')' : '') +
+      '. Eso está bien, es a propósito.</span></div>';
+}
+
+/* El botón "Ver" cierra el control y deja el panel filtrado en eso. */
+document.addEventListener('click', function(ev){
+  var b = ev.target.closest && ev.target.closest('[data-ctrl]');
+  if (!b) return;
+  cerrarControl();
+  elegirFiltro('kpi', b.dataset.ctrl);
+  var s = document.getElementById('salida');
+  if (s) s.scrollIntoView({block:'start', behavior:'smooth'});
+});
+
 </script>
 <!-- Compartir fotos con la distribuidora, de a muchas -->
 <!-- Elegir qué productos entran al catálogo -->
@@ -5778,6 +5938,25 @@ window.rubGuardar = rubGuardar;
     <div class="ed-pie">
       <button type="button" class="btn primario" id="rubEnviar" onclick="rubGuardar()" disabled>Guardar</button>
       <span id="rubEstado"></span>
+    </div>
+  </div>
+</div>
+
+<div id="capaControl">
+  <div class="ed-caja">
+    <div class="ed-top">
+      <b>Control de la tienda</b>
+      <button type="button" class="btn gris" onclick="cerrarControl()">Cerrar</button>
+    </div>
+    <div class="ed-cuerpo">
+      <p class="cmp-intro">Esto compara lo que tenés en el panel con lo que el cliente ve de
+        verdad, con las mismas reglas que usa la tienda. Sirve para que no se cuele nada:
+        antes un producto con precio podía no verse nunca y no había dónde enterarse.</p>
+      <div id="ctrlCuerpo"></div>
+    </div>
+    <div class="ed-pie">
+      <button type="button" class="btn gris" onclick="cerrarControl()">Listo</button>
+      <span id="ctrlEstado"></span>
     </div>
   </div>
 </div>
