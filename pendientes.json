@@ -3,7 +3,8 @@
     "nuevos": 24,
     "renombrados": 4,
     "quitados": 0,
-    "rubro_invalido": 0
+    "rubro_invalido": 0,
+    "fuera_catalogo": 67
   },
   "nuevos": [
     {
@@ -202,5 +203,476 @@
     }
   ],
   "quitados": [],
-  "rubro_invalido": []
+  "rubro_invalido": [],
+  "fuera_catalogo": [
+    {
+      "numero": "1384",
+      "nombre": "*MANZANILLA FLOR X KG",
+      "rubro": "INFUSIONES Y HIERBAS",
+      "precio": 50070,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2387",
+      "nombre": "ACEITE DE LINO X 250 cc \"NUTRA SEM\"",
+      "rubro": "ACEITES Y VINAGRES",
+      "precio": 16000,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2293",
+      "nombre": "ACEITE DE TOMILLO \"SUPPLY\" X30ML",
+      "rubro": "SUPLEMENTOS",
+      "precio": 8090,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "5016",
+      "nombre": "ACEITUNAS CON CHAMPIÑON X150 GR - AGROIANNI",
+      "rubro": "ENCURTIDOS",
+      "precio": 8520,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1884",
+      "nombre": "ALMENDRA GUARA X KG",
+      "rubro": "FRUTOS SECOS",
+      "precio": 27700,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "4452",
+      "nombre": "ALMENDRA PARTIDA X KG",
+      "rubro": "FRUTOS SECOS",
+      "precio": 28300,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1958",
+      "nombre": "ALMENDRAS TOSTADA CON ACEITE DE OLIVA Y SAL",
+      "rubro": "DULCES, MIEL Y CHOCOLATES",
+      "precio": 4840,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2355",
+      "nombre": "AVENA INSTANTANEAX 400 g \"SIN TACC\"",
+      "rubro": "PRODUCTOS SIN TACC",
+      "precio": 2990,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2460",
+      "nombre": "BARRA \"INTEGRA\"",
+      "rubro": "SNACK",
+      "precio": 2400,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2497",
+      "nombre": "BARRA CHOCOLATE MAPRICUBER xKg",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+      "precio": 25010,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2484",
+      "nombre": "BARRA MUECA PROTEICA",
+      "rubro": "SNACK",
+      "precio": 2635,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1151",
+      "nombre": "BICARBONATO DE SODIO X 50 GR",
+      "rubro": "ESPECIAS",
+      "precio": 500,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2415",
+      "nombre": "BLEND DE TE X KG",
+      "rubro": "INFUSIONES Y HIERBAS",
+      "precio": 46120,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "4800",
+      "nombre": "BOX 1",
+      "rubro": "PALADEAR HOME",
+      "precio": 20000,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "4801",
+      "nombre": "BOX 2",
+      "rubro": "PALADEAR HOME",
+      "precio": 30000,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "5001",
+      "nombre": "CAJA CHOCO CHICA 180 gr",
+      "rubro": "DULCES, MIEL Y CHOCOLATES",
+      "precio": 18150,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "5003",
+      "nombre": "CAJA CHOCO GRANDE 450 gr",
+      "rubro": "DULCES, MIEL Y CHOCOLATES",
+      "precio": 41140,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "5002",
+      "nombre": "CAJA CHOCO MEDIANA 360 gr",
+      "rubro": "DULCES, MIEL Y CHOCOLATES",
+      "precio": 33880,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2442",
+      "nombre": "CAJA FUERZA DIVINA",
+      "rubro": "PALADEAR HOME",
+      "precio": 27000,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2385",
+      "nombre": "CALCIO+VITAMINA \"D\" 60 uni. \"EL NATURALISTA\"",
+      "rubro": "SUPLEMENTOS",
+      "precio": 8770,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1170",
+      "nombre": "CARAMELOS X UNIDAD",
+      "rubro": "CARAMELOS",
+      "precio": 250,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2290",
+      "nombre": "CERA DE MIEL DEPILATORIA",
+      "rubro": "SUPLEMENTOS",
+      "precio": 9070,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "5004",
+      "nombre": "CHOCO TABLETA XKG",
+      "rubro": "DULCES, MIEL Y CHOCOLATES",
+      "precio": 55000,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2508",
+      "nombre": "COLA DE PAVO x 60 CAPS SOMOS SETA",
+      "rubro": "SUPLEMENTOS",
+      "precio": 31520,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2125",
+      "nombre": "COLADOR COMUN NEGRO",
+      "rubro": "PALADEAR HOME",
+      "precio": 2400,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1242",
+      "nombre": "DATILES DE EGIPTO C/C X KG",
+      "rubro": "DESHIDRATADOS",
+      "precio": 13270,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2510",
+      "nombre": "DULCE DE MEMBRILLO PIZARRO 454gr",
+      "rubro": "DULCES, MIEL Y CHOCOLATES",
+      "precio": 5520,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "5011",
+      "nombre": "DULCE DE MEMBRILLO x5 KL",
+      "rubro": "DULCES, MIEL Y CHOCOLATES",
+      "precio": 19404,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2310",
+      "nombre": "ESENCIA DE AGUA DE AZAHAR 60 cc",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+      "precio": 3300,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2309",
+      "nombre": "ESENCIA DE PAN DULCE 60 cc",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+      "precio": 4000,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2384",
+      "nombre": "FILTROS PARA CAFE X 10 unidades",
+      "rubro": "PALADEAR HOME",
+      "precio": 1520,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1822",
+      "nombre": "HARINILLA DE MAIZ",
+      "rubro": "HARINAS",
+      "precio": 1920,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1308",
+      "nombre": "HIGOS EN ALMIBAR X 3,8 KG",
+      "rubro": "LINEA GOURMET",
+      "precio": 52610,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1317",
+      "nombre": "INFUSOR PARA TE",
+      "rubro": "PALADEAR HOME",
+      "precio": 2700,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1898",
+      "nombre": "LA IRIDE \"HUELGA DE AMORES\" X 750ml",
+      "rubro": "VINOS",
+      "precio": 6620,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1711",
+      "nombre": "LAS PERDICES ALA COLORADA ANCELLOTA X 750",
+      "rubro": "VINOS",
+      "precio": 20250,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1705",
+      "nombre": "LAS PERDICES CAB SAUV X 750",
+      "rubro": "VINOS",
+      "precio": 10100,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1712",
+      "nombre": "LAS PERDICES EXTRA BRUT CORTO X 750",
+      "rubro": "VINOS",
+      "precio": 12130,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1708",
+      "nombre": "LAS PERDICES PARTRIDGE CHARDONNAY X 750",
+      "rubro": "VINOS",
+      "precio": 7330,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1707",
+      "nombre": "LAS PERDICES PARTRIDGE MALBEC X 750",
+      "rubro": "VINOS",
+      "precio": 7330,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1710",
+      "nombre": "LAS PERDICES RESERVA CHARDONNAY X 750",
+      "rubro": "VINOS",
+      "precio": 15240,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1709",
+      "nombre": "LAS PERDICES RESERVA MALBEC X 750",
+      "rubro": "VINOS",
+      "precio": 15240,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1351",
+      "nombre": "LECHE DE ALMENDRAS X 1 L",
+      "rubro": "BEBIDAS",
+      "precio": 6790,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2441",
+      "nombre": "LEVADURA LEVEX 13 g",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+      "precio": 1170,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2478",
+      "nombre": "MAITAKE \"SOMOS SETAS\" X60cap",
+      "rubro": "SUPLEMENTOS",
+      "precio": 31515,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2489",
+      "nombre": "MANTECA CLARIFICADA GHEE X 150 g - COW'S PURE",
+      "rubro": "MANTECAS Y PASTAS",
+      "precio": 9550,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1265",
+      "nombre": "MASTROENI ESP DULCE NATURAL X 750 CC",
+      "rubro": "VINOS",
+      "precio": 8090,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2337",
+      "nombre": "MELENA DE LEON SUPPLY 60 ml",
+      "rubro": "SUPLEMENTOS",
+      "precio": 21290,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1005",
+      "nombre": "MIX CITRICOS",
+      "rubro": "INFUSIONES Y HIERBAS",
+      "precio": 42500,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2514",
+      "nombre": "MIXTURAS",
+      "rubro": "PALADEAR HOME",
+      "precio": 4900,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2251",
+      "nombre": "MORTERO MARMOL",
+      "rubro": "PALADEAR HOME",
+      "precio": 24960,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1441",
+      "nombre": "NUEZ CUARTILLO X KG",
+      "rubro": "FRUTOS SECOS",
+      "precio": 17350,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2486",
+      "nombre": "PITA CHIPS DE MASA MADRE - ALMADRE",
+      "rubro": "SNACK",
+      "precio": 3210,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1523",
+      "nombre": "POLVO PARA HORNEAR X 50gr - INDIAS",
+      "rubro": "PRODUCTOS SIN TACC",
+      "precio": 2600,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1532",
+      "nombre": "POROTOS DE SOJA X KG",
+      "rubro": "GRANOS Y LEGUMBRES",
+      "precio": 3260,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "5015",
+      "nombre": "REBOSADOR SIN TACC x KG",
+      "rubro": "PRODUCTOS SIN TACC",
+      "precio": 3700,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2479",
+      "nombre": "RHODIOLA X60 CAPSULAS \"SOMOS SETAS\"",
+      "rubro": "SUPLEMENTOS",
+      "precio": 31515,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1251",
+      "nombre": "SALES DE BAÑO",
+      "rubro": "PALADEAR HOME",
+      "precio": 5000,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1574",
+      "nombre": "SALSA SOJA X 1 L",
+      "rubro": "LINEA GOURMET",
+      "precio": 13260,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2507",
+      "nombre": "SHITAKE X 60 CAPS. SOMOS SETAS",
+      "rubro": "SUPLEMENTOS",
+      "precio": 25410,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2437",
+      "nombre": "TAZA VIDRIO",
+      "rubro": "PALADEAR HOME",
+      "precio": 9860,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2347",
+      "nombre": "TILO EN HOJAS",
+      "rubro": "INFUSIONES Y HIERBAS",
+      "precio": 126570,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2327",
+      "nombre": "TOFU SOYANA ORGÁNICO 350 g",
+      "rubro": "PRODUCTOS DE FRIO",
+      "precio": 12170,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1783",
+      "nombre": "TOSTADITAS DE ARROZ DELICEL \"SIN TACC\"",
+      "rubro": "PRODUCTOS SIN TACC",
+      "precio": 2000,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2516",
+      "nombre": "VELA EN LATA MANDALA CHICA",
+      "rubro": "PALADEAR HOME",
+      "precio": 7320,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "2024",
+      "nombre": "YOGHURT C/FRUTAS X 160",
+      "rubro": "PRODUCTOS DE FRIO",
+      "precio": 2490,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "1655",
+      "nombre": "ZAPALLO EN ALMIBAR X3.8KG",
+      "rubro": "LINEA GOURMET",
+      "precio": 44140,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    }
+  ]
 }
