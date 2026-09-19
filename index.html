@@ -7745,6 +7745,21 @@ function _mixIngredLineas(it,esMay){
   return (it.mixDetalle||'').split(',').map(function(s){return _tc(s.trim());}).filter(Boolean);
 }
 
+/* Marca y contenido para el mensaje de WhatsApp. Sin esto llegaban tres renglones
+   que decían "Aceite de Coco Neutro" y no había forma de saber cuál era cuál. */
+function _waDetalle(it){
+  if (it.unidad === 'mix') return '';          // el armado lista sus ingredientes aparte
+  const p = PRODS.find(x => x[0] === it.pid);
+  if (!p) return '';
+  const partes = [];
+  // A granel el peso ya va en la cantidad; en un envasado el contenido está en la ficha.
+  const env = _envaseDe(p);
+  if (env && it.unidad === 'und') partes.push(env);
+  const mar = _marcaDe(p);
+  if (mar) partes.push(mar.toUpperCase());
+  return partes.join(' · ');
+}
+
 function coEnviar() {
   var tipo = _coEntrega;
   var nombre, horario, direccion, pago, deliveryMsg;
@@ -7801,7 +7816,9 @@ function coEnviar() {
         var ings = _mixIngredLineas(it, esMay);
         if (ings.length) lines += ings.map(function(t){ return '   • ' + t; }).join('\n') + '\n';
       } else {
-        lines += '*' + qty + '* - ' + _tc(it.n) + '\n   $' + fmt(s) + '\n';
+        const det = _waDetalle(it);
+        lines += '*' + qty + '* - ' + _tc(it.n) +
+                 (det ? '\n   ' + det : '') + '\n   $' + fmt(s) + '\n';
       }
     });
     var huboOferta = !esMay && cart.some(function(it){ return _getOfertaPct(it.pid)>0; });
