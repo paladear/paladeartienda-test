@@ -4718,7 +4718,17 @@ window._updateSuggestions=_updateSuggestions;
 function _pickMarcaSuggestion(marca){
   const box=document.getElementById('searchSuggestions');
   if(box){box.classList.remove('active');box.innerHTML='';}
-  try{ limpiarBusqueda(); }catch(e){}
+  // Se limpia la búsqueda igual que al elegir un rubro: si queda el texto puesto,
+  // la vista de la marca convive con los resultados y no se entiende qué se está viendo.
+  const inp=document.getElementById('compactSearchInput');
+  if(inp){inp.value='';inp.blur();}
+  try{ searchTerm=''; }catch(e){}
+  try{ clearTimeout(_searchTimer); }catch(e){}
+  try{ _updateSearchClear(''); }catch(e){}
+  ['.header','.banner','#mainTabs'].forEach(function(q){
+    var e=document.querySelector(q); if(e)e.classList.remove('collapsed');
+  });
+  try{ _cerrarSugerencias(); }catch(e){}
   verMarca(marca);
 }
 window._pickMarcaSuggestion=_pickMarcaSuggestion;
