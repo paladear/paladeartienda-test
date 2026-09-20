@@ -3609,6 +3609,7 @@ function _catalogStopBatches(){
   _catalogBatchToken++;
 }
 
+window.__DIAG=function(){return {visible:_catalogAllViewIsVisible(),skip:_catalogSkipNextAllRender,tab:(typeof currentTab!=='undefined'?currentTab:'?'),cat:(typeof activeCatId!=='undefined'?activeCatId:'?'),busca:(typeof searchTerm!=='undefined'?searchTerm:'?'),token:_catalogBatchToken}};
 function _catalogAllViewIsVisible(){
   if(_catalogSkipNextAllRender)return false;
   if(document.body.classList.contains('hv-home')||document.body.classList.contains('hv-ofertas')||document.body.classList.contains('hv-favoritos'))return false;
