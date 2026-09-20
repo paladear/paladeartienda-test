@@ -1628,7 +1628,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
    al lado del buscador: eran dos iguales y le comía lugar al texto que escribís. */
 .filtro-activo{display:flex;align-items:center;gap:10px;margin:0 0 14px;padding:7px 8px;
   border:1px solid var(--border);border-radius:12px;background:var(--card);
-  position:sticky;top:0;z-index:40;box-shadow:0 2px 10px rgba(20,45,70,.10)}
+  position:sticky;top:var(--pegado-top,0px);z-index:40;box-shadow:0 2px 10px rgba(20,45,70,.10)}
 @media(min-width:768px){
   /* En escritorio no tiene sentido que cruce toda la pantalla: va centrada y del
      ancho de una columna de lectura. */
@@ -8467,6 +8467,9 @@ window.compartirTienda = compartirTienda;
       });
       st.textContent = st.textContent.replace(/\/\*empuje\*\/[\s\S]*$/, '') +
         '/*empuje*/body{padding-top:' + h + 'px!important}' +
+        // Lo pegado (la barra de filtro) también tiene que arrancar debajo del cartel:
+        // el padding del body mueve el flujo pero no a un position:sticky.
+        ':root{--pegado-top:' + h + 'px}' +
         (mover.length ? [...new Set(mover)].join(',') + '{top:' + h + 'px!important}' : '');
     }
     _correr();
