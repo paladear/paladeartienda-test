@@ -7386,24 +7386,60 @@ function renderCarruseles(){
       if(pending||token!==_catalogBatchToken||catIndex>=queue.length)return;
       if(!forceAll&&!_catalogAllViewIsVisible())return;
       pending=true;
-      var budget=forceAll?PRODS.length:(isMobile?12:16);
-      while(budget>0&&catIndex<queue.length){
-        var item=queue[catIndex];
-        if(!currentGrid)openCategory(item);
-        var take=Math.min(budget,item.prods.length-prodIndex);
-        var batch=item.prods.slice(prodIndex,prodIndex+take);
-        currentGrid.insertAdjacentHTML('beforeend',batch.map(function(p,i){return renderCard(p,prefix,renderedCount+i<4);}).join(''));
-        renderedCount+=take;
-        prodIndex+=take;
-        budget-=take;
-        if(prodIndex>=item.prods.length){catIndex++;prodIndex=0;currentGrid=null;}
+      try {
+        var budget=forceAll?PRODS.length:(isMobile?12:16);
+        while(budget>0&&catIndex<queue.length){
+          var item=queue[catIndex];
+          if(!currentGrid)openCategory(item);
+          var take=Math.min(budget,item.prods.length-prodIndex);
+          var batch=item.prods.slice(prodIndex,prodIndex+take);
+          currentGrid.insertAdjacentHTML('beforeend',batch.map(function(p,i){return renderCard(p,prefix,renderedCount+i<4);}).join(''));
+          renderedCount+=take;
+          prodIndex+=take;
+          budget-=take;
+          if(prodIndex>=item.prods.length){catIndex++;prodIndex=0;currentGrid=null;}
+        }
+      } finally {
+        // Pase lo que pase, esto vuelve a false. Si un producto rompía el armado, la
+        // bandera quedaba trabada en true y el listado no cargaba NUNCA más: te
+        // quedabas con los primeros doce y sin forma de ver el resto.
+        pending=false;
       }
-      pending=false;
       if(catIndex>=queue.length){finish();return;}
       requestAnimationFrame(function(){
         if(token===_catalogBatchToken&&sentinel&&sentinel.getBoundingClientRect().top<window.innerHeight+1000)appendBatch(false);
       });
     }
+
+    /* Red de seguridad. El observador que va cargando de a lotes a veces no se
+       despierta —la pantalla se arma escondida, el navegador se guarda el aviso— y el
+       cliente se queda mirando doce productos creyendo que no hay más. Cada segundo
+       se mira si el centinela está a la vista y no cargó nada: si pasa dos veces
+       seguidas, se dibuja TODO de una y listo. */
+    (function _redDeSeguridad(){
+      var antes=-1, quieto=0;
+      var t=setInterval(function(){
+        if(token!==_catalogBatchToken||catIndex>=queue.length||!sentinel||!sentinel.parentNode){
+          clearInterval(t); return;
+        }
+        if(!_catalogAllViewIsVisible()){ quieto=0; return; }
+        var r=sentinel.getBoundingClientRect();
+        var aLaVista=r.top<window.innerHeight+1200;
+        if(!aLaVista){ quieto=0; antes=renderedCount; return; }
+        if(renderedCount===antes){
+          if(++quieto>=2){ clearInterval(t); appendBatch(true); }
+        } else { quieto=0; }
+        antes=renderedCount;
+        appendBatch(false);
+      },1000);
+    })();
+
+    /* Y el scroll también empuja, por si el observador quedó mudo. */
+    var _alScroll=function(){
+      if(token!==_catalogBatchToken){window.removeEventListener('scroll',_alScroll);return;}
+      if(sentinel&&sentinel.parentNode&&sentinel.getBoundingClientRect().top<window.innerHeight+1000)appendBatch(false);
+    };
+    window.addEventListener('scroll',_alScroll,{passive:true});
 
     appendBatch(false);
     if('IntersectionObserver' in window){
