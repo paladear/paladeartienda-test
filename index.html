@@ -1599,7 +1599,41 @@ body.compact-on .compact-header{transform:translateY(0);pointer-events:auto}
 .compact-search{width:100%;background:rgba(255,255,255,.95);border:none;border-radius:22px;padding:9px 16px;font-size:14px;color:var(--fg);outline:none;font-family:inherit;min-width:0;transition:background .2s,box-shadow .2s;box-sizing:border-box}
 .search-suggestions{display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:#fff;border-radius:14px;box-shadow:0 10px 28px rgba(15,28,42,.25);z-index:5;max-height:260px;overflow-y:auto;padding:6px}
 .search-suggestions.active{display:block}
-.search-suggestion-item{padding:9px 12px;font-size:14px;color:var(--muted-fg);cursor:pointer;border-radius:9px;display:flex;align-items:center;gap:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* El navegador agrega su propia × a los input[type=search] y quedaban dos, una al
+   lado de la otra. Se saca la del navegador y queda sólo la nuestra. */
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
+input[type=search]{-webkit-appearance:none;appearance:none}
+.search-suggestion-item{padding:9px 12px;font-size:14px;color:var(--muted-fg);cursor:pointer;border-radius:9px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+/* El nombre, el envase y la marca en un solo renglón que se recorta con puntitos.
+   Antes eran dos cajas sueltas del flex: el nombre empujaba y la marca se iba
+   afuera de la pantalla, cortada al medio. */
+.search-suggestion-item .sug-txt{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.search-suggestion-item .sug-n{flex:0 0 auto;font-size:12px;font-weight:800;opacity:.6}
+.search-suggestion-item.sug-marca{background:var(--min-sky,#eaf3fa);color:var(--azul-dark);font-weight:600}
+.search-suggestion-item.sug-marca:hover{background:var(--azul);color:#fff}
+.search-suggestion-item.sug-marca .sug-icon{opacity:1;font-size:11px}
+.search-suggestion-item.sug-marca b{font-weight:800}
+
+/* ── La barra del filtro puesto ── */
+.filtro-activo{display:flex;align-items:center;gap:10px;margin:0 0 14px;padding:7px 8px;
+  border:1px solid var(--border);border-radius:12px;background:var(--card)}
+.filtro-activo .fa-volver,.filtro-activo .fa-cats{flex:0 0 auto;width:38px;height:38px;
+  border-radius:10px;border:0;background:var(--muted);color:var(--azul-dark);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s}
+.filtro-activo .fa-volver svg,.filtro-activo .fa-cats svg{width:19px;height:19px}
+.filtro-activo .fa-volver:hover,.filtro-activo .fa-cats:hover{background:var(--azul-light)}
+.filtro-activo .fa-txt{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:1px}
+.filtro-activo .fa-txt i{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted-fg)}
+.filtro-activo .fa-txt b{font-size:16px;line-height:1.2;color:var(--fg);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.filtro-activo .fa-n{flex:0 0 auto;font-size:12.5px;font-weight:800;color:var(--muted-fg);
+  background:var(--muted);border-radius:999px;padding:4px 9px}
+@media(max-width:480px){
+  .filtro-activo{gap:8px;padding:6px 7px}
+  .filtro-activo .fa-txt b{font-size:15px}
+}
 .search-suggestion-item:hover{background:var(--muted);color:var(--fg)}
 .search-suggestion-item .sug-icon{flex-shrink:0;opacity:.55;font-size:13px}
 .search-suggestion-item.sug-cat{background:var(--azul-light);color:var(--azul-dark);font-weight:700;margin-bottom:2px}
@@ -3490,6 +3524,10 @@ function verMarca(marca, desdeProducto){
 
   const clave = _norm(marca);
   const prods = PRODS.filter(q => _norm(_marcaDe(q) || '') === clave);
+  // La marca manda sobre lo que hubiera puesto: no se suman.
+  SELLO_ACTIVO = null; MARCA_ACTIVA = marca;
+  _irAProductos();
+  _olvidarCatalogo();
   const isMobile = window.innerWidth < 768;
   const area = document.getElementById(isMobile ? 'mobileProdsArea' : 'desktopProdsArea');
   if (!area) return;
@@ -3502,14 +3540,10 @@ function verMarca(marca, desdeProducto){
   const banners = document.querySelector('.banners-wrap');
   if (banners) banners.style.display = 'none';
 
-  let h = '<button class="back-btn" onclick="' +
-    (_marcaVolverA ? 'volverAlProducto()' : 'volverInicio()') + '">← ' +
-    (_marcaVolverA ? 'Volver al producto' : 'Volver a todos los productos') + '</button>';
-  h += '<div class="catalog-intro catalog-intro--marca">' +
-       '<div><span class="marca-eyebrow">Marca</span><h1>' + _tc(marca) + '</h1>' +
-       '<p class="marca-sub">' + prods.length + (prods.length === 1 ? ' producto' : ' productos') + '</p></div>' +
-       '<button class="catalog-filter-btn" onclick="_marcaEstadoPrevio=null;volverInicio()">Ver todo el catálogo</button>' +
-       '</div>';
+  let h = _marcaVolverA
+    ? '<button class="back-btn" onclick="volverAlProducto()">← Volver al producto</button>' +
+      _barraFiltro('Marca', _tc(marca), prods.length)
+    : _barraFiltro('Marca', _tc(marca), prods.length);
   if (!prods.length) {
     h += '<div style="text-align:center;padding:48px 0;color:var(--muted-fg);font-size:17px">Todavía no hay productos de esta marca</div>';
   } else {
@@ -3693,17 +3727,81 @@ function selectCat(catId,productId,navOpts){
 let _activeOfertasMes=false;
 
 
-function volverInicio(){
+/* conservarFiltro sólo lo usa el propio filtro de sello, que acaba de ponerlo.
+   Para todo el resto —la pestaña Productos, "Todos los productos" del menú, la
+   flechita de volver— esto tiene que dejar la pantalla limpia. Antes no lo hacía:
+   el sello quedaba puesto, el catálogo seguía recortado y no había forma de salir. */
+function volverInicio(conservarFiltro){
   _activeOfertasMes=false;
   activeCatId=null;
+  if(!conservarFiltro){
+    try{ SELLO_ACTIVO=null; }catch(e){}
+    try{ MARCA_ACTIVA=null; }catch(e){}
+    try{ _marcaVolverA=null; _marcaEstadoPrevio=null; }catch(e){}
+    _olvidarCatalogo();
+  }
   renderCatsUI();
   renderCarruseles();
   if(typeof _bnavSet==='function')_bnavSet('minorista');
 }
 
-/* El sello activo. Es transversal: se cruza con la categoría que esté abierta, así
-   se puede pedir "aceites y además sin TACC". */
+/* ── UN FILTRO A LA VEZ ───────────────────────────────────────────────────────
+   Antes el sello se cruzaba con la categoría abierta: estando en Aceites y tocando
+   "Sin TACC" salían sólo los aceites sin TACC, y parecía que faltaban productos.
+   Ahora rubro, sello y marca son tres formas distintas de mirar el mismo catálogo y
+   se reemplazan entre ellas. */
 let SELLO_ACTIVO=null;
+let MARCA_ACTIVA=null;
+
+/* Deja la pantalla en la pestaña Productos. Desde el Home, poner un filtro no hacía
+   nada: el catálogo completo sólo se dibuja si esa pestaña está visible. */
+function _irAProductos(){
+  document.body.classList.remove('hv-home','hv-ofertas','hv-favoritos');
+  try{ _activeOfertasMes=false; }catch(e){}
+  ['tabHome','tabOfertas','tabFavoritos'].forEach(function(id){
+    var e=document.getElementById(id); if(e)e.classList.remove('active');
+  });
+  try{ if(typeof _bnavSet==='function')_bnavSet('minorista'); }catch(e){}
+}
+
+function _olvidarCatalogo(){
+  try{ _catalogRenderMode=null; _catalogRenderedProds=null; _catalogRenderedCats=null; }catch(e){}
+}
+
+/* La barra de arriba del listado: una flechita para volver a todos los productos y
+   el nombre de lo que estás mirando. Es la misma para rubro, sello y marca —para el
+   cliente son todas "categorías"— y ocupa un solo renglón. */
+function _barraFiltro(etiqueta, titulo, cuenta){
+  return '<div class="filtro-activo">' +
+    '<button type="button" class="fa-volver" onclick="verTodoElCatalogo()" ' +
+      'aria-label="Volver a todos los productos" title="Volver a todos los productos">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" ' +
+      'stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button>' +
+    '<span class="fa-txt">' + (etiqueta ? '<i>' + etiqueta + '</i>' : '') +
+      '<b>' + titulo + '</b></span>' +
+    (cuenta != null ? '<span class="fa-n">' + cuenta + '</span>' : '') +
+    '<button type="button" class="fa-cats" onclick="toggleCatsDropdown()" ' +
+      'aria-label="Ver categorías" title="Ver categorías">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
+      'stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>' +
+  '</div>';
+}
+
+/* Saca cualquier filtro y muestra el catálogo entero. */
+function verTodoElCatalogo(){
+  SELLO_ACTIVO=null; MARCA_ACTIVA=null; activeCatId=null;
+  _marcaVolverA=null; _marcaEstadoPrevio=null;
+  _irAProductos();
+  _olvidarCatalogo();
+  try{ renderCatsUI(); }catch(e){}
+  const carr=document.getElementById('carruselesArea')||document.querySelector('.carruseles');
+  if(carr)carr.style.display='';
+  const ban=document.querySelector('.banners-wrap');
+  if(ban)ban.style.display='';
+  volverInicio();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+window.verTodoElCatalogo=verTodoElCatalogo;
 
 /* Cuando hay un sello puesto se avisa arriba del listado, con el botón para
    sacarlo. Sin esto, el filtro se aplica desde un menú que se cerró y no queda
@@ -3733,9 +3831,20 @@ function _filaSellos(prods){
 }
 
 function filtrarSello(id){
-  SELLO_ACTIVO = (SELLO_ACTIVO===id) ? null : id;
-  if(activeCatId) selectCat(activeCatId,null,{history:false});
-  else { try{ _catalogRenderMode=null; _catalogRenderedProds=null; _catalogRenderedCats=null; }catch(e){} volverInicio(); }
+  const nuevo = (SELLO_ACTIVO===id) ? null : id;
+  SELLO_ACTIVO = nuevo;
+  // El sello manda sobre lo que hubiera puesto: no se suman.
+  MARCA_ACTIVA = null; activeCatId = null;
+  _marcaVolverA = null; _marcaEstadoPrevio = null;
+  _irAProductos();
+  _olvidarCatalogo();
+  try{ renderCatsUI(); }catch(e){}
+  const carr=document.getElementById('carruselesArea')||document.querySelector('.carruseles');
+  if(carr)carr.style.display=nuevo?'none':'';
+  const ban=document.querySelector('.banners-wrap');
+  if(ban)ban.style.display=nuevo?'none':'';
+  volverInicio(true);
+  window.scrollTo({top:0,behavior:'instant'});
 }
 window.filtrarSello=filtrarSello;
 
@@ -3748,27 +3857,21 @@ function verSello(id){
   SELLO_ACTIVO = id;
   activeCatId = null;
   try{ _catalogRenderMode=null; _catalogRenderedProds=null; _catalogRenderedCats=null; }catch(e){}
-  volverInicio();
-  // Al listado, así se ve enseguida el aviso del filtro y no la portada.
-  setTimeout(function(){
-    const a=document.querySelector('.aviso-sello');
-    if(a) a.scrollIntoView({block:'start',behavior:'smooth'});
-  },60);
+  MARCA_ACTIVA=null;
+  _irAProductos();
+  volverInicio(true);
+  window.scrollTo({top:0,behavior:'instant'});
 }
 window.verSello=verSello;
 
 function renderProdsHTML(cat,prods,prefix,priorityProductId){
-  let h='<button class="back-btn" onclick="volverInicio()">← Volver a todos los productos</button>';
-  h+=`<div class="catalog-intro catalog-intro--rubro">
-      <div><h1>${cat.n}</h1></div>
-      <button class="catalog-filter-btn" onclick="toggleCatsDropdown()"><span aria-hidden="true">☰</span> Categorías</button>
-    </div>`;
-  // Los filtros de sello ya no van acá arriba: viven en el menú de Categorías,
-  // que es donde se va a acotar la búsqueda. Lo que sí queda es el aviso de que
-  // hay uno puesto, para poder sacarlo sin abrir el menú.
-  h+=_avisoSello();
-  const visibles = SELLO_ACTIVO ? prods.filter(p=>_sellosDe(p).some(x=>x.id===SELLO_ACTIVO)) : prods;
-  if(!visibles.length)return h+'<div style="text-align:center;padding:48px 0;color:var(--muted-fg);font-size:17px">No hay productos con ese sello en esta categoría</div>';
+  // Una sola barra: la flechita, el nombre del rubro y el atajo a las categorías.
+  // Antes eran dos renglones (botón "Volver a todos los productos" + título grande)
+  // y se comían media pantalla del celular.
+  let h=_barraFiltro('Categoría', cat.n, prods.length);
+  // El sello ya no se cruza con el rubro: entrar a un rubro lo saca.
+  const visibles = prods;
+  if(!visibles.length)return h+'<div style="text-align:center;padding:48px 0;color:var(--muted-fg);font-size:17px">No hay productos en esta categoría</div>';
   h+='<div class="prod-grid">';
   visibles.forEach((p,i)=>{h+=renderCard(p,prefix,i<4||p[0]===priorityProductId)});
   h+='</div>';
@@ -4577,15 +4680,48 @@ function _updateSuggestions(value){
     top.push({txt:nombre,html:_nomHTML(p,nombre)});
     if(top.length>=6)break;
   }
-  if(!top.length&&!catMatches.length){box.classList.remove('active');box.innerHTML='';return;}
+  // Marcas que pegan con lo escrito. Desde la tercera letra, para no comerle lugar
+  // a los productos cuando todavía escribiste dos. Va resaltada como el rubro: es
+  // el atajo para ver SÓLO esa marca, sin los parecidos que trae la búsqueda.
+  let marcaMatches=[];
+  if(term.length>=3){
+    const cuenta={};
+    (list||[]).forEach(p=>{
+      const m=(_marcaDe(p)||'').trim();
+      if(!m)return;
+      const k=_norm(m);
+      const g=cuenta[k]||(cuenta[k]={n:0,formas:{}});
+      g.n++; g.formas[m]=(g.formas[m]||0)+1;
+    });
+    marcaMatches=Object.keys(cuenta).filter(k=>k.startsWith(qn)||k.split(' ').some(w=>w.startsWith(qn)))
+      .sort((a,b)=>cuenta[b].n-cuenta[a].n).slice(0,2)
+      .map(k=>{
+        const f=cuenta[k].formas;
+        return {txt:Object.keys(f).sort((a,b)=>f[b]-f[a])[0], n:cuenta[k].n};
+      });
+  }
+  if(!top.length&&!catMatches.length&&!marcaMatches.length){box.classList.remove('active');box.innerHTML='';return;}
   const catHTML=catMatches.map(c=>
-    `<div class="search-suggestion-item sug-cat" onmousedown="_pickCategorySuggestion('${c.id}')"><span class="sug-icon">${c.ic}</span>${c.n}</div>`
+    `<div class="search-suggestion-item sug-cat" onmousedown="_pickCategorySuggestion('${c.id}')"><span class="sug-icon">${c.ic}</span><span class="sug-txt">${c.n}</span></div>`
   ).join('');
-  const prodHTML=top.map(n=>`<div class="search-suggestion-item" onmousedown="_pickSuggestion('${n.txt.replace(/'/g,"\\'")}')"><span class="sug-icon">🔍</span>${n.html}</div>`).join('');
-  box.innerHTML=catHTML+prodHTML;
+  const marcaHTML=marcaMatches.map(m=>
+    `<div class="search-suggestion-item sug-marca" onmousedown="_pickMarcaSuggestion('${m.txt.replace(/'/g,"\\'")}')">` +
+    `<span class="sug-icon" aria-hidden="true">◆</span><span class="sug-txt">Ver todo de <b>${_tc(m.txt)}</b></span>` +
+    `<span class="sug-n">${m.n}</span></div>`
+  ).join('');
+  const prodHTML=top.map(n=>`<div class="search-suggestion-item" onmousedown="_pickSuggestion('${n.txt.replace(/'/g,"\\'")}')"><span class="sug-icon">🔍</span><span class="sug-txt">${n.html}</span></div>`).join('');
+  box.innerHTML=catHTML+marcaHTML+prodHTML;
   box.classList.add('active');
 }
 window._updateSuggestions=_updateSuggestions;
+/* Elegir la marca sugerida: se cierra la búsqueda y se abre la marca entera. */
+function _pickMarcaSuggestion(marca){
+  const box=document.getElementById('searchSuggestions');
+  if(box){box.classList.remove('active');box.innerHTML='';}
+  try{ limpiarBusqueda(); }catch(e){}
+  verMarca(marca);
+}
+window._pickMarcaSuggestion=_pickMarcaSuggestion;
 function _pickSuggestion(nombre){
   const box=document.getElementById('searchSuggestions');
   if(box){box.classList.remove('active');box.innerHTML='';}
@@ -7183,14 +7319,16 @@ function renderCarruseles(){
   var grouped=Object.create(null);
   PRODS.forEach(function(p){(grouped[p[1]]||(grouped[p[1]]=[])).push(p);});
   function buildProgressive(prefix){
-    activeArea.innerHTML=`<div class="catalog-intro">
+    var _selloAct = SELLO_ACTIVO ? SELLOS_TIENDA.find(function(x){return x.id===SELLO_ACTIVO}) : null;
+    activeArea.innerHTML=(_selloAct
+      ? _barraFiltro('Sello', _selloAct.chip, null)
+      : `<div class="catalog-intro">
       <div>
         <h1>Todos los productos</h1>
       </div>
       <img class="catalog-intro-ic" src="may-icon-products-bag.png" alt="" aria-hidden="true" loading="eager" decoding="async">
       <button class="catalog-filter-btn" onclick="toggleCatsDropdown()"><span aria-hidden="true">☰</span> Categorías</button>
-    </div>
-    ${_avisoSello()}
+    </div>`) + `
     <div class="catalog-progressive-sections"></div>
     <div class="catalog-load-sentinel" aria-hidden="true" style="height:1px"></div>`;
     activeArea.setAttribute('aria-busy','true');
