@@ -9418,6 +9418,10 @@ window.pintarTableroCats=pintarTableroCats;
   .pdrel-tit{font-size:17px}
   .aviso-sello span{font-size:15px}
 }
+/* Las predicciones del buscador quedaban DEBAJO de las pastillas Home/Productos/
+   Ofertas: el contenedor de las pastillas está en z-index 4 y el del buscador en 1,
+   los dos dentro del header. Subir el del buscador es lo mínimo que lo arregla. */
+.header-inner{z-index:6}
 </style>
 </body>
 </html>
