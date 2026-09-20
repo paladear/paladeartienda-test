@@ -1642,8 +1642,6 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   .filtro-activo{max-width:620px;margin:0 auto 16px;padding:9px 12px;
     border-radius:0 0 14px 14px;border-bottom:0}
 }
-/* El hamburguesa del header sobra en el celular: el de la barra hace lo mismo. */
-@media(max-width:767px){ .min-header-menu{display:none!important} }
 .filtro-activo .fa-volver,.filtro-activo .fa-cats{flex:0 0 auto;width:38px;height:38px;
   border-radius:10px;border:0;background:var(--muted);color:var(--azul-dark);cursor:pointer;
   display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s}
@@ -9354,5 +9352,14 @@ window.pintarTableroCats=pintarTableroCats;
   }, {passive:false});
 })();
 </script>
+<style>
+/* Va acá al final y bien específico porque la regla corta, arriba, le perdía contra
+   los estilos del header que vienen después. En el celular el hamburguesa del header
+   sobra: el de la barra de filtro hace lo mismo y así el buscador se queda con todo
+   el ancho. En el Home sí se deja, porque ahí no hay barra de filtro. */
+@media(max-width:767px){
+  body.min-redesign:not(.hv-home) .header .min-header-menu{display:none!important}
+}
+</style>
 </body>
 </html>
