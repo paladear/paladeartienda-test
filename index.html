@@ -1636,12 +1636,6 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   margin:-18px -20px 14px;padding:9px 16px;
   background:#4c7592;color:#fff;border:0;border-radius:0;
   border-bottom:1px solid rgba(255,255,255,.2)}
-.filtro-activo .fa-volver,.filtro-activo .fa-cats{background:rgba(255,255,255,.16);
-  color:#fff;border:1px solid rgba(255,255,255,.34)}
-.filtro-activo .fa-volver:hover,.filtro-activo .fa-cats:hover{background:rgba(255,255,255,.28)}
-.filtro-activo .fa-txt i{color:rgba(255,255,255,.72)}
-.filtro-activo .fa-txt b{color:#fff}
-.filtro-activo .fa-n{background:rgba(255,255,255,.18);color:#fff}
 @media(min-width:768px){
   /* En escritorio no cruza toda la pantalla: una tira centrada, del mismo azul,
      colgada del header. */
@@ -1654,6 +1648,14 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   border-radius:10px;border:0;background:var(--muted);color:var(--azul-dark);cursor:pointer;
   display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s}
 .filtro-activo .fa-volver svg,.filtro-activo .fa-cats svg{width:19px;height:19px}
+/* Va después de la regla de arriba a propósito: si no, la base le pisa el color y los
+   botones quedaban grises sobre el azul. */
+.filtro-activo .fa-volver,.filtro-activo .fa-cats{background:rgba(255,255,255,.16);
+  color:#fff;border:1px solid rgba(255,255,255,.34)}
+.filtro-activo .fa-volver:hover,.filtro-activo .fa-cats:hover{background:rgba(255,255,255,.28)}
+.filtro-activo .fa-txt i{color:rgba(255,255,255,.72)}
+.filtro-activo .fa-txt b{color:#fff}
+.filtro-activo .fa-n{background:rgba(255,255,255,.18);color:#fff}
 .filtro-activo .fa-volver:hover,.filtro-activo .fa-cats:hover{background:var(--azul-light)}
 .filtro-activo .fa-txt{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:1px}
 .filtro-activo .fa-txt i{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.1em;
@@ -2290,11 +2292,13 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 @media(max-width:767px){
   .bnav{display:flex}
   body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
-  #cart-fab{bottom:calc(98px + env(safe-area-inset-bottom))!important;right:14px!important;height:52px!important;min-width:104px!important;width:auto!important;border-radius:999px!important;padding:4px 12px 4px 6px!important;gap:4px!important}
+  /* Sin la palabra "Carrito" vuelve a ser un botón redondo: la pastilla existía sólo
+     para que entrara el texto. */
+  #cart-fab{bottom:calc(98px + env(safe-area-inset-bottom))!important;right:14px!important;height:56px!important;min-width:0!important;width:56px!important;border-radius:50%!important;padding:0!important;gap:0!important}
   #backToTop{bottom:calc(112px + 56px)!important}
 }
 .cart-fab-label{font-size:12px;font-weight:800;line-height:1;color:#fff!important;-webkit-text-fill-color:#fff!important;white-space:nowrap}
-#cart-fab{width:auto;min-width:112px;height:58px;border-radius:999px;padding:4px 14px 4px 6px;border:2px solid rgba(255,255,255,.95);box-shadow:0 7px 25px rgba(36,65,91,.48);gap:4px}
+#cart-fab{width:60px;min-width:0;height:60px;border-radius:50%;padding:0;border:2px solid rgba(255,255,255,.95);box-shadow:0 7px 25px rgba(36,65,91,.48);gap:0}
 #cart-fab:hover{transform:scale(1.04)}
 #cart-fab .cart-count{top:-7px;right:-5px}
 </style>
