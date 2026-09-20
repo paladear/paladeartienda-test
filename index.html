@@ -3763,7 +3763,18 @@ let MARCA_ACTIVA=null;
 /* Deja la pantalla en la pestaña Productos. Desde el Home, poner un filtro no hacía
    nada: el catálogo completo sólo se dibuja si esa pestaña está visible. */
 function _irAProductos(){
-  document.body.classList.remove('hv-home','hv-ofertas','hv-favoritos');
+  var enOtraPestana = document.body.classList.contains('hv-home')||
+                      document.body.classList.contains('hv-ofertas')||
+                      document.body.classList.contains('hv-favoritos');
+  if(enOtraPestana){
+    // Hay que pasar por switchTab de verdad: sacar la clase del body no alcanza,
+    // porque adentro queda anotado que seguís en Home y el catálogo no se dibuja.
+    // El skip evita que lo dibuje a medias acá: lo arma el que llamó, con su filtro.
+    _catalogSkipNextAllRender=true;
+    try{ window.switchTab('minorista'); }
+    catch(e){ document.body.classList.remove('hv-home','hv-ofertas','hv-favoritos'); }
+    finally{ _catalogSkipNextAllRender=false; }
+  }
   try{ _activeOfertasMes=false; }catch(e){}
   ['tabHome','tabOfertas','tabFavoritos'].forEach(function(id){
     var e=document.getElementById(id); if(e)e.classList.remove('active');
