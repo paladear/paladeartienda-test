@@ -326,6 +326,11 @@ button{cursor:pointer;border:none;font-family:inherit}
 /* Botón flotante del carrito */
 #cart-fab{position:fixed;bottom:94px;right:24px;z-index:10008;width:58px;height:58px;border-radius:50%;background:var(--azul);color:#fff;border:none;font-size:26px;cursor:pointer;box-shadow:0 4px 22px rgba(58,85,114,.55);transition:transform .2s,box-shadow .2s;display:flex;align-items:center;justify-content:center;padding:0;font-family:inherit;text-shadow:0 1px 4px rgba(0,0,0,.55);filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
 #cart-fab:hover{transform:scale(1.1)}
+/* Sin la palabra, vuelve a ser un botón redondo y ocupa la mitad. */
+#cart-fab .cart-fab-label{display:none}
+/* Con el menú de categorías abierto el carrito le quedaba por encima (z 10008 contra
+   9001) y tapaba los rubros. Mientras el menú está abierto, se esconde. */
+body.cats-abierto #cart-fab,body.cats-abierto #chat-fab{display:none!important}
 @media(max-width:767px){body.builder-open #cart-fab,body.builder-open #chat-fab{display:none!important}}
 #cart-fab .cart-count{position:absolute;top:-8px;right:-8px;background:var(--destructive);color:#fff;border-radius:50%;min-width:22px;height:22px;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700;padding:0 5px;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25);z-index:2}
 .fab-icon{width:42px;height:42px;object-fit:contain;display:block;filter:drop-shadow(0 1.5px 2px rgba(0,0,0,.3))}
@@ -745,13 +750,13 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .product-detail-sellos .sello-d{display:block;padding:0;border:0;background:none;
   border-radius:50%;cursor:pointer;line-height:0;
   transition:transform .15s ease,box-shadow .15s ease}
-.product-detail-sellos .sello-d img{width:84px;height:84px;display:block;object-fit:contain}
+.product-detail-sellos .sello-d img{width:62px;height:62px;display:block;object-fit:contain}
 .product-detail-sellos .sello-d:hover{transform:translateY(-2px);
   box-shadow:0 4px 14px rgba(20,45,70,.18)}
 .product-detail-sellos .sello-d:focus-visible{outline:2px solid var(--azul);outline-offset:3px}
 @media(max-width:767px){
   .product-detail-sellos{gap:10px}
-  .product-detail-sellos .sello-d img{width:74px;height:74px}
+  .product-detail-sellos .sello-d img{width:56px;height:56px}
 }
 @media(prefers-reduced-motion:reduce){
   .product-detail-sellos .sello-d{transition:none}
@@ -1623,16 +1628,25 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .search-suggestion-item.sug-marca b{font-weight:800}
 
 /* ── La barra del filtro puesto ──
-   Queda pegada arriba: el header se va con el scroll y ésta ocupa su lugar, así el
-   botón de categorías está siempre a mano. Por eso se sacó el hamburguesa que estaba
-   al lado del buscador: eran dos iguales y le comía lugar al texto que escribís. */
-.filtro-activo{display:flex;align-items:center;gap:10px;margin:0 0 14px;padding:7px 8px;
-  border:1px solid var(--border);border-radius:12px;background:var(--card);
-  position:sticky;top:var(--pegado-top,0px);z-index:40;box-shadow:0 2px 10px rgba(20,45,70,.10)}
+   Va soldada al header y del mismo azul: se lee como una continuación de la barra de
+   arriba, no como una tarjeta suelta. Se va con el scroll igual que el header.
+   Por eso también se sacó el hamburguesa que estaba al lado del buscador: eran dos
+   iguales y le comía lugar al texto que escribís. */
+.filtro-activo{display:flex;align-items:center;gap:10px;
+  margin:-18px -20px 14px;padding:9px 16px;
+  background:#4c7592;color:#fff;border:0;border-radius:0;
+  border-bottom:1px solid rgba(255,255,255,.2)}
+.filtro-activo .fa-volver,.filtro-activo .fa-cats{background:rgba(255,255,255,.16);
+  color:#fff;border:1px solid rgba(255,255,255,.34)}
+.filtro-activo .fa-volver:hover,.filtro-activo .fa-cats:hover{background:rgba(255,255,255,.28)}
+.filtro-activo .fa-txt i{color:rgba(255,255,255,.72)}
+.filtro-activo .fa-txt b{color:#fff}
+.filtro-activo .fa-n{background:rgba(255,255,255,.18);color:#fff}
 @media(min-width:768px){
-  /* En escritorio no tiene sentido que cruce toda la pantalla: va centrada y del
-     ancho de una columna de lectura. */
-  .filtro-activo{max-width:620px;margin-left:auto;margin-right:auto}
+  /* En escritorio no cruza toda la pantalla: una tira centrada, del mismo azul,
+     colgada del header. */
+  .filtro-activo{max-width:620px;margin:0 auto 16px;padding:9px 12px;
+    border-radius:0 0 14px 14px;border-bottom:0}
 }
 /* El hamburguesa del header sobra en el celular: el de la barra hace lo mismo. */
 @media(max-width:767px){ .min-header-menu{display:none!important} }
@@ -3171,7 +3185,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 
 <!-- CHATBOT -->
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">↑</button>
-<button id="cart-fab" onclick="openCart()" title="Ver carrito"><svg class="fab-icon min-cart-fab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h2l2.2 10a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"/><circle cx="9" cy="20" r="1.55" fill="currentColor"/><circle cx="18" cy="20" r="1.55" fill="currentColor"/></svg><span class="cart-fab-label">Carrito</span><span class="cart-count" id="cartCount">0</span></button>
+<button id="cart-fab" onclick="openCart()" title="Ver carrito"><svg class="fab-icon min-cart-fab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h2l2.2 10a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"/><circle cx="9" cy="20" r="1.55" fill="currentColor"/><circle cx="18" cy="20" r="1.55" fill="currentColor"/></svg><span class="cart-count" id="cartCount">0</span></button>
 <div id="chat-box">
   <div id="chat-header">
     <img src="chat-avatar.jpg" loading="lazy" onerror="this.style.display='none'" alt="">
@@ -7660,6 +7674,7 @@ function toggleCatsDropdown(){
     overlay.classList.remove('open');
     panel.style.display='none';
   }
+  document.body.classList.toggle('cats-abierto',_catsDropOpen);
 }
 function closeCatsDropdown(){
   _catsDropOpen=false;
@@ -7667,6 +7682,7 @@ function closeCatsDropdown(){
   const panel=document.getElementById('catsDropdownPanel');
   if(overlay)overlay.classList.remove('open');
   if(panel)panel.style.display='none';
+  document.body.classList.remove('cats-abierto');
 }
 window.toggleCatsDropdown=toggleCatsDropdown;
 window.closeCatsDropdown=closeCatsDropdown;
