@@ -7328,7 +7328,13 @@ function renderCarruseles(){
   var mode=isMobile?'mobile':'desktop';
   var activeArea=isMobile?mobileArea:desktopArea;
   var inactiveArea=isMobile?desktopArea:mobileArea;
-  if(_catalogRenderMode===mode&&_catalogRenderedProds===PRODS&&_catalogRenderedCats===CATS&&activeArea.dataset.catalogSello===String(SELLO_ACTIVO)&&activeArea.dataset.catalogView==='all'&&activeArea.childElementCount){
+  // El listado se dibuja de a lotes y se PAUSA mientras estás en Home, Ofertas o
+  // Favoritos. Al volver a Productos, este caché lo daba por terminado y nadie lo
+  // reanudaba: te quedabas con los primeros doce productos para siempre, y ni
+  // "Volver a todos los productos" ni cambiar de pestaña lo arreglaban. Ahora sólo
+  // se reusa si de verdad terminó de dibujarse; si quedó a medias, se rehace.
+  var _terminado = activeArea.getAttribute('aria-busy')!=='true';
+  if(_terminado&&_catalogRenderMode===mode&&_catalogRenderedProds===PRODS&&_catalogRenderedCats===CATS&&activeArea.dataset.catalogSello===String(SELLO_ACTIVO)&&activeArea.dataset.catalogView==='all'&&activeArea.childElementCount){
     mobileArea.classList.remove('hidden');
     return;
   }
