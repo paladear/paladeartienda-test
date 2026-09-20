@@ -1608,7 +1608,14 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 /* El nombre, el envase y la marca en un solo renglón que se recorta con puntitos.
    Antes eran dos cajas sueltas del flex: el nombre empujaba y la marca se iba
    afuera de la pantalla, cortada al medio. */
-.search-suggestion-item .sug-txt{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.search-suggestion-item .sug-txt{flex:1 1 auto;min-width:0;overflow:hidden}
+/* El nombre se recorta con puntitos. Sin esto se cortaba al medio de una letra,
+   que en el celular es donde más molesta. */
+.search-suggestion-item .sug-txt>b,.search-suggestion-item .sug-txt>.nom-p{
+  display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.search-suggestion-item .nom-meta{display:flex;margin:1px 0 0;overflow:hidden}
+.search-suggestion-item .nom-c,.search-suggestion-item .nom-m{
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .search-suggestion-item .sug-n{flex:0 0 auto;font-size:12px;font-weight:800;opacity:.6}
 .search-suggestion-item.sug-marca{background:var(--min-sky,#eaf3fa);color:var(--azul-dark);font-weight:600}
 .search-suggestion-item.sug-marca:hover{background:var(--azul);color:#fff}
