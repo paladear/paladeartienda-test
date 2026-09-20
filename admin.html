@@ -1133,7 +1133,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
     <h1>Panel de catálogo</h1>
     <span class="env"></span>
     <span class="quien" id="quien"></span>
-    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 19/09 13:20</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
+    <span class="sello-ver" id="selloVer" title="Si esta fecha es vieja, recargá manteniendo apretado el botón de recargar">v. 20/09 12:45</span><div class="hd-acc"><a class="btn-tienda" id="btnVerTienda" href="./" target="_blank" rel="noopener">Ver tienda</a><button type="button" class="btn-herr" id="btnHerr" aria-haspopup="dialog" aria-expanded="false"><span class="bh-puntos" aria-hidden="true">&bull;&bull;&bull;</span>Herramientas</button></div>
   </div>
 </header>
 
@@ -1870,6 +1870,17 @@ async function guardarFichasEnRepo(mensaje){
     if (!RUBROS_OCULTOS.length && remoto.rubrosOcultos && remoto.rubrosOcultos.length)
       RUBROS_OCULTOS = remoto.rubrosOcultos;
 
+    // ── EL ARCHIVO ES DE LA OTRA TIENDA ────────────────────────────────────
+    // Lo más peligroso que puede pasar: escribir las fichas de la distribuidora
+    // encima de las de la minorista. Si el que está publicado dice que es de la
+    // otra tienda, no se guarda nada.
+    if (remoto.tienda && remoto.tienda !== TIENDA) {
+      avisar('mal', 'Frené el guardado: ese archivo es de la otra tienda',
+             'Lo publicado dice "' + remoto.tienda + '" y vos estás en "' + TIENDA +
+             '". Recargá el panel antes de seguir.');
+      throw new Error('Guardado cancelado: el archivo publicado es de ' + remoto.tienda);
+    }
+
     // ── FRENO DE MANO ──────────────────────────────────────────────────────
     // Si al arrancar falló la lectura del catálogo, FICHAS_FB queda vacío; con
     // eso, el primer guardado borraría los nombres, marcas, fotos y descripciones
@@ -1878,7 +1889,9 @@ async function guardarFichasEnRepo(mensaje){
     // no se guarda nada y se avisa.
     var hayAhora  = Object.keys(FICHAS_FB || {}).length;
     var habiaAntes = Object.keys((remoto.fichas) || {}).length;
-    if (habiaAntes > 20 && hayAhora < habiaAntes * 0.6) {
+    // Era 0.6 y no alcanzó: 395 contra 645 da 0.61 y pasó raspando, llevándose 324
+    // fichas puestas a mano. Una caída de más del 10% ya es para frenar y mirar.
+    if (habiaAntes > 20 && hayAhora < habiaAntes * 0.9) {
       avisar('mal', 'Frené el guardado para no borrar el catálogo',
              'Iba a guardar ' + hayAhora + ' fichas cuando hay ' + habiaAntes +
              ' publicadas. Recargá el panel y volvé a intentar.');
@@ -1893,6 +1906,9 @@ async function guardarFichasEnRepo(mensaje){
                           novedadesVistas: MARCA_VISTO,
                           marcas: MARCAS_FB,
                           rubrosOcultos: RUBROS_OCULTOS,
+                          // Queda firmado de qué tienda es. Antes los dos archivos eran
+                          // indistinguibles y uno podía terminar encima del otro.
+                          tienda: TIENDA,
                           actualizado: new Date().toISOString() })),   // sin sangría: son 77 KB menos por guardado
     mensaje, 0, repoActivo());
   // Lo que se acaba de escribir ES lo último publicado: no hay por qué volver a bajarlo.
@@ -2135,7 +2151,7 @@ async function arrancar(){
     // Queda guardado el estado de la tienda minorista para poder volver sin recargar.
     GUARDADO_MIN = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
                      vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
-                     marcas: MARCAS_FB };
+                     marcas: MARCAS_FB, rubrosOcultos: RUBROS_OCULTOS };
     refrescarMarcas();
     cargarDeshacer();
     pintarKpis(); pintar();
@@ -4884,7 +4900,18 @@ async function cambiarTienda(cual){
       restaurarTienda(GUARDADO_MAY);
     }
   } else {
-    restaurarTienda(GUARDADO_MIN);
+    // Sin esta guarda pasó lo peor: si GUARDADO_MIN no existía, restaurarTienda
+    // fallaba, TIENDA quedaba en 'min' y FICHAS_FB seguía con las 395 de la
+    // distribuidora. El siguiente guardado escribió esas 395 encima de las 645 de
+    // la minorista. Si no hay nada que restaurar, se recarga de la minorista.
+    if (GUARDADO_MIN && GUARDADO_MIN.fichas && Object.keys(GUARDADO_MIN.fichas).length) {
+      restaurarTienda(GUARDADO_MIN);
+    } else {
+      // arrancar() es el que arma toda la minorista; tiene una traba para no correr
+      // dos veces, así que se la saca a propósito para rehacerla.
+      arrancar._ya = false;
+      await arrancar();
+    }
   }
 
   document.querySelectorAll('.tienda-sel button').forEach(function(b){
