@@ -908,7 +908,7 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .card-del-btn:hover{border-color:#d4543c;color:#b04020;background:rgba(212,84,60,.18)}
 .card-edit-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;height:34px;border-radius:8px;background:var(--azul-light);border:1.5px solid var(--azul-mid);color:var(--azul-dark);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
 .card-edit-btn:hover{background:var(--azul);color:#fff}
-.add-btn.added{background:#16a34a}
+.add-btn.added{background:#629176}
 .acum-badge{font-size:12px;color:#4a7a60;font-weight:700;background:#e6faee;padding:3px 9px;border-radius:8px;margin-left:6px;border:1px solid rgba(111,155,127,.4);white-space:nowrap}
 .acum-row{margin-top:7px}
 .acum-row .acum-badge{display:block;margin-left:0;text-align:center;white-space:normal}
@@ -1192,6 +1192,9 @@ body.cart-open #cart-fab,body.cart-open #chat-fab{display:none!important}
 .product-detail-buy .qty-row{justify-content:center;margin:4px 0 12px}
 .product-detail-buy .add-btn{min-height:50px;margin:0;font-size:15px}
 .product-detail-cart-state{min-height:20px;margin-top:10px;text-align:center;color:#426c88;font-size:12px;font-weight:700}
+.product-detail-cart-state .card-cart-actions{margin-top:9px}
+.product-detail-cart-state .card-del-btn,.product-detail-cart-state .card-edit-btn{height:36px}
+
 .min-redesign .pcard{cursor:pointer}
 .min-redesign .pcard-img{cursor:pointer}
 .min-redesign .pcard:focus-visible{outline:3px solid #5d94bb;outline-offset:3px}
@@ -3487,7 +3490,6 @@ function openProductDetail(pid){
   const opciones=optsVis.map(o=>`<button class="opt-btn${o===opt?' active':''}" data-opt="${o.replace(/"/g,'&quot;')}" onclick="selOpt('productDetailCard','${o.replace(/'/g,"\\'")}',${p[7][o][0]},${p[7][o][1]})">${_medidaCorta(o)}</button>`).join('');
   const saboresHTML=sabores&&sabores.length?`<div class="sabor-row"><label class="sabor-label" for="productDetailCard_sab">Sabor:</label><select class="sabor-select" id="productDetailCard_sab" onchange="selSabor('productDetailCard',this.value)">${sabores.map(s=>`<option value="${s.replace(/"/g,'&quot;')}">${s}</option>`).join('')}</select></div>`:'';
   const info=(p[8]||'Consultanos si querés conocer más detalles sobre este producto.').replace(/\n/g,'<br>');
-  const acum=_acumLabel(p);
   const modal=document.createElement('section');
   modal.id='productDetail';modal.className='product-detail';modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');modal.setAttribute('aria-label','Detalle de '+_tc(p[2]));
   modal.innerHTML=`<div class="product-detail-bar">
@@ -3502,7 +3504,7 @@ function openProductDetail(pid){
         <div class="prices"><div><span class="price-label">Precio${oferta>0?' (Oferta)':''}</span><div class="price-min">${_priceMinContent(p[7][opt][0],oferta)}</div></div><div><span class="price-label">+$80.000</span><div class="price-may">$${fmt(p[7][opt][1])}</div></div></div>
         <div class="qty-row"><button class="qty-btn" onclick="chgQty('productDetailCard',-1)" aria-label="Restar cantidad">−</button><span class="qty-val" id="productDetailCard_q">1</span><button class="qty-btn" onclick="chgQty('productDetailCard',1)" aria-label="Sumar cantidad">+</button></div>
         <button class="add-btn" id="productDetailCard_ab" onclick="productDetailAdd(${p[0]})">${ADD_CART_ICON} Agregar al carrito</button>
-        <div class="product-detail-cart-state" id="productDetailCartState">${acum?'En tu carrito: '+acum:''}</div>
+        <div class="product-detail-cart-state" id="productDetailCartState">${_estadoFicha(p)}</div>
       </div>
     </div>
     <div class="product-detail-rel" id="productDetailRel"></div>
@@ -3517,10 +3519,30 @@ function productDetailAdd(pid){
   addToCart(pid,'productDetailCard');
   setTimeout(function(){
     const p=PRODS.find(x=>x[0]===pid),state=document.getElementById('productDetailCartState');
-    if(p&&state){const acum=_acumLabel(p);state.textContent=acum?'En tu carrito: '+acum:'';}
+    if(p&&state)state.innerHTML=_estadoFicha(p);
   },40);
 }
 window.openProductDetail=openProductDetail;
+
+/* Lo que está en el carrito, dentro de la ficha abierta: el texto más el tacho y
+   el botón de editar, los mismos que tiene la tarjeta chica. Antes la ficha sólo
+   decía cuánto había y había que cerrarla para sacarlo. */
+function _estadoFicha(p){
+  const acum=_acumLabel(p);
+  if(!acum)return'';
+  return 'En tu carrito: '+acum+
+    '<div class="card-cart-actions">'+
+      '<button class="card-del-btn" onclick="_fichaQuitar('+p[0]+')" title="Quitar del carrito">'+TRASH_SVG+'</button>'+
+      '<button class="card-edit-btn" onclick="openCart();_resaltarEnCarrito('+p[0]+')" title="Editar en el carrito">'+EDIT_SVG+' Editar</button>'+
+    '</div>';
+}
+function _fichaQuitar(pid){
+  cardDelProduct(pid);
+  const p=PRODS.find(x=>x[0]===pid),st=document.getElementById('productDetailCartState');
+  if(p&&st)st.innerHTML=_estadoFicha(p);
+}
+window._estadoFicha=_estadoFicha;
+window._fichaQuitar=_fichaQuitar;
 
 /* ── PRODUCTOS RELACIONADOS ───────────────────────────────────────────────────
    Se arman por cercanía real, no al azar: primero lo de la misma marca (que es lo
