@@ -1622,9 +1622,20 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .search-suggestion-item.sug-marca .sug-icon{opacity:1;font-size:11px}
 .search-suggestion-item.sug-marca b{font-weight:800}
 
-/* ── La barra del filtro puesto ── */
+/* ── La barra del filtro puesto ──
+   Queda pegada arriba: el header se va con el scroll y ésta ocupa su lugar, así el
+   botón de categorías está siempre a mano. Por eso se sacó el hamburguesa que estaba
+   al lado del buscador: eran dos iguales y le comía lugar al texto que escribís. */
 .filtro-activo{display:flex;align-items:center;gap:10px;margin:0 0 14px;padding:7px 8px;
-  border:1px solid var(--border);border-radius:12px;background:var(--card)}
+  border:1px solid var(--border);border-radius:12px;background:var(--card);
+  position:sticky;top:0;z-index:40;box-shadow:0 2px 10px rgba(20,45,70,.10)}
+@media(min-width:768px){
+  /* En escritorio no tiene sentido que cruce toda la pantalla: va centrada y del
+     ancho de una columna de lectura. */
+  .filtro-activo{max-width:620px;margin-left:auto;margin-right:auto}
+}
+/* El hamburguesa del header sobra en el celular: el de la barra hace lo mismo. */
+@media(max-width:767px){ .min-header-menu{display:none!important} }
 .filtro-activo .fa-volver,.filtro-activo .fa-cats{flex:0 0 auto;width:38px;height:38px;
   border-radius:10px;border:0;background:var(--muted);color:var(--azul-dark);cursor:pointer;
   display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s}
@@ -3790,11 +3801,15 @@ function _olvidarCatalogo(){
    el nombre de lo que estás mirando. Es la misma para rubro, sello y marca —para el
    cliente son todas "categorías"— y ocupa un solo renglón. */
 function _barraFiltro(etiqueta, titulo, cuenta){
+  // Sin filtro también sale, diciendo "Todos los productos" y sin flechita: así el
+  // botón de categorías está siempre, que es el único que quedó en el celular.
   return '<div class="filtro-activo">' +
-    '<button type="button" class="fa-volver" onclick="verTodoElCatalogo()" ' +
-      'aria-label="Volver a todos los productos" title="Volver a todos los productos">' +
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" ' +
-      'stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button>' +
+    (etiqueta
+      ? '<button type="button" class="fa-volver" onclick="verTodoElCatalogo()" ' +
+        'aria-label="Volver a todos los productos" title="Volver a todos los productos">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" ' +
+        'stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button>'
+      : '') +
     '<span class="fa-txt">' + (etiqueta ? '<i>' + etiqueta + '</i>' : '') +
       '<b>' + titulo + '</b></span>' +
     (cuenta != null ? '<span class="fa-n">' + cuenta + '</span>' : '') +
@@ -7356,13 +7371,7 @@ function renderCarruseles(){
     var _selloAct = SELLO_ACTIVO ? SELLOS_TIENDA.find(function(x){return x.id===SELLO_ACTIVO}) : null;
     activeArea.innerHTML=(_selloAct
       ? _barraFiltro('Sello', _selloAct.chip, null)
-      : `<div class="catalog-intro">
-      <div>
-        <h1>Todos los productos</h1>
-      </div>
-      <img class="catalog-intro-ic" src="may-icon-products-bag.png" alt="" aria-hidden="true" loading="eager" decoding="async">
-      <button class="catalog-filter-btn" onclick="toggleCatsDropdown()"><span aria-hidden="true">☰</span> Categorías</button>
-    </div>`) + `
+      : _barraFiltro('', 'Todos los productos', null)) + `
     <div class="catalog-progressive-sections"></div>
     <div class="catalog-load-sentinel" aria-hidden="true" style="height:1px"></div>`;
     activeArea.setAttribute('aria-busy','true');
