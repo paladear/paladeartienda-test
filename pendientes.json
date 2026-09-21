@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 24,
+    "nuevos": 25,
     "renombrados": 4,
     "quitados": 0,
     "rubro_invalido": 0,
@@ -109,7 +109,7 @@
       "numero": "2096",
       "nombre": "MAPLE \"SYRUP\" JARABE DE ARCE X250ML",
       "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 25380,
+      "precio": 22270,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
@@ -131,6 +131,13 @@
       "nombre": "PISTACHOS CON CÁSCARA X KG",
       "rubro": "FRUTOS SECOS",
       "precio": 47030,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5060",
+      "nombre": "PROTEINA DE SUERO LACTEO",
+      "rubro": "SUPLEMENTOS",
+      "precio": 16260,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
@@ -192,7 +199,7 @@
     {
       "numero": "1866",
       "nombre_publicado": "PROTEINA AISALDA DE SUERO X KG",
-      "nombre_nuevo": "PROTEINA DE SUERO CONCENTRADA 80%",
+      "nombre_nuevo": "PROTEINA DE SUERO WHEY CONCENTRADA 80%",
       "rubro": "SUPLEMENTOS"
     },
     {
