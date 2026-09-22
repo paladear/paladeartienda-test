@@ -1,20 +1,13 @@
 {
   "resumen": {
     "nuevos": 0,
-    "renombrados": 1,
+    "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 62
   },
   "nuevos": [],
-  "renombrados": [
-    {
-      "numero": "2125",
-      "nombre_publicado": "COLADOR COMUN NEGRO",
-      "nombre_nuevo": "COLADOR CHICO NEGRO",
-      "rubro": "PALADEAR HOME"
-    }
-  ],
+  "renombrados": [],
   "quitados": [],
   "rubro_invalido": [],
   "fuera_catalogo": [
