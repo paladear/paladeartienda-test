@@ -1,12 +1,19 @@
 {
   "resumen": {
-    "nuevos": 26,
+    "nuevos": 27,
     "renombrados": 4,
     "quitados": 0,
     "rubro_invalido": 0,
-    "fuera_catalogo": 66
+    "fuera_catalogo": 65
   },
   "nuevos": [
+    {
+      "numero": "2387",
+      "nombre": "ACEITE DE LINO X 250 cc \"NUTRA SEM\"",
+      "rubro": "ACEITES Y VINAGRES",
+      "precio": 16000,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
     {
       "numero": "2006",
       "nombre": "ACEITERO SPRAY",
@@ -224,13 +231,6 @@
       "nombre": "*MANZANILLA FLOR X KG",
       "rubro": "INFUSIONES Y HIERBAS",
       "precio": 50070,
-      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
-    },
-    {
-      "numero": "2387",
-      "nombre": "ACEITE DE LINO X 250 cc \"NUTRA SEM\"",
-      "rubro": "ACEITES Y VINAGRES",
-      "precio": 16000,
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     },
     {
