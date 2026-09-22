@@ -1,10 +1,10 @@
 {
   "resumen": {
-    "nuevos": 25,
+    "nuevos": 26,
     "renombrados": 4,
     "quitados": 0,
     "rubro_invalido": 0,
-    "fuera_catalogo": 67
+    "fuera_catalogo": 66
   },
   "nuevos": [
     {
@@ -54,6 +54,13 @@
       "nombre": "CHUCRUT X300GR",
       "rubro": "ENCURTIDOS",
       "precio": 7221,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "2125",
+      "nombre": "COLADOR COMUN NEGRO",
+      "rubro": "PALADEAR HOME",
+      "precio": 2400,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
@@ -378,13 +385,6 @@
       "nombre": "COLA DE PAVO x 60 CAPS SOMOS SETA",
       "rubro": "SUPLEMENTOS",
       "precio": 31520,
-      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
-    },
-    {
-      "numero": "2125",
-      "nombre": "COLADOR COMUN NEGRO",
-      "rubro": "PALADEAR HOME",
-      "precio": 2400,
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     },
     {
