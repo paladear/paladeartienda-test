@@ -1,10 +1,10 @@
 {
   "resumen": {
-    "nuevos": 27,
+    "nuevos": 30,
     "renombrados": 4,
     "quitados": 0,
     "rubro_invalido": 0,
-    "fuera_catalogo": 65
+    "fuera_catalogo": 62
   },
   "nuevos": [
     {
@@ -134,6 +134,13 @@
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
+      "numero": "1441",
+      "nombre": "NUEZ CUARTILLO X KG",
+      "rubro": "FRUTOS SECOS",
+      "precio": 17350,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
       "numero": "5050",
       "nombre": "PASTA DENTAL X50 GR",
       "rubro": "PALADEAR HOME",
@@ -145,6 +152,13 @@
       "nombre": "PISTACHOS CON CÁSCARA X KG",
       "rubro": "FRUTOS SECOS",
       "precio": 47030,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "1532",
+      "nombre": "POROTOS DE SOJA X KG",
+      "rubro": "GRANOS Y LEGUMBRES",
+      "precio": 3260,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
@@ -194,6 +208,13 @@
       "nombre": "TOMATE DESECADOS CONDIMENTADOS X360 GR - AGROIANNI",
       "rubro": "LINEA GOURMET",
       "precio": 8340,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "2024",
+      "nombre": "YOGHURT C/FRUTAS X 160",
+      "rubro": "PRODUCTOS DE FRIO",
+      "precio": 2490,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
@@ -570,13 +591,6 @@
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     },
     {
-      "numero": "1441",
-      "nombre": "NUEZ CUARTILLO X KG",
-      "rubro": "FRUTOS SECOS",
-      "precio": 17350,
-      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
-    },
-    {
       "numero": "2486",
       "nombre": "PITA CHIPS DE MASA MADRE - ALMADRE",
       "rubro": "SNACK",
@@ -588,13 +602,6 @@
       "nombre": "POLVO PARA HORNEAR X 50gr - INDIAS",
       "rubro": "PRODUCTOS SIN TACC",
       "precio": 2600,
-      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
-    },
-    {
-      "numero": "1532",
-      "nombre": "POROTOS DE SOJA X KG",
-      "rubro": "GRANOS Y LEGUMBRES",
-      "precio": 3260,
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     },
     {
@@ -665,13 +672,6 @@
       "nombre": "VELA EN LATA MANDALA CHICA",
       "rubro": "PALADEAR HOME",
       "precio": 7320,
-      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
-    },
-    {
-      "numero": "2024",
-      "nombre": "YOGHURT C/FRUTAS X 160",
-      "rubro": "PRODUCTOS DE FRIO",
-      "precio": 2490,
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     },
     {
