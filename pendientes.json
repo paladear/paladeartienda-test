@@ -1,20 +1,12 @@
 {
   "resumen": {
-    "nuevos": 1,
+    "nuevos": 0,
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 62
   },
-  "nuevos": [
-    {
-      "numero": "5061",
-      "nombre": "UNGÜENTO X50ML GOTA AZUL",
-      "rubro": "PALADEAR HOME",
-      "precio": 19800,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    }
-  ],
+  "nuevos": [],
   "renombrados": [],
   "quitados": [],
   "rubro_invalido": [],
