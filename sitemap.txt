@@ -568,6 +568,7 @@ https://paladear.github.io/paladeartienda-test/?producto=trigo-candeal-2379
 https://paladear.github.io/paladeartienda-test/?producto=trigo-sarraceno-pelado-2367
 https://paladear.github.io/paladeartienda-test/?producto=tutucas-con-azucar-1635
 https://paladear.github.io/paladeartienda-test/?producto=tutucas-sin-azucar-1636
+https://paladear.github.io/paladeartienda-test/?producto=unguento-x50ml-gota-azul-5061
 https://paladear.github.io/paladeartienda-test/?producto=valeriana-2375
 https://paladear.github.io/paladeartienda-test/?producto=valeriana-x10-comprimidos-2175
 https://paladear.github.io/paladeartienda-test/?producto=velon-burbuja-2405
