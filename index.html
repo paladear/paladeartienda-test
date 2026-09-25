@@ -4195,13 +4195,13 @@ function addToCart(pid,elId){
     const l1kg=refG>0?Math.round(p[7][refOpt][0]*(1000/refG)):p[7][refOpt][0];
     const l2kg=refG>0?Math.round(p[7][refOpt][1]*(1000/refG)):p[7][refOpt][1];
     if(ex){ex.totalG=(ex.totalG||0)+addedG;}
-    else cart.push({key,pid,n:nombreConSabor,o:refOpt,totalG:addedG,unidad:'kg',sabor,l1:l1kg,l2:l2kg});
+    else cart.push({key,pid,epid:_epidDe(p),n:nombreConSabor,o:refOpt,totalG:addedG,unidad:'kg',sabor,l1:l1kg,l2:l2kg,mar:_marcaDe(p),env:_envaseDe(p)});
     const it=cart.find(i=>i.key===key);
     it.l1=l1kg;it.l2=l2kg;
   } else {
     const key=pid+'-'+opt+(sabor?'-'+sabor:'');
     const ex=cart.find(i=>i.key===key);
-    if(ex)ex.c+=qty;else cart.push({key,pid,n:nombreConSabor,o:opt,c:qty,l1:p[7][opt][0],l2:p[7][opt][1],unidad:'und',sabor});
+    if(ex)ex.c+=qty;else cart.push({key,pid,epid:_epidDe(p),n:nombreConSabor,o:opt,c:qty,l1:p[7][opt][0],l2:p[7][opt][1],unidad:'und',sabor,mar:_marcaDe(p),env:_envaseDe(p)});
   }
 
   // Resetear qty a 1 en la card después de agregar
@@ -4592,15 +4592,35 @@ function _itemMay(it){if(it.unidad==='mix')return it.l2;if(it.unidad==='kg')retu
 
 // ─── DESCUENTO POR OFERTA DEL MES ───
 // Devuelve el % de oferta de un producto por pid (0 si no tiene)
-function _getOfertaPct(pid){
-  const p = PRODS.find(p => p[0] === pid);
-  return (p && p[12] && p[12].oferta) ? p[12].oferta : 0;
+/* ── DE UN RENGLON DEL CARRITO AL PRODUCTO ────────────────────────────────────
+   El pid NO es un numero propio del producto: es su POSICION en la lista de
+   precios. Apenas se agrega o se saca un articulo, todos los de abajo se corren
+   un lugar. Como el carrito queda guardado en el navegador, uno armado antes de
+   ese cambio termina apuntando al producto de al lado: por eso llego un pedido
+   con "Almohaditas de Limon - NATIER", que es la marca del renglon siguiente.
+   El productId, en cambio, no se mueve nunca. Se busca por ahi; en los carritos
+   viejos que no lo tienen, por el nombre, que tambien quedo congelado. Si no se
+   puede saber cual es, no se adivina. */
+function _epidDe(p){ return (p[12]&&p[12].productId)||''; }
+function _prodDeItem(it){
+  if(!it)return null;
+  if(it.epid){const p=_getMinForArtId(String(it.epid));if(p)return p;}
+  if(it.n){
+    const clave=_norm(String(it.n).replace(/\s*\([^)]*\)\s*$/,''));
+    const q=PRODS.find(x=>_norm(x[2])===clave);
+    if(q)return q;
+  }
+  return null;
+}
+function _ofertaDeItem(it){
+  const p=_prodDeItem(it);
+  return (p&&p[12]&&p[12].oferta)?p[12].oferta:0;
 }
 // Devuelve el precio minorista con oferta aplicada para un item del carrito
 function _itemMinConOferta(it){
   // Mix y granola no tienen oferta (son compuestos)
   if(it.unidad==='mix') return _itemMin(it);
-  const pct = _getOfertaPct(it.pid);
+  const pct = _ofertaDeItem(it);
   const base = _itemMin(it);
   return pct > 0 ? Math.round(base * (1 - pct/100)) : base;
 }
@@ -4622,7 +4642,7 @@ function renderCart(){
   cart.forEach(it=>{
     const sMin=_itemMin(it);
     const sMay=_itemMay(it);
-    const ofertaPct=_getOfertaPct(it.pid);
+    const ofertaPct=_ofertaDeItem(it);
     const sOferta=_itemMinConOferta(it);
     const priceHTML=_esMayCart
       ?`<div class="cart-item-price"><span class="precio-tachado-sm">$${fmt(sMin)}</span><span class="cart-price-desc">$${fmt(sMay)}</span></div>`
@@ -4675,8 +4695,8 @@ function renderCart(){
   fh+='<button class="wa-btn" onclick="pedirWA()"><svg viewBox="0 0 24 24" width="19" height="19" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.006 22l4.984-1.307A9.961 9.961 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.25a8.24 8.24 0 01-4.258-1.178l-.306-.181-3.157.828.844-3.07-.2-.319A8.25 8.25 0 1112 20.25z"/></svg> Pedir por WhatsApp</button>';
   footer.innerHTML=fh;footer.classList.remove('hidden');
 }
-function _minGDe(pid){
-  const p=PRODS.find(x=>x[0]===pid);
+function _minGDeItem(it){
+  const p=_prodDeItem(it);
   if(!p||!p[7])return 100;
   const gs=Object.keys(p[7]).map(_optToG).filter(g=>g>0);
   return gs.length?Math.min(...gs):100;
@@ -4684,7 +4704,7 @@ function _minGDe(pid){
 
 function cartQty(key,d){
   const it=cart.find(i=>i.key===key);if(!it)return;
-  if(it.unidad==='kg'){it.totalG=Math.max(_minGDe(it.pid),(it.totalG||0)+d*100);}
+  if(it.unidad==='kg'){it.totalG=Math.max(_minGDeItem(it),(it.totalG||0)+d*100);}
   else{it.c=Math.max(1,(it.c||1)+d);}
   updateCartCount();renderCart();
   if(it.pid&&it.pid>0)_reRenderCard(it.pid);
@@ -8099,14 +8119,18 @@ function _mixIngredLineas(it,esMay){
    que decían "Aceite de Coco Neutro" y no había forma de saber cuál era cuál. */
 function _waDetalle(it){
   if (it.unidad === 'mix') return '';          // el armado lista sus ingredientes aparte
-  const p = PRODS.find(x => x[0] === it.pid);
-  if (!p) return '';
+  // Manda lo que se guardó al agregar; si el carrito es viejo y no lo trae, se
+  // busca el producto por productId o por nombre. Nunca por posición: ahí estaba
+  // el error que mandaba marcas de otro producto.
+  const p = _prodDeItem(it);
+  const env = (it.env !== undefined ? it.env : (p ? _envaseDe(p) : '')) || '';
+  const mar = (it.mar !== undefined ? it.mar : (p ? _marcaDe(p) : '')) || '';
   const partes = [];
   // A granel el peso ya va en la cantidad; en un envasado el contenido está en la ficha.
-  const env = _envaseDe(p);
   if (env && it.unidad === 'und') partes.push(env);
-  const mar = _marcaDe(p);
-  if (mar) partes.push(mar.toUpperCase());
+  // La marca, sólo en los envasados: es la misma regla que usa la ficha abierta.
+  // A granel lo que haya en ese campo no es la marca de lo que se está llevando.
+  if (mar && it.unidad === 'und') partes.push(mar.toUpperCase());
   return partes.join(' · ');
 }
 
@@ -8171,7 +8195,7 @@ function coEnviar() {
                  (det ? '\n   ' + det : '') + '\n   $' + fmt(s) + '\n';
       }
     });
-    var huboOferta = !esMay && cart.some(function(it){ return _getOfertaPct(it.pid)>0; });
+    var huboOferta = !esMay && cart.some(function(it){ return _ofertaDeItem(it)>0; });
     lines += '\n*TOTAL: $' + fmt(tot) + '*' + (esMay?'\n_(Descuento por volumen aplicado)_':'') + (huboOferta?'\n_(Ofertas del mes aplicadas)_':'');
     msg = lines + deliveryMsg + '\n\n_Pedido realizado desde el catálogo online_';
     url = 'https://wa.me/' + WA_MINORISTA + '?text=' + encodeURIComponent(msg);
