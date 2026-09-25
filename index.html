@@ -4607,8 +4607,12 @@ function _prodDeItem(it){
   if(it.epid){const p=_getMinForArtId(String(it.epid));if(p)return p;}
   if(it.n){
     const clave=_norm(String(it.n).replace(/\s*\([^)]*\)\s*$/,''));
-    const q=PRODS.find(x=>_norm(x[2])===clave);
-    if(q)return q;
+    const q=PRODS.filter(x=>_norm(x[2])===clave);
+    // Sólo si no hay dudas. Hay varios productos que comparten el nombre y sólo
+    // se diferencian por la marca o el envase (cinco "Aceite de Oliva", por
+    // ejemplo): ahí no hay forma de saber cuál era, y es preferible no poner
+    // nada antes que poner el de otra marca.
+    if(q.length===1)return q[0];
   }
   return null;
 }
