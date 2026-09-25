@@ -3,13 +3,20 @@
     "nuevos": 0,
     "renombrados": 0,
     "quitados": 0,
-    "rubro_invalido": 0,
+    "rubro_invalido": 1,
     "fuera_catalogo": 62
   },
   "nuevos": [],
   "renombrados": [],
   "quitados": [],
-  "rubro_invalido": [],
+  "rubro_invalido": [
+    {
+      "numero": "5062",
+      "nombre": "KIMCHI MORADO 300GR",
+      "rubro": "ESCABECHES Y CONSERVAS",
+      "motivo": "El rubro no es uno de los 24 que muestra la web."
+    }
+  ],
   "fuera_catalogo": [
     {
       "numero": "1384",
