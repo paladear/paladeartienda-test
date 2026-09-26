@@ -1,20 +1,13 @@
 {
   "resumen": {
     "nuevos": 0,
-    "renombrados": 1,
+    "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 1,
     "fuera_catalogo": 62
   },
   "nuevos": [],
-  "renombrados": [
-    {
-      "numero": "5065",
-      "nombre_publicado": "MERMELADA ARANDANO CON STEVIA X360gr",
-      "nombre_nuevo": "MERMELADA ARANDANO CON STEVIA KONY X360gr",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA"
-    }
-  ],
+  "renombrados": [],
   "quitados": [],
   "rubro_invalido": [
     {
