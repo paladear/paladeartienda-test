@@ -1071,10 +1071,19 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
   input,select,textarea,.campo input,.campo textarea,#buscar,.cmp-busca input{font-size:16px!important}
   .cmp-busca input{min-height:48px}
 }
-#capaAltas,#capaMarcas,#capaSellos,#capaRubros,#capaControl{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
-#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto,#capaControl.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
+#capaAltas,#capaMarcas,#capaSellos,#capaRubros,#capaControl,#capaHistorial{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
+#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto,#capaControl.abierto,#capaHistorial.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
 /* Las marcas que ya conoce, para tocarlas en vez de escribirlas. */
 .mca-sug{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
+/* ── Historial de precios ── */
+.his-fila{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:10px 0;border-bottom:1px solid var(--linea)}
+.his-fila:last-child{border-bottom:0}
+.his-msg{color:var(--tinta-2);font-size:12.5px}
+.his-hoy{font-style:normal;font-size:11.5px;color:#1d7a4a;background:#eef8f2;border:1px solid #bfe3cf;
+  border-radius:7px;padding:1px 7px;margin-left:6px}
+.his-volver{margin-bottom:12px}
+
 /* ── Sellos en masa ── */
 .sel-elegir{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 14px}
 .sel-elegir .sello{font-size:14px}
@@ -1096,20 +1105,20 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
 .mca-chip.on{background:#5b5680;border-color:#5b5680;color:#fff}
 .mca-antes{display:block;font-size:12px;color:#93a0ac;margin-top:2px}
 .mca-antes b{color:#1f7a4a;font-weight:700}
-#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja,#capaControl .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
+#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja,#capaControl .ed-caja,#capaHistorial .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
   box-shadow:0 22px 60px rgba(0,0,0,.3);display:flex;flex-direction:column;max-height:calc(100vh - 48px)}
-#capaAltas .ed-top,#capaMarcas .ed-top,#capaSellos .ed-top,#capaRubros .ed-top,#capaControl .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
+#capaAltas .ed-top,#capaMarcas .ed-top,#capaSellos .ed-top,#capaRubros .ed-top,#capaControl .ed-top,#capaHistorial .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding:14px 18px;border-bottom:1px solid var(--linea)}
-#capaAltas .ed-cuerpo,#capaMarcas .ed-cuerpo,#capaSellos .ed-cuerpo,#capaRubros .ed-cuerpo,#capaControl .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
-#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie,#capaControl .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+#capaAltas .ed-cuerpo,#capaMarcas .ed-cuerpo,#capaSellos .ed-cuerpo,#capaRubros .ed-cuerpo,#capaControl .ed-cuerpo,#capaHistorial .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
+#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie,#capaControl .ed-pie,#capaHistorial .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
   padding:13px 18px;border-top:1px solid var(--linea);background:var(--papel)}
 .alt-item.on{border-color:#2e9e63;background:#f3faf6}
 .alt-falta{color:#c2582f}
 @media(max-width:700px){
-#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto,#capaControl.abierto{padding:0;align-items:stretch}
-#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja,#capaControl .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
-#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie,#capaControl .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
-#capaAltas .ed-pie .btn,#capaMarcas .ed-pie .btn,#capaSellos .ed-pie .btn,#capaRubros .ed-pie .btn,#capaControl .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
+#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto,#capaControl.abierto,#capaHistorial.abierto{padding:0;align-items:stretch}
+#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja,#capaControl .ed-caja,#capaHistorial .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
+#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie,#capaControl .ed-pie,#capaHistorial .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
+#capaAltas .ed-pie .btn,#capaMarcas .ed-pie .btn,#capaSellos .ed-pie .btn,#capaRubros .ed-pie .btn,#capaControl .ed-pie .btn,#capaHistorial .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -1454,6 +1463,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
           <button class="btn gris" id="btnSellos" onclick="abrirSellos()" title="Poné un sello (sin TACC, vegano...) a muchos productos de una vez">Sellos de los productos</button>
           <button class="btn gris" id="btnRubros" onclick="abrirRubros()" title="Apagá un rubro entero: deja de verse en la tienda mayorista">Rubros de la distribuidora</button>
           <button class="btn gris" id="btnControl" onclick="abrirControl()" title="Comparar lo que hay en el panel con lo que el cliente ve de verdad">Control de la tienda</button>
+          <button class="btn gris" id="btnHistorial" onclick="abrirHistorial()" title="Ver las listas de precios publicadas antes y qué cambió desde cada una">Historial de precios</button>
           <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
         </div>
         <div class="hoja-grupo" id="grupoPublicar">
@@ -6131,6 +6141,117 @@ window.selAplicar = selAplicar;
    cada tanto y se publicaban solos. Esto apaga el rubro, no los productos. */
 let RUB_SEL = [];
 
+/* ── HISTORIAL DE PRECIOS ─────────────────────────────────────────────────────
+   Cada lista de precios publicada queda guardada como una version del archivo en
+   GitHub. Aca se listan las ultimas y se puede ver que cambio entre cualquiera de
+   ellas y la que esta publicada hoy. Antes no habia forma de saberlo: si se subia
+   dos veces la misma lista, nada avisaba que no habia cambiado nada. */
+async function hisCargar(){
+  var caja = $('hisLista');
+  caja.innerHTML = '<p class="cmp-intro">Buscando las listas anteriores...</p>';
+  try {
+    var arch = archivoPrecios();
+    var cs = await gh('/commits?path=' + encodeURIComponent(arch) + '&per_page=20', null, repoActivo());
+    if (!cs.length) { caja.innerHTML = '<p class="cmp-intro">Todavia no hay ninguna lista publicada.</p>'; return; }
+    caja.innerHTML = cs.map(function(c, i){
+      var d = new Date(c.commit.committer.date);
+      var f = ('0'+d.getDate()).slice(-2) + '/' + ('0'+(d.getMonth()+1)).slice(-2) + '/' + d.getFullYear();
+      var h = ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+      var m = String(c.commit.message || '').split('\n')[0];
+      var boton = i === 0 ? '' :
+        '<button type="button" class="btn gris" data-sha="' + c.sha + '" data-fecha="' + f +
+        '" onclick="hisComparar(this.dataset.sha, this.dataset.fecha)">Ver qué cambió desde acá</button>';
+      return '<div class="his-fila"><div><b>' + f + ' a las ' + h + '</b>' +
+        (i === 0 ? '<em class="his-hoy">es la que está publicada</em>' : '') +
+        '<br><span class="his-msg">' + esc(m.slice(0, 90)) + '</span></div>' + boton + '</div>';
+    }).join('');
+  } catch (e) {
+    caja.innerHTML = '<p class="cmp-intro">No pude leer el historial: ' + esc(e.message || e) + '</p>';
+  }
+}
+
+function abrirHistorial(){
+  $('capaHistorial').classList.add('abierto');
+  document.body.style.overflow = 'hidden';
+  hisCargar();
+}
+function cerrarHistorial(){
+  $('capaHistorial').classList.remove('abierto');
+  document.body.style.overflow = '';
+}
+window.abrirHistorial = abrirHistorial;
+window.cerrarHistorial = cerrarHistorial;
+window.hisCargar = hisCargar;
+
+async function hisBajarCsv(ref){
+  var j = await gh('/contents/' + encodeURI(archivoPrecios()) + '?ref=' + ref, null, repoActivo());
+  return decodeURIComponent(escape(atob(String(j.content || '').replace(/\n/g, ''))));
+}
+
+/* De un CSV de precios a {articulo: {nombre, p1}}. Sirve para los dos formatos:
+   las columnas se buscan por nombre, no por posicion. */
+function hisLeerPrecios(csv){
+  var f = leerCsv(csv), o = {};
+  if (f.length < 2) return o;
+  var c = f[0], iA = colDe(c, ['articulo']), iN = colDe(c, ['nombre']),
+      iP = colDe(c, ['bt.lista 1', 'lista 1', 'precio']);
+  if (iA < 0) return o;
+  f.slice(1).forEach(function(r){
+    var id = limpiaId(r[iA]); if (!id) return;
+    o[id] = { nombre: iN >= 0 ? String(r[iN] || '').trim() : id,
+              p1: iP >= 0 ? aNum(r[iP]) : 0 };
+  });
+  return o;
+}
+
+async function hisComparar(sha, fecha){
+  var caja = $('hisLista');
+  caja.innerHTML = '<p class="cmp-intro">Comparando con la lista de hoy...</p>';
+  try {
+    var viejo = hisLeerPrecios(await hisBajarCsv(sha));
+    var nuevo = hisLeerPrecios(await hisBajarCsv('main'));
+    var rev = { listaCambios: [], listaNuevos: [], nuevos: 0, renombres: [],
+                otroProducto: [], listaFaltan: [], faltan: 0 };
+    Object.keys(nuevo).forEach(function(id){
+      var a = viejo[id], b = nuevo[id];
+      if (!a) {
+        rev.nuevos++;
+        if (rev.listaNuevos.length < 60) rev.listaNuevos.push({id:id, nombre:b.nombre, p1:b.p1});
+        return;
+      }
+      if (a.nombre && b.nombre && _norm(a.nombre) !== _norm(b.nombre) && rev.renombres.length < 60)
+        rev.renombres.push({id:id, antes:a.nombre, ahora:b.nombre});
+      if (a.p1 > 0 && b.p1 > 0 && Math.abs(b.p1 - a.p1) >= 1)
+        rev.listaCambios.push({id:id, nombre:b.nombre, antes:a.p1, ahora:b.p1,
+                               pct:(b.p1 - a.p1) / a.p1 * 100});
+    });
+    Object.keys(viejo).forEach(function(id){
+      if (nuevo[id]) return;
+      rev.faltan++;
+      if (rev.listaFaltan.length < 60) rev.listaFaltan.push({id:id, nombre:viejo[id].nombre});
+    });
+    rev.listaCambios.sort(function(a, b){ return Math.abs(b.pct) - Math.abs(a.pct); });
+    var suben = rev.listaCambios.filter(function(x){ return x.pct > 0; }).length;
+    var hubo = rev.listaCambios.length || rev.nuevos || rev.renombres.length || rev.faltan;
+    caja.innerHTML =
+      '<button type="button" class="btn gris his-volver" onclick="hisCargar()">&larr; Volver al historial</button>' +
+      '<p class="cmp-intro">Desde la lista del <b>' + esc(fecha || '') + '</b> hasta la de hoy:</p>' +
+      '<div class="excel-cuentas">' +
+        '<span class="sube"><b>' + suben + '</b> suben</span>' +
+        '<span class="baja"><b>' + (rev.listaCambios.length - suben) + '</b> bajan</span>' +
+        '<span class="' + (rev.nuevos ? 'nuevo' : '') + '"><b>' + rev.nuevos + '</b> nuevos</span>' +
+        '<span class="' + (rev.renombres.length ? 'renom' : '') + '"><b>' + rev.renombres.length + '</b> cambian de nombre</span>' +
+        '<span class="' + (rev.faltan ? 'ojo' : '') + '"><b>' + rev.faltan + '</b> ya no están</span>' +
+      '</div>' +
+      (hubo ? excelDetalle(rev)
+            : '<p class="cmp-intro">No cambió nada: las dos listas tienen los mismos precios.</p>');
+  } catch (e) {
+    caja.innerHTML = '<button type="button" class="btn gris his-volver" onclick="hisCargar()">&larr; Volver</button>' +
+      '<p class="cmp-intro">No pude comparar: ' + esc(e.message || e) + '</p>';
+  }
+}
+window.hisComparar = hisComparar;
+
 function abrirRubros(){
   RUB_SEL = RUBROS_OCULTOS.slice();
   $('capaRubros').classList.add('abierto');
@@ -6361,6 +6482,21 @@ document.addEventListener('click', function(ev){
     <div class="ed-pie">
       <button type="button" class="btn primario" id="selEnviar" onclick="selAplicar()" disabled>Guardar los sellos</button>
       <span id="selEstado"></span>
+    </div>
+  </div>
+</div>
+
+<div id="capaHistorial">
+  <div class="ed-caja">
+    <div class="ed-top">
+      <b>Historial de precios</b>
+      <button type="button" class="btn gris" onclick="cerrarHistorial()">Cerrar</button>
+    </div>
+    <div class="ed-cuerpo">
+      <p class="cmp-intro">Cada lista de precios que se publica queda guardada. Elegí una y te
+        muestro qué cambió entre esa y la que está publicada hoy: los precios, los productos
+        nuevos, los cambios de nombre y los que ya no están.</p>
+      <div id="hisLista"></div>
     </div>
   </div>
 </div>
