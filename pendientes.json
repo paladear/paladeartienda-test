@@ -1,7 +1,7 @@
 {
   "resumen": {
     "nuevos": 5,
-    "renombrados": 0,
+    "renombrados": 1,
     "quitados": 0,
     "rubro_invalido": 1,
     "fuera_catalogo": 62
@@ -43,7 +43,14 @@
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
-  "renombrados": [],
+  "renombrados": [
+    {
+      "numero": "5033",
+      "nombre_publicado": "AVENA INSTANTANEA INTEGRAN SIN TACC X350gr DICOMERE",
+      "nombre_nuevo": "AVENA INSTANTANEA INTEGRAL SIN TACC X350gr DICOMERE",
+      "rubro": "PRODUCTOS SIN TACC"
+    }
+  ],
   "quitados": [],
   "rubro_invalido": [
     {
