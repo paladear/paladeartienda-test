@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 4,
+    "nuevos": 5,
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 1,
@@ -9,7 +9,7 @@
   "nuevos": [
     {
       "numero": "5065",
-      "nombre": "MERMELADA ARANDANO CON STEVIA X360gr",
+      "nombre": "MERMELADA ARANDANO CON STEVIA KONY X360gr",
       "rubro": "AZUCAR, CACAO Y REPOSTERIA",
       "precio": 10880,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
@@ -19,6 +19,13 @@
       "nombre": "MERMELADA DURAZNO CON STEVIA KONY X360g",
       "rubro": "AZUCAR, CACAO Y REPOSTERIA",
       "precio": 7400,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5067",
+      "nombre": "MERMELADA FRUTILLA CON STEVIA KONY X360gr",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+      "precio": 8000,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
