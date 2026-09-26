@@ -1,12 +1,20 @@
 {
   "resumen": {
-    "nuevos": 0,
+    "nuevos": 1,
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 1,
     "fuera_catalogo": 62
   },
-  "nuevos": [],
+  "nuevos": [
+    {
+      "numero": "5063",
+      "nombre": "MIX SALADO SIN TACC DICOMERE X80G",
+      "rubro": "PRODUCTOS SIN TACC",
+      "precio": 4300,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    }
+  ],
   "renombrados": [],
   "quitados": [],
   "rubro_invalido": [
