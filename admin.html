@@ -518,6 +518,8 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
   .fila-copiar .btn{flex:1;justify-content:center}
   .copiar-info{width:100%;text-align:center}
 }
+.excel-det-lista em.excel-sube{color:#b4392f;font-style:normal;font-weight:700}
+.excel-det-lista em.excel-baja{color:#1d7a4a;font-style:normal;font-weight:700}
 .excel-cuentas span.cambiazo{background:#fdeaea;border-color:#e9b4b4;color:#a52020;font-weight:700}
 /* ── Rubros de la distribuidora ── */
 .rub-lista{display:flex;flex-direction:column;gap:7px}
@@ -2031,8 +2033,11 @@ async function arrancar(){
       bajar('pendientes.json').catch(() => '{}'),
       // Las hojas de la distribuidora sirven para completar rubros: los productos
       // que no están en la lista minorista suelen tenerlo cargado allá.
-      bajar('info-may.csv').catch(() => ''),
-      bajar('precios-may.csv').catch(() => '')
+      // Las hojas de la distribuidora salen de SU sitio, que es de donde las lee su
+      // tienda. En este repo quedo una copia del 15/09 y, cuando se usaba esa, el
+      // panel comparaba el Excel nuevo contra una lista de hace diez dias.
+      bajar(SITIO_MAY + 'info-may.csv').catch(() => bajar('info-may.csv').catch(() => '')),
+      bajar(SITIO_MAY + 'precios-may.csv').catch(() => bajar('precios-may.csv').catch(() => ''))
     ]);
 
     CSV_MAY_INFO = csvInfoMay; CSV_MAY_PRECIOS = csvPreciosMay;   // quedan para la vista de la distribuidora
@@ -4191,6 +4196,19 @@ function excelDetalle(rev){
           esc(String(x.antes).slice(0,40)) + ' <i>&rarr;</i> <b>' + esc(String(x.ahora).slice(0,40)) + '</b></span>';
       }).join('') + '</div></details>';
   }
+  if (rev.listaCambios.length) {
+    h += '<details class="excel-det"><summary><b>' + rev.listaCambios.length + '</b> cambia' +
+      (rev.listaCambios.length === 1 ? '' : 'n') + ' de precio</summary><div class="excel-det-lista">' +
+      rev.listaCambios.slice(0, 80).map(function(x){
+        var signo = x.pct > 0 ? '+' : '';
+        return '<span><b>' + esc(String(x.nombre).slice(0,38)) + '</b><br>' +
+          pesos(Math.round(x.antes)) + ' <i>&rarr;</i> <b>' + pesos(Math.round(x.ahora)) + '</b> ' +
+          '<em class="' + (x.pct > 0 ? 'excel-sube' : 'excel-baja') + '">' + signo +
+          Math.round(x.pct) + '%</em></span>';
+      }).join('') +
+      (rev.listaCambios.length > 80 ? '<span class="excel-det-mas">y ' + (rev.listaCambios.length - 80) + ' mas</span>' : '') +
+      '</div></details>';
+  }
   if (rev.listaNuevos.length) {
     h += '<details class="excel-det"><summary><b>' + rev.nuevos + '</b> producto' +
       (rev.nuevos === 1 ? '' : 's') + ' que hoy no está' + (rev.nuevos === 1 ? '' : 'n') +
@@ -4264,7 +4282,7 @@ function excelRevisar(datos){
   var r = { total: datos.length, hoy: Object.keys(actuales).length, sinId: 0,
             cruzan: 0, nuevos: 0, faltan: 0, saltos: [], iguales: 0,
             suben: 0, bajan: 0, renombres: [], listaNuevos: [], otroProducto: [],
-            listaFaltan: [] };
+            listaFaltan: [], listaCambios: [] };
   var vistos = {};
   datos.forEach(function(d){
     var id = limpiaId(d.id);
@@ -4294,6 +4312,9 @@ function excelRevisar(datos){
     var veces = ahora / antes;
     if (Math.abs(ahora - antes) < 1) { r.iguales++; return; }
     if (ahora > antes) r.suben++; else r.bajan++;
+    // No alcanza con cuantos suben y cuantos bajan: hay que poder ver cuales.
+    r.listaCambios.push({ id: id, nombre: d.nombre, antes: antes, ahora: ahora,
+                          pct: (ahora - antes) / antes * 100 });
     // Un precio que se multiplica o se divide por más de 3 casi siempre es un
     // error de formato, no un cambio de precio real.
     if (veces >= 3 || veces <= 0.34) r.saltos.push({ id: id, nombre: d.nombre, antes: antes, ahora: ahora, veces: veces });
@@ -4306,6 +4327,8 @@ function excelRevisar(datos){
       r.listaFaltan.push({id:id, nombre: pf ? pf.nombre : id});
     }
   });
+  // De mayor a menor cambio: lo raro salta primero.
+  r.listaCambios.sort(function(a, b){ return Math.abs(b.pct) - Math.abs(a.pct); });
   r.alarmas = [];
   if (r.sinId === datos.length && datos.length)
     r.alarmas.push('Ninguna fila trae número de artículo. Revisá que el Excel tenga la columna <b>Artículo</b>.');
