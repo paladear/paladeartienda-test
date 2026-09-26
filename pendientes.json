@@ -1,22 +1,23 @@
 {
   "resumen": {
-    "nuevos": 0,
+    "nuevos": 1,
     "renombrados": 0,
     "quitados": 0,
-    "rubro_invalido": 1,
+    "rubro_invalido": 0,
     "fuera_catalogo": 62
   },
-  "nuevos": [],
-  "renombrados": [],
-  "quitados": [],
-  "rubro_invalido": [
+  "nuevos": [
     {
       "numero": "5062",
       "nombre": "KIMCHI MORADO 300GR",
-      "rubro": "ESCABECHES Y CONSERVAS",
-      "motivo": "El rubro no es uno de los 24 que muestra la web."
+      "rubro": "LINEA GOURMET",
+      "precio": 8750,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
+  "renombrados": [],
+  "quitados": [],
+  "rubro_invalido": [],
   "fuera_catalogo": [
     {
       "numero": "1384",
