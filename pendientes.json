@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 1,
+    "nuevos": 2,
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 1,
@@ -12,6 +12,13 @@
       "nombre": "MIX SALADO SIN TACC DICOMERE X80G",
       "rubro": "PRODUCTOS SIN TACC",
       "precio": 4300,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5064",
+      "nombre": "POWER MIX SIN TACC DICOMERE X200gr",
+      "rubro": "PRODUCTOS SIN TACC",
+      "precio": 8400,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
