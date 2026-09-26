@@ -4369,9 +4369,17 @@ function pintarDeshacer(){
   if (!DESHACER || DESHACER.tienda !== TIENDA) { c.hidden = true; return; }
   var d = new Date(DESHACER.cuando);
   var hora = ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+  // El punto de vuelta se guarda en el navegador y dura dias: hasta que se hace
+  // otro cambio grande, se cierra con la x o se sale de la sesion. Antes decia
+  // siempre "hoy" y uno de hace tres dias parecia recien hecho.
+  var hoy = new Date();
+  var cuando = (d.toDateString() === hoy.toDateString())
+    ? 'hoy a las ' + hora
+    : 'el ' + ('0'+d.getDate()).slice(-2) + '/' + ('0'+(d.getMonth()+1)).slice(-2) +
+      ' a las ' + hora;
   c.hidden = false;
   c.innerHTML = '<span class="des-txt">Último cambio grande: <b>' + esc(DESHACER.que) +
-    '</b>, hoy a las ' + hora + '</span>' +
+    '</b>, ' + cuando + '</span>' +
     '<button type="button" class="btn gris des-btn" onclick="deshacerUltimo()">Deshacer</button>' +
     '<button type="button" class="des-x" onclick="olvidarDeshacer()" title="Ya está, no lo voy a deshacer">&times;</button>';
 }
