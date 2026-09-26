@@ -1,33 +1,12 @@
 {
   "resumen": {
-    "nuevos": 5,
-    "renombrados": 1,
+    "nuevos": 2,
+    "renombrados": 2,
     "quitados": 0,
     "rubro_invalido": 1,
     "fuera_catalogo": 62
   },
   "nuevos": [
-    {
-      "numero": "5065",
-      "nombre": "MERMELADA ARANDANO CON STEVIA KONY X360gr",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 10880,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5066",
-      "nombre": "MERMELADA DURAZNO CON STEVIA KONY X360g",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 7400,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5067",
-      "nombre": "MERMELADA FRUTILLA CON STEVIA KONY X360gr",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 8000,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
     {
       "numero": "5063",
       "nombre": "MIX SALADO SIN TACC DICOMERE X80G",
@@ -49,6 +28,12 @@
       "nombre_publicado": "AVENA INSTANTANEA INTEGRAN SIN TACC X350gr DICOMERE",
       "nombre_nuevo": "AVENA INSTANTANEA INTEGRAL SIN TACC X350gr DICOMERE",
       "rubro": "PRODUCTOS SIN TACC"
+    },
+    {
+      "numero": "5065",
+      "nombre_publicado": "MERMELADA ARANDANO CON STEVIA X360gr",
+      "nombre_nuevo": "MERMELADA ARANDANO CON STEVIA KONY X360gr",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA"
     }
   ],
   "quitados": [],
