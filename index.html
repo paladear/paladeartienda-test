@@ -332,8 +332,7 @@ button{cursor:pointer;border:none;font-family:inherit}
    9001) y tapaba los rubros. Mientras el menú está abierto, se esconde. */
 body.cats-abierto #cart-fab,body.cats-abierto #chat-fab{display:none!important}
 /* Con la ficha del producto abierta el carrito flotante caía justo encima de los
-   botones de gramaje y del "Agregar": mismo criterio que con el panel de
-   categorías, adentro de la ficha se esconde. */
+   botones de gramaje y del "Agregar". */
 body:has(#productDetail) #cart-fab,body:has(#productDetail) #chat-fab{display:none!important}
 @media(max-width:767px){body.builder-open #cart-fab,body.builder-open #chat-fab{display:none!important}}
 #cart-fab .cart-count{position:absolute;top:-8px;right:-8px;background:var(--destructive);color:#fff;border-radius:50%;min-width:22px;height:22px;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700;padding:0 5px;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25);z-index:2}
@@ -2104,6 +2103,10 @@ function _LS(k){ return _ES_PRUEBA ? k + '__test' : k; }
       <img class="may-tab-icon" src="may-icon-favorites-filled.svg" alt="" aria-hidden="true">
       <span>Favoritos</span>
     </button>
+    <button class="may-tab tab-desktop" id="tabListaPrecios" onclick="window.location.href='catalogo.html'" title="Abrir lista de precios">
+      <img class="may-tab-icon may-price-list-icon" src="may-icon-price-list-filled.svg" alt="" aria-hidden="true">
+      <span>Lista de precios</span>
+    </button>
   </div>
 </div>
 </header>
@@ -2587,17 +2590,16 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
 .min-cat-all{background:#456b89}.min-cat-all img{width:27px;height:27px;object-fit:contain;filter:brightness(0) invert(1)}
 .min-cat-menu-name{font-size:12.5px;font-weight:750;line-height:1.22}.min-cat-menu-arrow{color:#7e9aae;font-size:17px}
 
-/* Nav inferior celeste tipo vidrio, únicamente las cuatro secciones principales. */
+/* Nav inferior celeste tipo vidrio, con accesos directos principales. */
 .min-redesign .bnav{
-  grid-template-columns:repeat(4,minmax(0,1fr));background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.98);
+  grid-template-columns:repeat(5,minmax(0,1fr));background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.98);
   box-shadow:0 10px 30px rgba(24,58,83,.14);backdrop-filter:blur(18px) saturate(105%);-webkit-backdrop-filter:blur(18px) saturate(105%)
 }
 .min-redesign .bnav-pill{background:rgba(255,255,255,.98);border:1px solid #fff;box-shadow:0 5px 14px rgba(31,71,100,.09)}
 .min-redesign .bnav button{color:#315f82}.min-redesign .bnav button>img{display:block;width:27px;height:27px;object-fit:contain;filter:none}
 .min-redesign .bnav button[data-b="favoritos"]>img{width:29px;height:29px}
 /* El icono de Productos (la tablita) cubre el 53% de su lienzo contra 36-39% de
-   Home y Ofertas. Como los cuatro se pintan con el mismo filtro, el que tiene
-   mas tinta se lee mas oscuro; se le empareja el peso. */
+   Home y Ofertas, y como se pintan con el mismo filtro se lee mas oscuro. */
 .min-redesign .bnav button>img[src*="catalog"]{opacity:.78}
 .min-redesign .bnav button>img,
 .min-redesign .may-tab-icon,
@@ -2609,6 +2611,8 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
 .min-redesign .min-cat-all img{
   filter:brightness(0) saturate(100%) invert(48%) sepia(22%) saturate(1040%) hue-rotate(162deg) brightness(94%) contrast(89%)!important
 }
+.min-redesign .bnav button>img.may-price-list-icon,
+.min-redesign .may-tab-icon.may-price-list-icon{filter:none!important}
 .min-redesign .min-header-search-icon{color:#4a7fa5}
 
 /* Banners fotográficos: imagen de fondo y tipografía HTML siempre nítida. */
@@ -2669,7 +2673,7 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
   .min-redesign .min-featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .min-redesign .cats-dropdown-panel{left:0;right:0;top:auto;bottom:0;width:100%;max-height:78vh;padding:20px 16px calc(26px + env(safe-area-inset-bottom));border:0;border-radius:22px 22px 0 0;background:#f9fcfe}
   .min-redesign .cats-dropdown-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.min-cat-menu-btn{grid-template-columns:42px minmax(0,1fr);min-height:58px;padding:7px 9px}.min-cat-thumb{width:42px;height:42px;border-radius:10px}.min-cat-menu-arrow{display:none}.min-cat-menu-name{font-size:11.5px}
-  .min-redesign .bnav{display:grid!important;left:8px;right:8px;bottom:calc(7px + env(safe-area-inset-bottom));width:auto;padding:6px;border-radius:22px;grid-template-columns:repeat(4,minmax(0,1fr))}
+  .min-redesign .bnav{display:grid!important;left:8px;right:8px;bottom:calc(7px + env(safe-area-inset-bottom));width:auto;padding:6px;border-radius:22px;grid-template-columns:repeat(5,minmax(0,1fr))}
   .min-redesign .bnav button{font-size:8.5px;gap:2px}.min-redesign .bnav button>img{width:25px;height:25px}.min-redesign .bnav button[data-b="favoritos"]>img{width:27px;height:27px}
   .min-redesign #homeView .min-image-banner{aspect-ratio:2.18/1}
   .min-banner-copy{left:5%;width:40%}
@@ -2773,6 +2777,18 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
   body.min-redesign.hv-home .may-tab.active{background:#fff!important;box-shadow:inset 0 1px 0 #fff,0 10px 24px rgba(22,59,88,.18)!important}
   .min-redesign .may-tab-icon,
   body.min-redesign.hv-home .may-tab-icon{width:27px;height:27px}
+}
+
+/* En notebooks angostas, conserva las cinco pills sin invadir el logo. */
+@media(min-width:1024px) and (max-width:1179px){
+  .min-redesign .tabs-zone,
+  body.min-redesign.hv-home .tabs-zone{left:218px;right:16px;width:auto;transform:none}
+  .min-redesign .may-tabs-wrap,
+  body.min-redesign.hv-home .may-tabs-wrap{gap:8px;justify-content:flex-start}
+  .min-redesign .may-tab,
+  body.min-redesign.hv-home .may-tab{min-height:48px;padding:0 14px;gap:6px;font-size:13px}
+  .min-redesign .may-tab-icon,
+  body.min-redesign.hv-home .may-tab-icon{width:22px;height:22px}
 }
 
 @media(max-width:767px){
@@ -2902,7 +2918,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
     </article>
     <article class="banner-slide min-image-banner min-image-banner-blend">
       <img src="home-banner-v2-blend.webp" alt="Taza completa de té con hierbas y flores" loading="eager" decoding="async">
-      <div class="min-banner-copy"><span class="min-banner-kicker">Prepará tu blend</span><h3>Tu té,<br>a tu manera</h3><p>Mezclá hierbas, flores y especias.</p><button class="min-banner-btn" type="button" onclick="openBlend()">Crear blend&nbsp; →</button></div>
+      <div class="min-banner-copy"><span class="min-banner-kicker">Prepará tu blend</span><h3>Tu infusión,<br>a tu manera</h3><p>Mezclá hierbas, flores y especias.</p><button class="min-banner-btn" type="button" onclick="openBlend()">Crear blend&nbsp; →</button></div>
     </article>
     <article class="banner-slide min-image-banner min-image-banner-lista">
       <img src="home-banner-v2-lista.webp" alt="Lista de precios sobre un portapapeles" loading="eager" decoding="async">
@@ -2978,6 +2994,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
   <button type="button" data-b="minorista" onclick="switchTab('minorista')"><img src="may-icon-catalog-filled.png" alt="" aria-hidden="true"><span>Productos</span></button>
   <button type="button" data-b="ofertas" onclick="hvIrOfertas()"><img src="may-icon-offers-filled.png" alt="" aria-hidden="true"><span>Ofertas</span></button>
   <button type="button" data-b="favoritos" onclick="openWishlist()"><img src="may-icon-favorites-filled.svg" alt="" aria-hidden="true"><span>Favoritos</span></button>
+  <button type="button" data-b="lista" onclick="window.location.href='catalogo.html'" title="Abrir lista de precios"><img class="may-price-list-icon" src="may-icon-price-list-filled.svg" alt="" aria-hidden="true"><span>Lista</span></button>
 </nav>
 
 <!-- Panel global de categorías: lo abre el hamburguesa de la barra compacta -->
@@ -3425,8 +3442,10 @@ function _marcaDe(p){ return (p[12]&&p[12].marca)||''; }
 
 function _nomHTML(p,nombreYaPintado){
   const base=nombreYaPintado||_tc(p[2]);
-  if(p[3]==='Granel')return `<b class="nom-p">${base}</b>`;
   const env=_envaseDe(p),mar=_marcaDe(p);
+  // A granel no se repite el peso, pero sí se muestra la marca cuando existe.
+  if(p[3]==='Granel')return `<b class="nom-p">${base}</b>`
+    +(mar?`<span class="nom-meta"><em class="nom-m">${mar}</em></span>`:'');
   if(!env&&!mar)return `<b class="nom-p">${base}</b>`;
   // La cantidad y la marca van juntas en su propio renglón, debajo del nombre.
   return `<b class="nom-p">${base}</b><span class="nom-meta">`
@@ -4606,9 +4625,7 @@ function _itemMay(it){if(it.unidad==='mix')return it.l2;if(it.unidad==='kg')retu
    un lugar. Como el carrito queda guardado en el navegador, uno armado antes de
    ese cambio termina apuntando al producto de al lado: por eso llego un pedido
    con "Almohaditas de Limon - NATIER", que es la marca del renglon siguiente.
-   El productId, en cambio, no se mueve nunca. Se busca por ahi; en los carritos
-   viejos que no lo tienen, por el nombre, que tambien quedo congelado. Si no se
-   puede saber cual es, no se adivina. */
+   El productId, en cambio, no se mueve nunca. */
 function _epidDe(p){ return (p[12]&&p[12].productId)||''; }
 function _prodDeItem(it){
   if(!it)return null;
@@ -4616,10 +4633,9 @@ function _prodDeItem(it){
   if(it.n){
     const clave=_norm(String(it.n).replace(/\s*\([^)]*\)\s*$/,''));
     const q=PRODS.filter(x=>_norm(x[2])===clave);
-    // Sólo si no hay dudas. Hay varios productos que comparten el nombre y sólo
-    // se diferencian por la marca o el envase (cinco "Aceite de Oliva", por
-    // ejemplo): ahí no hay forma de saber cuál era, y es preferible no poner
-    // nada antes que poner el de otra marca.
+    // Solo si no hay dudas. Hay productos que comparten el nombre y se
+    // diferencian por la marca o el envase: ahi es preferible no poner nada
+    // antes que poner el de otra marca.
     if(q.length===1)return q[0];
   }
   return null;
@@ -8141,7 +8157,6 @@ function _waDetalle(it){
   // A granel el peso ya va en la cantidad; en un envasado el contenido está en la ficha.
   if (env && it.unidad === 'und') partes.push(env);
   // La marca, sólo en los envasados: es la misma regla que usa la ficha abierta.
-  // A granel lo que haya en ese campo no es la marca de lo que se está llevando.
   if (mar && it.unidad === 'und') partes.push(mar.toUpperCase());
   return partes.join(' · ');
 }
@@ -9484,5 +9499,34 @@ window.pintarTableroCats=pintarTableroCats;
    los dos dentro del header. Subir el del buscador es lo mínimo que lo arregla. */
 .header-inner{z-index:6}
 </style>
+<style>
+/* Sin promoción de instalación: la PWA queda disponible desde el navegador,
+   pero ya no se muestra popup, aviso ni botón para descargar la app. */
+#btnInstalarApp,
+#btnInstalarPWA,
+#modalInstalarApp,
+#iabWarning,
+#iosSafariHelper{display:none!important}
+</style>
+<script>
+/* Anular cualquier disparador viejo del popup de instalación. */
+(function(){
+  window.abrirModalApp=function(){};
+  window.cerrarModalApp=function(){
+    document.body.style.overflow='';
+    var modal=document.getElementById('modalInstalarApp');
+    if(modal) modal.classList.add('hidden');
+  };
+  window.mostrarPromptInstalacion=function(){};
+  window.dismissIAB=function(){
+    var el=document.getElementById('iabWarning');
+    if(el) el.classList.add('hidden');
+  };
+  window.dismissIOSHelper=function(){
+    var el=document.getElementById('iosSafariHelper');
+    if(el) el.classList.add('hidden');
+  };
+})();
+</script>
 </body>
 </html>
