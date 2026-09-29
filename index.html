@@ -3525,7 +3525,7 @@ function openProductDetail(pid){
     <button class="product-detail-close" type="button" onclick="closeProductDetail()" aria-label="Cerrar">×</button>
   </div><div class="product-detail-shell"><div class="product-detail-main">
     <div class="product-detail-image" style="background:${fondo}">${src?`<img src="${src}" alt="${p[2]}" decoding="async">`:'<span class="product-image-placeholder" aria-hidden="true"></span>'}</div>
-    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${(_envaseDe(p)||_marcaDe(p))&&p[3]!=='Granel'?`<div class="product-detail-meta">${_envaseDe(p)?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}',${p[0]})" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}${_sellosDe(p).length?`<div class="product-detail-sellos">${_sellosDe(p).map(x=>'<button type="button" class="sello-d" onclick="verSello(\''+x.id+'\','+p[0]+')" title="Ver todo lo '+x.chip+'"><img src="'+_selloImg(x.id)+'" alt="'+x.chip+'" decoding="async"></button>').join('')}</div>`:''}<div class="product-detail-info">${info}</div>
+    <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${(_marcaDe(p)||(_envaseDe(p)&&p[3]!=='Granel'))?`<div class="product-detail-meta">${_envaseDe(p)&&p[3]!=='Granel'?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}',${p[0]})" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}${_sellosDe(p).length?`<div class="product-detail-sellos">${_sellosDe(p).map(x=>'<button type="button" class="sello-d" onclick="verSello(\''+x.id+'\','+p[0]+')" title="Ver todo lo '+x.chip+'"><img src="'+_selloImg(x.id)+'" alt="'+x.chip+'" decoding="async"></button>').join('')}</div>`:''}<div class="product-detail-info">${info}</div>
       <div class="product-detail-buy" id="productDetailCard" data-pid="${p[0]}" data-opt="${opt}">
         ${opts.length>1?`<h3>Elegí la presentación</h3><div class="product-detail-options opt-btns${opts.length>=4?' opt-btns-4':''}">${opciones}</div>`:''}${saboresHTML}
         <div class="prices"><div><span class="price-label">Precio${oferta>0?' (Oferta)':''}</span><div class="price-min">${_priceMinContent(p[7][opt][0],oferta)}</div></div><div><span class="price-label">+$80.000</span><div class="price-may">$${fmt(p[7][opt][1])}</div></div></div>
@@ -8156,8 +8156,10 @@ function _waDetalle(it){
   const partes = [];
   // A granel el peso ya va en la cantidad; en un envasado el contenido está en la ficha.
   if (env && it.unidad === 'und') partes.push(env);
-  // La marca, sólo en los envasados: es la misma regla que usa la ficha abierta.
-  if (mar && it.unidad === 'und') partes.push(mar.toUpperCase());
+  // La marca va siempre que exista, también a granel: hay granel de marca
+  // (las granolas KOS, por ejemplo) y sin la marca no se sabe cuál pedir. Lo que
+  // antes mandaba marcas de otro producto era el pid, y eso ya está arreglado.
+  if (mar) partes.push(mar.toUpperCase());
   return partes.join(' · ');
 }
 
