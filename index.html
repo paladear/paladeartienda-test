@@ -3279,6 +3279,8 @@ window._repetirUltimoPedido=function(){
   const u=_cargarUltimoPedido();
   if(!u||!u.length){return;}
   cart=u.slice();
+  // El pedido guardado puede ser de hace meses: sus precios se vuelven a leer.
+  try{ _refrescarPreciosCarrito(); }catch(e){}
   if(typeof updateCartCount==='function')updateCartCount();
   if(typeof renderCart==='function')renderCart();
 };
@@ -4645,6 +4647,40 @@ function _ofertaDeItem(it){
   return (p&&p[12]&&p[12].oferta)?p[12].oferta:0;
 }
 // Devuelve el precio minorista con oferta aplicada para un item del carrito
+/* ── LOS PRECIOS DEL CARRITO SON SIEMPRE LOS DE HOY ───────────────────────────
+   El carrito vive en el telefono del cliente y guardaba el precio del dia en que
+   agrego cada producto. Un carrito dejado dos meses -o el boton "volver a pedir
+   lo ultimo"- mandaba el pedido con precios viejos: llego uno con las almendras
+   a 23.790 cuando hacia cinco semanas valian 25.880. Aca se vuelven a leer de la
+   lista publicada. Lo elegido y las cantidades no se tocan.
+   Los mix, granolas y blends se arman con su propio precio y quedan como estan. */
+function _refrescarPreciosCarrito(){
+  if(!Array.isArray(cart)||!cart.length||typeof PRODS==='undefined'||!PRODS.length)return false;
+  var toco=false;
+  cart.forEach(function(it){
+    if(!it||it.unidad==='mix')return;
+    var p=_prodDeItem(it);
+    if(!p||!p[7])return;
+    var opts=_sortOpts(Object.keys(p[7]));
+    if(!opts.length)return;
+    var l1,l2;
+    if(it.unidad==='kg'){
+      // A granel l1/l2 se guardan SIEMPRE por kilo, como al agregarlo.
+      var ref=opts.find(function(o){return _optToG(o)===1000;})||opts[0];
+      var g=_optToG(ref);
+      l1=g>0?Math.round(p[7][ref][0]*(1000/g)):p[7][ref][0];
+      l2=g>0?Math.round(p[7][ref][1]*(1000/g)):p[7][ref][1];
+    } else {
+      var o=(it.o&&p[7][it.o])?it.o:opts[0];
+      l1=p[7][o][0]; l2=p[7][o][1];
+    }
+    if(!l1)return;                       // sin precio publicado se deja el que tenia
+    if(it.l1!==l1||it.l2!==l2){ it.l1=l1; it.l2=l2; toco=true; }
+  });
+  if(toco){ try{ _saveCart(); }catch(e){} }
+  return toco;
+}
+
 function _itemMinConOferta(it){
   // Mix y granola no tienen oferta (son compuestos)
   if(it.unidad==='mix') return _itemMin(it);
@@ -4659,6 +4695,7 @@ function _hayOfertasDelMes(){
 // Cantidad a mostrar (stepper del carrito): para kg en gramos, para und en unidades
 function _itemCount(it){return it.unidad==='kg'?_gLabel(it.totalG):it.c}
 function renderCart(){
+  _refrescarPreciosCarrito();
   const body=document.getElementById('cartBody'),footer=document.getElementById('cartFooter');
   if(!cart.length){
     var _ult=_cargarUltimoPedido();
@@ -5508,6 +5545,8 @@ function sincronizarDesdeSheets(){
       CATS=Object.keys(RUBRO_MAP).filter(k=>catMap[RUBRO_MAP[k].id]).map(k=>RUBRO_MAP[k]);
       PRODS=prodsTemp;
       _MIN_BY_ID=null;
+      // Recien llegada la lista nueva: si el carrito traia precios viejos, se corrigen.
+      try{ if(_refrescarPreciosCarrito() && document.body.classList.contains('cart-open')) renderCart(); }catch(e){}
       // Guardar en localStorage para hidratación instantánea en próxima visita
       try{localStorage.setItem(_LS('paladear_min_v3'),JSON.stringify({cats:CATS,prods:PRODS,ts:Date.now()}));}catch(e){}
       console.log(`✅ Paladear: ${PRODS.length} productos, ${CATS.length} categorías`);
