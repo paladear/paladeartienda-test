@@ -4846,7 +4846,16 @@ function armarProductosMay(){
       });
     }
   }
-  return Object.keys(porId).map(function(id){
+  // La distribuidora es SOLO lo que viene en el Excel. En su panel habian quedado
+  // 54 fichas que no estan en la lista mayorista, 37 de ellas de la tienda
+  // minorista (mermeladas, granolas) que alguna vez se guardaron del lado
+  // equivocado. No estaban a la venta -el sitio ya las ocultaba- pero salian en
+  // el panel mezcladas con las de verdad. Las fichas NO se borran: si el producto
+  // vuelve a aparecer en el Excel, su ficha sigue estando.
+  var hayLista = Object.keys(porId).some(function(id){ return porId[id].enPrecios; });
+  return Object.keys(porId).filter(function(id){
+    return !hayLista || porId[id].enPrecios;   // sin lista cargada no se filtra nada
+  }).map(function(id){
     var b = porId[id];
     var f = FICHAS_FB[id] || {};
     return {
