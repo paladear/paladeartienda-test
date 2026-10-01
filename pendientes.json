@@ -1,12 +1,19 @@
 {
   "resumen": {
-    "nuevos": 1,
+    "nuevos": 2,
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 62
   },
   "nuevos": [
+    {
+      "numero": "5069",
+      "nombre": "BARRA PROTEICA X55 GR - VITA",
+      "rubro": "SNACK",
+      "precio": 34380,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
     {
       "numero": "5068",
       "nombre": "BARRA X 55 GR - VITA",
