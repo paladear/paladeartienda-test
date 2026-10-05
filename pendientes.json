@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 1,
+    "nuevos": 2,
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
@@ -12,6 +12,13 @@
       "nombre": "CALENDULA X KG",
       "rubro": "INFUSIONES Y HIERBAS",
       "precio": 28950,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5071",
+      "nombre": "CARQUEJA X KG",
+      "rubro": "INFUSIONES Y HIERBAS",
+      "precio": 13600,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
