@@ -399,8 +399,14 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 <script>
 const WA='5492616512823';
 const MIN_MAYORISTA=80000;   // desde este total del pedido rige la lista mayorista
-const SHEET='https://docs.google.com/spreadsheets/d/1aANKgaQFoiAixKQvPlRpZ0_PBQhES-iBWqOG1bsuLyg/gviz/tq?tqx=out:csv&sheet=';
-const INFO_CSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vT2RlZaSdlV-aaVGUw7YI9MVE1MHjopNhbjTOfWBZwPNo_clhJUao2KNcNowEzsdBGpd2Bh5-2rt1aH/pub?gid=1603230501&single=true&output=csv';
+/* Los precios salen de la MISMA lista que lee la tienda: precios-min.csv, que la
+   PC del negocio genera desde E-Pyme, y las fichas de catalogo-panel.json.
+   Antes esta pagina seguia leyendo el Google Sheet, que quedo congelado el dia
+   que se paso a E-Pyme: mostraba precios viejos y los pedidos llegaban con esos
+   precios. El formato del CSV es el mismo que tenia la planilla, columna por
+   columna, asi que lo de abajo no cambia. */
+const ARCHIVO_PRECIOS='precios-min.csv';
+const ARCHIVO_PANEL='catalogo-panel.json';
 
 const RUBRO_MAP={'FRUTOS SECOS':{id:'frutos',n:'Frutos Secos'},'DESHIDRATADOS':{id:'deshidratados',n:'Deshidratados'},'SEMILLAS':{id:'semillas',n:'Semillas'},'ESPECIAS':{id:'especias',n:'Especias'},'INFUSIONES Y HIERBAS':{id:'infusiones',n:'Infusiones y Hierbas'},'CEREALES':{id:'cereales',n:'Cereales'},'GRANOS Y LEGUMBRES':{id:'granos',n:'Granos y Legumbres'},'HARINAS':{id:'harinas',n:'Harinas'},'PRODUCTOS SIN TACC':{id:'sintacc',n:'Sin TACC'},'DULCES, MIEL Y CHOCOLATES':{id:'dulces',n:'Dulces, Miel y Chocolates'},'AZUCAR, CACAO Y REPOSTERIA':{id:'reposteria',n:'Azúcar, Cacao y Repostería'},'MANTECAS Y PASTAS':{id:'mantecas',n:'Mantecas y Pastas'},'ACEITES Y VINAGRES':{id:'aceites',n:'Aceites y Vinagres'},'ACEITUNAS':{id:'aceitunas',n:'Aceitunas'},'ENCURTIDOS':{id:'encurtidos',n:'Encurtidos'},'TOMATE TRITURADO':{id:'tomate',n:'Tomate'},'SNACK':{id:'snack',n:'Snacks'},'SUPLEMENTOS':{id:'suplementos',n:'Suplementos'},'LINEA GOURMET':{id:'gourmet',n:'Línea Gourmet'},'BEBIDAS':{id:'bebidas',n:'Bebidas'},'VINOS':{id:'vinos',n:'Vinos y Licores'},'PRODUCTOS DE FRIO':{id:'frio',n:'Productos de Frío'},'PRODUCTOS CONGELADOS':{id:'congelados',n:'Congelados'},'PALADEAR HOME':{id:'home',n:'Paladear Home'}};
 
@@ -424,18 +430,21 @@ function uniDe(pid){ return unidades[pid]||'g'; }
 
 async function cargar(){
   try{
-    const [infoTxt,preTxt]=await Promise.all([
-      fetch(INFO_CSV+'&t='+Date.now(),{cache:'no-store'}).then(r=>r.text()),
-      fetch(SHEET+'precios&t='+Date.now(),{cache:'no-store'}).then(r=>r.text())
+    const [panel,preTxt]=await Promise.all([
+      fetch(ARCHIVO_PANEL+'?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({})),
+      fetch(ARCHIVO_PRECIOS+'?t='+Date.now(),{cache:'no-store'}).then(r=>{ if(!r.ok) throw new Error('No se pudo leer la lista de precios'); return r.text(); })
     ]);
-    const INFO={};
-    _parseCSV(infoTxt).forEach((c,i)=>{
-      if(i===0||c.length<2)return;
-      const nombre=(c[0]||'').trim(); if(!nombre)return;
-      const id=(c[6]||'').trim().replace(/\./g,'').replace(/,.*$/,'');
-      const e={nombre,cantidades:(c[1]||'').trim(),oferta:parseInt((c[7]||'').replace('%',''))||0};
-      if(id)INFO[id]=e;
-      if(_norm(nombre)!==id)INFO[_norm(nombre)]=e;
+    // El nombre lindo, el contenido y la oferta salen de la ficha del panel,
+    // igual que en la tienda. Lo que el panel oculta no se muestra aca tampoco.
+    const INFO={}, OCULTOS={};
+    const fichas=(panel&&panel.fichas)||{};
+    Object.keys(fichas).forEach(id=>{
+      const f=fichas[id]||{};
+      if(f.oculto===true){ OCULTOS[id]=true; return; }
+      const e={nombre:f.nombre||'',cantidades:f.cantidades||'',oferta:f.oferta||0};
+      INFO[id]=e;
+      const ne=_norm(f.nombreEpyme||f.nombre||'');
+      if(ne&&!INFO[ne])INFO[ne]=e;
     });
     const catMap={},tmp=[];
     _parseCSV(preTxt).forEach((c,i)=>{
@@ -445,6 +454,7 @@ async function cargar(){
       const rubro=(c[5]||'').trim().toUpperCase();
       const pid=(c[6]||'').trim().replace(/\./g,'').replace(/,.*$/,'');
       if(!nombre||!p1||!rubro)return;
+      if(pid&&OCULTOS[pid])return;
       const cat=RUBRO_MAP[rubro]; if(!cat)return;
       catMap[cat.id]=cat;
       const inf=INFO[pid]||INFO[_norm(nombre)]||{};
