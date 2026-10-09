@@ -121,7 +121,7 @@
       "numero": "5001",
       "nombre": "CAJA CHOCO CHICA 100 GR",
       "rubro": "DULCES, MIEL Y CHOCOLATES",
-      "precio": 18150,
+      "precio": 7000,
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     },
     {
@@ -129,13 +129,6 @@
       "nombre": "CAJA CHOCO GRANDE 450 gr",
       "rubro": "DULCES, MIEL Y CHOCOLATES",
       "precio": 41140,
-      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
-    },
-    {
-      "numero": "5002",
-      "nombre": "CAJA CHOCO MEDIANA 360 gr",
-      "rubro": "DULCES, MIEL Y CHOCOLATES",
-      "precio": 33880,
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     },
     {
@@ -451,6 +444,13 @@
       "nombre": "ZAPALLO EN ALMIBAR X3.8KG",
       "rubro": "LINEA GOURMET",
       "precio": 44140,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
+    {
+      "numero": "5002",
+      "nombre": "ZZZ 5002",
+      "rubro": "DULCES, MIEL Y CHOCOLATES",
+      "precio": 33880,
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     }
   ]
