@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 2,
+    "nuevos": 3,
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
@@ -19,6 +19,13 @@
       "nombre": "CREMA LECHE DE COCO",
       "rubro": "AZUCAR, CACAO Y REPOSTERIA",
       "precio": 12500,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5074",
+      "nombre": "JUGO NATURAL LAS VERDES 250ML",
+      "rubro": "PRODUCTOS DE FRIO",
+      "precio": 6200,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
