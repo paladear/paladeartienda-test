@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 3,
+    "nuevos": 4,
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
@@ -26,6 +26,13 @@
       "nombre": "JUGO NATURAL LAS VERDES 250ML",
       "rubro": "PRODUCTOS DE FRIO",
       "precio": 6200,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5075",
+      "nombre": "JUGO NATURAL LAS VERDES 500ML",
+      "rubro": "PRODUCTOS DE FRIO",
+      "precio": 6900,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
