@@ -4,7 +4,7 @@
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
-    "fuera_catalogo": 62
+    "fuera_catalogo": 61
   },
   "nuevos": [
     {
@@ -101,13 +101,6 @@
       "nombre": "BARRA CHOCOLATE MAPRICUBER xKg",
       "rubro": "AZUCAR, CACAO Y REPOSTERIA",
       "precio": 25010,
-      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
-    },
-    {
-      "numero": "2484",
-      "nombre": "BARRA MUECA PROTEICA",
-      "rubro": "SNACK",
-      "precio": 2635,
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     },
     {
