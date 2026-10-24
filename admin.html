@@ -503,6 +503,10 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
 .aviso-cat.revmarca{background:#f3ecfa;border-color:#cdb8e4;color:#6b3fa0}
 .aviso-cat.revmarca b{color:#6b3fa0}
 .aviso-cat .acc-dos{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.kpi.k-salio{background:#f1efed;border-color:#cfc7c0}
+.kpi.k-salio span,.kpi.k-salio b{color:#6b5e54}
+.kpi.k-salio.on{background:#6b5e54;border-color:#6b5e54}
+.kpi.k-salio.on span,.kpi.k-salio.on b{color:#fff}
 .kpi.k-bulto{background:#fdf2e3;border-color:#e8c48d}
 .kpi.k-bulto span,.kpi.k-bulto b{color:#8a5a10}
 .kpi.k-bulto.on{background:#8a5a10;border-color:#8a5a10}
@@ -1071,8 +1075,8 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
   input,select,textarea,.campo input,.campo textarea,#buscar,.cmp-busca input{font-size:16px!important}
   .cmp-busca input{min-height:48px}
 }
-#capaAltas,#capaMarcas,#capaSellos,#capaRubros,#capaControl,#capaHistorial{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
-#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto,#capaControl.abierto,#capaHistorial.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
+#capaAltas,#capaMarcas,#capaSellos,#capaRubros,#capaControl,#capaHistorial,#capaUltimo{position:fixed;inset:0;z-index:220;display:none;background:rgba(15,23,42,.55)}
+#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto,#capaControl.abierto,#capaHistorial.abierto,#capaUltimo.abierto{display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto}
 /* Las marcas que ya conoce, para tocarlas en vez de escribirlas. */
 .mca-sug{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
 /* ── Historial de precios ── */
@@ -1105,20 +1109,20 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
 .mca-chip.on{background:#5b5680;border-color:#5b5680;color:#fff}
 .mca-antes{display:block;font-size:12px;color:#93a0ac;margin-top:2px}
 .mca-antes b{color:#1f7a4a;font-weight:700}
-#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja,#capaControl .ed-caja,#capaHistorial .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
+#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja,#capaControl .ed-caja,#capaHistorial .ed-caja,#capaUltimo .ed-caja{background:var(--papel);border-radius:14px;width:100%;max-width:620px;
   box-shadow:0 22px 60px rgba(0,0,0,.3);display:flex;flex-direction:column;max-height:calc(100vh - 48px)}
-#capaAltas .ed-top,#capaMarcas .ed-top,#capaSellos .ed-top,#capaRubros .ed-top,#capaControl .ed-top,#capaHistorial .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
+#capaAltas .ed-top,#capaMarcas .ed-top,#capaSellos .ed-top,#capaRubros .ed-top,#capaControl .ed-top,#capaHistorial .ed-top,#capaUltimo .ed-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding:14px 18px;border-bottom:1px solid var(--linea)}
-#capaAltas .ed-cuerpo,#capaMarcas .ed-cuerpo,#capaSellos .ed-cuerpo,#capaRubros .ed-cuerpo,#capaControl .ed-cuerpo,#capaHistorial .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
-#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie,#capaControl .ed-pie,#capaHistorial .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+#capaAltas .ed-cuerpo,#capaMarcas .ed-cuerpo,#capaSellos .ed-cuerpo,#capaRubros .ed-cuerpo,#capaControl .ed-cuerpo,#capaHistorial .ed-cuerpo,#capaUltimo .ed-cuerpo{flex:1 1 auto;overflow-y:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
+#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie,#capaControl .ed-pie,#capaHistorial .ed-pie,#capaUltimo .ed-pie{flex:0 0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
   padding:13px 18px;border-top:1px solid var(--linea);background:var(--papel)}
 .alt-item.on{border-color:#2e9e63;background:#f3faf6}
 .alt-falta{color:#c2582f}
 @media(max-width:700px){
-#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto,#capaControl.abierto,#capaHistorial.abierto{padding:0;align-items:stretch}
-#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja,#capaControl .ed-caja,#capaHistorial .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
-#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie,#capaControl .ed-pie,#capaHistorial .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
-#capaAltas .ed-pie .btn,#capaMarcas .ed-pie .btn,#capaSellos .ed-pie .btn,#capaRubros .ed-pie .btn,#capaControl .ed-pie .btn,#capaHistorial .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
+#capaAltas.abierto,#capaMarcas.abierto,#capaSellos.abierto,#capaRubros.abierto,#capaControl.abierto,#capaHistorial.abierto,#capaUltimo.abierto{padding:0;align-items:stretch}
+#capaAltas .ed-caja,#capaMarcas .ed-caja,#capaSellos .ed-caja,#capaRubros .ed-caja,#capaControl .ed-caja,#capaHistorial .ed-caja,#capaUltimo .ed-caja{max-width:none;border-radius:0;max-height:none;height:100vh;height:100dvh}
+#capaAltas .ed-pie,#capaMarcas .ed-pie,#capaSellos .ed-pie,#capaRubros .ed-pie,#capaControl .ed-pie,#capaHistorial .ed-pie,#capaUltimo .ed-pie{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
+#capaAltas .ed-pie .btn,#capaMarcas .ed-pie .btn,#capaSellos .ed-pie .btn,#capaRubros .ed-pie .btn,#capaControl .ed-pie .btn,#capaHistorial .ed-pie .btn,#capaUltimo .ed-pie .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -1464,6 +1468,7 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
           <button class="btn gris" id="btnRubros" onclick="abrirRubros()" title="Apagá un rubro entero: deja de verse en la tienda mayorista">Rubros de la distribuidora</button>
           <button class="btn gris" id="btnControl" onclick="abrirControl()" title="Comparar lo que hay en el panel con lo que el cliente ve de verdad">Control de la tienda</button>
           <button class="btn gris" id="btnHistorial" onclick="abrirHistorial()" title="Ver las listas de precios publicadas antes y qué cambió desde cada una">Historial de precios</button>
+          <button class="btn gris" id="btnUltimoExcel" onclick="abrirUltimoExcel()" title="Volver a ver qué trajo el último Excel que subiste">Último Excel subido</button>
           <button class="btn gris" id="btnCompartir" onclick="abrirCompartir()">Compartir fotos con la distribuidora</button>
         </div>
         <div class="hoja-grupo" id="grupoPublicar">
@@ -1578,6 +1583,9 @@ function rubroApagado(r){
 }
 var FICHAS_MAY_LISTAS = false;
 var PRECIOS_VISTOS = {};        // {id: precio que ya revisaste}
+// Lo que trajo el ultimo Excel subido, para poder volver a mirarlo. Antes el
+// recuadro con los cambios se iba con la pantalla y no quedaba registro.
+var ULTIMO_EXCEL = null;
 // Memoria permanente: la fecha del último cambio real de precio de cada producto.
 // Sin esto el orden "lo último que cambió" se pierde apenas revisás, y la lista
 // vuelve a salir alfabética.
@@ -1770,10 +1778,12 @@ async function cargarFichasGuardadas(){
     MARCA_VISTO = j.novedadesVistas || '';
     MARCAS_FB = j.marcas || [];
     RUBROS_OCULTOS = j.rubrosOcultos || [];
+    ULTIMO_EXCEL = j.ultimoExcel || null;
   } catch (e) {
     console.warn('[panel] todavía no hay fichas guardadas:', e && e.message);
     FICHAS_FB = {}; FOTOS_FB = {}; PRECIOS_VISTOS = {};
     CAMBIOS_FECHA = {}; PRECIOS_APROBADOS = {}; MARCA_VISTO = ''; MARCAS_FB = [];
+    ULTIMO_EXCEL = null;
     // La primera vez esto es normal (todavía no se guardó nada). Después no: es
     // que no se pudo leer, y conviene saberlo antes de ponerse a editar.
     LECTURA_FALLO = true;
@@ -1918,6 +1928,7 @@ async function guardarFichasEnRepo(mensaje){
                           novedadesVistas: MARCA_VISTO,
                           marcas: MARCAS_FB,
                           rubrosOcultos: RUBROS_OCULTOS,
+                          ultimoExcel: ULTIMO_EXCEL,
                           // Queda firmado de qué tienda es. Antes los dos archivos eran
                           // indistinguibles y uno podía terminar encima del otro.
                           tienda: TIENDA,
@@ -2293,6 +2304,8 @@ window.addEventListener('popstate', function(){
 // ultimo que se reviso desde el panel. Mientras no se decida, la tienda sigue
 // mostrando el nombre de la ficha.
 function hayRenombre(p){
+  // En la distribuidora el cambio de nombre lo detecta el Excel, no E-Pyme.
+  if (!p.renombre && p.renombreMay) return p.renombreMay;
   if (!p.renombre) return null;
   if (p.nombreEpyme && p.nombreEpyme === p.renombre.nombre_nuevo) return null;
   return p.renombre;
@@ -3353,7 +3366,8 @@ function pintarKpis(){
   const cambios = PRODUCTOS.filter(p => p.cambioPrecio).length;
   // Un nuevo deja de contar como nuevo en cuanto lo metés al catálogo, aunque
   // siga figurando en pendientes.json hasta la próxima pasada del sistema.
-  const nuevos  = PRODUCTOS.filter(p => p.nuevo && !p.altaOk).length;
+  const nuevos  = PRODUCTOS.filter(p => esNuevo(p)).length;
+  const salieron = PRODUCTOS.filter(p => p.salioDeLista).length;
   const fuera   = PRODUCTOS.filter(p => !resuelto(p)).length;
   const sinFoto = PRODUCTOS.filter(p => !p.foto).length;
   const renoms  = PRODUCTOS.filter(p => hayRenombre(p)).length;
@@ -3371,7 +3385,8 @@ function pintarKpis(){
     ['revisarfoto', PRODUCTOS.filter(p => p.revisarFoto).length, 'Revisar foto', 'k-revfoto'],
     ['revisarmarca', PRODUCTOS.filter(p => p.revisarMarca).length, 'Revisar marca', 'k-revmarca'],
     ...(TIENDA === 'may'
-      ? [['bulto', PRODUCTOS.filter(p => p.bultoCambio).length, 'Cambió el bulto', 'k-bulto']]
+      ? [['bulto', PRODUCTOS.filter(p => p.bultoCambio).length, 'Cambió el bulto', 'k-bulto'],
+         ['salieron', salieron, 'Salieron de la lista', 'k-salio']]
       : []),
     // Los dos que faltaban: lo que se publica sin ficha y lo que no se ve aunque
     // tenga precio. En la minorista dan 0 porque ahí nada entra sin pasar por vos.
@@ -3471,6 +3486,9 @@ function llenarRubros(){
   });
 }
 
+/* Nuevo: en la minorista lo dice E-Pyme; en la distribuidora, el ultimo Excel. */
+function esNuevo(p){ return !!(p.nuevoMay || (p.nuevo && !p.altaOk)); }
+
 /* Un producto se ve en la tienda si tiene precio y no fue sacado a mano. */
 function enCatalogo(p){ return !p.sinPrecio && !p.nuevo && !p.malRubro && !p.oculto; }
 
@@ -3489,7 +3507,8 @@ function enFiltroActual(p){
   switch (FILTRO) {
     case 'pendientes': return !!(p.nuevo || hayRenombre(p) || p.malRubro);
     case 'precio':     return !!p.cambioPrecio;
-    case 'nuevos':     return !!(p.nuevo && !p.altaOk);
+    case 'nuevos':     return esNuevo(p);
+    case 'salieron':   return !!p.salioDeLista;
     case 'renom':      return hayRenombre(p);
     case 'malrubro':   return !!p.malRubro;
     case 'fuera':      return !resuelto(p);
@@ -3627,7 +3646,8 @@ const TITULOS_COPIA = {
   consellos:   'CON SELLOS PUESTOS',
   oferta:      'CON OFERTA',
   malrubro:    'CON UN RUBRO QUE LA TIENDA NO RECONOCE',
-  pendientes:  'PENDIENTES DE REVISAR'
+  pendientes:  'PENDIENTES DE REVISAR',
+  salieron:    'YA NO VIENEN EN LA LISTA DE PRECIOS'
 };
 const TOPE_COPIA = 400;   // más que esto no entra en un mensaje y no se lee
 
@@ -3749,7 +3769,11 @@ function pintar(){
   let lista = PRODUCTOS.slice();
   if (FILTRO === 'pendientes') lista = lista.filter(p => p.nuevo || hayRenombre(p) || p.malRubro);
   if (FILTRO === 'precio')     lista = lista.filter(p => p.cambioPrecio);
-  if (FILTRO === 'nuevos')     lista = lista.filter(p => p.nuevo && !p.altaOk);
+  if (FILTRO === 'nuevos')     lista = lista.filter(p => esNuevo(p));
+  if (FILTRO === 'salieron')   lista = lista.filter(p => p.salioDeLista);
+  // Los que ya no vienen en la lista solo se ven en su filtro: en el resto
+  // estorban, porque no estan a la venta.
+  if (FILTRO !== 'salieron')   lista = lista.filter(p => !p.salioDeLista);
   if (FILTRO === 'renom')      lista = lista.filter(p => hayRenombre(p));
   if (FILTRO === 'malrubro')   lista = lista.filter(p => p.malRubro);
   if (FILTRO === 'sinfoto')    lista = lista.filter(p => !p.foto);
@@ -3796,7 +3820,10 @@ function pintar(){
   // Una línea de ayuda según lo que se esté mirando: el panel tiene varios
   // flujos y no todos son evidentes.
   const ayudas = {
-    nuevos: 'Aparecieron en E-Pyme. Tocá el tilde de la izquierda y entran a la tienda.',
+    nuevos: TIENDA === 'may'
+      ? 'Entraron con el último Excel: no estaban en la lista anterior.'
+      : 'Aparecieron en E-Pyme. Tocá el tilde de la izquierda y entran a la tienda.',
+    salieron: 'Estaban en la lista anterior y el último Excel no los trajo. No se venden hasta que vuelvan; la ficha se guarda.',
     precio: 'Los precios ya están en la tienda. Esto es sólo para que veas qué se movió.',
     sinfoto: 'Tocá un producto para subirle la foto.',
     fuera: 'El tilde de la izquierda los mete o los saca de la tienda. Los que dicen <b>No se puede</b> es porque les falta el precio o el rubro en E-Pyme.',
@@ -4457,6 +4484,10 @@ async function excelPublicar(){
   caja.innerHTML = '<div class="excel-caja">Publicando...</div>';
   // Foto de cómo estaba todo, por si el Excel vino mal.
   await guardarPuntoDeVuelta('subir el Excel de ' + EXCEL_FILAS.length + ' precios');
+  // La comparacion contra la lista de ahora, ANTES de pisar nada. Es lo mismo que
+  // se muestra en la pantalla de confirmacion, pero esta vez queda guardado.
+  var revPub = null;
+  try { revPub = excelRevisar(EXCEL_FILAS); } catch(e) { console.warn('[excel] no pude comparar', e); }
   var esMay = TIENDA === 'may';
   try {
     // Se arma el mismo CSV que genera el pase automático, con sus dos columnas
@@ -4484,6 +4515,7 @@ async function excelPublicar(){
     // vistos acá mismo y después el panel no mostraba nada: parecía que subir el
     // Excel no había hecho nada.
     var aprobados = 0, cambiaron = 0, bultos = 0, paraRevisar = 0, marcasDudosas = 0,
+        detalleBultos = [],
         ahoraMismo = new Date().toISOString();
     EXCEL_FILAS.forEach(function(f){
       var id = limpiaId(f.id);
@@ -4549,7 +4581,11 @@ async function excelPublicar(){
           // Queda anotado: el precio que ve el cliente es precio × bulto, así que un
           // bulto que cambia de 6 a 12 le duplica el total sin que nadie lo note.
           // Sólo si ya había uno antes: la primera carga no es un cambio.
-          if (bultoAntes) ficha.bultoCambio = { antes: bultoAntes, ahora: bultoTxt, cuando: ahoraMismo };
+          if (bultoAntes) {
+            ficha.bultoCambio = { antes: bultoAntes, ahora: bultoTxt, cuando: ahoraMismo };
+            detalleBultos.push({ id: id, nombre: (p ? p.nombre : nomEpyme) || id,
+                                 antes: bultoAntes, ahora: bultoTxt });
+          }
           ficha.bulto = bultoTxt;
           ficha.bultoUnidad = /kg|kilo/i.test(bultoTxt) ? 'kg' : 'unidad';
           FICHAS_FB[id] = ficha;
@@ -4564,7 +4600,11 @@ async function excelPublicar(){
         if (antes && Math.abs(monto - antes) >= 1) {
           // Cambió: se deja visible en "Cambiaron" con su precio anterior.
           p.cambioPrecio = true; p.precioAntes = antes; p.subio = monto > antes;
-          CAMBIOS_FECHA[id] = ahoraMismo;
+          // Tiene que ser el MISMO formato que usa marcarCambiosDePrecio: {p,f,n}.
+          // Guardado como texto suelto, al recargar el panel el producto perdia la
+          // fecha, la lista dejaba de ordenarse por lo mas reciente y volvia al
+          // orden alfabetico. Era justo lo que pasaba despues de subir el Excel.
+          CAMBIOS_FECHA[id] = { p: antes, f: ahoraMismo, n: monto };
           cambiaron++;
         } else {
           p.cambioPrecio = false; p.precioAntes = monto;
@@ -4583,6 +4623,24 @@ async function excelPublicar(){
         avisar('mal', 'Los precios se publicaron, pero no pude guardar el panel',
                'Volvé a entrar y fijate si los cambios figuran como revisados. ' + (e.message || e));
       }
+    }
+    // Queda guardado que trajo este Excel, para poder volver a mirarlo cuando sea.
+    if (revPub) {
+      ULTIMO_EXCEL = {
+        cuando: ahoraMismo,
+        tienda: TIENDA,
+        nombreTienda: nombreCorto(),
+        total: EXCEL_FILAS.length,
+        suben: revPub.listaCambios.filter(function(x){ return x.pct > 0; }).length,
+        bajan: revPub.listaCambios.filter(function(x){ return x.pct <= 0; }).length,
+        cambios:  revPub.listaCambios.slice(0, 300),
+        nuevos:   revPub.listaNuevos.slice(0, 200),
+        renombres: revPub.renombres.slice(0, 200),
+        otroProducto: revPub.otroProducto.slice(0, 100),
+        salieron: revPub.listaFaltan.slice(0, 200),
+        bultos: detalleBultos.slice(0, 200),
+        pisados: []
+      };
     }
     if (bultos) avisar('ojo', bultos + (bultos === 1 ? ' bulto cambió' : ' bultos cambiaron'),
                        'Están en el filtro «Cambió el bulto». El precio del cliente es precio × bulto.');
@@ -4852,9 +4910,21 @@ function armarProductosMay(){
   // equivocado. No estaban a la venta -el sitio ya las ocultaba- pero salian en
   // el panel mezcladas con las de verdad. Las fichas NO se borran: si el producto
   // vuelve a aparecer en el Excel, su ficha sigue estando.
+  // Lo que trajo el ultimo Excel: cuales entraron, cuales cambiaron de nombre y
+  // cuales dejaron de venir. En la distribuidora no hay E-Pyme que lo diga, asi
+  // que sale de comparar ese Excel con la lista que habia.
+  var ue = (ULTIMO_EXCEL && ULTIMO_EXCEL.tienda === 'may') ? ULTIMO_EXCEL : null;
+  var nuevosUE = {}, renomUE = {}, salieronUE = {};
+  if (ue) {
+    (ue.nuevos || []).forEach(function(x){ nuevosUE[String(x.id)] = true; });
+    (ue.renombres || []).forEach(function(x){ renomUE[String(x.id)] = x; });
+    (ue.salieron || []).forEach(function(x){ salieronUE[String(x.id)] = x; });
+  }
   var hayLista = Object.keys(porId).some(function(id){ return porId[id].enPrecios; });
   return Object.keys(porId).filter(function(id){
-    return !hayLista || porId[id].enPrecios;   // sin lista cargada no se filtra nada
+    // Los que salieron en el ultimo Excel se dejan pasar: no se ven en la lista
+    // comun, pero quedan a mano en su propio filtro para poder revisarlos.
+    return !hayLista || porId[id].enPrecios || salieronUE[id];
   }).map(function(id){
     var b = porId[id];
     var f = FICHAS_FB[id] || {};
@@ -4877,6 +4947,9 @@ function armarProductosMay(){
       oferta: f.oferta || 0,
       mix: false, granola: false, blend: false,
       marca: f.marca || '', envase: f.envase || '',
+      nuevoMay: !!nuevosUE[id],
+      renombreMay: renomUE[id] ? { nombre_publicado: renomUE[id].antes, nombre_nuevo: renomUE[id].ahora } : null,
+      salioDeLista: !!(salieronUE[id] && !porId[id].enPrecios),
       bultoCambio: f.bultoCambio || null, revisarMarca: f.revisarMarca || null,
       nombreEpyme: f.nombreEpyme || '', editada: !!FICHAS_FB[id], nuevo: false, renombre: null,
       revisarFoto: f.revisarFoto || null,
@@ -4915,10 +4988,10 @@ async function cargarFichasMay(){
     return { fichas: j.fichas || {}, fotos: fotos,
              vistos: j.preciosVistos || {}, aprobados: j.preciosAprobados || {},
              fechas: j.cambiosPrecio || {}, marcas: j.marcas || [],
-             rubrosOcultos: j.rubrosOcultos || [] };
+             rubrosOcultos: j.rubrosOcultos || [], ultimoExcel: j.ultimoExcel || null };
   } catch (e) {
     console.warn('[panel] la distribuidora todavía no tiene fichas guardadas:', e && e.message);
-    return { fichas: {}, fotos: {}, vistos: {}, aprobados: {}, fechas: {}, marcas: [], rubrosOcultos: [] };
+    return { fichas: {}, fotos: {}, vistos: {}, aprobados: {}, fechas: {}, marcas: [], rubrosOcultos: [], ultimoExcel: null };
   }
 }
 
@@ -4926,7 +4999,7 @@ async function cambiarTienda(cual){
   if (cual === TIENDA) return;
   var caja = $('excelCaja'); if (caja) caja.innerHTML = '';
   // guardar lo de la tienda que se deja
-  var estado = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
+  var estado = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS, ultimoExcel: ULTIMO_EXCEL,
                  vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
                  marcas: MARCAS_FB, rubrosOcultos: RUBROS_OCULTOS };   // sin esto, ir y volver de la distribuidora las perdía
   if (TIENDA === 'min') GUARDADO_MIN = estado; else GUARDADO_MAY = estado;
@@ -4940,10 +5013,11 @@ async function cambiarTienda(cual){
       var d = await cargarFichasMay();
       FICHAS_FB = d.fichas; FOTOS_FB = d.fotos;
       PRECIOS_VISTOS = d.vistos; PRECIOS_APROBADOS = d.aprobados; CAMBIOS_FECHA = d.fechas;
+      ULTIMO_EXCEL = d.ultimoExcel || null;
       MARCAS_FB = d.marcas || [];
       RUBROS_OCULTOS = d.rubrosOcultos || [];
       PRODUCTOS = marcarCambiosDePrecio(armarProductosMay());
-      GUARDADO_MAY = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
+      GUARDADO_MAY = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS, ultimoExcel: ULTIMO_EXCEL,
                        vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
                        marcas: MARCAS_FB, rubrosOcultos: RUBROS_OCULTOS };
     } else {
@@ -4983,6 +5057,7 @@ window.cambiarTienda = cambiarTienda;
    revisados quedaran cruzados, al guardar se pisarían los de la otra. */
 function restaurarTienda(g){
   FICHAS_FB = g.fichas; FOTOS_FB = g.fotos; PRODUCTOS = g.productos;
+  ULTIMO_EXCEL = g.ultimoExcel || null;
   PRECIOS_VISTOS = g.vistos || {}; PRECIOS_APROBADOS = g.aprobados || {}; CAMBIOS_FECHA = g.fechas || {};
   MARCAS_FB = g.marcas || [];
   RUBROS_OCULTOS = g.rubrosOcultos || [];
@@ -5027,6 +5102,8 @@ function ajustarPorTienda(){
   if(be)be.hidden=!esMay;                       // subir el Excel: la acción diaria de la distribuidora
   var br=document.getElementById('btnRubros');
   if(br)br.hidden=!esMay;                       // apagar rubros es cosa de la distribuidora
+  var bu=document.getElementById('btnUltimoExcel');
+  if(bu)bu.hidden=!esMay;                       // el Excel solo se sube del lado mayorista
   var lbl=document.getElementById('lblExcelHerr');
   if(lbl)lbl.hidden=esMay;                      // en la distribuidora ya está arriba, no se repite
   var ay=document.getElementById('ayudaSubir');
@@ -6150,6 +6227,72 @@ window.selAplicar = selAplicar;
    cada tanto y se publicaban solos. Esto apaga el rubro, no los productos. */
 let RUB_SEL = [];
 
+/* ── LO QUE TRAJO EL ULTIMO EXCEL ─────────────────────────────────────────────
+   El recuadro que sale antes de publicar se va con la pantalla y despues no
+   quedaba manera de volver a mirarlo. Esto lo guarda con la lista y se puede
+   abrir cuando sea, hasta que se suba el Excel siguiente. */
+function abrirUltimoExcel(){
+  var c = $('ultimoCuerpo');
+  $('capaUltimo').classList.add('abierto');
+  document.body.style.overflow = 'hidden';
+  var ue = ULTIMO_EXCEL;
+  if (!ue) {
+    c.innerHTML = '<p class="cmp-intro">Todavía no subiste ningún Excel desde este panel. ' +
+      'Cuando subas uno, acá te queda el detalle de lo que trajo.</p>';
+    return;
+  }
+  var d = new Date(ue.cuando);
+  var cuando = ('0'+d.getDate()).slice(-2) + '/' + ('0'+(d.getMonth()+1)).slice(-2) + '/' + d.getFullYear() +
+               ' a las ' + ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+  // Se arma con la misma forma que usa el recuadro de antes de publicar, asi se
+  // ve exactamente igual y no hay dos maneras de mostrar lo mismo.
+  var rev = {
+    listaCambios: ue.cambios || [],
+    listaNuevos: ue.nuevos || [],
+    nuevos: (ue.nuevos || []).length,
+    renombres: ue.renombres || [],
+    otroProducto: ue.otroProducto || [],
+    listaFaltan: ue.salieron || [],
+    faltan: (ue.salieron || []).length
+  };
+  var bultos = ue.bultos || [];
+  var detBultos = bultos.length
+    ? '<details class="excel-det"><summary><b>' + bultos.length + '</b> cambia' +
+      (bultos.length === 1 ? '' : 'n') + ' de bulto</summary><div class="excel-det-lista">' +
+      bultos.map(function(x){
+        return '<span><b>' + esc(String(x.nombre).slice(0,38)) + '</b><br>' +
+          esc(String(x.antes)) + ' <i>&rarr;</i> <b>' + esc(String(x.ahora)) + '</b></span>';
+      }).join('') + '</div></details>'
+    : '';
+  var pisados = ue.pisados || [];
+  var detPisados = pisados.length
+    ? '<details class="excel-det excel-det-grave" open><summary><b>' + pisados.length +
+      '</b> edición' + (pisados.length === 1 ? '' : 'es') + ' tuya' + (pisados.length === 1 ? '' : 's') +
+      ' que pisó el Excel</summary><div class="excel-det-lista">' +
+      pisados.map(function(x){
+        return '<span><b>' + esc(String(x.nombre).slice(0,38)) + '</b> · ' + esc(x.campo) + '<br>' +
+          'vos pusiste <b>' + esc(String(x.tuyo)) + '</b> <i>&rarr;</i> el Excel trajo <b>' +
+          esc(String(x.excel)) + '</b></span>';
+      }).join('') + '</div></details>'
+    : '';
+  c.innerHTML =
+    '<p class="cmp-intro">Excel de <b>' + esc(ue.nombreTienda || '') + '</b>, subido el <b>' +
+      cuando + '</b>, con ' + ue.total + ' producto' + (ue.total === 1 ? '' : 's') + '.</p>' +
+    '<div class="excel-cuentas">' +
+      '<span class="sube"><b>' + (ue.suben || 0) + '</b> suben</span>' +
+      '<span class="baja"><b>' + (ue.bajan || 0) + '</b> bajan</span>' +
+      '<span class="' + (rev.nuevos ? 'nuevo' : '') + '"><b>' + rev.nuevos + '</b> nuevos</span>' +
+      '<span class="' + (rev.renombres.length ? 'renom' : '') + '"><b>' + rev.renombres.length + '</b> cambian de nombre</span>' +
+      '<span class="' + (bultos.length ? 'ojo' : '') + '"><b>' + bultos.length + '</b> cambian de bulto</span>' +
+      '<span class="' + (rev.faltan ? 'ojo' : '') + '"><b>' + rev.faltan + '</b> ya no vienen</span>' +
+    '</div>' + detPisados + excelDetalle(rev) + detBultos;
+}
+function cerrarUltimo(){
+  $('capaUltimo').classList.remove('abierto');
+  document.body.style.overflow = '';
+}
+window.abrirUltimoExcel = abrirUltimoExcel; window.cerrarUltimo = cerrarUltimo;
+
 /* ── HISTORIAL DE PRECIOS ─────────────────────────────────────────────────────
    Cada lista de precios publicada queda guardada como una version del archivo en
    GitHub. Aca se listan las ultimas y se puede ver que cambio entre cualquiera de
@@ -6491,6 +6634,18 @@ document.addEventListener('click', function(ev){
     <div class="ed-pie">
       <button type="button" class="btn primario" id="selEnviar" onclick="selAplicar()" disabled>Guardar los sellos</button>
       <span id="selEstado"></span>
+    </div>
+  </div>
+</div>
+
+<div id="capaUltimo">
+  <div class="ed-caja">
+    <div class="ed-top">
+      <b>Último Excel subido</b>
+      <button type="button" class="btn gris" onclick="cerrarUltimo()">Cerrar</button>
+    </div>
+    <div class="ed-cuerpo">
+      <div id="ultimoCuerpo"></div>
     </div>
   </div>
 </div>
