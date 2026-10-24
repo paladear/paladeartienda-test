@@ -503,6 +503,17 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
 .aviso-cat.revmarca{background:#f3ecfa;border-color:#cdb8e4;color:#6b3fa0}
 .aviso-cat.revmarca b{color:#6b3fa0}
 .aviso-cat .acc-dos{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.precio-edit{display:flex;align-items:center;gap:7px;margin-top:6px}
+.precio-edit input{flex:0 1 140px;font:inherit;font-size:15px;font-weight:700;padding:8px 10px;
+  border:1px solid var(--linea2);border-radius:9px;background:var(--papel);color:var(--tinta)}
+.precio-signo{font-size:16px;font-weight:700;color:var(--tinta-2)}
+.precio-por{font-size:12.5px;color:var(--tinta-2)}
+.precio-nota{font-size:12px;color:var(--tinta-2);margin-top:5px;line-height:1.4}
+.precio-nota b{color:var(--tinta)}
+.kpi.k-pisado{background:#fdeaea;border-color:#e9b4b4}
+.kpi.k-pisado span,.kpi.k-pisado b{color:#a52020}
+.kpi.k-pisado.on{background:#a52020;border-color:#a52020}
+.kpi.k-pisado.on span,.kpi.k-pisado.on b{color:#fff}
 .kpi.k-salio{background:#f1efed;border-color:#cfc7c0}
 .kpi.k-salio span,.kpi.k-salio b{color:#6b5e54}
 .kpi.k-salio.on{background:#6b5e54;border-color:#6b5e54}
@@ -1173,8 +1184,18 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
     <div class="ed-cuerpo">
       <div id="edRenombre"></div>
       <div class="campo">
-        <label>Precio <span class="ayuda">— viene de E-Pyme, no se edita acá</span></label>
+        <label>Precio <span class="ayuda" id="edPrecioAyuda">— viene de E-Pyme, no se edita acá</span></label>
         <div class="solo-lectura" id="edPrecio"></div>
+        <!-- Solo en la distribuidora: ahí el precio no sale de E-Pyme sino del
+             Excel, así que se puede corregir a mano hasta el Excel siguiente. -->
+        <div id="edPrecioMay" hidden>
+          <div class="precio-edit">
+            <span class="precio-signo">$</span>
+            <input id="edPrecioVal" type="number" min="0" step="1" inputmode="numeric" placeholder="0">
+            <span class="precio-por">por unidad</span>
+          </div>
+          <div class="precio-nota" id="edPrecioNota"></div>
+        </div>
       </div>
       <div class="campo" id="edEnCatalogo"></div>
       <div class="campo">
@@ -1202,7 +1223,8 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
       <!-- La distribuidora vende sólo bulto cerrado: acá no se elige nada, se
            muestra lo que vino en la columna Patente del último Excel. -->
       <div class="campo" id="edCampoBulto" hidden>
-        <label>Bulto cerrado <span class="ayuda">— sale de la columna Patente del Excel</span></label>
+        <label for="edBultoVal">Bulto cerrado <span class="ayuda">— sale del Excel; podés corregirlo acá</span></label>
+        <input id="edBultoVal" maxlength="40" placeholder="12 unidades">
         <div class="bulto-caja" id="edBulto"></div>
       </div>
       <div class="campo" id="edCampoVenta">
@@ -2255,6 +2277,7 @@ function abrirEditor(id){
   $('edPrecio').textContent = p.p1
     ? pesos(p.p1) + (p.p2 ? '  ·  con descuento ' + pesos(p.p2) : '')
     : 'sin precio publicado';
+  pintarPrecioMay(p);
   const cont = $('edFoto');
   if (p.foto) {
     cont.outerHTML = '<img id="edFoto" src="' + imgDe(p.id) + '" alt="">';
@@ -2793,6 +2816,39 @@ function pintarVenta(p){
   dibujarVenta();
 }
 
+/* En la distribuidora el precio se puede corregir a mano. Dura hasta el Excel
+   siguiente: ese siempre manda, y si pisa una corrección tuya queda anotado. */
+function pintarPrecioMay(p){
+  var caja = $('edPrecioMay'), ayuda = $('edPrecioAyuda'), lectura = $('edPrecio');
+  var esMay = TIENDA === 'may';
+  if (caja) caja.hidden = !esMay;
+  if (lectura) lectura.hidden = esMay;
+  if (ayuda) ayuda.textContent = esMay
+    ? '— sale del Excel; podés corregirlo hasta el próximo'
+    : '— viene de E-Pyme, no se edita acá';
+  if (!esMay) return;
+  var f = FICHAS_FB[p.id] || {};
+  $('edPrecioVal').value = p.p1 ? Math.round(p.p1) : '';
+  var bulto = parseFloat(String(f.bulto || '1').replace(',', '.')) || 1;
+  var notas = [];
+  if (p.p1) notas.push('El bulto entero queda en <b>' + pesos(Math.round(p.p1 * bulto)) + '</b>.');
+  if (f.precioManual) notas.push('Lo pusiste a mano el ' + fechaCorta(f.precioManual.cuando) + '.');
+  if (p.pisado) notas.push('El último Excel pisó tu valor: pusiste <b>' + esc(String(p.pisado.tuyo)) +
+                           '</b> y trajo <b>' + esc(String(p.pisado.excel)) + '</b>.');
+  notas.push('Al subir el próximo Excel, manda el Excel.');
+  $('edPrecioNota').innerHTML = notas.join('<br>');
+  var ib = $('edBultoVal');
+  if (ib) ib.value = String(f.bulto || '');
+}
+
+function fechaCorta(iso){
+  try {
+    var d = new Date(iso);
+    return ('0'+d.getDate()).slice(-2) + '/' + ('0'+(d.getMonth()+1)).slice(-2) +
+           ' a las ' + ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+  } catch(e) { return ''; }
+}
+
 /* El bulto cerrado, tal como vino del Excel, y si cambió en la última lista. */
 function pintarBulto(p){
   var c = $('edBulto');
@@ -3044,6 +3100,37 @@ async function elegirFoto(file){
   }
 }
 
+/* Cambia el precio de UN producto en precios-may.csv. Se toca solo esa celda:
+   el resto del archivo queda igual, byte por byte. */
+async function guardarPrecioMay(id, precio, nombre){
+  var csv = await bajar(archivoPrecios());
+  var lineas = csv.split(/\r?\n/);
+  var cab = leerCsv(lineas[0] + '\n')[0] || [];
+  var iArt = colDe(cab, ['articulo']), iPre = colDe(cab, ['bt.lista 1', 'lista 1', 'precio']);
+  if (iArt < 0 || iPre < 0) throw new Error('No reconozco las columnas de la lista de precios');
+  var tocado = false;
+  for (var i = 1; i < lineas.length; i++) {
+    if (!lineas[i].trim()) continue;
+    var cols = leerCsv(lineas[i] + '\n')[0];
+    if (!cols || limpiaId(cols[iArt]) !== String(id)) continue;
+    cols[iPre] = numeroAr(precio);
+    lineas[i] = cols.map(excelCelda).join(',');
+    tocado = true;
+    break;
+  }
+  if (!tocado) throw new Error('Ese artículo no está en la lista de precios');
+  await guardarEnRepo(archivoPrecios(), aB64(lineas.join('\n')),
+    'Precio a mano: ' + nombre + ' (art. ' + id + ')', 0, repoActivo());
+  CSV_MAY_PRECIOS = lineas.join('\n');
+}
+
+/* 9320 -> "9.320,00", que es como se escriben los precios en la lista. */
+function numeroAr(n){
+  var s = (Math.round(n * 100) / 100).toFixed(2);
+  var partes = s.split('.');
+  return partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + partes[1];
+}
+
 async function guardarFicha(){
   if (!EDITANDO) return;
   const p = EDITANDO, b = $('edGuardar'), est = $('edEstado');
@@ -3078,8 +3165,30 @@ async function guardarFicha(){
     est.textContent = 'Esperá un segundo: la foto se está preparando.';
     est.className = 'ed-estado mal'; return;
   }
+  // Distribuidora: precio y bulto se pueden haber tocado a mano.
+  var precioNuevo = null, bultoNuevo = null;
+  if (TIENDA === 'may') {
+    var pv = parseInt($('edPrecioVal').value, 10);
+    if (!isNaN(pv) && pv >= 0 && Math.abs(pv - (p.p1 || 0)) >= 1) precioNuevo = pv;
+    var bv = String(($('edBultoVal') || {}).value || '').trim();
+    var bviejo = String((FICHAS_FB[p.id] || {}).bulto || '').trim();
+    if (bv && bv !== bviejo) bultoNuevo = bv;
+    if (bultoNuevo) {
+      datos.bulto = bultoNuevo;
+      datos.bultoUnidad = /kg|kilo/i.test(bultoNuevo) ? 'kg' : 'unidad';
+      datos.bultoManual = { valor: bultoNuevo, cuando: datos.actualizado };
+    }
+    if (precioNuevo !== null) datos.precioManual = { valor: precioNuevo, cuando: datos.actualizado };
+  }
   b.disabled = true; est.textContent = 'Guardando...'; est.className = 'ed-estado';
   try {
+    // El precio vive en la lista de precios, no en la ficha: hay que reescribir
+    // ese renglon del CSV sin tocar ninguno de los otros.
+    if (precioNuevo !== null) {
+      est.textContent = 'Cambiando el precio en la lista...';
+      await guardarPrecioMay(p.id, precioNuevo, datos.nombre);
+      p.p1 = precioNuevo;
+    }
     // La foto se sube como archivo al repo; el JSON sólo guarda sus datos.
     if (FOTO_NUEVA) {
       est.textContent = 'Subiendo la foto...';
@@ -3102,6 +3211,7 @@ async function guardarFicha(){
       rubro: datos.rubro || p.rubro,
       desc: datos.desc, oferta: datos.oferta, mix: datos.mix, granola: datos.granola,
       blend: datos.blend, editada: true,
+      cantidades: datos.bulto || datos.cantidades,
       oculto: datos.oculto,
       foto: datos.fotoPropia || p.foto
     });
@@ -3386,7 +3496,8 @@ function pintarKpis(){
     ['revisarmarca', PRODUCTOS.filter(p => p.revisarMarca).length, 'Revisar marca', 'k-revmarca'],
     ...(TIENDA === 'may'
       ? [['bulto', PRODUCTOS.filter(p => p.bultoCambio).length, 'Cambió el bulto', 'k-bulto'],
-         ['salieron', salieron, 'Salieron de la lista', 'k-salio']]
+         ['salieron', salieron, 'Salieron de la lista', 'k-salio'],
+         ['pisados', PRODUCTOS.filter(p => p.pisado).length, 'Lo pisó el Excel', 'k-pisado']]
       : []),
     // Los dos que faltaban: lo que se publica sin ficha y lo que no se ve aunque
     // tenga precio. En la minorista dan 0 porque ahí nada entra sin pasar por vos.
@@ -3509,6 +3620,7 @@ function enFiltroActual(p){
     case 'precio':     return !!p.cambioPrecio;
     case 'nuevos':     return esNuevo(p);
     case 'salieron':   return !!p.salioDeLista;
+    case 'pisados':    return !!p.pisado;
     case 'renom':      return hayRenombre(p);
     case 'malrubro':   return !!p.malRubro;
     case 'fuera':      return !resuelto(p);
@@ -3647,7 +3759,8 @@ const TITULOS_COPIA = {
   oferta:      'CON OFERTA',
   malrubro:    'CON UN RUBRO QUE LA TIENDA NO RECONOCE',
   pendientes:  'PENDIENTES DE REVISAR',
-  salieron:    'YA NO VIENEN EN LA LISTA DE PRECIOS'
+  salieron:    'YA NO VIENEN EN LA LISTA DE PRECIOS',
+  pisados:     'EL ÚLTIMO EXCEL PISÓ UN VALOR QUE PUSISTE A MANO'
 };
 const TOPE_COPIA = 400;   // más que esto no entra en un mensaje y no se lee
 
@@ -3771,6 +3884,7 @@ function pintar(){
   if (FILTRO === 'precio')     lista = lista.filter(p => p.cambioPrecio);
   if (FILTRO === 'nuevos')     lista = lista.filter(p => esNuevo(p));
   if (FILTRO === 'salieron')   lista = lista.filter(p => p.salioDeLista);
+  if (FILTRO === 'pisados')    lista = lista.filter(p => p.pisado);
   // Los que ya no vienen en la lista solo se ven en su filtro: en el resto
   // estorban, porque no estan a la venta.
   if (FILTRO !== 'salieron')   lista = lista.filter(p => !p.salioDeLista);
@@ -3824,6 +3938,7 @@ function pintar(){
       ? 'Entraron con el último Excel: no estaban en la lista anterior.'
       : 'Aparecieron en E-Pyme. Tocá el tilde de la izquierda y entran a la tienda.',
     salieron: 'Estaban en la lista anterior y el último Excel no los trajo. No se venden hasta que vuelvan; la ficha se guarda.',
+    pisados: 'Habías puesto el precio o el bulto a mano y el último Excel trajo otro valor. Manda el Excel: fijate si está bien.',
     precio: 'Los precios ya están en la tienda. Esto es sólo para que veas qué se movió.',
     sinfoto: 'Tocá un producto para subirle la foto.',
     fuera: 'El tilde de la izquierda los mete o los saca de la tienda. Los que dicen <b>No se puede</b> es porque les falta el precio o el rubro en E-Pyme.',
@@ -4515,7 +4630,7 @@ async function excelPublicar(){
     // vistos acá mismo y después el panel no mostraba nada: parecía que subir el
     // Excel no había hecho nada.
     var aprobados = 0, cambiaron = 0, bultos = 0, paraRevisar = 0, marcasDudosas = 0,
-        detalleBultos = [],
+        detalleBultos = [], pisados = [],
         ahoraMismo = new Date().toISOString();
     EXCEL_FILAS.forEach(function(f){
       var id = limpiaId(f.id);
@@ -4524,6 +4639,28 @@ async function excelPublicar(){
       if (!monto) return;
       var p = PRODUCTOS.find(function(x){ return x.id === id; });
       var antes = p ? p.p1 : 0;
+      // Si el precio o el bulto los habias puesto a mano, el Excel manda igual:
+      // se pisan y queda anotado, para que no te enteres de casualidad.
+      var fman = FICHAS_FB[id];
+      if (fman && (fman.precioManual || fman.bultoManual)) {
+        var copiaMan = Object.assign({}, fman), huboPisada = false;
+        if (copiaMan.precioManual) {
+          if (Math.abs(Number(copiaMan.precioManual.valor) - monto) >= 1) {
+            pisados.push({ id: id, nombre: (p && p.nombre) || String(f.nombre || id), campo: 'precio',
+                           tuyo: pesos(Math.round(copiaMan.precioManual.valor)), excel: pesos(monto) });
+          }
+          delete copiaMan.precioManual; huboPisada = true;
+        }
+        if (copiaMan.bultoManual && esMay && f.patente) {
+          var bulExcel = String(f.patente).trim();
+          if (_norm(copiaMan.bultoManual.valor) !== _norm(bulExcel)) {
+            pisados.push({ id: id, nombre: (p && p.nombre) || String(f.nombre || id), campo: 'bulto',
+                           tuyo: copiaMan.bultoManual.valor, excel: bulExcel });
+          }
+          delete copiaMan.bultoManual; huboPisada = true;
+        }
+        if (huboPisada) FICHAS_FB[id] = copiaMan;
+      }
       PRECIOS_APROBADOS[id] = [monto, excelAPesos(f.p2) || 0];
       // En la distribuidora, la columna Patente es el bulto cerrado ("6 unid.",
       // "1 kg"). La tienda multiplica el precio por ese número, así que si no se
@@ -4639,9 +4776,12 @@ async function excelPublicar(){
         otroProducto: revPub.otroProducto.slice(0, 100),
         salieron: revPub.listaFaltan.slice(0, 200),
         bultos: detalleBultos.slice(0, 200),
-        pisados: []
+        pisados: pisados.slice(0, 200)
       };
     }
+    if (pisados.length) avisar('ojo', pisados.length + (pisados.length === 1
+        ? ' valor tuyo lo pisó el Excel' : ' valores tuyos los pisó el Excel'),
+        'Están en el filtro «Lo pisó el Excel», con lo que vos habías puesto.');
     if (bultos) avisar('ojo', bultos + (bultos === 1 ? ' bulto cambió' : ' bultos cambiaron'),
                        'Están en el filtro «Cambió el bulto». El precio del cliente es precio × bulto.');
     if (cambiaron) {
@@ -4914,11 +5054,12 @@ function armarProductosMay(){
   // cuales dejaron de venir. En la distribuidora no hay E-Pyme que lo diga, asi
   // que sale de comparar ese Excel con la lista que habia.
   var ue = (ULTIMO_EXCEL && ULTIMO_EXCEL.tienda === 'may') ? ULTIMO_EXCEL : null;
-  var nuevosUE = {}, renomUE = {}, salieronUE = {};
+  var nuevosUE = {}, renomUE = {}, salieronUE = {}, pisadosUE = {};
   if (ue) {
     (ue.nuevos || []).forEach(function(x){ nuevosUE[String(x.id)] = true; });
     (ue.renombres || []).forEach(function(x){ renomUE[String(x.id)] = x; });
     (ue.salieron || []).forEach(function(x){ salieronUE[String(x.id)] = x; });
+    (ue.pisados || []).forEach(function(x){ pisadosUE[String(x.id)] = x; });
   }
   var hayLista = Object.keys(porId).some(function(id){ return porId[id].enPrecios; });
   return Object.keys(porId).filter(function(id){
@@ -4950,6 +5091,7 @@ function armarProductosMay(){
       nuevoMay: !!nuevosUE[id],
       renombreMay: renomUE[id] ? { nombre_publicado: renomUE[id].antes, nombre_nuevo: renomUE[id].ahora } : null,
       salioDeLista: !!(salieronUE[id] && !porId[id].enPrecios),
+      pisado: pisadosUE[id] || null,
       bultoCambio: f.bultoCambio || null, revisarMarca: f.revisarMarca || null,
       nombreEpyme: f.nombreEpyme || '', editada: !!FICHAS_FB[id], nuevo: false, renombre: null,
       revisarFoto: f.revisarFoto || null,
