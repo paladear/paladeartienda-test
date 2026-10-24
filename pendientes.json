@@ -1,20 +1,13 @@
 {
   "resumen": {
     "nuevos": 0,
-    "renombrados": 1,
+    "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 61
   },
   "nuevos": [],
-  "renombrados": [
-    {
-      "numero": "5074",
-      "nombre_publicado": "JUGO NATURAL LAS VERDES 250ML",
-      "nombre_nuevo": "JUGO NATURAL LAS VERDE 250ML",
-      "rubro": "PRODUCTOS DE FRIO"
-    }
-  ],
+  "renombrados": [],
   "quitados": [],
   "rubro_invalido": [],
   "fuera_catalogo": [
