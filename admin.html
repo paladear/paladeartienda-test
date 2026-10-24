@@ -4153,7 +4153,10 @@ function buscarAhora(txt){
     if (e.key === 'Enter') fijo.blur();   // cierra el teclado y deja ver la lista entera
   });
   const x = document.getElementById('buscarX');
-  if (x) x.addEventListener('click', function(){ buscarAhora(''); fijo.focus(); });
+  // Vaciar el casillero tambien: buscarAhora('') limpia el filtro, pero el texto
+  // escrito quedaba ahi (elegirFiltro no toca el input cuando el filtro ES la
+  // busqueda). Parecia que la X no hacia nada.
+  if (x) x.addEventListener('click', function(){ fijo.value = ''; buscarAhora(''); fijo.focus(); });
 })();
 
 /* ── SUBIR EL EXCEL DE PRECIOS ────────────────────────────────────────────────
