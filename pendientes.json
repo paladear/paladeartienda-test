@@ -1,10 +1,10 @@
 {
   "resumen": {
-    "nuevos": 1,
+    "nuevos": 2,
     "renombrados": 2,
     "quitados": 0,
     "rubro_invalido": 0,
-    "fuera_catalogo": 61
+    "fuera_catalogo": 60
   },
   "nuevos": [
     {
@@ -12,6 +12,13 @@
       "nombre": "CAJA DIA DE LA MADRE",
       "rubro": "PALADEAR HOME",
       "precio": 20000,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "1351",
+      "nombre": "LECHE DE ALMENDRAS X 1L BIBA",
+      "rubro": "BEBIDAS",
+      "precio": 5180,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
@@ -296,13 +303,6 @@
       "nombre": "LAS PERDICES RESERVA MALBEC X 750",
       "rubro": "VINOS",
       "precio": 15240,
-      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
-    },
-    {
-      "numero": "1351",
-      "nombre": "LECHE DE ALMENDRAS X 1L BIBA",
-      "rubro": "BEBIDAS",
-      "precio": 5180,
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     },
     {
