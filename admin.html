@@ -510,6 +510,10 @@ body.es-mayorista .ct-archivo{background:rgba(125,84,16,.12)}
 .precio-por{font-size:12.5px;color:var(--tinta-2)}
 .precio-nota{font-size:12px;color:var(--tinta-2);margin-top:5px;line-height:1.4}
 .precio-nota b{color:var(--tinta)}
+.kpi.k-sinstock{background:#f1f4f6;border-color:#c9d3da}
+.kpi.k-sinstock span,.kpi.k-sinstock b{color:#5a6472}
+.kpi.k-sinstock.on{background:#5a6472;border-color:#5a6472}
+.kpi.k-sinstock.on span,.kpi.k-sinstock.on b{color:#fff}
 .kpi.k-pisado{background:#fdeaea;border-color:#e9b4b4}
 .kpi.k-pisado span,.kpi.k-pisado b{color:#a52020}
 .kpi.k-pisado.on{background:#a52020;border-color:#a52020}
@@ -3497,7 +3501,9 @@ function pintarKpis(){
     ...(TIENDA === 'may'
       ? [['bulto', PRODUCTOS.filter(p => p.bultoCambio).length, 'Cambió el bulto', 'k-bulto'],
          ['salieron', salieron, 'Salieron de la lista', 'k-salio'],
-         ['pisados', PRODUCTOS.filter(p => p.pisado).length, 'Lo pisó el Excel', 'k-pisado']]
+         ['pisados', PRODUCTOS.filter(p => p.pisado).length, 'Lo pisó el Excel', 'k-pisado'],
+         // Precio 0 en la lista: la tienda los muestra como sin stock.
+         ['sinstock', PRODUCTOS.filter(p => !p.p1 && !p.salioDeLista).length, 'Sin stock', 'k-sinstock']]
       : []),
     // Los dos que faltaban: lo que se publica sin ficha y lo que no se ve aunque
     // tenga precio. En la minorista dan 0 porque ahí nada entra sin pasar por vos.
@@ -3621,6 +3627,7 @@ function enFiltroActual(p){
     case 'nuevos':     return esNuevo(p);
     case 'salieron':   return !!p.salioDeLista;
     case 'pisados':    return !!p.pisado;
+    case 'sinstock':   return !p.p1;
     case 'renom':      return hayRenombre(p);
     case 'malrubro':   return !!p.malRubro;
     case 'fuera':      return !resuelto(p);
@@ -3760,7 +3767,8 @@ const TITULOS_COPIA = {
   malrubro:    'CON UN RUBRO QUE LA TIENDA NO RECONOCE',
   pendientes:  'PENDIENTES DE REVISAR',
   salieron:    'YA NO VIENEN EN LA LISTA DE PRECIOS',
-  pisados:     'EL ÚLTIMO EXCEL PISÓ UN VALOR QUE PUSISTE A MANO'
+  pisados:     'EL ÚLTIMO EXCEL PISÓ UN VALOR QUE PUSISTE A MANO',
+  sinstock:    'SIN STOCK: VIENEN CON PRECIO 0 EN LA LISTA'
 };
 const TOPE_COPIA = 400;   // más que esto no entra en un mensaje y no se lee
 
@@ -3885,6 +3893,7 @@ function pintar(){
   if (FILTRO === 'nuevos')     lista = lista.filter(p => esNuevo(p));
   if (FILTRO === 'salieron')   lista = lista.filter(p => p.salioDeLista);
   if (FILTRO === 'pisados')    lista = lista.filter(p => p.pisado);
+  if (FILTRO === 'sinstock')   lista = lista.filter(p => !p.p1);
   // Los que ya no vienen en la lista solo se ven en su filtro: en el resto
   // estorban, porque no estan a la venta.
   if (FILTRO !== 'salieron')   lista = lista.filter(p => !p.salioDeLista);
@@ -3939,6 +3948,7 @@ function pintar(){
       : 'Aparecieron en E-Pyme. Tocá el tilde de la izquierda y entran a la tienda.',
     salieron: 'Estaban en la lista anterior y el último Excel no los trajo. No se venden hasta que vuelvan; la ficha se guarda.',
     pisados: 'Habías puesto el precio o el bulto a mano y el último Excel trajo otro valor. Manda el Excel: fijate si está bien.',
+    sinstock: 'Vienen con precio 0 en la lista. En la tienda se ven igual, sin precio, con el botón para consultar por WhatsApp.',
     precio: 'Los precios ya están en la tienda. Esto es sólo para que veas qué se movió.',
     sinfoto: 'Tocá un producto para subirle la foto.',
     fuera: 'El tilde de la izquierda los mete o los saca de la tienda. Los que dicen <b>No se puede</b> es porque les falta el precio o el rubro en E-Pyme.',
