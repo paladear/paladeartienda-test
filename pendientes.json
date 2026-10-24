@@ -1,20 +1,12 @@
 {
   "resumen": {
-    "nuevos": 1,
+    "nuevos": 0,
     "renombrados": 2,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 61
   },
-  "nuevos": [
-    {
-      "numero": "1351",
-      "nombre": "LECHE DE ALMENDRAS X 1L BIBA",
-      "rubro": "BEBIDAS",
-      "precio": 5180,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    }
-  ],
+  "nuevos": [],
   "renombrados": [
     {
       "numero": "5074",
