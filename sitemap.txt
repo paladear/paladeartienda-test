@@ -391,6 +391,7 @@ https://paladear.github.io/paladeartienda-test/?producto=miel-cremogenada-2285
 https://paladear.github.io/paladeartienda-test/?producto=miel-de-abeja-1406
 https://paladear.github.io/paladeartienda-test/?producto=miel-de-abeja-1408
 https://paladear.github.io/paladeartienda-test/?producto=miel-de-abeja-1410
+https://paladear.github.io/paladeartienda-test/?producto=milanesas-de-soja-5076
 https://paladear.github.io/paladeartienda-test/?producto=mix-4-pimientas-1418
 https://paladear.github.io/paladeartienda-test/?producto=mix-7-semillas-saludables-1415
 https://paladear.github.io/paladeartienda-test/?producto=mix-cervecero-1416
