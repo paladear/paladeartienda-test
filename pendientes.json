@@ -1,12 +1,27 @@
 {
   "resumen": {
-    "nuevos": 0,
+    "nuevos": 2,
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 61
   },
-  "nuevos": [],
+  "nuevos": [
+    {
+      "numero": "5078",
+      "nombre": "TE VERDE EN HEBRAS ENTERAS ARTESANAL XKG",
+      "rubro": "INFUSIONES Y HIERBAS",
+      "precio": 71710,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5077",
+      "nombre": "TÈ NEGRO EN HEBRAS ENTERAS ARTESANAL XKG",
+      "rubro": "INFUSIONES Y HIERBAS",
+      "precio": 71710,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    }
+  ],
   "renombrados": [],
   "quitados": [],
   "rubro_invalido": [],
