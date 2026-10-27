@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 6,
+    "nuevos": 7,
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
@@ -8,8 +8,8 @@
   },
   "nuevos": [
     {
-      "numero": "5079",
-      "nombre": "TÈ OOLONG EN HEBRAS ENTERAS ARTESANAL XKG",
+      "numero": "5083",
+      "nombre": "TÉ BLANCO EN HEBRAS ARTESANAL XKG",
       "rubro": "INFUSIONES Y HIERBAS",
       "precio": 71720,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
@@ -29,6 +29,13 @@
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
+      "numero": "5079",
+      "nombre": "TÉ OOLONG EN HEBRAS ENTERAS ARTESANAL XKG",
+      "rubro": "INFUSIONES Y HIERBAS",
+      "precio": 71720,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
       "numero": "5082",
       "nombre": "TÉ OOLONG EN HEBRAS PARTIDAS ARTESANAL XKG",
       "rubro": "INFUSIONES Y HIERBAS",
@@ -44,7 +51,7 @@
     },
     {
       "numero": "5081",
-      "nombre": "TÉ VERDE EN HEBRAS PARTIDA XKG",
+      "nombre": "TÉ VERDE EN HEBRAS PARTIDA ARTESANAL XKG",
       "rubro": "INFUSIONES Y HIERBAS",
       "precio": 50020,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
