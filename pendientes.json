@@ -1,19 +1,12 @@
 {
   "resumen": {
-    "nuevos": 9,
+    "nuevos": 8,
     "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 61
   },
   "nuevos": [
-    {
-      "numero": "5084",
-      "nombre": "BLEND DE TÉ EN HEBRAS ENTERAS ARTESANAL XKG",
-      "rubro": "INFUSIONES Y HIERBAS",
-      "precio": 84490,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
     {
       "numero": "5083",
       "nombre": "TÉ BLANCO EN HEBRAS ARTESANAL XKG",
