@@ -1,7 +1,7 @@
 {
   "resumen": {
-    "nuevos": 8,
-    "renombrados": 0,
+    "nuevos": 6,
+    "renombrados": 1,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 61
@@ -12,20 +12,6 @@
       "nombre": "TÉ BLANCO EN HEBRAS ARTESANAL XKG",
       "rubro": "INFUSIONES Y HIERBAS",
       "precio": 71720,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5085",
-      "nombre": "TÉ EN SAQUITOS PIRAMIDALES X12U",
-      "rubro": "INFUSIONES Y HIERBAS",
-      "precio": 11500,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5077",
-      "nombre": "TÉ NEGRO EN HEBRAS ENTERAS ARTESANAL XKG",
-      "rubro": "INFUSIONES Y HIERBAS",
-      "precio": 71710,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
@@ -64,7 +50,14 @@
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
-  "renombrados": [],
+  "renombrados": [
+    {
+      "numero": "5077",
+      "nombre_publicado": "TÈ NEGRO EN HEBRAS ENTERAS ARTESANAL XKG",
+      "nombre_nuevo": "TÉ NEGRO EN HEBRAS ENTERAS ARTESANAL XKG",
+      "rubro": "INFUSIONES Y HIERBAS"
+    }
+  ],
   "quitados": [],
   "rubro_invalido": [],
   "fuera_catalogo": [
