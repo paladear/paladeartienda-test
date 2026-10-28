@@ -1,12 +1,19 @@
 {
   "resumen": {
-    "nuevos": 3,
+    "nuevos": 4,
     "renombrados": 3,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 61
   },
   "nuevos": [
+    {
+      "numero": "5086",
+      "nombre": "KEFIR DE LECHE CHICO",
+      "rubro": "ACEITES Y VINAGRES",
+      "precio": 8400,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
     {
       "numero": "5083",
       "nombre": "TÉ BLANCO EN HEBRAS ARTESANAL XKG",
