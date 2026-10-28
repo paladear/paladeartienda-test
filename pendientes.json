@@ -1,20 +1,13 @@
 {
   "resumen": {
     "nuevos": 0,
-    "renombrados": 1,
+    "renombrados": 0,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 61
   },
   "nuevos": [],
-  "renombrados": [
-    {
-      "numero": "5079",
-      "nombre_publicado": "TÈ OOLONG EN HEBRAS ENTERAS ARTESANAL XKG",
-      "nombre_nuevo": "TÉ OOLONG EN HEBRAS ENTERAS ARTESANAL XKG",
-      "rubro": "INFUSIONES Y HIERBAS"
-    }
-  ],
+  "renombrados": [],
   "quitados": [],
   "rubro_invalido": [],
   "fuera_catalogo": [
