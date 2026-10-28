@@ -5517,6 +5517,7 @@ function sincronizarDesdeSheets(){
           envasado:_fb.envasado===true,
           mix:_fb.mix===true,
           granola:_fb.granola===true,
+          blend:_fb.blend===true,
           imagen:_fb.fotoPropia?'panel':(_fb.imagen||'')
         };
         const nombreFinal=inf.nombre||nombre;
@@ -5544,7 +5545,7 @@ function sincronizarDesdeSheets(){
         }
         const esMix=inf.mix===true;const esGranola=inf.granola===true;
         const ofertaPct=inf.oferta||0;
-        prodsTemp.push([pid++,cat.id,nombreFinal,esKg?'Granel':'Varios',esKg?'kg':'und',false,imgUrl,opts,infoText,sabores,esMix,esGranola,{productId,oferta:ofertaPct,fondo:(_fotoPanel&&_fotoPanel.fondo)||(_fb&&_fb.fondo)||'',marca:inf.marca,envase:inf.envase,sellos:inf.sellos}]);
+        prodsTemp.push([pid++,cat.id,nombreFinal,esKg?'Granel':'Varios',esKg?'kg':'und',false,imgUrl,opts,infoText,sabores,esMix,esGranola,{productId,oferta:ofertaPct,fondo:(_fotoPanel&&_fotoPanel.fondo)||(_fb&&_fb.fondo)||'',marca:inf.marca,envase:inf.envase,sellos:inf.sellos,blend:inf.blend===true}]);
       });
       CATS=Object.keys(RUBRO_MAP).filter(k=>catMap[RUBRO_MAP[k].id]).map(k=>RUBRO_MAP[k]);
       PRODS=prodsTemp;
@@ -6251,7 +6252,9 @@ function granolaPickSize(g){
   },120);
 }
 
-function granolaGranelProds(){return PRODS.filter(p=>p[4]==='kg'&&p[10]===true);}
+/* La casilla "Granola" de la ficha. Antes miraba la de mix, asi que en la
+   granola aparecian tambien los tes y las especias. */
+function granolaGranelProds(){return PRODS.filter(p=>p[4]==='kg'&&p[11]===true);}
 // Grupos fijos de granola: cereales | frutos secos | otros
 const GRANOLA_GROUPS=[
   {id:'cereales', lbl:'Cereales', cats:['cereales','granos','harinas','semillas']},
@@ -6521,7 +6524,9 @@ function blendPickSize(g){
 }
 window.blendPickSize=blendPickSize;
 
-function blendGranelProds(){return PRODS.filter(p=>p[4]==='kg'&&p[10]===true&&BLEND_ALLOWED_CATS.includes(p[1]));}
+/* La casilla "Blend" de la ficha, no la de mix: antes los tres armadores
+   miraban la misma y lo que se marcaba para el blend no aparecia. */
+function blendGranelProds(){return PRODS.filter(p=>p[4]==='kg'&&p[12]&&p[12].blend===true&&BLEND_ALLOWED_CATS.includes(p[1]));}
 function blendGranelCats(){
   const catIds=[...new Set(blendGranelProds().map(p=>p[1]))];
   return BLEND_ALLOWED_CATS.map(id=>CATS.find(c=>c.id===id)).filter(c=>c&&catIds.includes(c.id));
