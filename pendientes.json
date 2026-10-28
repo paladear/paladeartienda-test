@@ -1,7 +1,7 @@
 {
   "resumen": {
     "nuevos": 0,
-    "renombrados": 4,
+    "renombrados": 1,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 61
@@ -9,27 +9,9 @@
   "nuevos": [],
   "renombrados": [
     {
-      "numero": "5078",
-      "nombre_publicado": "TE VERDE EN HEBRAS ENTERAS ARTESANAL XKG",
-      "nombre_nuevo": "TÉ VERDE EN HEBRAS ENTERAS ARTESANAL XKG",
-      "rubro": "INFUSIONES Y HIERBAS"
-    },
-    {
-      "numero": "5077",
-      "nombre_publicado": "TÈ NEGRO EN HEBRAS ENTERAS ARTESANAL XKG",
-      "nombre_nuevo": "TÉ NEGRO EN HEBRAS ENTERAS ARTESANAL XKG",
-      "rubro": "INFUSIONES Y HIERBAS"
-    },
-    {
       "numero": "5079",
       "nombre_publicado": "TÈ OOLONG EN HEBRAS ENTERAS ARTESANAL XKG",
       "nombre_nuevo": "TÉ OOLONG EN HEBRAS ENTERAS ARTESANAL XKG",
-      "rubro": "INFUSIONES Y HIERBAS"
-    },
-    {
-      "numero": "5081",
-      "nombre_publicado": "TÉ VERDE EN HEBRAS PARTIDA XKG",
-      "nombre_nuevo": "TÉ VERDE EN HEBRAS PARTIDA ARTESANAL XKG",
       "rubro": "INFUSIONES Y HIERBAS"
     }
   ],
