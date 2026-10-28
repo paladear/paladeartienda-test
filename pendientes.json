@@ -1,7 +1,7 @@
 {
   "resumen": {
-    "nuevos": 4,
-    "renombrados": 2,
+    "nuevos": 3,
+    "renombrados": 3,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 61
@@ -27,13 +27,6 @@
       "rubro": "INFUSIONES Y HIERBAS",
       "precio": 50020,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5081",
-      "nombre": "TÉ VERDE EN HEBRAS PARTIDA ARTESANAL XKG",
-      "rubro": "INFUSIONES Y HIERBAS",
-      "precio": 50020,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
   "renombrados": [
@@ -47,6 +40,12 @@
       "numero": "5077",
       "nombre_publicado": "TÈ NEGRO EN HEBRAS ENTERAS ARTESANAL XKG",
       "nombre_nuevo": "TÉ NEGRO EN HEBRAS ENTERAS ARTESANAL XKG",
+      "rubro": "INFUSIONES Y HIERBAS"
+    },
+    {
+      "numero": "5081",
+      "nombre_publicado": "TÉ VERDE EN HEBRAS PARTIDA XKG",
+      "nombre_nuevo": "TÉ VERDE EN HEBRAS PARTIDA ARTESANAL XKG",
       "rubro": "INFUSIONES Y HIERBAS"
     }
   ],
