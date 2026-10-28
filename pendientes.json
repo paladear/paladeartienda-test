@@ -1,48 +1,12 @@
 {
   "resumen": {
-    "nuevos": 5,
-    "renombrados": 3,
+    "nuevos": 0,
+    "renombrados": 4,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 61
   },
-  "nuevos": [
-    {
-      "numero": "5086",
-      "nombre": "KEFIR DE LECHE CHICO",
-      "rubro": "ACEITES Y VINAGRES",
-      "precio": 8400,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5087",
-      "nombre": "KEFIR DE LECHE GRANDE",
-      "rubro": "ACEITES Y VINAGRES",
-      "precio": 10725,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5083",
-      "nombre": "TÉ BLANCO EN HEBRAS ARTESANAL XKG",
-      "rubro": "INFUSIONES Y HIERBAS",
-      "precio": 71720,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5079",
-      "nombre": "TÉ OOLONG EN HEBRAS ENTERAS ARTESANAL XKG",
-      "rubro": "INFUSIONES Y HIERBAS",
-      "precio": 71720,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5082",
-      "nombre": "TÉ OOLONG EN HEBRAS PARTIDAS ARTESANAL XKG",
-      "rubro": "INFUSIONES Y HIERBAS",
-      "precio": 50020,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    }
-  ],
+  "nuevos": [],
   "renombrados": [
     {
       "numero": "5078",
@@ -54,6 +18,12 @@
       "numero": "5077",
       "nombre_publicado": "TÈ NEGRO EN HEBRAS ENTERAS ARTESANAL XKG",
       "nombre_nuevo": "TÉ NEGRO EN HEBRAS ENTERAS ARTESANAL XKG",
+      "rubro": "INFUSIONES Y HIERBAS"
+    },
+    {
+      "numero": "5079",
+      "nombre_publicado": "TÈ OOLONG EN HEBRAS ENTERAS ARTESANAL XKG",
+      "nombre_nuevo": "TÉ OOLONG EN HEBRAS ENTERAS ARTESANAL XKG",
       "rubro": "INFUSIONES Y HIERBAS"
     },
     {
