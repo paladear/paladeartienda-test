@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 4,
+    "nuevos": 5,
     "renombrados": 3,
     "quitados": 0,
     "rubro_invalido": 0,
@@ -12,6 +12,13 @@
       "nombre": "KEFIR DE LECHE CHICO",
       "rubro": "ACEITES Y VINAGRES",
       "precio": 8400,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5087",
+      "nombre": "KEFIR DE LECHE GRANDE",
+      "rubro": "ACEITES Y VINAGRES",
+      "precio": 10725,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
