@@ -299,6 +299,10 @@ body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:va
 .co-radio input{flex-shrink:0;margin-top:2px;accent-color:var(--azul);width:16px;height:16px}
 .co-radio span{font-size:13px;color:var(--fg);line-height:1.4}
 /* Row de campos lado a lado */
+.co-cargo{margin-top:16px;border:1px solid #e3c98a;background:#fdf8ec;border-radius:12px;padding:13px 14px}
+.co-cargo.hidden{display:none}
+.co-cargo-tit{font-weight:800;font-size:14px;color:#8a6d1f;margin-bottom:3px}
+.co-cargo-sub{font-size:12.5px;color:#7d6b43;line-height:1.4;margin-bottom:11px}
 .co-field-row{display:flex;gap:10px}
 .co-field-row .co-field{margin-bottom:16px}
 /* Radio tipo casa/depto inline */
@@ -872,12 +876,102 @@ function _coSet(id, val) {
   var el = document.getElementById(id);
   if (el && !el.value && val) el.value = val;
 }
+/* ── ENVÍOS AL INTERIOR (VÍA CARGO) ───────────────────────────────────────────
+   Dentro del Gran Mendoza el reparto es propio y no hace falta nada. Fuera, el
+   paquete lo lleva Vía Cargo y para entregarlo piden el DNI y el mail de quien
+   lo retira. Se preguntan una sola vez: quedan guardados en el mismo perfil que
+   ya recuerda el nombre y la dirección, así que el pedido siguiente no agrega
+   ningún paso. */
+var _GRAN_MENDOZA = [
+  'capital','ciudad','ciudad de mendoza','mendoza','godoy cruz','guaymallen','las heras',
+  'lujan de cuyo','lujan','maipu',
+  // Barrios y distritos que la gente escribe en vez del departamento
+  'dorrego','villa nueva','san jose','san francisco del monte','el challao','panquehua',
+  'el bermejo','el sauce','rodeo de la cruz','villa hipodromo','gobernador benegas',
+  'chacras de coria','carrodilla','vistalba','perdriel','mayor drummond','la puntilla',
+  'coquimbito','general gutierrez','gutierrez','luzuriaga','russell','pedro molina',
+  'nueva ciudad','5ta seccion','quinta seccion','4ta seccion','cuarta seccion','challao'
+];
+
+function _sinTildes(s){
+  return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+/* ¿La dirección queda fuera del Gran Mendoza? Si la provincia no es Mendoza, sí.
+   Si es Mendoza, se mira la localidad: lo que no reconocemos se toma como
+   interior, que es el lado seguro (mejor pedir los datos de más que quedarse
+   sin ellos cuando el pedido ya salió). */
+function _esInterior(loc, prov){
+  var p = _sinTildes(prov);
+  if (p && p.indexOf('mendoza') < 0) return true;
+  var l = _sinTildes(loc);
+  if (!l) return false;
+  return !_GRAN_MENDOZA.some(function(x){
+    return l === x || l.indexOf(x) >= 0 || (x.length > 4 && x.indexOf(l) >= 0);
+  });
+}
+
+/* La localidad y la provincia de lo que esté elegido ahora: una dirección
+   guardada o la que se está escribiendo. Las direcciones viejas no tenían esos
+   campos sueltos, así que se sacan del texto. */
+function _coLocProv(){
+  var sel = document.querySelector('#coDirOpts input[name="coDirSel"]:checked');
+  if (sel && sel.value !== '__otra') {
+    var d = _coDirsCache[parseInt(sel.value, 10)];
+    if (d) {
+      if (d.loc || d.prov) return { loc: d.loc || '', prov: d.prov || '' };
+      var partes = String(d.dir || '').split(',');
+      return { loc: (partes[1] || '').trim(), prov: (partes[2] || '').trim() };
+    }
+  }
+  return {
+    loc: ((document.getElementById('coLocalidad') || {}).value || '').trim(),
+    prov: ((document.getElementById('coProvincia') || {}).value || '').trim()
+  };
+}
+
+function _coActualizarCargo(){
+  var caja = document.getElementById('coCargo');
+  if (!caja) return;
+  var lp = _coLocProv();
+  var hace = _coEntrega === 'domicilio' && _esInterior(lp.loc, lp.prov);
+  caja.classList.toggle('hidden', !hace);
+  if (hace) {
+    // Si todavía no escribió nada, se completa con lo guardado y, el nombre,
+    // con el de quien hace el pedido.
+    var p = _coCargarPerfil() || {};
+    var n = document.getElementById('coCargoNombre');
+    if (n && !n.value) n.value = (p.cargoNombre || (document.getElementById('coNombreDom') || {}).value || '').trim();
+    var d = document.getElementById('coCargoDni');
+    if (d && !d.value) d.value = p.cargoDni || '';
+    var m = document.getElementById('coCargoMail');
+    if (m && !m.value) m.value = p.cargoMail || '';
+  }
+}
+window._coActualizarCargo = _coActualizarCargo;
+
+(function(){
+  // Se revisa mientras escribe la localidad: el bloque aparece y desaparece solo.
+  document.addEventListener('input', function(ev){
+    if (!ev.target || !ev.target.id) return;
+    if (ev.target.id === 'coLocalidad' || ev.target.id === 'coProvincia') _coActualizarCargo();
+  });
+  document.addEventListener('change', function(ev){
+    if (ev.target && ev.target.name === 'coDirSel') _coActualizarCargo();
+  });
+})();
+
 function _coAutocompletar() {
   var p = _coCargarPerfil();
   if (!p || !Object.keys(p).length) return;
   _coSet('coNombre', p.nombre);
   _coSet('coNombreDom', p.nombre);
   _coSet('coHorarioRetiro', p.horarioRetiro);
+  // Los datos de Vía Cargo, si alguna vez los cargó: así no los vuelve a tipear.
+  _coSet('coCargoNombre', p.cargoNombre || p.nombre);
+  _coSet('coCargoDni', p.cargoDni);
+  _coSet('coCargoMail', p.cargoMail);
   // Los detalles de la dirección (piso, tipo, entre calles, indicaciones) viven en cada
   // dirección guardada; los campos quedan vacíos para cargar una dirección nueva.
 }
@@ -1170,6 +1264,18 @@ function coEnviar() {
     direccion = dirObj.dir;
     // Si marcó el pin del mapa en esta sesión, queda guardado con la dirección elegida
     if (_coCoords && !(dirObj.lat && dirObj.lng)) { dirObj.lat = _coCoords.lat; dirObj.lng = _coCoords.lng; }
+    // Fuera del Gran Mendoza: los datos que pide Vía Cargo para entregar.
+    var _cargo = null;
+    if (_esInterior(dirObj.loc, dirObj.prov)) {
+      _coActualizarCargo();
+      var _cn = (document.getElementById('coCargoNombre').value || '').trim();
+      var _cd = (document.getElementById('coCargoDni').value || '').replace(/[^0-9]/g, '');
+      var _cm = (document.getElementById('coCargoMail').value || '').trim();
+      if (!_cn) { _coMarkRequired('coCargoNombre'); return; }
+      if (_cd.length < 7) { _coMarkRequired('coCargoDni'); return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(_cm)) { _coMarkRequired('coCargoMail'); return; }
+      _cargo = { nombre: _cn, dni: _cd, mail: _cm };
+    }
     deliveryMsg = '\n\n🚚 *ENVÍO A DOMICILIO*\n👤 ' + nombre;
     deliveryMsg += '\n📍 ' + direccion;
     if (dirObj.piso) deliveryMsg += '\n🏠 Piso/Depto: ' + dirObj.piso;
@@ -1182,6 +1288,12 @@ function coEnviar() {
     } else {
       var _q = /mendoza/i.test(direccion) ? direccion : direccion + ', Mendoza, Argentina';
       deliveryMsg += '\n\uD83D\uDD17 Ver en Google Maps: https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(_q);
+    }
+    if (_cargo) {
+      deliveryMsg += '\n\n📦 *ENVÍO AL INTERIOR · VÍA CARGO*';
+      deliveryMsg += '\n👤 Retira: ' + _cargo.nombre;
+      deliveryMsg += '\n🪪 DNI: ' + _cargo.dni;
+      deliveryMsg += '\n✉️ Email: ' + _cargo.mail;
     }
     deliveryMsg += '\n💳 Pago: Transferencia bancaria';
   }
@@ -1212,6 +1324,11 @@ function coEnviar() {
     if (horario) _perfil.horarioRetiro = horario;
   } else {
     _perfil.direccion = direccion;
+    if (_cargo) {
+      _perfil.cargoNombre = _cargo.nombre;
+      _perfil.cargoDni = _cargo.dni;
+      _perfil.cargoMail = _cargo.mail;
+    }
     var _dl = direccion.trim().toLowerCase();
     var _dirsArr = _cuentaDirecciones(_perfil).filter(function(d){ return d.dir.trim().toLowerCase() !== _dl; });
     _dirsArr.unshift(dirObj);
@@ -1376,6 +1493,30 @@ cargar();
           <textarea id="coIndicaciones" placeholder="Ej: casa rosada, tocar timbre 2 veces" class="co-input" rows="2"></textarea>
         </div>
         </div><!-- /coDirDetalles -->
+
+        <!-- Fuera del Gran Mendoza el paquete viaja por Via Cargo y, para
+             retirarlo, el transporte pide el DNI y el mail de quien lo busca.
+             Este bloque aparece solo en ese caso y queda guardado: del segundo
+             pedido en adelante ya viene completo. -->
+        <div id="coCargo" class="co-cargo hidden">
+          <div class="co-cargo-tit">Envío al interior · Vía Cargo</div>
+          <div class="co-cargo-sub">Como tu dirección está fuera del Gran Mendoza, el pedido viaja por
+            Vía Cargo. Para retirarlo te piden estos datos. Los guardamos para la próxima vez.</div>
+          <div class="co-field" style="margin-bottom:8px">
+            <label>Nombre de quien retira <span style="color:#e53935">*</span></label>
+            <input type="text" id="coCargoNombre" placeholder="Nombre y apellido" class="co-input" autocomplete="name">
+          </div>
+          <div class="co-field-row">
+            <div class="co-field" style="flex:1;margin-bottom:0">
+              <label>DNI <span style="color:#e53935">*</span></label>
+              <input type="text" id="coCargoDni" placeholder="Ej: 30123456" class="co-input" inputmode="numeric" maxlength="12">
+            </div>
+            <div class="co-field" style="flex:1.4;margin-bottom:0">
+              <label>Email <span style="color:#e53935">*</span></label>
+              <input type="email" id="coCargoMail" placeholder="nombre@mail.com" class="co-input" autocomplete="email" inputmode="email">
+            </div>
+          </div>
+        </div>
         <div class="co-pago-nota">💳 El pedido se abona por <b>transferencia bancaria</b> — te pasamos el alias por WhatsApp.<br>🚚 <b>Envío gratis</b> en compras desde <b>$40.000</b> en Gran Mendoza (si es menor, el envío se abona aparte).</div>
         <button class="wa-btn" style="margin-top:8px" onclick="coEnviar()"><svg viewBox="0 0 24 24" width="19" height="19" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.006 22l4.984-1.307A9.961 9.961 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.25a8.24 8.24 0 01-4.258-1.178l-.306-.181-3.157.828.844-3.07-.2-.319A8.25 8.25 0 1112 20.25z"/></svg> Enviar pedido por WhatsApp</button>
         <div class="co-saved-hint">💾 Guardamos tus datos en este dispositivo para tu próximo pedido. <a href="#" onclick="coBorrarPerfil();return false">Borrar mis datos</a></div>
