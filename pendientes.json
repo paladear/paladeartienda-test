@@ -1,13 +1,20 @@
 {
   "resumen": {
     "nuevos": 0,
-    "renombrados": 0,
+    "renombrados": 1,
     "quitados": 0,
     "rubro_invalido": 0,
     "fuera_catalogo": 61
   },
   "nuevos": [],
-  "renombrados": [],
+  "renombrados": [
+    {
+      "numero": "5083",
+      "nombre_publicado": "TÉ BLANCO EN HEBRAS ARTESANAL XKG",
+      "nombre_nuevo": "TÉ BLANCO EN HEBRAS ENTERAS ARTESANAL XKG",
+      "rubro": "INFUSIONES Y HIERBAS"
+    }
+  ],
   "quitados": [],
   "rubro_invalido": [],
   "fuera_catalogo": [
