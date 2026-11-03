@@ -126,6 +126,7 @@ https://paladear.github.io/paladeartienda-test/?producto=barra-proteica-sin-tacc
 https://paladear.github.io/paladeartienda-test/?producto=barra-proteica-x55-gr-vita-5069
 https://paladear.github.io/paladeartienda-test/?producto=barra-x-55-gr-vita-5068
 https://paladear.github.io/paladeartienda-test/?producto=barras-proteicas-5031
+https://paladear.github.io/paladeartienda-test/?producto=barrita-ram-artesanal-5088
 https://paladear.github.io/paladeartienda-test/?producto=bastoncitos-de-salvado-de-trigo-y-avena-1147
 https://paladear.github.io/paladeartienda-test/?producto=berberina-5042
 https://paladear.github.io/paladeartienda-test/?producto=berenjenas-condimentadas-1150
