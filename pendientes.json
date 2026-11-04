@@ -2,15 +2,27 @@
   "resumen": {
     "nuevos": 0,
     "renombrados": 0,
-    "quitados": 0,
+    "quitados": 1,
     "rubro_invalido": 0,
-    "fuera_catalogo": 61
+    "fuera_catalogo": 62
   },
   "nuevos": [],
   "renombrados": [],
-  "quitados": [],
+  "quitados": [
+    {
+      "numero": "2222",
+      "nombre": "COLAGENO X 10 COMPRIMIDOS \"EL NATURALISTA\""
+    }
+  ],
   "rubro_invalido": [],
   "fuera_catalogo": [
+    {
+      "numero": "2222",
+      "nombre": "**********",
+      "rubro": "SUPLEMENTOS",
+      "precio": 2860,
+      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
+    },
     {
       "numero": "1384",
       "nombre": "*MANZANILLA FLOR X KG",
