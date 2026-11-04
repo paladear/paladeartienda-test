@@ -193,7 +193,6 @@ https://paladear.github.io/paladeartienda-test/?producto=cola-de-pavo-extracto-2
 https://paladear.github.io/paladeartienda-test/?producto=colador-comun-rose-2125
 https://paladear.github.io/paladeartienda-test/?producto=colageno-hidrolizado-2049
 https://paladear.github.io/paladeartienda-test/?producto=colageno-hidrolizado-2031
-https://paladear.github.io/paladeartienda-test/?producto=colageno-x10-comprimidos-2222
 https://paladear.github.io/paladeartienda-test/?producto=comino-molido-1214
 https://paladear.github.io/paladeartienda-test/?producto=condimento-para-arroz-1219
 https://paladear.github.io/paladeartienda-test/?producto=copos-de-maiz-1229
