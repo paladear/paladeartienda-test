@@ -1,12 +1,20 @@
 {
   "resumen": {
-    "nuevos": 0,
+    "nuevos": 1,
     "renombrados": 0,
     "quitados": 1,
     "rubro_invalido": 0,
     "fuera_catalogo": 62
   },
-  "nuevos": [],
+  "nuevos": [
+    {
+      "numero": "5089",
+      "nombre": "ARROZ BASMATI XKG",
+      "rubro": "GRANOS Y LEGUMBRES",
+      "precio": 7780,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    }
+  ],
   "renombrados": [],
   "quitados": [
     {
