@@ -3548,6 +3548,7 @@ function openProductDetail(pid){
   document.body.style.overflow='hidden';
   modal.scrollTop=0;
   _palPushOverlay('productDetail',{modal:'productDetail',pid:pid});
+  _marcarURL(_urlDeProducto(p));
 }
 function productDetailAdd(pid){
   addToCart(pid,'productDetailCard');
@@ -3824,6 +3825,8 @@ function selectCat(catId,productId,navOpts){
   renderCatsUI();
   _saveAppState();
   const cat=CATS.find(c=>c.id===catId);
+  // Sólo cuando lo elige una persona: al restaurar la vista no se toca la barra.
+  if(trackHistory&&cat)_marcarURL(_BASE_TIENDA+'c/'+_slugPal(cat.n)+'/');
   const prods=PRODS.filter(p=>p[1]===catId);
   const isMobile=window.innerWidth<768;
   const prefix=isMobile?'mb':'dt';
@@ -5753,6 +5756,27 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 function _slugPal(v){
   return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()
     .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').replace(/-{2,}/g,'-');
+}
+/* La dirección acompaña lo que estás mirando: al abrir un producto o un rubro,
+   la barra del navegador pasa a mostrar SU link, para que copiarlo sirva. Se
+   apunta a las páginas reales (/p/ y /c/), que son las que traen la foto en la
+   previsualización de WhatsApp. Se usa replaceState porque la capa ya empujó su
+   entrada en el historial; al cerrar, el "atrás" devuelve la dirección anterior.
+   La base se calcula una sola vez, antes de tocar nada, para que ande igual en
+   la tienda de pruebas (que cuelga de una subcarpeta). */
+var _BASE_TIENDA = location.pathname.replace(/[^/]*$/,'');
+function _urlDeProducto(p){
+  try{
+    var art=(p&&p[12]&&p[12].productId)||'';
+    if(!art) return '';
+    var sl=_slugPal(p[2])+'-'+_slugPal(art);
+    if(!sl||sl.charAt(0)==='-') return '';
+    return _BASE_TIENDA+'p/'+sl+'/';
+  }catch(e){ return ''; }
+}
+function _marcarURL(u){
+  if(!u) return;
+  try{ history.replaceState(history.state, '', u); }catch(e){}
 }
 function _linkDirecto(){
   try{
