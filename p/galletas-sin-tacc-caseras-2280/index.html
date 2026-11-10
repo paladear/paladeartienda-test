@@ -19,53 +19,49 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
-<style>*{box-sizing:border-box}body{margin:0;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;color:#17384f;background:#eef5fa;line-height:1.55}
-a{color:#1f5f8b}.wrap{max-width:1000px;margin:0 auto;padding:18px 18px 56px}
-header.top{background:#4c7592;padding:12px 18px}header.top a{color:#fff;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:.01em}
-nav.mig{font-size:12.5px;color:#5a7f99;margin:16px 0 10px}nav.mig a{color:#5a7f99}
-.ficha{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;align-items:start;background:#fff;border:1px solid #d8e5ee;border-radius:18px;padding:22px}
-@media(max-width:760px){.ficha{grid-template-columns:1fr;gap:18px;padding:16px}}
-.foto{aspect-ratio:1;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #e6eef4}
-.foto img{max-width:100%;max-height:100%;object-fit:contain}
-h1{font-size:clamp(23px,3.4vw,33px);line-height:1.12;margin:0 0 8px;letter-spacing:-.02em}
-.marca{font-size:12.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#4e7898;margin:0 0 12px}
-.precio{font-size:27px;font-weight:800;color:#123f67;margin:14px 0 2px}
-.precio s{color:#8aa4b8;font-weight:700;font-size:19px;margin-right:6px}
-.precio small{display:block;font-size:12.5px;font-weight:700;color:#5a7f99;letter-spacing:.02em}
-.medidas{margin:12px 0;display:flex;flex-wrap:wrap;gap:6px}
-.medidas span{border:1px solid #d7e5ed;background:#edf4f8;border-radius:8px;padding:5px 11px;font-size:13px;font-weight:700}
-.desc{font-size:14.5px;color:#46637a;margin:14px 0 0}
-.cta{display:inline-block;margin-top:20px;background:#2f6896;color:#fff;text-decoration:none;font-weight:800;padding:14px 26px;border-radius:12px;font-size:15.5px}
-.rel{margin-top:40px}.rel h2{font-size:17px;margin:0 0 14px}
-.rel ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:12px}
-.rel li a{display:flex;flex-direction:column;gap:7px;height:100%;background:#fff;border:1px solid #dde8f0;border-radius:13px;padding:10px;text-decoration:none;color:#17384f;transition:border-color .15s,box-shadow .15s}
-.rel li a:hover{border-color:#9dc0d6;box-shadow:0 4px 14px rgba(20,45,70,.09)}
-.rel .mini-img{display:flex;align-items:center;justify-content:center;aspect-ratio:1;border-radius:9px;background:#fff;overflow:hidden;border:1px solid #eef3f7}
-.rel .mini-img img{max-width:100%;max-height:100%;object-fit:contain}
-.rel .mini-nom{font-size:13px;line-height:1.25;font-weight:700;color:#1f5f8b}
-.rel .mini-mar{font-size:9.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6f93ab}
-.rel .mini-pre{margin-top:auto;font-size:14.5px;font-weight:800;color:#123f67;font-variant-numeric:tabular-nums}
-@media(max-width:420px){.rel ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}}
-footer{margin-top:44px;font-size:12.5px;color:#6b8aa1;text-align:center}</style>
+<link rel="stylesheet" href="https://paladear.github.io/paladeartienda-test/ficha-producto.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"Galletas sin TACC Caseras","description":"Producto crocante elaborado sin gluten, práctico para desayunos, meriendas y colaciones. Su textura liviana combina muy bien con untables, quesos, dulces o acompañamientos salados.","image":["https://paladear.github.io/paladeartienda-test/fotos/2280.webp"],"sku":"2280","category":"Sin TACC","offers":{"@type":"AggregateOffer","priceCurrency":"ARS","lowPrice":775,"highPrice":15500,"offerCount":4,"availability":"https://schema.org/InStock","url":"https://paladear.github.io/paladeartienda-test/p/galletas-sin-tacc-caseras-2280/"},"seller":{"@type":"Organization","name":"Paladear Mercado de Sabores"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://paladear.github.io/paladeartienda-test/"},{"@type":"ListItem","position":2,"name":"Sin TACC","item":"https://paladear.github.io/paladeartienda-test/c/sin-tacc/"},{"@type":"ListItem","position":3,"name":"Galletas sin TACC Caseras","item":"https://paladear.github.io/paladeartienda-test/p/galletas-sin-tacc-caseras-2280/"}]}]}</script>
 </head>
-<body>
-<header class="top"><a href="https://paladear.github.io/paladeartienda-test/">Paladear Mercado de Sabores</a></header>
-<div class="wrap">
-<nav class="mig"><a href="https://paladear.github.io/paladeartienda-test/">Inicio</a> › <a href="https://paladear.github.io/paladeartienda-test/c/sin-tacc/">Sin TACC</a> › Galletas sin TACC Caseras</nav>
-<article class="ficha">
-  <div class="foto"><img src="https://paladear.github.io/paladeartienda-test/fotos/2280.webp" alt="Galletas sin TACC Caseras" width="600" height="600"></div>
-  <div>
-    
-    <h1>Galletas sin TACC Caseras</h1>
-    <p class="precio" data-art="2280">$775 <small>desde 50 g · $15.500 el kilo</small></p>
-    <div class="medidas"><span>50 g</span><span>100 g</span><span>250 g</span><span>1 kg</span></div>
-    <p class="desc">Producto crocante elaborado sin gluten, práctico para desayunos, meriendas y colaciones. Su textura liviana combina muy bien con untables, quesos, dulces o acompañamientos salados.</p>
-    <a class="cta" href="https://paladear.github.io/paladeartienda-test/?producto=galletas-sin-tacc-caseras-2280">Ver y agregar al carrito</a>
+<body class="min-redesign">
+<section class="product-detail">
+<div class="product-detail-bar">
+    <a class="product-detail-back" href="https://paladear.github.io/paladeartienda-test/c/sin-tacc/" aria-label="Volver"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></a>
+    <strong>Detalle del producto</strong>
+    <a class="product-detail-close" href="https://paladear.github.io/paladeartienda-test/" aria-label="Ir a la tienda">×</a>
   </div>
-</article>
-<section class="rel"><h2>Más de Sin TACC</h2><ul><li><a href="https://paladear.github.io/paladeartienda-test/p/alfajor-sin-azucar-libre-de-gluten-2513/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2513.webp" alt="Alfajor sin azúcar Libre de Gluten" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-mar">Banda Naranja</span><span class="mini-nom">Alfajor sin azúcar Libre de Gluten</span><span class="mini-pre">$1.500</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/alfajores-de-maicena-sin-gluten-2027/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2027.webp" alt="Alfajores de Maicena sin gluten" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-nom">Alfajores de Maicena sin gluten</span><span class="mini-pre">$5.300</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/avena-gruesa-integral-sin-tacc-5032/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/5032.webp" alt="Avena Gruesa Integral sin TACC" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-mar">Dicomere</span><span class="mini-nom">Avena Gruesa Integral sin TACC</span><span class="mini-pre">$3.830</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/avena-instantanea-integral-sin-tacc-5033/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/5033.webp" alt="AVENA INSTANTANEA INTEGRAL SIN TACC" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-mar">Dicomere</span><span class="mini-nom">AVENA INSTANTANEA INTEGRAL SIN TACC</span><span class="mini-pre">$4.100</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/avena-sin-gluten-2509/"><span class="mini-img"></span><span class="mini-mar">Bio</span><span class="mini-nom">Avena sin gluten</span><span class="mini-pre">$6.830</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/barra-de-arroz-2103/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2103.webp" alt="Barra de Arroz" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-mar">Crowie</span><span class="mini-nom">Barra de Arroz</span><span class="mini-pre">$1.100</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/chips-salados-5013/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/5013.webp" alt="Chips Salados" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-mar">Nuestros Sabores</span><span class="mini-nom">Chips Salados</span><span class="mini-pre">$2.100</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/dulce-batata-sin-azucar-2511/"><span class="mini-img"></span><span class="mini-mar">Orieta</span><span class="mini-nom">Dulce Batata sin azúcar</span><span class="mini-pre">$4.820</span></a></li></ul></section>
-<footer>Paladear Mercado de Sabores · Pueyrredón 588, Mendoza · <a href="https://paladear.github.io/paladeartienda-test/">Ver toda la tienda</a></footer>
-</div>
+<div class="product-detail-shell"><div class="product-detail-main">
+  <div class="product-detail-image"><img src="https://paladear.github.io/paladeartienda-test/fotos/2280.webp" alt="Galletas sin TACC Caseras" width="900" height="900" decoding="async"></div>
+  <div class="product-detail-copy">
+    <div class="product-detail-category">Sin TACC</div>
+    <h1 class="product-detail-title">Galletas sin TACC Caseras</h1>
+    
+    <div class="product-detail-info">Producto crocante elaborado sin gluten, práctico para desayunos, meriendas y colaciones. Su textura liviana combina muy bien con untables, quesos, dulces o acompañamientos salados.</div>
+    <div class="product-detail-buy">
+      <h3>Elegí la presentación</h3><div class="product-detail-options opt-btns opt-btns-4"><button type="button" class="opt-btn" data-min="775" data-may="700">50 g</button><button type="button" class="opt-btn" data-min="1550" data-may="1400">100 g</button><button type="button" class="opt-btn" data-min="3875" data-may="3500">250 g</button><button type="button" class="opt-btn active" data-min="15500" data-may="14000">1 kg</button></div>
+      <div class="prices">
+        <div><span class="price-label">Precio</span><div class="price-min" id="pMin">$15.500</div></div>
+        <div><span class="price-label">+$80.000</span><div class="price-may" id="pMay">$14.000</div></div>
+      </div>
+      <a class="add-btn" href="https://paladear.github.io/paladeartienda-test/?producto=galletas-sin-tacc-caseras-2280"><span class="add-cart-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l2.4 10.3a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"/><circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none"/><circle cx="18" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg></span> Ver en la tienda</a>
+    </div>
+  </div>
+  <div class="product-detail-rel"><h3 class="pdrel-tit">Relacionados</h3><div class="pdrel-fila"><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/alfajor-sin-azucar-libre-de-gluten-2513/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2513.webp" alt="Alfajor sin azúcar Libre de Gluten" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Alfajor sin azúcar Libre de Gluten</b><span class="nom-meta"><em class="nom-m">Banda Naranja</em></span></span><span class="pdrel-precio">$1.500</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/alfajores-de-maicena-sin-gluten-2027/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2027.webp" alt="Alfajores de Maicena sin gluten" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Alfajores de Maicena sin gluten</b></span><span class="pdrel-precio">$5.300</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/avena-gruesa-integral-sin-tacc-5032/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/5032.webp" alt="Avena Gruesa Integral sin TACC" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Avena Gruesa Integral sin TACC</b><span class="nom-meta"><em class="nom-m">Dicomere</em></span></span><span class="pdrel-precio">$3.830</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/avena-instantanea-integral-sin-tacc-5033/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/5033.webp" alt="AVENA INSTANTANEA INTEGRAL SIN TACC" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">AVENA INSTANTANEA INTEGRAL SIN TACC</b><span class="nom-meta"><em class="nom-m">Dicomere</em></span></span><span class="pdrel-precio">$4.100</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/avena-sin-gluten-2509/"><span class="pdrel-img"><span class="product-image-placeholder" aria-hidden="true"></span></span><span class="pdrel-nom"><b class="nom-p">Avena sin gluten</b><span class="nom-meta"><em class="nom-m">Bio</em></span></span><span class="pdrel-precio">$6.830</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/barra-de-arroz-2103/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2103.webp" alt="Barra de Arroz" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Barra de Arroz</b><span class="nom-meta"><em class="nom-m">Crowie</em></span></span><span class="pdrel-precio">$1.100</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/chips-salados-5013/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/5013.webp" alt="Chips Salados" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Chips Salados</b><span class="nom-meta"><em class="nom-m">Nuestros Sabores</em></span></span><span class="pdrel-precio">$2.100</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/dulce-batata-sin-azucar-2511/"><span class="pdrel-img"><span class="product-image-placeholder" aria-hidden="true"></span></span><span class="pdrel-nom"><b class="nom-p">Dulce Batata sin azúcar</b><span class="nom-meta"><em class="nom-m">Orieta</em></span></span><span class="pdrel-precio">$4.820</span></a></div></div>
+</div></div>
+<p class="pd-pie">Paladear Mercado de Sabores · Pueyrredón 588, Mendoza · <a href="https://paladear.github.io/paladeartienda-test/">Ver toda la tienda</a></p>
+</section>
+<script>
+/* Las medidas cambian el precio en pantalla, igual que en la tienda. */
+(function(){
+  var fmt=function(n){return new Intl.NumberFormat('es-AR').format(n);};
+  var btns=document.querySelectorAll('.product-detail-options .opt-btn');
+  var mn=document.getElementById('pMin'), my=document.getElementById('pMay');
+  for(var i=0;i<btns.length;i++) btns[i].addEventListener('click',function(){
+    for(var j=0;j<btns.length;j++) btns[j].classList.remove('active');
+    this.classList.add('active');
+    if(mn) mn.textContent='$'+fmt(Number(this.dataset.min||0));
+    if(my) my.textContent='$'+fmt(Number(this.dataset.may||0));
+  });
+})();
+</script>
 </body>
 </html>

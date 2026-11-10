@@ -19,53 +19,49 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
-<style>*{box-sizing:border-box}body{margin:0;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;color:#17384f;background:#eef5fa;line-height:1.55}
-a{color:#1f5f8b}.wrap{max-width:1000px;margin:0 auto;padding:18px 18px 56px}
-header.top{background:#4c7592;padding:12px 18px}header.top a{color:#fff;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:.01em}
-nav.mig{font-size:12.5px;color:#5a7f99;margin:16px 0 10px}nav.mig a{color:#5a7f99}
-.ficha{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;align-items:start;background:#fff;border:1px solid #d8e5ee;border-radius:18px;padding:22px}
-@media(max-width:760px){.ficha{grid-template-columns:1fr;gap:18px;padding:16px}}
-.foto{aspect-ratio:1;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #e6eef4}
-.foto img{max-width:100%;max-height:100%;object-fit:contain}
-h1{font-size:clamp(23px,3.4vw,33px);line-height:1.12;margin:0 0 8px;letter-spacing:-.02em}
-.marca{font-size:12.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#4e7898;margin:0 0 12px}
-.precio{font-size:27px;font-weight:800;color:#123f67;margin:14px 0 2px}
-.precio s{color:#8aa4b8;font-weight:700;font-size:19px;margin-right:6px}
-.precio small{display:block;font-size:12.5px;font-weight:700;color:#5a7f99;letter-spacing:.02em}
-.medidas{margin:12px 0;display:flex;flex-wrap:wrap;gap:6px}
-.medidas span{border:1px solid #d7e5ed;background:#edf4f8;border-radius:8px;padding:5px 11px;font-size:13px;font-weight:700}
-.desc{font-size:14.5px;color:#46637a;margin:14px 0 0}
-.cta{display:inline-block;margin-top:20px;background:#2f6896;color:#fff;text-decoration:none;font-weight:800;padding:14px 26px;border-radius:12px;font-size:15.5px}
-.rel{margin-top:40px}.rel h2{font-size:17px;margin:0 0 14px}
-.rel ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:12px}
-.rel li a{display:flex;flex-direction:column;gap:7px;height:100%;background:#fff;border:1px solid #dde8f0;border-radius:13px;padding:10px;text-decoration:none;color:#17384f;transition:border-color .15s,box-shadow .15s}
-.rel li a:hover{border-color:#9dc0d6;box-shadow:0 4px 14px rgba(20,45,70,.09)}
-.rel .mini-img{display:flex;align-items:center;justify-content:center;aspect-ratio:1;border-radius:9px;background:#fff;overflow:hidden;border:1px solid #eef3f7}
-.rel .mini-img img{max-width:100%;max-height:100%;object-fit:contain}
-.rel .mini-nom{font-size:13px;line-height:1.25;font-weight:700;color:#1f5f8b}
-.rel .mini-mar{font-size:9.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6f93ab}
-.rel .mini-pre{margin-top:auto;font-size:14.5px;font-weight:800;color:#123f67;font-variant-numeric:tabular-nums}
-@media(max-width:420px){.rel ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}}
-footer{margin-top:44px;font-size:12.5px;color:#6b8aa1;text-align:center}</style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"Dulce de Leche de Coco vegano","description":"Dulce de textura cremosa y sabor a coco, elaborado como alternativa vegetal para untar o usar en postres. Aporta un perfil tropical y una consistencia suave que combina con panes, frutas y repostería.","image":["https://paladear.github.io/paladeartienda-test/fotos/2145.webp"],"brand":{"@type":"Brand","name":"Doña Magdalena"},"sku":"2145","category":"Dulces, Miel y Chocolates","offers":{"@type":"Offer","priceCurrency":"ARS","price":12140,"availability":"https://schema.org/InStock","url":"https://paladear.github.io/paladeartienda-test/p/dulce-de-leche-de-coco-vegano-2145/","priceValidUntil":"2026-12-10"},"seller":{"@type":"Organization","name":"Paladear Mercado de Sabores"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://paladear.github.io/paladeartienda-test/"},{"@type":"ListItem","position":2,"name":"Dulces, Miel y Chocolates","item":"https://paladear.github.io/paladeartienda-test/c/dulces-miel-y-chocolates/"},{"@type":"ListItem","position":3,"name":"Dulce de Leche de Coco vegano","item":"https://paladear.github.io/paladeartienda-test/p/dulce-de-leche-de-coco-vegano-2145/"}]}]}</script>
+<link rel="stylesheet" href="https://paladear.github.io/paladeartienda-test/ficha-producto.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"Dulce de Leche de Coco vegano","description":"Dulce de textura cremosa y sabor a coco, elaborado como alternativa vegetal para untar o usar en postres. Aporta un perfil tropical y una consistencia suave que combina con panes, frutas y repostería.","image":["https://paladear.github.io/paladeartienda-test/fotos/2145.webp"],"brand":{"@type":"Brand","name":"Doña Magdalena"},"sku":"2145","category":"Dulces, Miel y Chocolates","offers":{"@type":"Offer","priceCurrency":"ARS","price":12140,"availability":"https://schema.org/InStock","url":"https://paladear.github.io/paladeartienda-test/p/dulce-de-leche-de-coco-vegano-2145/"},"seller":{"@type":"Organization","name":"Paladear Mercado de Sabores"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://paladear.github.io/paladeartienda-test/"},{"@type":"ListItem","position":2,"name":"Dulces, Miel y Chocolates","item":"https://paladear.github.io/paladeartienda-test/c/dulces-miel-y-chocolates/"},{"@type":"ListItem","position":3,"name":"Dulce de Leche de Coco vegano","item":"https://paladear.github.io/paladeartienda-test/p/dulce-de-leche-de-coco-vegano-2145/"}]}]}</script>
 </head>
-<body>
-<header class="top"><a href="https://paladear.github.io/paladeartienda-test/">Paladear Mercado de Sabores</a></header>
-<div class="wrap">
-<nav class="mig"><a href="https://paladear.github.io/paladeartienda-test/">Inicio</a> › <a href="https://paladear.github.io/paladeartienda-test/c/dulces-miel-y-chocolates/">Dulces, Miel y Chocolates</a> › Dulce de Leche de Coco vegano</nav>
-<article class="ficha">
-  <div class="foto"><img src="https://paladear.github.io/paladeartienda-test/fotos/2145.webp" alt="Dulce de Leche de Coco vegano Doña Magdalena" width="600" height="600"></div>
-  <div>
-    <p class="marca">Doña Magdalena</p>
-    <h1>Dulce de Leche de Coco vegano</h1>
-    <p class="precio" data-art="2145">$12.140 <small>360 gr</small></p>
-    
-    <p class="desc">Dulce de textura cremosa y sabor a coco, elaborado como alternativa vegetal para untar o usar en postres. Aporta un perfil tropical y una consistencia suave que combina con panes, frutas y repostería.</p>
-    <a class="cta" href="https://paladear.github.io/paladeartienda-test/?producto=dulce-de-leche-de-coco-vegano-2145">Ver y agregar al carrito</a>
+<body class="min-redesign">
+<section class="product-detail">
+<div class="product-detail-bar">
+    <a class="product-detail-back" href="https://paladear.github.io/paladeartienda-test/c/dulces-miel-y-chocolates/" aria-label="Volver"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></a>
+    <strong>Detalle del producto</strong>
+    <a class="product-detail-close" href="https://paladear.github.io/paladeartienda-test/" aria-label="Ir a la tienda">×</a>
   </div>
-</article>
-<section class="rel"><h2>Más de Dulces, Miel y Chocolates</h2><ul><li><a href="https://paladear.github.io/paladeartienda-test/p/almendras-con-chocolate-2001/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2001.webp" alt="Almendras con Chocolate" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-nom">Almendras con Chocolate</span><span class="mini-pre">desde $5.159</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/arandanos-con-chocolate-2002/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2002.webp" alt="Arandanos con Chocolate" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-nom">Arandanos con Chocolate</span><span class="mini-pre">desde $4.035</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/avellanas-con-chocolate-2010/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2010.webp" alt="Avellanas con Chocolate" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-nom">Avellanas con Chocolate</span><span class="mini-pre">desde $5.623</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/bananitas-con-chocolate-2455/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2455.webp" alt="Bananitas con Chocolate" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-nom">Bananitas con Chocolate</span><span class="mini-pre">desde $4.862</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/barra-de-chocolate-55-sin-azucar-2004/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2004.webp" alt="Barra de Chocolate 55% sin azúcar" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-mar">Colonial</span><span class="mini-nom">Barra de Chocolate 55% sin azúcar</span><span class="mini-pre">$5.180</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/barra-de-chocolate-70-con-stevia-2003/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2003.webp" alt="Barra de Chocolate 70% con stevia" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-mar">Colonial</span><span class="mini-nom">Barra de Chocolate 70% con stevia</span><span class="mini-pre">$4.630</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/barra-de-chocolate-80-organico-2268/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2268.webp" alt="Barra de Chocolate 80% orgánico" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-mar">Colonial</span><span class="mini-nom">Barra de Chocolate 80% orgánico</span><span class="mini-pre">$7.260</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/barrita-de-cereal-artesanal-5088/"><span class="mini-img"></span><span class="mini-mar">Ram</span><span class="mini-nom">Barrita de Cereal Artesanal</span><span class="mini-pre">$1.500</span></a></li></ul></section>
-<footer>Paladear Mercado de Sabores · Pueyrredón 588, Mendoza · <a href="https://paladear.github.io/paladeartienda-test/">Ver toda la tienda</a></footer>
-</div>
+<div class="product-detail-shell"><div class="product-detail-main">
+  <div class="product-detail-image"><img src="https://paladear.github.io/paladeartienda-test/fotos/2145.webp" alt="Dulce de Leche de Coco vegano Doña Magdalena" width="900" height="900" decoding="async"></div>
+  <div class="product-detail-copy">
+    <div class="product-detail-category">Dulces, Miel y Chocolates</div>
+    <h1 class="product-detail-title">Dulce de Leche de Coco vegano</h1>
+    <div class="product-detail-meta"><span class="nom-c">360 gr</span><em class="nom-m">Doña Magdalena</em></div>
+    <div class="product-detail-info">Dulce de textura cremosa y sabor a coco, elaborado como alternativa vegetal para untar o usar en postres. Aporta un perfil tropical y una consistencia suave que combina con panes, frutas y repostería.</div>
+    <div class="product-detail-buy">
+      
+      <div class="prices">
+        <div><span class="price-label">Precio</span><div class="price-min" id="pMin">$12.140</div></div>
+        <div><span class="price-label">+$80.000</span><div class="price-may" id="pMay">$10.680</div></div>
+      </div>
+      <a class="add-btn" href="https://paladear.github.io/paladeartienda-test/?producto=dulce-de-leche-de-coco-vegano-2145"><span class="add-cart-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l2.4 10.3a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"/><circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none"/><circle cx="18" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg></span> Ver en la tienda</a>
+    </div>
+  </div>
+  <div class="product-detail-rel"><h3 class="pdrel-tit">Relacionados</h3><div class="pdrel-fila"><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/almendras-con-chocolate-2001/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2001.webp" alt="Almendras con Chocolate" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Almendras con Chocolate</b></span><span class="pdrel-precio">desde $5.159</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/arandanos-con-chocolate-2002/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2002.webp" alt="Arandanos con Chocolate" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Arandanos con Chocolate</b></span><span class="pdrel-precio">desde $4.035</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/avellanas-con-chocolate-2010/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2010.webp" alt="Avellanas con Chocolate" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Avellanas con Chocolate</b></span><span class="pdrel-precio">desde $5.623</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/bananitas-con-chocolate-2455/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2455.webp" alt="Bananitas con Chocolate" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Bananitas con Chocolate</b></span><span class="pdrel-precio">desde $4.862</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/barra-de-chocolate-55-sin-azucar-2004/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2004.webp" alt="Barra de Chocolate 55% sin azúcar" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Barra de Chocolate 55% sin azúcar</b><span class="nom-meta"><em class="nom-m">Colonial</em></span></span><span class="pdrel-precio">$5.180</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/barra-de-chocolate-70-con-stevia-2003/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2003.webp" alt="Barra de Chocolate 70% con stevia" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Barra de Chocolate 70% con stevia</b><span class="nom-meta"><em class="nom-m">Colonial</em></span></span><span class="pdrel-precio">$4.630</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/barra-de-chocolate-80-organico-2268/"><span class="pdrel-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/2268.webp" alt="Barra de Chocolate 80% orgánico" loading="lazy" decoding="async" width="200" height="200"></span><span class="pdrel-nom"><b class="nom-p">Barra de Chocolate 80% orgánico</b><span class="nom-meta"><em class="nom-m">Colonial</em></span></span><span class="pdrel-precio">$7.260</span></a><a class="pdrel-card" href="https://paladear.github.io/paladeartienda-test/p/barrita-de-cereal-artesanal-5088/"><span class="pdrel-img"><span class="product-image-placeholder" aria-hidden="true"></span></span><span class="pdrel-nom"><b class="nom-p">Barrita de Cereal Artesanal</b><span class="nom-meta"><em class="nom-m">Ram</em></span></span><span class="pdrel-precio">$1.500</span></a></div></div>
+</div></div>
+<p class="pd-pie">Paladear Mercado de Sabores · Pueyrredón 588, Mendoza · <a href="https://paladear.github.io/paladeartienda-test/">Ver toda la tienda</a></p>
+</section>
+<script>
+/* Las medidas cambian el precio en pantalla, igual que en la tienda. */
+(function(){
+  var fmt=function(n){return new Intl.NumberFormat('es-AR').format(n);};
+  var btns=document.querySelectorAll('.product-detail-options .opt-btn');
+  var mn=document.getElementById('pMin'), my=document.getElementById('pMay');
+  for(var i=0;i<btns.length;i++) btns[i].addEventListener('click',function(){
+    for(var j=0;j<btns.length;j++) btns[j].classList.remove('active');
+    this.classList.add('active');
+    if(mn) mn.textContent='$'+fmt(Number(this.dataset.min||0));
+    if(my) my.textContent='$'+fmt(Number(this.dataset.may||0));
+  });
+})();
+</script>
 </body>
 </html>

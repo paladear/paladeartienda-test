@@ -1,0 +1,339 @@
+:root{color-scheme:light;--azul:#547692;--azul-dark:#3d5a72;--azul-light:#cfdce8;--azul-mid:#6d90aa;--bg:#dce8f2;--fg:#1a3050;--card:#fff;--border:#d6e2eb;--muted:#e3e8ed;--muted-fg:#444;--destructive:#e8633a;--whatsapp:#25d366}
+
+.precio-tachado{text-decoration:line-through;color:var(--muted-fg);font-weight:600;font-size:13px;margin-right:5px}
+
+.precio-tachado-sm{text-decoration:line-through;color:var(--muted-fg);font-weight:600;font-size:13px;display:block;line-height:1}
+
+.precio-oferta{color:#b04020;font-weight:800}
+
+.price-min .precio-oferta{font-size:18px;display:block;line-height:1.1;margin-top:2px}
+
+
+/* ── Sellos ──
+   Van sólo en la ficha abierta, y grandes: la palabra está dentro del sello, así que
+   achicado no se lee. Se tocan y abren ese filtro, igual que la marca. */
+.product-detail-sellos{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0 4px}
+
+.product-detail-sellos .sello-d{display:block;padding:0;border:0;background:none;
+  border-radius:50%;cursor:pointer;line-height:0;
+  transition:transform .15s ease,box-shadow .15s ease}
+
+.product-detail-sellos .sello-d img{width:62px;height:62px;display:block;object-fit:contain}
+
+.product-detail-sellos .sello-d:hover{transform:translateY(-2px);
+  box-shadow:0 4px 14px rgba(20,45,70,.18)}
+
+.product-detail-sellos .sello-d:focus-visible{outline:2px solid var(--azul);outline-offset:3px}
+@media(max-width:767px){
+  .product-detail-sellos{gap:10px}
+  .product-detail-sellos .sello-d img{width:56px;height:56px}
+}
+@media(prefers-reduced-motion:reduce){
+  .product-detail-sellos .sello-d{transition:none}
+  .product-detail-sellos .sello-d:hover{transform:none}
+}
+   /* el mismo aire lateral que usa la ficha en el celular */
+.product-detail-rel{grid-column:1/-1;margin:26px 0 4px;padding-top:20px;
+  border-top:1px solid var(--border)}
+
+.pdrel-tit{margin:0 0 13px;font-size:16px;font-weight:800;color:var(--fg)}
+
+.pdrel-fila{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}
+
+.pdrel-card{display:flex;flex-direction:column;gap:6px;padding:9px;border:1px solid var(--border);
+  border-radius:12px;background:var(--card);cursor:pointer;text-align:left;
+  transition:border-color .16s ease,box-shadow .16s ease}
+
+.pdrel-card:hover{border-color:var(--azul-mid);box-shadow:0 3px 12px rgba(20,45,70,.1)}
+
+.pdrel-img{display:flex;align-items:center;justify-content:center;aspect-ratio:1;
+  border-radius:8px;background:#fff;overflow:hidden;padding:7px}
+
+/* max-* en vez de width/height al 100%: con una caja de aspect-ratio, el alto en
+   porcentaje no se resuelve y las fotos verticales (la manteca ghee es 394x700)
+   se estiraban hasta salirse por abajo. Así nunca pasa del borde y queda centrada. */
+.pdrel-img img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+
+.pdrel-nom{font-size:12.5px;line-height:1.25;color:var(--fg)}
+
+.pdrel-nom .nom-m{font-size:9px}
+
+.pdrel-precio{font-weight:800;font-size:14.5px;color:var(--min-blue-deep);
+  font-variant-numeric:tabular-nums}
+@media(max-width:767px){
+  /* El contenedor ya llega al borde en el celular: acá sólo se separan el título
+     y las tarjetas, para que el carrusel pueda sangrar hasta el filo. */
+  .product-detail-rel{margin-left:0;margin-right:0;padding-left:0;padding-right:0}
+  .pdrel-tit{padding:0 var(--pd-aire)}
+  .pdrel-fila{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;
+    padding:2px var(--pd-aire) 6px;margin:0;
+    /* sin esto el snap se come el margen y la primera tarjeta queda pegada al filo,
+       desalineada del título */
+    scroll-padding-left:var(--pd-aire);
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .pdrel-fila::-webkit-scrollbar{display:none}
+  .pdrel-card{flex:0 0 43vw;max-width:170px;scroll-snap-align:start}
+}
+
+
+/* La marca de la card abierta se toca para ver todo lo de esa marca. */
+.nom-m-link{border:0;background:none;padding:0;font:inherit;cursor:pointer;
+  text-decoration:underline;text-decoration-color:rgba(84,127,159,.4);
+  text-underline-offset:3px;transition:text-decoration-color .16s ease}
+
+.nom-m-link:hover{text-decoration-color:currentColor}
+
+
+/* ── Nombre, contenido y marca ──
+   El nombre en negra; debajo el contenido del envase y la marca. El contenido iba
+   pegado al nombre y le robaba lugar: un nombre que entraba en un renglón pasaba a
+   dos. En su propia línea el nombre queda entero y la cantidad se lee igual. */
+.nom-p{font-weight:800;display:block}
+
+.nom-meta{display:flex;flex-wrap:wrap;align-items:baseline;margin:3px 0 9px;line-height:1.3}
+
+.nom-c{font-weight:600;color:var(--muted-fg);white-space:nowrap}
+
+.nom-m{font-style:normal;font-weight:700;font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--min-blue-mid)}
+
+/* Separador sólo cuando las dos cosas están: "200 ml | ENTRENUTS". */
+.nom-c + .nom-m{margin-left:6px;padding-left:7px;border-left:1px solid var(--border)}
+@media(max-width:767px){
+  .pcard-name .nom-meta{display:block}
+  .pcard-name .nom-c + .nom-m{margin-left:0;padding-left:0;border-left:0;
+    display:block;margin-top:1px}
+}
+
+.product-detail-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 10px}
+
+.product-detail-meta .nom-c{margin-left:0;font-size:15px}
+
+.product-detail-meta .nom-m{font-size:11.5px}
+
+.product-detail-meta .nom-meta{display:inline;margin-top:0}
+
+.search-suggestion-item .nom-meta{display:inline;margin-left:7px}
+
+.search-suggestion-item .nom-m{font-size:10px}
+
+.search-suggestion-item .nom-c{font-weight:500}
+
+.min-feature-card-copy .nom-m{font-size:9.5px;letter-spacing:.07em}
+
+.opt-btns{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:5px;margin-bottom:8px}
+
+.opt-btns-4{gap:4px}
+
+.opt-btns-1{grid-auto-columns:max-content;justify-content:start}
+
+.opt-btn{width:100%;min-width:0;display:flex;align-items:center;justify-content:center;white-space:nowrap;border-radius:8px;padding:7px 3px;font-size:12.5px;font-weight:700;min-height:34px;transition:background .18s ease,border-color .18s ease,color .18s ease;background:var(--muted);color:var(--azul-dark);border:2px solid transparent}
+
+.opt-btns-4 .opt-btn{font-size:12px;padding:7px 2px;letter-spacing:-.01em}
+
+.opt-btn.active{background:var(--azul);color:#fff;border-color:var(--azul)}
+
+.opt-btn:hover:not(.active){border-color:var(--azul-mid)}
+
+.prices{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-bottom:10px}
+
+.price-label{font-size:11px;color:var(--muted-fg);text-transform:uppercase;letter-spacing:.5px;font-weight:700;display:block;text-align:center}
+
+.prices>div{text-align:center}
+
+.price-min{font-size:17px;font-weight:800}
+
+.price-may{font-size:14px;font-weight:800;color:#1a4d5e;background:#9eccd8;padding:3px 7px;border-radius:8px;transition:background .25s ease,color .25s ease,box-shadow .25s ease}
+
+.add-btn{width:100%;border-radius:10px;padding:12px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;background:var(--azul);color:#fff;margin-top:auto}
+
+.add-cart-icon{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;line-height:1}
+
+.add-cart-icon svg{display:block;width:1.15em;height:1.15em}
+
+.add-btn:hover{background:var(--azul-dark)}
+
+.add-btn:active{transform:scale(.97)}
+
+.add-btn.added{background:#629176}
+
+.prices.precio-sale{animation:palPrecioSale .11s ease-in forwards}
+
+.prices.precio-entra{animation:palPrecioEntra .3s cubic-bezier(.2,.72,.3,1)}
+@media(prefers-reduced-motion:reduce){.prices.precio-sale,.prices.precio-entra,.cart-item.resaltado{animation:none}}
+@media(min-width:768px){
+  .prices{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5px;align-items:end}
+  .price-min,.price-min .precio-oferta{font-size:22px;letter-spacing:-.02em}
+  .price-may{font-size:17px;padding:4px 7px}
+  .price-label{font-size:11px}
+}
+
+
+/* ── Al pasar los $80.000 el precio que manda es el de la derecha ──
+   Estas reglas vivían dentro de @media(min-width:768px), así que en el celular
+   —que es donde más se compra— el descuento nunca se notaba. Van sueltas para
+   que valgan en las dos pantallas. */
+body.mayorista-activo .prices>div:last-child .price-label{color:var(--azul-dark);font-weight:800}
+
+body.mayorista-activo .price-may{background:var(--azul);color:#fff;
+  box-shadow:0 2px 8px rgba(58,85,114,.3)}
+
+/* El precio que ya no se cobra queda en gris, tachado con una raya fina. */
+body.mayorista-activo .prices>div:first-child .price-min{color:var(--muted-fg);opacity:.75;
+  text-decoration:line-through;text-decoration-thickness:1px;
+  text-decoration-color:rgba(84,103,125,.65)}
+
+button,.opt-btn,.qty-btn,.add-btn,.cats-dd-btn,.card-edit-btn,.card-del-btn,.catalog-filter-btn,.bnav button,#cart-fab{touch-action:manipulation}
+@media(max-width:767px){
+  /* Dos cards por fila en mobile */
+  .prod-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+
+  /* Cards y controles compactos para conservar legibilidad */
+  .pcard{border-radius:12px;overflow:hidden}
+  .pcard-img{height:128px;font-size:36px}
+  .pcard-img img{padding:6px}
+  .pcard-body{padding:9px 8px 10px}
+  .pcard-head{gap:4px}
+  .pcard-name{font-size:12.5px;line-height:1.25}
+  .pcard-brand{font-size:10.5px;margin-bottom:6px}
+  .info-btn{width:24px;height:24px;font-size:12px}
+  .opt-btns{gap:4px;margin-bottom:5px}
+  .opt-btn{padding:6px 2px;font-size:11.5px;min-height:31px;border-width:1.5px}
+  .opt-btns-4{gap:2px}
+  .opt-btns-4 .opt-btn{font-size:10px;padding:6px 0;border-width:1.5px}
+  .sabor-row{display:block;margin-bottom:7px}
+  .sabor-label{display:block;font-size:10px;margin-bottom:3px}
+  .sabor-select{width:100%;min-width:0;padding:5px 6px;font-size:10.5px}
+  .prices{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px;margin-bottom:8px;align-items:end}
+  .price-label{font-size:8px;line-height:1.15;letter-spacing:0;white-space:normal}
+  .price-min{font-size:17px}
+  .price-min .precio-oferta{font-size:17px}
+  .precio-tachado-sm{font-size:10px}
+  .price-may{font-size:14px;padding:3px 7px;border-radius:6px}
+  .qty-row{justify-content:center;gap:5px;margin-bottom:6px}
+  .qty-btn{width:29px;height:29px;font-size:17px}
+  .qty-val{font-size:15px;min-width:18px}
+  .acum-badge{flex-basis:100%;margin-left:0;padding:3px 5px;font-size:9px;text-align:center;white-space:normal}
+  .add-btn{padding:8px 3px;font-size:10.5px;line-height:1.2;gap:3px;border-radius:8px}
+  .card-cart-actions{gap:4px}
+  .card-del-btn{width:31px;height:31px}
+  .card-edit-btn{height:31px;font-size:10px;gap:3px}
+  .pcard-img{height:120px}
+  .pcard-body{padding:8px 9px 9px}
+  .catalog-intro--rubro h1{font-size:23px}
+    .oferta-badge-lg{top:7px;left:7px;font-size:10px;padding:4px 7px}
+}
+
+/* top con --pegado-top: en la tienda de pruebas el cartel rojo esta clavado
+   arriba y se comia la barra del boton volver. En la tienda real la variable
+   no existe y vale 0. */
+.product-detail{position:fixed;top:var(--pegado-top,0px);left:0;right:0;bottom:0;z-index:9300;background:#f8f5ef;overflow-y:auto;animation:fadeIn .18s ease}
+
+.product-detail-bar{position:sticky;top:0;z-index:3;min-height:68px;padding:10px 18px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:10px;background:rgba(207,229,242,.97);color:var(--min-blue-deep);
+  box-shadow:0 5px 16px rgba(20,58,87,.08)}
+
+.product-detail-bar strong{text-align:center;font-size:15px;font-weight:800;letter-spacing:.02em}
+
+.product-detail-back,.product-detail-close{width:42px;height:42px;border:1px solid rgba(20,58,87,.16);border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--min-blue-deep);cursor:pointer;font-family:inherit;box-shadow:0 2px 7px rgba(20,58,87,.1)}
+
+.product-detail-close{font-size:24px;line-height:1}
+
+.product-detail-shell{width:min(1100px,calc(100% - 40px));margin:0 auto;padding:34px 0 52px}
+
+.product-detail-main{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(360px,.98fr);gap:42px;align-items:start}
+
+.product-detail-image{position:relative;aspect-ratio:1;border:1px solid #dce6ec;border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 18px 44px rgba(31,74,107,.10)}
+
+.product-detail-image img{display:block;width:100%;height:100%;object-fit:contain;padding:22px}
+
+.product-detail-copy{padding-top:8px}
+
+.product-detail-category{display:flex;align-items:center;gap:10px;margin-bottom:10px;color:#4e7898;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+
+.product-detail-category::after{content:"";width:42px;height:1px;background:currentColor;opacity:.5}
+
+.product-detail-title{margin:0 0 18px;color:#123f67;font-size:clamp(30px,3.2vw,46px);font-weight:800;line-height:1.04;letter-spacing:-.035em}
+
+.product-detail-info{margin:0 0 22px;color:#496579;font-size:14px;line-height:1.62}
+
+.product-detail-buy{padding:20px;border:1px solid #d8e4eb;border-radius:20px;background:#fff;box-shadow:0 12px 30px rgba(31,74,107,.08)}
+
+.product-detail-buy h3{margin:0 0 12px;color:#173f61;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+
+.product-detail-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:15px}
+
+.product-detail-options .opt-btn{min-height:42px;background:#edf4f8;border-color:#d7e5ed;font-size:13px}
+
+.product-detail-options .opt-btn.active{background:#285b83;border-color:#285b83;color:#fff}
+
+.product-detail-buy .sabor-row{margin:0 0 14px}
+
+.product-detail-buy .prices{margin:4px 0 14px;padding:14px;border-radius:14px;background:#edf5f9}
+
+.product-detail-buy .qty-row{justify-content:center;margin:4px 0 12px}
+
+.product-detail-buy .add-btn{min-height:50px;margin:0;font-size:15px}
+
+.product-detail-cart-state{min-height:20px;margin-top:10px;text-align:center;color:#426c88;font-size:12px;font-weight:700}
+
+.product-detail-cart-state .card-cart-actions{margin-top:9px}
+
+.product-detail-cart-state .card-del-btn,.product-detail-cart-state .card-edit-btn{height:36px}
+@media(max-width:760px){
+  .product-detail-bar{min-height:62px;padding:8px 12px}
+  .product-detail-shell{width:100%;padding:0 0 34px}
+  .product-detail-main{display:block}
+  .product-detail-image{height:min(48vh,390px);aspect-ratio:auto;border:0;border-radius:0;box-shadow:none}
+  .product-detail-image img{padding:14px}
+  .product-detail-copy{padding:24px 18px 0}
+  .product-detail-title{font-size:29px;margin-bottom:14px}
+  .product-detail-info{font-size:13px;line-height:1.55;margin-bottom:18px}
+  .product-detail-buy{padding:16px;border-radius:17px}
+  .product-detail-options{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+  .product-detail-options .opt-btn{min-height:39px;padding-inline:1px;font-size:11px}
+}
+@media(max-width:360px){.product-detail-options{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* El nombre se recorta con puntitos. Sin esto se cortaba al medio de una letra,
+   que en el celular es donde más molesta. */
+.search-suggestion-item .sug-txt>b,.search-suggestion-item .sug-txt>.nom-p{
+  display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.search-suggestion-item .nom-meta{display:flex;margin:1px 0 0;overflow:hidden}
+
+.search-suggestion-item .nom-c,.search-suggestion-item .nom-m{
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.product-image-placeholder{display:block;width:100%;height:100%;background:linear-gradient(145deg,#f8fafb,#edf3f6)}
+@media(min-width:768px){
+  .pcard-name .nom-p{font-size:16px}
+  .pcard-name .nom-c{font-size:15.5px}
+  .pcard-name .nom-m{font-size:12.5px;letter-spacing:.07em}
+  .price-label{font-size:12.5px}
+  .price-may-label,.price-unit{font-size:12.5px}
+  .add-btn{font-size:16px}
+  .opt-btn{font-size:14px}
+  /* El menú de categorías: los rubros son lo que más se toca de toda la pantalla. */
+  .min-cat-menu-name{font-size:15px}
+  .cats-dropdown-title strong{font-size:19px}
+  .cats-dropdown-title small{font-size:13.5px}
+  .cdds-tit{font-size:12.5px}
+  .cdds-chip{font-size:14.5px}
+  .cdds-chip b{font-size:13.5px}
+  /* Y la letra chica que queda suelta por la página. */
+  .pdrel-nom{font-size:13.5px}
+  .pdrel-tit{font-size:17px}
+  .aviso-sello span{font-size:15px}
+}
+/* Ajustes para que la misma ficha funcione como página suelta y no como capa. */
+html,body{margin:0;background:#f8f5ef}
+body{font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--fg);line-height:1.5}
+.product-detail{position:static!important;inset:auto!important;z-index:auto!important;min-height:100vh;animation:none}
+.product-detail-bar{position:sticky;top:0}
+.product-detail-bar a{text-decoration:none}
+.product-detail-title{margin-top:0}
+.product-detail-buy .add-btn{text-decoration:none;margin-top:4px}
+.pdrel-card{text-decoration:none}
+.pdrel-img img{max-width:100%;max-height:100%;object-fit:contain}
+.pd-pie{margin:34px 0 0;padding:18px 0 40px;text-align:center;font-size:12.5px;color:#6b8aa1}
+.pd-rubro-intro{margin:0 0 18px;color:#496579;font-size:14.5px}
