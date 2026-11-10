@@ -325,6 +325,11 @@ button,.opt-btn,.qty-btn,.add-btn,.cats-dd-btn,.card-edit-btn,.card-del-btn,.cat
   .pdrel-tit{font-size:17px}
   .aviso-sello span{font-size:15px}
 }
+/* Reset base de la tienda. Sin esto el padding se suma al 100% del ancho y la
+   foto del producto queda más grande que su caja y se recorta. */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
+button{cursor:pointer;border:none;font-family:inherit}
+img{max-width:100%}
 /* Ajustes para que la misma ficha funcione como página suelta y no como capa. */
 html,body{margin:0;background:#f8f5ef}
 body{font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--fg);line-height:1.5}
