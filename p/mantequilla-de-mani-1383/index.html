@@ -37,8 +37,15 @@ h1{font-size:clamp(23px,3.4vw,33px);line-height:1.12;margin:0 0 8px;letter-spaci
 .desc{font-size:14.5px;color:#46637a;margin:14px 0 0}
 .cta{display:inline-block;margin-top:20px;background:#2f6896;color:#fff;text-decoration:none;font-weight:800;padding:14px 26px;border-radius:12px;font-size:15.5px}
 .rel{margin-top:40px}.rel h2{font-size:17px;margin:0 0 14px}
-.rel ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px}
-.rel li a{display:block;background:#fff;border:1px solid #dde8f0;border-radius:11px;padding:11px 13px;text-decoration:none;font-size:13.5px;font-weight:700;color:#1f5f8b}
+.rel ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:12px}
+.rel li a{display:flex;flex-direction:column;gap:7px;height:100%;background:#fff;border:1px solid #dde8f0;border-radius:13px;padding:10px;text-decoration:none;color:#17384f;transition:border-color .15s,box-shadow .15s}
+.rel li a:hover{border-color:#9dc0d6;box-shadow:0 4px 14px rgba(20,45,70,.09)}
+.rel .mini-img{display:flex;align-items:center;justify-content:center;aspect-ratio:1;border-radius:9px;background:#fff;overflow:hidden;border:1px solid #eef3f7}
+.rel .mini-img img{max-width:100%;max-height:100%;object-fit:contain}
+.rel .mini-nom{font-size:13px;line-height:1.25;font-weight:700;color:#1f5f8b}
+.rel .mini-mar{font-size:9.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6f93ab}
+.rel .mini-pre{margin-top:auto;font-size:14.5px;font-weight:800;color:#123f67;font-variant-numeric:tabular-nums}
+@media(max-width:420px){.rel ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}}
 footer{margin-top:44px;font-size:12.5px;color:#6b8aa1;text-align:center}</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"Mantequilla de Mani","description":"Pasta de maní de textura cremosa y sabor tostado, ideal para tostadas, frutas, licuados y repostería. Aporta proteína vegetal, grasas mayormente insaturadas, fibra, magnesio y vitamina E.","image":["https://paladear.github.io/paladeartienda-test/fotos/1383.webp"],"brand":{"@type":"Brand","name":"Entrenuts"},"sku":"1383","category":"Mantecas y Pastas","offers":{"@type":"Offer","priceCurrency":"ARS","price":4410,"availability":"https://schema.org/InStock","url":"https://paladear.github.io/paladeartienda-test/p/mantequilla-de-mani-1383/","priceValidUntil":"2026-12-10"},"seller":{"@type":"Organization","name":"Paladear Mercado de Sabores"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://paladear.github.io/paladeartienda-test/"},{"@type":"ListItem","position":2,"name":"Mantecas y Pastas","item":"https://paladear.github.io/paladeartienda-test/c/mantecas-y-pastas/"},{"@type":"ListItem","position":3,"name":"Mantequilla de Mani","item":"https://paladear.github.io/paladeartienda-test/p/mantequilla-de-mani-1383/"}]}]}</script>
 </head>
@@ -57,7 +64,7 @@ footer{margin-top:44px;font-size:12.5px;color:#6b8aa1;text-align:center}</style>
     <a class="cta" href="https://paladear.github.io/paladeartienda-test/?producto=mantequilla-de-mani-1383">Ver y agregar al carrito</a>
   </div>
 </article>
-<section class="rel"><h2>Más de Mantecas y Pastas</h2><ul><li><a href="https://paladear.github.io/paladeartienda-test/p/manteca-clarificada-5021/">Manteca Clarificada</a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/mantequilla-de-mani-con-stevia-5030/">Mantequilla de Mani con stevia</a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/mantequilla-de-mani-proteica-5012/">Mantequilla de Mani Proteica</a></li></ul></section>
+<section class="rel"><h2>Más de Mantecas y Pastas</h2><ul><li><a href="https://paladear.github.io/paladeartienda-test/p/manteca-clarificada-5021/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/5021.webp" alt="Manteca Clarificada" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-mar">Entrenuts</span><span class="mini-nom">Manteca Clarificada</span><span class="mini-pre">$8.150</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/mantequilla-de-mani-con-stevia-5030/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/5030.webp" alt="Mantequilla de Mani con stevia" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-mar">Entrenuts</span><span class="mini-nom">Mantequilla de Mani con stevia</span><span class="mini-pre">$4.410</span></a></li><li><a href="https://paladear.github.io/paladeartienda-test/p/mantequilla-de-mani-proteica-5012/"><span class="mini-img"><img src="https://paladear.github.io/paladeartienda-test/fotos/5012.webp" alt="Mantequilla de Mani Proteica" loading="lazy" decoding="async" width="200" height="200"></span><span class="mini-mar">Entrenuts</span><span class="mini-nom">Mantequilla de Mani Proteica</span><span class="mini-pre">$6.430</span></a></li></ul></section>
 <footer>Paladear Mercado de Sabores · Pueyrredón 588, Mendoza · <a href="https://paladear.github.io/paladeartienda-test/">Ver toda la tienda</a></footer>
 </div>
 </body>
