@@ -5783,8 +5783,29 @@ function _linkDirecto(){
     var q=new URLSearchParams(location.search);
     var prod=q.get('producto'), cat=q.get('categoria');
     if(!prod && !cat) return null;
-    return {producto:prod||'', categoria:cat||''};
+    return {producto:prod||'', categoria:cat||'', agregar:q.get('agregar')||''};
   }catch(e){ return null; }
+}
+/* El botón "Agregar al carrito" de la página del producto NO escribe el carrito:
+   le pasa la orden a la tienda y agrega la tienda, con su propio código. Así hay
+   un solo lugar donde se arma el renglón del pedido; si la página estática lo
+   armara por su cuenta usaría otra clave y el mismo producto quedaría duplicado
+   cuando se agrega desde los dos lados. */
+function _agregarDesdeLink(pid, medida){
+  setTimeout(function(){
+    try{
+      var caja=document.getElementById('productDetailCard');
+      if(!caja) return;
+      if(medida){
+        var btns=[].slice.call(caja.querySelectorAll('.opt-btn'));
+        var b=btns.filter(function(x){
+          return String(x.dataset.opt||x.textContent).trim().toUpperCase()===String(medida).trim().toUpperCase();
+        })[0];
+        if(b) b.click();
+      }
+      productDetailAdd(pid);
+    }catch(e){ console.warn('[agregar desde link]', e); }
+  },150);
 }
 function _abrirDesdeURL(){
   var pedido=_linkDirecto();
@@ -5805,7 +5826,12 @@ function _abrirDesdeURL(){
         // corre sola cada vez que entra o sale un producto.
         var art=(pedido.producto.match(/-(\d+)$/)||[])[1];
         var pr=art?_getMinForArtId(art):null;
-        if(pr){ window.switchTab('minorista'); openProductDetail(pr[0]); return; }
+        if(pr){
+          window.switchTab('minorista');
+          openProductDetail(pr[0]);
+          if(pedido.agregar) _agregarDesdeLink(pr[0], pedido.agregar);
+          return;
+        }
       }
       if(pedido.categoria){
         var c=(typeof CATS!=='undefined'?CATS:[]).filter(function(x){
