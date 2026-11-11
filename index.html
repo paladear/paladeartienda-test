@@ -3826,7 +3826,7 @@ function selectCat(catId,productId,navOpts){
   _saveAppState();
   const cat=CATS.find(c=>c.id===catId);
   // Sólo cuando lo elige una persona: al restaurar la vista no se toca la barra.
-  if(trackHistory&&cat)_marcarURL(_BASE_TIENDA+'c/'+_slugPal(cat.n)+'/');
+  if(trackHistory&&cat)_marcarURL(_BASE_TIENDA+'?categoria='+encodeURIComponent(_slugPal(cat.n)));
   const prods=PRODS.filter(p=>p[1]===catId);
   const isMobile=window.innerWidth<768;
   const prefix=isMobile?'mb':'dt';
@@ -5771,7 +5771,10 @@ function _urlDeProducto(p){
     if(!art) return '';
     var sl=_slugPal(p[2])+'-'+_slugPal(art);
     if(!sl||sl.charAt(0)==='-') return '';
-    return _BASE_TIENDA+'p/'+sl+'/';
+    // Se escribe como parámetro y NO como carpeta (/p/...): cambiar la carpeta
+    // hace que todas las rutas relativas de la tienda (las fotos) se resuelvan
+    // desde ahí y den 404. El link sirve igual para compartir.
+    return _BASE_TIENDA+'?producto='+encodeURIComponent(sl);
   }catch(e){ return ''; }
 }
 function _marcarURL(u){
