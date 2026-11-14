@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 1,
+    "nuevos": 3,
     "renombrados": 0,
     "quitados": 1,
     "rubro_invalido": 0,
@@ -12,6 +12,20 @@
       "nombre": "ARROZ BASMATI XKG",
       "rubro": "GRANOS Y LEGUMBRES",
       "precio": 7780,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5090",
+      "nombre": "CARDO MARIANO SEMILLA XKG",
+      "rubro": "SEMILLAS",
+      "precio": 74068,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5091",
+      "nombre": "MATICO XKG",
+      "rubro": "INFUSIONES Y HIERBAS",
+      "precio": 11930,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
