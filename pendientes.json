@@ -1,12 +1,20 @@
 {
   "resumen": {
-    "nuevos": 0,
+    "nuevos": 1,
     "renombrados": 0,
     "quitados": 1,
     "rubro_invalido": 0,
     "fuera_catalogo": 62
   },
-  "nuevos": [],
+  "nuevos": [
+    {
+      "numero": "5092",
+      "nombre": "PREMEZCLA PANCAKES PROTEICOS X400GR - ENTRENUTS",
+      "rubro": "PRODUCTOS SIN TACC",
+      "precio": 14820,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    }
+  ],
   "renombrados": [],
   "quitados": [
     {
