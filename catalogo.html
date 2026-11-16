@@ -298,6 +298,19 @@ body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:va
 .co-radio:has(input:checked){border-color:var(--azul);background:rgba(84,118,146,.05)}
 .co-radio input{flex-shrink:0;margin-top:2px;accent-color:var(--azul);width:16px;height:16px}
 .co-radio span{font-size:13px;color:var(--fg);line-height:1.4}
+.co-radio span b{display:block;font-size:13.5px;font-weight:700}
+.co-radio span small{display:block;font-size:12px;color:var(--muted-fg);margin-top:2px;line-height:1.35}
+/* Desglose del costo de envio en el checkout */
+.co-env-box{margin:4px 0 12px}
+.co-env-box:empty{display:none}
+.co-env-box:not(:empty){border:1.5px solid var(--border);border-radius:12px;padding:11px 13px;background:var(--card)}
+.co-env-tit{font-size:11.5px;font-weight:800;color:var(--azul-dark);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.co-env-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px;color:var(--fg);padding:5px 0;border-bottom:1px dashed var(--border)}
+.co-env-row b{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.co-env-row.co-env-tot{border-bottom:none;font-weight:800;padding-top:7px}
+.co-env-row.co-env-tot b{font-size:16px;color:var(--azul-dark)}
+.co-env-free{color:#1c9d63}
+.co-env-nota{font-size:12.5px;line-height:1.45;color:var(--fg);background:var(--azul-light);border-radius:10px;padding:9px 11px;margin-top:8px}
 /* Row de campos lado a lado */
 .co-cargo{margin-top:16px;border:1px solid #e3c98a;background:#fdf8ec;border-radius:12px;padding:13px 14px}
 .co-cargo.hidden{display:none}
@@ -882,16 +895,32 @@ function _coSet(id, val) {
    lo retira. Se preguntan una sola vez: quedan guardados en el mismo perfil que
    ya recuerda el nombre y la dirección, así que el pedido siguiente no agrega
    ningún paso. */
-var _GRAN_MENDOZA = [
-  'capital','ciudad','ciudad de mendoza','mendoza','godoy cruz','guaymallen','las heras',
-  'lujan de cuyo','lujan','maipu',
-  // Barrios y distritos que la gente escribe en vez del departamento
-  'dorrego','villa nueva','san jose','san francisco del monte','el challao','panquehua',
-  'el bermejo','el sauce','rodeo de la cruz','villa hipodromo','gobernador benegas',
-  'chacras de coria','carrodilla','vistalba','perdriel','mayor drummond','la puntilla',
-  'coquimbito','general gutierrez','gutierrez','luzuriaga','russell','pedro molina',
-  'nueva ciudad','5ta seccion','quinta seccion','4ta seccion','cuarta seccion','challao'
+/* Zonas de envio. Las dos juntas son el Gran Mendoza (lo que define si el
+   paquete lo lleva el reparto propio o Via Cargo); por separado definen cuanto
+   sale el envio -- ver _ENVIO_* mas abajo. */
+
+// Zona 1 - Capital, Godoy Cruz y Guaymallen: $5.000, sin cargo arriba de $40.000.
+var _ZONA1 = [
+  'capital','ciudad','ciudad de mendoza','mendoza','nueva ciudad',
+  '5ta seccion','quinta seccion','4ta seccion','cuarta seccion',
+  'godoy cruz','villa hipodromo','gobernador benegas','san francisco del monte',
+  'la estanzuela','presidente sarmiento',
+  'guaymallen','dorrego','villa nueva','san jose','el bermejo','el sauce',
+  'rodeo de la cruz','pedro molina','buena nueva','capilla del rosario',
+  'jesus nazareno','las canas','los corralitos','colonia segovia','puente de hierro'
 ];
+
+// Zona 2 - Lujan de Cuyo, Maipu y Las Heras: $7.000 siempre, pase o no los $40.000.
+var _ZONA2 = [
+  'lujan de cuyo','lujan','chacras de coria','chacras','carrodilla','vistalba',
+  'perdriel','mayor drummond','drummond','la puntilla',
+  'maipu','coquimbito','general gutierrez','gutierrez','luzuriaga','russell',
+  'rodeo del medio','fray luis beltran','beltran','cruz de piedra','lunlunta',
+  'las heras','el challao','challao','panquehua','el plumerillo','plumerillo',
+  'el borbollon','borbollon','el resguardo','la cieneguita'
+];
+
+var _GRAN_MENDOZA = _ZONA1.concat(_ZONA2);
 
 function _sinTildes(s){
   return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -902,14 +931,28 @@ function _sinTildes(s){
    Si es Mendoza, se mira la localidad: lo que no reconocemos se toma como
    interior, que es el lado seguro (mejor pedir los datos de más que quedarse
    sin ellos cuando el pedido ya salió). */
-function _esInterior(loc, prov){
-  var p = _sinTildes(prov);
-  if (p && p.indexOf('mendoza') < 0) return true;
-  var l = _sinTildes(loc);
-  if (!l) return false;
-  return !_GRAN_MENDOZA.some(function(x){
+function _enZona(l, lista){
+  return lista.some(function(x){
     return l === x || l.indexOf(x) >= 0 || (x.length > 4 && x.indexOf(l) >= 0);
   });
+}
+
+/* Zona de la direccion: 'z1', 'z2', 'lejos' (interior u otra provincia), o ''
+   cuando todavia no escribio la localidad y no hay nada que calcular.
+   Lo que no reconocemos cae en 'lejos', que es el lado seguro: se coordina el
+   envio por WhatsApp en vez de cobrar de menos. */
+function _zonaDe(loc, prov){
+  var p = _sinTildes(prov);
+  if (p && p.indexOf('mendoza') < 0) return 'lejos';
+  var l = _sinTildes(loc);
+  if (!l) return '';
+  if (_enZona(l, _ZONA2)) return 'z2';
+  if (_enZona(l, _ZONA1)) return 'z1';
+  return 'lejos';
+}
+
+function _esInterior(loc, prov){
+  return _zonaDe(loc, prov) === 'lejos';
 }
 
 /* La localidad y la provincia de lo que esté elegido ahora: una dirección
@@ -951,14 +994,112 @@ function _coActualizarCargo(){
 }
 window._coActualizarCargo = _coActualizarCargo;
 
+/* -- COSTO DEL ENVIO --------------------------------------------------------
+   Zona 1 (Capital, Godoy Cruz, Guaymallen): $5.000, y sin cargo cuando el
+     pedido pasa los $40.000.
+   Zona 2 (Lujan de Cuyo, Maipu, Las Heras): $7.000 siempre, pase o no los
+     $40.000.
+   Fuera de ahi no se puede poner un numero en pantalla: el flete depende de la
+   distancia, asi que se avisa que el costo se coordina por WhatsApp.
+   Vale igual para transferencia, efectivo o tarjeta: el medio de pago no
+   cambia lo que sale el envio. */
+var _ENVIO_Z1 = 5000;
+var _ENVIO_Z2 = 7000;
+var _ENVIO_GRATIS_DESDE = 40000;   // "no supera los $40.000" => se cobra
+
+var _PAGO_LBL = {
+  transferencia: 'Transferencia bancaria',
+  efectivo: 'Efectivo al recibir el pedido',
+  tarjeta: 'Tarjeta de credito o debito (link de Mercado Pago)'
+};
+
+// Total del pedido, el mismo numero que muestra el resumen del checkout.
+function _coTotalPedido(){
+  return totales().final;
+}
+
+/* costo: 0 sin cargo | >0 lo que se cobra | null no se puede calcular todavia
+   (falta la localidad) o es fuera del Gran Mendoza y se arregla por chat. */
+function _coEnvioCalc(loc, prov, total){
+  var z = _zonaDe(loc, prov);
+  if (z === 'z2') return { zona: 'z2', costo: _ENVIO_Z2 };
+  if (z === 'z1') return { zona: 'z1', costo: total > _ENVIO_GRATIS_DESDE ? 0 : _ENVIO_Z1 };
+  if (z === 'lejos') return { zona: 'lejos', costo: null };
+  return { zona: '', costo: null };
+}
+
+function _coEnvioActual(){
+  var lp = _coLocProv();
+  return _coEnvioCalc(lp.loc, lp.prov, _coTotalPedido());
+}
+
+function _coPagoActual(){
+  var r = document.querySelector('input[name="coPago"]:checked');
+  return r ? r.value : '';
+}
+
+/* El desglose en pantalla. Se vuelve a dibujar cada vez que cambia la
+   localidad, la direccion elegida o el medio de pago, asi el costo del envio
+   esta a la vista antes de mandar el pedido. */
+function _coRenderEnvio(){
+  var box = document.getElementById('coEnvioBox');
+  if (!box) return;
+  if (_coEntrega !== 'domicilio') { box.innerHTML = ''; return; }
+  var tot = _coTotalPedido();
+  var e = _coEnvioActual();
+  var filas = '<div class="co-env-row"><span>Productos</span><b>$' + fmt(tot) + '</b></div>';
+  var nota = '';
+
+  if (e.zona === '') {
+    filas += '<div class="co-env-row"><span>Env\u00edo</span><b>\u2014</b></div>';
+    nota = 'Escrib\u00ed la localidad y te decimos ac\u00e1 mismo cu\u00e1nto sale el env\u00edo.';
+  } else if (e.costo === null) {
+    filas += '<div class="co-env-row"><span>Env\u00edo</span><b>A coordinar</b></div>' +
+             '<div class="co-env-row co-env-tot"><span>Total</span><b>$' + fmt(tot) + ' + env\u00edo</b></div>';
+    nota = 'Tu direcci\u00f3n queda fuera del Gran Mendoza: el env\u00edo se cotiza aparte seg\u00fan el destino y te pasamos el costo por WhatsApp antes de despachar.';
+  } else if (e.costo === 0) {
+    filas += '<div class="co-env-row"><span>Env\u00edo</span><b class="co-env-free">Sin cargo</b></div>' +
+             '<div class="co-env-row co-env-tot"><span>Total</span><b>$' + fmt(tot) + '</b></div>';
+    nota = 'Env\u00edo sin cargo por pasar los $' + fmt(_ENVIO_GRATIS_DESDE) + ' en Ciudad, Godoy Cruz o Guaymall\u00e9n.';
+  } else {
+    filas += '<div class="co-env-row"><span>Env\u00edo</span><b>$' + fmt(e.costo) + '</b></div>' +
+             '<div class="co-env-row co-env-tot"><span>Total a pagar</span><b>$' + fmt(tot + e.costo) + '</b></div>';
+    nota = e.zona === 'z2'
+      ? 'Luj\u00e1n de Cuyo, Maip\u00fa y Las Heras tienen un env\u00edo fijo de $' + fmt(_ENVIO_Z2) + ', tambi\u00e9n en pedidos de m\u00e1s de $' + fmt(_ENVIO_GRATIS_DESDE) + '.'
+      : 'Env\u00edo $' + fmt(_ENVIO_Z1) + '. Pasando los $' + fmt(_ENVIO_GRATIS_DESDE) + ' en productos te lo hacemos sin cargo.';
+  }
+
+  /* Al interior el paquete lo lleva Via Cargo y no hay repartidor propio que
+     cobre, asi que el efectivo tampoco se promete: se coordina por WhatsApp
+     junto con el costo del envio. */
+  if (_coPagoActual() === 'efectivo') {
+    if (e.zona === 'lejos')
+      nota += ' Al interior el pedido viaja por V\u00eda Cargo: el pago en efectivo lo coordinamos por WhatsApp junto con el env\u00edo.';
+    else if (e.costo)
+      nota += ' Le pag\u00e1s al repartidor cuando llega, env\u00edo incluido: conviene tener el importe justo.';
+    else if (e.zona)
+      nota += ' Le pag\u00e1s al repartidor cuando llega.';
+  }
+
+  box.innerHTML = '<div class="co-env-tit">\ud83d\ude9a Tu env\u00edo</div>' + filas +
+                  (nota ? '<div class="co-env-nota">' + nota + '</div>' : '');
+  _coRenderSummary();
+}
+window._coRenderEnvio = _coRenderEnvio;
+
 (function(){
-  // Se revisa mientras escribe la localidad: el bloque aparece y desaparece solo.
+  // Se revisa mientras escribe la localidad: el bloque y el costo del envio
+  // aparecen y se actualizan solos.
   document.addEventListener('input', function(ev){
     if (!ev.target || !ev.target.id) return;
-    if (ev.target.id === 'coLocalidad' || ev.target.id === 'coProvincia') _coActualizarCargo();
+    if (ev.target.id === 'coLocalidad' || ev.target.id === 'coProvincia') {
+      _coActualizarCargo(); _coRenderEnvio();
+    }
   });
   document.addEventListener('change', function(ev){
-    if (ev.target && ev.target.name === 'coDirSel') _coActualizarCargo();
+    if (!ev.target) return;
+    if (ev.target.name === 'coDirSel') { _coActualizarCargo(); _coRenderEnvio(); }
+    if (ev.target.name === 'coPago') _coRenderEnvio();
   });
 })();
 
@@ -972,6 +1113,11 @@ function _coAutocompletar() {
   _coSet('coCargoNombre', p.cargoNombre || p.nombre);
   _coSet('coCargoDni', p.cargoDni);
   _coSet('coCargoMail', p.cargoMail);
+  // El medio de pago que eligio la vez anterior queda preseleccionado.
+  if (p.pago) {
+    var _pr = document.querySelector('input[name="coPago"][value="' + p.pago + '"]');
+    if (_pr) _pr.checked = true;
+  }
   // Los detalles de la dirección (piso, tipo, entre calles, indicaciones) viven en cada
   // dirección guardada; los campos quedan vacíos para cargar una dirección nueva.
 }
@@ -983,6 +1129,8 @@ window.coBorrarPerfil = function() {
     if (el) el.value = '';
   });
   document.querySelectorAll('input[name="coTipo"],input[name="coPago"]').forEach(function(r){ r.checked = false; });
+  var _pdef = document.querySelector('input[name="coPago"][value="transferencia"]');
+  if (_pdef) _pdef.checked = true;
   var _pv = document.getElementById('coProvincia'); if (_pv) _pv.value = 'Mendoza';
   _coBuildDirOpts();
   _coNombreCompacto();
@@ -1107,6 +1255,7 @@ window.cerrarCheckout = cerrarCheckout;
 
 function _coBack() {
   _coEntrega = null;
+  _coRenderEnvio();
   document.getElementById('coStep1').classList.remove('hidden');
   document.getElementById('coStep2Retiro').classList.add('hidden');
   document.getElementById('coStep2Dom').classList.add('hidden');
@@ -1117,9 +1266,14 @@ window._coBack = _coBack;
 
 function _coRenderSummary() {
   var t = totales();
+  // Si el envio ya se puede calcular, el encabezado muestra el total con envio.
+  var e = (_coEntrega === 'domicilio') ? _coEnvioActual() : null;
+  var der = (e && e.costo > 0)
+    ? 'Con env\u00edo: <b>$' + fmt(t.final + e.costo) + '</b>'
+    : 'Total: <b>$' + fmt(t.final) + '</b>';
   document.getElementById('coSummary').innerHTML =
     '<span>' + t.n + ' producto' + (t.n !== 1 ? 's' : '') + '</span>' +
-    '<span>Total: <b>$' + fmt(t.final) + '</b></span>';
+    '<span>' + der + '</span>';
 }
 
 function coElegirEntrega(tipo) {
@@ -1129,6 +1283,8 @@ function coElegirEntrega(tipo) {
   document.getElementById('coStep2Dom').classList.toggle('hidden', tipo !== 'domicilio');
   document.getElementById('coTitle').textContent = tipo === 'retiro' ? 'Retiro en el local' : 'Envío a domicilio';
   document.getElementById('coBtnBack').style.display = '';
+  _coActualizarCargo();
+  _coRenderEnvio();
 }
 window.coElegirEntrega = coElegirEntrega;
 
@@ -1244,7 +1400,7 @@ function _coShowConfirm() {
 
 function coEnviar() {
   var tipo = _coEntrega;
-  var nombre, horario, direccion, pago, deliveryMsg;
+  var nombre, horario, direccion, pago, deliveryMsg, _envio = null;
 
   if (tipo === 'retiro') {
     nombre = (document.getElementById('coNombre').value || '').trim();
@@ -1295,7 +1451,11 @@ function coEnviar() {
       deliveryMsg += '\n🪪 DNI: ' + _cargo.dni;
       deliveryMsg += '\n✉️ Email: ' + _cargo.mail;
     }
-    deliveryMsg += '\n💳 Pago: Transferencia bancaria';
+    // Medio de pago y costo del envio. El envio no depende del medio de pago:
+    // sale lo mismo por transferencia, en efectivo o con tarjeta.
+    pago = _PAGO_LBL[_coPagoActual()] || _PAGO_LBL.transferencia;
+    _envio = _coEnvioActual();
+    deliveryMsg += '\n\ud83d\udcb3 Pago: ' + pago;
   }
 
   // ── Mensaje con los productos del catálogo (un renglón por producto, nunca repetido) ──
@@ -1310,7 +1470,19 @@ function coEnviar() {
        var it = pedido[p.id];
        msg += '*' + cantTexto(p,it) + '* - ' + p.nombre + '\n   $' + fmt(subtotalDe(p,it,may)) + '\n';
      });
-  msg += '\n*TOTAL: $' + fmt(t.final) + '*';
+  // Con envio a cobrar el mensaje va desglosado, asi el total que se lee es el
+  // que se cobra. Sin cargo o a coordinar, se aclara en un renglon.
+  if (_envio && _envio.costo > 0) {
+    msg += '\nProductos: $' + fmt(t.final) +
+           '\n\ud83d\ude9a Env\u00edo: $' + fmt(_envio.costo) +
+           '\n*TOTAL A PAGAR: $' + fmt(t.final + _envio.costo) + '*';
+  } else if (_envio && _envio.costo === null) {
+    msg += '\n*Productos: $' + fmt(t.final) + '*\n\ud83d\ude9a Env\u00edo: a coordinar por WhatsApp';
+  } else if (_envio) {
+    msg += '\n*TOTAL: $' + fmt(t.final) + '*\n\ud83d\ude9a Env\u00edo: sin cargo';
+  } else {
+    msg += '\n*TOTAL: $' + fmt(t.final) + '*';
+  }
   if (may) msg += '\n_(Descuento por volumen aplicado)_';
   else if (ids.some(function(id){var p=PRODS.find(function(x){return x.id===id;});return p&&p.oferta>0;}))
     msg += '\n_(Ofertas del mes aplicadas)_';
@@ -1324,6 +1496,7 @@ function coEnviar() {
     if (horario) _perfil.horarioRetiro = horario;
   } else {
     _perfil.direccion = direccion;
+    _perfil.pago = _coPagoActual() || 'transferencia';
     if (_cargo) {
       _perfil.cargoNombre = _cargo.nombre;
       _perfil.cargoDni = _cargo.dni;
@@ -1517,7 +1690,16 @@ cargar();
             </div>
           </div>
         </div>
-        <div class="co-pago-nota">💳 El pedido se abona por <b>transferencia bancaria</b> — te pasamos el alias por WhatsApp.<br>🚚 <b>Envío gratis</b> en compras desde <b>$40.000</b> en Gran Mendoza (si es menor, el envío se abona aparte).</div>
+        <div class="co-field" style="margin-top:2px">
+          <label>¿Cómo vas a pagar? <span style="color:#e53935">*</span></label>
+          <div class="co-pago-opts">
+            <label class="co-radio"><input type="radio" name="coPago" value="transferencia" checked><span><b>Transferencia bancaria</b><small>Te pasamos el alias por WhatsApp.</small></span></label>
+            <label class="co-radio"><input type="radio" name="coPago" value="efectivo"><span><b>Efectivo al recibir</b><small>Le pagás al repartidor cuando te entrega el pedido.</small></span></label>
+            <label class="co-radio"><input type="radio" name="coPago" value="tarjeta"><span><b>Tarjeta de crédito o débito</b><small>Te mandamos un link de Mercado Pago.</small></span></label>
+          </div>
+        </div>
+        <!-- Desglose del envío: se calcula con la localidad y el total del pedido. -->
+        <div class="co-env-box" id="coEnvioBox"></div>
         <button class="wa-btn" style="margin-top:8px" onclick="coEnviar()"><svg viewBox="0 0 24 24" width="19" height="19" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.006 22l4.984-1.307A9.961 9.961 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.25a8.24 8.24 0 01-4.258-1.178l-.306-.181-3.157.828.844-3.07-.2-.319A8.25 8.25 0 1112 20.25z"/></svg> Enviar pedido por WhatsApp</button>
         <div class="co-saved-hint">💾 Guardamos tus datos en este dispositivo para tu próximo pedido. <a href="#" onclick="coBorrarPerfil();return false">Borrar mis datos</a></div>
       </div>
