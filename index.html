@@ -3528,8 +3528,11 @@ window.addEventListener('popstate',function(e){const z=document.getElementById('
 function _productDetailCloseDirect(){
   const modal=document.getElementById('productDetail');
   if(modal)modal.remove();
-  // El contador ya sabe si abajo sigue abierto el buscador: no hay que decidirlo acá.
   _descongelarFondo();
+  // Si abajo sigue abierto el buscador en el celular, el fondo tiene que quedar
+  // quieto: la ficha se cerró pero todavía hay una capa encima de la página.
+  // (No alcanza con el contador: esta ficha puede cerrarse por caminos distintos.)
+  if (typeof _searchOverlayOpen!=='undefined' && _searchOverlayOpen && window.innerWidth<768) _congelarFondo();
 }
 function closeProductDetail(){
   if(history.state&&history.state.modal==='productDetail')history.back();
@@ -3806,6 +3809,7 @@ function _descongelarFondo(force){
   window.scrollTo(0, _scrollCongelado);
 }
 window._congelarFondo=_congelarFondo; window._descongelarFondo=_descongelarFondo;
+Object.defineProperty(window,'_capasAbiertas',{get:function(){return _capasAbiertas;}});
 /* Si por lo que sea quedó congelado sin ninguna capa abierta, al volver a la
    página se destraba solo. Más vale soltar de más que dejarla sin scroll. */
 window.addEventListener('pageshow',function(){ if(_capasAbiertas===0 && document.body.style.position==='fixed') _descongelarFondo(true); });
