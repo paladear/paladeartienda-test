@@ -421,6 +421,17 @@ body:has(#productDetail) #cart-fab,body:has(#productDetail) #chat-fab{display:no
 @media(min-width:600px){.checkout-overlay{align-items:center}}
 .checkout-sheet{background:var(--card);border-radius:24px 24px 0 0;width:100%;max-width:520px;max-height:94vh;overflow-y:auto;box-shadow:0 -8px 40px rgba(0,0,0,.22);display:flex;flex-direction:column}
 @media(min-width:600px){.checkout-sheet{border-radius:20px;max-height:88vh}}
+/* En el celular el checkout es una SECCIÓN entera, no una hoja apoyada encima
+   del catálogo. Antes se veía la tienda congelada atrás —y en el paso de elegir
+   retiro o envío, que es corto, se veía todavía más— y al abrir el teclado la
+   hoja quedaba empujada y tapada. Con pantalla completa y fondo opaco ya no hay
+   nada detrás y el teclado sólo achica el área de scroll propia. */
+@media(max-width:599px){
+  .checkout-overlay{background:var(--bg);align-items:stretch;padding:0}
+  .checkout-sheet{max-width:none;max-height:none;height:100%;border-radius:0;box-shadow:none}
+  /* La barra del título queda fija arriba mientras se scrollea el formulario. */
+  .checkout-hdr{position:sticky;top:0;z-index:2;background:var(--card)}
+}
 .checkout-hdr{display:flex;align-items:center;gap:8px;padding:14px 16px 12px;border-bottom:1px solid var(--muted);position:sticky;top:0;background:var(--card);z-index:1;flex-shrink:0}
 .checkout-hdr-btn{background:var(--muted);border:none;border-radius:50%;width:32px;height:32px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;color:var(--fg);flex-shrink:0;line-height:1}
 .checkout-hdr h2{flex:1;font-size:17px;font-weight:700;margin:0;color:var(--azul-dark);text-align:center}
