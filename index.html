@@ -3843,22 +3843,14 @@ window.addEventListener('pageshow',function(){ if(_capasAbiertas===0 && document
   function ajustar(){
     if (!hojaActiva) return;
     hojaActiva.style.maxHeight = Math.round(vv.height) + 'px';
-    /* La capa de atrás también: si sólo achicábamos la hoja, el fondo de la capa
-       asomaba abajo como una franja celeste entre la hoja y el teclado. Y en iOS
-       el teclado además desplaza lo visible, así que hay que seguir ese
-       desplazamiento o la capa queda corrida. */
-    var capa = hojaActiva.closest('.checkout-overlay');
-    if (capa) {
-      capa.style.height = Math.round(vv.height) + 'px';
-      capa.style.top = Math.round(vv.offsetTop) + 'px';
-      capa.style.bottom = 'auto';
-    }
+    /* NO se toca la capa de atrás. Se probó moverla con vv.offsetTop para tapar
+       la franja celeste que asoma sobre el teclado y salió peor: en algunos
+       estados dejaba de cubrir la pantalla y se veía (y se podía scrollear) la
+       página de atrás. La franja es fea pero inofensiva; esto no. */
   }
   function soltar(){
     if (!hojaActiva) return;
     hojaActiva.style.maxHeight = '';
-    var capa = hojaActiva.closest('.checkout-overlay');
-    if (capa) { capa.style.height=''; capa.style.top=''; capa.style.bottom=''; }
     hojaActiva = null;
   }
   document.addEventListener('focusin', function(e){
@@ -3881,7 +3873,6 @@ window.addEventListener('pageshow',function(){ if(_capasAbiertas===0 && document
     }, 60);
   });
   vv.addEventListener('resize', ajustar);
-  vv.addEventListener('scroll', ajustar);
 })();
 
 function _sortOpts(opts){
