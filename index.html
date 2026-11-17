@@ -3528,11 +3528,9 @@ window.addEventListener('popstate',function(e){const z=document.getElementById('
 function _productDetailCloseDirect(){
   const modal=document.getElementById('productDetail');
   if(modal)modal.remove();
+  // El contador se encarga: si abajo sigue abierto el buscador, su propio
+  // congelado sigue contando y el fondo no se suelta.
   _descongelarFondo();
-  // Si abajo sigue abierto el buscador en el celular, el fondo tiene que quedar
-  // quieto: la ficha se cerró pero todavía hay una capa encima de la página.
-  // (No alcanza con el contador: esta ficha puede cerrarse por caminos distintos.)
-  if (typeof _searchOverlayOpen!=='undefined' && _searchOverlayOpen && window.innerWidth<768) _congelarFondo();
 }
 function closeProductDetail(){
   if(history.state&&history.state.modal==='productDetail')history.back();
