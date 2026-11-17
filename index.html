@@ -427,7 +427,10 @@ body:has(#productDetail) #cart-fab,body:has(#productDetail) #chat-fab{display:no
    hoja quedaba empujada y tapada. Con pantalla completa y fondo opaco ya no hay
    nada detrás y el teclado sólo achica el área de scroll propia. */
 @media(max-width:599px){
-  .checkout-overlay{background:var(--bg);align-items:stretch;padding:0}
+  /* top con --pegado-top: en la tienda de pruebas el cartel rojo está clavado
+     arriba y se comía la barra del título. En la tienda real vale 0. */
+  .checkout-overlay{background:var(--bg);align-items:stretch;padding:0;
+    top:var(--pegado-top,0px);height:auto}
   .checkout-sheet{max-width:none;max-height:none;height:100%;border-radius:0;box-shadow:none}
   /* La barra del título queda fija arriba mientras se scrollea el formulario. */
   .checkout-hdr{position:sticky;top:0;z-index:2;background:var(--card)}
