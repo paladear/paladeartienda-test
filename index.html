@@ -3840,17 +3840,20 @@ window.addEventListener('pageshow',function(){ if(_capasAbiertas===0 && document
   var vv = window.visualViewport;
   if (!vv) return;
   var hojaActiva = null;
+  /* NO se le pone alto máximo a la hoja: eso la cortaba y, como la capa de
+     atrás es opaca y celeste, abajo quedaba una franja celeste entre la hoja y
+     el teclado. La hoja ocupa toda la capa (queda blanca hasta abajo, tapada
+     por el teclado) y lo único que se agrega es espacio al final, del alto del
+     teclado, para que los últimos campos puedan subir por encima de él.
+     Tampoco se mueve la capa: probado, dejaba ver la página de atrás. */
   function ajustar(){
     if (!hojaActiva) return;
-    hojaActiva.style.maxHeight = Math.round(vv.height) + 'px';
-    /* NO se toca la capa de atrás. Se probó moverla con vv.offsetTop para tapar
-       la franja celeste que asoma sobre el teclado y salió peor: en algunos
-       estados dejaba de cubrir la pantalla y se veía (y se podía scrollear) la
-       página de atrás. La franja es fea pero inofensiva; esto no. */
+    var teclado = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
+    hojaActiva.style.paddingBottom = teclado ? (teclado + 'px') : '';
   }
   function soltar(){
     if (!hojaActiva) return;
-    hojaActiva.style.maxHeight = '';
+    hojaActiva.style.paddingBottom = '';
     hojaActiva = null;
   }
   document.addEventListener('focusin', function(e){
