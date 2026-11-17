@@ -1874,6 +1874,14 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .min-redesign .granola-step-final,.min-redesign .blend-step-final,.min-redesign .granola-sum-head,.min-redesign .blend-sum-head{background:#e3eff6;color:#285b83}
 .min-redesign .granola-step-final.ready,.min-redesign .blend-step-final.ready,.min-redesign .granola-add-btn,.min-redesign .blend-add-btn{background:#285b83;color:#fff}
 .min-redesign .granola-add-btn:hover,.min-redesign .blend-add-btn:hover{background:#123f67}
+/* El botón deshabilitado tiene que verse deshabilitado: la regla de arriba lo
+   pintaba azul lleno aunque no se pudiera tocar, porque tiene la misma
+   especificidad que .blend-add-btn:disabled y va después. Con el :disabled
+   acá gana por especificidad y ya no depende del orden. */
+.min-redesign .granola-add-btn:disabled,.min-redesign .blend-add-btn:disabled{
+  background:var(--muted);color:var(--muted-fg);cursor:not-allowed;opacity:.75}
+.min-redesign .granola-add-btn:disabled:hover,.min-redesign .blend-add-btn:disabled:hover{
+  background:var(--muted)}
 .min-redesign .builder-showcase{position:relative;min-height:172px;margin:0 0 22px;border:1px solid rgba(40,91,131,.14);border-radius:20px;overflow:hidden;background-color:#dcecf5;background-position:center;background-size:cover;box-shadow:0 12px 30px rgba(31,74,107,.10)}
 .min-redesign .builder-showcase--mix{background-image:url('home-banner-v2-mix.webp')}
 .min-redesign .builder-showcase--granola{background-image:url('home-banner-v2-granola.webp')}
