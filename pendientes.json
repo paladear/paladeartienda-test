@@ -1,12 +1,19 @@
 {
   "resumen": {
-    "nuevos": 1,
+    "nuevos": 2,
     "renombrados": 0,
     "quitados": 1,
     "rubro_invalido": 0,
     "fuera_catalogo": 62
   },
   "nuevos": [
+    {
+      "numero": "5093",
+      "nombre": "ERYTRITOL",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+      "precio": 21390,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
     {
       "numero": "5092",
       "nombre": "PREMEZCLA PANCAKES PROTEICOS X400GR - ENTRENUTS",
