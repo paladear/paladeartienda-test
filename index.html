@@ -9634,8 +9634,7 @@ window.copiarLinkParaNavegador = function() {
 </div>
 <script>
 (function(){
-  var FLAG=_LS('pld_tutorial_last');   // guarda el momento (timestamp) de la última vez que se mostró
-  var INTERVALO_MIN=30;           // recién vuelve a aparecer después de estos minutos (un refresh NO lo reabre)
+  var FLAG=_LS('pld_tutorial_last');   // queda marcado apenas se muestra una vez
   function animMeter(cntId,fillId,rwId,target,dur){
     var cnt=document.getElementById(cntId),fill=document.getElementById(fillId),rw=document.getElementById(rwId),start=null,crossed=false;
     function step(ts){if(!start)start=ts;var t=Math.min((ts-start)/dur,1),e=1-Math.pow(1-t,3);
@@ -9652,18 +9651,18 @@ window.copiarLinkParaNavegador = function() {
     cerrarTutorial();
   };
   function mostrar(){
-    try{
-      var last=parseInt(localStorage.getItem(FLAG)||'0',10);
-      // Si se mostró hace menos de INTERVALO_MIN (p.ej. un simple refresh), no lo reabrimos
-      if(last && (Date.now()-last) < INTERVALO_MIN*60*1000) return;
-    }catch(e){}
+    // Una sola vez por visitante: si ya se mostró alguna vez, no vuelve más.
+    try{ if(localStorage.getItem(FLAG)) return; }catch(e){}
+    // Y sólo en el inicio: en el medio de la compra tapaba justo el producto que
+    // la persona acababa de abrir.
+    if(!document.body.classList.contains('hv-home')) return;
     var ov=document.getElementById('tutbOverlay');
     if(!ov)return;
     try{localStorage.setItem(FLAG,String(Date.now()));}catch(e){}
     ov.classList.add('tutb-show');
     setTimeout(function(){animMeter('tutbCntMin','tutbFillMin','tutbRwMin',80000,1700);},350);
   }
-  // Aparece al entrar; un refresh NO lo reabre, pero vuelve a salir pasados INTERVALO_MIN minutos
+  // Aparece en la primera visita al inicio, y no vuelve a salir.
   if(document.readyState==='complete') setTimeout(mostrar,500);
   else window.addEventListener('load',function(){setTimeout(mostrar,500);});
 })();
@@ -9972,6 +9971,10 @@ window.pintarTableroCats=pintarTableroCats;
    el ancho. En el Home sí se deja, porque ahí no hay barra de filtro. */
 @media(max-width:767px){
   body.min-redesign:not(.hv-home) .header .min-header-menu{display:none!important}
+/* El carrito de arriba queda sólo en el inicio: en el resto ya está el flotante,
+   que además te sigue mientras scrolleás. Dos carritos con el mismo número (y de
+   distinto color) era ruido en una pantalla chica. */
+body.min-redesign:not(.hv-home) .header .min-header-cart{display:none!important}
 }
 </style>
 <style>
