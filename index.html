@@ -3796,7 +3796,9 @@ function _congelarFondo(){
   b.left='0'; b.right='0'; b.width='100%'; b.overflow='hidden';
 }
 function _descongelarFondo(force){
-  if (_capasAbiertas === 0) return;
+  // Con force se limpia siempre, aunque el contador se haya desacomodado: es la
+  // red de seguridad para que la página no quede congelada y sin poder scrollear.
+  if (!force && _capasAbiertas === 0) return;
   _capasAbiertas = force ? 0 : Math.max(0, _capasAbiertas-1);
   if (_capasAbiertas > 0) return;
   var b = document.body.style;
@@ -3804,6 +3806,9 @@ function _descongelarFondo(force){
   window.scrollTo(0, _scrollCongelado);
 }
 window._congelarFondo=_congelarFondo; window._descongelarFondo=_descongelarFondo;
+/* Si por lo que sea quedó congelado sin ninguna capa abierta, al volver a la
+   página se destraba solo. Más vale soltar de más que dejarla sin scroll. */
+window.addEventListener('pageshow',function(){ if(_capasAbiertas===0 && document.body.style.position==='fixed') _descongelarFondo(true); });
 
 /* ── EL TECLADO Y LOS CAMPOS DEL CHECKOUT ────────────────────────────────────
    Al abrir el teclado, el celular achica la parte visible de la pantalla pero
