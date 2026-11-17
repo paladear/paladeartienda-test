@@ -415,6 +415,9 @@ body:has(#productDetail) #cart-fab,body:has(#productDetail) #chat-fab{display:no
 .modal-close-btn{position:absolute;top:14px;right:14px;background:var(--muted);border:none;border-radius:50%;width:30px;height:30px;font-size:15px;cursor:pointer;color:var(--fg);display:flex;align-items:center;justify-content:center;font-family:inherit}
 /* ── CHECKOUT MODAL ── */
 .checkout-overlay{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:10120;display:flex;align-items:flex-end;justify-content:center}
+/* El scroll de una capa no se contagia a la página de atrás. */
+.checkout-sheet,.cart-panel,.product-detail,#searchResultsMobile.active,.modal-body,
+.mix-prod-list,.granola-prod-list,.blend-prod-list{overscroll-behavior:contain}
 @media(min-width:600px){.checkout-overlay{align-items:center}}
 .checkout-sheet{background:var(--card);border-radius:24px 24px 0 0;width:100%;max-width:520px;max-height:94vh;overflow-y:auto;box-shadow:0 -8px 40px rgba(0,0,0,.22);display:flex;flex-direction:column}
 @media(min-width:600px){.checkout-sheet{border-radius:20px;max-height:88vh}}
@@ -3525,7 +3528,8 @@ window.addEventListener('popstate',function(e){const z=document.getElementById('
 function _productDetailCloseDirect(){
   const modal=document.getElementById('productDetail');
   if(modal)modal.remove();
-  document.body.style.overflow=(typeof _searchOverlayOpen!=='undefined'&&_searchOverlayOpen&&window.innerWidth<768)?'hidden':'';
+  // El contador ya sabe si abajo sigue abierto el buscador: no hay que decidirlo acá.
+  _descongelarFondo();
 }
 function closeProductDetail(){
   if(history.state&&history.state.modal==='productDetail')history.back();
@@ -3566,7 +3570,7 @@ function openProductDetail(pid){
   </div></div>`;
   document.body.appendChild(modal);
   try { _pintarRelacionados(p); } catch(e) { console.warn('[relacionados]', e); }
-  document.body.style.overflow='hidden';
+  _congelarFondo();
   modal.scrollTop=0;
   _palPushOverlay('productDetail',{modal:'productDetail',pid:pid});
   _marcarURL(_urlDeProducto(p));
@@ -3774,6 +3778,74 @@ function _optDefecto(opts){
   if(!conPeso.length)return opts[0];
   return conPeso.reduce(function(a,b){return _optToG(b)<_optToG(a)?b:a;});
 }
+
+/* ── CONGELAR EL FONDO CUANDO SE ABRE UNA CAPA ───────────────────────────────
+   Antes se hacía con body{overflow:hidden}. En el celular eso no frena de
+   verdad: la página pierde la posición del scroll (de ahí el salto y el
+   titileo al abrir y cerrar) y, cuando la lista de la capa llega al final, el
+   dedo sigue arrastrando lo de atrás.
+   Acá se fija el body en la posición exacta donde estabas y al soltar se
+   vuelve a ella. El contador es necesario porque se apilan capas (la ficha se
+   abre sobre el buscador): recién se suelta cuando se cerró la última. */
+var _capasAbiertas = 0, _scrollCongelado = 0;
+function _congelarFondo(){
+  if (_capasAbiertas++ > 0) return;
+  _scrollCongelado = window.scrollY || window.pageYOffset || 0;
+  var b = document.body.style;
+  b.position='fixed'; b.top=(-_scrollCongelado)+'px';
+  b.left='0'; b.right='0'; b.width='100%'; b.overflow='hidden';
+}
+function _descongelarFondo(force){
+  if (_capasAbiertas === 0) return;
+  _capasAbiertas = force ? 0 : Math.max(0, _capasAbiertas-1);
+  if (_capasAbiertas > 0) return;
+  var b = document.body.style;
+  b.position=''; b.top=''; b.left=''; b.right=''; b.width=''; b.overflow='';
+  window.scrollTo(0, _scrollCongelado);
+}
+window._congelarFondo=_congelarFondo; window._descongelarFondo=_descongelarFondo;
+
+/* ── EL TECLADO Y LOS CAMPOS DEL CHECKOUT ────────────────────────────────────
+   Al abrir el teclado, el celular achica la parte visible de la pantalla pero
+   una capa fija no se entera: sigue midiendo la pantalla entera. Por eso el
+   campo queda tapado y la rayita de escritura aparece a una altura distinta de
+   donde estás escribiendo. Acá la hoja se ajusta a lo que de verdad se ve y el
+   campo enfocado se trae a la vista. */
+(function(){
+  var vv = window.visualViewport;
+  if (!vv) return;
+  var hojaActiva = null;
+  function ajustar(){
+    if (!hojaActiva) return;
+    hojaActiva.style.maxHeight = Math.round(vv.height) + 'px';
+  }
+  function soltar(){
+    if (!hojaActiva) return;
+    hojaActiva.style.maxHeight = '';
+    hojaActiva = null;
+  }
+  document.addEventListener('focusin', function(e){
+    var campo = e.target;
+    if (!campo || !campo.closest) return;
+    if (!/^(INPUT|TEXTAREA|SELECT)$/.test(campo.tagName)) return;
+    var hoja = campo.closest('.checkout-sheet,.cart-panel');
+    if (!hoja) return;
+    hojaActiva = hoja;
+    ajustar();
+    setTimeout(function(){
+      try { campo.scrollIntoView({block:'center', behavior:'smooth'}); } catch(err){}
+    }, 280);
+  });
+  document.addEventListener('focusout', function(e){
+    // Si el foco se va a otro campo de la misma hoja, no se suelta.
+    setTimeout(function(){
+      var a = document.activeElement;
+      if (!a || !a.closest || !a.closest('.checkout-sheet,.cart-panel')) soltar();
+    }, 60);
+  });
+  vv.addEventListener('resize', ajustar);
+})();
+
 function _sortOpts(opts){
   // kg first: order by weight descending (1kg > 500g > 100g > und)
   function _optWeight(o){
@@ -4412,7 +4484,7 @@ function openCart(){
   document.getElementById('cartOverlay').classList.add('open');
   document.getElementById('cartPanel').classList.add('open');
   document.body.classList.add('cart-open');
-  document.body.style.overflow='hidden';
+  _congelarFondo();
   closeMiniCart();
   renderCart();
   _palPushOverlay('cart');
@@ -4421,7 +4493,7 @@ function closeCart(){
   document.getElementById('cartOverlay').classList.remove('open');
   document.getElementById('cartPanel').classList.remove('open');
   document.body.classList.remove('cart-open');
-  document.body.style.overflow='';
+  _descongelarFondo();
 }
 
 /* ═══════════ MI CUENTA (perfil + direcciones + historial de pedidos, todo local) ═══════════ */
@@ -4462,7 +4534,7 @@ window._cuentaGuardarPedido=_cuentaGuardarPedido;
 function openCuenta(){
   document.getElementById('cuentaOverlay').classList.add('open');
   document.getElementById('cuentaPanel').classList.add('open');
-  document.body.style.overflow='hidden';
+  _congelarFondo();
   renderCuenta();
   _palPushOverlay('cuenta');
 }
@@ -4470,7 +4542,7 @@ window.openCuenta=openCuenta;
 function closeCuenta(){
   document.getElementById('cuentaOverlay').classList.remove('open');
   document.getElementById('cuentaPanel').classList.remove('open');
-  document.body.style.overflow='';
+  _descongelarFondo();
 }
 window.closeCuenta=closeCuenta;
 function renderCuenta(){
@@ -5003,7 +5075,7 @@ function _pickCategorySuggestion(catId){
   if(header)header.classList.remove('collapsed');
   if(banner)banner.classList.remove('collapsed');
   if(tabs)tabs.classList.remove('collapsed');
-  document.body.style.overflow='';
+  _descongelarFondo();
   _searchOverlayOpen=false;_searchPreScrollY=0;
   const srMobile=document.getElementById('searchResultsMobile');
   if(srMobile){srMobile.classList.remove('active');srMobile.classList.add('hidden');srMobile.innerHTML='';}
@@ -5111,7 +5183,7 @@ function _doSearch(val){
     if(banner)banner.classList.remove('collapsed');
     if(tabs)tabs.classList.remove('collapsed');
     // Desbloquear scroll del body
-    document.body.style.overflow='';
+    _descongelarFondo();
     _searchOverlayOpen=false;
     // Limpiar resultados mobile
     if(srMobile){srMobile.classList.remove('active');srMobile.classList.add('hidden');srMobile.innerHTML='';}
@@ -5166,7 +5238,7 @@ function _doSearch(val){
     srMobile.classList.remove('hidden');
     srMobile.classList.add('active');
     srMobile.scrollTop=0;
-    document.body.style.overflow='hidden';
+    _congelarFondo();
     document.getElementById('mobileProdsArea').innerHTML='';
     document.getElementById('mobileProdsArea').dataset.catalogView='search';
     document.getElementById('desktopProdsArea').innerHTML='';
@@ -5203,7 +5275,7 @@ function irAProducto(pid){
   if(banner)banner.classList.remove('collapsed');
   if(tabs)tabs.classList.remove('collapsed');
   // Cerrar overlay mobile de búsqueda
-  document.body.style.overflow='';
+  _descongelarFondo();
   _searchOverlayOpen=false;_searchPreScrollY=0;
   const srMobile=document.getElementById('searchResultsMobile');
   if(srMobile){srMobile.classList.remove('active');srMobile.classList.add('hidden');srMobile.innerHTML='';}
@@ -5212,7 +5284,7 @@ function irAProducto(pid){
   selectCat(p[1],pid);
 }
 
-function closeModal(){document.getElementById('catModal').classList.add('hidden');document.body.style.overflow=''}
+function closeModal(){document.getElementById('catModal').classList.add('hidden');_descongelarFondo()}
 
 /* ── CHATBOT ── */
 let chatOpen=false;
@@ -5959,7 +6031,7 @@ let mixSelSize=null,mixActiveCat=null,mixIngreds={},mixCounter=0,mixEditKey=null
 
 function openMix(){
   document.getElementById('mixModal').classList.remove('hidden');
-  document.body.style.overflow='hidden';
+  _congelarFondo();
   document.body.classList.add('builder-open');
   mixRenderSizes();
   if(!mixActiveCat&&PRODS.length){
@@ -5973,7 +6045,7 @@ function openMix(){
 }
 function closeMix(){
   document.getElementById('mixModal').classList.add('hidden');
-  document.body.style.overflow='';
+  _descongelarFondo();
   document.body.classList.remove('builder-open');
   // reset state so next open starts fresh
   mixSelSize=null;mixIngreds={};mixActiveCat=null;
@@ -6353,7 +6425,7 @@ let granolaSelSize=null,granolaActiveCat=null,granolaIngreds={},granolaCounter=0
 
 function openGranola(){
   document.getElementById('granolaModal').classList.remove('hidden');
-  document.body.style.overflow='hidden';
+  _congelarFondo();
   document.body.classList.add('builder-open');
   granolaRenderSizes();
   if(!granolaActiveCat&&PRODS.length){
@@ -6366,7 +6438,7 @@ function openGranola(){
 }
 function closeGranola(){
   document.getElementById('granolaModal').classList.add('hidden');
-  document.body.style.overflow='';
+  _descongelarFondo();
   document.body.classList.remove('builder-open');
   granolaSelSize=null;granolaIngreds={};granolaActiveCat=null;
   document.getElementById('granolaBuilderArea').style.display='none';
@@ -6629,7 +6701,7 @@ const BLEND_ALLOWED_CATS=['infusiones','especias'];
 
 function openBlend(){
   document.getElementById('blendModal').classList.remove('hidden');
-  document.body.style.overflow='hidden';
+  _congelarFondo();
   document.body.classList.add('builder-open');
   blendRenderSizes();
   if(!blendActiveCat){
@@ -6642,7 +6714,7 @@ function openBlend(){
 window.openBlend=openBlend;
 function closeBlend(){
   document.getElementById('blendModal').classList.add('hidden');
-  document.body.style.overflow='';
+  _descongelarFondo();
   document.body.classList.remove('builder-open');
   blendSelSize=null;blendIngreds={};blendActiveCat=null;
   document.getElementById('blendBuilderArea').style.display='none';
@@ -8383,7 +8455,7 @@ function abrirCheckout(venta) {
   document.getElementById('coBtnBack').style.display = 'none';
   _coRenderSummary();
   document.getElementById('checkoutOverlay').classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
+  _congelarFondo();
   _coAutocompletar();
   _coBuildDirOpts();
   _coNombreCompacto();
@@ -8395,7 +8467,7 @@ window.abrirCheckout = abrirCheckout;
 
 function cerrarCheckout() {
   document.getElementById('checkoutOverlay').classList.add('hidden');
-  document.body.style.overflow = '';
+  _descongelarFondo();
   if (_coMap) { _coMap.remove(); _coMap = null; _coMarker = null; }
   _coCoords = null;
   var panel = document.getElementById('coUbicacionPanel');
@@ -9137,7 +9209,7 @@ function _isInAppBrowser() {
 // Modal de instalación
 window.abrirModalApp = function() {
   var modal = document.getElementById('modalInstalarApp');
-  if (modal) { modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+  if (modal) { modal.classList.remove('hidden'); _congelarFondo(); }
   if (!history.state || history.state.view !== 'appModal') {
     _palPushOverlay('appModal');
   }
@@ -9150,7 +9222,7 @@ window.abrirModalApp = function() {
 };
 window.cerrarModalApp = function() {
   var modal = document.getElementById('modalInstalarApp');
-  if (modal) { modal.classList.add('hidden'); document.body.style.overflow = ''; }
+  if (modal) { modal.classList.add('hidden'); _descongelarFondo(); }
 };
 window.switchTabApp = function(tab) {
   ['android','ios'].forEach(function(t) {
@@ -10023,7 +10095,7 @@ body.min-redesign:not(.hv-home) .header .min-header-cart{display:none!important}
 (function(){
   window.abrirModalApp=function(){};
   window.cerrarModalApp=function(){
-    document.body.style.overflow='';
+    _descongelarFondo();
     var modal=document.getElementById('modalInstalarApp');
     if(modal) modal.classList.add('hidden');
   };
