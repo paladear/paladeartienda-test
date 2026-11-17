@@ -1232,8 +1232,12 @@ body.cart-open #cart-fab,body.cart-open #chat-fab{display:none!important}
 .product-detail-cart-state .card-cart-actions{margin-top:9px}
 .product-detail-cart-state .card-del-btn,.product-detail-cart-state .card-edit-btn{height:36px}
 
-.min-redesign .pcard{cursor:pointer}
+/* La mano sólo donde de verdad se abre la ficha: la foto y el nombre. Antes
+   estaba en toda la tarjeta y prometía algo que ya no hace. */
+.min-redesign .pcard{cursor:default}
 .min-redesign .pcard-img{cursor:pointer}
+.min-redesign .pcard-name{cursor:pointer}
+.min-redesign .pcard-name:focus-visible{outline:3px solid #5d94bb;outline-offset:2px;border-radius:6px}
 .min-redesign .pcard:focus-visible{outline:3px solid #5d94bb;outline-offset:3px}
 @media(max-width:760px){
   .product-detail-bar{min-height:62px;padding:8px 12px}
@@ -3839,10 +3843,22 @@ window.addEventListener('pageshow',function(){ if(_capasAbiertas===0 && document
   function ajustar(){
     if (!hojaActiva) return;
     hojaActiva.style.maxHeight = Math.round(vv.height) + 'px';
+    /* La capa de atrás también: si sólo achicábamos la hoja, el fondo de la capa
+       asomaba abajo como una franja celeste entre la hoja y el teclado. Y en iOS
+       el teclado además desplaza lo visible, así que hay que seguir ese
+       desplazamiento o la capa queda corrida. */
+    var capa = hojaActiva.closest('.checkout-overlay');
+    if (capa) {
+      capa.style.height = Math.round(vv.height) + 'px';
+      capa.style.top = Math.round(vv.offsetTop) + 'px';
+      capa.style.bottom = 'auto';
+    }
   }
   function soltar(){
     if (!hojaActiva) return;
     hojaActiva.style.maxHeight = '';
+    var capa = hojaActiva.closest('.checkout-overlay');
+    if (capa) { capa.style.height=''; capa.style.top=''; capa.style.bottom=''; }
     hojaActiva = null;
   }
   document.addEventListener('focusin', function(e){
@@ -3865,6 +3881,7 @@ window.addEventListener('pageshow',function(){ if(_capasAbiertas===0 && document
     }, 60);
   });
   vv.addEventListener('resize', ajustar);
+  vv.addEventListener('scroll', ajustar);
 })();
 
 function _sortOpts(opts){
@@ -4171,16 +4188,19 @@ function renderCard(p,prefix,prioritizeImage){
   const acumLbl=_acumLabel(p);
   const oferta=p[12]&&p[12].oferta?p[12].oferta:0;
   const favOn=_isFavoriteProduct(p);
-  let h=`<div class="pcard" id="${id}" data-pid="${p[0]}" tabindex="0" onclick="if(!event.target.closest('button,select'))openProductDetail(${p[0]})" onkeydown="if(event.key==='Enter'&&event.target===this)openProductDetail(${p[0]})">`;
+  // La tarjeta entera ya NO abre la ficha: sólo la foto, el nombre y la "i".
+  // Así el que pide rápido puede tocar + y − sin que se le abra el detalle.
+  const _abrir=`onclick="openProductDetail(${p[0]})"`;
+  let h=`<div class="pcard" id="${id}" data-pid="${p[0]}">`;
   h+=`<button type="button" class="fav-btn${favOn?' active':''}" data-fav-pid="${p[0]}" onclick="event.stopPropagation();return toggleFavorite(${p[0]})" aria-label="${favOn?'Quitar de favoritos':'Agregar a favoritos'}" aria-pressed="${favOn?'true':'false'}" title="${favOn?'Quitar de favoritos':'Agregar a favoritos'}"><span class="fav-heart" aria-hidden="true"></span></button>`;
   if(oferta>0)h+=`<div class="oferta-badge oferta-badge-lg">−${oferta}% OFF</div>`;
   // El recuadro de la foto se pinta del color del fondo de la propia foto, así
   // la imagen se funde con la tarjeta aunque el fondo no sea blanco puro.
   const _fondo=(p[12]&&p[12].fondo)?` style="background:${p[12].fondo}"`:'';
   const imgLoading=prioritizeImage?'loading="eager" fetchpriority="high"':'loading="lazy"';
-  h+=`<div class="pcard-img"${_fondo}>${hasSrc?`<img src="${p[6]}" alt="${p[2]}" onerror="this.style.display='none'" ${imgLoading} decoding="async">`:`<span class="product-image-placeholder" aria-hidden="true"></span>`}</div>`;
+  h+=`<div class="pcard-img" ${_abrir}${_fondo}>${hasSrc?`<img src="${p[6]}" alt="${p[2]}" onerror="this.style.display='none'" ${imgLoading} decoding="async">`:`<span class="product-image-placeholder" aria-hidden="true"></span>`}</div>`;
   h+=`<div class="pcard-body">`;
-  h+=`<div class="pcard-head"><div class="pcard-name">${_nomHTML(p)}</div>`;
+  h+=`<div class="pcard-head"><div class="pcard-name" ${_abrir} tabindex="0" onkeydown="if(event.key==='Enter')openProductDetail(${p[0]})" role="button">${_nomHTML(p)}</div>`;
   if(infoText)h+=`<button class="info-btn" onclick="openProductDetail(${p[0]})" title="Ver detalle" aria-label="Ver detalle"><span aria-hidden="true">i</span></button>`;
   h+=`</div>`;
   if(p[3]&&p[3]!=='Varios'&&p[3]!=='Granel')h+=`<div class="pcard-brand">${p[3]}</div>`;
@@ -4615,7 +4635,7 @@ function _cuentaDirRowHTML(d,i){
   return '<div class="cta-dir-row" data-oi="'+i+'">'
     +'<div class="cta-dir-row-head"><span class="cta-dir-row-title">Dirección '+(i+1)+'</span><button type="button" class="cta-dir-del" onclick="_cuentaDelDir(this)" aria-label="Quitar dirección">✕</button></div>'
     +'<div class="co-field-row">'
-      +'<div class="co-field" style="flex:2;margin-bottom:0"><label>Calle <span style="color:#e53935">*</span></label><input type="text" class="co-input cta-calle" placeholder="Ej: San Martín" autocomplete="address-line1" value="'+_ctaEsc(d.calle||'')+'"></div>'
+      +'<div class="co-field" style="flex:2;margin-bottom:0"><label>Calle <span style="color:#e53935">*</span></label><input type="text" class="co-input cta-calle" placeholder="Ej: Patricias Mendocinas" autocomplete="address-line1" value="'+_ctaEsc(d.calle||'')+'"></div>'
       +'<div class="co-field" style="flex:1;margin-bottom:0"><label>Número <span style="color:#e53935">*</span></label><input type="text" class="co-input cta-numero" placeholder="Ej: 1234" inputmode="numeric" value="'+_ctaEsc(d.num||'')+'"></div>'
     +'</div>'
     +'<div class="co-field-row" style="margin-top:10px">'
@@ -4626,7 +4646,7 @@ function _cuentaDirRowHTML(d,i){
       +'<div class="co-field" style="flex:1;margin-bottom:0"><label>Piso / Depto <span class="opt-lbl">(opcional)</span></label><input type="text" class="co-input cta-piso" placeholder="Ej: 3°B" value="'+_ctaEsc(d.piso||'')+'"></div>'
       +'<div class="co-field" style="flex:1.4;margin-bottom:0"><label>Tipo <span class="opt-lbl">(opcional)</span></label><div class="co-tipo-opts"><label class="co-tipo-radio"><input type="radio" name="ctaTipo_'+i+'" value="casa"'+tipoCasa+'><span>🏠 Casa</span></label><label class="co-tipo-radio"><input type="radio" name="ctaTipo_'+i+'" value="depto"'+tipoDepto+'><span>🏢 Depto</span></label></div></div>'
     +'</div>'
-    +'<div class="co-field" style="margin-top:10px;margin-bottom:0"><label>Entre calles <span class="opt-lbl">(opcional)</span></label><input type="text" class="co-input cta-entre" placeholder="Ej: entre Belgrano y San Martín" value="'+_ctaEsc(d.entre||'')+'"></div>'
+    +'<div class="co-field" style="margin-top:10px;margin-bottom:0"><label>Entre calles <span class="opt-lbl">(opcional)</span></label><input type="text" class="co-input cta-entre" placeholder="Ej: entre Rioja y Catamarca" value="'+_ctaEsc(d.entre||'')+'"></div>'
     +'<div class="co-field" style="margin-top:10px;margin-bottom:0"><label>Indicaciones para llegar <span class="opt-lbl">(opcional)</span></label><textarea class="co-input cta-indic" placeholder="Ej: casa rosada, tocar timbre 2 veces" rows="2">'+_ctaEsc(d.indic||'')+'</textarea></div>'
     +'</div>';
 }
@@ -9562,7 +9582,7 @@ window.copiarLinkParaNavegador = function() {
             <div class="co-field-row">
               <div class="co-field" style="flex:2;margin-bottom:0">
                 <label>Calle <span style="color:#e53935">*</span></label>
-                <input type="text" id="coCalle" placeholder="Ej: San Martín" class="co-input" autocomplete="address-line1">
+                <input type="text" id="coCalle" placeholder="Ej: Patricias Mendocinas" class="co-input" autocomplete="address-line1">
               </div>
               <div class="co-field" style="flex:1;margin-bottom:0">
                 <label>Número <span style="color:#e53935">*</span></label>
@@ -9599,7 +9619,7 @@ window.copiarLinkParaNavegador = function() {
         </div>
         <div class="co-field">
           <label>Entre calles <span class="opt-lbl">(opcional)</span></label>
-          <input type="text" id="coEntreCalles" placeholder="Ej: entre Belgrano y San Martín" class="co-input">
+          <input type="text" id="coEntreCalles" placeholder="Ej: entre Rioja y Catamarca" class="co-input">
         </div>
         <div class="co-field">
           <label>Indicaciones para llegar <span class="opt-lbl">(opcional)</span></label>
