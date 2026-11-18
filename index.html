@@ -3634,6 +3634,9 @@ function _estadoFicha(p){
   const lineas=cart.filter(i=>i.pid===p[0]);
   if(!lineas.length)return'';
   const esMay=cart.reduce((a,i)=>a+_itemMin(i),0)>=80000;
+  /* La presentacion solo se nombra si el producto tiene mas de una: en los de
+     una sola, poner "1 UNIDAD" al lado de la cantidad no agrega nada. */
+  const variasOpts=Object.keys(p[7]||{}).length>1;
   let filas='',total=0;
   lineas.forEach(function(it){
     const sMin=_itemMin(it),sMay=_itemMay(it),pct=_ofertaDeItem(it),sOf=_itemMinConOferta(it);
@@ -3657,7 +3660,7 @@ function _estadoFicha(p){
     const uni=(pct>0&&!esMay)?'Oferta -'+pct+'%':'$'+fmt(it.l1)+(it.unidad==='kg'?'/kg':' c/u');
     const etiqueta=it.unidad==='mix'
       ?'Armado a medida'
-      :(it.unidad==='kg'?uni:_medidaCorta(String(it.o||''))+' \u00b7 '+uni)+(it.sabor?' \u00b7 '+it.sabor:'');
+      :(it.unidad==='kg'||!variasOpts?uni:_medidaCorta(String(it.o||''))+' \u00b7 '+uni)+(it.sabor?' \u00b7 '+it.sabor:'');
     filas+='<div class="pdl-row"><div class="pdl-info">'
       +'<span class="pdl-opt">'+etiqueta+'</span>'
       +'<span class="pdl-sub">'+precio+'</span>'
