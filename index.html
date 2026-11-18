@@ -1206,6 +1206,14 @@ body.cart-open #cart-fab,body.cart-open #chat-fab{display:none!important}
 .product-detail-bar{position:sticky;top:0;z-index:3;min-height:68px;padding:10px 18px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:10px;background:rgba(207,229,242,.97);color:var(--min-blue-deep);
   box-shadow:0 5px 16px rgba(20,58,87,.08)}
 .product-detail-bar strong{text-align:center;font-size:15px;font-weight:800;letter-spacing:.02em}
+.product-detail-tit{display:flex;align-items:center;gap:7px;min-width:0}
+.product-detail-tit>strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Copiar el link de la pagina del producto (/p/...). Discreto a proposito:
+   lo usa el equipo para pasar un producto por WhatsApp, no el cliente. */
+.pd-copy{flex:none;width:26px;height:26px;padding:0;border:0;border-radius:7px;background:transparent;color:inherit;opacity:.34;cursor:pointer;display:grid;place-items:center;transition:opacity .15s,background .15s}
+.pd-copy:hover,.pd-copy:focus-visible{opacity:.9;background:rgba(255,255,255,.55)}
+.pd-copy svg{width:15px;height:15px;display:block}
+.pd-copy.pd-copy-ok{opacity:.95;color:#17724a}
 .product-detail-back,.product-detail-close{width:42px;height:42px;border:1px solid rgba(20,58,87,.16);border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--min-blue-deep);cursor:pointer;font-family:inherit;box-shadow:0 2px 7px rgba(20,58,87,.1)}
 .product-detail-close{font-size:24px;line-height:1}
 .product-detail-shell{width:min(1100px,calc(100% - 40px));margin:0 auto;padding:34px 0 52px}
@@ -1226,6 +1234,19 @@ body.cart-open #cart-fab,body.cart-open #chat-fab{display:none!important}
 .product-detail-buy .prices{margin:4px 0 14px;padding:14px;border-radius:14px;background:#edf5f9}
 .product-detail-buy .qty-row{justify-content:center;margin:4px 0 12px}
 .product-detail-buy .add-btn{min-height:50px;margin:0;font-size:15px}
+.pd-lines{margin-top:10px;text-align:left;border:1px solid rgba(20,58,87,.14);border-radius:12px;background:#fff;overflow:hidden;font-weight:400}
+.pd-lines-tit{padding:7px 12px;background:rgba(207,229,242,.55);font-size:11px;letter-spacing:.05em;text-transform:uppercase;font-weight:800;color:#2d5d80}
+.pdl-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border-top:1px solid rgba(20,58,87,.09)}
+.pdl-info{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
+.pdl-opt{font-size:12px;font-weight:600;color:#1a3050;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pdl-sub{font-size:14px;font-weight:800;color:#17406a;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.pdl-acc{flex:none;display:flex;align-items:center;gap:4px}
+.product-detail-cart-state .pdl-q{width:26px;height:26px;font-size:15px}
+.pdl-c{font-size:12px;font-weight:700;min-width:46px;text-align:center;color:#1a3050}
+.product-detail-cart-state .pdl-del{height:30px;width:30px}
+.pd-lines-tot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px;border-top:1px solid rgba(20,58,87,.14);background:rgba(207,229,242,.35);font-size:13px;font-weight:800;color:#17406a}
+.pd-lines-edit{display:block;width:100%;padding:8px 12px;border:0;border-top:1px solid rgba(20,58,87,.09);background:transparent;color:#2d6ea0;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.pd-lines-edit:hover{background:rgba(207,229,242,.45)}
 .product-detail-cart-state{min-height:20px;margin-top:10px;text-align:center;color:#426c88;font-size:12px;font-weight:700}
 .product-detail-cart-state .card-cart-actions{margin-top:9px}
 .product-detail-cart-state .card-del-btn,.product-detail-cart-state .card-edit-btn{height:36px}
@@ -2711,7 +2732,7 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
   .min-redesign .min-home-cats{padding:21px 14px 18px}.min-redesign .min-home-categories-head{margin-bottom:14px}.min-redesign .min-home-categories-head .min-section-kicker{font-size:12px}
   /* Cuatro en fila: al deslizar entran cuatro categorías nuevas de una, en vez
      de un bloque de 2x2 donde se ven dos al lado del otro. */
-  .min-redesign .hv-cat-page{grid-template-columns:repeat(4,minmax(0,1fr));gap:0 6px}
+  .min-redesign .hv-cat-page{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}
   .min-redesign .hv-cat{min-height:128px}.min-redesign .hv-cat .bub{width:102px;height:102px}
 .hv-cat{gap:0}
 
@@ -3569,7 +3590,7 @@ function openProductDetail(pid){
   modal.id='productDetail';modal.className='product-detail';modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');modal.setAttribute('aria-label','Detalle de '+_tc(p[2]));
   modal.innerHTML=`<div class="product-detail-bar">
     <button class="product-detail-back" type="button" onclick="closeProductDetail()" aria-label="Volver"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
-    <strong>Detalle del producto</strong>
+    <span class="product-detail-tit"><strong>Detalle del producto</strong><button class="pd-copy" type="button" onclick="_copiarLinkProducto(${p[0]})" title="Copiar el link de este producto" aria-label="Copiar el link de este producto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/></svg></button></span>
     <button class="product-detail-close" type="button" onclick="closeProductDetail()" aria-label="Cerrar">×</button>
   </div><div class="product-detail-shell"><div class="product-detail-main">
     <div class="product-detail-image" style="background:${fondo}">${src?`<img src="${src}" alt="${p[2]}" decoding="async">`:'<span class="product-image-placeholder" aria-hidden="true"></span>'}</div>
@@ -3603,22 +3624,55 @@ window.openProductDetail=openProductDetail;
 /* Lo que está en el carrito, dentro de la ficha abierta: el texto más el tacho y
    el botón de editar, los mismos que tiene la tarjeta chica. Antes la ficha sólo
    decía cuánto había y había que cerrarla para sacarlo. */
+/* Lo que esta en el carrito, renglon por renglon y con su subtotal. Antes solo
+   decia "En tu carrito: 500 g" y para cambiar una cantidad o sacar una sola
+   presentacion habia que abrir el carrito. Ahora cada renglon trae su propio
+   mas/menos y su tacho, y los numeros son los MISMOS que muestra el carrito:
+   se usan _itemMin/_itemMay/_itemMinConOferta y el mismo corte de $80.000. */
+function _escKey(k){ return String(k).replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
 function _estadoFicha(p){
-  const acum=_acumLabel(p);
-  if(!acum)return'';
-  return 'En tu carrito: '+acum+
-    '<div class="card-cart-actions">'+
-      '<button class="card-del-btn" onclick="_fichaQuitar('+p[0]+')" title="Quitar del carrito">'+TRASH_SVG+'</button>'+
-      '<button class="card-edit-btn" onclick="openCart();_resaltarEnCarrito('+p[0]+')" title="Editar en el carrito">'+EDIT_SVG+' Editar</button>'+
-    '</div>';
+  const lineas=cart.filter(i=>i.pid===p[0]);
+  if(!lineas.length)return'';
+  const esMay=cart.reduce((a,i)=>a+_itemMin(i),0)>=80000;
+  let filas='',total=0;
+  lineas.forEach(function(it){
+    const sMin=_itemMin(it),sMay=_itemMay(it),pct=_ofertaDeItem(it),sOf=_itemMinConOferta(it);
+    total+=esMay?sMay:(pct>0?sOf:sMin);
+    const precio=esMay
+      ?'<span class="precio-tachado-sm">$'+fmt(sMin)+'</span><span class="cart-price-desc">$'+fmt(sMay)+'</span>'
+      :pct>0
+        ?'<span class="precio-tachado-sm">$'+fmt(sMin)+'</span><span class="precio-oferta">$'+fmt(sOf)+'</span>'
+        :'$'+fmt(sMin);
+    const qLbl=_itemCount(it);
+    const k=_escKey(it.key);
+    const ctrl=it.unidad==='mix'
+      ?'<span class="pdl-c">'+_gLabel(it.totalG)+'</span>'
+      :'<button class="qty-btn pdl-q" onclick="_fichaQty(\''+k+'\','+p[0]+',-1)" aria-label="Restar cantidad">\u2212</button>'
+        +'<span class="pdl-c">'+qLbl+'</span>'
+        +'<button class="qty-btn pdl-q" onclick="_fichaQty(\''+k+'\','+p[0]+',1)" aria-label="Sumar cantidad">+</button>';
+    const etiqueta=it.unidad==='mix'?'Armado a medida':_tc(String(it.o||''))+(it.sabor?' \u00b7 '+it.sabor:'');
+    filas+='<div class="pdl-row"><div class="pdl-info">'
+      +'<span class="pdl-opt">'+etiqueta+'</span>'
+      +'<span class="pdl-sub">'+precio+'</span>'
+      +'</div><div class="pdl-acc">'+ctrl
+      +'<button class="card-del-btn pdl-del" onclick="_fichaDelLinea(\''+k+'\','+p[0]+')" title="Quitar este renglon" aria-label="Quitar este renglon">'+TRASH_SVG+'</button>'
+      +'</div></div>';
+  });
+  const totalHTML=lineas.length>1
+    ?'<div class="pd-lines-tot"><span>Subtotal del producto</span><span>$'+fmt(total)+'</span></div>'
+    :'';
+  return '<div class="pd-lines"><div class="pd-lines-tit">En tu carrito</div>'+filas+totalHTML
+    +'<button type="button" class="pd-lines-edit" onclick="openCart();_resaltarEnCarrito('+p[0]+')">Ver en el carrito</button></div>';
 }
-function _fichaQuitar(pid){
-  cardDelProduct(pid);
+function _refrescarFicha(pid){
   const p=PRODS.find(x=>x[0]===pid),st=document.getElementById('productDetailCartState');
   if(p&&st)st.innerHTML=_estadoFicha(p);
 }
+function _fichaQty(key,pid,d){ cartQty(key,d); _refrescarFicha(pid); }
+function _fichaDelLinea(key,pid){ cartDel(key); _refrescarFicha(pid); }
 window._estadoFicha=_estadoFicha;
-window._fichaQuitar=_fichaQuitar;
+window._fichaQty=_fichaQty;
+window._fichaDelLinea=_fichaDelLinea;
 
 /* ── PRODUCTOS RELACIONADOS ───────────────────────────────────────────────────
    Se arman por cercanía real, no al azar: primero lo de la misma marca (que es lo
@@ -5834,6 +5888,46 @@ function _urlDeProducto(p){
     return _BASE_TIENDA+'?producto='+encodeURIComponent(sl);
   }catch(e){ return ''; }
 }
+/* ── LINK DE LA PAGINA DEL PRODUCTO (/p/...) ─────────────────────────────────
+   La barra de direcciones sigue mostrando ?producto=, porque cambiarla a /p/
+   hace que las fotos del catalogo se resuelvan desde esa carpeta y den 404.
+   Pero la pagina /p/ es la unica que lleva la foto del producto en la
+   previsualizacion de WhatsApp, asi que el boton de copiar reparte ESA.
+   El slug se arma igual que en scripts/generate-product-pages.mjs: nombre y
+   productId pasados por _slugPal. El productId ya viene sin puntos ni coma
+   desde que se lee el CSV, que es lo que hace tambien el generador. */
+function _urlPaginaProducto(p){
+  try{
+    var art=(p&&p[12]&&p[12].productId)||'';
+    if(!art) return '';
+    var sl=_slugPal(p[2])+'-'+_slugPal(art);
+    if(!sl||sl.charAt(0)==='-') return '';
+    return location.origin+_BASE_TIENDA+'p/'+sl+'/';
+  }catch(e){ return ''; }
+}
+function _copiarLinkProducto(pid){
+  var p=(typeof PRODS!=='undefined'&&PRODS)?PRODS.find(function(x){return x[0]===pid;}):null;
+  var url=_urlPaginaProducto(p);
+  if(!url) return;
+  var btn=document.querySelector('#productDetail .pd-copy');
+  function listo(ok){
+    if(ok&&btn){ btn.classList.add('pd-copy-ok'); setTimeout(function(){ btn.classList.remove('pd-copy-ok'); },1400); }
+    try{ if(typeof _avisoCompartir==='function'){ _avisoCompartir(ok?'Link copiado':url); return; } }catch(e){}
+    if(!ok) window.prompt('Copiá el link:', url);
+  }
+  function aMano(){
+    try{
+      var ta=document.createElement('textarea');
+      ta.value=url; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      listo(true);
+    }catch(e){ listo(false); }
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){ listo(true); }, aMano);
+  } else aMano();
+}
+window._copiarLinkProducto=_copiarLinkProducto;
 function _marcarURL(u){
   if(!u) return;
   try{ history.replaceState(history.state, '', u); }catch(e){}
@@ -9845,6 +9939,11 @@ window.copiarLinkParaNavegador = function() {
     gap:16px 12px!important;scroll-snap-align:start;scroll-snap-stop:always
   }
   .min-redesign .hv-cat{min-height:132px!important;gap:8px!important}
+  /* Sólo la PÁGINA es punto de anclaje. Cada categoría también lo era, así que
+     al deslizar el dedo el carrusel se frenaba en la columna del medio: las dos
+     de la derecha volvían a aparecer en el slide siguiente. Con tres clases
+     gana sobre las dos reglas que lo ponían, sin depender del orden. */
+  .min-redesign .hv-cats-scroller .hv-cat{scroll-snap-align:none}
 }
 
 /* ── PANEL DE CATEGORIAS (hamburguesa) ──────────────────────────────
