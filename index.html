@@ -3650,7 +3650,14 @@ function _estadoFicha(p){
       :'<button class="qty-btn pdl-q" onclick="_fichaQty(\''+k+'\','+p[0]+',-1)" aria-label="Restar cantidad">\u2212</button>'
         +'<span class="pdl-c">'+qLbl+'</span>'
         +'<button class="qty-btn pdl-q" onclick="_fichaQty(\''+k+'\','+p[0]+',1)" aria-label="Sumar cantidad">+</button>';
-    const etiqueta=it.unidad==='mix'?'Armado a medida':_tc(String(it.o||''))+(it.sabor?' \u00b7 '+it.sabor:'');
+    /* En granel el it.o guardado es la opcion de REFERENCIA (el kilo), no lo que
+       eligio el cliente: eso esta en los gramos acumulados, que ya salen al lado
+       del mas/menos. Poner "1kg" al lado de "100 g" confunde, asi que en granel
+       la etiqueta informa el precio por kilo, igual que hace el carrito. */
+    const uni=(pct>0&&!esMay)?'Oferta -'+pct+'%':'$'+fmt(it.l1)+(it.unidad==='kg'?'/kg':' c/u');
+    const etiqueta=it.unidad==='mix'
+      ?'Armado a medida'
+      :(it.unidad==='kg'?uni:_medidaCorta(String(it.o||''))+' \u00b7 '+uni)+(it.sabor?' \u00b7 '+it.sabor:'');
     filas+='<div class="pdl-row"><div class="pdl-info">'
       +'<span class="pdl-opt">'+etiqueta+'</span>'
       +'<span class="pdl-sub">'+precio+'</span>'
