@@ -1,6 +1,6 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-18T19:29:31",
+ "actualizado": "2026-11-18T19:50:26",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 605,
@@ -11,7 +11,7 @@
    "nombre": "ACEITE COCO NEUTRO ENTRENUTS \"SIN TACC\" x 200",
    "rubro": "ACEITES Y VINAGRES",
    "precio_minorista": 6010.0,
-   "precio_mayorista": 5280.0,
+   "precio_mayorista": 4810.0,
    "disponible": "si",
    "cantidad": 6.0
   },
@@ -19,8 +19,8 @@
    "articulo": "2141",
    "nombre": "ACEITE COCO NEUTRO ENTRENUTS \"SIN TACC\" x 360 G",
    "rubro": "ACEITES Y VINAGRES",
-   "precio_minorista": 8480.0,
-   "precio_mayorista": 7250.0,
+   "precio_minorista": 8230.0,
+   "precio_mayorista": 6590.0,
    "disponible": "si",
    "cantidad": 37.0
   },
@@ -29,7 +29,7 @@
    "nombre": "ACEITE COCO VIRGEN ENTRENUTS \"SIN TACC\" X 200 g",
    "rubro": "ACEITES Y VINAGRES",
    "precio_minorista": 10320.0,
-   "precio_mayorista": 9080.0,
+   "precio_mayorista": 8250.0,
    "disponible": "si",
    "cantidad": 21.0
   },
@@ -37,8 +37,8 @@
    "articulo": "2266",
    "nombre": "ACEITE COCO VIRGEN ENTRENUTS \"SIN TACC\" X 360 g",
    "rubro": "ACEITES Y VINAGRES",
-   "precio_minorista": 17680.0,
-   "precio_mayorista": 15290.0,
+   "precio_minorista": 17160.0,
+   "precio_mayorista": 13730.0,
    "disponible": "si",
    "cantidad": 34.0
   },
@@ -1696,7 +1696,7 @@
    "precio_minorista": 12930.0,
    "precio_mayorista": 10370.0,
    "disponible": "si",
-   "cantidad": 4.29
+   "cantidad": 4.24
   },
   {
    "articulo": "2051",
@@ -1723,7 +1723,7 @@
    "precio_minorista": 16310.0,
    "precio_mayorista": 13050.0,
    "disponible": "si",
-   "cantidad": 1.735
+   "cantidad": 1.685
   },
   {
    "articulo": "1240",
@@ -2035,8 +2035,8 @@
    "articulo": "2115",
    "nombre": "GALLETAS CACHAFAZ INTEGRALES",
    "rubro": "SNACK",
-   "precio_minorista": 4120.0,
-   "precio_mayorista": 3510.0,
+   "precio_minorista": 4250.0,
+   "precio_mayorista": 3630.0,
    "disponible": "si",
    "cantidad": 26.0
   },
@@ -2053,8 +2053,8 @@
    "articulo": "2111",
    "nombre": "GALLETAS SLIM DOS HERMANO \"SIN TACC\"",
    "rubro": "PRODUCTOS SIN TACC",
-   "precio_minorista": 1610.0,
-   "precio_mayorista": 1380.0,
+   "precio_minorista": 2300.0,
+   "precio_mayorista": 1970.0,
    "disponible": "si",
    "cantidad": 42.0
   },
