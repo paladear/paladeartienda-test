@@ -1,0 +1,5455 @@
+{
+ "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
+ "actualizado": "2026-11-18T15:36:59",
+ "origen": "E-Pyme sucursal",
+ "unidad": "tienda minorista",
+ "cantidad_articulos": 605,
+ "sin_stock": 60,
+ "items": [
+  {
+   "articulo": "2265",
+   "nombre": "ACEITE COCO NEUTRO ENTRENUTS \"SIN TACC\" x 200",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 6010.0,
+   "precio_mayorista": 5280.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "2141",
+   "nombre": "ACEITE COCO NEUTRO ENTRENUTS \"SIN TACC\" x 360 G",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 8480.0,
+   "precio_mayorista": 7250.0,
+   "disponible": "si",
+   "cantidad": 37.0
+  },
+  {
+   "articulo": "2142",
+   "nombre": "ACEITE COCO VIRGEN ENTRENUTS \"SIN TACC\" X 200 g",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 10320.0,
+   "precio_mayorista": 9080.0,
+   "disponible": "si",
+   "cantidad": 21.0
+  },
+  {
+   "articulo": "2266",
+   "nombre": "ACEITE COCO VIRGEN ENTRENUTS \"SIN TACC\" X 360 g",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 17680.0,
+   "precio_mayorista": 15290.0,
+   "disponible": "si",
+   "cantidad": 34.0
+  },
+  {
+   "articulo": "2467",
+   "nombre": "ACEITE DE HIBISCUS 30 ml \"SOMOS SETAS\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 13370.0,
+   "precio_mayorista": 11750.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2386",
+   "nombre": "ACEITE DE LINO X 150 cc \"NUTRA SEM\"",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 10650.0,
+   "precio_mayorista": 9080.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2387",
+   "nombre": "ACEITE DE LINO X 250 cc \"NUTRA SEM\"",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 18220.0,
+   "precio_mayorista": 15540.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1908",
+   "nombre": "ACEITE DE OLIVA 3 L VERDE OLIVA",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 22220.0,
+   "precio_mayorista": 17490.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "1909",
+   "nombre": "ACEITE DE OLIVA 5 L VERDE OLIVA",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 35140.0,
+   "precio_mayorista": 27690.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2119",
+   "nombre": "ACEITE DE OLIVA 500 PET VERDE OLIVA",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 4630.0,
+   "precio_mayorista": 4070.0,
+   "disponible": "si",
+   "cantidad": 18.0
+  },
+  {
+   "articulo": "1894",
+   "nombre": "ACEITE DE OLIVA 900ML VERDE OLIVA",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 6690.0,
+   "precio_mayorista": 5280.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "1013",
+   "nombre": "ACEITE DE OLIVA PANNOCCHIA X 500ML",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 16980.0,
+   "precio_mayorista": 13390.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "1011",
+   "nombre": "ACEITE DE OLIVA PANNOCCHIA X1L",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 27530.0,
+   "precio_mayorista": 21700.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "1014",
+   "nombre": "ACEITE DE OLIVA PANNOCCHIA X5L",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 131190.0,
+   "precio_mayorista": 103350.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1008",
+   "nombre": "ACEITE DE OLIVA X 3 L R.V.",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 64940.0,
+   "precio_mayorista": 51180.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "1007",
+   "nombre": "ACEITE DE OLIVA X 5 L R.V.",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 107210.0,
+   "precio_mayorista": 84470.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1002",
+   "nombre": "ACEITE DE OLIVA X 500 CC LAUR",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 15530.0,
+   "precio_mayorista": 12240.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1009",
+   "nombre": "ACEITE DE OLIVA X 500 CC R.V.",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 13530.0,
+   "precio_mayorista": 10660.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "1010",
+   "nombre": "ACEITE DE OLIVA X 900 CC R.V.",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 22430.0,
+   "precio_mayorista": 17680.0,
+   "disponible": "si",
+   "cantidad": 12.0
+  },
+  {
+   "articulo": "1012",
+   "nombre": "ACEITE DE OLIVA X1 L VID. LAUR",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 31040.0,
+   "precio_mayorista": 24460.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2185",
+   "nombre": "ACEITE DE OREGANO X30CC \"SOMOS SETA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 14000.0,
+   "precio_mayorista": 12340.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "2378",
+   "nombre": "ACEITE DE SÉSAMO X 250 ML NATRUSEM",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 17080.0,
+   "precio_mayorista": 14580.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2377",
+   "nombre": "ACEITE PURO DE ALMENDRAS X 50 CC",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 6650.0,
+   "precio_mayorista": 5680.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2277",
+   "nombre": "ACEITE PURO DE ARGAN X 50CC",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 9950.0,
+   "precio_mayorista": 8490.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2493",
+   "nombre": "ACEITE PURO DE ARNICA X50cc",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 8653.0,
+   "precio_mayorista": 7126.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "2352",
+   "nombre": "ACEITE PURO DE RICINO \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 8030.0,
+   "precio_mayorista": 6860.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "5043",
+   "nombre": "ACEITE PURO DE ROSA MOSQUETA X50CC - EL NATURALISTA",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 6630.0,
+   "precio_mayorista": 5655.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2006",
+   "nombre": "ACEITERO SPRAY",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 8000.0,
+   "precio_mayorista": 6500.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1024",
+   "nombre": "ACEITUNAS GRIEGAS X 1 KG",
+   "rubro": "ACEITUNAS",
+   "precio_minorista": 16150.0,
+   "precio_mayorista": 12720.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "1025",
+   "nombre": "ACEITUNAS GRIEGAS X 1/2 KG",
+   "rubro": "ACEITUNAS",
+   "precio_minorista": 11180.0,
+   "precio_mayorista": 8810.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1036",
+   "nombre": "ACEITUNAS RELL. X 200 GR",
+   "rubro": "ACEITUNAS",
+   "precio_minorista": 6280.0,
+   "precio_mayorista": 4960.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1043",
+   "nombre": "ACEITUNAS VERDES X 1 KG Nº 00",
+   "rubro": "ACEITUNAS",
+   "precio_minorista": 14320.0,
+   "precio_mayorista": 11280.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1044",
+   "nombre": "ACEITUNAS VERDES X 1 KG Nº0",
+   "rubro": "ACEITUNAS",
+   "precio_minorista": 12830.0,
+   "precio_mayorista": 10100.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1045",
+   "nombre": "ACEITUNAS VERDES X 1 KG Nº1",
+   "rubro": "ACEITUNAS",
+   "precio_minorista": 11180.0,
+   "precio_mayorista": 8810.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "1049",
+   "nombre": "ACEITUNAS VERDES X 1/2 KG Nº 00",
+   "rubro": "ACEITUNAS",
+   "precio_minorista": 9350.0,
+   "precio_mayorista": 7360.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1050",
+   "nombre": "ACEITUNAS VERDES X 1/2 KG Nº 1",
+   "rubro": "ACEITUNAS",
+   "precio_minorista": 6340.0,
+   "precio_mayorista": 4990.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "1051",
+   "nombre": "ACEITUNAS VERDES X 1/2 KG Nº0",
+   "rubro": "ACEITUNAS",
+   "precio_minorista": 7450.0,
+   "precio_mayorista": 5860.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "1064",
+   "nombre": "ACETO BALSAMICO 500 CC PET \"CRISTO DE LOS CERROS\"",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 5680.0,
+   "precio_mayorista": 4520.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2416",
+   "nombre": "ACETO BALSAMICO MILLAN X 250 cc",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 10000.0,
+   "precio_mayorista": 7940.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1066",
+   "nombre": "ACETO REDUCCIÓN X 500 CC \"RECETAS DE ENTONCES\"",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 10540.0,
+   "precio_mayorista": 8300.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2346",
+   "nombre": "ACIDO ASCÓRBICO X KG",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 16220.0,
+   "precio_mayorista": 12800.0,
+   "disponible": "si",
+   "cantidad": 1.515
+  },
+  {
+   "articulo": "5006",
+   "nombre": "ACONDICIONADOR DE ROMERO Y ALOE VERA X300 CC - EL AMAUTA",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 11000.0,
+   "precio_mayorista": 8780.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5026",
+   "nombre": "ACONDICIONADOR SOLIDO",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 7900.0,
+   "precio_mayorista": 6240.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1068",
+   "nombre": "ADOBO PARA PIZZA X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 13040.0,
+   "precio_mayorista": 10430.0,
+   "disponible": "si",
+   "cantidad": 0.75
+  },
+  {
+   "articulo": "2205",
+   "nombre": "AGAR AGAR",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 25070.0,
+   "precio_mayorista": 19750.0,
+   "disponible": "si",
+   "cantidad": 0.3
+  },
+  {
+   "articulo": "1079",
+   "nombre": "AJI MOLIDO FINO X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 11250.0,
+   "precio_mayorista": 8870.0,
+   "disponible": "si",
+   "cantidad": 2.04
+  },
+  {
+   "articulo": "1082",
+   "nombre": "AJIES DULCES X 110 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 5380.0,
+   "precio_mayorista": 4270.0,
+   "disponible": "si",
+   "cantidad": 11.0
+  },
+  {
+   "articulo": "1084",
+   "nombre": "AJIES PICANTES X 110 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 5700.0,
+   "precio_mayorista": 4510.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1085",
+   "nombre": "AJO EN POLVO",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 7940.0,
+   "precio_mayorista": 6350.0,
+   "disponible": "si",
+   "cantidad": 2.615
+  },
+  {
+   "articulo": "1088",
+   "nombre": "AJO GRANULADO X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 15800.0,
+   "precio_mayorista": 12640.0,
+   "disponible": "si",
+   "cantidad": 1.6
+  },
+  {
+   "articulo": "2054",
+   "nombre": "AJO NEGRO X 50 CÁPSULAS \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 20460.0,
+   "precio_mayorista": 17830.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "4463",
+   "nombre": "AJO NEGRO XKG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 51980.0,
+   "precio_mayorista": 41580.0,
+   "disponible": "si",
+   "cantidad": 0.93
+  },
+  {
+   "articulo": "1099",
+   "nombre": "ALBAHACA EN HOJAS X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 10540.0,
+   "precio_mayorista": 8300.0,
+   "disponible": "si",
+   "cantidad": 1.965
+  },
+  {
+   "articulo": "1100",
+   "nombre": "ALCAPARRAS X 100 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 8610.0,
+   "precio_mayorista": 6790.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2513",
+   "nombre": "ALFAJOR SIN AZUCAR \"BANDA\"",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 1500.0,
+   "precio_mayorista": 1260.0,
+   "disponible": "si",
+   "cantidad": 4.93
+  },
+  {
+   "articulo": "5049",
+   "nombre": "ALFAJORES DE NUEZ SIN TACC",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 6000.0,
+   "precio_mayorista": 5700.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2027",
+   "nombre": "ALFAJORES MAICENA SIN TACC X 6 unidades",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 5300.0,
+   "precio_mayorista": 5170.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "1842",
+   "nombre": "ALMENDRA NONPAREIL X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 39600.0,
+   "precio_mayorista": 34800.0,
+   "disponible": "si",
+   "cantidad": 7.68
+  },
+  {
+   "articulo": "2001",
+   "nombre": "ALMENDRAS CON CHOCO xKG",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 51590.0,
+   "precio_mayorista": 44010.0,
+   "disponible": "si",
+   "cantidad": 5.4
+  },
+  {
+   "articulo": "1113",
+   "nombre": "ALMIDON DE MAIZ X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 3060.0,
+   "precio_mayorista": 2450.0,
+   "disponible": "si",
+   "cantidad": 9.26
+  },
+  {
+   "articulo": "1114",
+   "nombre": "ALMOHADITAS 2 SALVADO X KG.",
+   "rubro": "CEREALES",
+   "precio_minorista": 7850.0,
+   "precio_mayorista": 6190.0,
+   "disponible": "si",
+   "cantidad": 4.155
+  },
+  {
+   "articulo": "1115",
+   "nombre": "ALMOHADITAS CHOCOLATE X KG.",
+   "rubro": "CEREALES",
+   "precio_minorista": 12640.0,
+   "precio_mayorista": 9960.0,
+   "disponible": "si",
+   "cantidad": 4.38
+  },
+  {
+   "articulo": "1117",
+   "nombre": "ALMOHADITAS FRUTILLA X KG.",
+   "rubro": "CEREALES",
+   "precio_minorista": 11790.0,
+   "precio_mayorista": 9280.0,
+   "disponible": "si",
+   "cantidad": 6.58
+  },
+  {
+   "articulo": "1118",
+   "nombre": "ALMOHADITAS LIMON X KG.",
+   "rubro": "CEREALES",
+   "precio_minorista": 11790.0,
+   "precio_mayorista": 9280.0,
+   "disponible": "si",
+   "cantidad": 4.49
+  },
+  {
+   "articulo": "2323",
+   "nombre": "ALOE VERA DIGESTIVO BEBIBLE X250 \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 16980.0,
+   "precio_mayorista": 14790.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2044",
+   "nombre": "ALOE VERA JUGO X 250 ML \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 13010.0,
+   "precio_mayorista": 11340.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "2325",
+   "nombre": "ALOE VERA JUGO X 500 ML\" NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 16820.0,
+   "precio_mayorista": 15740.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1121",
+   "nombre": "ANILLOS DE AVENA Y MIEL X KG.",
+   "rubro": "CEREALES",
+   "precio_minorista": 12110.0,
+   "precio_mayorista": 9540.0,
+   "disponible": "si",
+   "cantidad": 3.46
+  },
+  {
+   "articulo": "1122",
+   "nombre": "ANILLOS FRUTADOS X KG.",
+   "rubro": "CEREALES",
+   "precio_minorista": 10910.0,
+   "precio_mayorista": 8580.0,
+   "disponible": "si",
+   "cantidad": 3.91
+  },
+  {
+   "articulo": "1123",
+   "nombre": "ANIS EN GRANO X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 20490.0,
+   "precio_mayorista": 16140.0,
+   "disponible": "si",
+   "cantidad": 1.585
+  },
+  {
+   "articulo": "1124",
+   "nombre": "ANIS ESTRELLADO X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 72820.0,
+   "precio_mayorista": 58270.0,
+   "disponible": "si",
+   "cantidad": 1.375
+  },
+  {
+   "articulo": "2002",
+   "nombre": "ARANDANOS CON CHOCO xKG",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 38330.0,
+   "precio_mayorista": 32690.0,
+   "disponible": "si",
+   "cantidad": 7.7
+  },
+  {
+   "articulo": "1126",
+   "nombre": "ARANDANOS CONGELADOS X KG",
+   "rubro": "PRODUCTOS CONGELADOS",
+   "precio_minorista": 18360.0,
+   "precio_mayorista": 15680.0,
+   "disponible": "si",
+   "cantidad": 0.65
+  },
+  {
+   "articulo": "1127",
+   "nombre": "ARANDANOS DESHIDRATADOS X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 26460.0,
+   "precio_mayorista": 22570.0,
+   "disponible": "si",
+   "cantidad": 14.695
+  },
+  {
+   "articulo": "5089",
+   "nombre": "ARROZ BASMATI XKG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 7780.0,
+   "precio_mayorista": 6130.0,
+   "disponible": "si",
+   "cantidad": 10.0
+  },
+  {
+   "articulo": "1131",
+   "nombre": "ARROZ INTEGRAL X KG.",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 3370.0,
+   "precio_mayorista": 2700.0,
+   "disponible": "si",
+   "cantidad": 4.705
+  },
+  {
+   "articulo": "1133",
+   "nombre": "ARROZ YAMANI X KG.",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 4990.0,
+   "precio_mayorista": 3990.0,
+   "disponible": "si",
+   "cantidad": 6.08
+  },
+  {
+   "articulo": "2073",
+   "nombre": "ASHWAGANDHA X 60 CAPSULAS \"SOMOS SETA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 32510.0,
+   "precio_mayorista": 28570.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2411",
+   "nombre": "ASHWAGANDHA X 60 CC \"SOMOS SETA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 26570.0,
+   "precio_mayorista": 23350.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2010",
+   "nombre": "AVELLANAS CON CHOCO XKG",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 43920.0,
+   "precio_mayorista": 37470.0,
+   "disponible": "si",
+   "cantidad": 5.895
+  },
+  {
+   "articulo": "1134",
+   "nombre": "AVELLANAS SIN CASCARA X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 56150.0,
+   "precio_mayorista": 44200.0,
+   "disponible": "si",
+   "cantidad": 2.84
+  },
+  {
+   "articulo": "1135",
+   "nombre": "AVENA ARROLLADA GRUESA X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 3900.0,
+   "precio_mayorista": 3120.0,
+   "disponible": "si",
+   "cantidad": 8.444
+  },
+  {
+   "articulo": "2509",
+   "nombre": "AVENA BIO SIN GLUTEN 500 GR",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 6830.0,
+   "precio_mayorista": 5630.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5032",
+   "nombre": "AVENA GRUESA INTEGRAL SIN TACC X350gr DICOMERE",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 3830.0,
+   "precio_mayorista": 3370.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "5033",
+   "nombre": "AVENA INSTANTANEA INTEGRAL SIN TACC X350gr DICOMERE",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 4100.0,
+   "precio_mayorista": 3610.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1136",
+   "nombre": "AVENA INSTANTÁNEA X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 3780.0,
+   "precio_mayorista": 3030.0,
+   "disponible": "si",
+   "cantidad": 11.835
+  },
+  {
+   "articulo": "1137",
+   "nombre": "AVENA TRADICIONAL X KG.",
+   "rubro": "CEREALES",
+   "precio_minorista": 3780.0,
+   "precio_mayorista": 3030.0,
+   "disponible": "si",
+   "cantidad": 10.045
+  },
+  {
+   "articulo": "1138",
+   "nombre": "AZAFRAN ESPAÑOL X CAPSULA.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 4230.0,
+   "precio_mayorista": 3380.0,
+   "disponible": "si",
+   "cantidad": 12.0
+  },
+  {
+   "articulo": "1140",
+   "nombre": "AZUCAR IMPALPABLE X KG.",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 4100.0,
+   "precio_mayorista": 3280.0,
+   "disponible": "si",
+   "cantidad": 7.04
+  },
+  {
+   "articulo": "1141",
+   "nombre": "AZUCAR MASCABO X KG",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 9690.0,
+   "precio_mayorista": 7750.0,
+   "disponible": "si",
+   "cantidad": 8.055
+  },
+  {
+   "articulo": "1142",
+   "nombre": "AZUCAR NEGRA X KG.",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 4030.0,
+   "precio_mayorista": 3170.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "5053",
+   "nombre": "BALSAMO LABIAL",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 7000.0,
+   "precio_mayorista": 6089.99,
+   "disponible": "si",
+   "cantidad": 7.0
+  },
+  {
+   "articulo": "2455",
+   "nombre": "BANANITAS CON CHOCO",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 48620.0,
+   "precio_mayorista": 41470.0,
+   "disponible": "si",
+   "cantidad": 2.595
+  },
+  {
+   "articulo": "2003",
+   "nombre": "BARRA CHOCO 70% CON STEVIA x 100 g - COLONIAL",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 4630.0,
+   "precio_mayorista": 3950.0,
+   "disponible": "si",
+   "cantidad": 42.0
+  },
+  {
+   "articulo": "2268",
+   "nombre": "BARRA CHOCO 80% X 100 g - COLONIAL",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 7260.0,
+   "precio_mayorista": 6200.0,
+   "disponible": "si",
+   "cantidad": 17.0
+  },
+  {
+   "articulo": "2004",
+   "nombre": "BARRA CHOCO SIN AZUCAR x 100 g - COLONIAL",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 4370.0,
+   "precio_mayorista": 3730.0,
+   "disponible": "si",
+   "cantidad": 22.0
+  },
+  {
+   "articulo": "2103",
+   "nombre": "BARRA CROWIE ARROZ \"SIN TACC\"",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 1100.0,
+   "precio_mayorista": 960.0,
+   "disponible": "si",
+   "cantidad": 33.0
+  },
+  {
+   "articulo": "2014",
+   "nombre": "BARRA MUECAS X45GR",
+   "rubro": "SNACK",
+   "precio_minorista": 2340.0,
+   "precio_mayorista": 1990.0,
+   "disponible": "si",
+   "cantidad": 161.0
+  },
+  {
+   "articulo": "4454",
+   "nombre": "BARRA PROTA PROTEICA 59g",
+   "rubro": "SNACK",
+   "precio_minorista": 5060.0,
+   "precio_mayorista": 4320.0,
+   "disponible": "si",
+   "cantidad": 79.0
+  },
+  {
+   "articulo": "2506",
+   "nombre": "BARRA PROTEICA \"INTEGRA\"",
+   "rubro": "SNACK",
+   "precio_minorista": 3520.0,
+   "precio_mayorista": 3000.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5069",
+   "nombre": "BARRA PROTEICA X55 GR - VITA",
+   "rubro": "SNACK",
+   "precio_minorista": 3440.0,
+   "precio_mayorista": 2710.0,
+   "disponible": "si",
+   "cantidad": 28.0
+  },
+  {
+   "articulo": "5068",
+   "nombre": "BARRA X 55 GR - VITA",
+   "rubro": "SNACK",
+   "precio_minorista": 3030.0,
+   "precio_mayorista": 2390.0,
+   "disponible": "si",
+   "cantidad": 28.0
+  },
+  {
+   "articulo": "2074",
+   "nombre": "BARRAS \"CRUDDA\" X40Gr - SIN TACC",
+   "rubro": "SNACK",
+   "precio_minorista": 2720.0,
+   "precio_mayorista": 2320.0,
+   "disponible": "si",
+   "cantidad": 237.925
+  },
+  {
+   "articulo": "5031",
+   "nombre": "BARRAS PROTEICAS X45 GR - ENTRENUTS",
+   "rubro": "SNACK",
+   "precio_minorista": 2410.0,
+   "precio_mayorista": 2060.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5088",
+   "nombre": "BARRITA RAM ARTESANAL",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 1500.0,
+   "precio_mayorista": 1200.0,
+   "disponible": "si",
+   "cantidad": 18.0
+  },
+  {
+   "articulo": "1147",
+   "nombre": "BASTONCITO SALVADO TRIGO Y AVENA X KG.",
+   "rubro": "CEREALES",
+   "precio_minorista": 9440.0,
+   "precio_mayorista": 8320.0,
+   "disponible": "si",
+   "cantidad": 2.69
+  },
+  {
+   "articulo": "5042",
+   "nombre": "BERBERINA X60CC - EL NATURALISTA",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 9780.0,
+   "precio_mayorista": 8050.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "1150",
+   "nombre": "BERENJENAS CONDIM.X 200 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 6240.0,
+   "precio_mayorista": 5090.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "2089",
+   "nombre": "BICARBONATO DE SODIO X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 4120.0,
+   "precio_mayorista": 3230.0,
+   "disponible": "si",
+   "cantidad": 1.22
+  },
+  {
+   "articulo": "2463",
+   "nombre": "BISGLICINATO DE MAGNESIO NATIER 50 cápsulas",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 28830.0,
+   "precio_mayorista": 26970.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "2326",
+   "nombre": "BLEND DE TE X 30g",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 3000.0,
+   "precio_mayorista": 2700.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "5084",
+   "nombre": "BLEND DE TÉ EN HEBRAS ENTERAS ARTESANAL XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 84490.0,
+   "precio_mayorista": 66570.0,
+   "disponible": "si",
+   "cantidad": 2.735
+  },
+  {
+   "articulo": "1154",
+   "nombre": "BOLDO X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 23310.0,
+   "precio_mayorista": 18670.0,
+   "disponible": "si",
+   "cantidad": 0.84
+  },
+  {
+   "articulo": "1155",
+   "nombre": "BOLITAS DE CHOCOLATE X KG.",
+   "rubro": "CEREALES",
+   "precio_minorista": 12260.0,
+   "precio_mayorista": 9840.0,
+   "disponible": "si",
+   "cantidad": 6.945
+  },
+  {
+   "articulo": "2328",
+   "nombre": "BOMBITA DEFUMACION X 4 uni. - SAGRADA MADRE",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 1200.0,
+   "precio_mayorista": 1150.0,
+   "disponible": "si",
+   "cantidad": 11.0
+  },
+  {
+   "articulo": "5017",
+   "nombre": "BOMBONES DE PISTACHO X10unidades",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 14500.0,
+   "precio_mayorista": 12500.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1163",
+   "nombre": "CACAO AMARGO DE BRASIL X KG.",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 38990.0,
+   "precio_mayorista": 31270.0,
+   "disponible": "si",
+   "cantidad": 7.349
+  },
+  {
+   "articulo": "2381",
+   "nombre": "CAFE BRASIL BB X 250",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 21020.0,
+   "precio_mayorista": 19040.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "2382",
+   "nombre": "CAFE COLOMBIA HUILA BB X250",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 22170.0,
+   "precio_mayorista": 20090.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2383",
+   "nombre": "CAFE DESCAFEINADO EXOTIC COLOMBIA BB X250",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 27280.0,
+   "precio_mayorista": 24720.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2216",
+   "nombre": "CAFE VERDE X30 COMPRIMIDOS \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 8600.0,
+   "precio_mayorista": 6780.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "2278",
+   "nombre": "CALDO DE HUESO \" MEDICINA ANCESTRAL\"",
+   "rubro": "PRODUCTOS CONGELADOS",
+   "precio_minorista": 7520.0,
+   "precio_mayorista": 7010.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2154",
+   "nombre": "CALDO DE VERDURA SIN SAL \"El Naturalista\" x10sobres",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 4760.0,
+   "precio_mayorista": 4060.0,
+   "disponible": "si",
+   "cantidad": 17.0
+  },
+  {
+   "articulo": "2155",
+   "nombre": "CALDO DE VERDURAS CON SAL \"El Naturalista\" x10sobres",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 4510.0,
+   "precio_mayorista": 3850.0,
+   "disponible": "si",
+   "cantidad": 18.0
+  },
+  {
+   "articulo": "5070",
+   "nombre": "CALENDULA X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 28950.0,
+   "precio_mayorista": 22810.0,
+   "disponible": "si",
+   "cantidad": 0.465
+  },
+  {
+   "articulo": "1167",
+   "nombre": "CANELA EN RAMA X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 84760.0,
+   "precio_mayorista": 67850.0,
+   "disponible": "si",
+   "cantidad": 1.739
+  },
+  {
+   "articulo": "1168",
+   "nombre": "CANELA MOLIDA X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 17630.0,
+   "precio_mayorista": 14150.0,
+   "disponible": "si",
+   "cantidad": 1.805
+  },
+  {
+   "articulo": "1176",
+   "nombre": "CARDAMOMO X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 181590.0,
+   "precio_mayorista": 145300.0,
+   "disponible": "no",
+   "cantidad": -0.08
+  },
+  {
+   "articulo": "5090",
+   "nombre": "CARDO MARIANO SEMILLA XKG",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 74068.49,
+   "precio_mayorista": 58356.99,
+   "disponible": "si",
+   "cantidad": 0.92
+  },
+  {
+   "articulo": "1110",
+   "nombre": "CARDO MARIANO TINTURA MADRE X 60 CC \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 11310.0,
+   "precio_mayorista": 9650.0,
+   "disponible": "no",
+   "cantidad": -1.0
+  },
+  {
+   "articulo": "2080",
+   "nombre": "CARDOMARIANO x 30 cápsulas \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 19050.0,
+   "precio_mayorista": 15710.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "2218",
+   "nombre": "CAROTENO X 10 cápsulas \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 2380.0,
+   "precio_mayorista": 2010.0,
+   "disponible": "si",
+   "cantidad": 12.0
+  },
+  {
+   "articulo": "2351",
+   "nombre": "CARQUEJA TINTURA MADRE \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 7649.98,
+   "precio_mayorista": 6524.99,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "5071",
+   "nombre": "CARQUEJA X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 13600.0,
+   "precio_mayorista": 10720.0,
+   "disponible": "si",
+   "cantidad": 0.91
+  },
+  {
+   "articulo": "2170",
+   "nombre": "CASCARA SAGRADA GOTAS X 60 CC \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 10130.0,
+   "precio_mayorista": 8670.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1178",
+   "nombre": "CASCARILLA DE CACAO X KG.",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 8300.0,
+   "precio_mayorista": 6640.0,
+   "disponible": "si",
+   "cantidad": 3.62
+  },
+  {
+   "articulo": "1180",
+   "nombre": "CASTAÑAS CAJÚ VIETNAM X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 23820.0,
+   "precio_mayorista": 20930.0,
+   "disponible": "si",
+   "cantidad": 7.212
+  },
+  {
+   "articulo": "5041",
+   "nombre": "CASTAÑO DE INDIAS X60CC - EL NATURALISTA",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 8330.0,
+   "precio_mayorista": 6860.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1182",
+   "nombre": "CEBOLLA EN ESCAMAS X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 13870.0,
+   "precio_mayorista": 11150.0,
+   "disponible": "si",
+   "cantidad": 1.02
+  },
+  {
+   "articulo": "2038",
+   "nombre": "CEDRON X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 48430.0,
+   "precio_mayorista": 38760.0,
+   "disponible": "si",
+   "cantidad": 1.235
+  },
+  {
+   "articulo": "2187",
+   "nombre": "CENTELLA ASIATICA X 50 NATIER",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 19880.0,
+   "precio_mayorista": 16950.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2281",
+   "nombre": "CENTELLA ASIATICA+GINKGOBILOBA+TEVERDE+HIBISCUS",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 13210.0,
+   "precio_mayorista": 11510.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "4458",
+   "nombre": "CEPILLO DENTAL SRISRI",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 3900.0,
+   "precio_mayorista": 3350.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "1188",
+   "nombre": "CEREZAS AL MARRASCHINO X 170 g \"AGROIANNI\"",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 6920.0,
+   "precio_mayorista": 5560.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1193",
+   "nombre": "CEREZAS AL MARRASCHINO X 330 g \"AGROIANNI\"",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 9230.0,
+   "precio_mayorista": 7420.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "1201",
+   "nombre": "CHIMICHURRI X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 13750.0,
+   "precio_mayorista": 11000.0,
+   "disponible": "si",
+   "cantidad": 0.89
+  },
+  {
+   "articulo": "2517",
+   "nombre": "CHIPA X480 GR - AFG",
+   "rubro": "PRODUCTOS CONGELADOS",
+   "precio_minorista": 10000.0,
+   "precio_mayorista": 9000.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1202",
+   "nombre": "CHIPS DE BANANA X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 17840.0,
+   "precio_mayorista": 14330.0,
+   "disponible": "si",
+   "cantidad": 10.93
+  },
+  {
+   "articulo": "5013",
+   "nombre": "CHIPS SALADOS X80 GR - NUESTROS SABORES",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 2100.0,
+   "precio_mayorista": 1840.0,
+   "disponible": "si",
+   "cantidad": 59.0
+  },
+  {
+   "articulo": "2159",
+   "nombre": "CHOCOLATE 100% COBERTURA SEMIAMARGO x kg - COLONIAL",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 75690.0,
+   "precio_mayorista": 64560.0,
+   "disponible": "si",
+   "cantidad": 3.225
+  },
+  {
+   "articulo": "1424",
+   "nombre": "CHOCOLATE 80% COBERTURA SEMIAMARGO x kg - COLONIAL",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 55460.0,
+   "precio_mayorista": 47300.0,
+   "disponible": "si",
+   "cantidad": 6.909
+  },
+  {
+   "articulo": "1204",
+   "nombre": "CHUCRUT X 600 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 11270.0,
+   "precio_mayorista": 9040.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "5055",
+   "nombre": "CHUCRUT X300GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 7438.86,
+   "precio_mayorista": 5860.92,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1206",
+   "nombre": "CIRUELA PRESIDENTE X KG.",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 19660.0,
+   "precio_mayorista": 15770.0,
+   "disponible": "si",
+   "cantidad": 14.4
+  },
+  {
+   "articulo": "1207",
+   "nombre": "CIRUELAS D`AGEN C/CAROZO X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 11690.0,
+   "precio_mayorista": 9370.0,
+   "disponible": "si",
+   "cantidad": 10.345
+  },
+  {
+   "articulo": "1208",
+   "nombre": "CIRUELAS TIERNIZADAS S/C X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 14530.0,
+   "precio_mayorista": 11680.0,
+   "disponible": "si",
+   "cantidad": 16.27
+  },
+  {
+   "articulo": "2076",
+   "nombre": "CITRATO DE MAGNESIO \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 11730.0,
+   "precio_mayorista": 9660.0,
+   "disponible": "si",
+   "cantidad": 10.0
+  },
+  {
+   "articulo": "2483",
+   "nombre": "CITRATO DE MAGNESIO XKG",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 23090.0,
+   "precio_mayorista": 20990.0,
+   "disponible": "si",
+   "cantidad": 4.11
+  },
+  {
+   "articulo": "2077",
+   "nombre": "CITRATO DE POTASIO \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 11900.0,
+   "precio_mayorista": 9940.0,
+   "disponible": "si",
+   "cantidad": 11.0
+  },
+  {
+   "articulo": "1209",
+   "nombre": "CLAVO DE OLOR ENTERO X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 60460.0,
+   "precio_mayorista": 48370.0,
+   "disponible": "si",
+   "cantidad": 1.232
+  },
+  {
+   "articulo": "2432",
+   "nombre": "CLORURO DE MAGNESIO X KG",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 5120.0,
+   "precio_mayorista": 4100.0,
+   "disponible": "si",
+   "cantidad": 2.635
+  },
+  {
+   "articulo": "1211",
+   "nombre": "COCO EN ESCAMAS X KG",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 27130.0,
+   "precio_mayorista": 21720.0,
+   "disponible": "si",
+   "cantidad": 6.858
+  },
+  {
+   "articulo": "1212",
+   "nombre": "COCO RALLADO X KG.",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 16020.0,
+   "precio_mayorista": 12880.0,
+   "disponible": "si",
+   "cantidad": 3.771
+  },
+  {
+   "articulo": "2469",
+   "nombre": "COLA DE PAVO EXTRACTO 60 cc \"SOMOS SETAS\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 25410.0,
+   "precio_mayorista": 22330.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2125",
+   "nombre": "COLADOR CHICO NEGRO",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 2400.0,
+   "precio_mayorista": 2070.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "2049",
+   "nombre": "COLAGENO HIDROLIZADO CAPSULA X 50 CÁPSULAS \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 32780.0,
+   "precio_mayorista": 30660.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2031",
+   "nombre": "COLAGENO HIDROLIZADO X KG \"PEPTAN B 2000 LD\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 43610.0,
+   "precio_mayorista": 34910.0,
+   "disponible": "si",
+   "cantidad": 4.355
+  },
+  {
+   "articulo": "1214",
+   "nombre": "COMINO MOLIDO X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 20380.0,
+   "precio_mayorista": 16310.0,
+   "disponible": "si",
+   "cantidad": 1.01
+  },
+  {
+   "articulo": "1219",
+   "nombre": "CONDIMENTO PARA ARROZ X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 14360.0,
+   "precio_mayorista": 11490.0,
+   "disponible": "si",
+   "cantidad": 0.33
+  },
+  {
+   "articulo": "1228",
+   "nombre": "COPOS DE MAIZ C/AZUCAR X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 4810.0,
+   "precio_mayorista": 4230.0,
+   "disponible": "si",
+   "cantidad": 8.262
+  },
+  {
+   "articulo": "1229",
+   "nombre": "COPOS DE MAIZ X KG.",
+   "rubro": "CEREALES",
+   "precio_minorista": 4310.0,
+   "precio_mayorista": 3530.0,
+   "disponible": "si",
+   "cantidad": 0.495
+  },
+  {
+   "articulo": "1101",
+   "nombre": "CORAZON DE ALCAUCIL CONDIM X 330 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 11090.0,
+   "precio_mayorista": 8910.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1230",
+   "nombre": "CORAZONES DE ALCAUCIL X 300 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 10010.0,
+   "precio_mayorista": 8040.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1231",
+   "nombre": "CORDERO CON PIEL DEL LOBO X 750CC",
+   "rubro": "VINOS",
+   "precio_minorista": 6670.0,
+   "precio_mayorista": 5340.0,
+   "disponible": "si",
+   "cantidad": 7.0
+  },
+  {
+   "articulo": "2105",
+   "nombre": "CORDYCEPS EXTRACTO 60CC \"SOMOS SETA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 24420.0,
+   "precio_mayorista": 21460.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2114",
+   "nombre": "CORDYCEPS X 60 CAPSULAS \"SOMOS SETA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 31520.0,
+   "precio_mayorista": 27700.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "4465",
+   "nombre": "CORIANDRO ENTERO X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 5330.0,
+   "precio_mayorista": 4190.0,
+   "disponible": "si",
+   "cantidad": 0.64
+  },
+  {
+   "articulo": "1233",
+   "nombre": "CORIANDRO MOLIDO",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 4960.0,
+   "precio_mayorista": 3970.0,
+   "disponible": "si",
+   "cantidad": 1.98
+  },
+  {
+   "articulo": "5000",
+   "nombre": "CRACKERS MEDITERRANEAS X100g",
+   "rubro": "SNACK",
+   "precio_minorista": 5720.0,
+   "precio_mayorista": 4880.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "4455",
+   "nombre": "CRACKERS PIMENTON AHUMADO X100GR",
+   "rubro": "SNACK",
+   "precio_minorista": 4740.0,
+   "precio_mayorista": 4060.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2238",
+   "nombre": "CREATINA MONOHIDRATO",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 24290.0,
+   "precio_mayorista": 19490.0,
+   "disponible": "si",
+   "cantidad": 3.985
+  },
+  {
+   "articulo": "5058",
+   "nombre": "CREATINA VCORE X150gr",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 17300.0,
+   "precio_mayorista": 14210.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "5059",
+   "nombre": "CREATINA VCORE X300gr",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 26500.0,
+   "precio_mayorista": 23350.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "5052",
+   "nombre": "CREMA DE JARRILLA",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 12750.0,
+   "precio_mayorista": 10880.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5073",
+   "nombre": "CREMA LECHE DE COCO",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 12500.0,
+   "precio_mayorista": 10660.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2292",
+   "nombre": "CUENCOS DE CERÁMICA",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 15000.0,
+   "precio_mayorista": 13880.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2169",
+   "nombre": "CURCUMA ACTIVADA CON PIMIENTA X 30 COMP. \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 11120.0,
+   "precio_mayorista": 10480.0,
+   "disponible": "si",
+   "cantidad": 7.0
+  },
+  {
+   "articulo": "1236",
+   "nombre": "CURCUMA MOLIDA X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 12930.0,
+   "precio_mayorista": 10370.0,
+   "disponible": "si",
+   "cantidad": 4.45
+  },
+  {
+   "articulo": "2051",
+   "nombre": "CURCUMA+PIMIENTA X 50 CÁPSULAS \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 30820.0,
+   "precio_mayorista": 26840.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2226",
+   "nombre": "CURCUMA, JENGIBRE Y PIMIENTA vitawellness x 30 cap",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 15280.0,
+   "precio_mayorista": 13330.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1239",
+   "nombre": "CURRY X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 16310.0,
+   "precio_mayorista": 13050.0,
+   "disponible": "si",
+   "cantidad": 1.735
+  },
+  {
+   "articulo": "1240",
+   "nombre": "CUSCUS X KG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 15910.0,
+   "precio_mayorista": 12760.0,
+   "disponible": "si",
+   "cantidad": 2.785
+  },
+  {
+   "articulo": "5028",
+   "nombre": "DATILES DORADOS DE EGIPTO",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 8800.0,
+   "precio_mayorista": 7480.0,
+   "disponible": "si",
+   "cantidad": 11.525
+  },
+  {
+   "articulo": "2126",
+   "nombre": "DELANTAL JEAN",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 40000.0,
+   "precio_mayorista": 35000.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1003",
+   "nombre": "DELANTAL LINO",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 35000.0,
+   "precio_mayorista": 33000.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "5009",
+   "nombre": "DESODORANTE NATURAL - EL AMAUTA",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 7820.0,
+   "precio_mayorista": 6210.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2072",
+   "nombre": "DIENTE DE LEON XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 12220.0,
+   "precio_mayorista": 9770.0,
+   "disponible": "si",
+   "cantidad": 1.42
+  },
+  {
+   "articulo": "2400",
+   "nombre": "DIFUSOR \"ILUMINARTE\" X 125 ml",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 5650.0,
+   "precio_mayorista": 5150.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "5035",
+   "nombre": "DIFUSOR AUTO 12ml",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 5500.0,
+   "precio_mayorista": 4690.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "5045",
+   "nombre": "DIFUSORES TAO 150ml",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 8570.0,
+   "precio_mayorista": 7310.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2511",
+   "nombre": "DULCE BATATA SIN AZUCAR ORIETA 400GR",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 4820.0,
+   "precio_mayorista": 4110.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1244",
+   "nombre": "DULCE DE ALCAYOTA X 500 GR",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 3390.0,
+   "precio_mayorista": 2980.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "2134",
+   "nombre": "DULCE DE LECHE CON STEVIA DOÑA MAGDALENA \"SIN TACC\"",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 12510.0,
+   "precio_mayorista": 10670.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "2145",
+   "nombre": "DULCE DE LECHE DE COCO VEGANO \"SIN TACC\" - DOÑA MAGDALENA",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 12140.0,
+   "precio_mayorista": 10680.0,
+   "disponible": "si",
+   "cantidad": 12.0
+  },
+  {
+   "articulo": "1254",
+   "nombre": "DULCE DE MEMBRILLO X 1 KG",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 6670.0,
+   "precio_mayorista": 5360.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "1253",
+   "nombre": "DULCE DE MEMBRILLO X 500 GR",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 7060.0,
+   "precio_mayorista": 5690.0,
+   "disponible": "si",
+   "cantidad": 7.0
+  },
+  {
+   "articulo": "2512",
+   "nombre": "DULCE MEMBRILLO SIN AZUCAR ORIETA 400gr",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 6440.0,
+   "precio_mayorista": 5500.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2485",
+   "nombre": "ELECTROLITOS \"SUMA\" - Sobre x 9 g",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 2940.0,
+   "precio_mayorista": 2580.0,
+   "disponible": "si",
+   "cantidad": 127.0
+  },
+  {
+   "articulo": "1259",
+   "nombre": "ENELDO SEMILLAS X KG",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 12190.0,
+   "precio_mayorista": 9770.0,
+   "disponible": "si",
+   "cantidad": 0.955
+  },
+  {
+   "articulo": "2402",
+   "nombre": "EQUINACEA TINTURA MADRE 60 cc \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 7650.0,
+   "precio_mayorista": 6530.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "1263",
+   "nombre": "ESENCIA ARTIFICIAL DE VAINILLA X 100 CC \"INDIAS\"",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 1860.0,
+   "precio_mayorista": 1530.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "5040",
+   "nombre": "ESTRAGON",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 17500.0,
+   "precio_mayorista": 14930.0,
+   "disponible": "si",
+   "cantidad": 0.315
+  },
+  {
+   "articulo": "2032",
+   "nombre": "EUCALIPTUS X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 18470.0,
+   "precio_mayorista": 14810.0,
+   "disponible": "si",
+   "cantidad": 1.025
+  },
+  {
+   "articulo": "2257",
+   "nombre": "EXTRACTO DE VAINILLA NATURAL X 100 CC \"EL CASTILLO\"",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 14580.0,
+   "precio_mayorista": 13550.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "1269",
+   "nombre": "FECULA DE MANDIOCA X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 4890.0,
+   "precio_mayorista": 3910.0,
+   "disponible": "si",
+   "cantidad": 10.755
+  },
+  {
+   "articulo": "1863",
+   "nombre": "FIDEOS DE ARROZ \"PARTY BECK\" X 280GR",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 5270.0,
+   "precio_mayorista": 4340.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1685",
+   "nombre": "FIDEOS DE ARROZ VERDURA \"PARTY BECK\" X280GR",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 4950.0,
+   "precio_mayorista": 4080.0,
+   "disponible": "si",
+   "cantidad": 13.0
+  },
+  {
+   "articulo": "1270",
+   "nombre": "FINAS HIERBAS X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 19660.0,
+   "precio_mayorista": 15830.0,
+   "disponible": "si",
+   "cantidad": 1.34
+  },
+  {
+   "articulo": "2217",
+   "nombre": "FLEBOTONICO X30 COMPRIMIDOS \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 12670.0,
+   "precio_mayorista": 10810.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2470",
+   "nombre": "FRAMBUESAS CONGELADAS X KG",
+   "rubro": "PRODUCTOS CONGELADOS",
+   "precio_minorista": 32300.0,
+   "precio_mayorista": 27550.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5014",
+   "nombre": "FRASCO ESPECIERO VIDRIO",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 7880.0,
+   "precio_mayorista": 6720.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "1271",
+   "nombre": "FRUTA ESCURRIDA X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 6430.0,
+   "precio_mayorista": 5180.0,
+   "disponible": "si",
+   "cantidad": 3.536
+  },
+  {
+   "articulo": "1954",
+   "nombre": "FRUTA MULTICOLOR X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 11070.0,
+   "precio_mayorista": 8880.0,
+   "disponible": "si",
+   "cantidad": 6.832
+  },
+  {
+   "articulo": "5047",
+   "nombre": "FRUTILLA GLASEADA XKG",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 38708.98,
+   "precio_mayorista": 30497.98,
+   "disponible": "si",
+   "cantidad": 1.81
+  },
+  {
+   "articulo": "1895",
+   "nombre": "GALLETAS CACHAFAS ORGANICAS",
+   "rubro": "SNACK",
+   "precio_minorista": 3260.0,
+   "precio_mayorista": 2790.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "2115",
+   "nombre": "GALLETAS CACHAFAZ INTEGRALES",
+   "rubro": "SNACK",
+   "precio_minorista": 4120.0,
+   "precio_mayorista": 3510.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "2280",
+   "nombre": "GALLETAS SIN TACC X KG",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 15500.0,
+   "precio_mayorista": 14000.0,
+   "disponible": "si",
+   "cantidad": 2.005
+  },
+  {
+   "articulo": "2111",
+   "nombre": "GALLETAS SLIM DOS HERMANO \"SIN TACC\"",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 1610.0,
+   "precio_mayorista": 1380.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "2354",
+   "nombre": "GALLETITAS DELICEL (SIN TACC) x 150 g",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 3500.0,
+   "precio_mayorista": 3070.0,
+   "disponible": "si",
+   "cantidad": 15.0
+  },
+  {
+   "articulo": "2101",
+   "nombre": "GARAM MASALA XKG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 29850.0,
+   "precio_mayorista": 23890.0,
+   "disponible": "si",
+   "cantidad": 0.605
+  },
+  {
+   "articulo": "2335",
+   "nombre": "GARBANZOS X KG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 3680.0,
+   "precio_mayorista": 2950.0,
+   "disponible": "si",
+   "cantidad": 6.94
+  },
+  {
+   "articulo": "5046",
+   "nombre": "GARRAPIÑADA DE GARBANZO CON SESAMO",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 29580.0,
+   "precio_mayorista": 25230.0,
+   "disponible": "si",
+   "cantidad": 2.22
+  },
+  {
+   "articulo": "1276",
+   "nombre": "GARRAPIÑADA DE MANI X KG",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 11940.0,
+   "precio_mayorista": 9590.0,
+   "disponible": "si",
+   "cantidad": 1.965
+  },
+  {
+   "articulo": "1702",
+   "nombre": "GELATINA SIN SABOR X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 31600.0,
+   "precio_mayorista": 25290.0,
+   "disponible": "si",
+   "cantidad": 7.565
+  },
+  {
+   "articulo": "1281",
+   "nombre": "GERMEN DE TRIGO NATURAL X KG.",
+   "rubro": "HARINAS",
+   "precio_minorista": 3590.0,
+   "precio_mayorista": 2870.0,
+   "disponible": "si",
+   "cantidad": 2.9
+  },
+  {
+   "articulo": "2304",
+   "nombre": "GIN DE AUTOR LODON DRY x 750 cc \"TIERRA SANTA\"",
+   "rubro": "VINOS",
+   "precio_minorista": 12860.0,
+   "precio_mayorista": 10970.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2301",
+   "nombre": "GIN DE AUTOR SABORIZADO x 500 cc \"TIERRA SANTA\"",
+   "rubro": "VINOS",
+   "precio_minorista": 9240.0,
+   "precio_mayorista": 8150.0,
+   "disponible": "si",
+   "cantidad": 11.0
+  },
+  {
+   "articulo": "2082",
+   "nombre": "GINKGO BILOBA FORTE X 10 COMP. \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 2480.0,
+   "precio_mayorista": 2110.0,
+   "disponible": "si",
+   "cantidad": 13.0
+  },
+  {
+   "articulo": "2084",
+   "nombre": "GINSENG + MAGNESIO X 10 COMP. \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 3320.0,
+   "precio_mayorista": 2830.0,
+   "disponible": "si",
+   "cantidad": 7.0
+  },
+  {
+   "articulo": "2078",
+   "nombre": "GLICINATO DE MAGNESIO \"EL NATURALISA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 10970.0,
+   "precio_mayorista": 9360.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "1282",
+   "nombre": "GLUTEN DE TRIGO X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 16520.0,
+   "precio_mayorista": 13260.0,
+   "disponible": "si",
+   "cantidad": 3.27
+  },
+  {
+   "articulo": "2408",
+   "nombre": "GOMA XANTICA",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 14090.0,
+   "precio_mayorista": 12390.0,
+   "disponible": "si",
+   "cantidad": 0.02
+  },
+  {
+   "articulo": "2241",
+   "nombre": "GOTITAS DE CHOCO BLANCO X KG",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 14660.0,
+   "precio_mayorista": 12500.0,
+   "disponible": "si",
+   "cantidad": 3.075
+  },
+  {
+   "articulo": "2007",
+   "nombre": "GOTITAS DE CHOCO SEMIAMARGO X KG",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 15610.0,
+   "precio_mayorista": 13310.0,
+   "disponible": "si",
+   "cantidad": 9.462
+  },
+  {
+   "articulo": "1912",
+   "nombre": "GRANOLA CON CHOCO X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 9640.0,
+   "precio_mayorista": 7760.0,
+   "disponible": "si",
+   "cantidad": 4.595
+  },
+  {
+   "articulo": "1290",
+   "nombre": "GRANOLA CON MIEL X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 16030.0,
+   "precio_mayorista": 12820.0,
+   "disponible": "si",
+   "cantidad": 2.49
+  },
+  {
+   "articulo": "5022",
+   "nombre": "GRANOLA CRUNCH X 1 KG - HOMEMADE",
+   "rubro": "CEREALES",
+   "precio_minorista": 25420.0,
+   "precio_mayorista": 20030.0,
+   "disponible": "si",
+   "cantidad": 0.4
+  },
+  {
+   "articulo": "5023",
+   "nombre": "GRANOLA FIT-CRUNCH X 1KG - HOMEMADE",
+   "rubro": "CEREALES",
+   "precio_minorista": 25300.0,
+   "precio_mayorista": 19930.0,
+   "disponible": "si",
+   "cantidad": 1.83
+  },
+  {
+   "articulo": "1286",
+   "nombre": "GRANOLA MIX BERRIES X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 13070.0,
+   "precio_mayorista": 10490.0,
+   "disponible": "si",
+   "cantidad": 7.33
+  },
+  {
+   "articulo": "5056",
+   "nombre": "GRANOLA MIX CACAO - KOS",
+   "rubro": "CEREALES",
+   "precio_minorista": 14255.99,
+   "precio_mayorista": 11231.99,
+   "disponible": "si",
+   "cantidad": 6.3
+  },
+  {
+   "articulo": "1287",
+   "nombre": "GRANOLA MIX ENERGET X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 13070.0,
+   "precio_mayorista": 10490.0,
+   "disponible": "si",
+   "cantidad": 7.845
+  },
+  {
+   "articulo": "5057",
+   "nombre": "GRANOLA MIX SIN ENDULZAR - KOS",
+   "rubro": "CEREALES",
+   "precio_minorista": 14260.0,
+   "precio_mayorista": 11240.0,
+   "disponible": "si",
+   "cantidad": 5.42
+  },
+  {
+   "articulo": "1897",
+   "nombre": "GRANOLA MIX SIN PASAS X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 7930.0,
+   "precio_mayorista": 6350.0,
+   "disponible": "si",
+   "cantidad": 7.595
+  },
+  {
+   "articulo": "1289",
+   "nombre": "GRANOLA MIX TROPICAL X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 13080.0,
+   "precio_mayorista": 10510.0,
+   "disponible": "si",
+   "cantidad": 9.32
+  },
+  {
+   "articulo": "1911",
+   "nombre": "GRANOLA TRADICIONAL X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 8160.0,
+   "precio_mayorista": 6530.0,
+   "disponible": "si",
+   "cantidad": 6.83
+  },
+  {
+   "articulo": "1291",
+   "nombre": "HARINA DE ALGARROBA X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 8530.0,
+   "precio_mayorista": 6840.0,
+   "disponible": "si",
+   "cantidad": 4.035
+  },
+  {
+   "articulo": "2315",
+   "nombre": "HARINA DE ALMENDRAS C/PIEL",
+   "rubro": "HARINAS",
+   "precio_minorista": 26020.0,
+   "precio_mayorista": 22200.0,
+   "disponible": "si",
+   "cantidad": 2.44
+  },
+  {
+   "articulo": "1293",
+   "nombre": "HARINA DE ALMENDRAS S/ PIEL X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 34670.0,
+   "precio_mayorista": 27760.0,
+   "disponible": "si",
+   "cantidad": 6.065
+  },
+  {
+   "articulo": "1294",
+   "nombre": "HARINA DE ARROZ X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 3120.0,
+   "precio_mayorista": 2500.0,
+   "disponible": "si",
+   "cantidad": 6.15
+  },
+  {
+   "articulo": "5034",
+   "nombre": "HARINA DE AVENA INTEGRAL SIN TACC X350gr DICOMERE",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 4100.0,
+   "precio_mayorista": 3610.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "1295",
+   "nombre": "HARINA DE AVENA X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 3960.0,
+   "precio_mayorista": 3220.0,
+   "disponible": "si",
+   "cantidad": 4.07
+  },
+  {
+   "articulo": "1297",
+   "nombre": "HARINA DE CHIA X KG.",
+   "rubro": "HARINAS",
+   "precio_minorista": 2230.0,
+   "precio_mayorista": 1780.0,
+   "disponible": "si",
+   "cantidad": 1.835
+  },
+  {
+   "articulo": "1298",
+   "nombre": "HARINA DE COCO X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 11240.0,
+   "precio_mayorista": 9050.0,
+   "disponible": "si",
+   "cantidad": 3.96
+  },
+  {
+   "articulo": "1299",
+   "nombre": "HARINA DE GARBANZO X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 3060.0,
+   "precio_mayorista": 2520.0,
+   "disponible": "si",
+   "cantidad": 6.355
+  },
+  {
+   "articulo": "1300",
+   "nombre": "HARINA DE LINO X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 5090.0,
+   "precio_mayorista": 4070.0,
+   "disponible": "si",
+   "cantidad": 5.275
+  },
+  {
+   "articulo": "1303",
+   "nombre": "HARINA DE MAIZ BLANCO",
+   "rubro": "HARINAS",
+   "precio_minorista": 4702.5,
+   "precio_mayorista": 3762.0,
+   "disponible": "si",
+   "cantidad": 4.25
+  },
+  {
+   "articulo": "4466",
+   "nombre": "HARINA DE NUEZ",
+   "rubro": "HARINAS",
+   "precio_minorista": 17330.0,
+   "precio_mayorista": 15230.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1306",
+   "nombre": "HARINA INTEGRAL FINA X KG.",
+   "rubro": "HARINAS",
+   "precio_minorista": 2840.0,
+   "precio_mayorista": 2280.0,
+   "disponible": "si",
+   "cantidad": 2.865
+  },
+  {
+   "articulo": "1305",
+   "nombre": "HARINA SOJA DESGR FINA X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 4620.0,
+   "precio_mayorista": 3700.0,
+   "disponible": "si",
+   "cantidad": 3.46
+  },
+  {
+   "articulo": "2041",
+   "nombre": "HARINA TRIGO SARRACENO X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 10720.0,
+   "precio_mayorista": 8590.0,
+   "disponible": "si",
+   "cantidad": 0.515
+  },
+  {
+   "articulo": "2466",
+   "nombre": "HIBISCUS EXTRACTO 60 cc \"SOMOS SETAS\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 13370.0,
+   "precio_mayorista": 11750.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "1849",
+   "nombre": "HIBISCUS FLOR X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 22620.0,
+   "precio_mayorista": 18140.0,
+   "disponible": "si",
+   "cantidad": 5.27
+  },
+  {
+   "articulo": "1309",
+   "nombre": "HIGOS EN ALMIBAR X 450 GR",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 6888.5,
+   "precio_mayorista": 5519.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1311",
+   "nombre": "HIGOS TIERNIZADOS X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 17970.0,
+   "precio_mayorista": 14440.0,
+   "disponible": "si",
+   "cantidad": 6.685
+  },
+  {
+   "articulo": "2370",
+   "nombre": "HIPÉRICO TINTURA MADRE X 60 CC",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 7650.0,
+   "precio_mayorista": 6530.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "1314",
+   "nombre": "HONGOS SECOS X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 45840.0,
+   "precio_mayorista": 36750.0,
+   "disponible": "si",
+   "cantidad": 0.755
+  },
+  {
+   "articulo": "1316",
+   "nombre": "HUMO NATURAL X 250 ML",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 7590.0,
+   "precio_mayorista": 6080.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2012",
+   "nombre": "INFUSOR PINZA",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 2550.0,
+   "precio_mayorista": 2190.0,
+   "disponible": "si",
+   "cantidad": 13.0
+  },
+  {
+   "articulo": "5008",
+   "nombre": "JABON DE JARILLA Y GLICERINA - EL AMAUTA",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 6120.0,
+   "precio_mayorista": 4860.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "5007",
+   "nombre": "JABON LIQUIDO DE ROSA MOSQUETA - EL AMAUTA",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 11000.0,
+   "precio_mayorista": 9430.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "1654",
+   "nombre": "JAZMIN XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 142950.0,
+   "precio_mayorista": 126660.0,
+   "disponible": "si",
+   "cantidad": 0.65
+  },
+  {
+   "articulo": "1883",
+   "nombre": "JENGIBRE EN TROZOS XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 59500.0,
+   "precio_mayorista": 50750.0,
+   "disponible": "si",
+   "cantidad": 0.135
+  },
+  {
+   "articulo": "1319",
+   "nombre": "JENGIBRE GLASEADO X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 26300.0,
+   "precio_mayorista": 21060.0,
+   "disponible": "si",
+   "cantidad": 2.31
+  },
+  {
+   "articulo": "1320",
+   "nombre": "JENGIBRE MOLIDO X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 17890.0,
+   "precio_mayorista": 14400.0,
+   "disponible": "si",
+   "cantidad": 1.335
+  },
+  {
+   "articulo": "1324",
+   "nombre": "JUGO DE ARANDANOS X 1,5 LTS.",
+   "rubro": "BEBIDAS",
+   "precio_minorista": 3550.0,
+   "precio_mayorista": 2760.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "5074",
+   "nombre": "JUGO NATURAL LAS VERDE 250ML",
+   "rubro": "PRODUCTOS DE FRIO",
+   "precio_minorista": 5900.0,
+   "precio_mayorista": 5000.0,
+   "disponible": "si",
+   "cantidad": 7.0
+  },
+  {
+   "articulo": "5075",
+   "nombre": "JUGO NATURAL LAS VERDE 500ML",
+   "rubro": "PRODUCTOS DE FRIO",
+   "precio_minorista": 6900.0,
+   "precio_mayorista": 6000.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1333",
+   "nombre": "JULIANA SIN PAPA X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 19590.0,
+   "precio_mayorista": 15670.0,
+   "disponible": "si",
+   "cantidad": 1.595
+  },
+  {
+   "articulo": "2233",
+   "nombre": "KEFIR DE AGUA \"KE.LIVE\" SABORIZADO X 950 ML",
+   "rubro": "BEBIDAS",
+   "precio_minorista": 5100.0,
+   "precio_mayorista": 4350.0,
+   "disponible": "si",
+   "cantidad": 7.0
+  },
+  {
+   "articulo": "5086",
+   "nombre": "KEFIR DE LECHE CHICO",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 8400.0,
+   "precio_mayorista": 7139.99,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5087",
+   "nombre": "KEFIR DE LECHE GRANDE",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 10725.0,
+   "precio_mayorista": 9100.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5062",
+   "nombre": "KIMCHI MORADO 300GR",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 8750.0,
+   "precio_mayorista": 6900.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2395",
+   "nombre": "KIMCHI VERDE VIDA 360 ml",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 11560.0,
+   "precio_mayorista": 9210.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2459",
+   "nombre": "KOMBUCHA EYWA 354 ml",
+   "rubro": "BEBIDAS",
+   "precio_minorista": 5450.0,
+   "precio_mayorista": 4750.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2447",
+   "nombre": "LA IRIDE CHAMP EXTRA BRUT X 750 cc",
+   "rubro": "VINOS",
+   "precio_minorista": 7680.0,
+   "precio_mayorista": 6050.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "1107",
+   "nombre": "LAS PERDICES BRUT ROSÉ X750ml",
+   "rubro": "VINOS",
+   "precio_minorista": 11030.0,
+   "precio_mayorista": 8820.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1704",
+   "nombre": "LAS PERDICES MALBEC X 750",
+   "rubro": "VINOS",
+   "precio_minorista": 10100.0,
+   "precio_mayorista": 8110.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1706",
+   "nombre": "LAS PERDICES SAUVI BLANC X 750",
+   "rubro": "VINOS",
+   "precio_minorista": 10100.0,
+   "precio_mayorista": 8110.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "1350",
+   "nombre": "LAUREL EN HOJAS X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 31650.0,
+   "precio_mayorista": 25350.0,
+   "disponible": "si",
+   "cantidad": 0.65
+  },
+  {
+   "articulo": "2037",
+   "nombre": "LAVANDA X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 89290.0,
+   "precio_mayorista": 71480.0,
+   "disponible": "si",
+   "cantidad": 0.215
+  },
+  {
+   "articulo": "1351",
+   "nombre": "LECHE DE ALMENDRAS X 1L BIBA",
+   "rubro": "BEBIDAS",
+   "precio_minorista": 5180.0,
+   "precio_mayorista": 4420.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "1727",
+   "nombre": "LECHE DE COCO EN POLVO X KG",
+   "rubro": "BEBIDAS",
+   "precio_minorista": 38640.0,
+   "precio_mayorista": 30950.0,
+   "disponible": "si",
+   "cantidad": 2.19
+  },
+  {
+   "articulo": "2316",
+   "nombre": "LENTEJA DE CHOCOLATE XKG",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 43200.0,
+   "precio_mayorista": 36850.0,
+   "disponible": "si",
+   "cantidad": 5.5
+  },
+  {
+   "articulo": "1358",
+   "nombre": "LENTEJAS TURCAS X KG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 6950.0,
+   "precio_mayorista": 5560.0,
+   "disponible": "si",
+   "cantidad": 7.625
+  },
+  {
+   "articulo": "1359",
+   "nombre": "LENTEJAS X KG.",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 5560.0,
+   "precio_mayorista": 4460.0,
+   "disponible": "si",
+   "cantidad": 5.32
+  },
+  {
+   "articulo": "1360",
+   "nombre": "LEVADURA DE CERVEZA NUTRICIONAL X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 12800.0,
+   "precio_mayorista": 10260.0,
+   "disponible": "si",
+   "cantidad": 3.2
+  },
+  {
+   "articulo": "2086",
+   "nombre": "LEVADURA DE CERVEZA SABOR QUESO X200GR",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 14820.0,
+   "precio_mayorista": 12650.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "1458",
+   "nombre": "LEVADURA TITAN EN COPOS X200GR \"SIN TACC\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 21600.0,
+   "precio_mayorista": 18430.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "1363",
+   "nombre": "MACA EN POLVO X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 25590.0,
+   "precio_mayorista": 20480.0,
+   "disponible": "si",
+   "cantidad": 2.71
+  },
+  {
+   "articulo": "5051",
+   "nombre": "MACA NEGRA X 60 CAPSULAS - MACHU PICHU",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 13180.0,
+   "precio_mayorista": 11240.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2504",
+   "nombre": "MAGNESIO EN POLVO NATIER X150g",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 29523.62,
+   "precio_mayorista": 25714.12,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2056",
+   "nombre": "MAGNESIO X 50 CÁPSULAS \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 28830.0,
+   "precio_mayorista": 26970.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1364",
+   "nombre": "MAIZ BCO PISADO PARTIDO X KG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 4670.0,
+   "precio_mayorista": 3740.0,
+   "disponible": "si",
+   "cantidad": 7.49
+  },
+  {
+   "articulo": "1365",
+   "nombre": "MAIZ FRITO SALADO X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 17510.0,
+   "precio_mayorista": 14060.0,
+   "disponible": "si",
+   "cantidad": 7.415
+  },
+  {
+   "articulo": "1366",
+   "nombre": "MAIZ PSINGALLO",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 3160.0,
+   "precio_mayorista": 2490.0,
+   "disponible": "si",
+   "cantidad": 1.675
+  },
+  {
+   "articulo": "2095",
+   "nombre": "MALVA X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 10260.0,
+   "precio_mayorista": 8210.0,
+   "disponible": "si",
+   "cantidad": 0.11
+  },
+  {
+   "articulo": "2317",
+   "nombre": "MANGO EN TROZOS CONGELADOS XKG",
+   "rubro": "PRODUCTOS CONGELADOS",
+   "precio_minorista": 12750.0,
+   "precio_mayorista": 10890.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1375",
+   "nombre": "MANI C/CASCARA X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 9000.0,
+   "precio_mayorista": 7210.0,
+   "disponible": "si",
+   "cantidad": 7.005
+  },
+  {
+   "articulo": "2008",
+   "nombre": "MANI C/CHOCO SEMIAMARGO XKG",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 24590.0,
+   "precio_mayorista": 20980.0,
+   "disponible": "si",
+   "cantidad": 7.8
+  },
+  {
+   "articulo": "1378",
+   "nombre": "MANI JAPONES",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 11060.0,
+   "precio_mayorista": 8860.0,
+   "disponible": "si",
+   "cantidad": 2.79
+  },
+  {
+   "articulo": "1379",
+   "nombre": "MANI SABORIZADO X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 6730.0,
+   "precio_mayorista": 5390.0,
+   "disponible": "si",
+   "cantidad": 11.565
+  },
+  {
+   "articulo": "1380",
+   "nombre": "MANI TOSTADO SALADO X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 6590.0,
+   "precio_mayorista": 5290.0,
+   "disponible": "si",
+   "cantidad": 13.46
+  },
+  {
+   "articulo": "1381",
+   "nombre": "MANI TOSTADO X KG.",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 6190.0,
+   "precio_mayorista": 4960.0,
+   "disponible": "si",
+   "cantidad": 14.782
+  },
+  {
+   "articulo": "2269",
+   "nombre": "MANTECA CLARIFICADA GHEE \"ENTRENUTS\" X370",
+   "rubro": "MANTECAS Y PASTAS",
+   "precio_minorista": 14590.0,
+   "precio_mayorista": 12440.0,
+   "disponible": "si",
+   "cantidad": 12.0
+  },
+  {
+   "articulo": "5021",
+   "nombre": "MANTECA CLARIFICADA X150 GR - ENTRENUTS",
+   "rubro": "MANTECAS Y PASTAS",
+   "precio_minorista": 8150.0,
+   "precio_mayorista": 6950.0,
+   "disponible": "si",
+   "cantidad": 13.0
+  },
+  {
+   "articulo": "2307",
+   "nombre": "MANTELITOS ARTESANALES (POLIÉSTER)",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 5950.0,
+   "precio_mayorista": 5950.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "1383",
+   "nombre": "MANTEQUILLA DE MANI \"ENTRENUTS\" X 370 g",
+   "rubro": "MANTECAS Y PASTAS",
+   "precio_minorista": 4410.0,
+   "precio_mayorista": 3770.0,
+   "disponible": "si",
+   "cantidad": 18.0
+  },
+  {
+   "articulo": "5030",
+   "nombre": "MANTEQUILLA DE MANI CON STEVIA X370 CC - ENTRENUTS",
+   "rubro": "MANTECAS Y PASTAS",
+   "precio_minorista": 4410.0,
+   "precio_mayorista": 3770.0,
+   "disponible": "si",
+   "cantidad": 10.0
+  },
+  {
+   "articulo": "5012",
+   "nombre": "MANTEQUILLA DE MANI PROTEICA X370 GR - ENTRENUTS",
+   "rubro": "MANTECAS Y PASTAS",
+   "precio_minorista": 6430.0,
+   "precio_mayorista": 5490.0,
+   "disponible": "si",
+   "cantidad": 19.0
+  },
+  {
+   "articulo": "5044",
+   "nombre": "MANZANILLA IMPORTADA XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 71200.0,
+   "precio_mayorista": 56960.0,
+   "disponible": "si",
+   "cantidad": 2.175
+  },
+  {
+   "articulo": "2096",
+   "nombre": "MAPLE \"SYRUP\" JARABE DE ARCE X250ML",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 22270.0,
+   "precio_mayorista": 19650.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2186",
+   "nombre": "MARACUYA CONGELADO X KG",
+   "rubro": "PRODUCTOS CONGELADOS",
+   "precio_minorista": 19550.0,
+   "precio_mayorista": 16680.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2088",
+   "nombre": "MARCIANO WINE MALBEC",
+   "rubro": "VINOS",
+   "precio_minorista": 12000.0,
+   "precio_mayorista": 11280.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1159",
+   "nombre": "MASTROENI CABERNET FRANC X 750 CC",
+   "rubro": "VINOS",
+   "precio_minorista": 6680.0,
+   "precio_mayorista": 5350.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1700",
+   "nombre": "MASTROENI EXTRA BRUT",
+   "rubro": "VINOS",
+   "precio_minorista": 8000.0,
+   "precio_mayorista": 6390.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "2179",
+   "nombre": "MATCHA X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 151050.0,
+   "precio_mayorista": 133280.0,
+   "disponible": "si",
+   "cantidad": 0.27
+  },
+  {
+   "articulo": "5091",
+   "nombre": "MATICO XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 11930.0,
+   "precio_mayorista": 9400.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2515",
+   "nombre": "MAYONESA \"MAYOV\" X 270GR",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 7300.0,
+   "precio_mayorista": 6420.0,
+   "disponible": "si",
+   "cantidad": 16.0
+  },
+  {
+   "articulo": "1394",
+   "nombre": "MEDALLONES DURAZ. X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 19230.0,
+   "precio_mayorista": 15430.0,
+   "disponible": "si",
+   "cantidad": 9.87
+  },
+  {
+   "articulo": "2057",
+   "nombre": "MEDALLONES VEGETARIANOS \"KISLEV\"",
+   "rubro": "PRODUCTOS CONGELADOS",
+   "precio_minorista": 5600.0,
+   "precio_mayorista": 4800.0,
+   "disponible": "si",
+   "cantidad": 24.0
+  },
+  {
+   "articulo": "2468",
+   "nombre": "MELENA DE LEON EN POLVO 30 g \"SOMOS SETAS\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 29560.0,
+   "precio_mayorista": 25980.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2380",
+   "nombre": "MELENA DE LEON EXTRACTO 60cc \"SOMOS SETA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 26570.0,
+   "precio_mayorista": 23350.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2112",
+   "nombre": "MELENA DE LEON X 60 CAPSULAS \"SOMOS SETA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 32510.0,
+   "precio_mayorista": 28570.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2162",
+   "nombre": "MELENA+ REISHI X 60CC \"SOMOS SETA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 26570.0,
+   "precio_mayorista": 23350.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2116",
+   "nombre": "MELENA+ASHWAGANDHA X 60CC \"SOMOS SETA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 26570.0,
+   "precio_mayorista": 23350.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2371",
+   "nombre": "MELISA TINTURA MADRE X 60 CC",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 7650.0,
+   "precio_mayorista": 6530.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "2039",
+   "nombre": "MELISA X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 18260.0,
+   "precio_mayorista": 14610.0,
+   "disponible": "si",
+   "cantidad": 1.705
+  },
+  {
+   "articulo": "2229",
+   "nombre": "MEMBRILLITOS X30Gr \"PIZARRO\"",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 800.0,
+   "precio_mayorista": 650.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "2040",
+   "nombre": "MENTA HOJAS X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 27940.0,
+   "precio_mayorista": 22380.0,
+   "disponible": "si",
+   "cantidad": 0.495
+  },
+  {
+   "articulo": "2308",
+   "nombre": "MERKEN CHILENO X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 17540.0,
+   "precio_mayorista": 14960.0,
+   "disponible": "si",
+   "cantidad": 0.445
+  },
+  {
+   "articulo": "2153",
+   "nombre": "MERMELADA \"DOÑA MAGDALENA\" C/STEVIA \"SIN TACC\"",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 9680.0,
+   "precio_mayorista": 8510.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "5065",
+   "nombre": "MERMELADA ARANDANO CON STEVIA KONY X360gr",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 10880.0,
+   "precio_mayorista": 8570.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "2123",
+   "nombre": "MERMELADA DE CITRICOS \"LAS DOÑAS\"",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 8000.0,
+   "precio_mayorista": 6900.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "5019",
+   "nombre": "MERMELADA DE DURAZNO X450 GR - LA CASITA DE LA ABUELI",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 5400.0,
+   "precio_mayorista": 4610.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2122",
+   "nombre": "MERMELADA DE FRUTILLAS Y ARANDANOS \"LAS DOÑAS\"",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 8400.0,
+   "precio_mayorista": 7220.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "5020",
+   "nombre": "MERMELADA DE FRUTOS DEL BOSQUE X450 GR - LA CASITA DE LA ABUELI",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 7750.0,
+   "precio_mayorista": 6610.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "5018",
+   "nombre": "MERMELADA DE MEMBRILLO X450GR - LA CASITA DE LA ABUELI",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 5400.0,
+   "precio_mayorista": 4610.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2368",
+   "nombre": "MERMELADA DE PERAS AL MALBEC \"LAS DOÑAS\"",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 8300.0,
+   "precio_mayorista": 7110.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2124",
+   "nombre": "MERMELADA DE PERAS Y JENGIBRE \"LAS DOÑAS\"",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 7800.0,
+   "precio_mayorista": 6700.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "5066",
+   "nombre": "MERMELADA DURAZNO CON STEVIA KONY X360g",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 7400.0,
+   "precio_mayorista": 5830.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5067",
+   "nombre": "MERMELADA FRUTILLA CON STEVIA KONY X360gr",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 8000.0,
+   "precio_mayorista": 6340.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2435",
+   "nombre": "MERMELADA FRUTOS ROJOS CON STEVIA \"DOÑA MAGDALENA\"",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 11130.0,
+   "precio_mayorista": 9780.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "1902",
+   "nombre": "MERMELADA MQA FRUTILLA X 310",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 6110.0,
+   "precio_mayorista": 4890.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1901",
+   "nombre": "MERMELADA MQA X 310",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 5100.0,
+   "precio_mayorista": 4090.0,
+   "disponible": "si",
+   "cantidad": 13.0
+  },
+  {
+   "articulo": "1906",
+   "nombre": "MERMELADA ZANAHORIA/NARANJA X310GR",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 6110.0,
+   "precio_mayorista": 5370.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2271",
+   "nombre": "MIEL BATIDA \"GOTAS DE ORO\" X250GR",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 4750.0,
+   "precio_mayorista": 4050.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "2171",
+   "nombre": "MIEL BATIDA \"GOTAS DE ORO\" X500GR",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 7970.0,
+   "precio_mayorista": 6800.0,
+   "disponible": "si",
+   "cantidad": 11.0
+  },
+  {
+   "articulo": "2285",
+   "nombre": "MIEL CREMOGENADA x 500 g \"TRES SOLES\" - FLOR DEL ALGARROBO",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 11430.0,
+   "precio_mayorista": 9770.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "1406",
+   "nombre": "MIEL DE ABEJA X 1 kg \"MONTE NATURAL\" - JALEA",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 7820.0,
+   "precio_mayorista": 6260.0,
+   "disponible": "si",
+   "cantidad": 18.0
+  },
+  {
+   "articulo": "1408",
+   "nombre": "MIEL DE ABEJA X 250 g \"MONTE NATURAL\" - JALEA",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 3500.0,
+   "precio_mayorista": 2810.0,
+   "disponible": "si",
+   "cantidad": 14.0
+  },
+  {
+   "articulo": "1410",
+   "nombre": "MIEL DE ABEJA X 500 g \"MONTE NATURAL\" - JALEA",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 4990.0,
+   "precio_mayorista": 3990.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "2287",
+   "nombre": "MIEL X 250 g \"TRES SOLES\" - JALEA",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 4890.0,
+   "precio_mayorista": 4240.0,
+   "disponible": "si",
+   "cantidad": 18.0
+  },
+  {
+   "articulo": "2286",
+   "nombre": "MIEL X 500 g \"TRES SOLES\" - JALEA",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 8180.0,
+   "precio_mayorista": 7030.0,
+   "disponible": "si",
+   "cantidad": 28.0
+  },
+  {
+   "articulo": "5076",
+   "nombre": "MILANESAS DE SOJA",
+   "rubro": "PRODUCTOS CONGELADOS",
+   "precio_minorista": 9500.0,
+   "precio_mayorista": 8700.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "1418",
+   "nombre": "MIX 4 PIMIENTAS",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 58700.0,
+   "precio_mayorista": 46960.0,
+   "disponible": "si",
+   "cantidad": 0.41
+  },
+  {
+   "articulo": "1415",
+   "nombre": "MIX 7 SEMILLAS SALUD X KG",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 9870.0,
+   "precio_mayorista": 8020.0,
+   "disponible": "si",
+   "cantidad": 5.04
+  },
+  {
+   "articulo": "1416",
+   "nombre": "MIX CERVECERO X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 10010.0,
+   "precio_mayorista": 8040.0,
+   "disponible": "si",
+   "cantidad": 3.835
+  },
+  {
+   "articulo": "1421",
+   "nombre": "MIX DE SLLAS ADELGAZ X KG",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 8450.0,
+   "precio_mayorista": 6860.0,
+   "disponible": "si",
+   "cantidad": 4.63
+  },
+  {
+   "articulo": "2176",
+   "nombre": "MIX FRUTOS ROJOS CONGELADOS X KILO",
+   "rubro": "PRODUCTOS CONGELADOS",
+   "precio_minorista": 18700.0,
+   "precio_mayorista": 15970.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2228",
+   "nombre": "MIX IMPERIAL X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 24140.0,
+   "precio_mayorista": 19340.0,
+   "disponible": "si",
+   "cantidad": 17.005
+  },
+  {
+   "articulo": "1426",
+   "nombre": "MIX PATAGONICO X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 20540.0,
+   "precio_mayorista": 16490.0,
+   "disponible": "si",
+   "cantidad": 10.245
+  },
+  {
+   "articulo": "5063",
+   "nombre": "MIX SALADO SIN TACC DICOMERE X80G",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 4300.0,
+   "precio_mayorista": 3400.0,
+   "disponible": "si",
+   "cantidad": 10.0
+  },
+  {
+   "articulo": "1660",
+   "nombre": "MIX SALADO X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 16390.0,
+   "precio_mayorista": 13210.0,
+   "disponible": "si",
+   "cantidad": 4.755
+  },
+  {
+   "articulo": "1422",
+   "nombre": "MIX SLLAS PARA ENSALADA X KG",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 12400.0,
+   "precio_mayorista": 9990.0,
+   "disponible": "si",
+   "cantidad": 3.905
+  },
+  {
+   "articulo": "1429",
+   "nombre": "MIX TRADICIONAL X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 7790.0,
+   "precio_mayorista": 6250.0,
+   "disponible": "si",
+   "cantidad": 15.622
+  },
+  {
+   "articulo": "1430",
+   "nombre": "MIX TROPICAL X KG.",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 12140.0,
+   "precio_mayorista": 9750.0,
+   "disponible": "si",
+   "cantidad": 17.69
+  },
+  {
+   "articulo": "2250",
+   "nombre": "MOLINILLO ACERO INOXIDABLE",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 25000.0,
+   "precio_mayorista": 25130.0,
+   "disponible": "si",
+   "cantidad": 11.0
+  },
+  {
+   "articulo": "2011",
+   "nombre": "MOLINILLO CAFE MANUAL",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 30500.0,
+   "precio_mayorista": 25380.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5038",
+   "nombre": "MORINGA EN HOJAS",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 26450.0,
+   "precio_mayorista": 22570.0,
+   "disponible": "si",
+   "cantidad": 0.65
+  },
+  {
+   "articulo": "2276",
+   "nombre": "MORINGA TINTURA MADRE X60cc \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 8000.0,
+   "precio_mayorista": 6850.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2476",
+   "nombre": "MOSTAZA CON MIEL ORGANICA 190gr",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 7770.0,
+   "precio_mayorista": 6360.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "2477",
+   "nombre": "MOSTAZA DIJON 170gr",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 9710.0,
+   "precio_mayorista": 7940.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1436",
+   "nombre": "MOSTAZA EN GRANOS X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 9540.0,
+   "precio_mayorista": 7690.0,
+   "disponible": "si",
+   "cantidad": 1.48
+  },
+  {
+   "articulo": "2333",
+   "nombre": "NAD X 60 cápsulas \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 15480.0,
+   "precio_mayorista": 13220.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2334",
+   "nombre": "NAD+RESVERATROL X 60 cápsulas \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 25440.0,
+   "precio_mayorista": 21690.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "2373",
+   "nombre": "NENCIA TINTURA MADRE X 60 CC",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 9610.0,
+   "precio_mayorista": 8200.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2505",
+   "nombre": "NMN nicotinamida mononucleotido",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 53530.02,
+   "precio_mayorista": 46622.92,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1957",
+   "nombre": "NUECES CONFITADAS X 100 g",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 6000.0,
+   "precio_mayorista": 5700.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1446",
+   "nombre": "NUEZ CON CASCARA X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 7800.0,
+   "precio_mayorista": 6260.0,
+   "disponible": "si",
+   "cantidad": 7.0
+  },
+  {
+   "articulo": "1441",
+   "nombre": "NUEZ CUARTILLO X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 17350.0,
+   "precio_mayorista": 14190.0,
+   "disponible": "si",
+   "cantidad": 8.45
+  },
+  {
+   "articulo": "1445",
+   "nombre": "NUEZ CUARTOS X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 19060.0,
+   "precio_mayorista": 15020.0,
+   "disponible": "si",
+   "cantidad": 12.13
+  },
+  {
+   "articulo": "4453",
+   "nombre": "NUEZ DE BRASIL XKG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 58390.0,
+   "precio_mayorista": 51320.0,
+   "disponible": "si",
+   "cantidad": 7.223
+  },
+  {
+   "articulo": "1716",
+   "nombre": "NUEZ MARIPOSA EXTRA LIGHT X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 21500.0,
+   "precio_mayorista": 18270.0,
+   "disponible": "si",
+   "cantidad": 7.219
+  },
+  {
+   "articulo": "1450",
+   "nombre": "NUEZ MARIPOSA LIGHT X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 19940.0,
+   "precio_mayorista": 15710.0,
+   "disponible": "si",
+   "cantidad": 15.628
+  },
+  {
+   "articulo": "1451",
+   "nombre": "NUEZ MOSCADA ENTERA X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 60450.0,
+   "precio_mayorista": 48400.0,
+   "disponible": "si",
+   "cantidad": 1.66
+  },
+  {
+   "articulo": "1452",
+   "nombre": "NUEZ MOSCADA MOLIDA X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 24460.0,
+   "precio_mayorista": 19570.0,
+   "disponible": "si",
+   "cantidad": 1.705
+  },
+  {
+   "articulo": "5029",
+   "nombre": "NUEZ PECAN",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 42130.0,
+   "precio_mayorista": 35940.0,
+   "disponible": "si",
+   "cantidad": 1.79
+  },
+  {
+   "articulo": "2189",
+   "nombre": "OMEGA 3-SYNERGY 60 cap",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 31120.0,
+   "precio_mayorista": 29120.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "1455",
+   "nombre": "OREGANO KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 11390.0,
+   "precio_mayorista": 9110.0,
+   "disponible": "si",
+   "cantidad": 3.485
+  },
+  {
+   "articulo": "2372",
+   "nombre": "ORTIGA TINTURA MADRE X 60 CC",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 7650.0,
+   "precio_mayorista": 6540.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2421",
+   "nombre": "PALO SANTO X30GR",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 2500.0,
+   "precio_mayorista": 2315.29,
+   "disponible": "si",
+   "cantidad": 16.0
+  },
+  {
+   "articulo": "1670",
+   "nombre": "PANKO X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 4620.0,
+   "precio_mayorista": 3700.0,
+   "disponible": "si",
+   "cantidad": 5.235
+  },
+  {
+   "articulo": "5037",
+   "nombre": "PAPRIKA",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 19140.0,
+   "precio_mayorista": 16330.0,
+   "disponible": "si",
+   "cantidad": 1.075
+  },
+  {
+   "articulo": "2009",
+   "nombre": "PASAS DE UVA C/CHOCO XKG",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 31210.0,
+   "precio_mayorista": 26630.0,
+   "disponible": "si",
+   "cantidad": 7.63
+  },
+  {
+   "articulo": "2440",
+   "nombre": "PASAS DE UVA CEREZA CON SEMILLA X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 2800.0,
+   "precio_mayorista": 2260.0,
+   "disponible": "si",
+   "cantidad": 1.665
+  },
+  {
+   "articulo": "4456",
+   "nombre": "PASAS MOROCHA JUMBO X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 7770.0,
+   "precio_mayorista": 7320.0,
+   "disponible": "si",
+   "cantidad": 12.61
+  },
+  {
+   "articulo": "1955",
+   "nombre": "PASAS MOROCHAS FLAME SIN SEMILLA X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 4950.0,
+   "precio_mayorista": 4010.0,
+   "disponible": "si",
+   "cantidad": 9.88
+  },
+  {
+   "articulo": "1461",
+   "nombre": "PASAS RUBIA SIN SLLA X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 10790.0,
+   "precio_mayorista": 8680.0,
+   "disponible": "si",
+   "cantidad": 11.255
+  },
+  {
+   "articulo": "2374",
+   "nombre": "PASIONARIA TINTURA MADRE X 6O CC",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 7990.0,
+   "precio_mayorista": 6820.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "1462",
+   "nombre": "PASTA ACEITUNAS CONDIM. 200 g",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 4840.0,
+   "precio_mayorista": 3820.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1463",
+   "nombre": "PASTA ACEITUNAS NEGRAS X 200 g \"AGROIANNI\"",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 4930.0,
+   "precio_mayorista": 3950.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1464",
+   "nombre": "PASTA ACEITUNAS VERDES X 200 g \"AGROIANNI\"",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 4860.0,
+   "precio_mayorista": 3900.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "1465",
+   "nombre": "PASTA DE AJI PICANTE X 90 GR",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 4290.0,
+   "precio_mayorista": 3510.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1468",
+   "nombre": "PASTA DE AJO X80 GR - ALCARAZ",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 5110.0,
+   "precio_mayorista": 4090.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "4457",
+   "nombre": "PASTA DENTAL X 100 - SRISRI",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 8750.0,
+   "precio_mayorista": 7480.0,
+   "disponible": "si",
+   "cantidad": 16.0
+  },
+  {
+   "articulo": "5050",
+   "nombre": "PASTA DENTAL X50 GR",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 5250.0,
+   "precio_mayorista": 4480.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5048",
+   "nombre": "PEPAS DE NUEZ",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 22500.0,
+   "precio_mayorista": 21500.0,
+   "disponible": "si",
+   "cantidad": 0.625
+  },
+  {
+   "articulo": "2397",
+   "nombre": "PEPERINA X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 48220.0,
+   "precio_mayorista": 39500.0,
+   "disponible": "si",
+   "cantidad": 0.895
+  },
+  {
+   "articulo": "1483",
+   "nombre": "PEPINILLOS EN VIN. X 200 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 5930.0,
+   "precio_mayorista": 4790.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "1486",
+   "nombre": "PEPINOS AGRID X 200 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 5400.0,
+   "precio_mayorista": 4360.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "1488",
+   "nombre": "PERAS WILLIAMS X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 21090.0,
+   "precio_mayorista": 16870.0,
+   "disponible": "si",
+   "cantidad": 5.03
+  },
+  {
+   "articulo": "1489",
+   "nombre": "PEREJIL EN HOJAS X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 23900.0,
+   "precio_mayorista": 19190.0,
+   "disponible": "si",
+   "cantidad": 0.785
+  },
+  {
+   "articulo": "1492",
+   "nombre": "PERRO CALLEJERO MALBEC X 750CC",
+   "rubro": "VINOS",
+   "precio_minorista": 9790.0,
+   "precio_mayorista": 7850.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1495",
+   "nombre": "PESTO X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 12990.0,
+   "precio_mayorista": 10470.0,
+   "disponible": "si",
+   "cantidad": 0.565
+  },
+  {
+   "articulo": "1789",
+   "nombre": "PETALOS DE ROSA XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 114955.5,
+   "precio_mayorista": 94054.5,
+   "disponible": "si",
+   "cantidad": 0.9
+  },
+  {
+   "articulo": "1501",
+   "nombre": "PICKLES MIXTOS X 200 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 4340.0,
+   "precio_mayorista": 3530.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "1502",
+   "nombre": "PIMENTON AHUMADO X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 12660.0,
+   "precio_mayorista": 10150.0,
+   "disponible": "si",
+   "cantidad": 0.734
+  },
+  {
+   "articulo": "1505",
+   "nombre": "PIMENTON EXTRA X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 12530.0,
+   "precio_mayorista": 10060.0,
+   "disponible": "si",
+   "cantidad": 2.194
+  },
+  {
+   "articulo": "1506",
+   "nombre": "PIMENTÓN PICANTE X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 12040.0,
+   "precio_mayorista": 9640.0,
+   "disponible": "si",
+   "cantidad": 2.11
+  },
+  {
+   "articulo": "1508",
+   "nombre": "PIMIENTA BCA EN GRANO X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 59500.0,
+   "precio_mayorista": 47600.0,
+   "disponible": "si",
+   "cantidad": 2.995
+  },
+  {
+   "articulo": "1510",
+   "nombre": "PIMIENTA BCA MOLIDA X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 59750.0,
+   "precio_mayorista": 47800.0,
+   "disponible": "si",
+   "cantidad": 1.505
+  },
+  {
+   "articulo": "1511",
+   "nombre": "PIMIENTA CAYENA MOLIDA X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 13870.0,
+   "precio_mayorista": 11100.0,
+   "disponible": "si",
+   "cantidad": 0.125
+  },
+  {
+   "articulo": "2264",
+   "nombre": "PIMIENTA JAMAICA X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 50940.0,
+   "precio_mayorista": 40770.0,
+   "disponible": "si",
+   "cantidad": 1.305
+  },
+  {
+   "articulo": "1512",
+   "nombre": "PIMIENTA NEGRA EN GRANO X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 33470.0,
+   "precio_mayorista": 26770.0,
+   "disponible": "si",
+   "cantidad": 1.725
+  },
+  {
+   "articulo": "1513",
+   "nombre": "PIMIENTA NEGRA MOLIDA X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 39060.0,
+   "precio_mayorista": 31250.0,
+   "disponible": "si",
+   "cantidad": 2.21
+  },
+  {
+   "articulo": "1517",
+   "nombre": "PIMIENTOS ENTEROS X 200 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 6000.0,
+   "precio_mayorista": 4810.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "5010",
+   "nombre": "PIPAS TOSTADAS CON SAL X 50 gr",
+   "rubro": "SNACK",
+   "precio_minorista": 1500.0,
+   "precio_mayorista": 1400.0,
+   "disponible": "si",
+   "cantidad": 14.0
+  },
+  {
+   "articulo": "1522",
+   "nombre": "PISTACHOS CON CÁSCARA X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 47030.0,
+   "precio_mayorista": 38480.0,
+   "disponible": "si",
+   "cantidad": 9.95
+  },
+  {
+   "articulo": "2369",
+   "nombre": "PISTACHOS NATURALES SIN CÁCARA X KG",
+   "rubro": "FRUTOS SECOS",
+   "precio_minorista": 99760.0,
+   "precio_mayorista": 81630.0,
+   "disponible": "si",
+   "cantidad": 13.524
+  },
+  {
+   "articulo": "1520",
+   "nombre": "PIÑA CONGELADA X KG",
+   "rubro": "PRODUCTOS CONGELADOS",
+   "precio_minorista": 18700.0,
+   "precio_mayorista": 15960.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2132",
+   "nombre": "PLATA COLOIDAL X100ML",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 11910.0,
+   "precio_mayorista": 10150.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2092",
+   "nombre": "POLEN X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 29530.0,
+   "precio_mayorista": 23640.0,
+   "disponible": "si",
+   "cantidad": 1.39
+  },
+  {
+   "articulo": "2410",
+   "nombre": "POLVO P/HORENAR X 250 g SIN TACC - DICOMERE",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 3900.0,
+   "precio_mayorista": 3420.0,
+   "disponible": "si",
+   "cantidad": 10.0
+  },
+  {
+   "articulo": "5027",
+   "nombre": "POLVO PARA HORNEAR SIN TACC X50 GR",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 2300.0,
+   "precio_mayorista": 2000.0,
+   "disponible": "si",
+   "cantidad": 16.0
+  },
+  {
+   "articulo": "2348",
+   "nombre": "POLVO PARA HORNEAR X KG",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 6420.0,
+   "precio_mayorista": 5140.0,
+   "disponible": "si",
+   "cantidad": 5.715
+  },
+  {
+   "articulo": "1525",
+   "nombre": "POROTO ALUBIA KG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 4860.0,
+   "precio_mayorista": 3890.0,
+   "disponible": "si",
+   "cantidad": 5.765
+  },
+  {
+   "articulo": "1526",
+   "nombre": "POROTO COLORADO X KG.",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 5640.0,
+   "precio_mayorista": 4520.0,
+   "disponible": "si",
+   "cantidad": 7.36
+  },
+  {
+   "articulo": "1527",
+   "nombre": "POROTO MANTECA X KG.",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 6930.0,
+   "precio_mayorista": 5550.0,
+   "disponible": "si",
+   "cantidad": 8.62
+  },
+  {
+   "articulo": "1528",
+   "nombre": "POROTO MUNG X KG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 4720.0,
+   "precio_mayorista": 3780.0,
+   "disponible": "si",
+   "cantidad": 3.845
+  },
+  {
+   "articulo": "1529",
+   "nombre": "POROTO NEGRO X KG.",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 3890.0,
+   "precio_mayorista": 3140.0,
+   "disponible": "si",
+   "cantidad": 3.646
+  },
+  {
+   "articulo": "1530",
+   "nombre": "POROTOS CONDIM X 200 GR",
+   "rubro": "ENCURTIDOS",
+   "precio_minorista": 5370.0,
+   "precio_mayorista": 4330.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "1532",
+   "nombre": "POROTOS DE SOJA X KG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 3260.0,
+   "precio_mayorista": 2610.0,
+   "disponible": "si",
+   "cantidad": 6.005
+  },
+  {
+   "articulo": "1533",
+   "nombre": "POROTOS PALLARES X KG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 15980.0,
+   "precio_mayorista": 12830.0,
+   "disponible": "si",
+   "cantidad": 5.1
+  },
+  {
+   "articulo": "2211",
+   "nombre": "POTASIO+MAGNESIO 30cap \"El Naturalista\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 11820.0,
+   "precio_mayorista": 9730.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "5064",
+   "nombre": "POWER MIX SIN TACC DICOMERE X200gr",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 8400.0,
+   "precio_mayorista": 6650.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2332",
+   "nombre": "PREMEZCLA BIZCOCHUELO \"DELICEL\" X500GR SIN TACC",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 4960.0,
+   "precio_mayorista": 4230.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "1539",
+   "nombre": "PREMEZCLA P/PANIFI S/ TACC X 1 KG",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 9050.0,
+   "precio_mayorista": 7250.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2167",
+   "nombre": "PREMEZCLA PIZZA \"DELICEL\" X500GR SIN TACC",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 6470.0,
+   "precio_mayorista": 5520.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "2490",
+   "nombre": "PREMEZCLA SIN TACC UNIVERSAL PANADERIA REPOSTERÍA Y PASTAS X 500 g - DELICEL",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 4230.0,
+   "precio_mayorista": 3610.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2495",
+   "nombre": "PRENSA FRANCESA 350ml",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 19900.0,
+   "precio_mayorista": 16970.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2496",
+   "nombre": "PRENSA FRANCESA 600ml",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 28000.0,
+   "precio_mayorista": 23900.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2425",
+   "nombre": "PRENSA FRANCESA 800ml",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 34000.0,
+   "precio_mayorista": 29000.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2180",
+   "nombre": "PROBIOTICOS KYIOJIN X 60 ML",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 23990.0,
+   "precio_mayorista": 20900.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "2221",
+   "nombre": "PROPOLEO LIQ X 100ml El Naturalista",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 8850.0,
+   "precio_mayorista": 7290.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2503",
+   "nombre": "PROPOLEO PLUS+CURCUMA,JENGIBRE Y TOMILLO 250ml",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 17959.13,
+   "precio_mayorista": 15641.82,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "2401",
+   "nombre": "PROPOLEO SPRAY 30 cc \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 5100.0,
+   "precio_mayorista": 4350.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "1900",
+   "nombre": "PROSTASANA X 30 COMPR. \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 11374.0,
+   "precio_mayorista": 8893.5,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "5060",
+   "nombre": "PROTEINA DE SUERO LACTEO",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 16260.0,
+   "precio_mayorista": 12810.0,
+   "disponible": "si",
+   "cantidad": 0.5
+  },
+  {
+   "articulo": "1866",
+   "nombre": "PROTEINA DE SUERO WHEY CONCENTRADA 80%",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 101230.0,
+   "precio_mayorista": 81130.0,
+   "disponible": "si",
+   "cantidad": 5.865
+  },
+  {
+   "articulo": "1545",
+   "nombre": "PROVENZAL X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 18300.0,
+   "precio_mayorista": 14640.0,
+   "disponible": "si",
+   "cantidad": 2.235
+  },
+  {
+   "articulo": "2420",
+   "nombre": "PSYLLIUM MOLIDO X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 62610.0,
+   "precio_mayorista": 50110.0,
+   "disponible": "si",
+   "cantidad": 4.93
+  },
+  {
+   "articulo": "2413",
+   "nombre": "PSYLLIUM SEMILLA X KG",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 29370.0,
+   "precio_mayorista": 25290.0,
+   "disponible": "si",
+   "cantidad": 5.545
+  },
+  {
+   "articulo": "1549",
+   "nombre": "QUINOA INFLADA X KG.",
+   "rubro": "CEREALES",
+   "precio_minorista": 13300.0,
+   "precio_mayorista": 10690.0,
+   "disponible": "si",
+   "cantidad": 6.861
+  },
+  {
+   "articulo": "1551",
+   "nombre": "QUINOA X KG",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 12640.0,
+   "precio_mayorista": 10350.0,
+   "disponible": "si",
+   "cantidad": 7.73
+  },
+  {
+   "articulo": "1553",
+   "nombre": "REBOZADOR S/GLUTEN X 500 GR",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 5600.0,
+   "precio_mayorista": 4510.0,
+   "disponible": "si",
+   "cantidad": 3.8
+  },
+  {
+   "articulo": "2168",
+   "nombre": "REDUCTOR BLISTER X 10 COMP.\"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 2880.0,
+   "precio_mayorista": 2400.0,
+   "disponible": "si",
+   "cantidad": 11.0
+  },
+  {
+   "articulo": "2113",
+   "nombre": "REISHI X 60 CAPSULAS \"SOMOS SETA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 31520.0,
+   "precio_mayorista": 27140.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2412",
+   "nombre": "REISHI X 60 CC \"SOMOS SETA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 26570.0,
+   "precio_mayorista": 22870.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2295",
+   "nombre": "RELAX BLEND X50CAP. \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 28830.0,
+   "precio_mayorista": 26420.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2212",
+   "nombre": "RESVERATROL X 30 \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 14630.0,
+   "precio_mayorista": 12480.0,
+   "disponible": "si",
+   "cantidad": 10.0
+  },
+  {
+   "articulo": "2050",
+   "nombre": "RESVERATROL X 50 CÁPSULAS \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 24060.0,
+   "precio_mayorista": 20970.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2480",
+   "nombre": "RHODIOLA ROSEA EXTRACTO X60cc \"SOMOS SETAS\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 25410.0,
+   "precio_mayorista": 20020.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2472",
+   "nombre": "RHODIOLA ROSEA POLVO \"SOMOS SETAS\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 28545.0,
+   "precio_mayorista": 25085.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1692",
+   "nombre": "RODAJAS NARANJA DESHIDR X 1 KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 42500.0,
+   "precio_mayorista": 36250.0,
+   "disponible": "si",
+   "cantidad": 1.045
+  },
+  {
+   "articulo": "1555",
+   "nombre": "ROMERO EN HOJAS X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 17870.0,
+   "precio_mayorista": 14330.0,
+   "disponible": "si",
+   "cantidad": 3.025
+  },
+  {
+   "articulo": "5024",
+   "nombre": "ROOIBOS XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 68900.0,
+   "precio_mayorista": 54290.0,
+   "disponible": "si",
+   "cantidad": 1.735
+  },
+  {
+   "articulo": "2093",
+   "nombre": "ROSA MOSQUETA X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 54660.0,
+   "precio_mayorista": 43730.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2071",
+   "nombre": "SAHUMEADOR CHICO CEMENTO",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 1630.0,
+   "precio_mayorista": 1380.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2070",
+   "nombre": "SAHUMEADOR GRANDE COLOR",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 2750.0,
+   "precio_mayorista": 2330.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2065",
+   "nombre": "SAHUMERIO MOMENTOS X5 \"AROMANZA\"",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 2600.0,
+   "precio_mayorista": 2180.0,
+   "disponible": "si",
+   "cantidad": 34.0
+  },
+  {
+   "articulo": "2066",
+   "nombre": "SAHUMERIO TIBETANO X8 \"AROMANZA\"",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 3700.0,
+   "precio_mayorista": 3180.0,
+   "disponible": "si",
+   "cantidad": 43.0
+  },
+  {
+   "articulo": "2329",
+   "nombre": "SAHUMERIOS CON PORTASAHUMERIO AROMANZA",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 5870.0,
+   "precio_mayorista": 5230.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "2064",
+   "nombre": "SAHUMO LIMPIEZA ENERGENTICA \"SAGRADA MADRE\"",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 2000.0,
+   "precio_mayorista": 1750.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "1557",
+   "nombre": "SAL DEL HIMALAYA FINA X 1 KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 5650.0,
+   "precio_mayorista": 4550.0,
+   "disponible": "si",
+   "cantidad": 5.1
+  },
+  {
+   "articulo": "1558",
+   "nombre": "SAL DEL HIMALAYA GRUESA X KG.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 5190.0,
+   "precio_mayorista": 4180.0,
+   "disponible": "si",
+   "cantidad": 11.31
+  },
+  {
+   "articulo": "2376",
+   "nombre": "SAL DIETETICA SIN SODIO - EL NATURALISTA",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 5300.0,
+   "precio_mayorista": 4540.0,
+   "disponible": "si",
+   "cantidad": 11.0
+  },
+  {
+   "articulo": "1561",
+   "nombre": "SAL MARINA FINA X 500 GR.",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 4320.0,
+   "precio_mayorista": 3470.0,
+   "disponible": "si",
+   "cantidad": 18.0
+  },
+  {
+   "articulo": "1562",
+   "nombre": "SAL MARINA GRUESA X 500 GR",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 3250.0,
+   "precio_mayorista": 2620.0,
+   "disponible": "si",
+   "cantidad": 7.0
+  },
+  {
+   "articulo": "2419",
+   "nombre": "SALERO/PIMENTERO",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 5000.0,
+   "precio_mayorista": 4400.0,
+   "disponible": "si",
+   "cantidad": 12.0
+  },
+  {
+   "articulo": "1687",
+   "nombre": "SALSA AJI PICANTE X 180 CC",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 7170.0,
+   "precio_mayorista": 5810.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "1803",
+   "nombre": "SALSA CESAR 250 GR",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 10150.0,
+   "precio_mayorista": 8120.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1566",
+   "nombre": "SALSA CHIMICHURRI X 250 GR",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 6910.0,
+   "precio_mayorista": 5530.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1571",
+   "nombre": "SALSA DE SOJA X 180 CC",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 5170.0,
+   "precio_mayorista": 4190.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2502",
+   "nombre": "SALSA INGLESA x180cc",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 6720.0,
+   "precio_mayorista": 5300.0,
+   "disponible": "si",
+   "cantidad": 19.0
+  },
+  {
+   "articulo": "1573",
+   "nombre": "SALSA JALAPEÑO ROJA X 180 CC",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 7400.0,
+   "precio_mayorista": 5980.0,
+   "disponible": "si",
+   "cantidad": 17.0
+  },
+  {
+   "articulo": "1683",
+   "nombre": "SALSA JALAPEÑO VERDE X 180 CC",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 7400.0,
+   "precio_mayorista": 5980.0,
+   "disponible": "si",
+   "cantidad": 10.0
+  },
+  {
+   "articulo": "2144",
+   "nombre": "SALSA TAHINE",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 13870.0,
+   "precio_mayorista": 10930.0,
+   "disponible": "si",
+   "cantidad": 10.0
+  },
+  {
+   "articulo": "1575",
+   "nombre": "SALSA TERIYAKI X 250 CC",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 11780.0,
+   "precio_mayorista": 9510.0,
+   "disponible": "si",
+   "cantidad": 2.0
+  },
+  {
+   "articulo": "1576",
+   "nombre": "SALVADO DE AVENA X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 4540.0,
+   "precio_mayorista": 3670.0,
+   "disponible": "si",
+   "cantidad": 6.16
+  },
+  {
+   "articulo": "1577",
+   "nombre": "SALVADO DE TRIGO GRUESO X 1 KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 2890.0,
+   "precio_mayorista": 2310.0,
+   "disponible": "si",
+   "cantidad": 3.295
+  },
+  {
+   "articulo": "1578",
+   "nombre": "SALVIA OFICINAL",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 19000.0,
+   "precio_mayorista": 14970.0,
+   "disponible": "si",
+   "cantidad": 0.06
+  },
+  {
+   "articulo": "2320",
+   "nombre": "SELENIO QUELADO \"NATIER\" X 50 CAP",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 28830.0,
+   "precio_mayorista": 26990.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "1581",
+   "nombre": "SEMILLA DE AMAPOLA X KG.",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 20860.0,
+   "precio_mayorista": 16730.0,
+   "disponible": "si",
+   "cantidad": 1.365
+  },
+  {
+   "articulo": "1582",
+   "nombre": "SEMILLA DE AMARANTO X KG",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 11900.0,
+   "precio_mayorista": 9560.0,
+   "disponible": "si",
+   "cantidad": 3.09
+  },
+  {
+   "articulo": "1583",
+   "nombre": "SEMILLA DE CHIA NAC X KG.",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 7400.0,
+   "precio_mayorista": 5970.0,
+   "disponible": "si",
+   "cantidad": 6.862
+  },
+  {
+   "articulo": "1585",
+   "nombre": "SEMILLA DE GIRASOL X KG.",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 8210.0,
+   "precio_mayorista": 6650.0,
+   "disponible": "si",
+   "cantidad": 2.86
+  },
+  {
+   "articulo": "1586",
+   "nombre": "SEMILLA DE LINO X KG",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 7810.0,
+   "precio_mayorista": 6410.0,
+   "disponible": "si",
+   "cantidad": 4.675
+  },
+  {
+   "articulo": "1587",
+   "nombre": "SEMILLA DE ZAPALLO PELADO X KG.",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 38300.0,
+   "precio_mayorista": 30730.0,
+   "disponible": "si",
+   "cantidad": 12.615
+  },
+  {
+   "articulo": "2433",
+   "nombre": "SEMILLAS HINOJO",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 11060.0,
+   "precio_mayorista": 8860.0,
+   "disponible": "si",
+   "cantidad": 1.605
+  },
+  {
+   "articulo": "1588",
+   "nombre": "SEMOLIN DE TRIGO X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 4430.0,
+   "precio_mayorista": 3810.0,
+   "disponible": "si",
+   "cantidad": 3.655
+  },
+  {
+   "articulo": "2036",
+   "nombre": "SEN FOLICULOS X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 11660.0,
+   "precio_mayorista": 9330.0,
+   "disponible": "si",
+   "cantidad": 0.635
+  },
+  {
+   "articulo": "2322",
+   "nombre": "SEN HOJAS X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 13520.0,
+   "precio_mayorista": 11900.0,
+   "disponible": "si",
+   "cantidad": 2.07
+  },
+  {
+   "articulo": "1589",
+   "nombre": "SESAMO BLANCO X KG.",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 12310.0,
+   "precio_mayorista": 9930.0,
+   "disponible": "si",
+   "cantidad": 3.435
+  },
+  {
+   "articulo": "1591",
+   "nombre": "SESAMO NEGRO X KG",
+   "rubro": "SEMILLAS",
+   "precio_minorista": 17300.0,
+   "precio_mayorista": 13900.0,
+   "disponible": "si",
+   "cantidad": 2.78
+  },
+  {
+   "articulo": "5005",
+   "nombre": "SHAMPOO DE ROMERO Y ALOE VERA X300 CC - EL AMAUTA",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 11000.0,
+   "precio_mayorista": 8800.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5025",
+   "nombre": "SHAMPOO SOLIDO",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 12000.0,
+   "precio_mayorista": 9489.99,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2349",
+   "nombre": "SPIRULINA CONCENTRADA NATIER x 50 cápsulas",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 27850.0,
+   "precio_mayorista": 26070.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2256",
+   "nombre": "SPIRULINA EN POLVO X KG",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 46520.0,
+   "precio_mayorista": 37230.0,
+   "disponible": "si",
+   "cantidad": 0.745
+  },
+  {
+   "articulo": "2081",
+   "nombre": "SPIRULINA X 10 COMP. \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 2900.0,
+   "precio_mayorista": 2480.0,
+   "disponible": "si",
+   "cantidad": 10.0
+  },
+  {
+   "articulo": "2178",
+   "nombre": "STEVIA HOJAS X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 34160.0,
+   "precio_mayorista": 27330.0,
+   "disponible": "si",
+   "cantidad": 1.71
+  },
+  {
+   "articulo": "2099",
+   "nombre": "STEVIA LIQUIDA X120 \"SIN TACC\"",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 8220.0,
+   "precio_mayorista": 7010.0,
+   "disponible": "si",
+   "cantidad": 7.0
+  },
+  {
+   "articulo": "2098",
+   "nombre": "STEVIA SOBRES X100 \"SIN TACC\"",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 7190.0,
+   "precio_mayorista": 6140.0,
+   "disponible": "si",
+   "cantidad": 13.0
+  },
+  {
+   "articulo": "2439",
+   "nombre": "SYRUP DE DATILES \"LYNA\"",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 17170.0,
+   "precio_mayorista": 15150.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "5054",
+   "nombre": "TAZA CON INFUSOR",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 15000.0,
+   "precio_mayorista": 13000.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2035",
+   "nombre": "TE DE BURRO X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 29870.0,
+   "precio_mayorista": 23920.0,
+   "disponible": "si",
+   "cantidad": 1.505
+  },
+  {
+   "articulo": "1618",
+   "nombre": "TE NEGRO X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 12420.0,
+   "precio_mayorista": 9960.0,
+   "disponible": "no",
+   "cantidad": -0.25
+  },
+  {
+   "articulo": "1619",
+   "nombre": "TE ROJO X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 12420.0,
+   "precio_mayorista": 9970.0,
+   "disponible": "si",
+   "cantidad": 2.105
+  },
+  {
+   "articulo": "2048",
+   "nombre": "TE VERDE X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 11960.0,
+   "precio_mayorista": 9580.0,
+   "disponible": "si",
+   "cantidad": 0.245
+  },
+  {
+   "articulo": "2457",
+   "nombre": "TETERA CON INFUSOR 550 ml",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 21250.0,
+   "precio_mayorista": 18130.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2458",
+   "nombre": "TETERA CON INFUSOR 750ml",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 25499.99,
+   "precio_mayorista": 21749.99,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "1621",
+   "nombre": "TEXTURIZADO DE SOJA X KG",
+   "rubro": "HARINAS",
+   "precio_minorista": 4510.0,
+   "precio_mayorista": 3610.0,
+   "disponible": "si",
+   "cantidad": 6.85
+  },
+  {
+   "articulo": "1630",
+   "nombre": "TOMATE CONDIM X 800 GR",
+   "rubro": "TOMATE TRITURADO",
+   "precio_minorista": 5170.0,
+   "precio_mayorista": 4170.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "4464",
+   "nombre": "TOMATE DESECADOS CONDIMENTADOS X360 GR - AGROIANNI",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 8340.0,
+   "precio_mayorista": 6680.0,
+   "disponible": "si",
+   "cantidad": 9.0
+  },
+  {
+   "articulo": "1632",
+   "nombre": "TOMATE SECOS X KG",
+   "rubro": "DESHIDRATADOS",
+   "precio_minorista": 20370.0,
+   "precio_mayorista": 16340.0,
+   "disponible": "si",
+   "cantidad": 5.062
+  },
+  {
+   "articulo": "1627",
+   "nombre": "TOMATE TRITURADO X 1 KG",
+   "rubro": "TOMATE TRITURADO",
+   "precio_minorista": 1860.0,
+   "precio_mayorista": 1500.0,
+   "disponible": "si",
+   "cantidad": 20.0
+  },
+  {
+   "articulo": "1628",
+   "nombre": "TOMATE TRITURADO X 500 GR",
+   "rubro": "TOMATE TRITURADO",
+   "precio_minorista": 1520.0,
+   "precio_mayorista": 1230.0,
+   "disponible": "si",
+   "cantidad": 13.0
+  },
+  {
+   "articulo": "1633",
+   "nombre": "TOMILLO X KG",
+   "rubro": "ESPECIAS",
+   "precio_minorista": 17490.0,
+   "precio_mayorista": 14000.0,
+   "disponible": "si",
+   "cantidad": 0.85
+  },
+  {
+   "articulo": "2107",
+   "nombre": "TOSTADAS RISKY \"SIN TACC\"",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 2040.0,
+   "precio_mayorista": 1740.0,
+   "disponible": "si",
+   "cantidad": 16.0
+  },
+  {
+   "articulo": "2494",
+   "nombre": "TREMELLA EN CAPSULAS \"SOMOS SETAS\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 31514.99,
+   "precio_mayorista": 24829.99,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2464",
+   "nombre": "TREMELLA EN POLVO 30 g \"SOMOS SETAS\"\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 27230.0,
+   "precio_mayorista": 23930.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2465",
+   "nombre": "TREMELLA EXTRACTO 60 cc \"SOMOS SETAS\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 25420.0,
+   "precio_mayorista": 22340.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1634",
+   "nombre": "TRIGO BURGOL X KG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 4640.0,
+   "precio_mayorista": 3710.0,
+   "disponible": "si",
+   "cantidad": 4.42
+  },
+  {
+   "articulo": "2379",
+   "nombre": "TRIGO CANDEAL X KG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 4460.0,
+   "precio_mayorista": 3570.0,
+   "disponible": "si",
+   "cantidad": 3.505
+  },
+  {
+   "articulo": "2367",
+   "nombre": "TRIGO SARRACENO PELADO X KG",
+   "rubro": "GRANOS Y LEGUMBRES",
+   "precio_minorista": 12600.0,
+   "precio_mayorista": 10080.0,
+   "disponible": "si",
+   "cantidad": 3.5
+  },
+  {
+   "articulo": "1635",
+   "nombre": "TUTUCAS CON AZUCAR X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 6030.0,
+   "precio_mayorista": 4870.0,
+   "disponible": "si",
+   "cantidad": 12.655
+  },
+  {
+   "articulo": "1636",
+   "nombre": "TUTUCAS SIN AZUCAR X KG",
+   "rubro": "CEREALES",
+   "precio_minorista": 5960.0,
+   "precio_mayorista": 4780.0,
+   "disponible": "si",
+   "cantidad": 4.72
+  },
+  {
+   "articulo": "5083",
+   "nombre": "TÉ BLANCO EN HEBRAS ENTERAS ARTESANAL XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 71720.0,
+   "precio_mayorista": 56510.0,
+   "disponible": "si",
+   "cantidad": 0.5
+  },
+  {
+   "articulo": "5085",
+   "nombre": "TÉ EN SAQUITOS PIRAMIDALES X12U",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 7960.0,
+   "precio_mayorista": 6560.0,
+   "disponible": "si",
+   "cantidad": 25.0
+  },
+  {
+   "articulo": "5077",
+   "nombre": "TÉ NEGRO EN HEBRAS ENTERAS ARTESANAL XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 71710.0,
+   "precio_mayorista": 56500.0,
+   "disponible": "si",
+   "cantidad": 0.975
+  },
+  {
+   "articulo": "5080",
+   "nombre": "TÉ NEGRO EN HEBRAS PARTIDAS ARTESANAL XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 50020.0,
+   "precio_mayorista": 39410.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "5079",
+   "nombre": "TÉ OOLONG EN HEBRAS ENTERAS ARTESANAL XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 71720.0,
+   "precio_mayorista": 56520.0,
+   "disponible": "si",
+   "cantidad": 0.5
+  },
+  {
+   "articulo": "5082",
+   "nombre": "TÉ OOLONG EN HEBRAS PARTIDAS ARTESANAL XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 50020.0,
+   "precio_mayorista": 39410.0,
+   "disponible": "si",
+   "cantidad": 0.5
+  },
+  {
+   "articulo": "5078",
+   "nombre": "TÉ VERDE EN HEBRAS ENTERAS ARTESANAL XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 71710.0,
+   "precio_mayorista": 56500.0,
+   "disponible": "si",
+   "cantidad": 0.7
+  },
+  {
+   "articulo": "5081",
+   "nombre": "TÉ VERDE EN HEBRAS PARTIDA ARTESANAL XKG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 50020.0,
+   "precio_mayorista": 39410.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "5061",
+   "nombre": "UNGÜENTO X50ML GOTA AZUL",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 19800.0,
+   "precio_mayorista": 16200.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "2175",
+   "nombre": "VALERIANA BLISTER X 10 COMP. \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 3360.0,
+   "precio_mayorista": 2820.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2375",
+   "nombre": "VALERIANA TINTURA MADRE X 60 CC",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 7650.0,
+   "precio_mayorista": 6530.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "2405",
+   "nombre": "VELON BURBUJA",
+   "rubro": "PALADEAR HOME",
+   "precio_minorista": 3000.0,
+   "precio_mayorista": 2420.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2392",
+   "nombre": "VERMUTH \"AQUI Y AHORA\"",
+   "rubro": "VINOS",
+   "precio_minorista": 7820.0,
+   "precio_mayorista": 6680.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
+   "articulo": "1637",
+   "nombre": "VINAGRE DE ALCOHOL X 1 L",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 1710.0,
+   "precio_mayorista": 1340.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "1638",
+   "nombre": "VINAGRE DE MANZANA X 1 L",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 3290.0,
+   "precio_mayorista": 2600.0,
+   "disponible": "si",
+   "cantidad": 8.0
+  },
+  {
+   "articulo": "2364",
+   "nombre": "VINAGRE DE SIDRA DE MANZANA \"VERDE VIDA\" X 500 ML",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 11900.0,
+   "precio_mayorista": 10870.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2227",
+   "nombre": "VINAGRE DE SIDRA DE MANZANA X 250 ML \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 15510.0,
+   "precio_mayorista": 13510.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2052",
+   "nombre": "VINAGRE DE SIDRA DE MANZANA X 50 CÁPSULAS \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 18130.0,
+   "precio_mayorista": 16960.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "2263",
+   "nombre": "VINAGRE DE SIDRA DE MANZANA X 500 ML \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 25380.0,
+   "precio_mayorista": 23730.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1639",
+   "nombre": "VINAGRE DE VINO X 1 L",
+   "rubro": "ACEITES Y VINAGRES",
+   "precio_minorista": 2060.0,
+   "precio_mayorista": 1620.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "2188",
+   "nombre": "VITAMINA B12 X 50 NATIER",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 25880.0,
+   "precio_mayorista": 24210.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2053",
+   "nombre": "VITAMINA C X 50 CÁPSULAS \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 25030.0,
+   "precio_mayorista": 23430.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2311",
+   "nombre": "VITAMINA C X 60 COMPRIMIDOS \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 10400.0,
+   "precio_mayorista": 8190.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2102",
+   "nombre": "VITAMINA D3 X 50 UNIDADES \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 22110.0,
+   "precio_mayorista": 20690.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "2083",
+   "nombre": "VITAMINA E X 10 COMP. \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 3400.0,
+   "precio_mayorista": 2900.0,
+   "disponible": "si",
+   "cantidad": 12.0
+  },
+  {
+   "articulo": "2481",
+   "nombre": "VITAMINA K2 + D3 X 50 cápsulas \"NATIER\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 46620.0,
+   "precio_mayorista": 43610.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "2033",
+   "nombre": "YERBA DEL PLATERO",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 15100.0,
+   "precio_mayorista": 12120.0,
+   "disponible": "si",
+   "cantidad": 0.33
+  },
+  {
+   "articulo": "2043",
+   "nombre": "YERBA MATE DESPALADA KALENA X KG",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 13230.0,
+   "precio_mayorista": 10590.0,
+   "disponible": "si",
+   "cantidad": 7.945
+  },
+  {
+   "articulo": "5039",
+   "nombre": "YERBA X500GR - TUCANGUA",
+   "rubro": "INFUSIONES Y HIERBAS",
+   "precio_minorista": 4020.0,
+   "precio_mayorista": 3430.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "1879",
+   "nombre": "YOGHURT ANANA X 1 L",
+   "rubro": "PRODUCTOS DE FRIO",
+   "precio_minorista": 7620.0,
+   "precio_mayorista": 6120.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "2024",
+   "nombre": "YOGHURT C/FRUTAS X 160",
+   "rubro": "PRODUCTOS DE FRIO",
+   "precio_minorista": 2490.0,
+   "precio_mayorista": 2030.0,
+   "disponible": "si",
+   "cantidad": 23.0
+  },
+  {
+   "articulo": "1812",
+   "nombre": "YOGHURT DURAZNO X 1 L",
+   "rubro": "PRODUCTOS DE FRIO",
+   "precio_minorista": 7620.0,
+   "precio_mayorista": 6110.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1811",
+   "nombre": "YOGHURT FRUTILLA X 1 L",
+   "rubro": "PRODUCTOS DE FRIO",
+   "precio_minorista": 7620.0,
+   "precio_mayorista": 6120.0,
+   "disponible": "no",
+   "cantidad": 0.0
+  },
+  {
+   "articulo": "1809",
+   "nombre": "YOGHURT NATURAL AZUCARADO X 1 L",
+   "rubro": "PRODUCTOS DE FRIO",
+   "precio_minorista": 6870.0,
+   "precio_mayorista": 5540.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
+   "articulo": "1810",
+   "nombre": "YOGHURT NATURAL SIN AZUCAR X 1 L",
+   "rubro": "PRODUCTOS DE FRIO",
+   "precio_minorista": 6870.0,
+   "precio_mayorista": 5540.0,
+   "disponible": "si",
+   "cantidad": 6.0
+  },
+  {
+   "articulo": "5036",
+   "nombre": "YOGURT ENTERO X125 - YOGURLAC",
+   "rubro": "PRODUCTOS DE FRIO",
+   "precio_minorista": 1250.0,
+   "precio_mayorista": 980.0,
+   "disponible": "si",
+   "cantidad": 14.0
+  },
+  {
+   "articulo": "1795",
+   "nombre": "YOGURT PROTEICO \"YOGURLAC\" X 1L",
+   "rubro": "PRODUCTOS DE FRIO",
+   "precio_minorista": 11410.0,
+   "precio_mayorista": 9140.0,
+   "disponible": "si",
+   "cantidad": 3.0
+  },
+  {
+   "articulo": "1656",
+   "nombre": "ZAPALLO EN ALMIBAR X 360GR",
+   "rubro": "LINEA GOURMET",
+   "precio_minorista": 6440.0,
+   "precio_mayorista": 5660.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  },
+  {
+   "articulo": "2079",
+   "nombre": "ZINC \"EL NATURALISTA\"",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 10020.0,
+   "precio_mayorista": 8550.0,
+   "disponible": "si",
+   "cantidad": 4.0
+  }
+ ]
+}
