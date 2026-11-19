@@ -1,6 +1,6 @@
 {
   "resumen": {
-    "nuevos": 2,
+    "nuevos": 3,
     "renombrados": 0,
     "quitados": 1,
     "rubro_invalido": 0,
@@ -12,6 +12,13 @@
       "nombre": "ERYTRITOL",
       "rubro": "AZUCAR, CACAO Y REPOSTERIA",
       "precio": 21390,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
+    {
+      "numero": "5094",
+      "nombre": "MERMELADA PERAS Y ARANDANOS - LAS DOÑAS",
+      "rubro": "DULCES, MIEL Y CHOCOLATES",
+      "precio": 8330,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
