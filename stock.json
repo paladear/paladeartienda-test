@@ -1,9 +1,9 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-19T13:56:28",
+ "actualizado": "2026-11-19T13:59:44",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
- "cantidad_articulos": 605,
+ "cantidad_articulos": 608,
  "sin_stock": 59,
  "items": [
   {
@@ -1897,6 +1897,15 @@
    "cantidad": 3.0
   },
   {
+   "articulo": "5093",
+   "nombre": "ERYTRITOL",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 21390.0,
+   "precio_mayorista": 18250.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
    "articulo": "1263",
    "nombre": "ESENCIA ARTIFICIAL DE VAINILLA X 100 CC \"INDIAS\"",
    "rubro": "AZUCAR, CACAO Y REPOSTERIA",
@@ -3283,6 +3292,15 @@
    "cantidad": 13.0
   },
   {
+   "articulo": "5094",
+   "nombre": "MERMELADA PERAS Y ARANDANOS - LAS DOÑAS",
+   "rubro": "DULCES, MIEL Y CHOCOLATES",
+   "precio_minorista": 8330.0,
+   "precio_mayorista": 7110.0,
+   "disponible": "si",
+   "cantidad": 5.0
+  },
+  {
    "articulo": "1906",
    "nombre": "MERMELADA ZANAHORIA/NARANJA X310GR",
    "rubro": "DULCES, MIEL Y CHOCOLATES",
@@ -4208,6 +4226,15 @@
    "precio_mayorista": 7250.0,
    "disponible": "si",
    "cantidad": 3.0
+  },
+  {
+   "articulo": "5092",
+   "nombre": "PREMEZCLA PANCAKES PROTEICOS X400GR - ENTRENUTS",
+   "rubro": "PRODUCTOS SIN TACC",
+   "precio_minorista": 14820.0,
+   "precio_mayorista": 12640.0,
+   "disponible": "si",
+   "cantidad": 6.0
   },
   {
    "articulo": "2167",
