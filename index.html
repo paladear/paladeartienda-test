@@ -2314,7 +2314,9 @@ body.hv-ofertas .bnav a,.bnav button.active,body.hv-ofertas .bnav a,.bnav button
    blanco. Va solo en los textos que estan directamente sobre el azul. */
 #ofertasView .ofview-shell{background:#577fa3!important}
 #ofertasView .ofview-nota{color:rgba(255,255,255,.88)!important}
-#ofertasView .ofview-icon{background:rgba(255,255,255,.92);border-radius:12px;padding:7px;box-sizing:border-box}
+/* El icono trae un filtro que lo tiñe de celeste: sobre fondo claro quedaba
+   casi invisible. Se fuerza a blanco puro, igual que en el banner del home. */
+#ofertasView .ofview-icon{background:rgba(255,255,255,.16);border-radius:12px;padding:7px;box-sizing:border-box;filter:brightness(0) invert(1)!important}
 #ofertasView .pcard{background:rgba(255,255,255,.95);border:1.5px solid #f0d1c4}
 /* El fondo de cada foto viene como estilo en linea desde el panel (cada ficha
    puede tener su color), asi que aca hace falta !important. Solo afecta a la
