@@ -1,10 +1,10 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-19T18:14:22",
+ "actualizado": "2026-11-19T18:26:23",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 608,
- "sin_stock": 56,
+ "sin_stock": 55,
  "items": [
   {
    "articulo": "2265",
@@ -814,7 +814,7 @@
    "precio_minorista": 9690.0,
    "precio_mayorista": 7750.0,
    "disponible": "si",
-   "cantidad": 6.055
+   "cantidad": 8.055
   },
   {
    "articulo": "1142",
@@ -832,7 +832,7 @@
    "precio_minorista": 7000.0,
    "precio_mayorista": 6089.99,
    "disponible": "si",
-   "cantidad": 7.0
+   "cantidad": 6.0
   },
   {
    "articulo": "2455",
@@ -1039,7 +1039,7 @@
    "precio_minorista": 1200.0,
    "precio_mayorista": 1150.0,
    "disponible": "si",
-   "cantidad": 11.0
+   "cantidad": 10.0
   },
   {
    "articulo": "5017",
@@ -1786,7 +1786,7 @@
    "precio_minorista": 5650.0,
    "precio_mayorista": 5150.0,
    "disponible": "si",
-   "cantidad": 9.0
+   "cantidad": 8.0
   },
   {
    "articulo": "5035",
@@ -1804,7 +1804,7 @@
    "precio_minorista": 8570.0,
    "precio_mayorista": 7310.0,
    "disponible": "si",
-   "cantidad": 5.0
+   "cantidad": 4.0
   },
   {
    "articulo": "2511",
@@ -3487,7 +3487,7 @@
    "precio_minorista": 7790.0,
    "precio_mayorista": 6250.0,
    "disponible": "si",
-   "cantidad": 12.272
+   "cantidad": 12.772
   },
   {
    "articulo": "1430",
@@ -4531,7 +4531,7 @@
    "precio_minorista": 2600.0,
    "precio_mayorista": 2180.0,
    "disponible": "si",
-   "cantidad": 34.0
+   "cantidad": 31.0
   },
   {
    "articulo": "2066",
@@ -4558,7 +4558,7 @@
    "precio_minorista": 2000.0,
    "precio_mayorista": 1750.0,
    "disponible": "si",
-   "cantidad": 8.0
+   "cantidad": 7.0
   },
   {
    "articulo": "1557",
@@ -4926,8 +4926,8 @@
    "rubro": "PALADEAR HOME",
    "precio_minorista": 15000.0,
    "precio_mayorista": 13000.0,
-   "disponible": "no",
-   "cantidad": 0.0
+   "disponible": "si",
+   "cantidad": 4.0
   },
   {
    "articulo": "2035",
