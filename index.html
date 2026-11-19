@@ -2313,7 +2313,10 @@ body.hv-ofertas .bnav a,.bnav button.active,body.hv-ofertas .bnav a,.bnav button
 #ofertasView .ofview-nota{color:rgba(255,255,255,.88)!important}
 #ofertasView .ofview-icon{background:rgba(255,255,255,.92);border-radius:12px;padding:7px;box-sizing:border-box}
 #ofertasView .pcard{background:rgba(255,255,255,.95);border:1.5px solid #f0d1c4}
-#ofertasView .pcard-img{background:#e6f1f9}
+/* El fondo de cada foto viene como estilo en linea desde el panel (cada ficha
+   puede tener su color), asi que aca hace falta !important. Solo afecta a la
+   seccion Ofertas: en Productos cada producto conserva su fondo propio. */
+#ofertasView .pcard-img{background:#e6f1f9!important}
 .ofview-hero{margin:0 0 14px;border-radius:16px;overflow:hidden;background:#cfe0ee;box-shadow:0 6px 18px rgba(20,58,87,.12)}
 .ofview-hero img{display:block;width:100%;height:auto;aspect-ratio:1846/852;object-fit:cover;object-position:center bottom}
 /* En escritorio se recorta algo de cielo: el banner completo mide 512px de alto
