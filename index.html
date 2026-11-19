@@ -1842,16 +1842,18 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .min-home-hero-hotspot{position:absolute;left:5.2%;top:84.2%;width:24%;height:10%;border:0;border-radius:999px;background:transparent;cursor:pointer}
 .min-home-hero-hotspot:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .min-redesign .descb-wrap{order:2;padding:0}
-/* ── Banner del mes, soldado abajo del de descuentos ───────────────────────
-   Van pegados a proposito: mismo ancho de punta a punta, sin margen ni bordes
+/* ── Banner del mes, soldado ARRIBA de la seccion de Ofertas ───────────────
+   Mismo "order" que #hvOfertas: con el mismo valor manda el orden del HTML,
+   asi que queda justo encima y pegado. Ancho completo, sin margen ni bordes
    redondeados entre medio, para que se lean como una sola pieza. */
-.hvdetox{display:block;width:100%;margin:0;padding:0;border:0;background:#cfe0ee;cursor:pointer;line-height:0;overflow:hidden;-webkit-appearance:none;appearance:none}
-.hvdetox img{display:block;width:100%;height:auto;aspect-ratio:1846/852;object-fit:cover;object-position:center bottom}
+.hvdetox{display:block;order:5;width:100%;margin:0;padding:0;border:0;background:#cfe0ee;cursor:pointer;line-height:0;overflow:hidden;-webkit-appearance:none;appearance:none}
+.hvdetox img{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:cover;object-position:center bottom}
 .hvdetox:hover img{opacity:.96}
 @media(min-width:721px){
-  /* A tamano completo mide mas de 500px de alto y empujaria todo el home:
-     se acota y se recorta cielo, nunca el texto ni los productos. */
-  .hvdetox img{height:clamp(200px,14.5vw,270px);aspect-ratio:auto}
+  /* A tamano completo es muy alto y empuja toda la seccion: se acota y se
+     recorta cielo, nunca el texto ni los productos. */
+  .hvdetox img{height:clamp(220px,17vw,320px);aspect-ratio:auto}
+}
 }
 .min-redesign .descb-banner{position:relative;display:block;width:100%;aspect-ratio:1280/193;min-height:0;padding:0;border:0;border-radius:0;background:#4d7898;color:#fff;box-shadow:none;overflow:hidden}
 .descb-art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
@@ -2318,10 +2320,14 @@ body.hv-ofertas .bnav a,.bnav button.active,body.hv-ofertas .bnav a,.bnav button
    casi invisible. Se fuerza a blanco puro, igual que en el banner del home. */
 #ofertasView .ofview-icon{background:rgba(255,255,255,.16);border-radius:12px;padding:7px;box-sizing:border-box;filter:brightness(0) invert(1)!important}
 #ofertasView .pcard{background:rgba(255,255,255,.95);border:1.5px solid #f0d1c4}
-/* El fondo de cada foto viene como estilo en linea desde el panel (cada ficha
-   puede tener su color), asi que aca hace falta !important. Solo afecta a la
-   seccion Ofertas: en Productos cada producto conserva su fondo propio. */
-#ofertasView .pcard-img{background:#e6f1f9!important}
+/* Sobre el azul, el ladrillo #b04020 apagaba. Se pasa a un naranja mas
+   vibrante, que es el que combina con el fondo. Solo en esta seccion. */
+#ofertasView .precio-oferta{color:#ef6020!important}
+#ofertasView .oferta-badge{background:linear-gradient(135deg,#fb8137 0%,#ef6020 100%)!important;box-shadow:0 3px 9px rgba(239,96,32,.45)!important}
+/* La foto conserva su fondo propio (el que fija el panel en cada ficha): asi
+   el borde de la imagen es del mismo blanco que la imagen. El celeste va solo
+   en la franja de abajo, la del nombre y el precio. */
+#ofertasView .pcard-body{background:#e6f1f9}
 .ofview-hero{margin:0 0 14px;border-radius:16px;overflow:hidden;background:#cfe0ee;box-shadow:0 6px 18px rgba(20,58,87,.12)}
 .ofview-hero img{display:block;width:100%;height:auto;aspect-ratio:1846/852;object-fit:cover;object-position:center bottom}
 /* En escritorio se recorta algo de cielo: el banner completo mide 512px de alto
@@ -3001,17 +3007,17 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
         <span>Al superar los <b class="descb-monto">$80.000</b> en tu carrito se activan los descuentos en tu pedido.</span>
       </div>
     </div>
-    <button type="button" class="hvdetox" id="hvDetox" style="display:none" onclick="hvIrOfertas()" aria-label="Ver las ofertas del mes">
-      <picture>
-        <source media="(max-width:620px)" srcset="of-banner-noviembre-m.webp?v=2">
-        <img src="of-banner-noviembre.webp?v=2" alt="Mes Detox — ofertas especiales" width="1600" height="738" loading="lazy" decoding="async">
-      </picture>
-    </button>
   </div>
 
 
 
   <!-- OFERTAS (aparece solo si hay productos en oferta) -->
+  <button type="button" class="hvdetox" id="hvDetox" style="display:none" onclick="hvIrOfertas()" aria-label="Ver las ofertas del mes">
+    <picture>
+      <source media="(max-width:620px)" srcset="of-banner-noviembre-m.webp?v=3">
+      <img src="of-banner-noviembre.webp?v=3" alt="Mes Detox — ofertas especiales" width="1600" height="900" loading="lazy" decoding="async">
+    </picture>
+  </button>
   <button class="hv-ofertas" id="hvOfertas" style="display:none" onclick="hvIrOfertas()">
     <img class="hvof-tk hvof-tag-icon" src="may-icon-offers-filled.png" alt="" aria-hidden="true">
     <span><b>Ofertas del mes</b><span id="hvOfN">productos en oferta</span></span>
