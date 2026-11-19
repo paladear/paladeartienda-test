@@ -660,13 +660,13 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .carousel-card-price{font-size:15px;font-weight:800;color:var(--fg);margin-top:4px}
 /* Oferta del mes */
 .carousel-card{position:relative}
-.oferta-badge{position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#d4543c 0%,#b04020 100%);color:#fff;font-size:11px;font-weight:800;padding:3px 8px;border-radius:6px;z-index:5;box-shadow:0 3px 8px rgba(180,60,30,.45);letter-spacing:.2px;transform:rotate(-6deg);transform-origin:center;transition:transform .25s ease}
+.oferta-badge{position:absolute;top:10px;left:10px;background:#e03c14;color:#fff;font-size:11px;font-weight:800;padding:3px 8px;border-radius:6px;z-index:5;box-shadow:0 3px 8px rgba(180,60,30,.45);letter-spacing:.2px;transform:rotate(-6deg);transform-origin:center;transition:transform .25s ease}
 .oferta-badge:hover{transform:rotate(-3deg) scale(1.08)}
 .oferta-badge-lg{font-size:13px;padding:5px 11px;top:12px;left:12px}
 .pcard{position:relative}
 .precio-tachado{text-decoration:line-through;color:var(--muted-fg);font-weight:600;font-size:13px;margin-right:5px}
 .precio-tachado-sm{text-decoration:line-through;color:var(--muted-fg);font-weight:600;font-size:13px;display:block;line-height:1}
-.precio-oferta{color:#b04020;font-weight:800}
+.precio-oferta{color:#e03c14;font-weight:800}
 .price-min .precio-oferta{font-size:18px;display:block;line-height:1.1;margin-top:2px}
 /* Desktop: grilla fija de 4, sin scroll */
 @media(min-width:768px){
@@ -939,8 +939,8 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .add-btn:hover{background:var(--azul-dark)}
 .add-btn:active{transform:scale(.97)}
 .card-cart-actions{display:flex;gap:6px;margin-top:6px;align-items:center}
-.card-del-btn{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:rgba(212,84,60,.1);border:1.5px solid rgba(212,84,60,.3);color:#b04020;cursor:pointer;transition:all .2s;flex-shrink:0}
-.card-del-btn:hover{border-color:#d4543c;color:#b04020;background:rgba(212,84,60,.18)}
+.card-del-btn{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:rgba(212,84,60,.1);border:1.5px solid rgba(212,84,60,.3);color:#e03c14;cursor:pointer;transition:all .2s;flex-shrink:0}
+.card-del-btn:hover{border-color:#e03c14;color:#e03c14;background:rgba(212,84,60,.18)}
 .card-edit-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;height:34px;border-radius:8px;background:var(--azul-light);border:1.5px solid var(--azul-mid);color:var(--azul-dark);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
 .card-edit-btn:hover{background:var(--azul);color:#fff}
 .add-btn.added{background:#629176}
@@ -1842,17 +1842,6 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .min-home-hero-hotspot{position:absolute;left:5.2%;top:84.2%;width:24%;height:10%;border:0;border-radius:999px;background:transparent;cursor:pointer}
 .min-home-hero-hotspot:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .min-redesign .descb-wrap{order:2;padding:0}
-/* ── Banner del mes, soldado ARRIBA de la seccion de Ofertas ───────────────
-   Mismo "order" que #hvOfertas: con el mismo valor manda el orden del HTML,
-   asi que queda justo encima y pegado. Ancho completo, sin margen ni bordes
-   redondeados entre medio, para que se lean como una sola pieza. */
-.hvdetox{display:block;order:5;width:100%;margin:0;padding:0;border:0;background:#cfe0ee;cursor:pointer;line-height:0;overflow:hidden;-webkit-appearance:none;appearance:none}
-.hvdetox img{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:cover;object-position:center bottom}
-.hvdetox:hover img{opacity:.96}
-@media(min-width:721px){
-  /* A tamano completo es muy alto y empuja toda la seccion: se acota y se
-     recorta cielo, nunca el texto ni los productos. */
-  .hvdetox img{height:clamp(220px,17vw,320px);aspect-ratio:auto}
 }
 }
 .min-redesign .descb-banner{position:relative;display:block;width:100%;aspect-ratio:1280/193;min-height:0;padding:0;border:0;border-radius:0;background:#4d7898;color:#fff;box-shadow:none;overflow:hidden}
@@ -2244,7 +2233,7 @@ body.hv-home #mainContainer{display:none!important}
 #hvCats.expanded .hv-cats-scroller{display:none}
 #hvCats.expanded .hv-cats-grid{display:grid}
 @media(min-width:768px){.hv-cats-scroller{display:none}.hv-cats-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:30px 18px}.hv-sec-action{display:none}}
-#homeView .hv-ofertas{display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;background:radial-gradient(circle at 7% 18%,rgba(212,84,60,.08) 0 42px,transparent 43px),radial-gradient(circle at 94% 84%,rgba(212,84,60,.08) 0 68px,transparent 69px),linear-gradient(135deg,#fdefd8 0%,#fbe2bd 100%);border:2px solid #d4543c;border-radius:18px;padding:14px 16px;cursor:pointer;box-shadow:0 5px 18px rgba(158,66,37,.13);width:100%;text-align:left;font-family:inherit;margin:0 0 40px}
+#homeView .hv-ofertas{display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;background:radial-gradient(circle at 7% 18%,rgba(212,84,60,.08) 0 42px,transparent 43px),radial-gradient(circle at 94% 84%,rgba(212,84,60,.08) 0 68px,transparent 69px),linear-gradient(135deg,#fdefd8 0%,#fbe2bd 100%);border:2px solid #e03c14;border-radius:18px;padding:14px 16px;cursor:pointer;box-shadow:0 5px 18px rgba(158,66,37,.13);width:100%;text-align:left;font-family:inherit;margin:0 0 40px}
 #homeView .hv-ofertas .em{font-size:26px}
 #homeView .hv-ofertas b{display:block;font-size:15px;color:var(--azul-dark);font-weight:800}
 #homeView .hv-ofertas span{font-size:12px;color:var(--muted-fg)}
@@ -2283,18 +2272,18 @@ body.hv-home #mainContainer{display:none!important}
 #homeView .hv-ofertas{flex-direction:column;align-items:stretch;gap:11px}
 .hvof-head{display:flex;align-items:center;gap:11px;text-align:left}
 .hvof-tk{width:38px;height:auto;flex-shrink:0}
-#homeView .hv-ofertas .hvof-head b{display:block;font-size:15px;color:#b04020;font-weight:800}
-#homeView .hv-ofertas .hvof-sub{display:block;font-size:12px;color:#8a3520}
-#homeView .hv-ofertas .hvof-head .chev{margin-left:auto;color:#b04020;flex-shrink:0}
+#homeView .hv-ofertas .hvof-head b{display:block;font-size:15px;color:#e03c14;font-weight:800}
+#homeView .hv-ofertas .hvof-sub{display:block;font-size:12px;color:#e03c14}
+#homeView .hv-ofertas .hvof-head .chev{margin-left:auto;color:#e03c14;flex-shrink:0}
 .hvof-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .hvof-card{position:relative;display:flex;flex-direction:column;background:rgba(255,255,255,.82);border:1.5px solid #f0d1c4;border-radius:11px;padding:7px;text-align:center;min-width:0}
-#homeView .hv-ofertas .hvof-badge{position:absolute;top:6px;left:5px;background:linear-gradient(135deg,#d4543c 0%,#b04020 100%);color:#fff;-webkit-text-fill-color:#fff;font-size:10px;font-weight:800;border-radius:6px;padding:2px 7px;z-index:2;box-shadow:0 3px 8px rgba(180,60,30,.38);letter-spacing:.2px;transform:rotate(-6deg);transform-origin:center}
+#homeView .hv-ofertas .hvof-badge{position:absolute;top:6px;left:5px;background:#e03c14;color:#fff;-webkit-text-fill-color:#fff;font-size:10px;font-weight:800;border-radius:6px;padding:2px 7px;z-index:2;box-shadow:0 3px 8px rgba(180,60,30,.38);letter-spacing:.2px;transform:rotate(-6deg);transform-origin:center}
 .hvof-card img{width:100%;height:64px;object-fit:contain;background:#fff;border-radius:8px}
 .hvof-emoji{height:64px;display:grid;place-items:center;font-size:28px;background:#fff;border-radius:8px}
 .hvof-name{font-size:10.5px;font-weight:700;color:var(--azul-dark);line-height:1.15;margin-top:5px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:24px}
 .hvof-precio{font-size:10.5px;margin-top:3px}
 #homeView .hv-ofertas .hvof-precio s{color:#745b4f}
-#homeView .hv-ofertas .hvof-precio b{display:inline;color:#b04020;-webkit-text-fill-color:#b04020;font-size:12.5px}
+#homeView .hv-ofertas .hvof-precio b{display:inline;color:#e03c14;-webkit-text-fill-color:#e03c14;font-size:12.5px}
 /* Vista independiente de Ofertas */
 #ofertasView{display:none;max-width:1100px;margin:0 auto;padding:12px 20px 32px}
 body.hv-ofertas,body.hv-ofertas #ofertasView{background:var(--bg)!important}
@@ -2320,10 +2309,10 @@ body.hv-ofertas .bnav a,.bnav button.active,body.hv-ofertas .bnav a,.bnav button
    casi invisible. Se fuerza a blanco puro, igual que en el banner del home. */
 #ofertasView .ofview-icon{background:rgba(255,255,255,.16);border-radius:12px;padding:7px;box-sizing:border-box;filter:brightness(0) invert(1)!important}
 #ofertasView .pcard{background:rgba(255,255,255,.95);border:1.5px solid #f0d1c4}
-/* Sobre el azul, el ladrillo #b04020 apagaba. Se pasa a un naranja mas
-   vibrante, que es el que combina con el fondo. Solo en esta seccion. */
-#ofertasView .precio-oferta{color:#ef6020!important}
-#ofertasView .oferta-badge{background:linear-gradient(135deg,#fb8137 0%,#ef6020 100%)!important;box-shadow:0 3px 9px rgba(239,96,32,.45)!important}
+/* Todo lo rojo del sitio usa el mismo tono #e03c14, un rojo vibrante tirando a
+   naranja. Antes convivian el ladrillo #b04020, el #d4543c y el #8a3520. */
+#ofertasView .precio-oferta{color:#e03c14!important}
+#ofertasView .oferta-badge{background:#e03c14!important;box-shadow:0 3px 9px rgba(224,60,20,.45)!important}
 /* La foto conserva su fondo propio (el que fija el panel en cada ficha): asi
    el borde de la imagen es del mismo blanco que la imagen. El celeste va solo
    en la franja de abajo, la del nombre y el precio. */
@@ -2343,7 +2332,11 @@ body.hv-ofertas .bnav a,.bnav button.active,body.hv-ofertas .bnav a,.bnav button
 .ofview-icon{width:68px;height:68px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 4px 7px rgba(120,44,23,.18))}
 .ofview-head h1{font-size:29px;line-height:1.1;color:var(--azul-dark);font-weight:850;margin:0 0 5px}
 .ofview-head p{font-size:13px;line-height:1.45;color:var(--muted-fg);font-weight:550;margin:0}
-.ofview-stat{margin-left:auto;flex-shrink:0;background:#b04020;color:#fff!important;-webkit-text-fill-color:#fff!important;border-radius:999px;padding:7px 13px;font-size:11.5px;font-weight:800;box-shadow:0 4px 12px rgba(176,64,32,.19)}
+/* El contador "46 ofertas. Hasta -20%" se oculta, no se borra: renderOfertasView()
+   hace `if(!area||!stat) return`, asi que sin el elemento deja de dibujarse TODA la
+   lista de ofertas. */
+#ofertasView .ofview-stat{display:none!important}
+.ofview-stat{margin-left:auto;flex-shrink:0;background:#e03c14;color:#fff!important;-webkit-text-fill-color:#fff!important;border-radius:999px;padding:7px 13px;font-size:11.5px;font-weight:800;box-shadow:0 4px 12px rgba(176,64,32,.19)}
 .ofview-grid{position:relative;z-index:1}
 .ofview-empty{position:relative;z-index:1;text-align:center;background:rgba(255,255,255,.72);border:1.5px solid #efd0c3;border-radius:16px;padding:42px 20px;color:var(--azul-dark);font-size:14px;font-weight:650}
 @media(max-width:767px){
@@ -2472,7 +2465,7 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 .min-redesign #homeView #hvOfertas .hvof-tag-icon{color:#fff!important;-webkit-text-fill-color:#fff!important}
 .min-redesign #homeView #hvOfertas .hvof-name{color:#173f61!important;-webkit-text-fill-color:#173f61!important}
 .min-redesign #homeView #hvOfertas .hvof-precio s{color:#607080!important;-webkit-text-fill-color:#607080!important}
-.min-redesign #homeView #hvOfertas .hvof-precio b{color:#b04020!important;-webkit-text-fill-color:#b04020!important}
+.min-redesign #homeView #hvOfertas .hvof-precio b{color:#e03c14!important;-webkit-text-fill-color:#e03c14!important}
 .hvof-tag-icon{width:40px;height:40px;padding:7px;border-radius:12px;background:rgba(255,255,255,.14);box-sizing:border-box}
 .min-redesign #homeView #hvOfertas{box-shadow:0 12px 28px rgba(35,76,108,.16)!important}
 .hvof-image-empty{display:block;width:100%;height:74px;border-radius:8px;background:#edf3f7}
@@ -3012,12 +3005,6 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 
 
   <!-- OFERTAS (aparece solo si hay productos en oferta) -->
-  <button type="button" class="hvdetox" id="hvDetox" style="display:none" onclick="hvIrOfertas()" aria-label="Ver las ofertas del mes">
-    <picture>
-      <source media="(max-width:620px)" srcset="of-banner-noviembre-m.webp?v=3">
-      <img src="of-banner-noviembre.webp?v=3" alt="Mes Detox — ofertas especiales" width="1600" height="900" loading="lazy" decoding="async">
-    </picture>
-  </button>
   <button class="hv-ofertas" id="hvOfertas" style="display:none" onclick="hvIrOfertas()">
     <img class="hvof-tk hvof-tag-icon" src="may-icon-offers-filled.png" alt="" aria-hidden="true">
     <span><b>Ofertas del mes</b><span id="hvOfN">productos en oferta</span></span>
@@ -3080,8 +3067,8 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
   <section class="ofview-shell" aria-labelledby="ofertasViewTitle">
     <div class="ofview-hero">
       <picture>
-        <source media="(max-width:620px)" srcset="of-banner-noviembre-m.webp?v=3">
-        <img src="of-banner-noviembre.webp?v=3" alt="Mes Detox — ofertas especiales en Paladear" width="1600" height="900" fetchpriority="high" decoding="async">
+        <source media="(max-width:620px)" srcset="of-banner-noviembre-m.webp?v=4">
+        <img src="of-banner-noviembre.webp?v=4" alt="Mes Detox — ofertas especiales en Paladear" width="1600" height="900" fetchpriority="high" decoding="async">
       </picture>
     </div>
     <h1 id="ofertasViewTitle" class="ofview-h1-oculto">Ofertas del mes</h1>
@@ -7527,14 +7514,10 @@ function minOpenFeatured(pid){
 window.minOpenFeatured=minOpenFeatured;
 function hvRenderOfertas(){
   var box=document.getElementById('hvOfertas'); if(!box) return;
-  /* El banner del mes vive arriba, pegado al de descuentos, pero depende de
-     lo mismo: sin ofertas cargadas no se muestra ninguno de los dos. */
-  var _dtx=document.getElementById('hvDetox');
   try{
     var of=(PRODS||[]).filter(function(p){ return p[12] && p[12].oferta>0; });
-    if(!of.length){ box.style.display='none'; if(_dtx)_dtx.style.display='none'; return; }
+    if(!of.length){ box.style.display='none'; return; }
     box.style.display='';
-    if(_dtx)_dtx.style.display='block';
     // Al menos 1 producto de cada rubro con oferta, hasta 8 en total. Por rubro se
     // elige el de mayor descuento; si hay más de 6 rubros con oferta, se priorizan
     // los rubros con el descuento más fuerte.
