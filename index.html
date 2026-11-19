@@ -2309,7 +2309,10 @@ body.hv-ofertas .bnav a,.bnav button.active,body.hv-ofertas .bnav a,.bnav button
    de abajo, y en celular entra una version mas angosta y liviana. */
 /* ── La seccion Ofertas toma los colores del banner de ofertas del home:
    fondo azul, cards con borde durazno y la foto sobre celeste. ───────────── */
-#ofertasView .ofview-shell{background:#577fa3!important;color:#fff}
+/* OJO: el color del texto NO va en el contenedor. Puesto aca se filtraba
+   adentro de las cards y dejaba el nombre del producto en blanco sobre
+   blanco. Va solo en los textos que estan directamente sobre el azul. */
+#ofertasView .ofview-shell{background:#577fa3!important}
 #ofertasView .ofview-nota{color:rgba(255,255,255,.88)!important}
 #ofertasView .ofview-icon{background:rgba(255,255,255,.92);border-radius:12px;padding:7px;box-sizing:border-box}
 #ofertasView .pcard{background:rgba(255,255,255,.95);border:1.5px solid #f0d1c4}
