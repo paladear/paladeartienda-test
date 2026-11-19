@@ -2292,6 +2292,25 @@ body.hv-ofertas #tabsPill{display:none}
 body.hv-ofertas .envios-banner,body.hv-ofertas .envios-msg,body.hv-ofertas .envios-discount{color:#fff!important;-webkit-text-fill-color:#fff!important;forced-color-adjust:none;-webkit-forced-color-adjust:none}
 body.hv-ofertas .bnav a,.bnav button:not(.active),body.hv-ofertas .bnav a,.bnav button:not(.active) span{color:#fff!important;-webkit-text-fill-color:#fff!important}
 body.hv-ofertas .bnav a,.bnav button.active,body.hv-ofertas .bnav a,.bnav button.active span{color:var(--azul-dark)!important;-webkit-text-fill-color:var(--azul-dark)!important}
+/* ── Banner de ofertas del mes ─────────────────────────────────────────────
+   La imagen se encuadra a la DERECHA a proposito: ahi estan los productos.
+   El titulo va en HTML sobre un degradado y no quemado en la imagen, asi se
+   adapta en celular y se puede cambiar el mes sin rehacer el arte. */
+.ofview-hero{position:relative;overflow:hidden;border-radius:16px;margin:0 0 14px;min-height:188px;display:flex;align-items:center;background:#0d2d44}
+.ofview-hero>picture>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center}
+.ofview-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,40,61,.95) 0%,rgba(11,40,61,.88) 30%,rgba(11,40,61,.45) 56%,rgba(11,40,61,0) 76%)}
+.ofview-hero-copy{position:relative;z-index:2;padding:22px 24px;max-width:min(56%,470px);color:#fff}
+.ofview-kicker{display:inline-block;margin-bottom:7px;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.3);font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#fff}
+.ofview-hero-copy h1{margin:0 0 5px;color:#fff;font-size:clamp(24px,3.4vw,38px);line-height:1.04;letter-spacing:-.01em}
+.ofview-hero-copy p{margin:0;color:rgba(255,255,255,.9);font-size:13.5px;line-height:1.4}
+.ofview-hero .ofview-stat{position:absolute;z-index:3;right:16px;bottom:14px}
+.ofview-head .ofview-nota{margin:0}
+@media(max-width:620px){
+  .ofview-hero{min-height:168px;border-radius:14px}
+  .ofview-hero::after{background:linear-gradient(90deg,rgba(11,40,61,.96) 0%,rgba(11,40,61,.9) 46%,rgba(11,40,61,.5) 72%,rgba(11,40,61,.15) 100%)}
+  .ofview-hero-copy{max-width:72%;padding:16px}
+  .ofview-hero .ofview-stat{right:10px;bottom:10px}
+}
 .ofview-shell{position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(circle at 5% 9%,rgba(176,64,32,.12) 0 72px,transparent 73px),radial-gradient(circle at 95% 8%,rgba(230,81,0,.10) 0 54px,transparent 55px),radial-gradient(circle at 54% 25%,rgba(176,64,32,.07) 0 34px,transparent 35px),radial-gradient(circle at 92% 48%,rgba(230,81,0,.08) 0 92px,transparent 93px),radial-gradient(circle at 7% 69%,rgba(176,64,32,.08) 0 52px,transparent 53px),radial-gradient(circle at 58% 91%,rgba(230,81,0,.07) 0 78px,transparent 79px),linear-gradient(145deg,#fff8f4,#fce8df);border:1.5px solid #efc9b9;border-radius:22px;padding:24px;box-shadow:0 8px 28px rgba(158,66,37,.12)}
 .ofview-head{position:relative;z-index:1;display:flex;align-items:center;gap:15px;margin-bottom:22px}
 .ofview-icon{width:68px;height:68px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 4px 7px rgba(120,44,23,.18))}
@@ -3026,14 +3045,21 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 <!-- ═══ Vista independiente: Ofertas ═══ -->
 <div id="ofertasView">
   <section class="ofview-shell" aria-labelledby="ofertasViewTitle">
-    <div class="ofview-head">
-      <img class="ofview-icon" src="may-icon-offers-filled.png" alt="" aria-hidden="true">
-      <div>
+    <div class="ofview-hero">
+      <picture>
+        <source media="(max-width:620px)" srcset="of-banner-noviembre-m.webp">
+        <img src="of-banner-noviembre.webp" alt="" aria-hidden="true" width="1600" height="738" fetchpriority="high" decoding="async">
+      </picture>
+      <div class="ofview-hero-copy">
+        <span class="ofview-kicker">Mes Detox</span>
         <h1 id="ofertasViewTitle">Ofertas del mes</h1>
         <p>Todos los productos con descuento, reunidos en un solo lugar.</p>
-        <p class="ofview-nota">Precios de oferta solo para venta minorista. Los pedidos de más de $80.000 ya tienen su descuento por cantidad: los beneficios no se suman.</p>
       </div>
       <span class="ofview-stat" id="ofertasViewStat"></span>
+    </div>
+    <div class="ofview-head">
+      <img class="ofview-icon" src="may-icon-offers-filled.png" alt="" aria-hidden="true">
+      <p class="ofview-nota">Precios de oferta solo para venta minorista. Los pedidos de más de $80.000 ya tienen su descuento por cantidad: los beneficios no se suman.</p>
     </div>
     <div id="ofertasViewContent"></div>
   </section>
