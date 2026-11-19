@@ -1,35 +1,20 @@
 {
   "resumen": {
-    "nuevos": 3,
-    "renombrados": 0,
+    "nuevos": 0,
+    "renombrados": 1,
     "quitados": 1,
     "rubro_invalido": 0,
     "fuera_catalogo": 62
   },
-  "nuevos": [
+  "nuevos": [],
+  "renombrados": [
     {
       "numero": "5093",
-      "nombre": "ERITRITOL",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 21390,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5094",
-      "nombre": "MERMELADA PERAS Y ARANDANOS - LAS DOÑAS",
-      "rubro": "DULCES, MIEL Y CHOCOLATES",
-      "precio": 8330,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "5092",
-      "nombre": "PREMEZCLA PANCAKES PROTEICOS X400GR - ENTRENUTS",
-      "rubro": "PRODUCTOS SIN TACC",
-      "precio": 14820,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+      "nombre_publicado": "ERYTRITOL",
+      "nombre_nuevo": "ERITRITOL",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA"
     }
   ],
-  "renombrados": [],
   "quitados": [
     {
       "numero": "2222",
