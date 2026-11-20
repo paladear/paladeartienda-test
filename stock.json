@@ -1,6 +1,6 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-20T16:26:21",
+ "actualizado": "2026-11-20T16:47:21",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 608,
@@ -499,7 +499,7 @@
    "precio_minorista": 1500.0,
    "precio_mayorista": 1260.0,
    "disponible": "si",
-   "cantidad": 3.0
+   "cantidad": 2.0
   },
   {
    "articulo": "5049",
@@ -886,7 +886,7 @@
    "precio_minorista": 2340.0,
    "precio_mayorista": 1990.0,
    "disponible": "si",
-   "cantidad": 160.0
+   "cantidad": 158.0
   },
   {
    "articulo": "4454",
@@ -913,7 +913,7 @@
    "precio_minorista": 3440.0,
    "precio_mayorista": 2710.0,
    "disponible": "si",
-   "cantidad": 28.0
+   "cantidad": 23.0
   },
   {
    "articulo": "5068",
@@ -931,7 +931,7 @@
    "precio_minorista": 2720.0,
    "precio_mayorista": 2320.0,
    "disponible": "si",
-   "cantidad": 235.925
+   "cantidad": 230.0
   },
   {
    "articulo": "5031",
@@ -2038,7 +2038,7 @@
    "precio_minorista": 3260.0,
    "precio_mayorista": 2790.0,
    "disponible": "si",
-   "cantidad": 6.0
+   "cantidad": 5.0
   },
   {
    "articulo": "2115",
@@ -3865,7 +3865,7 @@
    "precio_minorista": 22500.0,
    "precio_mayorista": 21500.0,
    "disponible": "si",
-   "cantidad": 1.27
+   "cantidad": 1.17
   },
   {
    "articulo": "2397",
@@ -4045,7 +4045,7 @@
    "precio_minorista": 1500.0,
    "precio_mayorista": 1400.0,
    "disponible": "si",
-   "cantidad": 13.0
+   "cantidad": 15.0
   },
   {
    "articulo": "1522",
@@ -5242,7 +5242,7 @@
    "precio_minorista": 7820.0,
    "precio_mayorista": 6680.0,
    "disponible": "si",
-   "cantidad": 1.0
+   "cantidad": 2.0
   },
   {
    "articulo": "1637",
