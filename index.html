@@ -1905,9 +1905,10 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   filter:blur(14px);transform:scale(1.12);z-index:0}
 /* Van sobre el azul, justo debajo de los tazones y por encima de la onda crema.
    Chicos para no robar lugar, pero con contraste suficiente para verse. */
-.pb-dots{position:absolute;z-index:3;left:0;right:0;bottom:25%;display:flex;justify-content:center;gap:6px;pointer-events:none}
-.pb-dot{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;pointer-events:auto;transition:background .2s,width .2s;box-shadow:0 1px 3px rgba(8,30,48,.45)}
-.pb-dot.is-on{background:#fff;width:18px;border-radius:999px}
+.pb-dots{position:absolute;z-index:3;right:clamp(12px,1.5vw,24px);top:44%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.pb-dot{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;pointer-events:auto;transition:background .2s,height .2s;box-shadow:0 1px 3px rgba(8,30,48,.45)}
+.pb-dot.is-on{background:#fff;height:18px;border-radius:999px}
 @media(max-width:900px){
   .pb-banner{grid-template-columns:46% 54%;min-height:330px}
   .pb-copy{padding:24px 20px}
@@ -1921,7 +1922,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   .pb-note span{font-size:11.5px;line-height:1.35}
   .pb-cta{margin-top:10px;min-height:40px;font-size:12.5px;padding:0 16px}
   .pb-bowl{width:min(44vw,160px);top:46%}
-  .pb-dots{bottom:27%;gap:5px}
+  .pb-dots{right:8px;gap:5px}
 }
 @media(prefers-reduced-motion:reduce){
   .pb-img,.pb-note strong,.pb-note span,.pb-cta{transition:none!important}
