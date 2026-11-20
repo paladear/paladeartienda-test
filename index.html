@@ -140,8 +140,7 @@
   "sameAs": [
     "https://www.google.com/maps/place/Paladear/@-32.899457,-68.8594958,17z/data=!4m6!3m5!1s0x967e097cbbee7491:0x5bb86b4da6e8e7e!8m2!3d-32.899457!4d-68.8594958!16s%2Fg%2F11nt7rf1__",
     "https://maps.app.goo.gl/VpQesb1adzCckCCw6",
-    "https://www.instagram.com/palade.ar",
-    "https://www.instagram.com/paladear.distribuidora"
+    "https://www.instagram.com/palade.ar"
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -210,7 +209,6 @@
   "image": "https://paladear.com.ar/android-chrome-512x512.png",
   "sameAs": [
     "https://www.instagram.com/palade.ar",
-    "https://www.instagram.com/paladear.distribuidora",
     "https://www.google.com/maps/place/Paladear/@-32.899457,-68.8594958,17z/data=!4m6!3m5!1s0x967e097cbbee7491:0x5bb86b4da6e8e7e!8m2!3d-32.899457!4d-68.8594958!16s%2Fg%2F11nt7rf1__",
     "https://maps.app.goo.gl/VpQesb1adzCckCCw6"
   ]
@@ -1842,8 +1840,6 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .min-home-hero-hotspot{position:absolute;left:5.2%;top:84.2%;width:24%;height:10%;border:0;border-radius:999px;background:transparent;cursor:pointer}
 .min-home-hero-hotspot:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .min-redesign .descb-wrap{order:2;padding:0}
-}
-}
 .min-redesign .descb-banner{position:relative;display:block;width:100%;aspect-ratio:1280/193;min-height:0;padding:0;border:0;border-radius:0;background:#4d7898;color:#fff;box-shadow:none;overflow:hidden}
 .descb-art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
 .descb-meter{position:absolute;z-index:2;left:54.5%;right:7%;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;padding:0 1.8%;background:#577fa3;color:#fff}
@@ -1869,6 +1865,65 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .min-redesign .hv-cat:hover .bub img{transform:scale(1.08)}
 
 .min-redesign .hv-cats-grid{width:min(1180px,100%);margin:18px auto 0;grid-template-columns:repeat(8,minmax(0,1fr));gap:20px}
+/* ── BANNER INTERACTIVO DE FRUTOS ────────────────────────────────────────────
+   Portado de un componente React a HTML plano: el carrusel y las animaciones
+   van en CSS + JS vanilla. Todas las clases llevan prefijo pb- para no chocar
+   con las que ya existen en la tienda (.banner-copy, .shop-cta y parecidas).
+   La paleta se adapto a la de Paladear: el original venia en petroleo. */
+.pb-banner{order:4;position:relative;overflow:hidden;isolation:isolate;
+  width:min(1500px,calc(100% - 48px));margin:0 auto 34px;border-radius:24px;
+  background:linear-gradient(135deg,#3d5a72 0%,#2f4b63 100%);
+  box-shadow:0 22px 56px rgba(22,59,88,.26);
+  display:grid;grid-template-columns:44% 56%;min-height:400px}
+.pb-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;z-index:0;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20180'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%2098%20C85%20126%20130%20128%20190%2075%20C250%2022%20294%2016%20350%2074%20C405%20130%20445%20144%20498%20119%20C554%2092%20596%2082%20652%20105%20C710%20129%20748%20153%20803%20104%20C860%2053%20906%2047%20952%2085%20C974%20104%20987%20109%201000%20105%20L1000%20180%20L0%20180%20Z'%20fill='%23f4efe6'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat}
+.pb-copy{position:relative;z-index:2;padding:clamp(26px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;color:#fff}
+.pb-title{margin:0;font-size:clamp(28px,3.1vw,46px);line-height:1.04;letter-spacing:-.045em;font-weight:600;color:#fff}
+.pb-title em{font-style:italic;font-weight:700;color:#cfdce8}
+.pb-note{display:flex;flex-direction:column;gap:7px;margin:22px 0 0;min-height:86px}
+.pb-note strong{font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1;transition:color .3s}
+.pb-note span{font-size:13px;color:#d6e3ee;line-height:1.4;max-width:34ch}
+.pb-note.pb-cambia strong,.pb-note.pb-cambia span{opacity:0;transform:translateY(7px)}
+.pb-note strong,.pb-note span{opacity:1;transform:none;transition:opacity .28s ease,transform .28s ease,color .3s}
+.pb-cta{margin-top:20px;min-height:50px;padding:0 28px;border:0;border-radius:999px;background:#fff;color:#1a3050;
+  font:inherit;font-size:15px;font-weight:800;cursor:pointer;white-space:nowrap;
+  transition:background .2s,transform .2s,box-shadow .2s;box-shadow:0 6px 16px rgba(10,30,48,.2)}
+.pb-cta:hover{background:#cfdce8;transform:translateY(-2px)}
+.pb-stage{position:relative;z-index:1;overflow:hidden;isolation:isolate}
+.pb-wash{position:absolute;inset:0;background:radial-gradient(ellipse at 52% 45%,rgba(169,220,233,.18) 0%,rgba(108,176,192,.13) 45%,transparent 76%);pointer-events:none}
+.pb-bowl{position:absolute;left:50%;top:44%;translate:-50% -50%;width:clamp(230px,26vw,330px);aspect-ratio:1;display:block;pointer-events:none}
+.pb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  clip-path:circle(40% at 50% 50%);filter:drop-shadow(0 18px 22px rgba(0,12,20,.52));
+  opacity:0;transform:translateY(-130%);transition:opacity .45s ease,transform 1s cubic-bezier(.4,0,.2,1);z-index:1}
+.pb-img.is-on{opacity:1;transform:translateY(0)}
+.pb-img.is-out{opacity:0;transform:translateY(120%);transition:opacity .5s ease,transform .85s cubic-bezier(.4,0,.2,1)}
+.pb-img[data-i="4"]{clip-path:circle(34.5% at 50% 50%);filter:none}
+.pb-img[data-i="2"]{clip-path:circle(39.5% at 50% 50%)}
+.pb-shadow{position:absolute;left:14%;right:14%;height:18%;bottom:-6%;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(0,10,16,.8) 0%,rgba(3,25,36,.6) 38%,rgba(6,36,50,0) 78%);
+  filter:blur(14px);transform:scale(1.12);z-index:0}
+.pb-dots{position:absolute;z-index:3;left:clamp(26px,3.4vw,52px);bottom:clamp(16px,2vw,26px);display:flex;gap:7px}
+.pb-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.38);cursor:pointer;transition:background .2s,width .2s}
+.pb-dot.is-on{background:#fff;width:22px;border-radius:999px}
+@media(max-width:900px){
+  .pb-banner{grid-template-columns:46% 54%;min-height:330px;width:calc(100% - 24px);border-radius:18px}
+  .pb-copy{padding:24px 20px}
+}
+@media(max-width:620px){
+  .pb-banner{grid-template-columns:52% 48%;min-height:280px;margin-bottom:22px}
+  .pb-copy{padding:18px 14px}
+  .pb-title{font-size:clamp(21px,5.6vw,28px)}
+  .pb-note{margin:12px 0 0;min-height:64px;gap:5px}
+  .pb-note strong{font-size:clamp(18px,5vw,23px)}
+  .pb-note span{font-size:11.5px;line-height:1.35}
+  .pb-cta{margin-top:10px;min-height:40px;font-size:12.5px;padding:0 16px}
+  .pb-bowl{width:min(44vw,160px);top:46%}
+  .pb-dots{left:14px;bottom:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .pb-img,.pb-note strong,.pb-note span,.pb-cta{transition:none!important}
+  .pb-img{transform:none!important}
+}
 .min-home-banners{order:4}
 .min-redesign #homeView>.banners-track-wrap{order:4;width:100%;margin:0;padding:44px max(4vw,28px);background:#f7f3eb;overflow:visible}
 .min-redesign #homeView .banners-track{width:min(1180px,100%);margin:0 auto}
@@ -2319,10 +2374,9 @@ body.hv-ofertas .bnav a,.bnav button.active,body.hv-ofertas .bnav a,.bnav button
 #ofertasView .pcard-body{background:#e6f1f9}
 .ofview-hero{margin:0 0 14px;border-radius:16px;overflow:hidden;background:#cfe0ee;box-shadow:0 6px 18px rgba(20,58,87,.12)}
 .ofview-hero img{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:cover;object-position:center bottom}
-/* En escritorio se recorta algo de cielo: el banner completo mide 512px de alto
-   y empujaba todas las ofertas abajo del pliegue. Se ancla abajo para no comer
-   ni el texto ni los productos. */
-@media(min-width:721px){.ofview-hero img{aspect-ratio:1672/720}}
+/* En escritorio se reduce el alto con un recorte equilibrado arriba y abajo.
+   Mobile conserva su encuadre actual. */
+@media(min-width:721px){.ofview-hero img{aspect-ratio:1672/720;object-position:center center}}
 .ofview-h1-oculto{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
 @media(max-width:620px){
   .ofview-hero{border-radius:12px;margin-bottom:11px}
@@ -3005,6 +3059,22 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 
 
   <!-- OFERTAS (aparece solo si hay productos en oferta) -->
+  <!-- ═══ Banner interactivo de frutos ═══ -->
+  <section class="pb-banner" id="pbBanner" aria-label="Frutos naturales de Paladear">
+    <div class="pb-copy">
+      <h2 class="pb-title">Lo natural<br>tiene su <em>encanto.</em></h2>
+      <div class="pb-note">
+        <strong id="pbNombre"></strong>
+        <span id="pbDesc"></span>
+      </div>
+      <button type="button" class="pb-cta" id="pbCta">Comprar ahora</button>
+    </div>
+    <div class="pb-stage" role="group" aria-roledescription="carrusel">
+      <span class="pb-wash" aria-hidden="true"></span>
+      <span class="pb-bowl" aria-hidden="true"><img class="pb-img is-on" data-i="0" src="pb-walnuts.webp" alt="" aria-hidden="true" width="520" height="520" fetchpriority="high" decoding="async"><img class="pb-img" data-i="1" src="pb-cashews.webp" alt="" aria-hidden="true" width="520" height="520" loading="lazy" decoding="async"><img class="pb-img" data-i="2" src="pb-almonds.webp" alt="" aria-hidden="true" width="520" height="520" loading="lazy" decoding="async"><img class="pb-img" data-i="3" src="pb-dates.webp" alt="" aria-hidden="true" width="520" height="520" loading="lazy" decoding="async"><img class="pb-img" data-i="4" src="pb-pumpkin-seeds.webp" alt="" aria-hidden="true" width="520" height="520" loading="lazy" decoding="async"><span class="pb-shadow"></span></span>
+    </div>
+    <div class="pb-dots" role="tablist" aria-label="Elegir fruto"><button type="button" class="pb-dot" data-i="0" aria-label="Ver Nueces"></button><button type="button" class="pb-dot" data-i="1" aria-label="Ver Castañas de cajú"></button><button type="button" class="pb-dot" data-i="2" aria-label="Ver Almendras"></button><button type="button" class="pb-dot" data-i="3" aria-label="Ver Dátiles dorados"></button><button type="button" class="pb-dot" data-i="4" aria-label="Ver Semillas de zapallo"></button></div>
+  </section>
   <button class="hv-ofertas" id="hvOfertas" style="display:none" onclick="hvIrOfertas()">
     <img class="hvof-tk hvof-tag-icon" src="may-icon-offers-filled.png" alt="" aria-hidden="true">
     <span><b>Ofertas del mes</b><span id="hvOfN">productos en oferta</span></span>
@@ -10244,5 +10314,71 @@ body.min-redesign:not(.hv-home) .header .min-header-cart{display:none!important}
   body.min-redesign .header-inner{padding-left:clamp(54px, 21.7vw, 78px)}
 }
 </style>
+<script>
+/* ── BANNER INTERACTIVO DE FRUTOS ────────────────────────────────────────────
+   Rota solo cada 6s y se frena 9s si la persona toca algo. El boton NO lleva a
+   un producto suelto: dispara la busqueda de la tienda con el termino del fruto,
+   porque hay 12 productos con nuez y mandar a uno solo esconde los otros once. */
+(function(){
+  var DATOS=[{n:"Nueces",d:"Un clásico noble, lleno de carácter.",t:"#ffd27f",q:"nuez"},{n:"Castañas de cajú",d:"Suaves, cremosas y simplemente irresistibles.",t:"#d9ef9e",q:"cajú"},{n:"Almendras",d:"Ese toque crocante que va con todo.",t:"#ffd0bd",q:"almendra"},{n:"Dátiles dorados",d:"Pequeños bocados de sol y energía.",t:"#ffc577",q:"dátil"},{n:"Semillas de zapallo",d:"Semillas crocantes, tostadas en su punto.",t:"#d9ef9e",q:"zapallo"}];
+  var cont=document.getElementById('pbBanner');
+  if(!cont) return;
+  var nom=document.getElementById('pbNombre'), des=document.getElementById('pbDesc');
+  var nota=cont.querySelector('.pb-note'), cta=document.getElementById('pbCta');
+  var imgs=[].slice.call(cont.querySelectorAll('.pb-img'));
+  var dots=[].slice.call(cont.querySelectorAll('.pb-dot'));
+  var i=0, pausa=false, tAuto=null, tPausa=null;
+  var quieto=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function pintar(n){
+    var d=DATOS[n];
+    nota.classList.add('pb-cambia');
+    setTimeout(function(){
+      nom.textContent=d.n; nom.style.color=d.t; des.textContent=d.d;
+      nota.classList.remove('pb-cambia');
+    }, quieto?0:160);
+    imgs.forEach(function(im,k){
+      if(k===n){ im.classList.remove('is-out'); im.classList.add('is-on'); }
+      else if(im.classList.contains('is-on')){ im.classList.remove('is-on'); im.classList.add('is-out'); }
+      else im.classList.remove('is-out');
+    });
+    dots.forEach(function(p,k){ p.classList.toggle('is-on', k===n); });
+    i=n;
+  }
+  function mover(dir){
+    pintar((i+dir+DATOS.length)%DATOS.length);
+    pausa=true;
+    if(tPausa) clearTimeout(tPausa);
+    tPausa=setTimeout(function(){ pausa=false; }, 9000);
+  }
+  function arrancar(){
+    if(quieto) return;
+    if(tAuto) clearInterval(tAuto);
+    tAuto=setInterval(function(){ if(!pausa) pintar((i+1)%DATOS.length); }, 6000);
+  }
+  dots.forEach(function(p){ p.addEventListener('click',function(){ pintar(+p.dataset.i); pausa=true;
+    if(tPausa) clearTimeout(tPausa); tPausa=setTimeout(function(){ pausa=false; },9000); }); });
+  var x0=null;
+  cont.addEventListener('touchstart',function(e){ x0=e.touches[0]?e.touches[0].clientX:null; },{passive:true});
+  cont.addEventListener('touchend',function(e){
+    var x1=e.changedTouches[0]&&e.changedTouches[0].clientX;
+    if(x0!=null&&x1!=null&&Math.abs(x1-x0)>44) mover(x1<x0?1:-1);
+    x0=null;
+  },{passive:true});
+  cta.addEventListener('click',function(){
+    var q=DATOS[i].q;
+    try{
+      if(typeof switchTab==='function') switchTab('minorista');
+      var inp=document.getElementById('compactSearchInput');
+      if(inp) inp.value=q;
+      if(typeof _updateSearchClear==='function') _updateSearchClear(q);
+      if(typeof _doSearch==='function') _doSearch(q);
+      _track&&_track('banner_frutos_cta');
+    }catch(e){}
+  });
+  pintar(0);
+  arrancar();
+})();
+</script>
 </body>
 </html>
