@@ -1871,9 +1871,10 @@ input[type=search]{-webkit-appearance:none;appearance:none}
    con las que ya existen en la tienda (.banner-copy, .shop-cta y parecidas).
    La paleta se adapto a la de Paladear: el original venia en petroleo. */
 .pb-banner{order:4;position:relative;overflow:hidden;isolation:isolate;
-  width:min(1500px,calc(100% - 48px));margin:0 auto 34px;border-radius:24px;
-  background:linear-gradient(135deg,#3d5a72 0%,#2f4b63 100%);
-  box-shadow:0 22px 56px rgba(22,59,88,.26);
+  /* De punta a punta y con aire arriba, para que no quede pegado a categorias.
+     El azul es el de la tienda (#547692) para que se lea como parte del home. */
+  width:100%;margin:40px 0 0;border-radius:0;
+  background:linear-gradient(135deg,#6287a5 0%,#547692 100%);
   display:grid;grid-template-columns:44% 56%;min-height:400px}
 .pb-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;z-index:0;pointer-events:none;
   background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20180'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%2098%20C85%20126%20130%20128%20190%2075%20C250%2022%20294%2016%20350%2074%20C405%20130%20445%20144%20498%20119%20C554%2092%20596%2082%20652%20105%20C710%20129%20748%20153%20803%20104%20C860%2053%20906%2047%20952%2085%20C974%20104%20987%20109%201000%20105%20L1000%20180%20L0%20180%20Z'%20fill='%23f4efe6'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat}
@@ -1902,15 +1903,17 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .pb-shadow{position:absolute;left:14%;right:14%;height:18%;bottom:-6%;border-radius:50%;
   background:radial-gradient(ellipse,rgba(0,10,16,.8) 0%,rgba(3,25,36,.6) 38%,rgba(6,36,50,0) 78%);
   filter:blur(14px);transform:scale(1.12);z-index:0}
-.pb-dots{position:absolute;z-index:3;left:clamp(26px,3.4vw,52px);bottom:clamp(16px,2vw,26px);display:flex;gap:7px}
-.pb-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.38);cursor:pointer;transition:background .2s,width .2s}
-.pb-dot.is-on{background:#fff;width:22px;border-radius:999px}
+/* Van sobre el azul, justo debajo de los tazones y por encima de la onda crema.
+   Chicos para no robar lugar, pero con contraste suficiente para verse. */
+.pb-dots{position:absolute;z-index:3;left:0;right:0;bottom:25%;display:flex;justify-content:center;gap:6px;pointer-events:none}
+.pb-dot{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;pointer-events:auto;transition:background .2s,width .2s;box-shadow:0 1px 3px rgba(8,30,48,.45)}
+.pb-dot.is-on{background:#fff;width:18px;border-radius:999px}
 @media(max-width:900px){
-  .pb-banner{grid-template-columns:46% 54%;min-height:330px;width:calc(100% - 24px);border-radius:18px}
+  .pb-banner{grid-template-columns:46% 54%;min-height:330px}
   .pb-copy{padding:24px 20px}
 }
 @media(max-width:620px){
-  .pb-banner{grid-template-columns:52% 48%;min-height:280px;margin-bottom:22px}
+  .pb-banner{grid-template-columns:52% 48%;min-height:280px;margin:28px 0 0}
   .pb-copy{padding:18px 14px}
   .pb-title{font-size:clamp(21px,5.6vw,28px)}
   .pb-note{margin:12px 0 0;min-height:64px;gap:5px}
@@ -1918,7 +1921,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   .pb-note span{font-size:11.5px;line-height:1.35}
   .pb-cta{margin-top:10px;min-height:40px;font-size:12.5px;padding:0 16px}
   .pb-bowl{width:min(44vw,160px);top:46%}
-  .pb-dots{left:14px;bottom:12px}
+  .pb-dots{bottom:27%;gap:5px}
 }
 @media(prefers-reduced-motion:reduce){
   .pb-img,.pb-note strong,.pb-note span,.pb-cta{transition:none!important}
