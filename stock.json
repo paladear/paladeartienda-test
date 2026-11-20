@@ -1,10 +1,10 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-20T12:14:23",
+ "actualizado": "2026-11-20T12:35:22",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 608,
- "sin_stock": 57,
+ "sin_stock": 55,
  "items": [
   {
    "articulo": "2265",
@@ -3073,7 +3073,7 @@
    "precio_minorista": 5600.0,
    "precio_mayorista": 4800.0,
    "disponible": "si",
-   "cantidad": 20.0
+   "cantidad": 60.0
   },
   {
    "articulo": "2468",
@@ -3775,7 +3775,7 @@
    "precio_minorista": 4950.0,
    "precio_mayorista": 4010.0,
    "disponible": "si",
-   "cantidad": 8.13
+   "cantidad": 7.92
   },
   {
    "articulo": "1461",
@@ -5203,10 +5203,10 @@
    "articulo": "5061",
    "nombre": "UNGÜENTO X50ML GOTA AZUL",
    "rubro": "PALADEAR HOME",
-   "precio_minorista": 19800.0,
-   "precio_mayorista": 16200.0,
+   "precio_minorista": 22000.0,
+   "precio_mayorista": 18230.0,
    "disponible": "si",
-   "cantidad": 2.0
+   "cantidad": 8.0
   },
   {
    "articulo": "2175",
@@ -5404,7 +5404,7 @@
    "precio_minorista": 2490.0,
    "precio_mayorista": 2030.0,
    "disponible": "si",
-   "cantidad": 6.0
+   "cantidad": 16.0
   },
   {
    "articulo": "1812",
@@ -5412,8 +5412,8 @@
    "rubro": "PRODUCTOS DE FRIO",
    "precio_minorista": 7620.0,
    "precio_mayorista": 6110.0,
-   "disponible": "no",
-   "cantidad": 0.0
+   "disponible": "si",
+   "cantidad": 3.0
   },
   {
    "articulo": "1811",
@@ -5422,7 +5422,7 @@
    "precio_minorista": 7620.0,
    "precio_mayorista": 6120.0,
    "disponible": "si",
-   "cantidad": 1.0
+   "cantidad": 5.0
   },
   {
    "articulo": "1809",
@@ -5431,7 +5431,7 @@
    "precio_minorista": 6870.0,
    "precio_mayorista": 5540.0,
    "disponible": "si",
-   "cantidad": 4.0
+   "cantidad": 8.0
   },
   {
    "articulo": "1810",
@@ -5439,8 +5439,8 @@
    "rubro": "PRODUCTOS DE FRIO",
    "precio_minorista": 6870.0,
    "precio_mayorista": 5540.0,
-   "disponible": "no",
-   "cantidad": 0.0
+   "disponible": "si",
+   "cantidad": 8.0
   },
   {
    "articulo": "5036",
@@ -5458,7 +5458,7 @@
    "precio_minorista": 11410.0,
    "precio_mayorista": 9140.0,
    "disponible": "si",
-   "cantidad": 3.0
+   "cantidad": 6.0
   },
   {
    "articulo": "1656",
