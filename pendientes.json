@@ -1,20 +1,13 @@
 {
   "resumen": {
     "nuevos": 0,
-    "renombrados": 1,
+    "renombrados": 0,
     "quitados": 1,
     "rubro_invalido": 0,
     "fuera_catalogo": 62
   },
   "nuevos": [],
-  "renombrados": [
-    {
-      "numero": "5093",
-      "nombre_publicado": "ERYTRITOL",
-      "nombre_nuevo": "ERITRITOL",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA"
-    }
-  ],
+  "renombrados": [],
   "quitados": [
     {
       "numero": "2222",
