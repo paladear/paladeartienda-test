@@ -1876,8 +1876,10 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   width:100%;margin:40px 0 0;border-radius:0;
   background:linear-gradient(135deg,#6287a5 0%,#547692 100%);
   display:grid;grid-template-columns:44% 56%;min-height:400px}
+/* La onda va en #f7f3eb, el mismo crema del fondo del home, para que el borde
+   de abajo se funda con lo que sigue en vez de marcar un corte. */
 .pb-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;z-index:0;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20180'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%2098%20C85%20126%20130%20128%20190%2075%20C250%2022%20294%2016%20350%2074%20C405%20130%20445%20144%20498%20119%20C554%2092%20596%2082%20652%20105%20C710%20129%20748%20153%20803%20104%20C860%2053%20906%2047%20952%2085%20C974%20104%20987%20109%201000%20105%20L1000%20180%20L0%20180%20Z'%20fill='%23f4efe6'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat}
+  background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20180'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%2098%20C85%20126%20130%20128%20190%2075%20C250%2022%20294%2016%20350%2074%20C405%20130%20445%20144%20498%20119%20C554%2092%20596%2082%20652%20105%20C710%20129%20748%20153%20803%20104%20C860%2053%20906%2047%20952%2085%20C974%20104%20987%20109%201000%20105%20L1000%20180%20L0%20180%20Z'%20fill='%23f7f3eb'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat}
 .pb-copy{position:relative;z-index:2;padding:clamp(26px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;color:#fff}
 .pb-title{margin:0;font-size:clamp(28px,3.1vw,46px);line-height:1.04;letter-spacing:-.045em;font-weight:600;color:#fff}
 .pb-title em{font-style:italic;font-weight:700;color:#cfdce8}
