@@ -10358,6 +10358,13 @@ body.min-redesign:not(.hv-home) .header .min-header-cart{display:none!important}
   }
   dots.forEach(function(p){ p.addEventListener('click',function(){ pintar(+p.dataset.i); pausa=true;
     if(tPausa) clearTimeout(tPausa); tPausa=setTimeout(function(){ pausa=false; },9000); }); });
+  /* Si el mouse esta encima o el foco esta adentro, no rota: si no, la persona
+     apunta a un fruto, el carrusel avanza y el boton le busca el siguiente. */
+  ['mouseenter','focusin'].forEach(function(ev){ cont.addEventListener(ev,function(){ pausa=true; }); });
+  ['mouseleave','focusout'].forEach(function(ev){ cont.addEventListener(ev,function(){
+    if(tPausa) clearTimeout(tPausa);
+    tPausa=setTimeout(function(){ pausa=false; }, 1200);
+  }); });
   var x0=null;
   cont.addEventListener('touchstart',function(e){ x0=e.touches[0]?e.touches[0].clientX:null; },{passive:true});
   cont.addEventListener('touchend',function(e){
