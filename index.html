@@ -1873,7 +1873,11 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .pb-banner{order:4;position:relative;overflow:hidden;isolation:isolate;
   /* De punta a punta y con aire arriba, para que no quede pegado a categorias.
      El azul es el de la tienda (#547692) para que se lea como parte del home. */
-  width:100%;margin:0;border-radius:0;
+  width:100%;border-radius:0;
+  /* El -1px de arriba no es capricho: las dos secciones se tocaban en un borde
+     fraccionario (614,67px) y el navegador dejaba una raya clara al suavizarlo.
+     Solapando un pixel la costura desaparece. */
+  margin:-1px 0 0;
   /* Arranca EXACTAMENTE en el azul de la seccion de categorias (#4c7192) para
      que el empalme no se vea, y va aclarando hacia abajo. El degradado hace de
      separacion: antes habia una franja crema de 40px que cortaba los dos
@@ -1920,7 +1924,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   .pb-copy{padding:24px 20px}
 }
 @media(max-width:620px){
-  .pb-banner{grid-template-columns:52% 48%;min-height:280px;margin:0}
+  .pb-banner{grid-template-columns:52% 48%;min-height:280px;margin:-1px 0 0}
   .pb-copy{padding:18px 14px}
   .pb-title{font-size:clamp(21px,5.6vw,28px)}
   .pb-note{margin:12px 0 0;min-height:64px;gap:5px}
