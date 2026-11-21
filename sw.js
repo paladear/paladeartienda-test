@@ -39,7 +39,7 @@ const SHELL_FILES = [
   'apple-touch-icon.png',
   'favicon-32x32.png',
   'og-image.jpg',
-  'paladear-wordmark.png',
+  'paladear-wordmark-v2.png',
   'home-hero-minorista-mobile-v12.webp',
   'home-hero-minorista-desktop-v6.webp',
   'home-discount-strip-v3.webp',
