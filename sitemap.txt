@@ -308,6 +308,7 @@ https://paladear.github.io/paladeartienda-test/?producto=hongos-secos-de-pino-13
 https://paladear.github.io/paladeartienda-test/?producto=humo-natural-1854-1316
 https://paladear.github.io/paladeartienda-test/?producto=infusor-pinza-2012
 https://paladear.github.io/paladeartienda-test/?producto=jabon-de-jarilla-y-glicerina-5008
+https://paladear.github.io/paladeartienda-test/?producto=jabon-glicerina-gota-azul-5095
 https://paladear.github.io/paladeartienda-test/?producto=jabon-liquido-de-rosa-mosqueta-5007
 https://paladear.github.io/paladeartienda-test/?producto=jarabe-de-datiles-2439
 https://paladear.github.io/paladeartienda-test/?producto=jazmin-1654
