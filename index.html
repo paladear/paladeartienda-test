@@ -9167,6 +9167,7 @@ window.compartirTienda = compartirTienda;
 (function _carteldePruebas(){
   if (!/-test(\/|$)/.test(location.pathname)) return;
   try { document.title = '[PRUEBAS] ' + document.title; } catch(e) {}
+  return; // franja roja apagada: tapaba el header. El titulo ya avisa.
   var real = location.origin + location.pathname.replace('-test/', '/');
   function _poner(){
     // En la minorista el cartel ya existía, pero escrito al FINAL del documento y
