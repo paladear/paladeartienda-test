@@ -18,8 +18,8 @@
 <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
 <link rel="manifest" href="manifest.json">
-<link rel="preload" as="image" href="home-hero-minorista-mobile-v10.webp" media="(max-width:767px)" fetchpriority="high">
-<link rel="preload" as="image" href="home-hero-minorista-desktop-v4.webp" media="(min-width:768px)" fetchpriority="high">
+<link rel="preload" as="image" href="home-hero-minorista-mobile-v11.webp" media="(max-width:767px)" fetchpriority="high">
+<link rel="preload" as="image" href="home-hero-minorista-desktop-v5.webp" media="(min-width:768px)" fetchpriority="high">
 <link rel="preload" as="image" href="home-discount-strip-v2.webp">
 
 <!-- ══════════ PWA ══════════ -->
@@ -2244,7 +2244,7 @@ function _LS(k){ return _ES_PRUEBA ? k + '__test' : k; }
       <span>Favoritos</span>
     </button>
     <button class="may-tab tab-desktop" id="tabListaPrecios" onclick="window.location.href='catalogo.html'" title="Abrir lista de precios">
-      <img class="may-tab-icon may-price-list-icon" src="may-icon-price-list-filled.svg" alt="" aria-hidden="true">
+      <img class="may-tab-icon may-price-list-icon" src="may-icon-catalog-filled.png" alt="" aria-hidden="true">
       <span>Lista de precios</span>
     </button>
   </div>
@@ -3042,8 +3042,8 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 <div id="homeView">
   <section class="min-home-hero" aria-label="El placer de elegir, descubrir y Paladear">
     <picture>
-      <source media="(max-width:767px)" srcset="home-hero-minorista-mobile-v10.webp">
-      <img src="home-hero-minorista-desktop-v4.webp" alt="Selección real de productos Paladear" fetchpriority="high" decoding="async">
+      <source media="(max-width:767px)" srcset="home-hero-minorista-mobile-v11.webp">
+      <img src="home-hero-minorista-desktop-v5.webp" alt="Selección de productos naturales Paladear" fetchpriority="high" decoding="async">
     </picture>
     <div class="min-home-hero-copy">
       <h1><span>El placer de</span><span>elegir, descubrir</span><span class="min-brand-line">y<span class="min-brand-pts">...</span> <i class="min-brand-word" aria-hidden="true"></i><i class="min-visually-hidden">Paladear</i></span></h1>
@@ -3191,7 +3191,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
   <button type="button" data-b="minorista" onclick="switchTab('minorista')"><img src="may-icon-catalog-filled.png" alt="" aria-hidden="true"><span>Productos</span></button>
   <button type="button" data-b="ofertas" onclick="hvIrOfertas()"><img src="may-icon-offers-filled.png" alt="" aria-hidden="true"><span>Ofertas</span></button>
   <button type="button" data-b="favoritos" onclick="openWishlist()"><img src="may-icon-favorites-filled.svg" alt="" aria-hidden="true"><span>Favoritos</span></button>
-  <button type="button" data-b="lista" onclick="window.location.href='catalogo.html'" title="Abrir lista de precios"><img class="may-price-list-icon" src="may-icon-price-list-filled.svg" alt="" aria-hidden="true"><span>Lista</span></button>
+  <button type="button" data-b="lista" onclick="window.location.href='catalogo.html'" title="Abrir lista de precios"><img class="may-price-list-icon" src="may-icon-catalog-filled.png" alt="" aria-hidden="true"><span>Lista</span></button>
 </nav>
 
 <!-- Panel global de categorías: lo abre el hamburguesa de la barra compacta -->
@@ -10301,6 +10301,67 @@ body.min-redesign:not(.hv-home) .header .min-header-cart{display:none!important}
   };
 })();
 </script>
+<style id="hero-glass-tester-v1">
+/* Prueba visual acotada al tester: hero fotográfico y vidrio con refracción. */
+body.min-redesign.hv-home .min-home-hero{
+  height:clamp(640px,calc(100svh - 16px),820px)!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  background:#cfe4f5;
+}
+body.min-redesign.hv-home .min-home-hero>picture img{
+  object-fit:cover!important;
+  object-position:center bottom!important;
+}
+
+@media (min-width:768px){
+  .min-home-hero-copy{top:27.5%}
+  .min-home-hero-copy h1{font-size:clamp(50px,4.5vw,72px)}
+  .min-home-hero-copy p{margin-top:22px;font-size:clamp(17px,1.45vw,22px)}
+  .min-home-hero-cta{min-height:56px;margin-top:18px}
+  body.min-redesign.hv-home .min-header-search .compact-search,
+  body.min-redesign.hv-home .may-tab,
+  body.min-redesign.hv-home .min-header-menu,
+  body.min-redesign.hv-home .min-header-cart{
+    border:1px solid rgba(255,255,255,.92)!important;
+    background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(255,255,255,.62))!important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,1),
+      inset 0 -1px 0 rgba(74,127,165,.10),
+      inset 1px 0 0 rgba(255,255,255,.45),
+      0 10px 24px rgba(27,69,99,.14)!important;
+    backdrop-filter:blur(22px) saturate(135%);
+    -webkit-backdrop-filter:blur(22px) saturate(135%);
+  }
+  body.min-redesign.hv-home .may-tab{
+    transition:transform .22s cubic-bezier(.2,.8,.2,1),background .22s ease,box-shadow .22s ease!important;
+  }
+  body.min-redesign.hv-home .may-tab:hover{
+    transform:translateY(-2px);
+    background:linear-gradient(145deg,#fff,rgba(255,255,255,.78))!important;
+    box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(74,127,165,.08),0 13px 28px rgba(27,69,99,.18)!important;
+  }
+  body.min-redesign.hv-home .may-tab:active{transform:translateY(0) scale(.98)}
+  body.min-redesign.hv-home .may-tab.active{
+    background:rgba(255,255,255,.97)!important;
+    box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(74,127,165,.11),0 12px 26px rgba(27,69,99,.18)!important;
+  }
+}
+
+@media (max-width:767px){
+  body.min-redesign.hv-home .min-home-hero{height:auto!important;aspect-ratio:971/1619!important}
+  body.min-redesign.hv-home .min-home-hero>picture img{object-position:center bottom!important}
+  body.min-redesign.hv-home .min-header-search .compact-search,
+  body.min-redesign.hv-home .min-header-menu,
+  body.min-redesign.hv-home .min-header-cart{
+    background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(255,255,255,.75))!important;
+    border-color:rgba(255,255,255,.98)!important;
+    box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(74,127,165,.09),0 7px 18px rgba(27,69,99,.13)!important;
+    backdrop-filter:blur(18px) saturate(125%);
+    -webkit-backdrop-filter:blur(18px) saturate(125%);
+  }
+}
+</style>
 <style id="logo-proporcional">
 /* ── EL LOGO ESCALA CON LA PANTALLA ──────────────────────────────────────────
    El titulo de la portada viene dentro de la imagen del hero y se achica con la
