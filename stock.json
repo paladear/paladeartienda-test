@@ -1,10 +1,10 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-21T10:04:10",
+ "actualizado": "2026-11-21T10:23:24",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 609,
- "sin_stock": 54,
+ "sin_stock": 55,
  "items": [
   {
    "articulo": "2265",
@@ -102,8 +102,8 @@
    "rubro": "ACEITES Y VINAGRES",
    "precio_minorista": 6690.0,
    "precio_mayorista": 5280.0,
-   "disponible": "si",
-   "cantidad": 6.0
+   "disponible": "no",
+   "cantidad": -14.0
   },
   {
    "articulo": "1013",
@@ -1363,7 +1363,7 @@
    "precio_minorista": 55460.0,
    "precio_mayorista": 47300.0,
    "disponible": "si",
-   "cantidad": 6.809
+   "cantidad": 6.699
   },
   {
    "articulo": "1204",
@@ -3073,7 +3073,7 @@
    "precio_minorista": 19230.0,
    "precio_mayorista": 15430.0,
    "disponible": "si",
-   "cantidad": 7.25
+   "cantidad": 7.055
   },
   {
    "articulo": "2057",
@@ -5260,7 +5260,7 @@
    "precio_minorista": 1710.0,
    "precio_mayorista": 1340.0,
    "disponible": "si",
-   "cantidad": 4.0
+   "cantidad": 3.0
   },
   {
    "articulo": "1638",
@@ -5314,7 +5314,7 @@
    "precio_minorista": 2060.0,
    "precio_mayorista": 1620.0,
    "disponible": "si",
-   "cantidad": 6.0
+   "cantidad": 5.0
   },
   {
    "articulo": "2188",
@@ -5386,7 +5386,7 @@
    "precio_minorista": 13230.0,
    "precio_mayorista": 10590.0,
    "disponible": "si",
-   "cantidad": 7.71
+   "cantidad": 6.71
   },
   {
    "articulo": "5039",
