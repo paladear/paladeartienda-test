@@ -35,7 +35,7 @@
 <meta name="author" content="Paladear Mercado de Sabores">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="googlebot" content="index, follow">
-<meta name="theme-color" content="#d5e5ee">
+<meta name="theme-color" content="#dceef8">
 <meta name="application-name" content="Paladear">
 <meta name="apple-mobile-web-app-title" content="Paladear">
 <meta name="geo.region" content="AR-M">
@@ -220,7 +220,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
-:root{color-scheme:light;--azul:#2f668e;--azul-dark:#123f67;--azul-light:#c9d5de;--azul-mid:#547f9f;--bg:#f7f3eb;--fg:#173f61;--card:#fff;--border:#d6e2eb;--muted:#e3e8ed;--muted-fg:#444;--destructive:#e8633a;--whatsapp:#25d366}
+:root{color-scheme:light;--azul:#2f668e;--azul-dark:#123f67;--azul-light:#c9d5de;--azul-mid:#547f9f;--bg:var(--pal-cream);--fg:#173f61;--card:#fff;--border:#d6e2eb;--muted:#e3e8ed;--muted-fg:#444;--destructive:#e8633a;--whatsapp:#25d366}
 /* Bloquear forzado de modo oscuro de Chrome Android sobre la pill y elementos críticos */
 .tabs-pill,.tabs-zone,.may-tab,.banner-mayorista,.checkout-sheet{forced-color-adjust:none;-webkit-forced-color-adjust:none}
 html,body{overflow-x:clip;max-width:100%}
@@ -1200,7 +1200,7 @@ body.cart-open #cart-fab,body.cart-open #chat-fab{display:none!important}
 /* top con --pegado-top: en la tienda de pruebas el cartel rojo esta clavado
    arriba y se comia la barra del boton volver. En la tienda real la variable
    no existe y vale 0. */
-.product-detail{position:fixed;top:var(--pegado-top,0px);left:0;right:0;bottom:0;z-index:9300;background:#f8f5ef;overflow-y:auto;animation:fadeIn .18s ease}
+.product-detail{position:fixed;top:var(--pegado-top,0px);left:0;right:0;bottom:0;z-index:9300;background:var(--pal-cream);overflow-y:auto;animation:fadeIn .18s ease}
 .product-detail-bar{position:sticky;top:0;z-index:3;min-height:68px;padding:10px 18px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:10px;background:rgba(207,229,242,.97);color:var(--min-blue-deep);
   box-shadow:0 5px 16px rgba(20,58,87,.08)}
 .product-detail-bar strong{text-align:center;font-size:15px;font-weight:800;letter-spacing:.02em}
@@ -1744,7 +1744,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   /* El header de Productos mide 68/70 px. La franja queda inmediatamente debajo y
      permanece ahí; z-index menor para que nunca tape el logo ni los controles. */
   body.min-redesign:not(.hv-home) .filtro-activo{position:sticky;top:70px;z-index:290;
-    margin:-18px -20px 14px;padding:7px 12px 8px;background:#cfe5f2;color:var(--azul-dark);
+    margin:-18px -20px 14px;padding:7px 12px 8px;background:var(--pal-cielo);color:var(--azul-dark);
     border:0;border-bottom:1px solid rgba(84,118,146,.22);border-radius:0;
     box-shadow:0 7px 14px rgba(28,67,96,.09)}
   body.min-redesign:not(.hv-home) .filtro-activo .fa-volver{width:34px;height:34px;margin-top:3px;
@@ -1800,7 +1800,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 
 <style id="minorista-redesign-v1">
 /* Rediseño minorista — aislado para conservar la lógica existente del catálogo. */
-.min-redesign{--min-blue:#285b83;--min-blue-deep:#123f67;--min-blue-mid:#547f9f;--min-sky:#dceef8;--min-cream:#f7f3eb;--min-white:#fff;background:var(--min-cream);color:var(--min-blue-deep)}
+.min-redesign{--min-blue:#285b83;--min-blue-deep:#123f67;--min-blue-mid:#547f9f;--min-sky:#dceef8;--min-cream:var(--pal-cream);--min-white:#fff;background:var(--min-cream);color:var(--min-blue-deep)}
 .min-redesign .header{height:86px;min-height:86px;background:#4c7592;box-shadow:none;animation:none;border-bottom:1px solid rgba(255,255,255,.2)}
 .min-redesign .header-inner{width:min(100%,1500px);max-width:1500px;min-height:86px;padding:10px 24px 10px 118px;gap:12px}
 .min-redesign .header .logo-wrap{left:20px;top:12px;transform:none;z-index:4}
@@ -1842,7 +1842,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .min-redesign .descb-wrap{order:2;padding:0}
 .min-redesign .descb-banner{position:relative;display:block;width:100%;aspect-ratio:1280/193;min-height:0;padding:0;border:0;border-radius:0;background:#4d7898;color:#fff;box-shadow:none;overflow:hidden}
 .descb-art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
-.descb-meter{position:absolute;z-index:2;left:54.5%;right:7%;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;padding:0 1.8%;background:#577fa3;color:#fff}
+.descb-meter{position:absolute;z-index:2;left:54.5%;right:7%;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;padding:0 1.8%;background:var(--pal-banda);color:#fff}
 .min-redesign .descb-mlabel{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 7px}
 .min-redesign .descb-cnt{font-size:clamp(20px,2.5vw,36px);color:#fff}
 .min-redesign .descb-goal{font-size:clamp(9px,1vw,14px);color:rgba(255,255,255,.8)}
@@ -1852,7 +1852,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .min-redesign .descb-reward:not(.on){visibility:hidden}
 .min-redesign .descb-reward,.min-redesign .descb-goal{color:#fff!important}
 .min-home-section{position:relative}
-.min-home-cats{order:3;padding:44px max(4vw,28px) 40px;background:#fbfaf7}
+.min-home-cats{order:3;padding:44px max(4vw,28px) 40px;background:var(--pal-cream)}
 .min-section-head{width:min(1180px,100%);margin:0 auto 24px;display:flex;align-items:end;justify-content:space-between;gap:20px}
 .min-section-kicker{display:block;margin-bottom:5px;color:#517b99;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
 .min-section-head h2{font-size:clamp(25px,2.6vw,38px);line-height:1.05;letter-spacing:-.035em;color:#123f67}
@@ -1880,7 +1880,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   margin:-1px 0 0;
   /* Mismo azul pleno que Categorías: ambos bloques quedan soldados y la
      animación aporta el movimiento sin introducir otro cambio de color. */
-  background:#4c7192;
+  background:var(--pal-banda);
   display:grid;grid-template-columns:44% 56%;min-height:400px}
 /* La onda va en #f7f3eb, el mismo crema del fondo del home, para que el borde
    de abajo se funda con lo que sigue en vez de marcar un corte. */
@@ -1941,16 +1941,16 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   .pb-img{transform:none!important}
 }
 .min-home-banners{order:4}
-.min-redesign #homeView>.banners-track-wrap{order:4;width:100%;margin:0;padding:44px max(4vw,28px);background:#f7f3eb;overflow:visible}
+.min-redesign #homeView>.banners-track-wrap{order:4;width:100%;margin:0;padding:44px max(4vw,28px);background:var(--pal-cream);overflow:visible}
 .min-redesign #homeView>.banners-track-wrap{margin-top:-2px!important;border:0!important;box-shadow:none!important}
 .min-redesign #homeView .banners-track{width:min(1180px,100%);margin:0 auto}
 .min-redesign #homeView .banners-track{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;transform:none!important}
 .min-redesign #homeView .banner-slide{display:block;min-width:0}
-.min-image-banner{position:relative;border-radius:14px;overflow:hidden;background:#f7f3eb;box-shadow:0 10px 25px rgba(35,70,96,.1)}
+.min-image-banner{position:relative;border-radius:14px;overflow:hidden;background:var(--pal-cream);box-shadow:0 10px 25px rgba(35,70,96,.1)}
 .min-image-banner>img{display:block;width:100%;height:auto}
 .min-image-banner button{position:absolute;left:5%;bottom:9%;width:25%;height:18%;border:0;border-radius:999px;background:transparent;cursor:pointer}
 .min-image-banner button:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.min-home-featured{order:6;padding:48px max(4vw,28px) 56px;background:#f8f5ef}
+.min-home-featured{order:6;padding:48px max(4vw,28px) 56px;background:var(--pal-cream)}
 .min-featured-grid{width:min(1180px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
 .min-feature-card{position:relative;min-width:0;background:#fff;border:1px solid #e3ebf0;border-radius:17px;overflow:hidden;box-shadow:0 8px 23px rgba(31,66,92,.08);cursor:pointer;text-align:left}
 .min-feature-card-img{height:190px;background:#fff;display:grid;place-items:center;overflow:hidden}
@@ -1960,7 +1960,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .min-feature-card-copy strong{display:block;min-height:36px;color:#173f61;font-size:12px;line-height:1.35}
 .min-feature-card-copy b{display:block;margin-top:8px;color:#123f67;font-size:16px}
 .min-feature-card-add{position:absolute;right:10px;bottom:10px;width:31px;height:31px;border:0;border-radius:50%;background:#285b83;color:#fff;font-size:22px;line-height:1}
-.min-redesign #hvOfertas{order:6;width:min(1180px,calc(100% - 8vw));margin:0 auto 48px;border-radius:18px;background:#577fa3;color:#fff;border:0}
+.min-redesign #hvOfertas{order:6;width:min(1180px,calc(100% - 8vw));margin:0 auto 48px;border-radius:18px;background:var(--pal-banda);color:#fff;border:0}
 .min-home-footer{order:7;display:grid;grid-template-columns:1.1fr 1fr auto;gap:38px;align-items:center;padding:38px max(5vw,32px) calc(38px + env(safe-area-inset-bottom));background:#d3e6f7;color:#173f61;border-top:1px solid #bcdaef}
 .min-footer-brand{display:flex;align-items:center;gap:14px}.min-footer-brand img{width:72px;height:72px;border-radius:50%;border:2px solid #7fa7c1;background:#fff}
 .min-footer-brand strong{display:block;font-size:18px}.min-footer-brand span,.min-footer-copy span{display:block;margin-top:4px;font-size:13.5px;color:#607b90}
@@ -1971,7 +1971,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .min-redesign .bnav button:nth-of-type(4):not(.active) svg{fill:none}
 .min-redesign .bnav{grid-template-columns:repeat(5,minmax(0,1fr))}
 .min-redesign .bnav-pill{background:#e1eff7}
-.min-redesign .cats-dropdown-panel{border-radius:0 0 22px 22px;background:#f8f5ef}
+.min-redesign .cats-dropdown-panel{border-radius:0 0 22px 22px;background:var(--pal-cream)}
 .min-redesign .cats-dd-btn{background:#fff!important;color:#244f71!important;border:1px solid #e0e9ef}
 .min-redesign .cats-dd-thumb{background:#eee8de;border-radius:12px;overflow:hidden}
 .min-redesign .cats-dd-thumb img{content:var(--cat-img);width:100%;height:100%;object-fit:cover}
@@ -2375,7 +2375,7 @@ body.hv-ofertas .bnav a,.bnav button.active,body.hv-ofertas .bnav a,.bnav button
 /* OJO: el color del texto NO va en el contenedor. Puesto aca se filtraba
    adentro de las cards y dejaba el nombre del producto en blanco sobre
    blanco. Va solo en los textos que estan directamente sobre el azul. */
-#ofertasView .ofview-shell{background:#577fa3!important}
+#ofertasView .ofview-shell{background:var(--pal-banda)!important}
 #ofertasView .ofview-nota{color:rgba(255,255,255,.88)!important}
 /* El icono trae un filtro que lo tiñe de celeste: sobre fondo claro quedaba
    casi invisible. Se fuerza a blanco puro, igual que en el banner del home. */
@@ -2529,7 +2529,7 @@ body.hv-favoritos .bnav a,.bnav button.active,body.hv-favoritos .bnav a,.bnav bu
 .min-redesign .hv-cats-grid{display:none!important}
 .min-redesign #hvCats.expanded .hv-cats-scroller{display:none!important}
 .min-redesign #hvCats.expanded .hv-cats-grid{display:grid!important}
-.min-redesign #homeView #hvOfertas{background:#577fa3;color:#fff;border:0}
+.min-redesign #homeView #hvOfertas{background:var(--pal-banda);color:#fff;border:0}
 .min-redesign #homeView #hvOfertas .hvof-head b,
 .min-redesign #homeView #hvOfertas .hvof-sub,
 .min-redesign #homeView #hvOfertas .hvof-head .chev,
@@ -2711,7 +2711,7 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
 .min-redesign .descb-fill{background:#547f9f}
 
 /* Categorías por páginas, con las imágenes originales completas y sin borde blanco. */
-.min-redesign .min-home-cats{padding:28px max(4vw,28px) 25px;background:#f7f3eb}
+.min-redesign .min-home-cats{padding:28px max(4vw,28px) 25px;background:var(--pal-cream)}
 .min-redesign .min-home-categories-head{display:block;margin-bottom:16px;text-align:center}
 .min-redesign .min-home-categories-head .min-section-kicker{
   display:inline-block;margin:0;padding:0 9px 7px;border-bottom:2px solid #789bb4;color:#315f82;font-size:12px;letter-spacing:.15em
@@ -2737,7 +2737,7 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
 .min-redesign .hv-cats-pagination button[aria-current="true"]::before{background:#547f9f;transform:scale(1.08)}
 .min-redesign .hv-cats-pagination button:focus-visible{outline:2px solid #547f9f;outline-offset:-3px;border-radius:10px}
 .min-redesign .hv-cats-grid{display:none!important}
-.min-redesign .min-home-cats{background:#4c7192;color:#fff}
+.min-redesign .min-home-cats{background:var(--pal-banda);color:#fff}
 .min-redesign .min-home-categories-head .min-section-kicker{color:#fff;border-bottom-color:rgba(255,255,255,.72)}
 .min-redesign .min-home-cats .hv-cat,
 .min-redesign .min-home-cats .hv-cat>span:last-child{color:#fff}
@@ -9960,7 +9960,7 @@ window.copiarLinkParaNavegador = function() {
    mobile y seis categorías por página en desktop. */
 .min-redesign .min-home-cats{
   position:relative;isolation:isolate;padding:74px max(4vw,28px) 34px!important;
-  overflow:hidden;background:#4c7192!important;color:#fff
+  overflow:hidden;background:var(--pal-banda)!important;color:#fff
 }
 .min-redesign .min-home-cats::before{
   content:"";position:absolute;z-index:-1;left:0;top:-1px;width:100%;height:82px;
@@ -9979,7 +9979,7 @@ window.copiarLinkParaNavegador = function() {
 .min-redesign .hv-cat{min-height:0!important;gap:12px!important;padding:0!important;color:#fff!important}
 .min-redesign .hv-cat .bub{
   display:block;width:100%!important;height:auto!important;max-width:none!important;aspect-ratio:4/5!important;
-  overflow:hidden;border:0!important;border-radius:22px!important;background:#f5e8d6!important;
+  overflow:hidden;border:0!important;border-radius:22px!important;background:var(--pal-crema-calida)!important;
   box-shadow:0 10px 24px rgba(18,47,70,.16)!important
 }
 .min-redesign .hv-cat .bub img{
@@ -10315,17 +10315,17 @@ body.min-redesign.hv-home .min-home-hero>picture img{
 /* La onda crema del hero y la franja de descuento forman una sola superficie. */
 body.min-redesign.hv-home .descb-wrap{
   margin-top:-1px!important;
-  background:#f5e8d6!important;
+  background:var(--pal-crema-calida)!important;
 }
 body.min-redesign.hv-home .descb-banner,
 body.min-redesign.hv-home .descb-banner::before{
   border:0!important;
-  background:#f5e8d6!important;
+  background:var(--pal-crema-calida)!important;
   box-shadow:none!important;
 }
 body.min-redesign.hv-home .descb-art{
   display:block!important;
-  background:#f5e8d6!important;
+  background:var(--pal-crema-calida)!important;
 }
 </style>
 <style id="logo-proporcional">
@@ -10415,7 +10415,10 @@ body.min-redesign.hv-home .descb-art{
 <style id="minorista-palette-unified-v1">
 /* Paleta única del tester: hero gris azulado, superficies crema y acciones azules. */
 :root{
-  --pal-header:#d5e5ee;
+  --pal-cielo:#dceef8;        /* celeste: hero del home y header interno */
+  --pal-banda:#4c7192;        /* azul de franja grande (categorias, pb-banner, ofertas) */
+  --pal-crema-calida:#f5e8d6; /* crema de la franja de descuento */
+  --pal-header:var(--pal-cielo);
   --pal-header-top:#e2edf3;
   --pal-soft-blue:#e3edf2;
   --pal-cream:#f7f3eb;
@@ -10431,7 +10434,7 @@ body.min-redesign:not(.hv-home) .header{
   border-bottom:1px solid rgba(18,63,103,.10)!important;
   box-shadow:0 6px 18px rgba(18,63,103,.08)!important;
 }
-body.min-redesign.hv-home .min-home-hero{background:#d5e5ee!important}
+body.min-redesign.hv-home .min-home-hero{background:var(--pal-cielo)!important}
 body.min-redesign.hv-home .min-home-hero>picture img{
   filter:none;
 }
@@ -10455,10 +10458,10 @@ body.min-redesign:not(.hv-home) .tabs-pill{background:rgba(255,255,255,.93)!impo
 body.min-redesign.hv-home .descb-wrap,
 body.min-redesign.hv-home .descb-banner,
 body.min-redesign.hv-home .descb-banner::before{
-  background:#f5e8d6!important;
+  background:var(--pal-crema-calida)!important;
 }
 body.min-redesign.hv-home .descb-art{
-  background:#f5e8d6!important;
+  background:var(--pal-crema-calida)!important;
   mix-blend-mode:normal;
   filter:none;
 }
@@ -10473,7 +10476,7 @@ body.min-redesign.hv-home .descb-art{
     aspect-ratio:1;
     transform:translateY(-50%);
     border-radius:999px;
-    background:#f5e8d6;
+    background:var(--pal-crema-calida);
     pointer-events:none;
   }
 }
