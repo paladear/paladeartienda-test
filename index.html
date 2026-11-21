@@ -10522,16 +10522,17 @@ body.min-redesign:not(.hv-home) .tabs-zone{background:var(--pal-soft-blue)!impor
 body.min-redesign:not(.hv-home) .may-tab{color:var(--pal-heading)!important}
 body.min-redesign:not(.hv-home) .tabs-pill{background:rgba(255,255,255,.93)!important}
 
-/* La franja conserva sus hojas, pero toma el celeste luminoso del nuevo hero. */
+/* La onda inferior del hero termina en crema: la franja continúa exactamente
+   esa superficie. El parche ::before tapa el antiguo símbolo de descuento. */
 body.min-redesign.hv-home .descb-wrap,
 body.min-redesign.hv-home .descb-banner,
 body.min-redesign.hv-home .descb-banner::before{
-  background:#dce9f0!important;
+  background:#f5e8d6!important;
 }
 body.min-redesign.hv-home .descb-art{
-  background:#dce9f0!important;
-  mix-blend-mode:luminosity;
-  filter:brightness(1.035) saturate(.78);
+  background:#f5e8d6!important;
+  mix-blend-mode:normal;
+  filter:none;
 }
 
 body.min-redesign #mainContainer,
