@@ -220,7 +220,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
-:root{color-scheme:light;--azul:#2f668e;--azul-dark:#123f67;--azul-light:#c9d5de;--azul-mid:#547f9f;--bg:var(--pal-cream);--fg:#173f61;--card:#fff;--border:#d6e2eb;--muted:#e3e8ed;--muted-fg:#444;--destructive:#e8633a;--whatsapp:#25d366}
+:root{color-scheme:light;--azul:var(--pal-action);--azul-dark:var(--pal-heading);--azul-light:#c9d5de;--azul-mid:#547f9f;--bg:var(--pal-cream);--fg:var(--pal-heading);--card:#fff;--border:#d6e2eb;--muted:#e3e8ed;--muted-fg:#444;--destructive:#e8633a;--whatsapp:#25d366}
 /* Bloquear forzado de modo oscuro de Chrome Android sobre la pill y elementos críticos */
 .tabs-pill,.tabs-zone,.may-tab,.banner-mayorista,.checkout-sheet{forced-color-adjust:none;-webkit-forced-color-adjust:none}
 html,body{overflow-x:clip;max-width:100%}
@@ -1800,7 +1800,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 
 <style id="minorista-redesign-v1">
 /* Rediseño minorista — aislado para conservar la lógica existente del catálogo. */
-.min-redesign{--min-blue:#285b83;--min-blue-deep:#123f67;--min-blue-mid:#547f9f;--min-sky:#dceef8;--min-cream:var(--pal-cream);--min-white:#fff;background:var(--min-cream);color:var(--min-blue-deep)}
+.min-redesign{--min-blue:#285b83;--min-blue-deep:var(--pal-heading);--min-blue-mid:#547f9f;--min-sky:var(--pal-cielo);--min-cream:var(--pal-cream);--min-white:#fff;background:var(--min-cream);color:var(--min-blue-deep)}
 .min-redesign .header{height:86px;min-height:86px;background:#4c7592;box-shadow:none;animation:none;border-bottom:1px solid rgba(255,255,255,.2)}
 .min-redesign .header-inner{width:min(100%,1500px);max-width:1500px;min-height:86px;padding:10px 24px 10px 118px;gap:12px}
 .min-redesign .header .logo-wrap{left:20px;top:12px;transform:none;z-index:4}
