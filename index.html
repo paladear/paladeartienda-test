@@ -10424,8 +10424,8 @@ body.min-redesign.hv-home .descb-art{
   --pal-soft-blue:#e3edf2;
   --pal-cream:#f5e8d6;
   --pal-heading:#123f67;
-  --pal-action:var(--pal-heading);
-  --pal-action-hover:#2f668e;
+  --pal-action:var(--pal-banda);
+  --pal-action-hover:#2f668e; /* al pasar el mouse, un punto mas oscuro */
 }
 html,body.min-redesign{background:var(--pal-cream)!important;color:var(--pal-heading)}
 body.min-redesign:not(.hv-home) .header{
@@ -10514,6 +10514,9 @@ body.min-redesign .catalog-intro h1{color:var(--pal-heading)!important}
 .min-home-hero-cta:hover,
 .min-image-banner .min-banner-btn:hover,
 .pb-cta:hover{background:var(--pal-action-hover)!important}
+/* Este boton cae sobre la franja azul: del mismo color desapareceria. */
+.pb-cta{background:#fff!important;color:var(--pal-heading)!important}
+.pb-cta:hover{background:var(--pal-cielo)!important;color:var(--pal-heading)!important}
 
 .min-redesign .bnav{background:rgba(255,255,255,.92)!important;border-color:#fff!important}
 .min-redesign .bnav button,
