@@ -10489,6 +10489,7 @@ body.min-redesign.hv-home .descb-art{
 :root{
   --pal-header:#d5e5ee;
   --pal-header-top:#e2edf3;
+  --pal-soft-blue:#e3edf2;
   --pal-cream:#f7f3eb;
   --pal-heading:#123f67;
   --pal-action:#2f668e;
@@ -10517,9 +10518,21 @@ body.min-redesign:not(.hv-home) .cats-burger-btn{
   box-shadow:0 7px 18px rgba(18,63,103,.10)!important;
 }
 body.min-redesign:not(.hv-home) .min-header-search-icon{color:var(--pal-action)!important}
-body.min-redesign:not(.hv-home) .tabs-zone{background:var(--pal-header)!important;border-color:rgba(18,63,103,.09)!important}
+body.min-redesign:not(.hv-home) .tabs-zone{background:var(--pal-soft-blue)!important;border-color:rgba(18,63,103,.08)!important}
 body.min-redesign:not(.hv-home) .may-tab{color:var(--pal-heading)!important}
 body.min-redesign:not(.hv-home) .tabs-pill{background:rgba(255,255,255,.93)!important}
+
+/* La franja conserva sus hojas, pero toma el celeste luminoso del nuevo hero. */
+body.min-redesign.hv-home .descb-wrap,
+body.min-redesign.hv-home .descb-banner,
+body.min-redesign.hv-home .descb-banner::before{
+  background:#dce9f0!important;
+}
+body.min-redesign.hv-home .descb-art{
+  background:#dce9f0!important;
+  mix-blend-mode:luminosity;
+  filter:brightness(1.035) saturate(.78);
+}
 
 body.min-redesign #mainContainer,
 body.min-redesign #desktopProdsArea,
@@ -10532,6 +10545,12 @@ body.min-redesign #mainContainer>.main-layout,
 body.min-redesign #mainContainer>#searchResultsMobile,
 body.min-redesign #mainContainer>.mobile-prods-area,
 body.min-redesign #mainContainer>div:last-child{max-width:1500px;margin-left:auto;margin-right:auto}
+body.min-redesign .catalog-intro{
+  background:var(--pal-soft-blue)!important;
+  border-color:rgba(47,102,142,.14)!important;
+  box-shadow:none!important;
+}
+body.min-redesign .catalog-intro h1{color:var(--pal-heading)!important}
 
 .min-home-hero-copy h1,
 .min-home-hero-copy p,
@@ -10552,6 +10571,7 @@ body.min-redesign #mainContainer>div:last-child{max-width:1500px;margin-left:aut
 .min-redesign .bnav button,
 .min-redesign .bnav button span{color:var(--pal-heading)!important;-webkit-text-fill-color:var(--pal-heading)!important}
 .min-redesign .bnav button>img{filter:none!important}
+.min-redesign .bnav button[data-b="minorista"]>img{opacity:1!important}
 </style>
 </body>
 </html>
