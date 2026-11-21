@@ -1884,10 +1884,10 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   display:grid;grid-template-columns:44% 56%;min-height:400px}
 /* La onda va en #f7f3eb, el mismo crema del fondo del home, para que el borde
    de abajo se funda con lo que sigue en vez de marcar un corte. */
-.pb-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;z-index:0;pointer-events:none;
+.pb-banner::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:calc(22% + 3px);z-index:0;pointer-events:none;
   background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20180'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%2098%20C85%20126%20130%20128%20190%2075%20C250%2022%20294%2016%20350%2074%20C405%20130%20445%20144%20498%20119%20C554%2092%20596%2082%20652%20105%20C710%20129%20748%20153%20803%20104%20C860%2053%20906%2047%20952%2085%20C974%20104%20987%20109%201000%20105%20L1000%20180%20L0%20180%20Z'%20fill='%23f7f3eb'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat}
 .pb-copy{position:relative;z-index:2;padding:clamp(26px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;color:#fff}
-.pb-title{margin:0;font-size:clamp(28px,3.1vw,46px);line-height:1.04;letter-spacing:-.045em;font-weight:600;color:#fff}
+.pb-title{margin:0;font-family:'Montserrat',sans-serif;font-size:clamp(30px,3.2vw,48px);line-height:1.04;letter-spacing:-.045em;font-weight:850;color:#fff}
 .pb-title em{font-style:italic;font-weight:700;color:#cfdce8}
 .pb-note{display:flex;flex-direction:column;gap:7px;margin:22px 0 0;min-height:86px}
 .pb-note strong{font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1;transition:color .3s}
@@ -1920,6 +1920,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   display:flex;flex-direction:column;gap:6px;pointer-events:none}
 .pb-dot{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;pointer-events:auto;transition:background .2s,height .2s;box-shadow:0 1px 3px rgba(8,30,48,.45)}
 .pb-dot.is-on{background:#fff;height:18px;border-radius:999px}
+.pb-cta,.pb-dots{display:none!important}
 @media(max-width:900px){
   .pb-banner{grid-template-columns:46% 54%;min-height:330px}
   .pb-copy{padding:24px 20px}
@@ -1941,6 +1942,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 }
 .min-home-banners{order:4}
 .min-redesign #homeView>.banners-track-wrap{order:4;width:100%;margin:0;padding:44px max(4vw,28px);background:#f7f3eb;overflow:visible}
+.min-redesign #homeView>.banners-track-wrap{margin-top:-2px!important;border:0!important;box-shadow:none!important}
 .min-redesign #homeView .banners-track{width:min(1180px,100%);margin:0 auto}
 .min-redesign #homeView .banners-track{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;transform:none!important}
 .min-redesign #homeView .banner-slide{display:block;min-width:0}
@@ -3077,17 +3079,15 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
   <!-- ═══ Banner interactivo de frutos ═══ -->
   <section class="pb-banner" id="pbBanner" aria-label="Frutos naturales de Paladear">
     <div class="pb-copy">
-      <h2 class="pb-title">Lo natural<br>tiene su <em>encanto.</em></h2>
+      <h2 class="pb-title">Sabores que<br>inspiran.</h2>
       <div class="pb-note">
         <strong id="pbNombre"></strong>
         <span id="pbDesc"></span>
       </div>
-      <button type="button" class="pb-cta" id="pbCta">Comprar ahora</button>
     </div>
-    <div class="pb-stage" role="group" aria-roledescription="carrusel">
+    <div class="pb-stage" aria-hidden="true">
       <span class="pb-wash" aria-hidden="true"></span>
       <span class="pb-bowl" aria-hidden="true"><img class="pb-img is-on" data-i="0" src="pb-walnuts.webp" alt="" aria-hidden="true" width="520" height="520" fetchpriority="high" decoding="async"><img class="pb-img" data-i="1" src="pb-cashews.webp" alt="" aria-hidden="true" width="520" height="520" loading="lazy" decoding="async"><img class="pb-img" data-i="2" src="pb-almonds.webp" alt="" aria-hidden="true" width="520" height="520" loading="lazy" decoding="async"><img class="pb-img" data-i="3" src="pb-dates.webp" alt="" aria-hidden="true" width="520" height="520" loading="lazy" decoding="async"><img class="pb-img" data-i="4" src="pb-pumpkin-seeds.webp" alt="" aria-hidden="true" width="520" height="520" loading="lazy" decoding="async"><span class="pb-shadow"></span></span>
-      <div class="pb-dots" role="tablist" aria-label="Elegir fruto"><button type="button" class="pb-dot" data-i="0" aria-label="Ver Nueces"></button><button type="button" class="pb-dot" data-i="1" aria-label="Ver Castañas de cajú"></button><button type="button" class="pb-dot" data-i="2" aria-label="Ver Almendras"></button><button type="button" class="pb-dot" data-i="3" aria-label="Ver Dátiles dorados"></button><button type="button" class="pb-dot" data-i="4" aria-label="Ver Semillas de zapallo"></button></div>
     </div>
   </section>
   <button class="hv-ofertas" id="hvOfertas" style="display:none" onclick="hvIrOfertas()">
@@ -10371,7 +10371,7 @@ body.min-redesign.hv-home .descb-art{
   var cont=document.getElementById('pbBanner');
   if(!cont) return;
   var nom=document.getElementById('pbNombre'), des=document.getElementById('pbDesc');
-  var nota=cont.querySelector('.pb-note'), cta=document.getElementById('pbCta');
+  var nota=cont.querySelector('.pb-note');
   var imgs=[].slice.call(cont.querySelectorAll('.pb-img'));
   var dots=[].slice.call(cont.querySelectorAll('.pb-dot'));
   var i=0, pausa=false, tAuto=null, tPausa=null;
@@ -10403,8 +10403,6 @@ body.min-redesign.hv-home .descb-art{
     if(tAuto) clearInterval(tAuto);
     tAuto=setInterval(function(){ if(!pausa) pintar((i+1)%DATOS.length); }, 6000);
   }
-  dots.forEach(function(p){ p.addEventListener('click',function(){ pintar(+p.dataset.i); pausa=true;
-    if(tPausa) clearTimeout(tPausa); tPausa=setTimeout(function(){ pausa=false; },9000); }); });
   /* Si el mouse esta encima o el foco esta adentro, no rota: si no, la persona
      apunta a un fruto, el carrusel avanza y el boton le busca el siguiente. */
   ['mouseenter','focusin'].forEach(function(ev){ cont.addEventListener(ev,function(){ pausa=true; }); });
@@ -10412,24 +10410,6 @@ body.min-redesign.hv-home .descb-art{
     if(tPausa) clearTimeout(tPausa);
     tPausa=setTimeout(function(){ pausa=false; }, 1200);
   }); });
-  var x0=null;
-  cont.addEventListener('touchstart',function(e){ x0=e.touches[0]?e.touches[0].clientX:null; },{passive:true});
-  cont.addEventListener('touchend',function(e){
-    var x1=e.changedTouches[0]&&e.changedTouches[0].clientX;
-    if(x0!=null&&x1!=null&&Math.abs(x1-x0)>44) mover(x1<x0?1:-1);
-    x0=null;
-  },{passive:true});
-  cta.addEventListener('click',function(){
-    var q=DATOS[i].q;
-    try{
-      if(typeof switchTab==='function') switchTab('minorista');
-      var inp=document.getElementById('compactSearchInput');
-      if(inp) inp.value=q;
-      if(typeof _updateSearchClear==='function') _updateSearchClear(q);
-      if(typeof _doSearch==='function') _doSearch(q);
-      _track&&_track('banner_frutos_cta');
-    }catch(e){}
-  });
   pintar(0);
   arrancar();
 })();
