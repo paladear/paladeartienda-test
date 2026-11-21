@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paladear Mercado de Sabores</title>
+<meta name="robots" content="noindex">
+<!-- Si el navegador no corre el script, igual sale de acá. -->
+<meta http-equiv="refresh" content="3; url=/">
+<link rel="icon" href="/favicon-32x32.png">
+<style>
+  :root{color-scheme:light}
+  body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:18px;padding:24px;box-sizing:border-box;text-align:center;
+    background:#e8f1f8;color:#1b4a6b;
+    font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  img{width:118px;height:118px;border-radius:50%;background:#fff;padding:4px;
+    box-shadow:0 8px 20px rgba(18,63,103,.18)}
+  h1{font-size:19px;margin:0;font-weight:700}
+  p{margin:0;font-size:14.5px;color:#3d6684;max-width:34ch}
+  a{display:inline-block;margin-top:4px;background:#1b4a6b;color:#fff;text-decoration:none;
+    padding:12px 22px;border-radius:11px;font-weight:700;font-size:14.5px}
+</style>
+</head>
+<body>
+  <img src="/android-chrome-512x512.png" alt="Paladear Mercado de Sabores">
+  <h1>Esa dirección cambió</h1>
+  <p>Ahora estamos en <b>paladear.com.ar</b>. Te llevamos a la tienda…</p>
+  <a href="/">Ir a la tienda</a>
+<script>
+/* La tienda se mudó de paladear.github.io/paladeartienda a paladear.com.ar.
+   Un link viejo pegado al dominio nuevo (paladear.com.ar/paladeartienda/...)
+   caía en el error de GitHub. Acá se le saca la carpeta vieja y se manda a
+   donde corresponde, conservando lo que venía después y los parámetros. */
+(function(){
+  try{
+    // Atajos a la distribuidora: /mayorista y /distribuidora, con o sin barra.
+    if (/^\/(mayorista|distribuidora)\/?$/i.test(location.pathname)) {
+      location.replace('https://mayorista.paladear.com.ar/' + location.search + location.hash);
+      return;
+    }
+    var p = location.pathname.replace(/^\/(paladeartienda|paladeardistribuidora)(-test)?\/?/, '/');
+    var destino = p + location.search + location.hash;
+    if (destino === location.pathname + location.search + location.hash) destino = '/';
+    location.replace(destino);
+  }catch(e){ location.replace('/'); }
+})();
+</script>
+</body>
+</html>

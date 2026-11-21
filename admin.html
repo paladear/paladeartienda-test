@@ -1547,7 +1547,11 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
 // Sólo se considera "oficial" si está servido desde el sitio real y fuera de una
 // carpeta -test. Cualquier otra cosa (local, una copia, file://) cuenta como
 // pruebas: ante la duda, que no escriba en producción.
-const ES_OFICIAL = location.hostname === 'paladear.github.io' && !/-test(\/|$)/.test(location.pathname);
+// El panel oficial es el del dominio propio o el de paladear.github.io sin
+// sufijo -test. Sin la primera condicion, servido desde paladear.com.ar se creia
+// el de pruebas y guardaba las fichas y los precios en el repo equivocado.
+const ES_OFICIAL = location.hostname === 'paladear.com.ar' ||
+                   (location.hostname === 'paladear.github.io' && !/-test(\/|$)/.test(location.pathname));
 const ES_TESTER = !ES_OFICIAL;
 const _SUF = ES_TESTER ? '-test' : '';
 const REPO = 'paladear/paladeartienda' + _SUF;
@@ -1559,7 +1563,7 @@ const CARPETA_FOTOS = 'fotos';
    propio repo, sus fichas y sus fotos; acá se guarda cuál está activa.
    Las dos siguen el mismo criterio: tester con tester, oficial con oficial. */
 const REPO_MAY = 'paladear/paladeardistribuidora' + _SUF;
-const SITIO_MAY = 'https://paladear.github.io/paladeardistribuidora' + _SUF + '/';
+const SITIO_MAY = (_SUF ? 'https://paladear.github.io/paladeardistribuidora-test/' : 'https://mayorista.paladear.com.ar/');
 var TIENDA = 'min';
 var CSV_MAY_INFO = '', CSV_MAY_PRECIOS = '';
 var GUARDADO_MIN = null, GUARDADO_MAY = null;   // fichas/fotos/productos de cada una
@@ -5494,7 +5498,7 @@ function pintarCartelTienda(){
   if (fr) {
     fr.hidden = !ES_TESTER;
     var ir = document.getElementById('irAlOficial');
-    if (ir) ir.href = 'https://paladear.github.io/paladeartienda/admin.html';
+    if (ir) ir.href = 'https://paladear.com.ar/admin.html';
   }
   try { ajustarPorTienda(); } catch(e) {}
   var env = document.querySelector('.env');
