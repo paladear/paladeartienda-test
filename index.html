@@ -9138,7 +9138,7 @@ window.addEventListener('online', function() {
   background:#b8360f;color:#fff;text-align:center;
   font:800 12.5px/1 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;
   text-transform:uppercase;padding:7px 10px}
-body.es-pruebas #cartelPruebas{display:block}
+body.es-pruebas #cartelPruebas{display:none!important}
 </style>
 <div id="cartelPruebas">Tienda de pruebas — no es la que ven los clientes</div>
 <script>
@@ -9275,6 +9275,7 @@ window.compartirTienda = compartirTienda;
    carrito. Se ve al entrar, que es cuando hace falta, y el título de la pestaña lo
    dice siempre. */
 (function _carteldePruebas(){
+  return;
   if (!/-test(\/|$)/.test(location.pathname)) return;
   try { document.title = '[PRUEBAS] ' + document.title; } catch(e) {}
   var real = location.origin + location.pathname.replace('-test/', '/');
