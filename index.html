@@ -1878,11 +1878,9 @@ input[type=search]{-webkit-appearance:none;appearance:none}
      fraccionario (614,67px) y el navegador dejaba una raya clara al suavizarlo.
      Solapando un pixel la costura desaparece. */
   margin:-1px 0 0;
-  /* Arranca EXACTAMENTE en el azul de la seccion de categorias (#4c7192) para
-     que el empalme no se vea, y va aclarando hacia abajo. El degradado hace de
-     separacion: antes habia una franja crema de 40px que cortaba los dos
-     bloques azules al medio. */
-  background:linear-gradient(180deg,#4c7192 0%,#6287a5 46%,#547692 100%);
+  /* Mismo azul pleno que Categorías: ambos bloques quedan soldados y la
+     animación aporta el movimiento sin introducir otro cambio de color. */
+  background:#4c7192;
   display:grid;grid-template-columns:44% 56%;min-height:400px}
 /* La onda va en #f7f3eb, el mismo crema del fondo del home, para que el borde
    de abajo se funda con lo que sigue en vez de marcar un corte. */
@@ -1904,8 +1902,7 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 /* La capa de luz arrancaba de golpe en el borde de arriba y ese corte se leia
    como una raya justo sobre los tazones, delatando que eran dos bloques. Con
    la mascara entra desvanecida y el empalme con categorias desaparece. */
-.pb-wash{position:absolute;inset:0;background:radial-gradient(ellipse at 52% 45%,rgba(169,220,233,.18) 0%,rgba(108,176,192,.13) 45%,transparent 76%);pointer-events:none;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%);mask-image:linear-gradient(180deg,transparent 0,#000 18%)}
+.pb-wash{display:none}
 .pb-bowl{position:absolute;left:50%;top:44%;translate:-50% -50%;width:clamp(230px,26vw,330px);aspect-ratio:1;display:block;pointer-events:none}
 .pb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
   clip-path:circle(40% at 50% 50%);filter:drop-shadow(0 18px 22px rgba(0,12,20,.52));
