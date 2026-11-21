@@ -10505,7 +10505,7 @@ body.min-redesign:not(.hv-home) .header{
 }
 body.min-redesign.hv-home .min-home-hero{background:#d5e5ee!important}
 body.min-redesign.hv-home .min-home-hero>picture img{
-  filter:brightness(1.075) saturate(1.035);
+  filter:none;
 }
 body.min-redesign:not(.hv-home) .min-header-search .compact-search,
 body.min-redesign:not(.hv-home) .min-header-menu,
@@ -10522,8 +10522,8 @@ body.min-redesign:not(.hv-home) .tabs-zone{background:var(--pal-soft-blue)!impor
 body.min-redesign:not(.hv-home) .may-tab{color:var(--pal-heading)!important}
 body.min-redesign:not(.hv-home) .tabs-pill{background:rgba(255,255,255,.93)!important}
 
-/* La onda inferior del hero termina en crema: la franja continúa exactamente
-   esa superficie. El parche ::before tapa el antiguo símbolo de descuento. */
+/* Ambos archivos comparten este crema nativo. Sin filtros, la unión conserva
+   exactamente el mismo color en los dos lados. */
 body.min-redesign.hv-home .descb-wrap,
 body.min-redesign.hv-home .descb-banner,
 body.min-redesign.hv-home .descb-banner::before{
@@ -10533,6 +10533,21 @@ body.min-redesign.hv-home .descb-art{
   background:#f5e8d6!important;
   mix-blend-mode:normal;
   filter:none;
+}
+@media(min-width:768px){
+  body.min-redesign.hv-home .descb-banner::after{
+    content:"";
+    position:absolute;
+    z-index:1;
+    left:6.8%;
+    top:50%;
+    width:15.5%;
+    aspect-ratio:1;
+    transform:translateY(-50%);
+    border-radius:999px;
+    background:#f5e8d6;
+    pointer-events:none;
+  }
 }
 
 body.min-redesign #mainContainer,
