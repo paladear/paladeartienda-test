@@ -1693,6 +1693,16 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 /* ── Indicador de categoría / marca / sello ──
    En celular acompaña al header durante el scroll. En escritorio se convierte en un
    título limpio, sin tarjeta ni fondo, para conservar el ancho y el aire del catálogo. */
+/* ── Encabezado de Productos: ola y botones de vidrio ─────────────────────────
+   El bloque azul grisaceo cortaba recto contra el contenido. Usa la MISMA
+   mascara que el banner de frutos para que el sitio tenga una sola curva.
+   No la recorta nadie: .filtro-activo es sticky y su overflow es visible. */
+.filtro-activo::after{content:"";position:absolute;left:0;right:0;top:100%;height:20px;
+  pointer-events:none;background:#d5e5ee;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20180'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%2098%20C85%20126%20130%20128%20190%2075%20C250%2022%20294%2016%20350%2074%20C405%20130%20445%20144%20498%20119%20C554%2092%20596%2082%20652%20105%20C710%20129%20748%20153%20803%20104%20C860%2053%20906%2047%20952%2085%20C974%20104%20987%20109%201000%20105%20L1000%20180%20L0%20180%20Z'%20fill='%23000'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20180'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%2098%20C85%20126%20130%20128%20190%2075%20C250%2022%20294%2016%20350%2074%20C405%20130%20445%20144%20498%20119%20C554%2092%20596%2082%20652%20105%20C710%20129%20748%20153%20803%20104%20C860%2053%20906%2047%20952%2085%20C974%20104%20987%20109%201000%20105%20L1000%20180%20L0%20180%20Z'%20fill='%23000'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat}
+/* Ya eran blanco semitransparente: les faltaba el desenfoque para leerse como
+   vidrio, igual que el buscador de arriba. */
+.filtro-activo .fa-cats,.filtro-activo .cats-burger-btn,.filtro-activo .fa-volver{
+  backdrop-filter:blur(14px) saturate(1.25);-webkit-backdrop-filter:blur(14px) saturate(1.25)}
 .filtro-activo{display:flex;align-items:center;gap:10px}
 .filtro-activo .fa-volver,.filtro-activo .fa-cats{flex:0 0 auto;width:38px;height:38px;
   border-radius:10px;border:0;background:var(--muted);color:var(--azul-dark);cursor:pointer;
@@ -9032,7 +9042,7 @@ window.addEventListener('online', function() {
   background:#b8360f;color:#fff;text-align:center;
   font:800 12.5px/1 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;
   text-transform:uppercase;padding:7px 10px}
-body.es-pruebas #cartelPruebas{display:none}
+body.es-pruebas #cartelPruebas{display:block}
 </style>
 <div id="cartelPruebas">Tienda de pruebas — no es la que ven los clientes</div>
 <script>
@@ -9171,7 +9181,6 @@ window.compartirTienda = compartirTienda;
 (function _carteldePruebas(){
   if (!/-test(\/|$)/.test(location.pathname)) return;
   try { document.title = '[PRUEBAS] ' + document.title; } catch(e) {}
-  return; // franja roja apagada: tapaba el header. El titulo ya avisa.
   var real = location.origin + location.pathname.replace('-test/', '/');
   function _poner(){
     // En la minorista el cartel ya existía, pero escrito al FINAL del documento y
