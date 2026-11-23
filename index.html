@@ -1693,34 +1693,6 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 /* ── Indicador de categoría / marca / sello ──
    En celular acompaña al header durante el scroll. En escritorio se convierte en un
    título limpio, sin tarjeta ni fondo, para conservar el ancho y el aire del catálogo. */
-/* ── Encabezado de Productos con el mismo lenguaje que la lista sabana ───────
-   Los valores salen de catalogo.html, copiados y no aproximados: el degradado
-   gris celeste (antes era --pal-cielo plano y quedaba muy lavado), la ola con
-   su mismo trazo, y el "vidrio", que NO es desenfoque sino un degradado blanco
-   con borde casi blanco y sombra suave.
-   Todo va por CSS: el HTML de la barra lo arma el JS, no se toca.
-   El degradado se reparte entre .header (arriba) y .filtro-activo (abajo) para
-   que siga de largo en vez de repetirse en cada bloque. */
-body.min-redesign:not(.hv-home) .header{
-  background:
-    radial-gradient(ellipse at 18% -25%,rgba(255,255,255,.48),transparent 45%),
-    radial-gradient(ellipse at 84% 12%,rgba(255,255,255,.18),transparent 40%),
-    linear-gradient(118deg,#d2e0e7 0%,#c6d6df 100%)!important}
-body.min-redesign:not(.hv-home) .filtro-activo{
-  background:linear-gradient(118deg,#c6d6df 0%,#bfd1da 48%,#b7cad4 100%)!important;
-  box-shadow:none!important;overflow:visible}
-/* La ola cuelga por debajo de la barra y entrega al crema del fondo. */
-body.min-redesign:not(.hv-home) .filtro-activo::after{
-  content:"";position:absolute;left:0;right:0;top:100%;height:26px;z-index:1;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201440%2072'%20preserveAspectRatio='none'%3E%3Cpath%20fill='%23f7f3eb'%20d='M0%2029C138-8%20276%2014%20429%2025c196%2014%20313%2040%20505%2021%20177-18%20317-11%20506-34v60H0Z'/%3E%3C/svg%3E") center top/100% 100% no-repeat}
-@media(min-width:768px){body.min-redesign:not(.hv-home) .filtro-activo::after{height:46px}}
-/* El vidrio de la lista de precios, para los botones de esta barra. */
-body.min-redesign:not(.hv-home) .filtro-activo .fa-cats,
-body.min-redesign:not(.hv-home) .filtro-activo .fa-volver{
-  background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(239,247,250,.68))!important;
-  border:1.5px solid rgba(255,255,255,.96)!important;
-  color:var(--pal-heading)!important;
-  box-shadow:0 7px 17px rgba(23,63,97,.13)!important}
 .filtro-activo{display:flex;align-items:center;gap:10px}
 .filtro-activo .fa-volver,.filtro-activo .fa-cats{flex:0 0 auto;width:38px;height:38px;
   border-radius:10px;border:0;background:var(--muted);color:var(--azul-dark);cursor:pointer;
