@@ -783,18 +783,20 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
 .catalog-mobile-wave{display:none}
 .filtro-activo .fa-sub{display:none}
 @media(max-width:767px){
-  .catalog-mobile-wave{display:block;height:31px;margin:-18px -20px 0;color:var(--pal-cream);
-    overflow:hidden;pointer-events:none}
+  .catalog-mobile-wave{display:block;height:48px;margin:-18px -20px 0;
+    overflow:hidden;pointer-events:none;background:
+      radial-gradient(ellipse at 18% -30%,rgba(255,255,255,.44),transparent 48%),
+      linear-gradient(118deg,#d2e0e7 0%,#bfd1da 50%,#b7cad4 100%)}
   .catalog-mobile-wave svg{display:block;width:100%;height:100%}
-  .catalog-compact-tools{position:relative;z-index:80;display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:0 0 16px}
-  .catalog-tool-btn{height:39px;min-width:0;border:1px solid rgba(255,255,255,.96);
-    border-radius:12px;background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(255,255,255,.68));color:var(--azul-dark);padding:0 9px;
-    font:750 11px/1 'Montserrat',sans-serif;display:flex;align-items:center;
+  .catalog-compact-tools{position:relative;z-index:80;display:flex;align-items:center;
+    flex-wrap:wrap;gap:8px;margin:0 0 18px}
+  .catalog-tool-btn{height:41px;min-width:0;border:1.5px solid rgba(255,255,255,.98);
+    border-radius:999px;background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(232,241,246,.73));color:var(--azul-dark);padding:0 13px;
+    font:780 11.5px/1 'Montserrat',sans-serif;display:flex;align-items:center;
     justify-content:center;gap:6px;box-shadow:inset 0 1px 0 #fff,0 6px 15px rgba(22,59,88,.10);
     backdrop-filter:blur(16px) saturate(120%);-webkit-backdrop-filter:blur(16px) saturate(120%);cursor:pointer}
-  .catalog-tool-btn svg{width:15px;height:15px;flex:0 0 auto}
-  .catalog-tool-rubro{justify-content:center;text-align:center}
+  .catalog-tool-btn svg{width:16px;height:16px;flex:0 0 auto}
+  .catalog-tool-rubro{justify-content:center;text-align:center;padding-left:14px;padding-right:15px}
   .catalog-tool-rubro span{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .catalog-tool-rubro small{display:none}
   .catalog-tool-rubro b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
@@ -827,19 +829,19 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
   .catalog-filter-clear{border:1px solid rgba(84,118,146,.25);background:#fff;color:var(--azul-dark)}
   .catalog-filter-apply{border:1px solid var(--azul);background:var(--azul);color:#fff}
   body.min-redesign:not(.hv-home) .filtro-activo{position:relative;overflow:visible;
-    top:auto;z-index:2;margin:0 0 13px!important;padding:14px 0 6px!important;
+    top:auto;z-index:2;margin:0 0 15px!important;padding:10px 0 7px!important;
     background:transparent!important;border:0!important;box-shadow:none!important}
   body.min-redesign:not(.hv-home) .filtro-activo::after{content:"";position:absolute;
     left:0;bottom:-3px;width:54px;height:3px;border-radius:999px;background:var(--azul-mid)}
   body.min-redesign:not(.hv-home) .filtro-activo .fa-cats{display:none!important}
   body.min-redesign:not(.hv-home) .filtro-activo .fa-txt i{color:var(--azul-mid)!important}
-  body.min-redesign:not(.hv-home) .filtro-activo .fa-txt b{font-size:25px!important;
+  body.min-redesign:not(.hv-home) .filtro-activo .fa-txt b{font-size:27px!important;
     line-height:1.08!important;color:var(--azul-dark)!important;letter-spacing:-.025em}
   body.min-redesign:not(.hv-home) .filtro-activo .fa-n{background:#e3eef4!important;
     color:var(--azul-dark)!important}
   body.min-redesign:not(.hv-home) .filtro-activo .fa-volver{background:#e9f2f7!important;
     color:var(--azul-dark)!important;border-color:rgba(84,118,146,.25)!important}
-  body.min-redesign:not(.hv-home) .filtro-activo .fa-sub{display:block;margin-top:4px;
+  body.min-redesign:not(.hv-home) .filtro-activo .fa-sub{display:block;margin-top:5px;
     color:var(--muted-fg);font-size:12px;font-weight:600;line-height:1.35}
 }
 
@@ -4315,8 +4317,8 @@ function _barraFiltro(etiqueta, titulo, cuenta){
   // Sin filtro también sale, diciendo "Todos los productos" y sin flechita: así el
   // botón de categorías está siempre, que es el único que quedó en el celular.
   var tituloVisible=(!etiqueta&&titulo==='Todos los productos')?'Productos':titulo;
-  var subtitulo=(!etiqueta&&titulo==='Todos los productos')?'Explorá el catálogo completo o usá los filtros.':'';
-  return '<div class="catalog-mobile-wave" aria-hidden="true"><svg viewBox="0 0 390 34" preserveAspectRatio="none"><path fill="currentColor" d="M0 8C62 27 120 1 190 9c75 9 125 29 200 5v20H0Z"/></svg></div><div class="filtro-activo">' +
+  var subtitulo=(!etiqueta&&titulo==='Todos los productos')?'Explorá, ordená y filtrá el catálogo.':'';
+  return '<div class="catalog-mobile-wave" aria-hidden="true"><svg viewBox="0 0 390 48" preserveAspectRatio="none"><path fill="var(--pal-cream)" d="M0 17C60 38 119 5 190 15c75 11 127 34 200 8v25H0Z"/></svg></div><div class="filtro-activo">' +
     (etiqueta
       ? '<button type="button" class="fa-volver" onclick="verTodoElCatalogo()" ' +
         'aria-label="Volver a todos los productos" title="Volver a todos los productos">' +
@@ -10264,12 +10266,10 @@ window.pintarTableroCats=pintarTableroCats;
 })();
 </script>
 <style>
-/* Va acá al final y bien específico porque la regla corta, arriba, le perdía contra
-   los estilos del header que vienen después. En el celular el hamburguesa del header
-   sobra: el de la barra de filtro hace lo mismo y así el buscador se queda con todo
-   el ancho. En el Home sí se deja, porque ahí no hay barra de filtro. */
+/* En Productos se conserva el hamburguesa del header igual que en Lista sábana.
+   El carrito de arriba no se duplica porque ya existe el flotante. */
 @media(max-width:767px){
-  body.min-redesign:not(.hv-home) .header .min-header-menu{display:none!important}
+  body.min-redesign:not(.hv-home) .header .min-header-menu{display:flex!important}
 /* El carrito de arriba queda sólo en el inicio: en el resto ya está el flotante,
    que además te sigue mientras scrolleás. Dos carritos con el mismo número (y de
    distinto color) era ruido en una pantalla chica. */
