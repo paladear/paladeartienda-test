@@ -776,25 +776,32 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
   .chip-sello{flex:0 0 auto;font-size:13px;padding:8px 13px}
 }
 
-/* ── Controles compactos del catálogo ──
-   Rubro, orden y filtros comparten una sola fila. Los paneles flotan por encima del
-   listado para no empujar las cards ni convertir la cabecera en otra sección. */
+/* ── Cabecera y controles del catálogo ──
+   En mobile replica la jerarquía de Lista sábana: ola, título sobre crema y una
+   única fila de controles bajos. */
 .catalog-compact-tools{display:none}
+.catalog-mobile-wave{display:none}
+.filtro-activo .fa-sub{display:none}
 @media(max-width:767px){
+  .catalog-mobile-wave{display:block;height:31px;margin:-18px -20px 0;color:var(--pal-cream);
+    overflow:hidden;pointer-events:none}
+  .catalog-mobile-wave svg{display:block;width:100%;height:100%}
   .catalog-compact-tools{position:relative;z-index:80;display:grid;
-    grid-template-columns:minmax(0,1fr) 78px 78px;gap:7px;margin:0 0 12px}
-  .catalog-tool-btn{height:44px;min-width:0;border:1px solid rgba(84,118,146,.25);
-    border-radius:13px;background:#fff;color:var(--azul-dark);padding:0 10px;
-    font:750 11px/1.1 'Montserrat',sans-serif;display:flex;align-items:center;
-    justify-content:center;gap:6px;box-shadow:0 4px 12px rgba(28,67,96,.07);cursor:pointer}
-  .catalog-tool-btn svg{width:16px;height:16px;flex:0 0 auto}
-  .catalog-tool-rubro{justify-content:space-between;text-align:left;padding:0 12px}
-  .catalog-tool-rubro span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .catalog-tool-rubro small{display:block;margin-bottom:2px;color:var(--azul-mid);
-    font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:0 0 16px}
+  .catalog-tool-btn{height:39px;min-width:0;border:1px solid rgba(255,255,255,.96);
+    border-radius:12px;background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(255,255,255,.68));color:var(--azul-dark);padding:0 9px;
+    font:750 11px/1 'Montserrat',sans-serif;display:flex;align-items:center;
+    justify-content:center;gap:6px;box-shadow:inset 0 1px 0 #fff,0 6px 15px rgba(22,59,88,.10);
+    backdrop-filter:blur(16px) saturate(120%);-webkit-backdrop-filter:blur(16px) saturate(120%);cursor:pointer}
+  .catalog-tool-btn svg{width:15px;height:15px;flex:0 0 auto}
+  .catalog-tool-rubro{justify-content:center;text-align:center}
+  .catalog-tool-rubro span{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .catalog-tool-rubro small{display:none}
   .catalog-tool-rubro b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-    font-size:11.5px;color:var(--azul-dark)}
-  .catalog-tool-btn.on{background:var(--pal-cielo);border-color:var(--azul-mid)}
+    font-size:11px;color:var(--azul-dark)}
+  .catalog-tool-btn:hover{background:linear-gradient(145deg,#fff,rgba(255,255,255,.82))}
+  .catalog-tool-btn.on{background:#fff;border-color:rgba(84,118,146,.42);
+    box-shadow:inset 0 1px 0 #fff,0 7px 17px rgba(22,59,88,.14)}
   .catalog-tool-count{display:inline-flex;min-width:17px;height:17px;padding:0 4px;border-radius:999px;
     align-items:center;justify-content:center;background:var(--azul);color:#fff;font-size:9px}
   .catalog-tool-pop{display:none;position:absolute;top:51px;right:0;width:min(278px,calc(100vw - 40px));
@@ -819,14 +826,21 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
   .catalog-filter-actions button{height:32px;border-radius:9px;padding:0 11px;font:750 10.5px inherit;cursor:pointer}
   .catalog-filter-clear{border:1px solid rgba(84,118,146,.25);background:#fff;color:var(--azul-dark)}
   .catalog-filter-apply{border:1px solid var(--azul);background:var(--azul);color:#fff}
-  body.min-redesign:not(.hv-home) .filtro-activo{position:sticky;overflow:visible;
-    margin:-18px -20px 22px!important;padding:9px 18px 15px!important;
-    border-bottom:0!important;box-shadow:none!important}
-  body.min-redesign:not(.hv-home) .filtro-activo::after{content:"";position:absolute;z-index:-1;
-    left:0;right:0;bottom:-13px;height:24px;background:var(--pal-cielo);
-    border-radius:0 0 68% 32% / 0 0 100% 100%;pointer-events:none}
+  body.min-redesign:not(.hv-home) .filtro-activo{position:relative;overflow:visible;
+    top:auto;z-index:2;margin:0 0 13px!important;padding:14px 0 6px!important;
+    background:transparent!important;border:0!important;box-shadow:none!important}
+  body.min-redesign:not(.hv-home) .filtro-activo::after{content:"";position:absolute;
+    left:0;bottom:-3px;width:54px;height:3px;border-radius:999px;background:var(--azul-mid)}
   body.min-redesign:not(.hv-home) .filtro-activo .fa-cats{display:none!important}
-  body.min-redesign:not(.hv-home) .filtro-activo .fa-txt b{font-size:18px!important}
+  body.min-redesign:not(.hv-home) .filtro-activo .fa-txt i{color:var(--azul-mid)!important}
+  body.min-redesign:not(.hv-home) .filtro-activo .fa-txt b{font-size:25px!important;
+    line-height:1.08!important;color:var(--azul-dark)!important;letter-spacing:-.025em}
+  body.min-redesign:not(.hv-home) .filtro-activo .fa-n{background:#e3eef4!important;
+    color:var(--azul-dark)!important}
+  body.min-redesign:not(.hv-home) .filtro-activo .fa-volver{background:#e9f2f7!important;
+    color:var(--azul-dark)!important;border-color:rgba(84,118,146,.25)!important}
+  body.min-redesign:not(.hv-home) .filtro-activo .fa-sub{display:block;margin-top:4px;
+    color:var(--muted-fg);font-size:12px;font-weight:600;line-height:1.35}
 }
 
 /* ── Sellos ──
@@ -4211,7 +4225,10 @@ function _catalogEsc(s){
 }
 
 function _catalogPrice(p){
-  var vals=Object.keys((p&&p[7])||{}).map(function(k){return Number(p[7][k])||0;}).filter(Boolean);
+  var vals=Object.keys((p&&p[7])||{}).map(function(k){
+    var precio=p[7][k];
+    return Number(Array.isArray(precio)?precio[0]:precio)||0;
+  }).filter(Boolean);
   return vals.length?Math.min.apply(Math,vals):0;
 }
 
@@ -4224,7 +4241,7 @@ function _catalogApplyList(list){
   if(CATALOG_UI_SEALS.length){
     out=out.filter(function(p){
       var ids=_sellosDe(p).map(function(x){return x.id;});
-      return CATALOG_UI_SEALS.every(function(id){return ids.indexOf(id)!==-1;});
+      return CATALOG_UI_SEALS.some(function(id){return ids.indexOf(id)!==-1;});
     });
   }
   if(CATALOG_UI_SORT==='az')out.sort(function(a,b){return a[2].localeCompare(b[2],'es');});
@@ -4256,7 +4273,7 @@ function _catalogTools(){
     return '<label class="catalog-filter-check"><input type="checkbox" value="'+s[0]+'"'+(CATALOG_UI_SEALS.indexOf(s[0])!==-1?' checked':'')+'><span>'+s[1]+'</span></label>';
   }).join('');
   return '<div class="catalog-compact-tools">'+
-    '<button type="button" class="catalog-tool-btn catalog-tool-rubro" onclick="toggleCatsDropdown()"><span><small>Rubro</small><b>'+_catalogEsc(_catalogCurrentRubro())+'</b></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M6 9l6 6 6-6"/></svg></button>'+
+    '<button type="button" class="catalog-tool-btn catalog-tool-rubro" onclick="toggleCatsDropdown()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span><small>Rubro</small><b>Categorías</b></span></button>'+
     '<button type="button" class="catalog-tool-btn" onclick="catalogTogglePop(this,\'sort\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h12M8 12h9M8 18h6M4 4v16m0 0l-2-2m2 2l2-2"/></svg><span>Ordenar</span></button>'+
     '<button type="button" class="catalog-tool-btn'+(activeCount?' on':'')+'" onclick="catalogTogglePop(this,\'filter\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg><span>Filtros</span>'+(activeCount?'<i class="catalog-tool-count">'+activeCount+'</i>':'')+'</button>'+
     '<div class="catalog-tool-pop" data-pop="sort"><h4>Ordenar productos</h4><div class="catalog-sort-list">'+sortOptions+'</div></div>'+
@@ -4297,7 +4314,9 @@ document.addEventListener('click',function(e){if(!e.target.closest('.catalog-com
 function _barraFiltro(etiqueta, titulo, cuenta){
   // Sin filtro también sale, diciendo "Todos los productos" y sin flechita: así el
   // botón de categorías está siempre, que es el único que quedó en el celular.
-  return '<div class="filtro-activo">' +
+  var tituloVisible=(!etiqueta&&titulo==='Todos los productos')?'Productos':titulo;
+  var subtitulo=(!etiqueta&&titulo==='Todos los productos')?'Explorá el catálogo completo o usá los filtros.':'';
+  return '<div class="catalog-mobile-wave" aria-hidden="true"><svg viewBox="0 0 390 34" preserveAspectRatio="none"><path fill="currentColor" d="M0 8C62 27 120 1 190 9c75 9 125 29 200 5v20H0Z"/></svg></div><div class="filtro-activo">' +
     (etiqueta
       ? '<button type="button" class="fa-volver" onclick="verTodoElCatalogo()" ' +
         'aria-label="Volver a todos los productos" title="Volver a todos los productos">' +
@@ -4305,7 +4324,7 @@ function _barraFiltro(etiqueta, titulo, cuenta){
         'stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button>'
       : '') +
     '<span class="fa-txt">' + (etiqueta ? '<i>' + etiqueta + '</i>' : '') +
-      '<b>' + titulo + '</b></span>' +
+      '<b>' + tituloVisible + '</b>' + (subtitulo?'<span class="fa-sub">'+subtitulo+'</span>':'') + '</span>' +
     (cuenta != null ? '<span class="fa-n">' + cuenta + '</span>' : '') +
     '<button type="button" class="fa-cats" onclick="toggleCatsDropdown()" ' +
       'aria-label="Ver categorías" title="Ver categorías">' +
@@ -7990,14 +8009,19 @@ function renderCarruseles(){
     activeArea.setAttribute('aria-busy','true');
     var sections=activeArea.querySelector('.catalog-progressive-sections');
     var sentinel=activeArea.querySelector('.catalog-load-sentinel');
-    var queue=[...CATS].sort((a,b)=>a.n.localeCompare(b.n,'es')).map(function(cat){
-      var lista=_catalogApplyList((grouped[cat.id]||[]).slice());
-      if(CATALOG_UI_SORT==='default')lista.sort((a,b)=>a[2].localeCompare(b[2],'es'));
-      // Si hay un sello activo, la vista completa también lo respeta: se filtra acá
-      // para que las categorías que quedan sin productos ni aparezcan.
-      if(SELLO_ACTIVO) lista=lista.filter(function(p){return _sellosDe(p).some(function(x){return x.id===SELLO_ACTIVO;});});
-      return {cat:cat,prods:lista};
-    }).filter(function(item){return item.prods.length;});
+    var hayControles=CATALOG_UI_SORT!=='default'||!!CATALOG_UI_BRAND||CATALOG_UI_SEALS.length>0;
+    var queue;
+    if(hayControles){
+      var resultados=_catalogApplyList(PRODS);
+      if(SELLO_ACTIVO)resultados=resultados.filter(function(p){return _sellosDe(p).some(function(x){return x.id===SELLO_ACTIVO;});});
+      queue=resultados.length?[{cat:{id:'resultados',n:'Resultados',sinImagen:true},prods:resultados}]:[];
+    }else{
+      queue=[...CATS].sort((a,b)=>a.n.localeCompare(b.n,'es')).map(function(cat){
+        var lista=(grouped[cat.id]||[]).slice().sort((a,b)=>a[2].localeCompare(b[2],'es'));
+        if(SELLO_ACTIVO)lista=lista.filter(function(p){return _sellosDe(p).some(function(x){return x.id===SELLO_ACTIVO;});});
+        return {cat:cat,prods:lista};
+      }).filter(function(item){return item.prods.length;});
+    }
     var catIndex=0,prodIndex=0,renderedCount=0,currentGrid=null,pending=false;
     var token=_catalogBatchToken;
 
@@ -8005,7 +8029,7 @@ function renderCarruseles(){
       var holder=document.createElement('div');
       holder.innerHTML=`<section class="allcat-sec" id="catalogo-${prefix}-${item.cat.id}">
         <div class="allcat-head">
-          <img class="allcat-img" src="cat-v2-${item.cat.id}.webp" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
+          ${item.cat.sinImagen?'':`<img class="allcat-img" src="cat-v2-${item.cat.id}.webp" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">`}
           <span class="allcat-name">${item.cat.n}</span>
           <span class="allcat-count">${item.prods.length}</span>
         </div>
@@ -9169,23 +9193,6 @@ window.addEventListener('online', function() {
 
 </script>
 
-<!-- ══════════ CARTEL DE PRUEBAS ══════════
-     Las dos tiendas se ven idénticas. Este cartel sale sólo en la de pruebas para
-     no confundirla nunca con la que ven los clientes. -->
-<style>
-#cartelPruebas{position:sticky;top:0;z-index:99999;display:none;
-  background:#b8360f;color:#fff;text-align:center;
-  font:800 12.5px/1 'Montserrat',system-ui,sans-serif;letter-spacing:.14em;
-  text-transform:uppercase;padding:7px 10px}
-body.es-pruebas #cartelPruebas{display:block}
-</style>
-<div id="cartelPruebas">Tienda de pruebas — no es la que ven los clientes</div>
-<script>
-(function(){
-  if (/-test(\/|$)/.test(location.pathname)) document.body.classList.add('es-pruebas');
-})();
-</script>
-
 <!-- ══════════ SERVICE WORKER (PWA) ══════════ -->
 <script>
 
@@ -9304,76 +9311,6 @@ function _avisoCompartir(txt){
 }
 window.compartirTienda = compartirTienda;
 
-
-/* ── CARTEL DE TIENDA DE PRUEBAS ──────────────────────────────────────────────
-   El mismo archivo se publica en la tienda de verdad y en la de pruebas, así que
-   el cartel se decide en el momento, mirando la carpeta. Sin esto, abrir la tester
-   sin querer y creer que es la real terminaba en sustos: precios y productos que
-   no son los que ve el cliente.
-   Va como bloque normal, no fijo: una barra flotante taparía el header y el
-   carrito. Se ve al entrar, que es cuando hace falta, y el título de la pestaña lo
-   dice siempre. */
-(function _carteldePruebas(){
-  if (!/-test(\/|$)/.test(location.pathname)) return;
-  try { document.title = '[PRUEBAS] ' + document.title; } catch(e) {}
-  var real = location.origin + location.pathname.replace('-test/', '/');
-  function _poner(){
-    // En la minorista el cartel ya existía, pero escrito al FINAL del documento y
-    // con position:sticky: pegado ahí abajo, sólo aparecía al llegar al pie de la
-    // página, o sea nunca. Se reusa el que haya y se lo manda arriba de todo.
-    var d = document.getElementById('cartelPruebas');
-    if (!d) { d = document.createElement('div'); d.id = 'cartelPruebas'; }
-    d.innerHTML = '<b>TIENDA DE PRUEBAS</b> — no es la que ven los clientes. ' +
-      '<a href="' + real + '">Ir a la tienda de verdad &rsaquo;</a>';
-    if (d.parentElement !== document.body || document.body.firstChild !== d) {
-      document.body.insertBefore(d, document.body.firstChild);
-    }
-    // Todo con !important y por id: la página tiene reglas que le ganaban al estilo
-    // puesto a mano y el cartel terminaba perdido en el medio del largo de la página.
-    var st = document.createElement('style');
-    st.textContent =
-      '#cartelPruebas{position:fixed!important;top:0!important;left:0!important;right:0!important;' +
-      'width:auto!important;margin:0!important;transform:none!important;' +
-      'z-index:2147483647!important;background:#b3261e!important;color:#fff!important;' +
-      'font:700 13px/1.45 Montserrat,system-ui,sans-serif!important;text-align:center!important;' +
-      'padding:8px 14px!important;letter-spacing:.02em!important;display:block!important;' +
-      'text-transform:none!important;' +
-      'visibility:visible!important;opacity:1!important;pointer-events:auto!important}' +
-      '#cartelPruebas a{color:#fff!important;text-decoration:underline!important;' +
-      'font-weight:800!important;white-space:nowrap}' +
-      '';
-    document.head.appendChild(st);
-    // El header y los paneles que arrancan pegados arriba se bajan lo que mide el
-    // cartel; si no, quedan debajo y no se ve ni el logo. Se mide en vivo porque en
-    // el celular el texto se parte en dos renglones y el alto cambia.
-    function _correr(){
-      var h = Math.ceil(d.getBoundingClientRect().height) || 36;
-      // Sólo se bajan los que de verdad están clavados arriba. Bajar por las dudas a
-      // cualquier cosa que se llame "header" le abría un hueco a la mayorista, que lo
-      // tiene en el flujo normal y ya se corre solo con el padding del body.
-      var sel = ['.header','.compact-header','.cart-panel','.cats-dropdown-panel',
-                 '.may-header','.may-cats-panel'];
-      var mover = [];
-      sel.forEach(function(q){
-        document.querySelectorAll(q).forEach(function(e){
-          var s = getComputedStyle(e);
-          if ((s.position === 'fixed' || s.position === 'absolute') && s.top === '0px') mover.push(q);
-        });
-      });
-      st.textContent = st.textContent.replace(/\/\*empuje\*\/[\s\S]*$/, '') +
-        '/*empuje*/body{padding-top:' + h + 'px!important}' +
-        // Lo pegado (la barra de filtro) también tiene que arrancar debajo del cartel:
-        // el padding del body mueve el flujo pero no a un position:sticky.
-        ':root{--pegado-top:' + h + 'px}' +
-        (mover.length ? [...new Set(mover)].join(',') + '{top:' + h + 'px!important}' : '');
-    }
-    _correr();
-    window.addEventListener('resize', _correr);
-    setTimeout(_correr, 600);
-  }
-  if (document.body) _poner();
-  else document.addEventListener('DOMContentLoaded', _poner);
-})();
 
 // Detectar si está corriendo como app instalada (standalone)
 var _esAppInstalada = window.matchMedia('(display-mode: standalone)').matches
