@@ -776,6 +776,59 @@ textarea.co-input{resize:vertical;min-height:60px;font-family:inherit}
   .chip-sello{flex:0 0 auto;font-size:13px;padding:8px 13px}
 }
 
+/* ── Controles compactos del catálogo ──
+   Rubro, orden y filtros comparten una sola fila. Los paneles flotan por encima del
+   listado para no empujar las cards ni convertir la cabecera en otra sección. */
+.catalog-compact-tools{display:none}
+@media(max-width:767px){
+  .catalog-compact-tools{position:relative;z-index:80;display:grid;
+    grid-template-columns:minmax(0,1fr) 78px 78px;gap:7px;margin:0 0 12px}
+  .catalog-tool-btn{height:44px;min-width:0;border:1px solid rgba(84,118,146,.25);
+    border-radius:13px;background:#fff;color:var(--azul-dark);padding:0 10px;
+    font:750 11px/1.1 'Montserrat',sans-serif;display:flex;align-items:center;
+    justify-content:center;gap:6px;box-shadow:0 4px 12px rgba(28,67,96,.07);cursor:pointer}
+  .catalog-tool-btn svg{width:16px;height:16px;flex:0 0 auto}
+  .catalog-tool-rubro{justify-content:space-between;text-align:left;padding:0 12px}
+  .catalog-tool-rubro span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .catalog-tool-rubro small{display:block;margin-bottom:2px;color:var(--azul-mid);
+    font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .catalog-tool-rubro b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+    font-size:11.5px;color:var(--azul-dark)}
+  .catalog-tool-btn.on{background:var(--pal-cielo);border-color:var(--azul-mid)}
+  .catalog-tool-count{display:inline-flex;min-width:17px;height:17px;padding:0 4px;border-radius:999px;
+    align-items:center;justify-content:center;background:var(--azul);color:#fff;font-size:9px}
+  .catalog-tool-pop{display:none;position:absolute;top:51px;right:0;width:min(278px,calc(100vw - 40px));
+    padding:10px;border:1px solid rgba(84,118,146,.22);border-radius:14px;background:#fff;
+    box-shadow:0 18px 38px rgba(25,58,84,.2);z-index:100}
+  .catalog-tool-pop.open{display:block;animation:catalogPopIn .16s ease-out}
+  @keyframes catalogPopIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+  .catalog-tool-pop h4{margin:0 0 7px;color:var(--azul-dark);font-size:12.5px}
+  .catalog-sort-list{display:grid;gap:4px}
+  .catalog-sort-opt{width:100%;min-height:38px;border:0;border-radius:10px;background:transparent;
+    color:var(--fg);padding:8px 10px;text-align:left;font:650 12px/1.2 inherit;cursor:pointer}
+  .catalog-sort-opt:hover,.catalog-sort-opt.on{background:var(--pal-cielo);color:var(--azul-dark)}
+  .catalog-filter-label{display:block;margin:0 0 5px;color:var(--muted-fg);font-size:9px;font-weight:800}
+  .catalog-filter-brand{width:100%;height:36px;border:1px solid rgba(84,118,146,.28);
+    border-radius:10px;background:#fff;color:var(--fg);padding:0 10px;font:650 12px inherit}
+  .catalog-filter-checks{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:7px 0 8px}
+  .catalog-filter-check{display:flex;align-items:center;gap:6px;min-height:32px;padding:5px 7px;
+    border:1px solid rgba(84,118,146,.2);border-radius:10px;color:var(--azul-dark);
+    font-size:11px;font-weight:700;cursor:pointer}
+  .catalog-filter-check input{width:16px;height:16px;margin:0;accent-color:var(--azul)}
+  .catalog-filter-actions{display:flex;justify-content:flex-end;gap:7px;padding-top:2px}
+  .catalog-filter-actions button{height:32px;border-radius:9px;padding:0 11px;font:750 10.5px inherit;cursor:pointer}
+  .catalog-filter-clear{border:1px solid rgba(84,118,146,.25);background:#fff;color:var(--azul-dark)}
+  .catalog-filter-apply{border:1px solid var(--azul);background:var(--azul);color:#fff}
+  body.min-redesign:not(.hv-home) .filtro-activo{position:sticky;overflow:visible;
+    margin:-18px -20px 22px!important;padding:9px 18px 15px!important;
+    border-bottom:0!important;box-shadow:none!important}
+  body.min-redesign:not(.hv-home) .filtro-activo::after{content:"";position:absolute;z-index:-1;
+    left:0;right:0;bottom:-13px;height:24px;background:var(--pal-cielo);
+    border-radius:0 0 68% 32% / 0 0 100% 100%;pointer-events:none}
+  body.min-redesign:not(.hv-home) .filtro-activo .fa-cats{display:none!important}
+  body.min-redesign:not(.hv-home) .filtro-activo .fa-txt b{font-size:18px!important}
+}
+
 /* ── Sellos ──
    Van sólo en la ficha abierta, y grandes: la palabra está dentro del sello, así que
    achicado no se lee. Se tocan y abren ese filtro, igual que la marca. */
@@ -4147,6 +4200,97 @@ function _olvidarCatalogo(){
   try{ _catalogRenderMode=null; _catalogRenderedProds=null; _catalogRenderedCats=null; }catch(e){}
 }
 
+let CATALOG_UI_SORT='default';
+let CATALOG_UI_BRAND='';
+let CATALOG_UI_SEALS=[];
+
+function _catalogEsc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+
+function _catalogPrice(p){
+  var vals=Object.keys((p&&p[7])||{}).map(function(k){return Number(p[7][k])||0;}).filter(Boolean);
+  return vals.length?Math.min.apply(Math,vals):0;
+}
+
+function _catalogApplyList(list){
+  var out=(list||[]).slice();
+  if(CATALOG_UI_BRAND){
+    var brandKey=_norm(CATALOG_UI_BRAND);
+    out=out.filter(function(p){return _norm(_marcaDe(p)||'')===brandKey;});
+  }
+  if(CATALOG_UI_SEALS.length){
+    out=out.filter(function(p){
+      var ids=_sellosDe(p).map(function(x){return x.id;});
+      return CATALOG_UI_SEALS.every(function(id){return ids.indexOf(id)!==-1;});
+    });
+  }
+  if(CATALOG_UI_SORT==='az')out.sort(function(a,b){return a[2].localeCompare(b[2],'es');});
+  if(CATALOG_UI_SORT==='za')out.sort(function(a,b){return b[2].localeCompare(a[2],'es');});
+  if(CATALOG_UI_SORT==='price-asc')out.sort(function(a,b){return _catalogPrice(a)-_catalogPrice(b);});
+  if(CATALOG_UI_SORT==='price-desc')out.sort(function(a,b){return _catalogPrice(b)-_catalogPrice(a);});
+  return out;
+}
+
+function _catalogCurrentRubro(){
+  if(activeCatId){var c=CATS.find(function(x){return x.id===activeCatId;});if(c)return c.n;}
+  return 'Todos los productos';
+}
+
+function _catalogBrands(){
+  var seen={};
+  (PRODS||[]).forEach(function(p){var m=(_marcaDe(p)||'').trim();if(m&&!seen[_norm(m)])seen[_norm(m)]=m;});
+  return Object.keys(seen).map(function(k){return seen[k];}).sort(function(a,b){return a.localeCompare(b,'es');});
+}
+
+function _catalogTools(){
+  var activeCount=(CATALOG_UI_BRAND?1:0)+CATALOG_UI_SEALS.length;
+  var brands=_catalogBrands();
+  var sortLabels={'default':'Relevancia','az':'Nombre: A–Z','za':'Nombre: Z–A','price-asc':'Menor precio','price-desc':'Mayor precio'};
+  var sortOptions=Object.keys(sortLabels).map(function(k){
+    return '<button type="button" class="catalog-sort-opt'+(CATALOG_UI_SORT===k?' on':'')+'" onclick="catalogSetSort(\''+k+'\')">'+sortLabels[k]+'</button>';
+  }).join('');
+  var sealOpts=[['sintacc','Sin TACC'],['sinazucar','Sin azúcar'],['proteico','Proteico']].map(function(s){
+    return '<label class="catalog-filter-check"><input type="checkbox" value="'+s[0]+'"'+(CATALOG_UI_SEALS.indexOf(s[0])!==-1?' checked':'')+'><span>'+s[1]+'</span></label>';
+  }).join('');
+  return '<div class="catalog-compact-tools">'+
+    '<button type="button" class="catalog-tool-btn catalog-tool-rubro" onclick="toggleCatsDropdown()"><span><small>Rubro</small><b>'+_catalogEsc(_catalogCurrentRubro())+'</b></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M6 9l6 6 6-6"/></svg></button>'+
+    '<button type="button" class="catalog-tool-btn" onclick="catalogTogglePop(this,\'sort\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h12M8 12h9M8 18h6M4 4v16m0 0l-2-2m2 2l2-2"/></svg><span>Ordenar</span></button>'+
+    '<button type="button" class="catalog-tool-btn'+(activeCount?' on':'')+'" onclick="catalogTogglePop(this,\'filter\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg><span>Filtros</span>'+(activeCount?'<i class="catalog-tool-count">'+activeCount+'</i>':'')+'</button>'+
+    '<div class="catalog-tool-pop" data-pop="sort"><h4>Ordenar productos</h4><div class="catalog-sort-list">'+sortOptions+'</div></div>'+
+    '<div class="catalog-tool-pop" data-pop="filter"><h4>Filtrar productos</h4><label class="catalog-filter-label">Marca</label><select class="catalog-filter-brand"><option value="">Todas las marcas</option>'+brands.map(function(m){return '<option value="'+_catalogEsc(m)+'"'+(CATALOG_UI_BRAND===m?' selected':'')+'>'+_catalogEsc(m)+'</option>';}).join('')+'</select><div class="catalog-filter-checks">'+sealOpts+'</div><div class="catalog-filter-actions"><button type="button" class="catalog-filter-clear" onclick="catalogClearFilters()">Limpiar</button><button type="button" class="catalog-filter-apply" onclick="catalogApplyFilters(this)">Aplicar</button></div></div>'+
+  '</div>';
+}
+
+function catalogClosePops(){
+  document.querySelectorAll('.catalog-tool-pop.open').forEach(function(p){p.classList.remove('open');});
+  document.querySelectorAll('.catalog-tool-btn[aria-expanded="true"]').forEach(function(b){b.setAttribute('aria-expanded','false');});
+}
+function catalogTogglePop(btn,kind){
+  var tools=btn.closest('.catalog-compact-tools');if(!tools)return;
+  var pop=tools.querySelector('[data-pop="'+kind+'"]');var opening=pop&&!pop.classList.contains('open');
+  catalogClosePops();
+  if(opening){pop.classList.add('open');btn.setAttribute('aria-expanded','true');}
+}
+function _catalogRefresh(){
+  catalogClosePops();_olvidarCatalogo();
+  if(activeCatId)selectCat(activeCatId,null,{history:false,preservePrevious:true});
+  else renderCarruseles();
+}
+function catalogSetSort(sort){CATALOG_UI_SORT=sort||'default';_catalogRefresh();}
+function catalogApplyFilters(btn){
+  var pop=btn.closest('.catalog-tool-pop');if(!pop)return;
+  CATALOG_UI_BRAND=pop.querySelector('.catalog-filter-brand').value||'';
+  CATALOG_UI_SEALS=[].slice.call(pop.querySelectorAll('.catalog-filter-check input:checked')).map(function(i){return i.value;});
+  SELLO_ACTIVO=null;MARCA_ACTIVA=null;_catalogRefresh();
+}
+function catalogClearFilters(){CATALOG_UI_BRAND='';CATALOG_UI_SEALS=[];SELLO_ACTIVO=null;MARCA_ACTIVA=null;_catalogRefresh();}
+window.catalogTogglePop=catalogTogglePop;window.catalogSetSort=catalogSetSort;
+window.catalogApplyFilters=catalogApplyFilters;window.catalogClearFilters=catalogClearFilters;
+document.addEventListener('click',function(e){if(!e.target.closest('.catalog-compact-tools'))catalogClosePops();});
+
 /* La barra de arriba del listado: una flechita para volver a todos los productos y
    el nombre de lo que estás mirando. Es la misma para rubro, sello y marca —para el
    cliente son todas "categorías"— y ocupa un solo renglón. */
@@ -4167,7 +4311,7 @@ function _barraFiltro(etiqueta, titulo, cuenta){
       'aria-label="Ver categorías" title="Ver categorías">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
       'stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>' +
-  '</div>';
+  '</div>'+_catalogTools();
 }
 
 /* Saca cualquier filtro y muestra el catálogo entero. */
@@ -4210,7 +4354,7 @@ function _filaSellos(prods){
       '" onclick="filtrarSello(\''+x.id+'\')">'+
       '<span>'+x.chip+'</span> <b>'+cuenta[x.id]+'</b></button>').join('')+
     (SELLO_ACTIVO?'<button type="button" class="chip-sello chip-limpiar" onclick="filtrarSello(null)">Quitar filtro</button>':'')+
-    '</div>';
+    '</div>'+_catalogTools();
 }
 
 function filtrarSello(id){
@@ -4251,9 +4395,9 @@ function renderProdsHTML(cat,prods,prefix,priorityProductId){
   // Una sola barra: la flechita, el nombre del rubro y el atajo a las categorías.
   // Antes eran dos renglones (botón "Volver a todos los productos" + título grande)
   // y se comían media pantalla del celular.
-  let h=_barraFiltro('Categoría', cat.n, prods.length);
   // El sello ya no se cruza con el rubro: entrar a un rubro lo saca.
-  const visibles = prods;
+  const visibles = _catalogApplyList(prods);
+  let h=_barraFiltro('Categoría', cat.n, visibles.length);
   if(!visibles.length)return h+'<div style="text-align:center;padding:48px 0;color:var(--muted-fg);font-size:17px">No hay productos en esta categoría</div>';
   h+='<div class="prod-grid">';
   visibles.forEach((p,i)=>{h+=renderCard(p,prefix,i<4||p[0]===priorityProductId)});
@@ -7847,7 +7991,8 @@ function renderCarruseles(){
     var sections=activeArea.querySelector('.catalog-progressive-sections');
     var sentinel=activeArea.querySelector('.catalog-load-sentinel');
     var queue=[...CATS].sort((a,b)=>a.n.localeCompare(b.n,'es')).map(function(cat){
-      var lista=(grouped[cat.id]||[]).slice().sort((a,b)=>a[2].localeCompare(b[2],'es'));
+      var lista=_catalogApplyList((grouped[cat.id]||[]).slice());
+      if(CATALOG_UI_SORT==='default')lista.sort((a,b)=>a[2].localeCompare(b[2],'es'));
       // Si hay un sello activo, la vista completa también lo respeta: se filtra acá
       // para que las categorías que quedan sin productos ni aparezcan.
       if(SELLO_ACTIVO) lista=lista.filter(function(p){return _sellosDe(p).some(function(x){return x.id===SELLO_ACTIVO;});});
