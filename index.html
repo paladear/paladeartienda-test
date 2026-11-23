@@ -10547,5 +10547,18 @@ body.min-redesign .catalog-intro h1{color:var(--pal-heading)!important}
 .min-redesign .bnav button>img{filter:none!important}
 .min-redesign .bnav button[data-b="minorista"]>img{opacity:1!important}
 </style>
+<script>
+/* Los accesos de la Lista de precios vuelven a la sección elegida de la tienda. */
+(function(){
+  function abrirSeccionDesdeHash(){
+    var destino=String(location.hash||'').replace('#','').toLowerCase();
+    var mapa={home:'home',productos:'minorista',ofertas:'ofertas',favoritos:'favoritos'};
+    if(!mapa[destino]||typeof window.switchTab!=='function')return;
+    window.switchTab(mapa[destino]);
+    try{history.replaceState(history.state,'',location.pathname+location.search);}catch(e){}
+  }
+  window.addEventListener('load',function(){setTimeout(abrirSeccionDesdeHash,80);});
+})();
+</script>
 </body>
 </html>
