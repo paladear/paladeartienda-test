@@ -10968,6 +10968,14 @@ body.min-redesign:not(.hv-home):not(.hv-ofertas):not(.hv-favoritos) #mainContain
   body.min-redesign:not(.hv-home) .catalog-compact-tools{
     position:relative!important;top:auto!important;z-index:2!important
   }
+  /* Ordenar y Filtros se despliegan dentro del flujo: no tapan el rubro
+     ni las primeras cards del catálogo. */
+  .catalog-compact-tools{flex-wrap:wrap!important}
+  .catalog-tool-pop{
+    position:relative!important;top:auto!important;right:auto!important;order:10;
+    flex:0 0 100%;width:100%!important;margin-top:2px;z-index:1!important;
+    box-shadow:0 9px 22px rgba(25,58,84,.12)!important
+  }
   .allcat-sec{margin-bottom:32px}
   .allcat-head{gap:8px;padding:0 1px 11px}
   .allcat-head::after{min-width:12px}
@@ -10990,7 +10998,7 @@ body.min-redesign:not(.hv-home):not(.hv-ofertas):not(.hv-favoritos) #mainContain
   .min-redesign .add-btn{min-height:36px;padding:7px 3px;font-size:10.5px}
 }
 @media(max-width:359px){
-  .catalog-compact-tools{flex-wrap:nowrap;gap:5px}
+  .catalog-compact-tools{gap:5px}
   .catalog-tool-btn{height:38px;padding:0 8px;font-size:10px;gap:5px}
   .catalog-tool-rubro{padding-left:9px;padding-right:9px}
   .catalog-tool-btn svg{width:14px;height:14px}
