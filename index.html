@@ -4741,15 +4741,34 @@ function _precioXG(p,totalG,nivel){
 }
 function _reRenderCard(pid){
   const p=PRODS.find(x=>x[0]===pid);if(!p)return;
+  const opts=_sortOpts(Object.keys(p[7]));
   ['mb','dt','rp','of','fav'].forEach(function(prefix){
-    const cardEl=document.getElementById(prefix+'_'+pid);
+    const id=prefix+'_'+pid;
+    const cardEl=document.getElementById(id);
     if(!cardEl)return;
+    /* Lo que el cliente ya eligio sobrevive al redibujado. Antes la card volvia
+       al gramaje mas chico y el precio de la vidriera cambiaba solo: el que
+       compraba 1 kg y tocaba "Agregar" de nuevo se llevaba 100 g sin enterarse.
+       La cantidad si vuelve a 1, que es el freno contra agregar de mas. */
+    const optElegido = cardEl.dataset.opt || '';
+    const sabEl = document.getElementById(id+'_sab');
+    const sabElegido = sabEl ? sabEl.value : '';
     const tmp=document.createElement('div');
     tmp.innerHTML=renderCard(p,prefix);
     cardEl.parentNode.replaceChild(tmp.firstChild,cardEl);
-    // Restaurar el opt seleccionado
-    const opts=_sortOpts(Object.keys(p[7]));
-    if(opts.length){const _d=_optDefecto(opts);selOpt(prefix+'_'+pid,_d,p[7][_d][0],p[7][_d][1]);}
+    if(opts.length){
+      const _d=(optElegido && p[7][optElegido]) ? optElegido : _optDefecto(opts);
+      selOpt(id,_d,p[7][_d][0],p[7][_d][1]);
+    }
+    if(sabElegido){
+      const sabNuevo=document.getElementById(id+'_sab');
+      if(sabNuevo && Array.prototype.some.call(sabNuevo.options,function(o){return o.value===sabElegido;})){
+        sabNuevo.value=sabElegido;
+        selSabor(id,sabElegido);
+        var cara=sabNuevo.parentNode && sabNuevo.parentNode.querySelector('.sabor-face');
+        if(cara)cara.textContent=sabElegido;
+      }
+    }
   });
 }
 
