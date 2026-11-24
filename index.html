@@ -1270,7 +1270,7 @@ body.cart-open #cart-fab,body.cart-open #chat-fab{display:none!important}
    arriba y se comia la barra del boton volver. En la tienda real la variable
    no existe y vale 0. */
 .product-detail{position:fixed;top:var(--pegado-top,0px);left:0;right:0;bottom:0;z-index:9300;background:var(--pal-cream);overflow-y:auto;animation:fadeIn .18s ease}
-.product-detail-bar{position:sticky;top:0;z-index:3;min-height:68px;padding:10px 18px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:10px;background:rgba(207,229,242,.97);color:var(--min-blue-deep);
+.product-detail-bar{position:sticky;top:0;z-index:3;min-height:68px;padding:10px 18px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:10px;background:#cfe5f2;color:var(--min-blue-deep);
   box-shadow:0 5px 16px rgba(20,58,87,.08)}
 .product-detail-bar strong{text-align:center;font-size:15px;font-weight:800;letter-spacing:.02em}
 .product-detail-tit{display:flex;align-items:center;gap:7px;min-width:0}
@@ -2146,6 +2146,112 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 </style>
 
 
+
+<style id="fix-auditoria-v1">
+/* ───── Lo que salio de la auditoria de la seccion Productos ───── */
+
+/* 1. Ordenar y Filtros existian en escritorio pero estaban apagados: la barra
+      entera vivia solo en el media query del celular. */
+@media(min-width:768px){
+  .catalog-compact-tools{position:relative;z-index:80;display:flex;align-items:center;
+    flex-wrap:wrap;gap:10px;margin:0 0 20px}
+  .catalog-tool-btn{height:42px;min-width:0;border:1.5px solid rgba(255,255,255,.98);
+    border-radius:999px;background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(232,241,246,.73));
+    color:var(--azul-dark);padding:0 16px;font:780 12.5px/1 'Montserrat',sans-serif;
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    box-shadow:inset 0 1px 0 #fff,0 6px 15px rgba(22,59,88,.10);cursor:pointer}
+  .catalog-tool-btn svg{width:17px;height:17px;flex:0 0 auto}
+  .catalog-tool-btn:hover{background:linear-gradient(145deg,#fff,rgba(255,255,255,.82))}
+  .catalog-tool-btn.on{background:#fff;border-color:rgba(84,118,146,.42);
+    box-shadow:inset 0 1px 0 #fff,0 7px 17px rgba(22,59,88,.14)}
+  .catalog-tool-rubro small{display:none}
+  .catalog-tool-rubro b{font-size:12px;color:var(--azul-dark)}
+  .catalog-tool-count{display:inline-flex;min-width:18px;height:18px;padding:0 5px;
+    border-radius:999px;align-items:center;justify-content:center;
+    background:var(--azul);color:#fff;font-size:9.5px}
+  .catalog-tool-pop{display:none;position:absolute;top:52px;left:0;width:320px;
+    padding:12px;border:1px solid rgba(84,118,146,.22);border-radius:14px;background:#fff;
+    box-shadow:0 18px 38px rgba(25,58,84,.2);z-index:100}
+  .catalog-tool-pop.open{display:block;animation:catalogPopIn .16s ease-out}
+  .catalog-tool-pop h4{margin:0 0 8px;color:var(--azul-dark);font-size:13px}
+  .catalog-sort-list{display:grid;gap:4px}
+  .catalog-sort-opt{width:100%;min-height:38px;border:0;border-radius:10px;background:transparent;
+    color:var(--fg);padding:8px 11px;text-align:left;font:650 12.5px/1.2 inherit;cursor:pointer}
+  .catalog-sort-opt:hover,.catalog-sort-opt.on{background:var(--pal-cielo);color:var(--azul-dark)}
+  .catalog-filter-label{display:block;margin:0 0 5px;color:var(--muted-fg);font-size:9.5px;font-weight:800}
+  .catalog-filter-brand{width:100%;height:38px;border:1px solid rgba(84,118,146,.28);
+    border-radius:10px;background:#fff;color:var(--fg);padding:0 10px;font:650 12.5px inherit}
+  .catalog-filter-checks{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0 9px}
+  .catalog-filter-check{display:flex;align-items:center;gap:7px;min-height:34px;padding:5px 8px;
+    border:1px solid rgba(84,118,146,.2);border-radius:10px;color:var(--azul-dark);
+    font-size:11.5px;font-weight:700;cursor:pointer}
+  .catalog-filter-check input{width:16px;height:16px;margin:0;accent-color:var(--azul)}
+  .catalog-filter-actions{display:flex;justify-content:flex-end;gap:8px;padding-top:2px}
+  .catalog-filter-actions button{height:34px;border-radius:9px;padding:0 13px;font:750 11px inherit;cursor:pointer}
+  .catalog-filter-clear{border:1px solid rgba(84,118,146,.25);background:#fff;color:var(--azul-dark)}
+  .catalog-filter-apply{border:1px solid var(--azul);background:var(--azul);color:#fff}
+  @keyframes catalogPopIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+}
+
+/* 2. El sabor entraba en un renglon y se cortaba: "PASAS Y MAN", "Te negro-pimi".
+      El select sigue siendo el nativo (abre el selector del telefono) pero queda
+      invisible encima de una cara que parte el texto en dos renglones. */
+.sabor-pick{position:relative;display:block;flex:1;min-width:0}
+.sabor-pick>.sabor-select{position:absolute;inset:0;width:100%;height:100%;
+  min-width:0;opacity:0;z-index:2;cursor:pointer;border:0;padding:0;margin:0;
+  background:transparent;-webkit-appearance:none;appearance:none}
+.sabor-face{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
+  overflow:hidden;border:1.5px solid var(--border);border-radius:8px;background:#fff;
+  color:var(--azul-dark);font-family:inherit;font-size:11.5px;font-weight:600;line-height:1.28;
+  padding:6px 26px 6px 10px;min-height:34px;word-break:break-word;hyphens:auto}
+/* En la ficha abierta hay ancho de sobra: ahi el sabor se lee entero. */
+.product-detail-buy .sabor-face{-webkit-line-clamp:unset;display:block;font-size:13px;
+  line-height:1.35;padding:8px 28px 8px 12px}
+.sabor-pick::after{content:"";position:absolute;right:11px;top:50%;width:7px;height:7px;
+  margin-top:-5px;border-right:2px solid var(--azul-mid);border-bottom:2px solid var(--azul-mid);
+  transform:rotate(45deg);pointer-events:none;z-index:3}
+.sabor-pick>.sabor-select:focus-visible+.sabor-face{border-color:var(--azul);
+  box-shadow:0 0 0 3px rgba(76,113,146,.18)}
+
+/* 3. Cartel de lista vacia, distinguiendo "no hay" de "lo tapo un filtro". */
+.catalog-vacio{text-align:center;padding:44px 16px 48px}
+.catalog-vacio p{margin:0;color:var(--muted-fg);font-size:17px;line-height:1.45}
+.catalog-vacio-btn{margin-top:16px;height:42px;padding:0 20px;border-radius:999px;
+  border:1.5px solid var(--azul);background:var(--azul);color:#fff;
+  font:750 13px inherit;cursor:pointer}
+.catalog-vacio-btn:hover{background:var(--pal-action-hover,#2f668e)}
+
+/* 4. "Relacionados": al lado del precio, de que presentacion es. */
+.pdrel-precio i{display:block;margin-top:1px;font-style:normal;font-weight:700;
+  font-size:10.5px;letter-spacing:.02em;color:var(--muted-fg);text-transform:lowercase}
+
+/* 5. Sin stock: hasta ahora se vendian igual que el resto. */
+.pcard-sinstock .pcard-img{opacity:.48;filter:grayscale(.55)}
+.pcard-sinstock .prices,.pcard-sinstock .qty-row{opacity:.45}
+.pcard-sinstock .qty-row{pointer-events:none}
+.pcard-sinstock .oferta-badge{display:none}
+.sinstock-badge{position:absolute;left:0;top:0;z-index:4;padding:5px 11px;
+  border-radius:0 0 12px 0;background:#8a93a0;color:#fff;
+  font:800 10px/1 'Montserrat',sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.add-btn.sin-stock,.pcard-sinstock .add-btn{background:#dfe3e8!important;color:#73808f!important;
+  cursor:not-allowed!important;pointer-events:none!important;box-shadow:none!important}
+.product-detail-buy.sin-stock .prices,.product-detail-buy.sin-stock .qty-row{opacity:.45}
+.product-detail-buy.sin-stock .qty-row{pointer-events:none}
+.pd-sinstock-aviso{margin:10px 0 0;padding:10px 12px;border-radius:10px;
+  background:#eef1f4;color:#5c6a79;font-size:12.5px;font-weight:600;line-height:1.4}
+
+/* 6. Aviso de campo obligatorio en el checkout. */
+.co-aviso-req{margin:6px 0 0;color:#c62828;font-size:12px;font-weight:650;line-height:1.35}
+
+/* 7. El carrito flotante tapaba el "Agregar" de la columna derecha. Se corre
+      mientras bajas por el catalogo y vuelve apenas subis o frenas arriba. */
+#cart-fab{transition:transform .22s ease,opacity .22s ease,box-shadow .2s}
+body.fab-escondido #cart-fab{transform:translateY(96px) scale(.8);opacity:0;pointer-events:none}
+@media(prefers-reduced-motion:reduce){
+  #cart-fab{transition:opacity .01s}
+  body.fab-escondido #cart-fab{transform:none}
+}
+</style>
 </head>
 <body class="hv-home min-redesign">
 
@@ -2841,7 +2947,7 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
 }
 .min-redesign .bnav-pill{background:rgba(255,255,255,.98);border:1px solid #fff;box-shadow:0 5px 14px rgba(31,71,100,.09)}
 .min-redesign .bnav button{color:#315f82}.min-redesign .bnav button>img{display:block;width:27px;height:27px;object-fit:contain;filter:none}
-.min-redesign .bnav button[data-b="favoritos"]>img{width:29px;height:29px}
+.min-redesign .bnav button[data-b="favoritos"]>img{width:27px;height:27px}
 /* El icono de Productos (la tablita) cubre el 53% de su lienzo contra 36-39% de
    Home y Ofertas, y como se pintan con el mismo filtro se lee mas oscuro. */
 .min-redesign .bnav button>img[src*="catalog"]{opacity:.78}
@@ -2920,7 +3026,7 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
   .min-redesign .cats-dropdown-panel{left:0;right:0;top:auto;bottom:0;width:100%;max-height:78vh;padding:20px 16px calc(26px + env(safe-area-inset-bottom));border:0;border-radius:22px 22px 0 0;background:#f9fcfe}
   .min-redesign .cats-dropdown-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.min-cat-menu-btn{grid-template-columns:42px minmax(0,1fr);min-height:58px;padding:7px 9px}.min-cat-thumb{width:42px;height:42px;border-radius:10px}.min-cat-menu-arrow{display:none}.min-cat-menu-name{font-size:11.5px}
   .min-redesign .bnav{display:grid!important;left:8px;right:8px;bottom:calc(7px + env(safe-area-inset-bottom));width:auto;padding:6px;border-radius:22px;grid-template-columns:repeat(5,minmax(0,1fr))}
-  .min-redesign .bnav button{font-size:8.5px;gap:2px}.min-redesign .bnav button>img{width:25px;height:25px}.min-redesign .bnav button[data-b="favoritos"]>img{width:27px;height:27px}
+  .min-redesign .bnav button{font-size:8.5px;gap:2px}.min-redesign .bnav button>img{width:25px;height:25px}.min-redesign .bnav button[data-b="favoritos"]>img{width:25px;height:25px}
   .min-redesign #homeView .min-image-banner{aspect-ratio:2.18/1}
   .min-banner-copy{left:5%;width:40%}
   .min-banner-kicker{margin-bottom:4px;font-size:7.3px;letter-spacing:.14em}
@@ -3044,7 +3150,7 @@ body.min-redesign.hv-home .may-tab:hover{background:rgba(255,255,255,.9)!importa
   body.min-redesign.hv-home .min-header-cart>img{width:25px;height:25px;filter:none!important}
   .min-redesign .bnav{background:rgba(255,255,255,.93);border-color:#fff}
   .min-redesign .bnav button>img{width:28px;height:28px}
-  .min-redesign .bnav button[data-b="favoritos"]>img{width:30px;height:30px}
+  .min-redesign .bnav button[data-b="favoritos"]>img{width:28px;height:28px}
   .min-redesign .bnav button{font-size:9px}
 }
 
@@ -3780,7 +3886,7 @@ function openProductDetail(pid){
   const fondo=p[12]&&p[12].fondo?p[12].fondo:'#fff';
   const src=(p[6]||'').replace(/=w\d+/,'=w1200').replace(/\/w_\d+\//,'/w_1200/');
   const opciones=optsVis.map(o=>`<button class="opt-btn${o===opt?' active':''}" data-opt="${o.replace(/"/g,'&quot;')}" onclick="selOpt('productDetailCard','${o.replace(/'/g,"\\'")}',${p[7][o][0]},${p[7][o][1]})">${_medidaCorta(o)}</button>`).join('');
-  const saboresHTML=sabores&&sabores.length?`<div class="sabor-row"><label class="sabor-label" for="productDetailCard_sab">Sabor:</label><select class="sabor-select" id="productDetailCard_sab" onchange="selSabor('productDetailCard',this.value)">${sabores.map(s=>`<option value="${s.replace(/"/g,'&quot;')}">${s}</option>`).join('')}</select></div>`:'';
+  const saboresHTML=sabores&&sabores.length?`<div class="sabor-row"><label class="sabor-label" for="productDetailCard_sab">Sabor:</label><span class="sabor-pick"><select class="sabor-select" id="productDetailCard_sab" onchange="selSabor('productDetailCard',this.value)">${sabores.map(s=>`<option value="${s.replace(/"/g,'&quot;')}">${s}</option>`).join('')}</select><span class="sabor-face" aria-hidden="true">${sabores[0]}</span></span></div>`:'';
   const info=(p[8]||'Consultanos si querés conocer más detalles sobre este producto.').replace(/\n/g,'<br>');
   const modal=document.createElement('section');
   modal.id='productDetail';modal.className='product-detail';modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');modal.setAttribute('aria-label','Detalle de '+_tc(p[2]));
@@ -3791,7 +3897,7 @@ function openProductDetail(pid){
   </div><div class="product-detail-shell"><div class="product-detail-main">
     <div class="product-detail-image" style="background:${fondo}">${src?`<img src="${src}" alt="${p[2]}" decoding="async">`:'<span class="product-image-placeholder" aria-hidden="true"></span>'}</div>
     <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${(_marcaDe(p)||(_envaseDe(p)&&p[3]!=='Granel'))?`<div class="product-detail-meta">${_envaseDe(p)&&p[3]!=='Granel'?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}',${p[0]})" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}${_sellosDe(p).length?`<div class="product-detail-sellos">${_sellosDe(p).map(x=>'<button type="button" class="sello-d" onclick="verSello(\''+x.id+'\','+p[0]+')" title="Ver todo lo '+x.chip+'"><img src="'+_selloImg(x.id)+'" alt="'+x.chip+'" decoding="async"></button>').join('')}</div>`:''}<div class="product-detail-info">${info}</div>
-      <div class="product-detail-buy" id="productDetailCard" data-pid="${p[0]}" data-opt="${opt}">
+      <div class="product-detail-buy" id="productDetailCard" data-pid="${p[0]}" data-epid="${_epidDe(p)}" data-opt="${opt}">
         ${opts.length>1?`<h3>Elegí la presentación</h3><div class="product-detail-options opt-btns${opts.length>=4?' opt-btns-4':''}">${opciones}</div>`:''}${saboresHTML}
         <div class="prices"><div><span class="price-label">Precio${oferta>0?' (Oferta)':''}</span><div class="price-min">${_priceMinContent(p[7][opt][0],oferta)}</div></div><div><span class="price-label">+$80.000</span><div class="price-may">$${fmt(p[7][opt][1])}</div></div></div>
         <div class="qty-row"><button class="qty-btn" onclick="chgQty('productDetailCard',-1)" aria-label="Restar cantidad">−</button><span class="qty-val" id="productDetailCard_q">1</span><button class="qty-btn" onclick="chgQty('productDetailCard',1)" aria-label="Sumar cantidad">+</button></div>
@@ -3912,7 +4018,11 @@ function _pintarRelacionados(p){
   caja.innerHTML = '<h3 class="pdrel-tit">' + titulo + '</h3>' +
     '<div class="pdrel-fila">' + lista.map(function(q){
       const opts = _sortOpts(Object.keys(q[7]));
-      const precio = opts.length ? q[7][opts[0]][0] : 0;
+      // Antes tomaba opts[0] —el kilo— y lo mostraba pelado: el mismo producto
+      // valia $39.600 aca y $3.960 en la grilla. Ahora toma la presentacion por
+      // defecto, la misma que muestra la tarjeta, y la aclara al lado.
+      const optRel = opts.length ? _optDefecto(opts) : null;
+      const precio = optRel ? q[7][optRel][0] : 0;
       const img = q[6] ? '<img src="' + q[6] + '" alt="" loading="lazy" decoding="async">'
                        : '<span class="product-image-placeholder" aria-hidden="true"></span>';
       // El mismo fondo que usa la tarjeta grande: el color propio de cada foto. Con
@@ -3921,7 +4031,8 @@ function _pintarRelacionados(p){
       return '<button type="button" class="pdrel-card" onclick="openProductDetail(' + q[0] + ')">' +
         '<span class="pdrel-img"' + fondo + '>' + img + '</span>' +
         '<span class="pdrel-nom">' + _nomHTML(q) + '</span>' +
-        '<span class="pdrel-precio">$' + fmt(precio) + '</span></button>';
+        '<span class="pdrel-precio">$' + fmt(precio) +
+          (optRel && opts.length > 1 ? '<i>' + optRel + '</i>' : '') + '</span></button>';
     }).join('') + '</div>';
 }
 
@@ -4268,6 +4379,10 @@ function _catalogTools(){
   var activeCount=(CATALOG_UI_BRAND?1:0)+CATALOG_UI_SEALS.length;
   var brands=_catalogBrands();
   var sortLabels={'default':'Relevancia','az':'Nombre: A–Z','za':'Nombre: Z–A','price-asc':'Menor precio','price-desc':'Mayor precio'};
+  // El boton muestra el orden elegido, no siempre la palabra "Ordenar": asi se ve
+  // de un vistazo que la lista no esta en el orden normal.
+  var sortCorto={'default':'Ordenar','az':'A–Z','za':'Z–A','price-asc':'Menor precio','price-desc':'Mayor precio'};
+  var sortPuesto=CATALOG_UI_SORT!=='default';
   var sortOptions=Object.keys(sortLabels).map(function(k){
     return '<button type="button" class="catalog-sort-opt'+(CATALOG_UI_SORT===k?' on':'')+'" onclick="catalogSetSort(\''+k+'\')">'+sortLabels[k]+'</button>';
   }).join('');
@@ -4276,7 +4391,7 @@ function _catalogTools(){
   }).join('');
   return '<div class="catalog-compact-tools">'+
     '<button type="button" class="catalog-tool-btn catalog-tool-rubro" onclick="toggleCatsDropdown()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span><small>Rubro</small><b>Categorías</b></span></button>'+
-    '<button type="button" class="catalog-tool-btn" onclick="catalogTogglePop(this,\'sort\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h12M8 12h9M8 18h6M4 4v16m0 0l-2-2m2 2l2-2"/></svg><span>Ordenar</span></button>'+
+    '<button type="button" class="catalog-tool-btn'+(sortPuesto?' on':'')+'" onclick="catalogTogglePop(this,\'sort\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h12M8 12h9M8 18h6M4 4v16m0 0l-2-2m2 2l2-2"/></svg><span>'+sortCorto[CATALOG_UI_SORT]+'</span></button>'+
     '<button type="button" class="catalog-tool-btn'+(activeCount?' on':'')+'" onclick="catalogTogglePop(this,\'filter\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg><span>Filtros</span>'+(activeCount?'<i class="catalog-tool-count">'+activeCount+'</i>':'')+'</button>'+
     '<div class="catalog-tool-pop" data-pop="sort"><h4>Ordenar productos</h4><div class="catalog-sort-list">'+sortOptions+'</div></div>'+
     '<div class="catalog-tool-pop" data-pop="filter"><h4>Filtrar productos</h4><label class="catalog-filter-label">Marca</label><select class="catalog-filter-brand"><option value="">Todas las marcas</option>'+brands.map(function(m){return '<option value="'+_catalogEsc(m)+'"'+(CATALOG_UI_BRAND===m?' selected':'')+'>'+_catalogEsc(m)+'</option>';}).join('')+'</select><div class="catalog-filter-checks">'+sealOpts+'</div><div class="catalog-filter-actions"><button type="button" class="catalog-filter-clear" onclick="catalogClearFilters()">Limpiar</button><button type="button" class="catalog-filter-apply" onclick="catalogApplyFilters(this)">Aplicar</button></div></div>'+
@@ -4419,7 +4534,15 @@ function renderProdsHTML(cat,prods,prefix,priorityProductId){
   // El sello ya no se cruza con el rubro: entrar a un rubro lo saca.
   const visibles = _catalogApplyList(prods);
   let h=_barraFiltro('Categoría', cat.n, visibles.length);
-  if(!visibles.length)return h+'<div style="text-align:center;padding:48px 0;color:var(--muted-fg);font-size:17px">No hay productos en esta categoría</div>';
+  if(!visibles.length){
+    // Si lo que vacio la lista fue un filtro, hay que decirlo: antes culpaba a la
+    // categoria y el cliente se iba creyendo que no vendemos el rubro entero.
+    var _conFiltro=!!(CATALOG_UI_BRAND||CATALOG_UI_SEALS.length);
+    return h+'<div class="catalog-vacio">'+(_conFiltro
+      ? '<p>Ningún producto de esta categoría cumple con los filtros que pusiste.</p>'+
+        '<button type="button" class="catalog-vacio-btn" onclick="catalogClearFilters()">Limpiar filtros</button>'
+      : '<p>No hay productos en esta categoría</p>')+'</div>';
+  }
   h+='<div class="prod-grid">';
   visibles.forEach((p,i)=>{h+=renderCard(p,prefix,i<4||p[0]===priorityProductId)});
   h+='</div>';
@@ -4458,7 +4581,7 @@ function renderCard(p,prefix,prioritizeImage){
   // el que pide rápido toca + y − en los costados y abajo sin que se le abra el
   // detalle encima.
   const _verFicha=`onclick="openProductDetail(${p[0]})"`;
-  let h=`<div class="pcard" id="${id}" data-pid="${p[0]}">`;
+  let h=`<div class="pcard" id="${id}" data-pid="${p[0]}" data-epid="${_epidDe(p)}">`;
   h+=`<button type="button" class="fav-btn${favOn?' active':''}" data-fav-pid="${p[0]}" onclick="event.stopPropagation();return toggleFavorite(${p[0]})" aria-label="${favOn?'Quitar de favoritos':'Agregar a favoritos'}" aria-pressed="${favOn?'true':'false'}" title="${favOn?'Quitar de favoritos':'Agregar a favoritos'}"><span class="fav-heart" aria-hidden="true"></span></button>`;
   if(oferta>0)h+=`<div class="oferta-badge oferta-badge-lg">−${oferta}% OFF</div>`;
   // El recuadro de la foto se pinta del color del fondo de la propia foto, así
@@ -4486,9 +4609,9 @@ function renderCard(p,prefix,prioritizeImage){
     h+='</div>';
   }
   if(sabores&&sabores.length){
-    h+=`<div class="sabor-row"><label class="sabor-label" for="${id}_sab">Sabor:</label><select class="sabor-select" id="${id}_sab" onchange="selSabor('${id}',this.value)">`;
+    h+=`<div class="sabor-row"><label class="sabor-label" for="${id}_sab">Sabor:</label><span class="sabor-pick"><select class="sabor-select" id="${id}_sab" onchange="selSabor('${id}',this.value)">`;
     sabores.forEach(s=>{h+=`<option value="${s.replace(/"/g,'&quot;')}">${s}</option>`});
-    h+='</select></div>';
+    h+=`</select><span class="sabor-face" aria-hidden="true">${sabores[0]}</span></span></div>`;
   }
   const _optAct=_optDefecto(opts);
   const precioMin=p[7][_optAct][0];
@@ -8932,7 +9055,7 @@ function coEnviar() {
 
   if (tipo === 'retiro') {
     nombre = (document.getElementById('coNombre').value || '').trim();
-    if (!nombre) { _coMarkRequired('coNombre'); return; }
+    if (!nombre) { _coMarkRequired('coNombre', 'Necesitamos tu nombre para preparar el pedido.'); return; }
     horario = (document.getElementById('coHorarioRetiro').value || '').trim();
     var _retM = _RETIRO[_coVenta] || _RETIRO.minorista;
     deliveryMsg = '\n\n🏬 *RETIRO EN EL LOCAL*\n👤 ' + nombre;
@@ -8942,7 +9065,7 @@ function coEnviar() {
     deliveryMsg += '\n💳 Pago: a definir en el local';
   } else {
     nombre = (document.getElementById('coNombreDom').value || '').trim();
-    if (!nombre) { _coMarkRequired('coNombreDom'); return; }
+    if (!nombre) { _coMarkRequired('coNombreDom', 'Necesitamos tu nombre para el envío.'); return; }
     var dirObj = _coDirObjActual();
     if (!dirObj) return; // _coDirObjActual ya marcó el campo obligatorio que falta
     direccion = dirObj.dir;
@@ -9067,13 +9190,27 @@ function coEnviar() {
 }
 window.coEnviar = coEnviar;
 
-function _coMarkRequired(id) {
+function _coMarkRequired(id, mensaje) {
   var el = document.getElementById(id);
   if (!el) return;
   el.style.borderColor = '#e53935';
+  el.setAttribute('aria-invalid', 'true');
+  // El borde rojo solo no alcanza: si no sabes que falta, pensas que el boton
+  // esta roto. Va un cartelito debajo del campo, que se borra al escribir.
+  var aviso = el.parentNode && el.parentNode.querySelector('.co-aviso-req');
+  if (!aviso) {
+    aviso = document.createElement('p');
+    aviso.className = 'co-aviso-req';
+    el.parentNode.insertBefore(aviso, el.nextSibling);
+  }
+  aviso.textContent = mensaje || 'Completá este dato para seguir.';
   el.scrollIntoView({behavior:'smooth', block:'center'});
   el.focus();
-  el.addEventListener('input', function(){ el.style.borderColor = ''; }, {once:true});
+  el.addEventListener('input', function(){
+    el.style.borderColor = '';
+    el.removeAttribute('aria-invalid');
+    if (aviso && aviso.parentNode) aviso.parentNode.removeChild(aviso);
+  }, {once:true});
 }
 
 // ═══════════════════════════════════════════
@@ -11015,6 +11152,172 @@ body.min-redesign:not(.hv-home):not(.hv-ofertas):not(.hv-favoritos) #mainContain
     try{history.replaceState(history.state,'',location.pathname+location.search);}catch(e){}
   }
   window.addEventListener('load',function(){setTimeout(abrirSeccionDesdeHash,80);});
+})();
+</script>
+
+<script id="fix-auditoria-js-v1">
+/* ─────────────────────────────────────────────────────────────────────────────
+   Arreglos salidos de la auditoria de la seccion Productos.
+   Todo va aca afuera para no ensuciar el motor del catalogo.
+   ───────────────────────────────────────────────────────────────────────────── */
+(function(){
+  'use strict';
+
+  /* 1 ── La cara del selector de sabor tiene que seguir al select. */
+  document.addEventListener('change', function(e){
+    var sel = e.target;
+    if (!sel || !sel.classList || !sel.classList.contains('sabor-select')) return;
+    var cara = sel.parentNode && sel.parentNode.querySelector('.sabor-face');
+    if (!cara) return;
+    var op = sel.options[sel.selectedIndex];
+    cara.textContent = op ? op.text : '';
+  }, true);
+
+  /* Al redibujarse una tarjeta el select puede quedar en una opcion que no es la
+     primera; esto empareja la cara con lo que realmente esta elegido. */
+  function emparejarCaras(raiz){
+    (raiz || document).querySelectorAll('.sabor-pick>.sabor-select').forEach(function(sel){
+      var cara = sel.parentNode.querySelector('.sabor-face');
+      var op = sel.options[sel.selectedIndex];
+      if (!cara || !op) return;
+      if (cara.textContent !== op.text) cara.textContent = op.text;
+      // Un par de sabores son tan largos que ni en tres renglones entran: ahi el
+      // nombre completo queda a mano apoyando el dedo o el mouse.
+      if (cara.scrollHeight > cara.clientHeight + 1) {
+        cara.title = op.text;
+        sel.title = op.text;
+      } else if (cara.title) {
+        cara.removeAttribute('title');
+        sel.removeAttribute('title');
+      }
+    });
+  }
+
+  /* 2 ── Sin stock. El sitio nunca habia leido stock.json: 55 articulos marcados
+     "disponible: no" se seguian vendiendo igual, cuatro de ellos en negativo. */
+  var SIN_STOCK = null;
+
+  function marcarSinStock(raiz){
+    if (!SIN_STOCK) return;
+    (raiz || document).querySelectorAll('[data-epid]').forEach(function(el){
+      var art = (el.getAttribute('data-epid') || '').trim();
+      if (!art) return;
+      var falta = SIN_STOCK[art] === true;
+      var esFicha = el.classList.contains('product-detail-buy');
+      if (!falta){
+        el.classList.remove(esFicha ? 'sin-stock' : 'pcard-sinstock');
+        return;
+      }
+      el.classList.add(esFicha ? 'sin-stock' : 'pcard-sinstock');
+      var boton = el.querySelector('.add-btn');
+      if (boton && !boton.dataset.sinStock){
+        boton.dataset.sinStock = '1';
+        boton.textContent = 'Sin stock por ahora';
+        boton.setAttribute('disabled', 'disabled');
+        boton.setAttribute('aria-disabled', 'true');
+      }
+      if (!esFicha && !el.querySelector('.sinstock-badge')){
+        var cinta = document.createElement('span');
+        cinta.className = 'sinstock-badge';
+        cinta.textContent = 'Sin stock';
+        el.insertBefore(cinta, el.firstChild);
+      }
+      if (esFicha && !el.querySelector('.pd-sinstock-aviso')){
+        var aviso = document.createElement('p');
+        aviso.className = 'pd-sinstock-aviso';
+        aviso.textContent = 'Ahora mismo no nos queda. Escribinos y te avisamos apenas entre.';
+        el.appendChild(aviso);
+      }
+    });
+  }
+
+  fetch('stock.json', {cache: 'no-cache'}).then(function(r){
+    return r.ok ? r.json() : null;
+  }).then(function(d){
+    if (!d) return;
+    var lista = null;
+    for (var k in d){ if (Object.prototype.hasOwnProperty.call(d, k) && Array.isArray(d[k])){ lista = d[k]; break; } }
+    if (!lista) return;
+    SIN_STOCK = {};
+    lista.forEach(function(x){
+      var disp = String(x && x.disponible == null ? '' : x.disponible).toLowerCase();
+      var hay = !(disp === 'no' || disp === 'false' || disp === '0');
+      // Una cantidad igual o menor a cero tampoco es stock, diga lo que diga el campo.
+      if (typeof x.cantidad === 'number' && x.cantidad <= 0) hay = false;
+      if (!hay) SIN_STOCK[String(x.articulo).trim()] = true;
+    });
+    marcarSinStock(document);
+  }).catch(function(){ /* sin stock.json la tienda sigue andando igual que antes */ });
+
+  /* Red de seguridad: aunque alguien llegue al boton por otro lado, no se agrega. */
+  var _addOriginal = window.addToCart;
+  if (typeof _addOriginal === 'function'){
+    window.addToCart = function(pid, elId){
+      try{
+        var caja = elId && document.getElementById(elId);
+        var art = caja && (caja.getAttribute('data-epid') ||
+                  (caja.closest('[data-epid]') || {getAttribute:function(){return '';}}).getAttribute('data-epid'));
+        if (SIN_STOCK && art && SIN_STOCK[String(art).trim()] === true) return;
+      }catch(err){}
+      return _addOriginal.apply(this, arguments);
+    };
+  }
+
+  /* 3 ── Un observador unico: cada vez que el catalogo se redibuja, vuelve a
+     emparejar las caras de sabor y a marcar lo que no hay. */
+  var pendiente = false;
+  function repasar(){
+    if (pendiente) return;
+    pendiente = true;
+    requestAnimationFrame(function(){
+      pendiente = false;
+      emparejarCaras(document);
+      marcarSinStock(document);
+    });
+  }
+  new MutationObserver(function(muts){
+    for (var i = 0; i < muts.length; i++){
+      if (muts[i].addedNodes && muts[i].addedNodes.length){ repasar(); return; }
+    }
+  }).observe(document.body, {childList: true, subtree: true});
+  repasar();
+
+  /* 4 ── El carrito flotante tapaba 40x22px del boton "Agregar" de la columna
+     derecha y se quedaba con el toque. Ahora se esconde mientras bajas buscando
+     producto y vuelve apenas subis, frenas arriba o llegas al final. */
+  var ultimo = window.scrollY || 0, acumulado = 0, enEspera = false;
+  function alScrollear(){
+    var y = window.scrollY || 0;
+    var dif = y - ultimo;
+    ultimo = y;
+    if ((dif > 0) !== (acumulado > 0)) acumulado = 0;
+    acumulado += dif;
+    var cuerpo = document.body;
+    var finDePagina = (y + window.innerHeight) >= (document.documentElement.scrollHeight - 80);
+    if (y < 140 || finDePagina){
+      cuerpo.classList.remove('fab-escondido');
+      acumulado = 0;
+    } else if (acumulado > 90){
+      cuerpo.classList.add('fab-escondido');
+      acumulado = 0;
+    } else if (acumulado < -60){
+      cuerpo.classList.remove('fab-escondido');
+      acumulado = 0;
+    }
+  }
+  window.addEventListener('scroll', function(){
+    if (enEspera) return;
+    enEspera = true;
+    requestAnimationFrame(function(){ enEspera = false; alScrollear(); });
+  }, {passive: true});
+
+  /* Si algo suma al carrito, el boton vuelve: es justo cuando lo queres ver. */
+  ['click','touchend'].forEach(function(ev){
+    document.addEventListener(ev, function(e){
+      var b = e.target && e.target.closest && e.target.closest('.add-btn,.qty-btn');
+      if (b) document.body.classList.remove('fab-escondido');
+    }, true);
+  });
 })();
 </script>
 </body>
