@@ -1,10 +1,10 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-24T12:20:28",
+ "actualizado": "2026-11-24T12:38:27",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 609,
- "sin_stock": 54,
+ "sin_stock": 52,
  "items": [
   {
    "articulo": "2265",
@@ -193,7 +193,7 @@
    "precio_minorista": 14000.0,
    "precio_mayorista": 12340.0,
    "disponible": "si",
-   "cantidad": 2.0
+   "cantidad": 10.0
   },
   {
    "articulo": "2378",
@@ -886,7 +886,7 @@
    "precio_minorista": 2340.0,
    "precio_mayorista": 1990.0,
    "disponible": "si",
-   "cantidad": 158.0
+   "cantidad": 156.0
   },
   {
    "articulo": "4454",
@@ -1336,7 +1336,7 @@
    "precio_minorista": 17840.0,
    "precio_mayorista": 14330.0,
    "disponible": "si",
-   "cantidad": 9.77
+   "cantidad": 9.74
   },
   {
    "articulo": "5013",
@@ -1587,8 +1587,8 @@
    "rubro": "SUPLEMENTOS",
    "precio_minorista": 31520.0,
    "precio_mayorista": 27700.0,
-   "disponible": "no",
-   "cantidad": 0.0
+   "disponible": "si",
+   "cantidad": 2.0
   },
   {
    "articulo": "4465",
@@ -2218,7 +2218,7 @@
    "precio_minorista": 9640.0,
    "precio_mayorista": 7760.0,
    "disponible": "si",
-   "cantidad": 3.195
+   "cantidad": 2.195
   },
   {
    "articulo": "1290",
@@ -3118,7 +3118,7 @@
    "precio_minorista": 26570.0,
    "precio_mayorista": 23350.0,
    "disponible": "si",
-   "cantidad": 1.0
+   "cantidad": 2.0
   },
   {
    "articulo": "2116",
@@ -3451,7 +3451,7 @@
    "precio_minorista": 24140.0,
    "precio_mayorista": 19340.0,
    "disponible": "si",
-   "cantidad": 13.32
+   "cantidad": 12.82
   },
   {
    "articulo": "1426",
@@ -4422,8 +4422,8 @@
    "rubro": "SUPLEMENTOS",
    "precio_minorista": 31520.0,
    "precio_mayorista": 27140.0,
-   "disponible": "no",
-   "cantidad": 0.0
+   "disponible": "si",
+   "cantidad": 2.0
   },
   {
    "articulo": "2412",
@@ -5071,7 +5071,7 @@
    "precio_minorista": 31514.99,
    "precio_mayorista": 24829.99,
    "disponible": "si",
-   "cantidad": 1.0
+   "cantidad": 2.0
   },
   {
    "articulo": "2464",
@@ -5089,7 +5089,7 @@
    "precio_minorista": 25420.0,
    "precio_mayorista": 22340.0,
    "disponible": "si",
-   "cantidad": 1.0
+   "cantidad": 2.0
   },
   {
    "articulo": "1634",
