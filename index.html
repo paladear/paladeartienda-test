@@ -2249,9 +2249,14 @@ input[type=search]{-webkit-appearance:none;appearance:none}
   transform:translateY(var(--fab-sube,0px))}
 #cart-fab:hover{transform:translateY(var(--fab-sube,0px)) scale(1.1)}
 body.fab-escondido #cart-fab{transform:translateY(96px) scale(.8);opacity:0;pointer-events:none}
+/* El boton de subir vive en la misma esquina: viaja con el carrito. */
+#backToTop{transition:transform .22s ease,opacity .22s ease,background .2s;
+  transform:translateY(var(--fab-sube,0px))}
+#backToTop:hover{transform:translateY(var(--fab-sube,0px)) scale(1.1)}
+body.fab-escondido #backToTop{transform:translateY(96px) scale(.8);opacity:0!important;pointer-events:none!important}
 @media(prefers-reduced-motion:reduce){
-  #cart-fab{transition:opacity .01s}
-  body.fab-escondido #cart-fab{transform:none}
+  #cart-fab,#backToTop{transition:opacity .01s}
+  body.fab-escondido #cart-fab,body.fab-escondido #backToTop{transform:none}
 }
 </style>
 </head>
@@ -11315,8 +11320,17 @@ body.min-redesign:not(.hv-home):not(.hv-ofertas):not(.hv-favoritos) #mainContain
     var fab = document.getElementById('cart-fab');
     if (!fab || document.body.classList.contains('fab-escondido')) return;
     fab.style.setProperty('--fab-sube', '0px');
+    var arriba = document.getElementById('backToTop');
+    if (arriba) arriba.style.setProperty('--fab-sube', '0px');
     var base = fab.getBoundingClientRect();
     if (!base.width) return;
+    // El de subir esta encima del carrito: el hueco tiene que servir para los dos.
+    if (arriba && arriba.classList.contains('visible')) {
+      var ra = arriba.getBoundingClientRect();
+      if (ra.width) base = {top: Math.min(base.top, ra.top), bottom: Math.max(base.bottom, ra.bottom),
+                            left: Math.min(base.left, ra.left), right: Math.max(base.right, ra.right),
+                            width: Math.max(base.width, ra.width)};
+    }
     var cajas = [];
     document.querySelectorAll('.pcard .add-btn, .pcard .qty-row').forEach(function(b){
       var r = b.getBoundingClientRect();
@@ -11332,11 +11346,12 @@ body.min-redesign:not(.hv-home):not(.hv-ofertas):not(.hv-favoritos) #mainContain
       return false;
     }
     if (!pisa(0)) return;
-    var intentos = [-34, -68, -102, -136, -170];
+    var intentos = [-34, -68, -102, -136, -170, -204];
     for (var i = 0; i < intentos.length; i++){
       if (base.top + intentos[i] < 76) break;   // no meterse abajo del header
       if (!pisa(intentos[i])){
         fab.style.setProperty('--fab-sube', intentos[i] + 'px');
+        if (arriba) arriba.style.setProperty('--fab-sube', intentos[i] + 'px');
         return;
       }
     }
