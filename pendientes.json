@@ -1,12 +1,19 @@
 {
   "resumen": {
-    "nuevos": 1,
+    "nuevos": 2,
     "renombrados": 0,
     "quitados": 1,
     "rubro_invalido": 0,
     "fuera_catalogo": 62
   },
   "nuevos": [
+    {
+      "numero": "5097",
+      "nombre": "MELENA+CORDYCEPS X 60 CAPSULAS",
+      "rubro": "SUPLEMENTOS",
+      "precio": 33490,
+      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
+    },
     {
       "numero": "5096",
       "nombre": "MOLDES",
