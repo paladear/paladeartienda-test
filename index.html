@@ -2225,25 +2225,10 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 .pdrel-precio i{display:block;margin-top:1px;font-style:normal;font-weight:700;
   font-size:10.5px;letter-spacing:.02em;color:var(--muted-fg);text-transform:lowercase}
 
-/* 5. Sin stock: hasta ahora se vendian igual que el resto. */
-.pcard-sinstock .pcard-img{opacity:.48;filter:grayscale(.55)}
-.pcard-sinstock .prices,.pcard-sinstock .qty-row{opacity:.45}
-.pcard-sinstock .qty-row{pointer-events:none}
-.pcard-sinstock .oferta-badge{display:none}
-.sinstock-badge{position:absolute;left:0;top:0;z-index:4;padding:5px 11px;
-  border-radius:0 0 12px 0;background:#8a93a0;color:#fff;
-  font:800 10px/1 'Montserrat',sans-serif;letter-spacing:.06em;text-transform:uppercase}
-.add-btn.sin-stock,.pcard-sinstock .add-btn{background:#dfe3e8!important;color:#73808f!important;
-  cursor:not-allowed!important;pointer-events:none!important;box-shadow:none!important}
-.product-detail-buy.sin-stock .prices,.product-detail-buy.sin-stock .qty-row{opacity:.45}
-.product-detail-buy.sin-stock .qty-row{pointer-events:none}
-.pd-sinstock-aviso{margin:10px 0 0;padding:10px 12px;border-radius:10px;
-  background:#eef1f4;color:#5c6a79;font-size:12.5px;font-weight:600;line-height:1.4}
-
-/* 6. Aviso de campo obligatorio en el checkout. */
+/* 5. Aviso de campo obligatorio en el checkout. */
 .co-aviso-req{margin:6px 0 0;color:#c62828;font-size:12px;font-weight:650;line-height:1.35}
 
-/* 7. El carrito flotante tapaba el "Agregar" de la columna derecha. Se corre
+/* 6. El carrito flotante tapaba el "Agregar" de la columna derecha. Se corre
       mientras bajas por el catalogo y vuelve apenas subis o frenas arriba. */
 #cart-fab{transition:transform .22s ease,opacity .22s ease,box-shadow .2s;
   transform:translateY(var(--fab-sube,0px))}
@@ -3904,7 +3889,7 @@ function openProductDetail(pid){
   </div><div class="product-detail-shell"><div class="product-detail-main">
     <div class="product-detail-image" style="background:${fondo}">${src?`<img src="${src}" alt="${p[2]}" decoding="async"${p[6]?` style="background:url(&quot;${String(p[6]).replace(/"/g,'&quot;')}&quot;) center/contain no-repeat"`:''}>`:'<span class="product-image-placeholder" aria-hidden="true"></span>'}</div>
     <div class="product-detail-copy"><div class="product-detail-category">${cat?cat.n:'Paladear'}</div><h2 class="product-detail-title">${_tc(p[2])}</h2>${(_marcaDe(p)||(_envaseDe(p)&&p[3]!=='Granel'))?`<div class="product-detail-meta">${_envaseDe(p)&&p[3]!=='Granel'?`<span class="nom-c">${_envaseDe(p)}</span>`:''}${_marcaDe(p)?`<button type="button" class="nom-m nom-m-link" onclick="verMarca('${_marcaDe(p).replace(/'/g,"\\'")}',${p[0]})" title="Ver todo de ${_marcaDe(p)}">${_marcaDe(p)}</button>`:''}</div>`:''}${_sellosDe(p).length?`<div class="product-detail-sellos">${_sellosDe(p).map(x=>'<button type="button" class="sello-d" onclick="verSello(\''+x.id+'\','+p[0]+')" title="Ver todo lo '+x.chip+'"><img src="'+_selloImg(x.id)+'" alt="'+x.chip+'" decoding="async"></button>').join('')}</div>`:''}<div class="product-detail-info">${info}</div>
-      <div class="product-detail-buy" id="productDetailCard" data-pid="${p[0]}" data-epid="${_epidDe(p)}" data-opt="${opt}">
+      <div class="product-detail-buy" id="productDetailCard" data-pid="${p[0]}" data-opt="${opt}">
         ${opts.length>1?`<h3>Elegí la presentación</h3><div class="product-detail-options opt-btns${opts.length>=4?' opt-btns-4':''}">${opciones}</div>`:''}${saboresHTML}
         <div class="prices"><div><span class="price-label">Precio${oferta>0?' (Oferta)':''}</span><div class="price-min">${_priceMinContent(p[7][opt][0],oferta)}</div></div><div><span class="price-label">+$80.000</span><div class="price-may">$${fmt(p[7][opt][1])}</div></div></div>
         <div class="qty-row"><button class="qty-btn" onclick="chgQty('productDetailCard',-1)" aria-label="Restar cantidad">−</button><span class="qty-val" id="productDetailCard_q">1</span><button class="qty-btn" onclick="chgQty('productDetailCard',1)" aria-label="Sumar cantidad">+</button></div>
@@ -4588,7 +4573,7 @@ function renderCard(p,prefix,prioritizeImage){
   // el que pide rápido toca + y − en los costados y abajo sin que se le abra el
   // detalle encima.
   const _verFicha=`onclick="openProductDetail(${p[0]})"`;
-  let h=`<div class="pcard" id="${id}" data-pid="${p[0]}" data-epid="${_epidDe(p)}">`;
+  let h=`<div class="pcard" id="${id}" data-pid="${p[0]}">`;
   h+=`<button type="button" class="fav-btn${favOn?' active':''}" data-fav-pid="${p[0]}" onclick="event.stopPropagation();return toggleFavorite(${p[0]})" aria-label="${favOn?'Quitar de favoritos':'Agregar a favoritos'}" aria-pressed="${favOn?'true':'false'}" title="${favOn?'Quitar de favoritos':'Agregar a favoritos'}"><span class="fav-heart" aria-hidden="true"></span></button>`;
   if(oferta>0)h+=`<div class="oferta-badge oferta-badge-lg">−${oferta}% OFF</div>`;
   // El recuadro de la foto se pinta del color del fondo de la propia foto, así
@@ -11219,78 +11204,10 @@ body.min-redesign:not(.hv-home):not(.hv-ofertas):not(.hv-favoritos) #mainContain
     });
   }
 
-  /* 2 ── Sin stock. El sitio nunca habia leido stock.json: 55 articulos marcados
-     "disponible: no" se seguian vendiendo igual, cuatro de ellos en negativo. */
-  var SIN_STOCK = null;
-
-  function marcarSinStock(raiz){
-    if (!SIN_STOCK) return;
-    (raiz || document).querySelectorAll('[data-epid]').forEach(function(el){
-      var art = (el.getAttribute('data-epid') || '').trim();
-      if (!art) return;
-      var falta = SIN_STOCK[art] === true;
-      var esFicha = el.classList.contains('product-detail-buy');
-      if (!falta){
-        el.classList.remove(esFicha ? 'sin-stock' : 'pcard-sinstock');
-        return;
-      }
-      el.classList.add(esFicha ? 'sin-stock' : 'pcard-sinstock');
-      var boton = el.querySelector('.add-btn');
-      if (boton && !boton.dataset.sinStock){
-        boton.dataset.sinStock = '1';
-        boton.textContent = 'Sin stock por ahora';
-        boton.setAttribute('disabled', 'disabled');
-        boton.setAttribute('aria-disabled', 'true');
-      }
-      if (!esFicha && !el.querySelector('.sinstock-badge')){
-        var cinta = document.createElement('span');
-        cinta.className = 'sinstock-badge';
-        cinta.textContent = 'Sin stock';
-        el.insertBefore(cinta, el.firstChild);
-      }
-      if (esFicha && !el.querySelector('.pd-sinstock-aviso')){
-        var aviso = document.createElement('p');
-        aviso.className = 'pd-sinstock-aviso';
-        aviso.textContent = 'Ahora mismo no nos queda. Escribinos y te avisamos apenas entre.';
-        el.appendChild(aviso);
-      }
-    });
-  }
-
-  fetch('stock.json', {cache: 'no-cache'}).then(function(r){
-    return r.ok ? r.json() : null;
-  }).then(function(d){
-    if (!d) return;
-    var lista = null;
-    for (var k in d){ if (Object.prototype.hasOwnProperty.call(d, k) && Array.isArray(d[k])){ lista = d[k]; break; } }
-    if (!lista) return;
-    SIN_STOCK = {};
-    lista.forEach(function(x){
-      var disp = String(x && x.disponible == null ? '' : x.disponible).toLowerCase();
-      var hay = !(disp === 'no' || disp === 'false' || disp === '0');
-      // Una cantidad igual o menor a cero tampoco es stock, diga lo que diga el campo.
-      if (typeof x.cantidad === 'number' && x.cantidad <= 0) hay = false;
-      if (!hay) SIN_STOCK[String(x.articulo).trim()] = true;
-    });
-    marcarSinStock(document);
-  }).catch(function(){ /* sin stock.json la tienda sigue andando igual que antes */ });
-
-  /* Red de seguridad: aunque alguien llegue al boton por otro lado, no se agrega. */
-  var _addOriginal = window.addToCart;
-  if (typeof _addOriginal === 'function'){
-    window.addToCart = function(pid, elId){
-      try{
-        var caja = elId && document.getElementById(elId);
-        var art = caja && (caja.getAttribute('data-epid') ||
-                  (caja.closest('[data-epid]') || {getAttribute:function(){return '';}}).getAttribute('data-epid'));
-        if (SIN_STOCK && art && SIN_STOCK[String(art).trim()] === true) return;
-      }catch(err){}
-      return _addOriginal.apply(this, arguments);
-    };
-  }
-
-  /* 3 ── Un observador unico: cada vez que el catalogo se redibuja, vuelve a
-     emparejar las caras de sabor y a marcar lo que no hay. */
+  /* 2 ── Un observador unico: cada vez que el catalogo se redibuja, vuelve a
+     emparejar las caras de sabor.
+     Lo que no hay en el deposito se sigue pudiendo pedir a proposito: se
+     encarga y se le avisa al cliente, asi que la tienda no mira el stock. */
   var pendiente = false;
   function repasar(){
     if (pendiente) return;
@@ -11298,7 +11215,6 @@ body.min-redesign:not(.hv-home):not(.hv-ofertas):not(.hv-favoritos) #mainContain
     requestAnimationFrame(function(){
       pendiente = false;
       emparejarCaras(document);
-      marcarSinStock(document);
       acomodarLuego();
     });
   }
@@ -11309,7 +11225,7 @@ body.min-redesign:not(.hv-home):not(.hv-ofertas):not(.hv-favoritos) #mainContain
   }).observe(document.body, {childList: true, subtree: true});
   repasar();
 
-  /* 4 ── El carrito flotante tapaba 40x22px del boton "Agregar" de la columna
+  /* 3 ── El carrito flotante tapaba 40x22px del boton "Agregar" de la columna
      derecha y se quedaba con el toque. Ahora se esconde mientras bajas buscando
      producto y vuelve apenas subis, frenas arriba o llegas al final. */
   var ultimo = window.scrollY || 0, acumulado = 0, enEspera = false;
