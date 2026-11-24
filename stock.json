@@ -1,6 +1,6 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-24T14:26:36",
+ "actualizado": "2026-11-24T14:47:34",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 609,
@@ -652,7 +652,7 @@
    "precio_minorista": 38330.0,
    "precio_mayorista": 32690.0,
    "disponible": "si",
-   "cantidad": 7.6
+   "cantidad": 7.5
   },
   {
    "articulo": "1126",
@@ -1237,7 +1237,7 @@
    "precio_minorista": 23820.0,
    "precio_mayorista": 20930.0,
    "disponible": "si",
-   "cantidad": 4.677
+   "cantidad": 4.377
   },
   {
    "articulo": "5041",
@@ -3628,8 +3628,8 @@
    "articulo": "1441",
    "nombre": "NUEZ CUARTILLO X KG",
    "rubro": "FRUTOS SECOS",
-   "precio_minorista": 17350.0,
-   "precio_mayorista": 14190.0,
+   "precio_minorista": 18440.0,
+   "precio_mayorista": 15080.0,
    "disponible": "si",
    "cantidad": 12.895
   },
@@ -3637,8 +3637,8 @@
    "articulo": "1445",
    "nombre": "NUEZ CUARTOS X KG",
    "rubro": "FRUTOS SECOS",
-   "precio_minorista": 19060.0,
-   "precio_mayorista": 15020.0,
+   "precio_minorista": 19940.0,
+   "precio_mayorista": 16310.0,
    "disponible": "si",
    "cantidad": 10.26
   },
@@ -3647,7 +3647,7 @@
    "nombre": "NUEZ DE BRASIL XKG",
    "rubro": "FRUTOS SECOS",
    "precio_minorista": 58390.0,
-   "precio_mayorista": 51320.0,
+   "precio_mayorista": 47770.0,
    "disponible": "si",
    "cantidad": 6.278
   },
@@ -3655,8 +3655,8 @@
    "articulo": "1716",
    "nombre": "NUEZ MARIPOSA EXTRA LIGHT X KG",
    "rubro": "FRUTOS SECOS",
-   "precio_minorista": 21500.0,
-   "precio_mayorista": 18270.0,
+   "precio_minorista": 21670.0,
+   "precio_mayorista": 17730.0,
    "disponible": "si",
    "cantidad": 15.104
   },
@@ -3664,8 +3664,8 @@
    "articulo": "1450",
    "nombre": "NUEZ MARIPOSA LIGHT X KG",
    "rubro": "FRUTOS SECOS",
-   "precio_minorista": 19940.0,
-   "precio_mayorista": 15710.0,
+   "precio_minorista": 19950.0,
+   "precio_mayorista": 16310.0,
    "disponible": "si",
    "cantidad": 13.828
   },
@@ -3685,7 +3685,7 @@
    "precio_minorista": 24460.0,
    "precio_mayorista": 19570.0,
    "disponible": "si",
-   "cantidad": 1.705
+   "cantidad": 1.605
   },
   {
    "articulo": "5029",
@@ -3757,7 +3757,7 @@
    "precio_minorista": 31210.0,
    "precio_mayorista": 26630.0,
    "disponible": "si",
-   "cantidad": 7.07
+   "cantidad": 6.87
   },
   {
    "articulo": "2440",
