@@ -1,6 +1,6 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-24T15:44:26",
+ "actualizado": "2026-11-24T16:05:22",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 609,
@@ -418,7 +418,7 @@
    "precio_minorista": 11250.0,
    "precio_mayorista": 8870.0,
    "disponible": "si",
-   "cantidad": 3.715
+   "cantidad": 3.565
   },
   {
    "articulo": "1082",
@@ -3964,7 +3964,7 @@
    "precio_minorista": 12660.0,
    "precio_mayorista": 10150.0,
    "disponible": "si",
-   "cantidad": 2.734
+   "cantidad": 2.584
   },
   {
    "articulo": "1505",
@@ -4063,7 +4063,7 @@
    "precio_minorista": 47030.0,
    "precio_mayorista": 38480.0,
    "disponible": "si",
-   "cantidad": 8.56
+   "cantidad": 6.56
   },
   {
    "articulo": "2369",
