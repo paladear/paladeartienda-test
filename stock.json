@@ -1,10 +1,10 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-24T18:14:22",
+ "actualizado": "2026-11-24T18:35:24",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 609,
- "sin_stock": 53,
+ "sin_stock": 54,
  "items": [
   {
    "articulo": "2265",
@@ -157,7 +157,7 @@
    "precio_minorista": 15530.0,
    "precio_mayorista": 12240.0,
    "disponible": "si",
-   "cantidad": 5.0
+   "cantidad": 4.0
   },
   {
    "articulo": "1009",
@@ -778,7 +778,7 @@
    "precio_minorista": 3780.0,
    "precio_mayorista": 3030.0,
    "disponible": "si",
-   "cantidad": 11.24
+   "cantidad": 9.24
   },
   {
    "articulo": "1137",
@@ -805,7 +805,7 @@
    "precio_minorista": 4100.0,
    "precio_mayorista": 3280.0,
    "disponible": "si",
-   "cantidad": 6.64
+   "cantidad": 6.525
   },
   {
    "articulo": "1141",
@@ -841,7 +841,7 @@
    "precio_minorista": 48620.0,
    "precio_mayorista": 41470.0,
    "disponible": "si",
-   "cantidad": 2.595
+   "cantidad": 2.495
   },
   {
    "articulo": "2003",
@@ -931,7 +931,7 @@
    "precio_minorista": 2720.0,
    "precio_mayorista": 2320.0,
    "disponible": "si",
-   "cantidad": 230.0
+   "cantidad": 228.0
   },
   {
    "articulo": "5031",
@@ -1021,7 +1021,7 @@
    "precio_minorista": 23310.0,
    "precio_mayorista": 18670.0,
    "disponible": "si",
-   "cantidad": 1.7
+   "cantidad": 1.66
   },
   {
    "articulo": "1155",
@@ -1066,7 +1066,7 @@
    "precio_minorista": 21020.0,
    "precio_mayorista": 19040.0,
    "disponible": "si",
-   "cantidad": 5.0
+   "cantidad": 4.0
   },
   {
    "articulo": "2382",
@@ -1210,7 +1210,7 @@
    "precio_minorista": 13600.0,
    "precio_mayorista": 10720.0,
    "disponible": "si",
-   "cantidad": 0.91
+   "cantidad": 0.875
   },
   {
    "articulo": "2170",
@@ -2056,7 +2056,7 @@
    "precio_minorista": 15500.0,
    "precio_mayorista": 14000.0,
    "disponible": "si",
-   "cantidad": 1.695
+   "cantidad": 1.52
   },
   {
    "articulo": "2111",
@@ -3163,7 +3163,7 @@
    "precio_minorista": 27940.0,
    "precio_mayorista": 22380.0,
    "disponible": "si",
-   "cantidad": 1.275
+   "cantidad": 1.23
   },
   {
    "articulo": "2308",
@@ -3451,7 +3451,7 @@
    "precio_minorista": 24140.0,
    "precio_mayorista": 19340.0,
    "disponible": "si",
-   "cantidad": 12.37
+   "cantidad": 12.17
   },
   {
    "articulo": "1426",
@@ -3874,7 +3874,7 @@
    "precio_minorista": 22500.0,
    "precio_mayorista": 21500.0,
    "disponible": "si",
-   "cantidad": 1.805
+   "cantidad": 1.765
   },
   {
    "articulo": "2397",
@@ -4638,8 +4638,8 @@
    "rubro": "LINEA GOURMET",
    "precio_minorista": 10150.0,
    "precio_mayorista": 8120.0,
-   "disponible": "si",
-   "cantidad": 1.0
+   "disponible": "no",
+   "cantidad": 0.0
   },
   {
    "articulo": "1566",
@@ -4765,7 +4765,7 @@
    "precio_minorista": 7400.0,
    "precio_mayorista": 5970.0,
    "disponible": "si",
-   "cantidad": 9.417
+   "cantidad": 9.147
   },
   {
    "articulo": "1585",
@@ -5026,7 +5026,7 @@
    "precio_minorista": 20370.0,
    "precio_mayorista": 16340.0,
    "disponible": "si",
-   "cantidad": 4.647
+   "cantidad": 4.547
   },
   {
    "articulo": "1627",
@@ -5125,7 +5125,7 @@
    "precio_minorista": 6030.0,
    "precio_mayorista": 4870.0,
    "disponible": "si",
-   "cantidad": 6.935
+   "cantidad": 6.845
   },
   {
    "articulo": "1636",
@@ -5386,7 +5386,7 @@
    "precio_minorista": 13230.0,
    "precio_mayorista": 10590.0,
    "disponible": "si",
-   "cantidad": 5.315
+   "cantidad": 4.815
   },
   {
    "articulo": "5039",
