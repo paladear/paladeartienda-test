@@ -2245,7 +2245,9 @@ input[type=search]{-webkit-appearance:none;appearance:none}
 
 /* 7. El carrito flotante tapaba el "Agregar" de la columna derecha. Se corre
       mientras bajas por el catalogo y vuelve apenas subis o frenas arriba. */
-#cart-fab{transition:transform .22s ease,opacity .22s ease,box-shadow .2s}
+#cart-fab{transition:transform .22s ease,opacity .22s ease,box-shadow .2s;
+  transform:translateY(var(--fab-sube,0px))}
+#cart-fab:hover{transform:translateY(var(--fab-sube,0px)) scale(1.1)}
 body.fab-escondido #cart-fab{transform:translateY(96px) scale(.8);opacity:0;pointer-events:none}
 @media(prefers-reduced-motion:reduce){
   #cart-fab{transition:opacity .01s}
@@ -11273,6 +11275,7 @@ body.min-redesign:not(.hv-home):not(.hv-ofertas):not(.hv-favoritos) #mainContain
       pendiente = false;
       emparejarCaras(document);
       marcarSinStock(document);
+      acomodarLuego();
     });
   }
   new MutationObserver(function(muts){
@@ -11305,11 +11308,52 @@ body.min-redesign:not(.hv-home):not(.hv-ofertas):not(.hv-favoritos) #mainContain
       acumulado = 0;
     }
   }
+  /* Cuando el carrito esta a la vista, no puede quedar encima de un "Agregar":
+     antes se comia 40x22px del boton de la columna derecha y el toque abria el
+     carrito en vez de sumar el producto. Se corre hacia arriba lo minimo. */
+  function acomodarFab(){
+    var fab = document.getElementById('cart-fab');
+    if (!fab || document.body.classList.contains('fab-escondido')) return;
+    fab.style.setProperty('--fab-sube', '0px');
+    var base = fab.getBoundingClientRect();
+    if (!base.width) return;
+    var cajas = [];
+    document.querySelectorAll('.pcard .add-btn, .pcard .qty-row').forEach(function(b){
+      var r = b.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < window.innerHeight) cajas.push(r);
+    });
+    function pisa(dy){
+      var arriba = base.top + dy, abajo = base.bottom + dy;
+      for (var i = 0; i < cajas.length; i++){
+        var r = cajas[i];
+        if (Math.min(abajo, r.bottom) - Math.max(arriba, r.top) > 0 &&
+            Math.min(base.right, r.right) - Math.max(base.left, r.left) > 0) return true;
+      }
+      return false;
+    }
+    if (!pisa(0)) return;
+    var intentos = [-34, -68, -102, -136, -170];
+    for (var i = 0; i < intentos.length; i++){
+      if (base.top + intentos[i] < 76) break;   // no meterse abajo del header
+      if (!pisa(intentos[i])){
+        fab.style.setProperty('--fab-sube', intentos[i] + 'px');
+        return;
+      }
+    }
+  }
+
+  var relojFab = null;
+  function acomodarLuego(){
+    clearTimeout(relojFab);
+    relojFab = setTimeout(acomodarFab, 140);
+  }
+
   window.addEventListener('scroll', function(){
     if (enEspera) return;
     enEspera = true;
-    requestAnimationFrame(function(){ enEspera = false; alScrollear(); });
+    requestAnimationFrame(function(){ enEspera = false; alScrollear(); acomodarLuego(); });
   }, {passive: true});
+  window.addEventListener('resize', acomodarLuego, {passive: true});
 
   /* Si algo suma al carrito, el boton vuelve: es justo cuando lo queres ver. */
   ['click','touchend'].forEach(function(ev){
