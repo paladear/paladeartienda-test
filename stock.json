@@ -1,10 +1,10 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-26T13:14:29",
+ "actualizado": "2026-11-26T13:20:26",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 609,
- "sin_stock": 57,
+ "sin_stock": 58,
  "items": [
   {
    "articulo": "2265",
@@ -3693,8 +3693,8 @@
    "rubro": "FRUTOS SECOS",
    "precio_minorista": 42130.0,
    "precio_mayorista": 35940.0,
-   "disponible": "si",
-   "cantidad": 0.74
+   "disponible": "no",
+   "cantidad": 0.0
   },
   {
    "articulo": "2189",
