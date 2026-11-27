@@ -1,9 +1,9 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-26T20:02:22",
+ "actualizado": "2026-11-27T10:06:19",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
- "cantidad_articulos": 609,
+ "cantidad_articulos": 611,
  "sin_stock": 54,
  "items": [
   {
@@ -3130,6 +3130,15 @@
    "cantidad": 2.0
   },
   {
+   "articulo": "5097",
+   "nombre": "MELENA+CORDYCEPS X 60 CAPSULAS",
+   "rubro": "SUPLEMENTOS",
+   "precio_minorista": 33490.0,
+   "precio_mayorista": 28570.0,
+   "disponible": "si",
+   "cantidad": 1.0
+  },
+  {
    "articulo": "2371",
    "nombre": "MELISA TINTURA MADRE X 60 CC",
    "rubro": "SUPLEMENTOS",
@@ -3506,6 +3515,15 @@
    "precio_mayorista": 9750.0,
    "disponible": "si",
    "cantidad": 20.45
+  },
+  {
+   "articulo": "5096",
+   "nombre": "MOLDE BUDIN",
+   "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+   "precio_minorista": 500.0,
+   "precio_mayorista": 400.0,
+   "disponible": "si",
+   "cantidad": 25.0
   },
   {
    "articulo": "2250",
