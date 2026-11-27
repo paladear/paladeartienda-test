@@ -1,6 +1,6 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-27T19:08:23",
+ "actualizado": "2026-11-27T19:29:23",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 614,
@@ -571,7 +571,7 @@
    "precio_minorista": 11790.0,
    "precio_mayorista": 9280.0,
    "disponible": "si",
-   "cantidad": 8.25
+   "cantidad": 8.1
   },
   {
    "articulo": "1118",
@@ -616,7 +616,7 @@
    "precio_minorista": 12110.0,
    "precio_mayorista": 9540.0,
    "disponible": "si",
-   "cantidad": 3.46
+   "cantidad": 3.31
   },
   {
    "articulo": "1122",
@@ -814,7 +814,7 @@
    "precio_minorista": 9690.0,
    "precio_mayorista": 7750.0,
    "disponible": "si",
-   "cantidad": 7.025
+   "cantidad": 6.925
   },
   {
    "articulo": "1142",
@@ -931,7 +931,7 @@
    "precio_minorista": 2720.0,
    "precio_mayorista": 2320.0,
    "disponible": "si",
-   "cantidad": 218.0
+   "cantidad": 217.0
   },
   {
    "articulo": "5031",
@@ -1543,7 +1543,7 @@
    "precio_minorista": 4310.0,
    "precio_mayorista": 3530.0,
    "disponible": "si",
-   "cantidad": 6.245
+   "cantidad": 6.095
   },
   {
    "articulo": "1101",
@@ -1633,7 +1633,7 @@
    "precio_minorista": 24290.0,
    "precio_mayorista": 19490.0,
    "disponible": "si",
-   "cantidad": 5.335
+   "cantidad": 5.135
   },
   {
    "articulo": "5058",
@@ -2227,7 +2227,7 @@
    "precio_minorista": 15610.0,
    "precio_mayorista": 13310.0,
    "disponible": "si",
-   "cantidad": 4.792
+   "cantidad": 4.592
   },
   {
    "articulo": "1912",
@@ -2308,7 +2308,7 @@
    "precio_minorista": 7930.0,
    "precio_mayorista": 6350.0,
    "disponible": "si",
-   "cantidad": 6.095
+   "cantidad": 5.895
   },
   {
    "articulo": "1289",
@@ -2335,7 +2335,7 @@
    "precio_minorista": 8530.0,
    "precio_mayorista": 6840.0,
    "disponible": "si",
-   "cantidad": 4.035
+   "cantidad": 3.835
   },
   {
    "articulo": "2315",
@@ -2353,7 +2353,7 @@
    "precio_minorista": 34670.0,
    "precio_mayorista": 27760.0,
    "disponible": "si",
-   "cantidad": 5.255
+   "cantidad": 5.155
   },
   {
    "articulo": "1294",
@@ -2938,7 +2938,7 @@
    "precio_minorista": 6730.0,
    "precio_mayorista": 5390.0,
    "disponible": "si",
-   "cantidad": 10.14
+   "cantidad": 9.83
   },
   {
    "articulo": "1380",
@@ -3487,7 +3487,7 @@
    "precio_minorista": 24140.0,
    "precio_mayorista": 19340.0,
    "disponible": "si",
-   "cantidad": 12.07
+   "cantidad": 11.97
   },
   {
    "articulo": "1426",
@@ -3541,7 +3541,7 @@
    "precio_minorista": 12140.0,
    "precio_mayorista": 9750.0,
    "disponible": "si",
-   "cantidad": 19.25
+   "cantidad": 19.15
   },
   {
    "articulo": "5096",
@@ -3676,7 +3676,7 @@
    "precio_minorista": 18440.0,
    "precio_mayorista": 15080.0,
    "disponible": "si",
-   "cantidad": 8.265
+   "cantidad": 8.065
   },
   {
    "articulo": "1445",
@@ -3901,7 +3901,7 @@
    "precio_minorista": 8750.0,
    "precio_mayorista": 7480.0,
    "disponible": "si",
-   "cantidad": 21.0
+   "cantidad": 20.0
   },
   {
    "articulo": "5050",
@@ -4432,7 +4432,7 @@
    "precio_minorista": 13300.0,
    "precio_mayorista": 10690.0,
    "disponible": "si",
-   "cantidad": 4.291
+   "cantidad": 4.081
   },
   {
    "articulo": "1551",
@@ -4819,7 +4819,7 @@
    "precio_minorista": 8210.0,
    "precio_mayorista": 6650.0,
    "disponible": "si",
-   "cantidad": 7.885
+   "cantidad": 7.585
   },
   {
    "articulo": "1586",
@@ -4945,7 +4945,7 @@
    "precio_minorista": 34160.0,
    "precio_mayorista": 27330.0,
    "disponible": "si",
-   "cantidad": 1.14
+   "cantidad": 0.99
   },
   {
    "articulo": "2099",
