@@ -2,19 +2,26 @@
    Diciembre 2026: la ambientación viene DENTRO de la foto del hero (luces,
    bolitas, moño y estrellas). Por eso acá no se dibuja ninguna de esas cosas:
    dibujarlas encima las duplicaba. Sólo se superpone el logo con gorro y
-   el regalo en la barra de abajo. */
+   el regalo en la barra de abajo.
+
+   OJO: el logo y el regalo se dibujan con PSEUDO-ELEMENTOS, no con <img>
+   inyectados por JS. Antes los ponía christmas.js y, como el cargador espera
+   un fetch a catalogo-panel.json antes de pedir el CSS, se veía la página sin
+   navidad durante ~400ms en cada carga. Ahora el CSS entra estático en el
+   <head> y no hay un solo frame con la versión vieja. */
 .pal-christmas{--xmas-gold:#d6aa58;--xmas-light:#ffe7ad;--xmas-blue:#174e77}
 .pal-christmas .header,.pal-christmas .min-home-hero{overflow:visible}
-.pal-xmas-logo,.pal-xmas-gift{pointer-events:none;user-select:none}
 .pal-christmas .header-inner{z-index:4}
 
 /* Logo con el gorro ya integrado. Los numeros salen de ajustar un circulo por
    minimos cuadrados sobre el borde del webp (error medio 0,6px): el circulo
    ocupa el 76,76% del ancho de la imagen y su centro cae en (50,83% / 56,72%).
-   Puesto al 120% del .logo-wrap queda del mismo tamano que el circulo que ya
-   tiene el header y exactamente centrado encima, asi que lo tapa sin mover
-   nada; el gorro es lo unico que sobresale. */
-.pal-xmas-logo{position:absolute;z-index:12;width:130.3%;height:auto;left:-16.2%;top:-22.5%;
+   Al 130,3% del .logo-wrap el circulo mide los 68px que medía el .logo entero
+   y queda exactamente centrado; el gorro es lo unico que sobresale. */
+.pal-christmas .header .logo-wrap::after{content:'';position:absolute;z-index:12;
+  pointer-events:none;user-select:none;
+  left:-16.2%;top:-22.5%;width:130.3%;aspect-ratio:430/422;
+  background:url('logo-navidad.webp') center/contain no-repeat;
   filter:drop-shadow(0 7px 10px rgba(18,49,72,.20))}
 
 /* El .logo del header trae padding:2px + border:1px + box-shadow, y encima el
@@ -25,13 +32,14 @@
 .pal-christmas .header .logo{visibility:hidden!important}
 
 /* El regalo reemplaza al icono de Ofertas. */
-.pal-christmas .bnav button[data-b="ofertas"]>img:not(.pal-xmas-gift){visibility:hidden}
-.pal-xmas-gift{position:absolute!important;width:31px!important;height:31px!important;object-fit:contain!important;
-  top:7px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 2px 2px rgba(23,78,119,.12))!important}
+.pal-christmas .bnav button[data-b="ofertas"]>img{visibility:hidden}
+.pal-christmas .bnav button[data-b="ofertas"]::after{content:'';position:absolute;
+  pointer-events:none;user-select:none;
+  width:31px;height:31px;top:7px;left:50%;transform:translateX(-50%);
+  background:url('regalo-navidad.webp') center/contain no-repeat;
+  filter:drop-shadow(0 2px 2px rgba(23,78,119,.12))}
 
 @media(max-width:767px){
-  /* La foto de diciembre es vertical (941x1672) y el hueco del hero es
-     apaisado, asi que se cambia la proporcion o la foto queda recortada. */
   /* La foto se recorto a 941x1528: el hero oficial deja 27px de crema plano
      abajo (4,1% del alto) y este dejaba 84px, que es el espacio vacio que se
      veia antes del banner. Ahora deja los mismos 27px.
@@ -55,7 +63,7 @@
      Productos, Ofertas, etc. el logo esta a 8px y ahi la punta del gorro se
      cortaba contra el borde de la pantalla. */
   .pal-christmas .header .logo-wrap{top:21px!important}
-  .pal-xmas-gift{width:29px!important;height:29px!important;top:7px}
+  .pal-christmas .bnav button[data-b="ofertas"]::after{width:29px;height:29px}
   /* El hero de diciembre trae bolitas colgando a la derecha y el titulo normal
      (clamp(29px,8.35vw,35px)) llegaba hasta x=258, pegado a la bolita azul que
      arranca en 248. Bajado a 7,4vw termina en 233 y queda aire. */
