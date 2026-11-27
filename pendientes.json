@@ -1,24 +1,17 @@
 {
   "resumen": {
-    "nuevos": 2,
+    "nuevos": 1,
     "renombrados": 1,
     "quitados": 1,
     "rubro_invalido": 0,
-    "fuera_catalogo": 60
+    "fuera_catalogo": 59
   },
   "nuevos": [
     {
-      "numero": "2310",
-      "nombre": "ESENCIA DE AGUA DE AZAHAR 60 cc",
+      "numero": "2441",
+      "nombre": "LEVADURA LEVEX 13 g",
       "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 4460,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    },
-    {
-      "numero": "2309",
-      "nombre": "ESENCIA DE PAN DULCE 60 cc",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 4460,
+      "precio": 1170,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
@@ -295,13 +288,6 @@
       "nombre": "LAS PERDICES RESERVA MALBEC X 750",
       "rubro": "VINOS",
       "precio": 15240,
-      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
-    },
-    {
-      "numero": "2441",
-      "nombre": "LEVADURA LEVEX 13 g",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 1170,
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     },
     {
