@@ -14,12 +14,15 @@
    Puesto al 120% del .logo-wrap queda del mismo tamano que el circulo que ya
    tiene el header y exactamente centrado encima, asi que lo tapa sin mover
    nada; el gorro es lo unico que sobresale. */
-.pal-xmas-logo{position:absolute;z-index:12;width:120%;height:auto;left:-11%;top:-16.8%;
-  filter:drop-shadow(0 9px 9px rgba(18,49,72,.22))}
+.pal-xmas-logo{position:absolute;z-index:12;width:130.3%;height:auto;left:-16.2%;top:-22.5%;
+  filter:drop-shadow(0 7px 10px rgba(18,49,72,.20))}
 
-/* El aro del logo es rgba(255,255,255,.78) y dejaba ver el azul del hero por
-   detras: se leia como un borde transparente. En navidad va blanco macizo. */
-.pal-christmas .header .logo{background:#fff!important;border-color:#fff!important}
+/* El .logo del header trae padding:2px + border:1px + box-shadow, y encima el
+   PNG pone su propia sombra: eran dos halos superpuestos y se leia como un
+   borde grueso y translucido alrededor del logo. En navidad se esconde entero
+   (visibility, no display, para no mover el layout) y queda solo la imagen de
+   Juani, que ya trae su circulo terminado. */
+.pal-christmas .header .logo{visibility:hidden!important}
 
 /* El regalo reemplaza al icono de Ofertas. */
 .pal-christmas .bnav button[data-b="ofertas"]>img:not(.pal-xmas-gift){visibility:hidden}
@@ -29,7 +32,13 @@
 @media(max-width:767px){
   /* La foto de diciembre es vertical (941x1672) y el hueco del hero es
      apaisado, asi que se cambia la proporcion o la foto queda recortada. */
-  .pal-christmas.hv-home .min-home-hero{aspect-ratio:941/1672}
+  /* La foto se recorto a 941x1528: el hero oficial deja 27px de crema plano
+     abajo (4,1% del alto) y este dejaba 84px, que es el espacio vacio que se
+     veia antes del banner. Ahora deja los mismos 27px.
+     El selector lleva `body` y `.min-redesign` a proposito: en el index hay un
+     `body.min-redesign.hv-home .min-home-hero{aspect-ratio:941/1672!important}`
+     que tiene mas especificidad y le ganaba a la regla de antes. */
+  body.pal-christmas.min-redesign.hv-home .min-home-hero{aspect-ratio:941/1528!important}
   /* El header tiene height Y min-height en 70px desde .min-redesign .header:
      hay que ganarle a las dos para que el gorro tenga aire arriba. */
   .pal-christmas.hv-home .header{height:92px!important;min-height:92px!important}
