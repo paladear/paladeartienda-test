@@ -13,10 +13,12 @@
     if(!body||!logo||!hero)return;
     body.classList.add('pal-christmas');
 
-    /* El gorro se apoya sobre el logo. Es el unico adorno que se dibuja: todo
-       lo demas (luces, bolitas, mono, estrellas) ya viene dentro de la foto
-       del hero, asi que dibujarlo encima lo duplicaba. */
-    logo.appendChild(img('gorro-navidad.webp','pal-xmas-hat'));
+    /* El logo navideno viene con el gorro YA integrado (lo armo Juani). Se
+       superpone al logo normal calzando circulo contra circulo, asi el aro
+       blanco y la sombra que ya tiene el header siguen siendo los mismos.
+       Todo lo demas (luces, bolitas, mono, estrellas) viene dentro de la foto
+       del hero: dibujarlo encima lo duplicaba. */
+    logo.appendChild(img('logo-navidad.webp','pal-xmas-logo'));
 
     /* Hero de diciembre. Se guarda el original en un data-* para que apagar el
        modo navideno lo devuelva sin tener que tocar el index. */
