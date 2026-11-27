@@ -1,6 +1,6 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-27T10:06:19",
+ "actualizado": "2026-11-27T10:26:27",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 611,
@@ -526,7 +526,7 @@
    "precio_minorista": 39600.0,
    "precio_mayorista": 34800.0,
    "disponible": "si",
-   "cantidad": 9.45
+   "cantidad": 8.95
   },
   {
    "articulo": "2001",
@@ -1408,7 +1408,7 @@
    "precio_minorista": 14530.0,
    "precio_mayorista": 11680.0,
    "disponible": "si",
-   "cantidad": 17.17
+   "cantidad": 16.87
   },
   {
    "articulo": "2076",
@@ -1990,8 +1990,8 @@
    "articulo": "2470",
    "nombre": "FRAMBUESAS CONGELADAS X KG",
    "rubro": "PRODUCTOS CONGELADOS",
-   "precio_minorista": 32300.0,
-   "precio_mayorista": 27550.0,
+   "precio_minorista": 38400.0,
+   "precio_mayorista": 32400.0,
    "disponible": "si",
    "cantidad": 2.0
   },
@@ -3442,7 +3442,7 @@
    "precio_minorista": 8450.0,
    "precio_mayorista": 6860.0,
    "disponible": "si",
-   "cantidad": 4.495
+   "cantidad": 4.215
   },
   {
    "articulo": "2176",
@@ -3676,7 +3676,7 @@
    "precio_minorista": 21670.0,
    "precio_mayorista": 17730.0,
    "disponible": "si",
-   "cantidad": 12.104
+   "cantidad": 11.954
   },
   {
    "articulo": "1450",
@@ -3811,7 +3811,7 @@
    "precio_minorista": 10790.0,
    "precio_mayorista": 8680.0,
    "disponible": "si",
-   "cantidad": 8.5
+   "cantidad": 8.38
   },
   {
    "articulo": "2374",
@@ -4096,8 +4096,8 @@
    "articulo": "1520",
    "nombre": "PIÑA CONGELADA X KG",
    "rubro": "PRODUCTOS CONGELADOS",
-   "precio_minorista": 18700.0,
-   "precio_mayorista": 15960.0,
+   "precio_minorista": 19550.0,
+   "precio_mayorista": 16690.0,
    "disponible": "si",
    "cantidad": 3.0
   },
