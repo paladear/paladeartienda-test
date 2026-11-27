@@ -31,7 +31,7 @@
 // de la de pruebas y su propia página nunca entraba por la regla de red primero.
 const BASE = new URL('./', self.location).pathname;
 const CACHE_PREFIX = 'paladear-min-';
-const CACHE_VERSION = CACHE_PREFIX + BASE.replace(/\//g, '') + '-v30';
+const CACHE_VERSION = CACHE_PREFIX + BASE.replace(/\//g, '') + '-v31';
 
 const SHELL_FILES = [
   'android-chrome-192x192.png',

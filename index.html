@@ -2244,6 +2244,23 @@ body.fab-escondido #backToTop{transform:translateY(96px) scale(.8);opacity:0!imp
   body.fab-escondido #cart-fab,body.fab-escondido #backToTop{transform:none}
 }
 </style>
+<script>
+/* Cargador estacional: apagado o vencido no descarga recursos navideños. */
+(function(){
+  var esTester=location.hostname==='localhost'||location.hostname==='127.0.0.1'||/-test(\/|$)/.test(location.pathname);
+  var forzado=esTester?new URLSearchParams(location.search).get('navidad'):null;
+  fetch('catalogo-panel.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():{};}).then(function(j){
+    var n=j&&j.config&&j.config.temporadas&&j.config.temporadas.navidad||{};
+    var ahora=Date.now(),desde=n.desde?Date.parse(n.desde):0,hasta=n.hasta?Date.parse(n.hasta):0;
+    var activo=!!n.activo&&(!desde||ahora>=desde)&&(!hasta||ahora<hasta);
+    if(forzado==='1')activo=true;if(forzado==='0')activo=false;
+    if(!activo)return;
+    var css=document.createElement('link');css.rel='stylesheet';css.href='seasonal/christmas/christmas.css?v=1';
+    css.onload=function(){var js=document.createElement('script');js.src='seasonal/christmas/christmas.js?v=1';js.defer=true;document.head.appendChild(js);};
+    document.head.appendChild(css);
+  }).catch(function(){});
+})();
+</script>
 </head>
 <body class="hv-home min-redesign">
 

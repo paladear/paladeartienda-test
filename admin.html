@@ -928,6 +928,16 @@ body.es-vivo .cartel-tienda{color:#8d2620}
 .hoja-grupo .btn{width:100%;text-align:center;min-height:46px;display:inline-flex;
   align-items:center;justify-content:center;text-decoration:none}
 .hoja-info{font-size:12.5px;color:var(--suave)}
+.temporada-switch{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--linea);border-radius:12px;background:var(--papel-2)}
+.temporada-switch input{position:absolute;opacity:0;pointer-events:none}
+.temporada-switch .ts-via{position:relative;width:46px;height:26px;flex:0 0 46px;border-radius:999px;background:#b7c0c8;transition:background .18s}
+.temporada-switch .ts-via::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(20,50,73,.25);transition:transform .18s}
+.temporada-switch input:checked+.ts-via{background:var(--marca)}
+.temporada-switch input:checked+.ts-via::after{transform:translateX(20px)}
+.temporada-switch input:focus-visible+.ts-via{outline:2px solid var(--marca);outline-offset:2px}
+.temporada-switch .ts-copy{display:flex;flex-direction:column;gap:2px;min-width:0}
+.temporada-switch .ts-copy b{font-size:14px;color:var(--texto)}
+.temporada-switch .ts-copy small{font-size:11.5px;line-height:1.35;color:var(--suave)}
 body.con-hoja{overflow:hidden}
 @media(min-width:700px){
   .hoja{align-items:flex-start;justify-content:flex-end;padding:76px 26px 0}
@@ -1506,6 +1516,14 @@ body:has(#barraFija:not([hidden])) main{padding-bottom:104px}
           <a class="btn gris" id="verTiendaHerr" href="./" target="_blank" rel="noopener">Ver la tienda</a>
           <span class="hoja-info" id="hojaInfo"></span>
         </div>
+        <div class="hoja-grupo" id="grupoTemporada" hidden>
+          <span class="hoja-rotulo">Ambientación temporal</span>
+          <label class="temporada-switch">
+            <input type="checkbox" id="modoNavidad" onchange="cambiarModoNavidad(this.checked)">
+            <span class="ts-via" aria-hidden="true"></span>
+            <span class="ts-copy"><b>Modo navideño</b><small id="modoNavidadNota">Se apaga automáticamente al terminar noviembre.</small></span>
+          </label>
+        </div>
       </div>
     </div>
   </div>
@@ -1784,6 +1802,7 @@ let PRODUCTOS = [], FILTRO = 'todos', BUSCA = '', RUBRO = '';
 // Fichas guardadas en el repo. Mandan sobre las del Sheet: si un producto ya se
 // edito desde el panel, esa version es la buena.
 let FICHAS_FB = {}, FICHAS_CSV = {};
+let CONFIG_GLOBAL = {};
 
 // Las marcas confirmadas a mano. Se acumulan: una vez que se dijo que "VERDE
 // OLIVA" es una marca, el panel la reconoce en todos los productos que la traigan.
@@ -1809,11 +1828,13 @@ async function cargarFichasGuardadas(){
     MARCAS_FB = j.marcas || [];
     RUBROS_OCULTOS = j.rubrosOcultos || [];
     ULTIMO_EXCEL = j.ultimoExcel || null;
+    CONFIG_GLOBAL = j.config || {};
+    renderModoNavidad();
   } catch (e) {
     console.warn('[panel] todavía no hay fichas guardadas:', e && e.message);
     FICHAS_FB = {}; FOTOS_FB = {}; PRECIOS_VISTOS = {};
     CAMBIOS_FECHA = {}; PRECIOS_APROBADOS = {}; MARCA_VISTO = ''; MARCAS_FB = [];
-    ULTIMO_EXCEL = null;
+    ULTIMO_EXCEL = null; CONFIG_GLOBAL = {};
     // La primera vez esto es normal (todavía no se guardó nada). Después no: es
     // que no se pudo leer, y conviene saberlo antes de ponerse a editar.
     LECTURA_FALLO = true;
@@ -1921,6 +1942,7 @@ async function guardarFichasEnRepo(mensaje){
     if (!MARCAS_FB.length && remoto.marcas && remoto.marcas.length) MARCAS_FB = remoto.marcas;
     if (!RUBROS_OCULTOS.length && remoto.rubrosOcultos && remoto.rubrosOcultos.length)
       RUBROS_OCULTOS = remoto.rubrosOcultos;
+    if (!Object.keys(CONFIG_GLOBAL || {}).length && remoto.config) CONFIG_GLOBAL = remoto.config;
 
     // ── EL ARCHIVO ES DE LA OTRA TIENDA ────────────────────────────────────
     // Lo más peligroso que puede pasar: escribir las fichas de la distribuidora
@@ -1959,6 +1981,7 @@ async function guardarFichasEnRepo(mensaje){
                           marcas: MARCAS_FB,
                           rubrosOcultos: RUBROS_OCULTOS,
                           ultimoExcel: ULTIMO_EXCEL,
+                          config: CONFIG_GLOBAL,
                           // Queda firmado de qué tienda es. Antes los dos archivos eran
                           // indistinguibles y uno podía terminar encima del otro.
                           tienda: TIENDA,
@@ -1967,8 +1990,35 @@ async function guardarFichasEnRepo(mensaje){
   // Lo que se acaba de escribir ES lo último publicado: no hay por qué volver a bajarlo.
   _REMOTO = { fichas: FICHAS_FB, fotos: FOTOS_FB, preciosVistos: PRECIOS_VISTOS,
               cambiosPrecio: CAMBIOS_FECHA, preciosAprobados: PRECIOS_APROBADOS,
-              novedadesVistas: MARCA_VISTO, marcas: MARCAS_FB };
+              novedadesVistas: MARCA_VISTO, marcas: MARCAS_FB, config: CONFIG_GLOBAL };
   _REMOTO_HORA = Date.now(); _REMOTO_TIENDA = TIENDA;
+}
+
+function _navidadRangoActual(){
+  var anio=Number(new Intl.DateTimeFormat('en',{timeZone:'America/Argentina/Mendoza',year:'numeric'}).format(new Date()));
+  return {desde:anio+'-11-01T00:00:00-03:00',hasta:anio+'-12-01T00:00:00-03:00'};
+}
+function renderModoNavidad(){
+  var grupo=document.getElementById('grupoTemporada'),inp=document.getElementById('modoNavidad'),nota=document.getElementById('modoNavidadNota');
+  if(!grupo||!inp)return;
+  var mostrar=ES_TESTER&&TIENDA==='min';grupo.hidden=!mostrar;if(!mostrar)return;
+  var n=CONFIG_GLOBAL&&CONFIG_GLOBAL.temporadas&&CONFIG_GLOBAL.temporadas.navidad||{};
+  inp.checked=!!n.activo;inp.disabled=false;
+  var vencido=n.hasta&&Date.now()>=Date.parse(n.hasta);
+  nota.textContent=vencido?'Está vencido y ya no se muestra en la tienda.':'Se apaga automáticamente al terminar noviembre (hora de Argentina).';
+}
+async function cambiarModoNavidad(activo){
+  var inp=document.getElementById('modoNavidad');if(!inp||TIENDA!=='min'||!ES_TESTER)return;
+  inp.disabled=true;
+  var rango=_navidadRangoActual();
+  CONFIG_GLOBAL=Object.assign({},CONFIG_GLOBAL||{});
+  CONFIG_GLOBAL.temporadas=Object.assign({},CONFIG_GLOBAL.temporadas||{});
+  CONFIG_GLOBAL.temporadas.navidad={activo:!!activo,desde:rango.desde,hasta:rango.hasta,zonaHoraria:'America/Argentina/Mendoza'};
+  try{
+    await guardarFichasEnRepo('Panel: modo navideño '+(activo?'activado':'desactivado'));
+    avisar('bien','Modo navideño '+(activo?'activado':'desactivado'),activo?'Ya se verá en la tienda de prueba durante noviembre.':'La tienda de prueba vuelve a su apariencia normal.');
+  }catch(e){inp.checked=!activo;avisar('mal','No se pudo guardar el modo navideño',e.message||String(e));}
+  inp.disabled=false;renderModoNavidad();
 }
 
 /* ── FOTOS ────────────────────────────────────────────────────────────────────
@@ -2207,7 +2257,8 @@ async function arrancar(){
     // Queda guardado el estado de la tienda minorista para poder volver sin recargar.
     GUARDADO_MIN = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS,
                      vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
-                     marcas: MARCAS_FB, rubrosOcultos: RUBROS_OCULTOS };
+                     marcas: MARCAS_FB, rubrosOcultos: RUBROS_OCULTOS,
+                     ultimoExcel: ULTIMO_EXCEL, config: CONFIG_GLOBAL };
     refrescarMarcas();
     cargarDeshacer();
     pintarKpis(); pintar();
@@ -5147,10 +5198,11 @@ async function cargarFichasMay(){
     return { fichas: j.fichas || {}, fotos: fotos,
              vistos: j.preciosVistos || {}, aprobados: j.preciosAprobados || {},
              fechas: j.cambiosPrecio || {}, marcas: j.marcas || [],
-             rubrosOcultos: j.rubrosOcultos || [], ultimoExcel: j.ultimoExcel || null };
+             rubrosOcultos: j.rubrosOcultos || [], ultimoExcel: j.ultimoExcel || null,
+             config: j.config || {} };
   } catch (e) {
     console.warn('[panel] la distribuidora todavía no tiene fichas guardadas:', e && e.message);
-    return { fichas: {}, fotos: {}, vistos: {}, aprobados: {}, fechas: {}, marcas: [], rubrosOcultos: [], ultimoExcel: null };
+    return { fichas: {}, fotos: {}, vistos: {}, aprobados: {}, fechas: {}, marcas: [], rubrosOcultos: [], ultimoExcel: null, config: {} };
   }
 }
 
@@ -5160,7 +5212,7 @@ async function cambiarTienda(cual){
   // guardar lo de la tienda que se deja
   var estado = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS, ultimoExcel: ULTIMO_EXCEL,
                  vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
-                 marcas: MARCAS_FB, rubrosOcultos: RUBROS_OCULTOS };   // sin esto, ir y volver de la distribuidora las perdía
+                 marcas: MARCAS_FB, rubrosOcultos: RUBROS_OCULTOS, config: CONFIG_GLOBAL };   // sin esto, ir y volver de la distribuidora las perdía
   if (TIENDA === 'min') GUARDADO_MIN = estado; else GUARDADO_MAY = estado;
 
   TIENDA = cual;
@@ -5173,12 +5225,13 @@ async function cambiarTienda(cual){
       FICHAS_FB = d.fichas; FOTOS_FB = d.fotos;
       PRECIOS_VISTOS = d.vistos; PRECIOS_APROBADOS = d.aprobados; CAMBIOS_FECHA = d.fechas;
       ULTIMO_EXCEL = d.ultimoExcel || null;
+      CONFIG_GLOBAL = d.config || {};
       MARCAS_FB = d.marcas || [];
       RUBROS_OCULTOS = d.rubrosOcultos || [];
       PRODUCTOS = marcarCambiosDePrecio(armarProductosMay());
       GUARDADO_MAY = { fichas: FICHAS_FB, fotos: FOTOS_FB, productos: PRODUCTOS, ultimoExcel: ULTIMO_EXCEL,
                        vistos: PRECIOS_VISTOS, aprobados: PRECIOS_APROBADOS, fechas: CAMBIOS_FECHA,
-                       marcas: MARCAS_FB, rubrosOcultos: RUBROS_OCULTOS };
+                       marcas: MARCAS_FB, rubrosOcultos: RUBROS_OCULTOS, config: CONFIG_GLOBAL };
     } else {
       restaurarTienda(GUARDADO_MAY);
     }
@@ -5208,6 +5261,7 @@ async function cambiarTienda(cual){
   try { avisoImportacion(); } catch(e) {}
   try { cargarDeshacer(); } catch(e) {}
   try { pintarKpis(); } catch(e) {}
+  renderModoNavidad();
   pintar();
 }
 window.cambiarTienda = cambiarTienda;
@@ -5220,6 +5274,7 @@ function restaurarTienda(g){
   PRECIOS_VISTOS = g.vistos || {}; PRECIOS_APROBADOS = g.aprobados || {}; CAMBIOS_FECHA = g.fechas || {};
   MARCAS_FB = g.marcas || [];
   RUBROS_OCULTOS = g.rubrosOcultos || [];
+  CONFIG_GLOBAL = g.config || {};
 }
 
 /* El cartel de arriba dice siempre en cuál de las dos tiendas estás parado. */
