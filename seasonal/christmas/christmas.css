@@ -28,7 +28,15 @@
   /* El header tiene height Y min-height en 70px desde .min-redesign .header:
      hay que ganarle a las dos para que el gorro tenga aire arriba. */
   .pal-christmas.hv-home .header{height:92px!important;min-height:92px!important}
-  .pal-christmas.hv-home .header-inner{min-height:92px!important;padding-top:24px!important;padding-bottom:8px!important}
+  /* Los botones y el search van abajo del todo del header: la guirnalda de la
+     foto baja hasta los 48px y antes la tapaban. align-items:flex-end los deja
+     arrancando justo donde terminan las luces.
+     El padding-right de 17px (eran 8) corre el par de botones 9px a la
+     izquierda: los tres hilos dorados de la foto caen en x 273, 308 y 331, y
+     asi los tres nacen DEBAJO de un boton en vez de quedar colgando al aire. */
+  .pal-christmas.hv-home .header-inner{min-height:92px!important;
+    align-items:flex-end!important;
+    padding-top:8px!important;padding-bottom:2px!important;padding-right:17px!important}
   /* En la referencia el circulo del logo arranca a 15px del borde de la
      pagina y el gorro llega justo al borde. Los botones y el search quedan
      mas abajo, a la altura que ya les da el padding-top del header, para no
