@@ -38,10 +38,10 @@
     align-items:flex-end!important;
     padding-top:8px!important;padding-bottom:2px!important;padding-right:17px!important}
   /* En la referencia el circulo del logo arranca a 15px del borde de la
-     pagina y el gorro llega justo al borde. Los botones y el search quedan
-     mas abajo, a la altura que ya les da el padding-top del header, para no
-     tapar las luces. */
-  .pal-christmas.hv-home .header .logo-wrap{top:15px!important}
+     pagina y el gorro llega justo al borde. Va sin .hv-home a proposito: en
+     Productos, Ofertas, etc. el logo esta a 8px y ahi la punta del gorro se
+     cortaba contra el borde de la pantalla. */
+  .pal-christmas .header .logo-wrap{top:15px!important}
   .pal-xmas-gift{width:29px!important;height:29px!important;top:7px}
 }
 @media(min-width:768px){
