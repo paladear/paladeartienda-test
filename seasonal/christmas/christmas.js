@@ -25,7 +25,10 @@
     var fuente=hero.querySelector('picture source[media]');
     if(fuente){
       fuente.setAttribute('data-pal-original',fuente.getAttribute('srcset')||'');
-      fuente.setAttribute('srcset',ASSET+'hero-navidad.webp');
+      /* ?v=2: a la foto se le corrio el crema de abajo a #f5e8d6 para que
+         empalme con el banner de Descuento por cantidad. Sin el ?v= el
+         navegador seguia mostrando la version vieja. */
+      fuente.setAttribute('srcset',ASSET+'hero-navidad.webp?v=2');
     }
     var base=hero.querySelector('picture img');
     if(base){ base.setAttribute('data-pal-original',base.getAttribute('src')||''); }
