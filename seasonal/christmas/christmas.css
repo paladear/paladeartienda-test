@@ -27,12 +27,20 @@
 .pal-xmas-gift{position:absolute!important;width:31px!important;height:31px!important;object-fit:contain!important;top:7px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 2px 2px rgba(23,78,119,.12))!important}
 
 @media(max-width:767px){
-  .pal-christmas.hv-home .header{min-height:98px}
-  .pal-christmas.hv-home .header-inner{min-height:98px!important;padding-top:30px!important;padding-bottom:8px!important}
-  .pal-christmas.hv-home .header .logo-wrap{top:25px!important}
+  /* El header tiene height Y min-height en 70px desde .min-redesign .header, asi
+     que no alcanzaba con pedir min-height: hay que ganarle a las dos. Sin esto
+     el interior medi­a 98 pero la caja seguia en 70 y las luces le caian encima
+     al buscador. */
+  .pal-christmas.hv-home .header{height:122px!important;min-height:122px!important}
+  /* 54px de aire arriba: las luces ocupan 50, asi que los botones arrancan
+     despues y no se pisan. */
+  .pal-christmas.hv-home .header-inner{min-height:122px!important;padding-top:54px!important;padding-bottom:8px!important}
+  .pal-christmas.hv-home .header .logo-wrap{top:48px!important}
   .pal-xmas-lights{height:50px}.pal-xmas-wire{height:46px}.pal-xmas-bulb{width:7px;height:7px}
-  .pal-xmas-hat{width:136%;left:-37%;top:-41%}
-  .pal-xmas-ornaments{right:-2.5%;top:1%;width:154px}
+  .pal-xmas-hat{width:132%;left:-35%;top:-34%}
+  /* Las bolitas cuelgan POR DEBAJO de los botones, que terminan cerca de los
+     100px: 15% de los 666px del hero. */
+  .pal-xmas-ornaments{right:-2.5%;top:15%;width:154px}
   .pal-xmas-bow{right:4.8%;top:49.5%;width:105px}
   .pal-xmas-star{transform:scale(.94)}
   .pal-xmas-gift{width:29px!important;height:29px!important;top:7px}
