@@ -1,7 +1,7 @@
 {
   "resumen": {
     "nuevos": 0,
-    "renombrados": 5,
+    "renombrados": 4,
     "quitados": 1,
     "rubro_invalido": 0,
     "fuera_catalogo": 59
@@ -31,12 +31,6 @@
       "nombre_publicado": "ACEITE COCO VIRGEN ENTRENUTS \"SIN TACC\" X 360 g",
       "nombre_nuevo": "ACEITE COCO VIRGEN ENTRENUTS \"SIN TACC\" X 360cc",
       "rubro": "ACEITES Y VINAGRES"
-    },
-    {
-      "numero": "5096",
-      "nombre_publicado": "MOLDE BUDIN",
-      "nombre_nuevo": "MOLDES",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA"
     }
   ],
   "quitados": [
