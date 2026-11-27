@@ -1,65 +1,40 @@
-/* Modo navideño Paladear. Todo queda aislado bajo .pal-christmas. */
+/* Modo navideño Paladear. Todo queda aislado bajo .pal-christmas.
+   Diciembre 2026: la ambientación viene DENTRO de la foto del hero (luces,
+   bolitas, moño y estrellas). Por eso acá no se dibuja ninguna de esas cosas:
+   dibujarlas encima las duplicaba. Sólo se agregan el gorro sobre el logo y
+   el regalo en la barra de abajo. */
 .pal-christmas{--xmas-gold:#d6aa58;--xmas-light:#ffe7ad;--xmas-blue:#174e77}
 .pal-christmas .header,.pal-christmas .min-home-hero{overflow:visible}
-.pal-xmas-hat,.pal-xmas-lights,.pal-xmas-hero-decor,.pal-xmas-gift{pointer-events:none;user-select:none}
+.pal-xmas-hat,.pal-xmas-gift{pointer-events:none;user-select:none}
 .pal-christmas .header-inner{z-index:4}
 
-.pal-xmas-hat{position:absolute;z-index:12;width:140%;height:auto;left:-38%;top:-42%;transform:rotate(-8deg);transform-origin:55% 80%;filter:drop-shadow(0 9px 9px rgba(18,49,72,.26))}
+/* El gorro se apoya sobre el logo, inclinado, sin taparlo. */
+.pal-xmas-hat{position:absolute;z-index:12;width:104%;height:auto;left:-14%;top:-46%;
+  transform:rotate(-8deg);transform-origin:55% 80%;
+  filter:drop-shadow(0 9px 9px rgba(18,49,72,.26))}
 
-.pal-xmas-lights{position:absolute;z-index:2;top:0;left:0;width:100%;height:58px;overflow:hidden}
-.pal-xmas-wire{position:absolute;inset:0;width:100%;height:52px;overflow:visible}
-.pal-xmas-wire path{fill:none;stroke:rgba(167,121,43,.82);stroke-width:1.15;vector-effect:non-scaling-stroke}
-.pal-xmas-wire .pal-xmas-wire-soft{stroke:rgba(184,144,71,.46);stroke-width:.85}
-.pal-xmas-bulb{position:absolute;top:var(--y);width:8px;height:8px;border-radius:50%;background:#fff0c3;box-shadow:0 0 5px 2px rgba(255,237,181,.95),0 0 15px 6px rgba(255,198,80,.66);opacity:1}
-.pal-xmas-bulb::before{content:"";position:absolute;left:2px;top:-5px;width:4px;height:5px;border-radius:2px 2px 0 0;background:#b98b3e}
-
-.pal-xmas-hero-decor{position:absolute;inset:0;z-index:3;overflow:hidden;border-radius:inherit}
-.pal-xmas-ornaments{position:absolute;right:1.2%;top:-1.2%;width:clamp(190px,19vw,292px);height:auto;transform-origin:50% 0;animation:palXmasSwing 7.2s ease-in-out infinite;filter:drop-shadow(0 12px 10px rgba(20,46,64,.24))}
-@keyframes palXmasSwing{0%,100%{transform:rotate(-.7deg)}50%{transform:rotate(.8deg)}}
-.pal-xmas-bow{position:absolute;right:10.8%;top:28.2%;width:clamp(106px,10.5vw,164px);height:auto;transform:rotate(3deg);filter:drop-shadow(0 9px 8px rgba(83,55,15,.27))}
-.pal-xmas-stars{position:absolute;inset:0}
-.pal-xmas-star{position:absolute;width:var(--s);height:var(--s);opacity:.78;animation:palXmasTwinkle 4.2s ease-in-out infinite;animation-delay:var(--d);filter:drop-shadow(0 0 5px var(--c))}
-.pal-xmas-star::before,.pal-xmas-star::after{content:"";position:absolute;left:50%;top:0;width:1px;height:100%;background:linear-gradient(transparent,var(--c) 42%,var(--c) 58%,transparent);transform:translateX(-50%)}
-.pal-xmas-star::after{transform:translateX(-50%) rotate(90deg)}
-@keyframes palXmasTwinkle{0%,100%{opacity:.48;transform:scale(.84)}50%{opacity:1;transform:scale(1.08)}}
-
+/* El regalo reemplaza al icono de Ofertas. */
 .pal-christmas .bnav button[data-b="ofertas"]>img:not(.pal-xmas-gift){visibility:hidden}
-.pal-xmas-gift{position:absolute!important;width:31px!important;height:31px!important;object-fit:contain!important;top:7px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 2px 2px rgba(23,78,119,.12))!important}
+.pal-xmas-gift{position:absolute!important;width:31px!important;height:31px!important;object-fit:contain!important;
+  top:7px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 2px 2px rgba(23,78,119,.12))!important}
 
 @media(max-width:767px){
-  /* El header tiene height Y min-height en 70px desde .min-redesign .header, asi
-     que no alcanzaba con pedir min-height: hay que ganarle a las dos. Sin esto
-     el interior medi­a 98 pero la caja seguia en 70 y las luces le caian encima
-     al buscador. */
-  .pal-christmas.hv-home .header{height:122px!important;min-height:122px!important}
-  /* 54px de aire arriba: las luces ocupan 50, asi que los botones arrancan
-     despues y no se pisan. */
-  .pal-christmas.hv-home .header-inner{min-height:122px!important;padding-top:54px!important;padding-bottom:8px!important}
-  .pal-christmas.hv-home .header .logo-wrap{top:48px!important}
-  .pal-xmas-lights{height:50px}.pal-xmas-wire{height:46px}.pal-xmas-bulb{width:7px;height:7px}
-  /* El gorro se APOYA sobre el logo, no lo tapa: antes medi­a 90px contra un
-     logo de 68 y ademas se salia 25px por el borde izquierdo. */
-  .pal-xmas-hat{width:104%;left:-12%;top:-44%}
-  /* El header paso de 70 a 122px, asi que el texto del hero quedaba 9px por
-     debajo. Se lo corre para que arranque despejado. */
-  .pal-christmas.hv-home .min-home-hero-copy{padding-top:34px}
-  /* Las bolitas cuelgan POR DEBAJO de los botones, que terminan cerca de los
-     100px: 15% de los 666px del hero. */
-  .pal-xmas-ornaments{right:-2.5%;top:15%;width:154px}
-  .pal-xmas-bow{right:4.8%;top:49.5%;width:105px}
-  .pal-xmas-star{transform:scale(.94)}
+  /* La foto de diciembre es vertical (941x1672) y el hueco del hero es
+     apaisado, asi que se cambia la proporcion o la foto queda recortada. */
+  .pal-christmas.hv-home .min-home-hero{aspect-ratio:941/1672}
+  /* El header tiene height Y min-height en 70px desde .min-redesign .header:
+     hay que ganarle a las dos para que el gorro tenga aire arriba. */
+  .pal-christmas.hv-home .header{height:92px!important;min-height:92px!important}
+  .pal-christmas.hv-home .header-inner{min-height:92px!important;padding-top:24px!important;padding-bottom:8px!important}
+  .pal-christmas.hv-home .header .logo-wrap{top:30px!important}
+  .pal-xmas-hat{width:106%;left:-15%;top:-45%}
   .pal-xmas-gift{width:29px!important;height:29px!important;top:7px}
 }
 @media(min-width:768px){
   .pal-christmas .header .logo-wrap{z-index:10}
 }
 @media(min-width:1024px){
-  .pal-christmas.hv-home .header{height:182px;min-height:182px}
-  .pal-christmas.hv-home .header-inner{min-height:106px;padding-top:30px!important}
-  .pal-christmas.hv-home .header .logo-wrap{top:26px}
-  .pal-christmas.hv-home .tabs-zone{top:116px}
-}
-@media(prefers-reduced-motion:reduce){
-  .pal-xmas-ornaments,.pal-xmas-star{animation:none!important}
-  .pal-xmas-star{opacity:.42}
+  .pal-christmas.hv-home .header{height:112px;min-height:112px}
+  .pal-christmas.hv-home .header-inner{min-height:112px;padding-top:26px!important}
+  .pal-christmas.hv-home .header .logo-wrap{top:30px}
 }
