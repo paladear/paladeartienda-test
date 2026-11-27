@@ -2244,25 +2244,38 @@ body.fab-escondido #backToTop{transform:translateY(96px) scale(.8);opacity:0!imp
   body.fab-escondido #cart-fab,body.fab-escondido #backToTop{transform:none}
 }
 </style>
+<link id="palXmasCss" rel="stylesheet" href="seasonal/christmas/christmas.css?v=13">
 <script>
-/* Cargador estacional: apagado o vencido no descarga recursos navideños. */
+/* Temporada navideña. Va ENCENDIDA en el HTML (clase en el body, CSS en el
+   head, hero de diciembre en el <source>): asi se pinta navideña desde el
+   primer frame. Antes se encendia por JS despues de este fetch y se veia la
+   pagina sin navidad unos 400ms en cada carga.
+   Este bloque solo la APAGA si el panel dice que no corresponde. */
 (function(){
   var esTester=location.hostname==='localhost'||location.hostname==='127.0.0.1'||/-test(\/|$)/.test(location.pathname);
   var forzado=esTester?new URLSearchParams(location.search).get('navidad'):null;
+  function apagar(){
+    document.documentElement.classList.add('pal-sin-navidad');
+    var q=function(){
+      var b=document.body;if(b)b.classList.remove('pal-christmas');
+      var f=document.querySelector('.min-home-hero picture source[data-pal-original]');
+      if(f)f.setAttribute('srcset',f.getAttribute('data-pal-original'));
+      var l=document.getElementById('palXmasCss');if(l)l.remove();
+    };
+    if(document.body)q();else document.addEventListener('DOMContentLoaded',q,{once:true});
+  }
+  if(forzado==='0'){apagar();return;}
+  if(forzado==='1')return;
   fetch('catalogo-panel.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():{};}).then(function(j){
     var n=j&&j.config&&j.config.temporadas&&j.config.temporadas.navidad||{};
     var ahora=Date.now(),desde=n.desde?Date.parse(n.desde):0,hasta=n.hasta?Date.parse(n.hasta):0;
     var activo=!!n.activo&&(!desde||ahora>=desde)&&(!hasta||ahora<hasta);
-    if(forzado==='1')activo=true;if(forzado==='0')activo=false;
-    if(!activo)return;
-    var css=document.createElement('link');css.rel='stylesheet';css.href='seasonal/christmas/christmas.css?v=12';
-    css.onload=function(){var js=document.createElement('script');js.src='seasonal/christmas/christmas.js?v=8';js.defer=true;document.head.appendChild(js);};
-    document.head.appendChild(css);
+    if(!activo)apagar();
   }).catch(function(){});
 })();
 </script>
 </head>
-<body class="hv-home min-redesign">
+<body class="hv-home min-redesign pal-christmas">
 
 <div id="loadingOverlay">
   <div class="loader-bubbles" aria-hidden="true">
@@ -3225,7 +3238,7 @@ body.min-redesign.hv-home .min-home-hero>picture img{object-fit:cover;object-pos
 <div id="homeView">
   <section class="min-home-hero" aria-label="Descubrí el placer de Paladear">
     <picture>
-      <source media="(max-width:767px)" srcset="home-hero-minorista-mobile-v12.webp">
+      <source media="(max-width:767px)" srcset="seasonal/christmas/hero-navidad.webp?v=3" data-pal-original="home-hero-minorista-mobile-v12.webp">
       <img src="home-hero-minorista-desktop-v6.webp" alt="Selección de productos naturales Paladear" fetchpriority="high" decoding="async">
     </picture>
     <div class="min-home-hero-copy">
