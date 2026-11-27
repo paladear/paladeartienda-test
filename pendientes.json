@@ -1,21 +1,37 @@
 {
   "resumen": {
-    "nuevos": 1,
-    "renombrados": 1,
+    "nuevos": 0,
+    "renombrados": 5,
     "quitados": 1,
     "rubro_invalido": 0,
     "fuera_catalogo": 59
   },
-  "nuevos": [
-    {
-      "numero": "2441",
-      "nombre": "LEVADURA LEVEX 13 g",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 1170,
-      "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
-    }
-  ],
+  "nuevos": [],
   "renombrados": [
+    {
+      "numero": "2265",
+      "nombre_publicado": "ACEITE COCO NEUTRO ENTRENUTS \"SIN TACC\" x 200",
+      "nombre_nuevo": "ACEITE COCO NEUTRO ENTRENUTS \"SIN TACC\" x 200cc",
+      "rubro": "ACEITES Y VINAGRES"
+    },
+    {
+      "numero": "2141",
+      "nombre_publicado": "ACEITE COCO NEUTRO ENTRENUTS \"SIN TACC\" x 360 G",
+      "nombre_nuevo": "ACEITE COCO NEUTRO ENTRENUTS \"SIN TACC\" x 360cc",
+      "rubro": "ACEITES Y VINAGRES"
+    },
+    {
+      "numero": "2142",
+      "nombre_publicado": "ACEITE COCO VIRGEN ENTRENUTS \"SIN TACC\" X 200 g",
+      "nombre_nuevo": "ACEITE COCO VIRGEN ENTRENUTS \"SIN TACC\" X 200cc",
+      "rubro": "ACEITES Y VINAGRES"
+    },
+    {
+      "numero": "2266",
+      "nombre_publicado": "ACEITE COCO VIRGEN ENTRENUTS \"SIN TACC\" X 360 g",
+      "nombre_nuevo": "ACEITE COCO VIRGEN ENTRENUTS \"SIN TACC\" X 360cc",
+      "rubro": "ACEITES Y VINAGRES"
+    },
     {
       "numero": "5096",
       "nombre_publicado": "MOLDE BUDIN",
