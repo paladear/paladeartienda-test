@@ -9,7 +9,7 @@
 .pal-christmas .header-inner{z-index:4}
 
 /* El gorro se apoya sobre el logo, inclinado, sin taparlo. */
-.pal-xmas-hat{position:absolute;z-index:12;width:104%;height:auto;left:-14%;top:-46%;
+.pal-xmas-hat{position:absolute;z-index:12;width:94%;height:auto;left:-8%;top:-21%;
   transform:rotate(-8deg);transform-origin:55% 80%;
   filter:drop-shadow(0 9px 9px rgba(18,49,72,.26))}
 
@@ -27,8 +27,11 @@
   .pal-christmas.hv-home .header{height:92px!important;min-height:92px!important}
   .pal-christmas.hv-home .header-inner{min-height:92px!important;padding-top:24px!important;padding-bottom:8px!important}
   .pal-christmas.hv-home .header .logo-wrap{top:30px!important}
-  /* top:-45% dejaba el pompon 5px por encima del borde de la pantalla. */
-  .pal-xmas-hat{width:106%;left:-15%;top:-38%}
+  /* Medido sobre la imagen de referencia: el gorro ocupa ~94% del ancho del
+     logo, arranca 8% a su izquierda y 21% por encima. Asi se apoya en el
+     angulo superior izquierdo, el pompon cuelga a la izquierda y el texto del
+     logo queda legible. */
+  .pal-xmas-hat{width:94%;left:-8%;top:-21%}
   .pal-xmas-gift{width:29px!important;height:29px!important;top:7px}
 }
 @media(min-width:768px){
