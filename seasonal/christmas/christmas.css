@@ -1,17 +1,20 @@
 /* Modo navideño Paladear. Todo queda aislado bajo .pal-christmas.
    Diciembre 2026: la ambientación viene DENTRO de la foto del hero (luces,
    bolitas, moño y estrellas). Por eso acá no se dibuja ninguna de esas cosas:
-   dibujarlas encima las duplicaba. Sólo se agregan el gorro sobre el logo y
+   dibujarlas encima las duplicaba. Sólo se superpone el logo con gorro y
    el regalo en la barra de abajo. */
 .pal-christmas{--xmas-gold:#d6aa58;--xmas-light:#ffe7ad;--xmas-blue:#174e77}
 .pal-christmas .header,.pal-christmas .min-home-hero{overflow:visible}
-.pal-xmas-hat,.pal-xmas-gift{pointer-events:none;user-select:none}
+.pal-xmas-logo,.pal-xmas-gift{pointer-events:none;user-select:none}
 .pal-christmas .header-inner{z-index:4}
 
-/* El gorro se apoya sobre el logo, inclinado, sin taparlo. */
-.pal-xmas-hat{position:absolute;z-index:12;width:94%;height:auto;left:-8%;top:-21%;
-  transform:rotate(-8deg);transform-origin:55% 80%;
-  filter:drop-shadow(0 9px 9px rgba(18,49,72,.26))}
+/* Logo con el gorro ya integrado. Los numeros salen de medir el PNG: adentro
+   de la imagen el circulo del logo ocupa el 76,35% del ancho, con su centro en
+   (50,5% / 57,5%). Puesto al 120% del .logo-wrap el circulo queda del mismo
+   tamano que el que ya tiene el header y centrado encima, asi que lo tapa sin
+   mover nada; el gorro es lo unico que sobresale. */
+.pal-xmas-logo{position:absolute;z-index:12;width:120%;height:auto;left:-10.6%;top:-17.7%;
+  filter:drop-shadow(0 9px 9px rgba(18,49,72,.22))}
 
 /* El regalo reemplaza al icono de Ofertas. */
 .pal-christmas .bnav button[data-b="ofertas"]>img:not(.pal-xmas-gift){visibility:hidden}
@@ -26,12 +29,11 @@
      hay que ganarle a las dos para que el gorro tenga aire arriba. */
   .pal-christmas.hv-home .header{height:92px!important;min-height:92px!important}
   .pal-christmas.hv-home .header-inner{min-height:92px!important;padding-top:24px!important;padding-bottom:8px!important}
-  .pal-christmas.hv-home .header .logo-wrap{top:30px!important}
-  /* Medido sobre la imagen de referencia: el gorro ocupa ~94% del ancho del
-     logo, arranca 8% a su izquierda y 21% por encima. Asi se apoya en el
-     angulo superior izquierdo, el pompon cuelga a la izquierda y el texto del
-     logo queda legible. */
-  .pal-xmas-hat{width:94%;left:-8%;top:-21%}
+  /* En la referencia el circulo del logo arranca a 15px del borde de la
+     pagina y el gorro llega justo al borde. Los botones y el search quedan
+     mas abajo, a la altura que ya les da el padding-top del header, para no
+     tapar las luces. */
+  .pal-christmas.hv-home .header .logo-wrap{top:15px!important}
   .pal-xmas-gift{width:29px!important;height:29px!important;top:7px}
 }
 @media(min-width:768px){
