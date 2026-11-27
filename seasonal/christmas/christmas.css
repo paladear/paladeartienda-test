@@ -8,13 +8,18 @@
 .pal-xmas-logo,.pal-xmas-gift{pointer-events:none;user-select:none}
 .pal-christmas .header-inner{z-index:4}
 
-/* Logo con el gorro ya integrado. Los numeros salen de medir el PNG: adentro
-   de la imagen el circulo del logo ocupa el 76,35% del ancho, con su centro en
-   (50,5% / 57,5%). Puesto al 120% del .logo-wrap el circulo queda del mismo
-   tamano que el que ya tiene el header y centrado encima, asi que lo tapa sin
-   mover nada; el gorro es lo unico que sobresale. */
-.pal-xmas-logo{position:absolute;z-index:12;width:120%;height:auto;left:-10.6%;top:-17.7%;
+/* Logo con el gorro ya integrado. Los numeros salen de ajustar un circulo por
+   minimos cuadrados sobre el borde del webp (error medio 0,6px): el circulo
+   ocupa el 76,76% del ancho de la imagen y su centro cae en (50,83% / 56,72%).
+   Puesto al 120% del .logo-wrap queda del mismo tamano que el circulo que ya
+   tiene el header y exactamente centrado encima, asi que lo tapa sin mover
+   nada; el gorro es lo unico que sobresale. */
+.pal-xmas-logo{position:absolute;z-index:12;width:120%;height:auto;left:-11%;top:-16.8%;
   filter:drop-shadow(0 9px 9px rgba(18,49,72,.22))}
+
+/* El aro del logo es rgba(255,255,255,.78) y dejaba ver el azul del hero por
+   detras: se leia como un borde transparente. En navidad va blanco macizo. */
+.pal-christmas .header .logo{background:#fff!important;border-color:#fff!important}
 
 /* El regalo reemplaza al icono de Ofertas. */
 .pal-christmas .bnav button[data-b="ofertas"]>img:not(.pal-xmas-gift){visibility:hidden}
@@ -37,12 +42,15 @@
   .pal-christmas.hv-home .header-inner{min-height:92px!important;
     align-items:flex-end!important;
     padding-top:8px!important;padding-bottom:2px!important;padding-right:17px!important}
-  /* En la referencia el circulo del logo arranca a 15px del borde de la
-     pagina y el gorro llega justo al borde. Va sin .hv-home a proposito: en
+  /* Va sin .hv-home a proposito: en
      Productos, Ofertas, etc. el logo esta a 8px y ahi la punta del gorro se
      cortaba contra el borde de la pantalla. */
-  .pal-christmas .header .logo-wrap{top:15px!important}
+  .pal-christmas .header .logo-wrap{top:21px!important}
   .pal-xmas-gift{width:29px!important;height:29px!important;top:7px}
+  /* El hero de diciembre trae bolitas colgando a la derecha y el titulo normal
+     (clamp(29px,8.35vw,35px)) llegaba hasta x=258, pegado a la bolita azul que
+     arranca en 248. Bajado a 7,4vw termina en 233 y queda aire. */
+  .pal-christmas.hv-home .min-home-hero-copy h1{font-size:clamp(26px,7.4vw,31px)!important}
 }
 @media(min-width:768px){
   .pal-christmas .header .logo-wrap{z-index:10}
