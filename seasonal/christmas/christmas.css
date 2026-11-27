@@ -37,7 +37,12 @@
   .pal-christmas.hv-home .header-inner{min-height:122px!important;padding-top:54px!important;padding-bottom:8px!important}
   .pal-christmas.hv-home .header .logo-wrap{top:48px!important}
   .pal-xmas-lights{height:50px}.pal-xmas-wire{height:46px}.pal-xmas-bulb{width:7px;height:7px}
-  .pal-xmas-hat{width:132%;left:-35%;top:-34%}
+  /* El gorro se APOYA sobre el logo, no lo tapa: antes medi­a 90px contra un
+     logo de 68 y ademas se salia 25px por el borde izquierdo. */
+  .pal-xmas-hat{width:104%;left:-12%;top:-44%}
+  /* El header paso de 70 a 122px, asi que el texto del hero quedaba 9px por
+     debajo. Se lo corre para que arranque despejado. */
+  .pal-christmas.hv-home .min-home-hero-copy{padding-top:34px}
   /* Las bolitas cuelgan POR DEBAJO de los botones, que terminan cerca de los
      100px: 15% de los 666px del hero. */
   .pal-xmas-ornaments{right:-2.5%;top:15%;width:154px}
