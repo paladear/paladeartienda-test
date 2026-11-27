@@ -1,28 +1,35 @@
 {
   "resumen": {
     "nuevos": 2,
-    "renombrados": 0,
+    "renombrados": 1,
     "quitados": 1,
     "rubro_invalido": 0,
-    "fuera_catalogo": 62
+    "fuera_catalogo": 60
   },
   "nuevos": [
     {
-      "numero": "5097",
-      "nombre": "MELENA+CORDYCEPS X 60 CAPSULAS",
-      "rubro": "SUPLEMENTOS",
-      "precio": 33490,
+      "numero": "2310",
+      "nombre": "ESENCIA DE AGUA DE AZAHAR 60 cc",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
+      "precio": 4460,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     },
     {
-      "numero": "5096",
-      "nombre": "MOLDES",
+      "numero": "2309",
+      "nombre": "ESENCIA DE PAN DULCE 60 cc",
       "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 500,
+      "precio": 4460,
       "motivo": "Producto nuevo en CATALOGO. No se publica hasta cargarle ficha y foto."
     }
   ],
-  "renombrados": [],
+  "renombrados": [
+    {
+      "numero": "5096",
+      "nombre_publicado": "MOLDE BUDIN",
+      "nombre_nuevo": "MOLDES",
+      "rubro": "AZUCAR, CACAO Y REPOSTERIA"
+    }
+  ],
   "quitados": [
     {
       "numero": "2222",
@@ -204,20 +211,6 @@
       "nombre": "DULCE DE MEMBRILLO x5 KL",
       "rubro": "DULCES, MIEL Y CHOCOLATES",
       "precio": 19404,
-      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
-    },
-    {
-      "numero": "2310",
-      "nombre": "ESENCIA DE AGUA DE AZAHAR 60 cc",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 4460,
-      "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
-    },
-    {
-      "numero": "2309",
-      "nombre": "ESENCIA DE PAN DULCE 60 cc",
-      "rubro": "AZUCAR, CACAO Y REPOSTERIA",
-      "precio": 4460,
       "motivo": "No tiene la marca CATALOGO en E-Pyme. No se publica en la tienda."
     },
     {
