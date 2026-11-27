@@ -1,38 +1,50 @@
 /* Modo navideño Paladear. Todo queda aislado bajo .pal-christmas. */
-.pal-christmas{--xmas-gold:#d6aa58;--xmas-light:#ffe0a1;--xmas-blue:#174e77}
+.pal-christmas{--xmas-gold:#d6aa58;--xmas-light:#ffe7ad;--xmas-blue:#174e77}
 .pal-christmas .header,.pal-christmas .min-home-hero{overflow:visible}
 .pal-xmas-hat,.pal-xmas-lights,.pal-xmas-hero-decor,.pal-xmas-gift{pointer-events:none;user-select:none}
+.pal-christmas .header-inner{z-index:4}
 
-.pal-xmas-hat{position:absolute;z-index:12;width:74%;height:auto;left:-14%;top:-12%;transform:rotate(-7deg);transform-origin:55% 80%;filter:drop-shadow(0 4px 5px rgba(20,54,77,.16))}
+.pal-xmas-hat{position:absolute;z-index:12;width:140%;height:auto;left:-38%;top:-42%;transform:rotate(-8deg);transform-origin:55% 80%;filter:drop-shadow(0 9px 9px rgba(18,49,72,.26))}
 
-.pal-xmas-lights{position:absolute;z-index:8;top:0;left:0;width:100%;height:48px;overflow:hidden}
-.pal-xmas-wire{position:absolute;inset:0;width:100%;height:44px;overflow:visible}
-.pal-xmas-wire path{fill:none;stroke:rgba(171,128,48,.72);stroke-width:1;vector-effect:non-scaling-stroke}
-.pal-xmas-bulb{position:absolute;top:var(--y);width:7px;height:7px;border-radius:50%;background:var(--xmas-light);box-shadow:0 0 6px 2px rgba(255,216,132,.64);opacity:.95}
-.pal-xmas-bulb::before{content:"";position:absolute;left:2px;top:-4px;width:3px;height:4px;border-radius:1px;background:#aa813c}
+.pal-xmas-lights{position:absolute;z-index:2;top:0;left:0;width:100%;height:58px;overflow:hidden}
+.pal-xmas-wire{position:absolute;inset:0;width:100%;height:52px;overflow:visible}
+.pal-xmas-wire path{fill:none;stroke:rgba(167,121,43,.82);stroke-width:1.15;vector-effect:non-scaling-stroke}
+.pal-xmas-wire .pal-xmas-wire-soft{stroke:rgba(184,144,71,.46);stroke-width:.85}
+.pal-xmas-bulb{position:absolute;top:var(--y);width:8px;height:8px;border-radius:50%;background:#fff0c3;box-shadow:0 0 5px 2px rgba(255,237,181,.95),0 0 15px 6px rgba(255,198,80,.66);opacity:1}
+.pal-xmas-bulb::before{content:"";position:absolute;left:2px;top:-5px;width:4px;height:5px;border-radius:2px 2px 0 0;background:#b98b3e}
 
 .pal-xmas-hero-decor{position:absolute;inset:0;z-index:3;overflow:hidden;border-radius:inherit}
-.pal-xmas-ornaments{position:absolute;right:2.1%;top:-1%;width:clamp(138px,15vw,236px);height:auto;transform-origin:50% 0;animation:palXmasSwing 6.8s ease-in-out infinite;filter:drop-shadow(0 7px 7px rgba(25,57,77,.12))}
+.pal-xmas-ornaments{position:absolute;right:1.2%;top:-1.2%;width:clamp(190px,19vw,292px);height:auto;transform-origin:50% 0;animation:palXmasSwing 7.2s ease-in-out infinite;filter:drop-shadow(0 12px 10px rgba(20,46,64,.24))}
 @keyframes palXmasSwing{0%,100%{transform:rotate(-.7deg)}50%{transform:rotate(.8deg)}}
-.pal-xmas-bow{position:absolute;right:12.2%;top:29%;width:clamp(72px,8vw,126px);height:auto;transform:rotate(3deg);filter:drop-shadow(0 5px 5px rgba(92,63,18,.16))}
+.pal-xmas-bow{position:absolute;right:10.8%;top:28.2%;width:clamp(106px,10.5vw,164px);height:auto;transform:rotate(3deg);filter:drop-shadow(0 9px 8px rgba(83,55,15,.27))}
 .pal-xmas-stars{position:absolute;inset:0}
-.pal-xmas-star{position:absolute;width:var(--s);height:var(--s);opacity:.5;animation:palXmasTwinkle 3.8s ease-in-out infinite;animation-delay:var(--d)}
+.pal-xmas-star{position:absolute;width:var(--s);height:var(--s);opacity:.78;animation:palXmasTwinkle 4.2s ease-in-out infinite;animation-delay:var(--d);filter:drop-shadow(0 0 5px var(--c))}
 .pal-xmas-star::before,.pal-xmas-star::after{content:"";position:absolute;left:50%;top:0;width:1px;height:100%;background:linear-gradient(transparent,var(--c) 42%,var(--c) 58%,transparent);transform:translateX(-50%)}
 .pal-xmas-star::after{transform:translateX(-50%) rotate(90deg)}
-@keyframes palXmasTwinkle{0%,100%{opacity:.15;transform:scale(.72)}50%{opacity:.9;transform:scale(1)}}
+@keyframes palXmasTwinkle{0%,100%{opacity:.48;transform:scale(.84)}50%{opacity:1;transform:scale(1.08)}}
 
 .pal-christmas .bnav button[data-b="ofertas"]>img:not(.pal-xmas-gift){visibility:hidden}
-.pal-xmas-gift{position:absolute!important;width:26px!important;height:26px!important;object-fit:contain!important;top:10px;left:50%;transform:translateX(-50%)}
+.pal-xmas-gift{position:absolute!important;width:31px!important;height:31px!important;object-fit:contain!important;top:7px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 2px 2px rgba(23,78,119,.12))!important}
 
 @media(max-width:767px){
-  .pal-xmas-lights{height:43px}.pal-xmas-wire{height:40px}.pal-xmas-bulb{width:6px;height:6px}
-  .pal-xmas-hat{width:78%;left:-12%;top:-10%}
-  .pal-xmas-ornaments{right:-1%;top:2%;width:118px}
-  .pal-xmas-bow{right:8%;top:51%;width:78px}
-  .pal-xmas-star{transform:scale(.88)}
+  .pal-christmas.hv-home .header{min-height:98px}
+  .pal-christmas.hv-home .header-inner{min-height:98px!important;padding-top:30px!important;padding-bottom:8px!important}
+  .pal-christmas.hv-home .header .logo-wrap{top:25px!important}
+  .pal-xmas-lights{height:50px}.pal-xmas-wire{height:46px}.pal-xmas-bulb{width:7px;height:7px}
+  .pal-xmas-hat{width:136%;left:-37%;top:-41%}
+  .pal-xmas-ornaments{right:-2.5%;top:1%;width:154px}
+  .pal-xmas-bow{right:4.8%;top:49.5%;width:105px}
+  .pal-xmas-star{transform:scale(.94)}
+  .pal-xmas-gift{width:29px!important;height:29px!important;top:7px}
 }
 @media(min-width:768px){
   .pal-christmas .header .logo-wrap{z-index:10}
+}
+@media(min-width:1024px){
+  .pal-christmas.hv-home .header{height:182px;min-height:182px}
+  .pal-christmas.hv-home .header-inner{min-height:106px;padding-top:30px!important}
+  .pal-christmas.hv-home .header .logo-wrap{top:26px}
+  .pal-christmas.hv-home .tabs-zone{top:116px}
 }
 @media(prefers-reduced-motion:reduce){
   .pal-xmas-ornaments,.pal-xmas-star{animation:none!important}
