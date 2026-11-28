@@ -1,6 +1,6 @@
 {
  "ayuda": "Stock y precios de Paladear (tienda minorista), al dia desde el sistema de gestion del local. 'disponible' es si/no/sin dato; 'cantidad' esta en la unidad con la que se vende el articulo (kg o unidad) y es null cuando el articulo no lleva control de stock. Los precios ya incluyen IVA, en pesos. 'articulo' es el codigo interno y es la unica clave estable: el nombre puede cambiar. Se actualiza cada pocos minutos; mirar 'actualizado' antes de confiar en el dato.",
- "actualizado": "2026-11-28T12:41:21",
+ "actualizado": "2026-11-28T13:02:24",
  "origen": "E-Pyme sucursal",
  "unidad": "tienda minorista",
  "cantidad_articulos": 614,
@@ -931,7 +931,7 @@
    "precio_minorista": 2720.0,
    "precio_mayorista": 2320.0,
    "disponible": "si",
-   "cantidad": 215.0
+   "cantidad": 214.0
   },
   {
    "articulo": "5031",
@@ -1822,7 +1822,7 @@
    "precio_minorista": 3390.0,
    "precio_mayorista": 2980.0,
    "disponible": "si",
-   "cantidad": 9.0
+   "cantidad": 8.0
   },
   {
    "articulo": "2134",
@@ -2641,7 +2641,7 @@
    "precio_minorista": 5100.0,
    "precio_mayorista": 4350.0,
    "disponible": "si",
-   "cantidad": 6.0
+   "cantidad": 5.0
   },
   {
    "articulo": "5086",
@@ -3109,7 +3109,7 @@
    "precio_minorista": 5600.0,
    "precio_mayorista": 4800.0,
    "disponible": "si",
-   "cantidad": 52.0
+   "cantidad": 51.0
   },
   {
    "articulo": "2468",
@@ -3514,7 +3514,7 @@
    "precio_minorista": 16390.0,
    "precio_mayorista": 13210.0,
    "disponible": "si",
-   "cantidad": 6.155
+   "cantidad": 6.055
   },
   {
    "articulo": "1422",
@@ -3694,7 +3694,7 @@
    "precio_minorista": 58390.0,
    "precio_mayorista": 47770.0,
    "disponible": "si",
-   "cantidad": 9.678
+   "cantidad": 9.428
   },
   {
    "articulo": "1716",
@@ -4675,7 +4675,7 @@
    "precio_minorista": 7170.0,
    "precio_mayorista": 5810.0,
    "disponible": "si",
-   "cantidad": 6.0
+   "cantidad": 5.0
   },
   {
    "articulo": "1803",
@@ -5170,7 +5170,7 @@
    "precio_minorista": 6030.0,
    "precio_mayorista": 4870.0,
    "disponible": "si",
-   "cantidad": 1.295
+   "cantidad": 1.155
   },
   {
    "articulo": "1636",
